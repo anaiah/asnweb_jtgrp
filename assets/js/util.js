@@ -782,6 +782,13 @@ const util = {
         const configObj = { keyboard: false, backdrop:'static' }
         
         switch( modalToShow ){
+
+            case "dataEntryModal":
+                const dataentrymodal =  new bootstrap.Modal(document.getElementById('dataEntryModal'),configObj);
+                dataentrymodal.show()  
+
+            break
+
             case "claimsModal":
                 if(util.getCookie('grp_id')!=="2"){
                     const claimsmodal =  new bootstrap.Modal(document.getElementById('claimsModal'),configObj);

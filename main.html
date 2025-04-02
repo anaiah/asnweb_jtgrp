@@ -48,19 +48,28 @@
         <!-- //============= Sidebar navigation ===============//-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
+
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Home</span>
             </li>
+            
             <li class="sidebar-item">
-              <a class="sidebar-link" href="javascript:util.scrollsTo('dashboard')" aria-expanded="false">
+              <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false">
                 <span>
                   <i class="ti ti-chart-dots-3"></i>
                 </span>
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
-
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="javascript:util.modalShow('dataEntryModal')" aria-expanded="false">
+                <span>
+                  <i class="ti ti-chart-dots-3"></i>
+                </span>
+                <span class="hide-menu">Data Entry</span>
+              </a>
+            </li>
       
 
             <li class="nav-small-cap">
@@ -75,37 +84,6 @@
                 <span class="hide-menu">Logout</span>
               </a>
             </li>
-<!--             
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-user-plus"></i>
-                </span>
-                <span class="hide-menu">Register</span>
-              </a>
-            </li>
- -->
-
-            <!-- <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">EXTRA</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-mood-happy"></i>
-                </span>
-                <span class="hide-menu">Icons</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-aperture"></i>
-                </span>
-                <span class="hide-menu">Sample Page</span>
-              </a>
-            </li> -->
           </ul>
    
         </nav>
@@ -793,6 +771,11 @@
 
   <!--//end container description modal-->
 <!--//Modal for adding New Site //-->
+
+<!--// call with 
+
+"javascript:util.modalShow('newempModal')"
+-->
 <div class="modal fade" id="newempModal" tabindex="-1" aria-labelledby="newsiteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
       <div class="modal-content">
@@ -898,8 +881,32 @@
 </div>					
 <!--//end newsiteModal//-->
 
+<!--// ==================MODAL FOR RIDER'S WORK INPUT===================== //-->
+<div class="modal fade" id="dataEntryModal" tabindex="-1" aria-labelledby="newsiteModalLabel" aria-hidden="true">
+  
+  <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+    
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> Data Entry</h4>
+        <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+      </div>
 
-  </div>
+      <!--//modal body-->
+      <div class="modal-body">
+      </div>
+
+
+
+
+    </div><!--end modal-content-->
+
+
+  
+  </div><!--//end modal-dialog-->
+
+</div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0/dist/js/tabler.min.js"></script>
 
