@@ -1320,7 +1320,7 @@ const util = {
                 
                 // if(data.grp_id=="2"){//business dev0
                //location.href = '/main.html'
-                location.href = '/jtgrpx/dashboard'
+                location.href = '/jtx/dashboard'
                 /*
                 }else if( data.grp_id=="1" || data.grp_id=="0"){//engr/architect/acctg
                     location.href = '/dashboard.html'
