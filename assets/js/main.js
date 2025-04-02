@@ -1285,6 +1285,7 @@ const asn = {
         //load listeners
         util.modalListeners('claimsModal')
         util.modalListeners('newempModal')
+        util.modalListeners('dataEntryModal')
 
         console.log('praise God!')
 
