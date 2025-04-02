@@ -784,6 +784,7 @@ const util = {
         switch( modalToShow ){
 
             case "dataEntryModal":
+                console.log('here')
                 const dataentrymodal =  new bootstrap.Modal(document.getElementById('dataEntryModal'),configObj);
                 dataentrymodal.show()  
 
