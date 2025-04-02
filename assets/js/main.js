@@ -1226,17 +1226,8 @@ const asn = {
 	//==,= main run
 	init : async () => {
 
-       asn.getTopHub()
-        //document.getElementById('claims_select').remove()
-
+       ///////asn.getTopHub()
         
-		//change form action 
-		//document.getElementById('claimsuploadForm').action=`${myIp}/claims`
-        document.getElementById('claimsuploadForm').action=`${myIp}/xlsclaims` //change also in util.modalListeners()
-        
-		//change form action 
-		document.getElementById('uploadForm').action=`${myIp}/postimage`
-
         asn.speaks = (txt) =>{
             let speechsynth = new SpeechSynthesisUtterance();
             speechsynth.text = txt
@@ -1263,21 +1254,9 @@ const asn = {
             
         console.log('main.js SPEAK()')
         asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
-
-         //===first call load page 1
-         //console.log('first osndp.getAll() index.js')
-         //osndp.getAll("1","MALL001")
         
-         document.getElementById('img-profile').src=`/assets/images/profile/${util.getCookie('f_pic')}`
-        //pyright
-       ////document.getElementById('copyright').innerHTML='Copyright Â© EO-OSNDP '+ new Date().getFullYear();
-
-        //UPDATE DROPDOWN FOR FILTER
-        //get equipment type,
-        //osndp.filterMall(`https://localhost:10000/filtermall`, document.getElementById('filter_type'))
+        document.getElementById('img-profile').src=`/assets/images/profile/${util.getCookie('f_pic')}`
         
-        //asn.getVoice()
-
         //load the form to validate
         util.loadFormValidation('#newempForm')
         util.loadFormValidation('#searchForm')
@@ -1287,7 +1266,7 @@ const asn = {
         util.modalListeners('newempModal')
         util.modalListeners('dataEntryModal')
 
-        console.log('praise God!')
+        console.log('praise God! Loading JTX group')
 
 	}//END init
 } //======================= end admin obj==========//
