@@ -1329,9 +1329,9 @@ const util = {
         let micasalat = '14.58063721485018'
         let micasalon = '121.01563811625266'
 
-        let distance = asn.getDistance(micasalat, micasalon, position.coords.latitude, position.coords.longitude)
+        let distance = util.getDistance(micasalat, micasalon, position.coords.latitude, position.coords.longitude)
 
-        console.log('the distance is ',distance.toFixed(2))
+        console.log('====util.showPosition()  the distance is ',distance.toFixed(2))
 
         Toastify({
             text: `YOUR DISTANCE IS ${distance.toFixed(2)}` ,
@@ -1358,7 +1358,7 @@ const util = {
         
 
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(asn.showPosition);
+            navigator.geolocation.getCurrentPosition( util.showPosition );
         }
 
 
