@@ -1325,11 +1325,13 @@ const util = {
         return R * c; // Distance in kilometers
     },
 
-    showPosition: (position)=>{
+    showPosition: async (position)=>{
         let micasalat = '14.58063721485018'
         let micasalon = '121.01563811625266'
 
         let distance = asn.getDistance(micasalat, micasalon, position.coords.latitude, position.coords.longitude)
+
+        console.log('the distance is ',distance.toFixed(2))
 
         Toastify({
             text: `YOUR DISTANCE IS ${distance.toFixed(2)}` ,
