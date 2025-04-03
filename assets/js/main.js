@@ -1267,6 +1267,9 @@ const asn = {
             return true;
             
         }else{
+
+            const myTimeout = setTimeout( location.href = './', 8000);
+
             Toastify({
                 text: `YOUR DISTANCE IS ${distance.toFixed(2)} <br> YOU'RE TOO FAR, CAN'T USE THE SYSTEM!<BR> PLEASE GO INSIDE THE WAREHOUSE` ,
                 duration:8000,
@@ -1282,7 +1285,7 @@ const asn = {
                 }
             }).showToast();
             
-            const myTimeout = setTimeout( location.href = './jtx', 8000);
+            
         }
     },
 
