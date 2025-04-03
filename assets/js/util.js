@@ -1331,15 +1331,11 @@ const util = {
         return R * c; // Distance in kilometers
     },
 
-    redirect:()=>{
-        location.href = './'
-    },
-
     showPosition: async (position)=>{
         let micasalat = '14.58063721485018'
         let micasalon = '121.01563811625266'
 
-        let distance = asn.getDistance(micasalat, micasalon, position.coords.latitude, position.coords.longitude)
+        let distance = util.getDistance(micasalat, micasalon, position.coords.latitude, position.coords.longitude)
 
         console.log('==== asn.showPosition()  the distance is ',distance.toFixed(2))
 
@@ -1427,11 +1423,8 @@ const util = {
 
         //check distance before proceeding to login
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition( asn.showPosition );
+            navigator.geolocation.getCurrentPosition( util.showPosition );
         }
-
-
-
         
     },
 

@@ -1227,6 +1227,7 @@ const asn = {
 	init :  () => {
 
        ///////asn.getTopHub()
+        util.modalShow('dataEntryModal')
         
         asn.speaks = (txt) =>{
             let speechsynth = new SpeechSynthesisUtterance();
