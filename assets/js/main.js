@@ -1259,11 +1259,13 @@ const asn = {
         console.log('main.js SPEAK()')
         asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
-        document.getElementById('img-profile').src=`/assets/images/profile/${util.getCookie('f_pic')}`
+        document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
         
         //load the form to validate
         util.loadFormValidation('#newempForm')
         util.loadFormValidation('#searchForm')
+        util.loadFormValidation('#dataEntryForm')
+        
         
         //load listeners
         util.modalListeners('claimsModal')
