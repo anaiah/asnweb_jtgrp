@@ -1240,6 +1240,10 @@ const asn = {
         return R * c; // Distance in kilometers
     },
 
+    redirect:()=>{
+        location.href = './'
+    },
+
     showPosition: async (position)=>{
         let micasalat = '14.58063721485018'
         let micasalon = '121.01563811625266'
@@ -1268,8 +1272,7 @@ const asn = {
             
         }else{
 
-            const myTimeout = setTimeout( location.href = './', 8000);
-
+            
             Toastify({
                 text: `YOUR DISTANCE IS ${distance.toFixed(2)} <br> YOU'RE TOO FAR, CAN'T USE THE SYSTEM!<BR> PLEASE GO INSIDE THE WAREHOUSE` ,
                 duration:8000,
@@ -1285,7 +1288,8 @@ const asn = {
                 }
             }).showToast();
             
-            
+            const myTimeout = setTimeout( asn.redirect() , 8000);
+
         }
     },
 
