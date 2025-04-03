@@ -1246,24 +1246,44 @@ const asn = {
 
         let distance = asn.getDistance(micasalat, micasalon, position.coords.latitude, position.coords.longitude)
 
-        console.log('==== asn.showPosition()  the distance is ',distance)
+        console.log('==== asn.showPosition()  the distance is ',distance.toFixed(2))
 
-        Toastify({
-            text: `YOUR DISTANCE IS ${distance.toFixed(2)}` ,
-            duration:6000,
-            escapeMarkup:false, //to create html
-            close:false,
-            position:'center',
-            offset:{
-                x: 0,
-                y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-            },
-            style: {
-              background: "linear-gradient(to right, #00b09b, #96c93d)",
-            }
-        }).showToast();
-        
-        return false
+        if( parseFloat(distance.toFixed(2)) <=  0.02){
+            Toastify({
+                text: `YOUR DISTANCE IS ${distance.toFixed(2)}` ,
+                duration:6000,
+                escapeMarkup:false, //to create html
+                close:false,
+                position:'center',
+                offset:{
+                    x: 0,
+                    y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                },
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
+            
+            return true;
+            
+        }else{
+            Toastify({
+                text: `YOUR DISTANCE IS ${distance.toFixed(2)} <br> YOU'RE TOO FAR, CAN'T USE THE SYSTEM!<BR> PLEASE GO INSIDE THE WAREHOUSE` ,
+                duration:8000,
+                escapeMarkup:false, //to create html
+                close:false,
+                position:'center',
+                offset:{
+                    x: 0,
+                    y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                },
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
+            
+            const myTimeout = setTimeout( location.href = './jtx', 8000);
+        }
     },
 
 
