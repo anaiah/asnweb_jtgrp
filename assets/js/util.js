@@ -1396,7 +1396,6 @@ const util = {
             })
             
         }else{
-
             
             Toastify({
                 text: `YOUR DISTANCE IS ${distance.toFixed(2)} <br> YOU'RE TOO FAR, CAN'T USE THE SYSTEM!<BR> PLEASE GO INSIDE THE WAREHOUSE` ,
@@ -1413,6 +1412,8 @@ const util = {
                 }
             }).showToast();
             
+            document.getElementById('loginPlaceHolder').innerHTML = ""
+
             return false;
 
         }
