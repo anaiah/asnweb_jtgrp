@@ -1205,6 +1205,9 @@ const util = {
 			}
 		})///=====end loop form to get elements	
 	},
+    
+    url:null,
+
     //==========WHEN SUBMIT BUTTON CLICKED ==================
     validateMe: async (frmModal, frm, classX)=>{
         console.log('validateMe()===', frmModal, frm)
@@ -1258,8 +1261,11 @@ const util = {
                 case '#loginForm':
                     xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Searching Database please wait...</div>"
                     util.alertMsg( xmsg,'danger','loginPlaceHolder')
-                    util.loginPost(frm ,frmModal,`${myIp}/loginpost/${objfrm.uid}/${objfrm.pwd}`)
-                  //  util.loginPost(frm ,frmModal,`https://asianow_apiV2.onrender.com/loginpost/${objfrm.uid}/${objfrm.pwd}`)
+
+                    util.url = `${myIp}/loginpost/${objfrm.uid}/${objfrm.pwd}`
+
+                    util.loginPost(frm ,frmModal,`${util.url}`)
+
                 break
 				
 				case "#newempForm":
@@ -1308,47 +1314,125 @@ const util = {
         }
     },
 
+    //===calculate the distance haverstine ====//    
+    getDistance:  (lat1 , lon1, lat2, lon2 ) =>{
+        const R = 6371; // Earth's radius in kilometers
+        const toRadians = (angle) => angle * (Math.PI / 180);
+
+        const dLat = toRadians(lat2 - lat1);
+        const dLon = toRadians(lon2 - lon1);
+
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return R * c; // Distance in kilometers
+    },
+
+    redirect:()=>{
+        location.href = './'
+    },
+
+    showPosition: async (position)=>{
+        let micasalat = '14.58063721485018'
+        let micasalon = '121.01563811625266'
+
+        let distance = asn.getDistance(micasalat, micasalon, position.coords.latitude, position.coords.longitude)
+
+        console.log('==== asn.showPosition()  the distance is ',distance.toFixed(2))
+
+        if( parseFloat(distance.toFixed(2)) <=  0.02){
+            Toastify({
+                text: `YOUR DISTANCE IS ${distance.toFixed(2)}` ,
+                duration:6000,
+                escapeMarkup:false, //to create html
+                close:false,
+                position:'center',
+                offset:{
+                    x: 0,
+                    y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                },
+                style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
+            
+            fetch(util.url, {
+                cache:'reload'
+            
+            })
+            .then((response) => {  //promise... then 
+                
+                return response.json();
+            })
+            .then((data) => {
+                console.log('data ko ', data )
+                console.log(`here data ${JSON.stringify(data)}`)
+                //close ModalBox
+                if(data.found){
+                    //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data.voice)
+                    util.alertMsg(data.message,'success','loginPlaceHolder')
+                    
+                    util.setGroupCookie(data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
+                    
+                    // if(data.grp_id=="2"){//business dev0
+                   //location.href = '/main.html'
+                    location.href = '/jtx/dashboard'
+                    /*
+                    }else if( data.grp_id=="1" || data.grp_id=="0"){//engr/architect/acctg
+                        location.href = '/dashboard.html'
+                    }
+                    */
+                            
+                }else{
+                    util.speak(data.voice)
+                    util.alertMsg(data.message,'warning','loginPlaceHolder')
+                    console.log('notfound',data.message)
+                    return false
+                }
+                
+            })
+            .catch((error) => {
+                ///util.Toast(`Error:, ${error}`,1000)
+                console.error('Error:', error)
+            })
+            
+        }else{
+
+            
+            Toastify({
+                text: `YOUR DISTANCE IS ${distance.toFixed(2)} <br> YOU'RE TOO FAR, CAN'T USE THE SYSTEM!<BR> PLEASE GO INSIDE THE WAREHOUSE` ,
+                duration:8000,
+                escapeMarkup:false, //to create html
+                close:false,
+                position:'center',
+                offset:{
+                    x: 0,
+                    y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                },
+                style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
+            
+            return false;
+
+        }
+    },
+
     //==== for login posting
     loginPost:async function(frm,modal,url="") {
-        fetch(url, {
-            cache:'reload'
+
+        //check distance before proceeding to login
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition( asn.showPosition );
+        }
+
+
+
         
-        })
-        .then((response) => {  //promise... then 
-            
-            return response.json();
-        })
-        .then((data) => {
-            console.log('data ko ', data )
-            console.log(`here data ${JSON.stringify(data)}`)
-            //close ModalBox
-            if(data.found){
-                //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data.voice)
-                util.alertMsg(data.message,'success','loginPlaceHolder')
-                
-                util.setGroupCookie(data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
-                
-                // if(data.grp_id=="2"){//business dev0
-               //location.href = '/main.html'
-                location.href = '/jtx/dashboard'
-                /*
-                }else if( data.grp_id=="1" || data.grp_id=="0"){//engr/architect/acctg
-                    location.href = '/dashboard.html'
-                }
-                */
-                        
-            }else{
-                util.speak(data.voice)
-                util.alertMsg(data.message,'warning','loginPlaceHolder')
-                console.log('notfound',data.message)
-                return false
-            }
-            
-        })
-        .catch((error) => {
-            ///util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })
     },
 
     setGroupCookie:(xregion, xname,xgrp,xemail,xvoice,xpic)=>{

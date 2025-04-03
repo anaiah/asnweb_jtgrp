@@ -231,8 +231,8 @@
   <!-- <script src="../html/assets/libs/jquery/dist/jquery.min.js"></script> -->
   <script src="/html/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   
-  <script src="/html/assets/js/util.js?v=4"></script>
-  <script src="/html/assets/js/login.js?v=4"></script>
+  <script src="/html/assets/js/util.js?v=5"></script>
+  <script src="/html/assets/js/login.js?v=5"></script>
 
   <script>
 
@@ -244,7 +244,7 @@
 
       document.getElementById('myBody').style.backgroundImage = `url('/html/assets/images/backgrounds/${bgimage[xx] }')`
         setTimeout(() => {
-            const audio  = new Audio('intro.mp3')
+            const audio  = new Audio('/html/intro.mp3')
             audio.play().catch(error => {
                 console.error("Audio playback failed:", error);
             });
