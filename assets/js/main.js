@@ -1224,7 +1224,7 @@ const asn = {
     },
 
     //===calculate the distance haverstine ====//    
-    getDistance: async (lat1 , lon1, lat2, lon2 ) =>{
+    getDistance:  (lat1 , lon1, lat2, lon2 ) =>{
         const R = 6371; // Earth's radius in kilometers
         const toRadians = (angle) => angle * (Math.PI / 180);
     
@@ -1246,7 +1246,7 @@ const asn = {
 
         let distance = asn.getDistance(micasalat, micasalon, position.coords.latitude, position.coords.longitude)
 
-        console.log('==== asn.showPosition()  the distance is ',distance.toFixed(2))
+        console.log('==== asn.showPosition()  the distance is ',distance)
 
         Toastify({
             text: `YOUR DISTANCE IS ${distance.toFixed(2)}` ,
@@ -1268,7 +1268,7 @@ const asn = {
 
 
 	//==,= main run
-	init : async () => {
+	init :  () => {
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition( asn.showPosition );
