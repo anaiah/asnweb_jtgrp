@@ -1272,7 +1272,7 @@ const asn = {
         util.modalListeners('newempModal')
         util.modalListeners('dataEntryModal')
 
-        console.log('===praise God! Loading JTX group ?v=2 ===')
+        console.log('===asn.init() praise God! Loading JTX group ?v=2 ===')
 
 	}//END init
 } //======================= end admin obj==========//
