@@ -1223,6 +1223,10 @@ const asn = {
         })    
     },
 
+    checkDistance: async() => {
+
+    },
+
 	//==,= main run
 	init : async () => {
 
@@ -1273,6 +1277,8 @@ const asn = {
 //osndp.Bubbl
 window.scrollTo(0,0);
 
+asn.init()
+
 
 document.addEventListener('DOMContentLoaded', function() {
     // let bgimage = ['asiaone1.png', 'bgrnd.png']
@@ -1287,8 +1293,6 @@ document.addEventListener('DOMContentLoaded', function() {
     //       });
     //       document.getElementById('myCard').classList.add('show');
     //   }, 2000); // Delay of 1000 milliseconds (1 second)
-
-    asn.init()
     
 });
 

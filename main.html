@@ -894,16 +894,105 @@
 
       <!--//modal body-->
       <div class="modal-body">
-        test only
+
+          <div class="container-fluid" >	
+            <!--//form goes here -->
+            <!--//FORM SIGNUP-->
+            <form id="dataEntryForm" class="needs-validation row gy-2 gx-2 align-items-center" method="GET" novalidate>
+            
+            <!-- <div class="row mb-4"> -->
+            <div class="row">   
+              <!-- serial no. -->
+                <div class="col-lg-4 mb-3">
+                    <div class="form-outline">
+                        <label class="form-label mb-0" for="serial">Transaction Number</label>
+                        <input readonly type="text" id="f_transnumber" name="f_transnumber" class="form-control" />
+                    </div>
+                </div>
+                
+               
+                <!--//mall DESCRIPTION-->
+                <div class="col-lg-4 mb-3">
+                    <div class="form-outline">
+                        <label class="form-label mb-0" for="mall_description">Mall Description</label>
+                        <input type="text" class="form-control equipmentx" onkeydown="event.preventDefault();" 
+                        style="caret-color: transparent !important;" id="mall_description" name="mall_description" required />
+                        <div class="invalid-feedback">
+                            Required Field
+                        </div>
+                        <div class="valid-feedback">
+                            Looking Good!
+                        </div>
+                    </div>
+                
+                </div>
+
+                <div class="col-lg-4 mb-3">
+                  <div class="form-outline">
+                      <label class="form-label mb-0" for="area_size">Number of Parcel(s)</label>
+                      <input value="100" type="number" step="0.01" onblur="" id="f_parcel" name="f_parcel" placeholder="0.00" class="form-control equipmentx" min="20" required />
+                      <div class="invalid-feedback">
+                          Required Field
+                      </div>
+                      <div class="valid-feedback">
+                          Looking Good!
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+            <div class="row">
+               
+                <div class="col-lg-4 mb-3">
+                    <div class="form-outline">
+                        <label class="form-label mb-0" for="f_rate">Amount</label>
+                        <input value="1000" type="number" step="0.01" onblur="" id="f_amount" name="f_amount" placeholder="0.00" class="form-control equipmentx" min="20"  required />
+                        <div class="invalid-feedback">
+                            Required Field
+                        </div>
+                        <div class="valid-feedback">
+                            Looking Good!
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- <div class="row">
+                <div class="col-lg-4 mb-0">
+                    <div class="form-outline">
+                        <label class="form-label mb-0" style="text-transform: uppercase" for="remarks">Remarks</label>
+                        <textarea class="form-control equipmentx" id="remarks" name="remarks" rows="4"></textarea>
+                        <input class="mt-0 lets-hide" name="serial_pdf" id="serial_pdf" >
+                    </div>
+                </div>  
+            </div>
+             -->
+            </form>
+            <!--//end form -->
+            
+            <!-- <div class="row">
+              <div class="col-lg-4 mb-0">
+                form file upload
+                <form id="uploadForm" name="uploadForm" action="http://localhost:10000/uploadpdf" enctype="multipart/form-data" method="post">
+                  <div class="form-outline">
+                    <label class="form-label mb-0" for="uploaded_file">Upload Contract</label>
+                    <input onchange="osndp.checkFileSize()" class="form-control equipmentxx" type="file" name="uploaded_file" id="uploaded_file" accept='application/pdf' required />
+                    <input id="upload-btn" class="btn btn-warning lets-hide" type="submit" value="Upload">
+                    <p><span id="size"></span></p>
+                    <div id="blindspot"></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+             -->
+          </div><!--//end container-fluid//-->
+        
+
+
       </div>
 
-
-
-
     </div><!--end modal-content-->
-
-
-  
   </div><!--//end modal-dialog-->
 
 </div>
