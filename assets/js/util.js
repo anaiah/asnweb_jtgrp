@@ -1335,10 +1335,12 @@ const util = {
                     console.log('==posting newSiteModal data ==',objfrm);
 				break;
 
-
-
                 case "#commentsForm":
                     console.log('===POSTING ISSUES===')
+                break
+
+                case "#dataEntryForm":
+                    asn.saveToLocal(objfrm)                
                 break
 
             }//end switch

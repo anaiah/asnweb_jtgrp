@@ -1223,11 +1223,21 @@ const asn = {
         })    
     },
 
+    saveToLocal:async(objfrm)=>{
+        console.log(objfrm)
+    
+    
+    },
+
+    db: window.localStorage,
+
 	//==,= main run
 	init :  () => {
 
        ///////asn.getTopHub()
-        util.modalShow('dataEntryModal')
+        util.modalShow('dataEntryModal') // show initial data entry modal
+
+
         
         asn.speaks = (txt) =>{
             let speechsynth = new SpeechSynthesisUtterance();
