@@ -687,7 +687,7 @@ const asn = {
     //=======check file size before upload
     //for now acceptable is 2mb max
     checkFileSize:()=>{
-        const fi = document.getElementById('uploaded_file');
+        const fi = document.getElementById('ff_uploaded_file');
         // Check if any file is selected.
         if (fi.files.length > 0) {
             for (let i = 0; i <= fi.files.length - 1; i++) {
@@ -1234,7 +1234,7 @@ const asn = {
             
     },
 
-    db: window.localStorage,
+    db: window.localStorage, //instantiate localstorage
 
 	//==,= main run
 	init :  () => {
@@ -1279,12 +1279,13 @@ const asn = {
         util.loadFormValidation('#newempForm')
         util.loadFormValidation('#searchForm')
         util.loadFormValidation('#dataEntryForm')
-        
+        util.loadFormValidation('#remittanceForm')
         
         //load listeners
         util.modalListeners('claimsModal')
         util.modalListeners('newempModal')
         util.modalListeners('dataEntryModal')
+        util.modalListeners('remittanceModal')
 
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 

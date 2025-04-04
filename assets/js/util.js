@@ -784,16 +784,26 @@ const util = {
         switch( modalToShow ){
 
             case "dataEntryModal":
-                console.log('here')
                 const dataentrymodal =  new bootstrap.Modal(document.getElementById('dataEntryModal'),configObj);
                 dataentrymodal.show()  
 
                 document.getElementById('f_transnumber').value = util.getCode()
 
                 asn.collapz();
-        
-
             break
+
+            case "remittanceModal":
+                const remitmodal =  new bootstrap.Modal(document.getElementById('remittanceModal'),configObj);
+                remitmodal.show()  
+
+                //todo
+                //get db.localstorage and  display
+
+                //document.getElementById('f_transnumber').value = util.getCode()
+
+                asn.collapz();
+            break
+
 
             case "claimsModal":
                 if(util.getCookie('grp_id')!=="2"){
