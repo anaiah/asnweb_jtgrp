@@ -130,6 +130,11 @@
   content: "\ec37";
 }
 
+.ki-test:before{
+  content: "\fd29";
+
+}
+
 .ti-adjustments-horizontal:before {
   content: "\ec38";
 }
