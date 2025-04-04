@@ -1256,7 +1256,11 @@ const asn = {
         console.log('main.js SPEAK()')
         asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
-        document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
+        if(util.getCookie('f_pic')!==""){
+            document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
+        }else{
+            document.getElementById('img-profile').src=`/html/assets/images/profile/engr.jpg`
+        }
         
         //load the form to validate
         util.loadFormValidation('#newempForm')
