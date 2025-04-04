@@ -1364,12 +1364,12 @@ const util = {
         let micasalon = '121.01563811625266'
 
         let distance = util.getDistance(micasalat, micasalon, position.coords.latitude, position.coords.longitude)
+        let d_meters = ( distance.toFixed(3) * 1000 )
+        console.log('==== asn.showPosition()  the distance is ',d_meters)
 
-        console.log('==== asn.showPosition()  the distance is ',distance.toFixed(3))
-
-        if( parseFloat(distance.toFixed(3)) <=  0.010){ // IF DISTANCE IS LESS OR EQ. 10METERS
+        if( parseFloat(d_meters) <=  10){ // IF DISTANCE IS LESS OR EQ. 10METERS
             Toastify({
-                text: `YOUR DISTANCE FROM THE <BR>HUB IS ${distance.toFixed(3)}` ,
+                text: `SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!` ,
                 duration:6000,
                 escapeMarkup:false, //to create html
                 close:false,
@@ -1426,7 +1426,7 @@ const util = {
         }else{
             
             Toastify({
-                text: `YOUR DISTANCE IS ${distance.toFixed(2)} <br> YOU'RE TOO FAR, CAN'T USE THE SYSTEM!<BR> PLEASE GO INSIDE THE WAREHOUSE` ,
+                text: `ERROR -- PLEASE TRY AGAIN! <BR>YOUR DISTANCE FROM THE HUB  IS ${d_meters} METER(S) <br> PLEASE GO INSIDE THE WAREHOUSE!` ,
                 duration:8000,
                 escapeMarkup:false, //to create html
                 close:false,
@@ -1442,7 +1442,7 @@ const util = {
             
             document.getElementById('loginPlaceHolder').innerHTML = ""
 
-            return false;
+            return 
 
         }
     },
