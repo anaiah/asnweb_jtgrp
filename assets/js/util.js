@@ -1107,10 +1107,38 @@ const util = {
                 })
 
             break
+
+            case "dataEntryModal":
+                const dataEntryModalEl = document.getElementById('dataEntryModal')
+
+                dataEntryModalEl.addEventListener('show.bs.modal', function (event) {
+                    document.getElementById('f_transmodal').value =  getCode
+                })
+            
+            break
+
         }//end sw
  
     }, //end modallisteners func =========
     //======================END MODALS====================
+    //  clear form
+    //  let xform = document.getElementById('commentsForm')
+    //  xform.reset()
+    //  util.resetFormClass('#commentsForm')
+    
+    getCode:() =>{
+
+        var today = new Date()
+        var dd = String(today.getDate()).padStart(2, '0')
+        var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+        var yyyy = today.getFullYear()
+        var hh = String( today.getHours()).padStart(2,'0')
+        var mmm = String( today.getMinutes()).padStart(2,'0')
+        var ss = String( today.getSeconds()).padStart(2,'0')
+
+        today = `ASN-${yyyy}${mm}${dd}${hh}${mmm}${ss}-${emp_id}`
+        return today
+    },
 
     //===========STRIPE PAY ===========
     paymentInsert:()=>{
@@ -1337,11 +1365,11 @@ const util = {
 
         let distance = util.getDistance(micasalat, micasalon, position.coords.latitude, position.coords.longitude)
 
-        console.log('==== asn.showPosition()  the distance is ',distance.toFixed(2))
+        console.log('==== asn.showPosition()  the distance is ',distance.toFixed(3))
 
-        if( parseFloat(distance.toFixed(2)) <=  0.02){
+        if( parseFloat(distance.toFixed(3)) <=  0.010){ // IF DISTANCE IS LESS OR EQ. 10METERS
             Toastify({
-                text: `YOUR DISTANCE IS ${distance.toFixed(2)}` ,
+                text: `YOUR DISTANCE FROM THE <BR>HUB IS ${distance.toFixed(3)}` ,
                 duration:6000,
                 escapeMarkup:false, //to create html
                 close:false,
@@ -1420,7 +1448,7 @@ const util = {
     },
 
     //==== for login posting
-    loginPost:async function(frm,modal,url="") {
+    loginPost: (frm,modal,url="") => {
 
         //check distance before proceeding to login
         if (navigator.geolocation) {
