@@ -1454,10 +1454,50 @@ const util = {
     loginPost: (frm,modal,url="") => {
 
         //check distance before proceeding to login
+        /*  take out chcking of distance bring back  later
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition( util.showPosition );
         }
+        */
         
+        fetch(util.url, {
+            cache:'reload'
+        })
+        .then((response) => {  //promise... then 
+            return response.json();
+        })
+        .then((data) => {
+            console.log('data ko ', data )
+            console.log(`here data ${JSON.stringify(data)}`)
+            //close ModalBox
+            if(data.found){
+                //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data.voice)
+                util.alertMsg(data.message,'success','loginPlaceHolder')
+                
+                util.setGroupCookie(data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
+                
+                // if(data.grp_id=="2"){//business dev0
+               //location.href = '/main.html'
+                location.href = '/jtx/dashboard'
+                /*
+                }else if( data.grp_id=="1" || data.grp_id=="0"){//engr/architect/acctg
+                    location.href = '/dashboard.html'
+                }
+                */
+                        
+            }else{
+                util.speak(data.voice)
+                util.alertMsg(data.message,'warning','loginPlaceHolder')
+                console.log('notfound',data.message)
+                return false
+            }
+            
+        })
+        .catch((error) => {
+            ///util.Toast(`Error:, ${error}`,1000)
+            console.error('Error:', error)
+        })
+
     },
 
     setGroupCookie:(xregion, xname,xgrp,xemail,xvoice,xpic)=>{
