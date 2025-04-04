@@ -1112,7 +1112,7 @@ const util = {
                 const dataEntryModalEl = document.getElementById('dataEntryModal')
 
                 dataEntryModalEl.addEventListener('show.bs.modal', function (event) {
-                    document.getElementById('f_transmodal').value =  getCode
+                    document.getElementById('f_transnumber').value =  util.getCode()
                 })
             
             break
