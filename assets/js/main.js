@@ -1225,8 +1225,13 @@ const asn = {
 
     saveToLocal:async(objfrm)=>{
         console.log(objfrm)
+        
+        db.setItem('myCart', JSON.stringify(objfrm))
     
-    
+        asn.speaks('Local Storage Updated!!!')
+
+        util.hideModal('dataEntryModal',2000)    
+            
     },
 
     db: window.localStorage,
@@ -1236,9 +1241,7 @@ const asn = {
 
        ///////asn.getTopHub()
         util.modalShow('dataEntryModal') // show initial data entry modal
-
-
-        
+       
         asn.speaks = (txt) =>{
             let speechsynth = new SpeechSynthesisUtterance();
             speechsynth.text = txt
