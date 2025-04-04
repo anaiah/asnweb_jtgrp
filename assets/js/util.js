@@ -788,6 +788,8 @@ const util = {
                 const dataentrymodal =  new bootstrap.Modal(document.getElementById('dataEntryModal'),configObj);
                 dataentrymodal.show()  
 
+                document.getElementById('f_transnumber').value = util.getCode()
+                
                 asn.collapz();
         
 
