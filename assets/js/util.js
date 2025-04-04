@@ -1112,6 +1112,7 @@ const util = {
                 const dataEntryModalEl = document.getElementById('dataEntryModal')
 
                 dataEntryModalEl.addEventListener('show.bs.modal', function (event) {
+                    alert(util.getCode() )
                     document.getElementById('f_transnumber').value =  util.getCode()
                 })
             
@@ -1136,7 +1137,7 @@ const util = {
         var mmm = String( today.getMinutes()).padStart(2,'0')
         var ss = String( today.getSeconds()).padStart(2,'0')
 
-        today = `ASN-${yyyy}${mm}${dd}${hh}${mmm}${ss}-${emp_id}`
+        today = `ASN-${yyyy}${mm}${dd}${hh}${mmm}${ss}`
         return today
     },
 
