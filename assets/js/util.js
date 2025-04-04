@@ -6,7 +6,7 @@ this is for utilities
 modals,forms,utilities
 
 */ 
-const myIp = "https://asn-api.onrender.com" 
+const myIp = "https://asn-jtgrp-api.onrender.com" 
 //const myIp = "http://192.168.7.221:10000"
 
 const requirements = document.querySelectorAll(".requirements")
@@ -789,7 +789,7 @@ const util = {
                 dataentrymodal.show()  
 
                 document.getElementById('f_transnumber').value = util.getCode()
-                
+
                 asn.collapz();
         
 
@@ -1113,10 +1113,10 @@ const util = {
             case "dataEntryModal":
                 const dataEntryModalEl = document.getElementById('dataEntryModal')
 
-                dataEntryModalEl.addEventListener('show.bs.modal', function (event) {
-                    alert(util.getCode() )
-                    document.getElementById('f_transnumber').value =  util.getCode()
-                })
+                // dataEntryModalEl.addEventListener('show.bs.modal', function (event) {
+                //     alert(util.getCode() )
+                //     document.getElementById('f_transnumber').value =  util.getCode()
+                // })
             
             break
 
