@@ -1365,7 +1365,7 @@ const util = {
 
         let distance = util.getDistance(micasalat, micasalon, position.coords.latitude, position.coords.longitude)
         let d_meters = ( distance.toFixed(3) * 1000 )
-        console.log('==== asn.showPosition()  the distance is ',d_meters)
+        console.log('==== asn.showPosition()  the distance is ',distance, d_meters)
 
         if( parseFloat(d_meters) <=  10){ // IF DISTANCE IS LESS OR EQ. 10METERS
             Toastify({
