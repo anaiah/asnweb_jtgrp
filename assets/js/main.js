@@ -1227,7 +1227,10 @@ const asn = {
         console.log(objfrm)
         
         db.setItem('myCart', JSON.stringify(objfrm))
-    
+        
+        const badge = document.getElementById('bell-badge')
+        badge.innerHTML = 1
+
         asn.speaks('Local Storage Updated!!!')
 
         util.hideModal('dataEntryModal',2000)    
