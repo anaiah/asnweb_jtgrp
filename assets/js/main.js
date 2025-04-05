@@ -1226,7 +1226,7 @@ const asn = {
     saveToLocal:async(objfrm)=>{
         console.log(objfrm)
         
-        db.setItem('myCart', JSON.stringify(objfrm))
+        asn.db.setItem('myCart', JSON.stringify(objfrm))
         
         const badge = document.getElementById('bell-badge')
         badge.innerHTML = 1
