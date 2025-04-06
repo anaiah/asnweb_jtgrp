@@ -31,6 +31,9 @@ input:focus:is-invalid {
   .modal-title{
     color:white;
   }
+  .my-container{
+    --bs-gutter-x:2px;
+  }
   .lets-hide{
     visibility: hidden;
   }
