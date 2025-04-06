@@ -1245,8 +1245,7 @@ const asn = {
        ///////asn.getTopHub()
         util.modalShow('dataEntryModal') // show initial data entry modal
        
-        document.getElementById('tans_tbody').innerHTML="<tr><td  colspan=3>what?</td></tr>"
-
+        
         asn.speaks = (txt) =>{
             let speechsynth = new SpeechSynthesisUtterance();
             speechsynth.text = txt

@@ -796,6 +796,8 @@ const util = {
                 const remitmodal =  new bootstrap.Modal(document.getElementById('remittanceModal'),configObj);
                 remitmodal.show()  
 
+                document.getElementById('tans_tbody').innerHTML="<tr><td  colspan=3>what?</td></tr>"
+
                 //todo
                 //get db.localstorage and  display
 
