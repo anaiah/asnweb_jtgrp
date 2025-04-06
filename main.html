@@ -918,24 +918,7 @@
                         <input readonly type="text" id="f_transnumber" name="f_transnumber" class="form-control" />
                     </div>
                 </div>
-                
-               
-                <!--//mall DESCRIPTION-->
-                <!-- <div class="col-lg-4 mb-3">
-                    <div class="form-outline">
-                        <label class="form-label mb-0" for="mall_description">Mall Description</label>
-                        <input type="text" class="form-control equipmentx" onkeydown="event.preventDefault();" 
-                        style="caret-color: transparent !important;" id="mall_description" name="mall_description" required />
-                        <div class="invalid-feedback">
-                            Required Field
-                        </div>
-                        <div class="valid-feedback">
-                            Looking Good!
-                        </div>
-                    </div>
-                
-                </div> -->
-
+             
                 <div class="col-lg-4 mb-3">
                   <div class="form-outline">
                       <label class="form-label mb-0" for="f_parcel">Number of Parcel(s)</label>
@@ -966,39 +949,12 @@
                 </div>
                 
             </div>
-            
-            <!-- <div class="row">
-                <div class="col-lg-4 mb-0">
-                    <div class="form-outline">
-                        <label class="form-label mb-0" style="text-transform: uppercase" for="remarks">Remarks</label>
-                        <textarea class="form-control equipmentx" id="remarks" name="remarks" rows="4"></textarea>
-                        <input class="mt-0 lets-hide" name="serial_pdf" id="serial_pdf" >
-                    </div>
-                </div>  
-            </div>
-             -->
+          
             </form>
             <!--//end form -->
-            
-            <!-- <div class="row">
-              <div class="col-lg-4 mb-0">
-                form file upload
-                <form id="uploadForm" name="uploadForm" action="http://localhost:10000/uploadpdf" enctype="multipart/form-data" method="post">
-                  <div class="form-outline">
-                    <label class="form-label mb-0" for="uploaded_file">Upload Contract</label>
-                    <input onchange="osndp.checkFileSize()" class="form-control equipmentxx" type="file" name="uploaded_file" id="uploaded_file" accept='application/pdf' required />
-                    <input id="upload-btn" class="btn btn-warning lets-hide" type="submit" value="Upload">
-                    <p><span id="size"></span></p>
-                    <div id="blindspot"></div>
-                  </div>
-                </form>
-              </div>
-            </div>
-             -->
+          
           </div><!--//end container-fluid//-->
         
-
-
       </div><!--//end modal-body-->
       
       <div class="modal-footer">
@@ -1029,6 +985,35 @@
 
           <div class="container-fluid" >	
             <!--//form goes here -->
+
+            <div class="mb-0 container-fluid" id="list_atd">
+              <div class="col-lg-6 d-flex align-items-start">
+                <div class="card w-100">
+                  <div class="card-body p-4">
+                    <div class="mt-0 mb-4">
+                      <h1 class="card-title fw-semibold">
+                        <i style="color:green;font-size:25px;" class="ti ti-file-type-pdf"></i>&nbsp;
+                      </h1>
+                    </div>
+
+                    <div id="claims_select" class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Transaction No.</th>
+                            <th>Parcel Qty.</th>
+                            <th>Parcel Amount</th>                            
+                          </tr>
+                        </thead>
+                        <tbody id="trans-tbody">
+                        </tbody>
+                      </table>
+                    </div> 
+                    
+                  </div>
+                </div>
+              </div>
+            
 
             <!--//FORM SIGNUP-->
             <form id="remittanceForm" name="remittanceForm" class="needs-validation row gy-2 gx-2 align-items-center" method="GET" novalidate>
