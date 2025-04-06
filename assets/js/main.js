@@ -1241,18 +1241,21 @@ const asn = {
 
 	//==,= main run
 	init :  () => {
-
-       ///////asn.getTopHub()
-        util.modalShow('dataEntryModal') // show initial data entry modal
-       
-        
         asn.speaks = (txt) =>{
             let speechsynth = new SpeechSynthesisUtterance();
             speechsynth.text = txt
             speechsynth.lang = "en-US"
             speechSynthesis.speak( speechsynth )
         };    
-        //yes
+
+        console.log('main.js SPEAK()')
+        asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
+        
+        if(util.getCookie('f_pic')!==""){
+            document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
+        }else{
+            document.getElementById('img-profile').src=`/html/assets/images/profile/engr.jpg`
+        }
 
         let authz = []
         authz.push(util.getCookie('grp_id') )
@@ -1269,15 +1272,6 @@ const asn = {
             //   "osndp-header": "osndp"
             // }
         });//========================initiate socket handshake ================
-            
-        console.log('main.js SPEAK()')
-        asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
-        
-        if(util.getCookie('f_pic')!==""){
-            document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
-        }else{
-            document.getElementById('img-profile').src=`/html/assets/images/profile/engr.jpg`
-        }
         
         //load the form to validate
         util.loadFormValidation('#newempForm')
@@ -1291,6 +1285,9 @@ const asn = {
         util.modalListeners('dataEntryModal')
         util.modalListeners('remittanceModal')
 
+        ///////asn.getTopHub()
+        util.modalShow('dataEntryModal') // show initial data entry modal
+       
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 
 	}//END init
