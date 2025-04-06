@@ -796,8 +796,21 @@ const util = {
                 const remitmodal =  new bootstrap.Modal(document.getElementById('remittanceModal'),configObj);
                 remitmodal.show()  
 
-                document.getElementById('trans_tbody').innerHTML="<tr><td  colspan=3>what?</td></tr>"
+                if(!asn.db.getItem('myCart')){
 
+                }else{
+
+                    const dbval = JSON.parse( db.getItem('myCart'))
+
+                    document.getElementById('trans_tbody').innerHTML=`<tr>
+                        <td>${dbval.f_transnumber}</td>
+                        <td>${dbval.f_parcel}</td>
+                        <td>${dbval.f_amount}</td>
+                        </tr>`
+
+                }//eif
+
+                
                 //todo
                 //get db.localstorage and  display
 
