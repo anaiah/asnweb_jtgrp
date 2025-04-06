@@ -808,6 +808,10 @@ const util = {
                         <td>${dbval.f_amount}</td>
                         </tr>`
 
+                    //update also form as to guide for present data
+                    document.getElementById('ff_parcel').value= dbval.f_parcel
+                    document.getElementById('ff_amount').value= dbval.f_amount
+ 
                 }//eif
 
                 
