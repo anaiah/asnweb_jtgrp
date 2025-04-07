@@ -1241,7 +1241,7 @@ const asn = {
     //====rider  save transaction
     saveTransaction:async function(frm,modal,url="",xdata={}){
 
-        util.speak('Saving Transaction to Database, Please Wait!!!')
+        asn.speaks('Saving Transaction to Database, Please Wait!!!')
                             
         fetch(url,{
             method:'POST',
@@ -1255,7 +1255,7 @@ const asn = {
         .then((response) => {  //promise... then 
             return response.json();
         })
-        .then(data => {
+        .then( (data) => {
 
             console.log(data)
 

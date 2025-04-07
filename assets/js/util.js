@@ -1414,12 +1414,14 @@ const util = {
 
                         if( xfile.name == "" ){
                             util.Toasted('Please select a Picture of Receipt to Upload!!!',4000,false)
-                            return false;
+                            
                         }else{
                             asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)
                             
                         }//eif
                     }
+
+                    return
                 
                 break
             }//end switch
