@@ -1241,7 +1241,7 @@ const asn = {
     //====rider  save transaction
     saveTransaction:async function(frm,modal,url="",xdata={}){
 
-        util.speak('Saving to Database, Please Wait!!!')
+        util.speak('Saving Transaction to Database, Please Wait!!!')
                             
         fetch(url,{
             method:'POST',
@@ -1260,6 +1260,8 @@ const asn = {
             console.log(data)
 
             
+            return
+            /*
             if(data.status){
                 console.log( 'savetransaction here...')
                 //===== click submit button of Upload Form
@@ -1275,9 +1277,9 @@ const asn = {
 
                 asn.db.clear() //delete database
 
-                return true
+                
             }//endif
-            
+            */
            
         })  
         .catch((error) => {
