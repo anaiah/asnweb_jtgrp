@@ -11,14 +11,14 @@
 
   <title>AsiaNow Enc. Inc.</title>
   <!-- <link rel="shortcut icon" type="image/png" href="../html/assets/images/logos/favicon.png" /> -->
-  <link rel="shortcut icon" href="/html/assets/images/logos/asiaoneico.png" type="image/x-icon" sizes="32x32">  
+  <link rel="shortcut icon" href="/assets/images/logos/asiaoneico.png" type="image/x-icon" sizes="32x32">  
   <!-- <link rel="stylesheet" href="../html/assets/bootstrap/css/bootstrap.min.css?h=0516002ac6166f9bc5a60df257b0e1f8">
     -->
-  <link rel="stylesheet" href="/html/assets/css/styles.min.css" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!---//toastify cdn-->
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-  <link rel="stylesheet" href="/html/assets/css/osndp.css" />
+  <link rel="stylesheet" href="/assets/css/osndp.css" />
 </head>
 
 <body id="myBody">
@@ -38,7 +38,7 @@
               <div class="card-body w-70">
                 <!--//company logo -->
                 <a href="/jtx" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="/html/assets/images/logos/asiaone_.png"  width="180" alt="" />
+                  <img src="/assets/images/logos/asiaone_.png"  width="180" alt="" />
                 </a>
 
                 <p class="text-center">Asia Now Enterprise Inc.</p>
@@ -231,13 +231,13 @@
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
      -->
   <!-- <script src="../html/assets/libs/jquery/dist/jquery.min.js"></script> -->
-  <script src="/html/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- toastify -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   
-  <script src="/html/assets/js/util.js?v=7"></script>
-  <script src="/html/assets/js/login.js?v=7"></script>
+  <script src="/assets/js/util.js?v=7"></script>
+  <script src="/assets/js/login.js?v=7"></script>
 
   <script>
 
@@ -247,9 +247,9 @@
       let bgimage = ['asiaone1.png', 'bgrnd.png']
       let xx = Math.floor(Math.random() * 2);
 
-      document.getElementById('myBody').style.backgroundImage = `url('/html/assets/images/backgrounds/${bgimage[xx] }')`
+      document.getElementById('myBody').style.backgroundImage = `url('/assets/images/backgrounds/${bgimage[xx] }')`
         setTimeout(() => {
-            const audio  = new Audio('/html/intro.mp3')
+            const audio  = new Audio('/intro.mp3')
             audio.play().catch(error => {
                 console.error("Audio playback failed:", error);
             });

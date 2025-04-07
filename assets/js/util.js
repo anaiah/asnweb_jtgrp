@@ -7,7 +7,7 @@ modals,forms,utilities
 
 */ 
 const myIp = "https://asn-jtgrp-api.onrender.com" 
-//const myIp = "http://192.168.7.221:10000"
+//const myIp = "http://192.168.165.221:10000"
 
 const requirements = document.querySelectorAll(".requirements")
 const specialChars = "!@#$%^&*()-_=+[{]}\\| :'\",<.>/?`~"
@@ -1444,7 +1444,7 @@ const util = {
                     util.setGroupCookie(data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
                     
                     // if(data.grp_id=="2"){//business dev0
-                   //location.href = '/main.html'
+                   //location.href = '/main'
                     location.href = '/jtx/dashboard'
                     /*
                     }else if( data.grp_id=="1" || data.grp_id=="0"){//engr/architect/acctg
@@ -1503,8 +1503,8 @@ const util = {
                 util.setGroupCookie(data.id, data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
                 
                 // if(data.grp_id=="2"){//business dev0
-               //location.href = '/main.html'
-                location.href = '/jtx/dashboard'
+               location.href = '/main'
+                //location.href = '/jtx/dashboard'
                 /*
                 }else if( data.grp_id=="1" || data.grp_id=="0"){//engr/architect/acctg
                     location.href = '/dashboard.html'

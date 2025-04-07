@@ -1263,7 +1263,14 @@ const asn = {
                 console.log( 'savetransaction here...')
 
                 //change form action 
-                document.getElementById('remittanceUploadForm').action=`${myIp}/postimage`
+                document.getElementById('remittanceUploadForm').action=`${myIp}/postimage/${document.getElementById('ff_transnumber').value}`
+
+                xmsg = "<i class='fa fa-spinner fa-pulse' ></i>  Uploading Receipt, please wait!!!"
+                util.Toasted( xmsg, 3000, false)
+                
+                asn.speaks(data.voice);
+
+                asn.db.clear() //delete database
 
                 //===== click submit button of Upload Form
                 const remuploadbtn = document.getElementById('remittance_upload_btn')
@@ -1271,15 +1278,6 @@ const asn = {
 
                 //change form action 
                 //document.getElementById('remittanceUploadForm').action=`${myIp}/postimage`
-                
-                asn.speaks(data.voice);
-
-                xmsg = "<i class='fa fa-spinner fa-pulse' ></i>  Uploading Receipt, please wait!!!"
-                util.Toasted( xmsg, 5000, false)
-                
-                //util.hideModal('remittanceModal',2000) 
-
-                asn.db.clear() //delete database
             }//endif
 
            
@@ -1305,9 +1303,9 @@ const asn = {
         asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
         if(util.getCookie('f_pic')!==""){
-            document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
+            document.getElementById('img-profile').src=`/home/assets/images/profile/${util.getCookie('f_pic')}`
         }else{
-            document.getElementById('img-profile').src=`/html/assets/images/profile/engr.jpg`
+            document.getElementById('img-profile').src=`/home/assets/images/profile/engr.jpg`
         }
 
         let authz = []
@@ -1356,20 +1354,5 @@ window.scrollTo(0,0);
 asn.init() //instantiate now
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    // let bgimage = ['asiaone1.png', 'bgrnd.png']
-
-    // let xx = Math.floor(Math.random() * 2);
-
-    // document.getElementById('myBody').style.backgroundImage = `url('/assets/images/backgrounds/${bgimage[xx] }')`
-    //   setTimeout(() => {
-    //       const audio  = new Audio('intro.mp3')
-    //       audio.play().catch(error => {
-    //           console.error("Audio playback failed:", error);
-    //       });
-    //       document.getElementById('myCard').classList.add('show');
-    //   }, 2000); // Delay of 1000 milliseconds (1 second)
-    
-});
 
   

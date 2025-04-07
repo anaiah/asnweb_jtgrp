@@ -1,11 +1,11 @@
 let remitupload = document.getElementById('remittanceUploadForm')
 
-util.speak('Uploading Image, please wait!!!')
-
 remitupload.addEventListener("submit", e => {
     const formx = e.target;
 
-    fetch(`${myIp}/postimage`, {
+    util.speak('Uploading Image, please wait!!!')
+
+    fetch(`${myIp}/postimage/${document.getElementById('ff_transnumber').value}`, {
         method: 'POST',
         body: new FormData(formx),
         })
@@ -14,12 +14,20 @@ remitupload.addEventListener("submit", e => {
         })
         .then( (data) =>{
             if(data.status){
-                //console.log ('uploadpdf() value=> ', data )
-                //console.log('*****TAPOS NA PO IMAGE POST*****')
                 util.speak('Receipt Image successfully uploaded!!!')
                 util.Toasted(`Receipt Image successfully uploaded!!!`,3000,false)
 
+                //reset badge
+                document.getElementById('bell-badge').innerHTML=""
+
+                //reset form
+                let xform = document.getElementById('remittanceUploadForm')
+                xform.reset()
+                util.resetFormClass('#remittanceUploadForm')
+
+                //hide modal
                 util.hideModal('remittanceModal',2000)//then close form    
+
             } //eif
 
         })
