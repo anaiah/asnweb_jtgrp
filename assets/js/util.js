@@ -1422,8 +1422,12 @@ const util = {
                         }//eif
                     }
 
+                    return
+                    
                 break
             }//end switch
+
+            
         }
     },
 
