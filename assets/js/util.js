@@ -812,6 +812,8 @@ const util = {
                     document.getElementById('ff_parcel').value= dbval.f_parcel
                     document.getElementById('ff_amount').value= dbval.f_amount
                     document.getElementById('ff_empid').value= util.getCookie('f_dbId')
+
+                    document.getElementById('image_name').value = dbval.f_transnumber
  
                 }//eif
 
@@ -1394,6 +1396,7 @@ const util = {
                 break
 
                 case "#dataEntryForm":
+                    objfrm.transnumber = document.getElementById('f_transnumber').value
                     asn.saveToLocal(objfrm)                
                 break
 
@@ -1411,11 +1414,11 @@ const util = {
                             util.Toasted('Please select a Picture of Receipt to Upload!!!',4000,false)
                             return false;
                         }else{
+                            util.speak('Saving to Database, Please Wait!!!')
                             asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)
                         }//eif
                     }
-            
-                    
+                
                 break
             }//end switch
         }

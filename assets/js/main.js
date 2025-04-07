@@ -1260,7 +1260,7 @@ const asn = {
                 
                 asn.speaks(data.voice);
 
-                xmsg = "<i class='fa fa-spinner fa-pulse' ></i>  Saving to Database, please wait!!!"
+                xmsg = "<i class='fa fa-spinner fa-pulse' ></i>  Uploading Receipt, please wait!!!"
                 util.Toasted( xmsg, 5000, false)
                 
                 util.hideModal('remittanceModal',2000) 
