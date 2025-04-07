@@ -696,7 +696,7 @@ const asn = {
                 const file = Math.round((fsize / 1024));
                 // The size of the file.
                 if (file >= 1000) { // 1Mb
-                    const btnupload = document.getElementById('remittance-upload-btn')
+                    const btnupload = document.getElementById('remittance_upload_btn')
                     btnupload.disabled = true
 
                     util.Toasted(`File too Big ${file}Mb, pls select a smaller in file size!`,4000,false);
@@ -710,7 +710,7 @@ const asn = {
                 }else{
                     
                     document.getElementById('ff_size').innerHTML=""//reset
-                    const btnupload = document.getElementById('remittance-upload-btn')
+                    const btnupload = document.getElementById('remittance_upload_btn')
                     btnupload.disabled = false
                 }
                 /* turn off display of filesize */

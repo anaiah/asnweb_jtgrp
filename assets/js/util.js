@@ -882,6 +882,8 @@ const util = {
             case "remittanceModal":
                 const remitupload = document.getElementById('remittanceUploadForm')
 
+                util.speak('Uploading Image, please wait!!!')
+
                 remitupload.addEventListener("submit", e => {
                     const formx = e.target;
 
@@ -909,10 +911,6 @@ const util = {
                             return false;
                         });
 
-                    //e.preventDefault()
-                    //// keep this reference for event listener and getting value
-                    /////const eqptdesc = document.getElementById('eqpt_description')
-                    ////eqptdesc.value =  e.target.value
                 
                     // Prevent the default form submit
                     e.preventDefault();                   
