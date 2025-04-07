@@ -897,6 +897,7 @@ const util = {
                                 //console.log ('uploadpdf() value=> ', data )
                                 //console.log('*****TAPOS NA PO IMAGE POST*****')
                                 util.speak('Receipt Image successfully uploaded!!!')
+                                util.Toasted(`Receipt Image successfully uploaded!!!`,3000,false)
                                 util.hideModal('remittanceModal',2000)//then close form    
     
                                 document.getElementById('newsitePlaceHolder').innerHTML=""
@@ -1418,17 +1419,17 @@ const util = {
                             
                         }else{
                             asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)
-                            
+                            break;
                         }//eif
                     }
 
-                    return
-                    
+
                 break
             }//end switch
 
-            
-        }
+            return
+
+        }//endif
     },
 
     //===calculate the distance haverstine ====//    
