@@ -1267,9 +1267,10 @@ const asn = {
                 util.hideModal('remittanceModal',2000) 
 
                 asn.db.clear() //delete database
+
+                return true
             }//endif
            
-            return
         })  
         .catch((error) => {
             util.Toasted(`Error:, ${error}`,2000,false)
