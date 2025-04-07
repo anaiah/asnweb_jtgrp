@@ -881,7 +881,8 @@ const util = {
 
             case "remittanceModal":
                 const remitupload = document.getElementById('remittanceUploadForm')
-                frmupload.addEventListener("submit", e => {
+
+                remitupload.addEventListener("submit", e => {
                     const formx = e.target;
 
                     fetch(`${myIp}/postimage`, {
@@ -1415,9 +1416,7 @@ const util = {
                             util.Toasted('Please select a Picture of Receipt to Upload!!!',4000,false)
                             return false;
                         }else{
-                            util.speak('Saving to Database, Please Wait!!!')
                             asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)
-                            return true;
                             
                         }//eif
                     }

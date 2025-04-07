@@ -1240,7 +1240,10 @@ const asn = {
 
     //====rider  save transaction
     saveTransaction:async function(frm,modal,url="",xdata={}){
-        await fetch(url,{
+
+        util.speak('Saving to Database, Please Wait!!!')
+                            
+        fetch(url,{
             method:'POST',
             //cache:'no-cache',
             headers: {
@@ -1253,6 +1256,10 @@ const asn = {
             return response.json();
         })
         .then(data => {
+
+            console.log(data)
+
+            
             if(data.status){
                 console.log( 'savetransaction here...')
                 //===== click submit button of Upload Form
@@ -1270,6 +1277,7 @@ const asn = {
 
                 return true
             }//endif
+            
            
         })  
         .catch((error) => {

@@ -1073,7 +1073,7 @@
                   <div class="form-outline">
                     <label class="form-label mb-0" for="ff_uploaded_file">Upload Remittance Receipt</label>
                     <input onchange="javascript:asn.checkFileSize();" class="form-control equipmentxx" type="file" name="ff_uploaded_file" id="ff_uploaded_file" accept='image/*' required />
-                    <input type="text" id="image_name" name="image_name">
+                    <input type="text" id="image_name" name="image_name" class="form-control equipmentxx">
                     <div class="invalid-feedback">
                       Required Field!!!
                     </div>
@@ -1081,7 +1081,7 @@
                         Looking Good!
                     </div>
                     
-                    <input id="remittance-upload-btn" class="btn btn-warning lets-hide" type="submit" value="Upload">
+                    <input id="remittance-upload-btn" name="remittance-upload-btn" class="btn btn-warning lets-hide" type="submit" value="Upload">
                     <p><span id="ff_size"></span></p>
                     <div id="ff_blindspot"></div>
                   </div>
