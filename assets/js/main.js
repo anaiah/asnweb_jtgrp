@@ -1303,9 +1303,9 @@ const asn = {
         asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
         if(util.getCookie('f_pic')!==""){
-            document.getElementById('img-profile').src=`/home/assets/images/profile/${util.getCookie('f_pic')}`
+            document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
         }else{
-            document.getElementById('img-profile').src=`/home/assets/images/profile/engr.jpg`
+            document.getElementById('img-profile').src=`/html/assets/images/profile/engr.jpg`
         }
 
         let authz = []
