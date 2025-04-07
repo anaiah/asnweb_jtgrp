@@ -1398,8 +1398,7 @@ const util = {
                 break
 
                 case "#remittanceForm":
-                    
-                    let xfile = document.getElementById('ff_upload_file')
+                    let xfile = document.getElementById('remittanceUploadForm').files ;
 
                     if( xfile.length === 0 ){
                         util.Toasted('Please select a Picture to Upload!!!',4000,false)
@@ -1408,8 +1407,6 @@ const util = {
                         asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)
                     }//eif            
                 break
-
-
             }//end switch
         }
     },
