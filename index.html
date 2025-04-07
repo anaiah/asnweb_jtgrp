@@ -247,7 +247,7 @@
       let bgimage = ['asiaone1.png', 'bgrnd.png']
       let xx = Math.floor(Math.random() * 2);
 
-      document.getElementById('myBody').style.backgroundImage = `url('/assets/images/backgrounds/${bgimage[xx] }')`
+      document.getElementById('myBody').style.backgroundImage = `url('/home/assets/images/backgrounds/${bgimage[xx] }')`
         setTimeout(() => {
             const audio  = new Audio('/intro.mp3')
             audio.play().catch(error => {
