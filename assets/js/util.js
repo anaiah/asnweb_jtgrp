@@ -1405,15 +1405,17 @@ const util = {
                     //// objfrm.grp_id="1" <-- if u want additional key value
                     
                     for (var key of formdata.keys()) {
-                        console.log( formdata.get(key) );
+                        let xfile = formdata.get(key) ;
+
+                        if( xfile.name == "" ){
+                            util.Toasted('Please select a Picture of Receipt to Upload!!!',4000,false)
+                            return false;
+                        }else{
+                            asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)
+                        }//eif
                     }
             
-                    // if( xfile.length === 0 ){
-                    //     util.Toasted('Please select a Picture to Upload!!!',4000,false)
-                    //     return false;
-                    // }else{
-                    //     asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)
-                    // }//eif
+                    
                 break
             }//end switch
         }
