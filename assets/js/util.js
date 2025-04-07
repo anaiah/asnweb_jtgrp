@@ -1398,7 +1398,8 @@ const util = {
                 break
 
                 case "#remittanceForm":
-                    if(document.getElementById('ff_upload_file').value == null ||document.getElementById('ff_upload_file').value=="" ){
+                    let file = document.forms['remittanceUploadForm']['ff_upload_file'].files[0];
+                    if( file.name == null || file.name =="" ){
                         util.Toasted('Please select a Picture to Upload!!!',4000,false)
                         return false;
                     }else{
