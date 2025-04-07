@@ -1262,8 +1262,11 @@ const asn = {
             if(data.status){
                 console.log( 'savetransaction here...')
                 //===== click submit button of Upload Form
-                const remuploadbtn = document.getElementById('remittance-upload-btn')
+                const remuploadbtn = document.getElementById('remittance_upload_btn')
                 remuploadbtn.click()
+
+                //change form action 
+                //document.getElementById('remittanceUploadForm').action=`${myIp}/postimage`
                 
                 asn.speaks(data.voice);
 
