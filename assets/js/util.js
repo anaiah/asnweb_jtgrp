@@ -811,7 +811,7 @@ const util = {
                     //update also form as to guide for present data
                     document.getElementById('ff_parcel').value= dbval.f_parcel
                     document.getElementById('ff_amount').value= dbval.f_amount
-                    document.getElementById('ff_empid').value= util.getCookie('ff_dbId')
+                    document.getElementById('ff_empid').value= util.getCookie('f_dbId')
  
                 }//eif
 
