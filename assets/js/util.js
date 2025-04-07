@@ -898,10 +898,9 @@ const util = {
                                 //console.log('*****TAPOS NA PO IMAGE POST*****')
                                 util.speak('Receipt Image successfully uploaded!!!')
                                 util.Toasted(`Receipt Image successfully uploaded!!!`,3000,false)
+
                                 util.hideModal('remittanceModal',2000)//then close form    
-    
-                                document.getElementById('newsitePlaceHolder').innerHTML=""
-                            }
+                            } //eif
             
                         })
                          // Handle the success response object

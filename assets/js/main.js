@@ -1275,7 +1275,6 @@ const asn = {
                 asn.db.clear() //delete database
             }//endif
 
-            return
            
         })  
         .catch((error) => {
