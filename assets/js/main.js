@@ -1317,12 +1317,14 @@ const asn = {
         util.loadFormValidation('#searchForm')
         util.loadFormValidation('#dataEntryForm')
         util.loadFormValidation('#remittanceForm')
+
         util.loadFormValidation('#remitttanceUploadForm')
         
         //load listeners
         util.modalListeners('claimsModal')
         util.modalListeners('newempModal')
         util.modalListeners('dataEntryModal')
+        
         util.modalListeners('remittanceModal')
 
         ///////asn.getTopHub()

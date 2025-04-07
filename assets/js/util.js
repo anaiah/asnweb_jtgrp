@@ -1317,6 +1317,7 @@ const util = {
         })
 
         if(aValid.includes(false)){
+            util.Toasted('Error, check our Entry',3000,false)
             console.log('don\'t post')
             return false
         }else{
@@ -1397,7 +1398,12 @@ const util = {
                 break
 
                 case "#remittanceForm":
-                    asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)            
+                    if(! document.getElementById('ff_upload_file') ||document.getElementById('ff_upload_file')=="" ){
+                        util.Toasted('Please select a Picture to Upload!!!',4000,false)
+                        return false;
+                    }else{
+                        asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)
+                    }//eif            
                 break
 
 
