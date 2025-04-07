@@ -1398,7 +1398,7 @@ const util = {
                 break
 
                 case "#remittanceForm":
-                    if(! document.getElementById('ff_upload_file') ||document.getElementById('ff_upload_file')=="" ){
+                    if(document.getElementById('ff_upload_file').value == null ||document.getElementById('ff_upload_file').value=="" ){
                         util.Toasted('Please select a Picture to Upload!!!',4000,false)
                         return false;
                     }else{

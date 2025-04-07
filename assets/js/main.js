@@ -699,7 +699,7 @@ const asn = {
                     const btnupload = document.getElementById('remittance-upload-btn')
                     btnupload.disabled = true
 
-                    util.alertMsg("File too Big, please select a file less than 1mb","danger","size");
+                    util.Toasted(`File too Big ${file}Mb, pls select a smaller in file size!`,4000,false);
                     
                     fi.value=null
                     //go bottom page
@@ -1324,7 +1324,7 @@ const asn = {
         util.modalListeners('claimsModal')
         util.modalListeners('newempModal')
         util.modalListeners('dataEntryModal')
-        
+
         util.modalListeners('remittanceModal')
 
         ///////asn.getTopHub()
