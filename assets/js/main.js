@@ -1258,10 +1258,7 @@ const asn = {
         .then( (data) => {
 
             console.log(data)
-
             
-            return
-            /*
             if(data.status){
                 console.log( 'savetransaction here...')
                 //===== click submit button of Upload Form
@@ -1277,9 +1274,9 @@ const asn = {
 
                 asn.db.clear() //delete database
 
+                return
                 
             }//endif
-            */
            
         })  
         .catch((error) => {
