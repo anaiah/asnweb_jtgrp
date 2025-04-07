@@ -809,6 +809,7 @@ const util = {
                         </tr>`
 
                     //update also form as to guide for present data
+                    document.getElementById('ff_transnumber').value= dbval.f_transnumber
                     document.getElementById('ff_parcel').value= dbval.f_parcel
                     document.getElementById('ff_amount').value= dbval.f_amount
                     document.getElementById('ff_empid').value= util.getCookie('f_dbId')

@@ -1058,7 +1058,9 @@
                     <div class="form-outline">
                         <label class="form-label mb-0" style="text-transform: uppercase" for="ff_remarks">Remarks</label>
                         <textarea class="form-control equipmentx" id="ff_remarks" name="ff_remarks" rows="4"></textarea>
-                    </div>
+                        <input hidden stype="text" id="ff_transnumber" name="ff_transnumber"  class="form-control equipmentx" />
+                      
+                      </div>
                 </div>  
             </div>
             </form>
@@ -1095,7 +1097,7 @@
       
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary" id="remittance-btn" onclick="javascript:util.validateMe('remittanceEntryModal','#remittanceForm','equipmentx')" type="button">
+        <button class="btn btn-primary" id="remittance-btn" onclick="javascript:util.validateMe('remittanceModal','#remittanceForm','equipmentx')" type="button">
           <i id="i-remittance-psave" class="fa fa-floppy-o"></i> &nbsp;&nbsp; Save
           </button>
       </div>
