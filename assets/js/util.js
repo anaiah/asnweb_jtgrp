@@ -1417,6 +1417,8 @@ const util = {
                         }else{
                             util.speak('Saving to Database, Please Wait!!!')
                             asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)
+                            return true;
+                            
                         }//eif
                     }
                 
