@@ -1243,9 +1243,9 @@ const asn = {
 
         asn.speaks('Saving Transaction to Database, Please Wait!!!')
                             
-        fetch(url,{
+        await fetch(url,{
             method:'POST',
-            //cache:'no-cache',
+            cache:'reload',
             headers: {
                 "Content-Type": "application/json",
             },
@@ -1262,8 +1262,8 @@ const asn = {
             if(data.status){
                 console.log( 'savetransaction here...')
                 //===== click submit button of Upload Form
-                const uploadbtn = document.getElementById('remittance-upload-btn')
-                uploadbtn.click()
+                const remuploadbtn = document.getElementById('remittance-upload-btn')
+                remuploadbtn.click()
                 
                 asn.speaks(data.voice);
 

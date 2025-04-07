@@ -906,6 +906,7 @@ const util = {
                          // Handle the success response object
                         .catch( (error) => {
                             console.log(error) // Handle the error response object
+                            return false;
                         });
 
                     //e.preventDefault()
