@@ -1270,13 +1270,12 @@ const asn = {
                 xmsg = "<i class='fa fa-spinner fa-pulse' ></i>  Uploading Receipt, please wait!!!"
                 util.Toasted( xmsg, 5000, false)
                 
-                util.hideModal('remittanceModal',2000) 
+                //util.hideModal('remittanceModal',2000) 
 
                 asn.db.clear() //delete database
-
-                return
-                
             }//endif
+
+            return
            
         })  
         .catch((error) => {
