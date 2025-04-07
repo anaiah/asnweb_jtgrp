@@ -814,7 +814,7 @@ const util = {
                     document.getElementById('ff_amount').value= dbval.f_amount
                     document.getElementById('ff_empid').value= util.getCookie('f_dbId')
 
-                    document.getElementById('image_name').value = dbval.f_transnumber
+                    //document.getElementById('image_name').value = dbval.f_transnumber
  
                 }//eif
 
