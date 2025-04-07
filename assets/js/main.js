@@ -1261,6 +1261,10 @@ const asn = {
             
             if(data.status){
                 console.log( 'savetransaction here...')
+
+                //change form action 
+                document.getElementById('remittanceUploadForm').action=`${myIp}/postimage`
+
                 //===== click submit button of Upload Form
                 const remuploadbtn = document.getElementById('remittance_upload_btn')
                 remuploadbtn.click()
@@ -1322,9 +1326,7 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
         
-        //change form action 
-        //document.getElementById('remittanceUploadForm').action=`${myIp}/postimage`
-
+        
 
         //load the form to validate
         util.loadFormValidation('#newempForm')

@@ -1,4 +1,4 @@
-const remitupload = document.getElementById('remittanceUploadForm')
+let remitupload = document.getElementById('remittanceUploadForm')
 
 util.speak('Uploading Image, please wait!!!')
 
