@@ -1398,14 +1398,22 @@ const util = {
                 break
 
                 case "#remittanceForm":
-                    let xfile = document.getElementById('remittanceUploadForm').files ;
-
-                    if( xfile.length === 0 ){
-                        util.Toasted('Please select a Picture to Upload!!!',4000,false)
-                        return false;
-                    }else{
-                        asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)
-                    }//eif            
+                    //getform data for posting
+                    const mydata = document.getElementById('remittanceUploadForm')
+                    let formdata = new FormData(mydata)
+                    
+                    //// objfrm.grp_id="1" <-- if u want additional key value
+                    
+                    for (var key of formdata.keys()) {
+                        console.log( formdata.get(key) );
+                    }
+            
+                    // if( xfile.length === 0 ){
+                    //     util.Toasted('Please select a Picture to Upload!!!',4000,false)
+                    //     return false;
+                    // }else{
+                    //     asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)
+                    // }//eif
                 break
             }//end switch
         }
