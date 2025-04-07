@@ -1332,7 +1332,7 @@ const asn = {
         util.loadFormValidation('#dataEntryForm')
         util.loadFormValidation('#remittanceForm')
 
-        util.loadFormValidation('#remitttanceUploadForm')
+       // util.loadFormValidation('#remitttanceUploadForm')
         
         //load listeners
         util.modalListeners('claimsModal')
