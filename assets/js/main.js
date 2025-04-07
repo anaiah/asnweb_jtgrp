@@ -1319,6 +1319,10 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
         
+        //change form action 
+        //document.getElementById('uploadForm').action=`http://${myIp}/postimage`
+
+
         //load the form to validate
         util.loadFormValidation('#newempForm')
         util.loadFormValidation('#searchForm')
