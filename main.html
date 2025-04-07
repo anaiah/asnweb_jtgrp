@@ -1048,6 +1048,7 @@
                         <div class="valid-feedback">
                             Looking Good!
                         </div>
+                        <input type="text" value="" id="ff_empid" name="ff_empid >
                     </div>
                 </div>
             </div>
@@ -1064,12 +1065,12 @@
             <!--//end form -->
             
             <div class="row">
-              <div class="col-lg-4 mb-0">
+              <div class="col-lg-4 mt-2 mb-0">
                 <!-- form file upload -->
-                <form id="remittanceUploadForm" name="remittanceUploadForm" action="http://localhost:10000/uploadpdf" enctype="multipart/form-data" method="post">
+                <form id="remittanceUploadForm" name="remittanceUploadForm" action="" enctype="multipart/form-data" method="post">
                   <div class="form-outline">
                     <label class="form-label mb-0" for="ff_uploaded_file">Upload Remittance Receipt</label>
-                    <input onchange="main.checkFileSize()" class="form-control equipmentxx" type="file" name="ff_uploaded_file" id="ff_uploaded_file" accept='application/pdf' required />
+                    <input onchange="main.checkFileSize()" class="form-control equipmentxx" type="file" name="ff_uploaded_file" id="ff_uploaded_file" accept='image/*' required />
                     <input id="remittance-upload-btn" class="btn btn-warning lets-hide" type="submit" value="Upload">
                     <p><span id="ff_size"></span></p>
                     <div id="ff_blindspot"></div>
@@ -1087,7 +1088,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button class="btn btn-primary" id="remittance-btn" onclick="javascript:util.validateMe('remittanceEntryModal','#remittanceForm','equipmentx')" type="button">
-          <i id="i-save" class="fa fa-floppy-o"></i> &nbsp;&nbsp; Save
+          <i id="i-remittance-psave" class="fa fa-floppy-o"></i> &nbsp;&nbsp; Save
           </button>
       </div>
 

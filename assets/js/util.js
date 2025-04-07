@@ -811,6 +811,7 @@ const util = {
                     //update also form as to guide for present data
                     document.getElementById('ff_parcel').value= dbval.f_parcel
                     document.getElementById('ff_amount').value= dbval.f_amount
+                    document.getElementById('ff_empid').value= util.getCookie('ff_dbId')
  
                 }//eif
 
@@ -875,13 +876,51 @@ const util = {
     modalListeners:(eModal)=>{
         switch (eModal){
 
+            case "remittanceModal":
+                const remitupload = document.getElementById('remittanceUploadForm')
+                frmupload.addEventListener("submit", e => {
+                    const formx = e.target;
+
+                    fetch(`${myIp}/postimage`, {
+                        method: 'POST',
+                        body: new FormData(formx),
+                        })
+                        .then( (response) => {
+                            return response.json() // if the response is a JSON object
+                        })
+                        .then( (data) =>{
+                            if(data.status){
+                                //console.log ('uploadpdf() value=> ', data )
+                                //console.log('*****TAPOS NA PO IMAGE POST*****')
+                                util.speak('Receipt Image successfully uploaded!!!')
+                                util.hideModal('remittanceModal',2000)//then close form    
+    
+                                document.getElementById('newsitePlaceHolder').innerHTML=""
+                            }
+            
+                        })
+                         // Handle the success response object
+                        .catch( (error) => {
+                            console.log(error) // Handle the error response object
+                        });
+
+                    //e.preventDefault()
+                    //// keep this reference for event listener and getting value
+                    /////const eqptdesc = document.getElementById('eqpt_description')
+                    ////eqptdesc.value =  e.target.value
+                
+                    // Prevent the default form submit
+                    e.preventDefault();                   
+                })
+
+            break
+
             case "claimsModal":
                 //util.speak('CLAIMS MODAL SHOW!')
                 //for upload pdf
                 const frmclaimsupload = document.getElementById('claimsuploadForm')
                 frmclaimsupload.addEventListener("submit", e => {
                     const formx = e.target;
-
 
                     xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Uploading CSV to Database, Please Do Not Close!!!</div>"
                     util.alertMsg( xmsg,'danger','claimsPlaceHolder')
@@ -910,7 +949,6 @@ const util = {
                             console.log(error) // Handle the error response object
                             return false;
                         });
-
 
                     //e.preventDefault()
                     console.log('===claims SUBMITTTTT===')
@@ -971,25 +1009,12 @@ const util = {
 
                 //============== when new site modal loads, get project serial number
                 newsiteModalEl.addEventListener('show.bs.modal', function (event) {
-                    //======get util.Codes()
-                   // document.getElementById('serial').value= util.Codes() 
-                    //document.getElementById('serial_pdf').value= document.getElementById('serial').value 
                     
                     //===turn off upload-btn
                     const btnsave = document.getElementById('mall-save-btn')
                     btnsave.disabled = true
 
-                    //==== create cookie to retrieve in api
-                   // util.setCookie("serial_pdf",document.getElementById('serial').value+".pdf" ,1)
-                        
-                    //=====get   Malls()
-
                     console.log('newempModal() listeners loaded')
-                    
-                    //===populate dropdown for malls
-                    //util.getAllMall(`https://localhost:10000/getallmall`)
-
-                    
  
                 },false)
 
@@ -1025,7 +1050,6 @@ const util = {
                 },false)           
             
             break
-
 
             case "newempModal2":
                 //for upload pdf
@@ -1372,6 +1396,11 @@ const util = {
                     asn.saveToLocal(objfrm)                
                 break
 
+                case "#remittanceForm":
+                    asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)            
+                break
+
+
             }//end switch
         }
     },
@@ -1402,20 +1431,8 @@ const util = {
         console.log('==== asn.showPosition()  the distance is ',distance, d_meters)
 
         if( parseFloat(d_meters) <=  10){ // IF DISTANCE IS LESS OR EQ. 10METERS
-            Toastify({
-                text: `SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!` ,
-                duration:6000,
-                escapeMarkup:false, //to create html
-                close:false,
-                position:'center',
-                offset:{
-                    x: 0,
-                    y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                },
-                style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-                }
-            }).showToast();
+
+            util.Toasted(`SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!`,6000,false)
             
             fetch(util.url, {
                 cache:'reload'
@@ -1459,22 +1476,9 @@ const util = {
             
         }else{
             
-            Toastify({
-                text: `ERROR -- PLEASE TRY AGAIN! <BR>YOUR DISTANCE FROM THE HUB  IS ${d_meters} METER(S) <br> PLEASE GO INSIDE THE WAREHOUSE!` ,
-                duration:8000,
-                escapeMarkup:false, //to create html
-                close:false,
-                position:'center',
-                offset:{
-                    x: 0,
-                    y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                },
-                style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-                }
-            }).showToast();
+            util.Toasted(`ERROR -- PLEASE TRY AGAIN! <BR>YOUR DISTANCE FROM THE HUB  IS ${d_meters} METER(S) <br> PLEASE GO INSIDE THE WAREHOUSE!`,8000,false)
             
-            document.getElementById('loginPlaceHolder').innerHTML = ""
+            document.getElementById('loginPlaceHolder').innerHTML = "" //reset alertmsg
 
             return 
 
@@ -1505,7 +1509,7 @@ const util = {
                 //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data.voice)
                 util.alertMsg(data.message,'success','loginPlaceHolder')
                 
-                util.setGroupCookie(data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
+                util.setGroupCookie(data.id, data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
                 
                 // if(data.grp_id=="2"){//business dev0
                //location.href = '/main.html'
@@ -1531,7 +1535,8 @@ const util = {
 
     },
 
-    setGroupCookie:(xregion, xname,xgrp,xemail,xvoice,xpic)=>{
+    setGroupCookie:(xid, xregion, xname,xgrp,xemail,xvoice,xpic)=>{
+        util.setCookie("f_dbId",xid,0)
         util.setCookie("f_region",xregion,0)
         util.setCookie("fname",xname,0)
         util.setCookie("grp_id",xgrp,0)
@@ -1603,6 +1608,23 @@ const util = {
     
     },
     
-    //=================END MAILER ==================
-	
+    //utility toastify
+    Toasted:async(msg,nDuration,lClose)=>{
+        Toastify({
+            text: msg ,
+            duration: nDuration,
+            escapeMarkup: false, //to create html
+            close: lClose,
+            position:'center',
+            offset:{
+                x: 0,
+                y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+            },
+            style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
+        
+    }, //===end toasted!
+    
 }//****** end obj */

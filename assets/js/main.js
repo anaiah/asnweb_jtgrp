@@ -695,22 +695,22 @@ const asn = {
                 const fsize = fi.files.item(i).size;
                 const file = Math.round((fsize / 1024));
                 // The size of the file.
-                if (file >= 1000) {
-                    const btnupload = document.getElementById('mall-save-btn')
+                if (file >= 1000) { // 1Mb
+                    const btnupload = document.getElementById('remittance-upload-btn')
                     btnupload.disabled = true
 
                     util.alertMsg("File too Big, please select a file less than 1mb","danger","size");
                     
                     fi.value=null
                     //go bottom page
-                    util.scrollsTo('blindspot')
+                    util.scrollsTo('ff_blindspot')
 
                     return false;
 
                 }else{
                     
-                    document.getElementById('size').innerHTML=""//reset
-                    const btnupload = document.getElementById('mall-save-btn')
+                    document.getElementById('ff_size').innerHTML=""//reset
+                    const btnupload = document.getElementById('remittance-upload-btn')
                     btnupload.disabled = false
                 }
                 /* turn off display of filesize */
@@ -1231,10 +1231,49 @@ const asn = {
         const badge = document.getElementById('bell-badge')
         badge.innerHTML = 1
 
-        asn.speaks('Local Storage Updated!!!')
+        asn.speaks('Local Storage Successfully Saved!!!') //speak
+        util.Toasted('Local Storage Successfully Saved!!!',3000,false)//alert
 
         util.hideModal('dataEntryModal',2000)    
             
+    },
+
+    //====rider  save transaction
+    saveTransaction:async function(frm,modal,url="",xdata={}){
+        await fetch(url,{
+            method:'POST',
+            //cache:'no-cache',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            
+            body: JSON.stringify(xdata)
+        })
+        .then((response) => {  //promise... then 
+            return response.json();
+        })
+        .then(data => {
+            if(data.status){
+                //===== click submit button of Upload Form
+                const uploadbtn = document.getElementById('remittance-upload-btn')
+                uploadbtn.click()
+                
+                asn.speaks(data.voice);
+
+                xmsg = "<i class='fa fa-spinner fa-pulse' ></i>  Saving to Database, please wait!!!"
+                util.Toasted( xmsg, 5000, false)
+                
+                util.hideModal('remittanceModal',2000) 
+
+                asn.db.clear() //delete database
+            }//endif
+           
+            return
+        })  
+        .catch((error) => {
+            util.Toasted(`Error:, ${error}`,2000,false)
+            console.error('Error:', error)
+        })    
     },
 
     db: window.localStorage, //instantiate localstorage
@@ -1278,6 +1317,7 @@ const asn = {
         util.loadFormValidation('#searchForm')
         util.loadFormValidation('#dataEntryForm')
         util.loadFormValidation('#remittanceForm')
+        util.loadFormValidation('#remitttanceUploadForm')
         
         //load listeners
         util.modalListeners('claimsModal')
@@ -1295,7 +1335,7 @@ const asn = {
 //osndp.Bubbl
 window.scrollTo(0,0);
 
-asn.init()
+asn.init() //instantiate now
 
 
 document.addEventListener('DOMContentLoaded', function() {
