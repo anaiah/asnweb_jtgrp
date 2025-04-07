@@ -1503,8 +1503,8 @@ const util = {
                 util.setGroupCookie(data.id, data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
                 
                 // if(data.grp_id=="2"){//business dev0
-               location.href = '/main'
-                //location.href = '/jtx/dashboard'
+               //location.href = '/main'
+                location.href = '/jtx/dashboard'
                 /*
                 }else if( data.grp_id=="1" || data.grp_id=="0"){//engr/architect/acctg
                     location.href = '/dashboard.html'
