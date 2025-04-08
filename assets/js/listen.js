@@ -14,9 +14,9 @@ remitupload.addEventListener("submit", e => {
         })
         .then( (data) =>{
             if(data.status){
-                util.speak('Receipt Image successfully uploaded!!!')
                 util.Toasted(`Receipt Image successfully uploaded!!!`,3000,false)
-
+                asn.speak('Receipt Image successfully uploaded!!!')
+                
                 //reset badge
                 document.getElementById('bell-badge').innerHTML=""
 
