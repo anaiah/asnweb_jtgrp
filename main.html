@@ -156,127 +156,31 @@
         </nav>
       </header>
       <!--  Header End -->
-      
-      <!--//CURRENT PROJECTS//-->
-      <div class="container-fluid" id="current_projects">
-        <div class=" mb-2 mt-3 sm-0 ms-2">
-          <h5 class="card-title fw-semibold"><i style="font-size:25px;" class="ti ti-user-exclamation text-primary"></i>&nbsp;Claims</h5>
-        </div>
-
-        <!-- for to act as "row" -->
-        <form id="searchForm" name="searchForm" class="row gy-2 gx-2 d-flex align-items-start ms-2" method="GET" novalidate>
-                    
-          <div class="col-sm-4">
-            <div class="form-outline">
-              <!-- <label for="filter_number" class="text-nowrap form-label">Filter by Employee Number</label> -->
-              <input  value="" placeholder="Search Employee Number" minlength="4" type="text" onchange="" class="form-control" id="filter_number" name="filter_number">
-              <div class="invalid-feedback">
-                *Minimum Length of Input is 5
-              </div>
-              <div class="valid-feedback">
-                Looking Good!
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4">
-            <div class="form-outline">
-              <!-- <label for="filter_name" class="text-nowrap form-label">Filter by Employee Name</label> -->
-              <input value=""  placeholder="Search for Name" type="text" minlength="5" onchange="" class="form-control" id="filter_name" name="filter_name">
-              <div class="invalid-feedback">
-                *Minimum Length of Input is 5
-              </div>
-              <div class="valid-feedback">
-                Looking Good!
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-2 align-self-start">
-          <div class="form-outline">
-            <button class="btn btn-primary"  id="search-btn" onclick="javascript:asn.getRecord(`${document.getElementById('filter_number').value}`,`${document.getElementById('filter_name').value}`)" type="button">
-              <i id="i-save" class="ti ti-file-search"></i> &nbsp;&nbsp; Search
-            </button>
-          </div>
-        </div>
-
-        </form>
-        <!-- end form -->
-      </div> 
-      <!-- end container fluid -->
-
-      <!-- ENTER SEARCH RESULT HERE -->
-      <div id="search_claim"></div> 
  
-      <div class="mb-0 container-fluid" id="list_atd">
+      <div class="container-fluid" >  
         <div class="col-lg-6 d-flex align-items-start">
-          <div class="card w-100">
-            <div class="card-body p-4">
-              <div class="mt-0 mb-4">
-                <h5 class="card-title fw-semibold"><i style="color:green;font-size:25px;" class="ti ti-file-type-pdf"></i>&nbsp;Printed ATD</h5>
+          <div class="card w-100 ">
+            <!-- margin of the inside -->
+            <div class="card-body p-2"> 
+              <div class="mt-3 mb-4">
+                <h6 class="card-title fw-semibold">
+                  <i style="color:blue;font-size:20px;" class="ti ti-calendar"></i>&nbsp;
+                  Transaction for  this Month
+                </h6>
               </div>
-              <div id="claims_select" class="table-responsive">
+
+              <div id="month_transaction" class="table-responsive">
+              ewan  
               </div> 
               
             </div>
           </div>
         </div>
-        
-      </div>
-`
-      <!--//=== ENTER TOP 10 HUB/RIDER HERE==== -->
-      <div class="mt-0 container-fluid" id="claims_pasaways">
-        
-        <div class="row ">
-          
-          <!-- RIDERS INFO -->
-          <div class="col-lg-6 d-flex align-items-start">
-            <div class="card w-100">
-              <div class="card-body p-4">
-                <div class="mt-0 mb-4">
-                  <h5 class="card-title fw-semibold"><i style="color:green;font-size:25px;" class="ti ti-moped"></i>&nbsp;Top 5 Rider</h5>
-                </div>
-                <div id="rider" class="table-responsive">
-                </div> 
-                
-              </div>
-            </div>
-          </div>
-          
-          <!--//HUB INFO -->
-          <div class="col-lg-6 d-flex align-items-start">
-            <div class="card w-100">
-              <div class="card-body p-4">
-                <div class="mb-4">
-                  <h5 class="card-title fw-semibold"><i style="color:green;font-size:25px;" class="ti ti-home"></i>&nbsp;Top 5 Hub</h5>
-                </div>
-                <div id="hub" class="table-responsive">
 
-                </div> 
-              </div>
-            </div>
-          </div>
-
-      </div>  
-      <!-- END ROW -->
-
-      <!-- ===ENTER CLAIMS UPDATE===//-->
-      <div class="row">
-        <div class="col-lg-6 d-flex align-items-stretch">
-          <div class="card w-100">
-            <div class="card-body p-4">
-              <div class="mb-4">
-                <h5  id='xgtotal' name="xgtotal" class="card-title fw-semibold"></h5>
-              </div>
-              <ul id='claimsupdate' class="timeline-widget mb-0 position-relative mb-n5">
-              
-            </div>
-          </div>
-        </div>
         <!-- =====chart ========-->
         <div class="col-lg-6 d-flex align-items-stretch">
           <div class="card w-100">
-            <div class="card-body p-4">
+            <div class="card-body p-1">
               <div class="mb-4">
                 <h5 class="card-title fw-semibold"></h5>
               </div>
@@ -286,14 +190,12 @@
             </div>
           </div>
         </div>
-      </div>
-
-    
-      <!--//END CHARTS-->
+        
+      </div><!--//end container-fluid//-->
+          
     </div>
-
     <!--//END BODY-WRAPPER-->
-
+    <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
     <!--//image Modal//-->
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
@@ -780,7 +682,6 @@
 <!--//end claimsModal//-->
 
   <!--//end container description modal-->
-<!--//Modal for adding New Site //-->
 
 <!--// call with 
 
@@ -1123,10 +1024,10 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
   <!-- offline version -->
-  <!-- <script src="http://192.168.165.221:10000/socket.io/socket.io.js"></script> -->
+  <script src="http://192.168.165.221:10000/socket.io/socket.io.js"></script>
   
   <!-- //online version//-->
-  <script src="https://asn-jtgrp-api.onrender.com/socket.io/socket.io.js"></script>
+  <!-- <script src="https://asn-jtgrp-api.onrender.com/socket.io/socket.io.js"></script> -->
   
   <script src="/html/assets/js/util.js?v=8"></script>
   <script src="/html/assets/js/main.js?v=8"></script>

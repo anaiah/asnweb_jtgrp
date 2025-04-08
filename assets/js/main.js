@@ -756,7 +756,7 @@ const asn = {
             //document.getElementById('filter_number').focus()
         }else{
             document.getElementById("sidebarCollapse").click()
-            document.getElementById('filter_number').focus()
+           // document.getElementById('filter_number').focus()
         }
         /// take out muna document.getElementById("sidebarCollapse").click()
         //focus on emp number claims filter
@@ -1185,7 +1185,6 @@ const asn = {
     
     },
 
-
     //====== for finance peeps ===
     getFinance: async( region ) =>{
         console.log('finance')
@@ -1223,6 +1222,34 @@ const asn = {
         })    
     },
 
+    //==========get monthly  transaction for riders/transporters ====//
+    getMonthlyTransaction:async( emp_id ) =>{
+        if(util.getCookie('grp_id')=="2"){
+            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`    
+        }else{
+            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`
+        }//eif
+
+        await fetch(`${myIp}/getmonthlytransaction/${emp_id}`,{
+            cache:'reload'
+        })
+        .then(res => res.text() )
+
+        .then(text => {	
+            document.getElementById('month_transaction').innerHTML = ""
+            document.getElementById('month_transaction').innerHTML = text
+            
+            //get chart
+            asn.getPieChart(util.getCookie('f_dbId'))
+
+        })	
+        .catch((error) => {
+            //util.Toast(`Error:, ${error}`,1000)
+            console.error('Error:', error)
+        })    
+    },
+
+    //===save to localstorage
     saveToLocal:async(objfrm)=>{
         console.log(objfrm)
         
@@ -1287,6 +1314,85 @@ const asn = {
             console.error('Error:', error)
         })    
     },
+    
+    piedata:[],
+    //===== get data for pie chart====//
+    getPieChart: async(empid) =>{
+        await fetch(`${myIp}/getpiedata/${empid}`,{
+            cache:'reload'
+        })
+        .then( (res) => res.json() )
+        .then( (data) => {
+
+            //console.log(data.data[0].delivered_pct, data.data[0].undelivered_pct )
+            
+            asn.piedata.push( parseInt( data.data[0].delivered_pct) )
+            asn.piedata.push( parseInt( data.data[0].undelivered_pct) )
+            asn.pieChart() //render piechart
+            asn.speaks("Loading Chart...")
+            return true
+        })  
+        .catch((error) => {
+            //zonked.notif('','p-notif',true)
+            //util.Toast(`Error:, ${error}`,1000)
+            console.error('Error:', error)
+        })    
+    },
+    
+    //===== pie chart
+    pieChart: async() => {
+        window.ApexCharts && (new ApexCharts(document.getElementById('piechart'), {
+            chart: {
+              type: "donut",
+              fontFamily: 'inherit',
+              height: 240,
+              sparkline: {
+                enabled: true
+              },
+              animations: {
+                enabled: true
+              },
+            },
+            fill: {
+                type: 'gradient',
+            },/*
+            fill: {
+              opacity: 1,
+            },*/
+            series: asn.piedata ,
+            labels: ["Delivered %", "Undelivered %"],
+            tooltip: {
+              theme: 'dark'
+            },
+            grid: {
+              strokeDashArray: 4,
+            },
+
+            title: {
+                text: 'Performance Chart'
+            },
+
+            //colors: [tabler.getColor("primary"), tabler.getColor("primary", 0.8), tabler.getColor("primary", 0.6), tabler.getColor("gray-300")],
+            
+            legend: {
+              show: true,
+              position: 'right',
+              offsetY: 12,
+              markers: {
+                width: 10,  
+                height: 10,
+                radius: 100,
+              },
+              itemMargin: {
+                horizontal: 8,
+                vertical: 8
+              },
+            },
+            tooltip: {
+              fillSeriesColor: false
+            },
+          })).render();
+    },
 
     db: window.localStorage, //instantiate localstorage
 
@@ -1324,11 +1430,14 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
         
-        
+        //if grp_id is equal  to  rider  get monthLy
+        //for now, example only
+        asn.getMonthlyTransaction(util.getCookie('f_dbId'))
+       
 
         //load the form to validate
         util.loadFormValidation('#newempForm')
-        util.loadFormValidation('#searchForm')
+        
         util.loadFormValidation('#dataEntryForm')
         util.loadFormValidation('#remittanceForm')
 
