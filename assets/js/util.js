@@ -1368,11 +1368,18 @@ const util = {
                 break
 
                 case "#remittanceForm":
-                    //getform data for posting
+
+                    //getform data for posting image
                     const mydata = document.getElementById('remittanceUploadForm')
                     let formdata = new FormData(mydata)
                     
+                    const dbval = JSON.parse( db.getItem('myCart')) //get old value from localStorage
+                    objfrm.old_transnumber = dbval.f_transnumber
+                    objfrm.old_parcel = dbval.f_parcel
+                    objfrm.old_amount = dbval.f_amount
+                    
                     //// objfrm.grp_id="1" <-- if u want additional key value
+
                     
                     for (var key of formdata.keys()) {
                         let xfile = formdata.get(key) ;
@@ -1461,14 +1468,22 @@ const util = {
                 
             })
             .catch((error) => {
-                ///util.Toast(`Error:, ${error}`,1000)
-                console.error('Error:', error)
+                util.speak(data.voice)
+                util.alertMsg(data.message,'warning','loginPlaceHolder')
+                console.log('not found',data.message)
+                return false
             })
             
         }else{
             
-            util.Toasted(`ERROR -- PLEASE TRY AGAIN! <BR>YOUR DISTANCE FROM THE HUB  IS ${d_meters} METER(S) <br> PLEASE GO INSIDE THE WAREHOUSE!`,8000,false)
+            const errmsg =`ERROR -- PLEASE TRY AGAIN! YOUR DISTANCE FROM THE HUB  IS ${d_meters} METER(S) 
+                        PLEASE GO NEARER INSIDE THE WAREHOUSE!`
+
+            util.Toasted(`ERROR -- PLEASE TRY AGAIN! <BR>YOUR DISTANCE FROM THE HUB  IS ${d_meters} METER(S) 
+                <br> PLEASE GO NEARER INSIDE THE WAREHOUSE!`,8000,false)
             
+            util.speak(ermsg)
+                
             document.getElementById('loginPlaceHolder').innerHTML = "" //reset alertmsg
 
             return 
@@ -1514,7 +1529,7 @@ const util = {
             }else{
                 util.speak(data.voice)
                 util.alertMsg(data.message,'warning','loginPlaceHolder')
-                console.log('notfound',data.message)
+                console.log('not found',data.message)
                 return false
             }
             
