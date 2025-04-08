@@ -1353,6 +1353,9 @@ const asn = {
                 enabled: true
               },
             },
+            dataLabels: {
+                enabled: false
+              },
             fill: {
                 type: 'gradient',
             },/*
