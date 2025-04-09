@@ -250,11 +250,11 @@
 
       document.getElementById('myBody').style.backgroundImage = `url('/html/assets/images/backgrounds/${bgimage[xx] }')`
         setTimeout(() => {
-            const audio  = new Audio('/intro.mp3')
+            const audio  = new Audio('/html/intro.mp3')
             audio.play().catch(error => {
                 console.error("Audio playback failed:", error);
             });
-            document.getElementById('myCard').classList.add('show');
+            document.getElementById('myCard').classList.add('show');// show login  card
         }, 2000); // Delay of 1000 milliseconds (1 second)
     });
 
