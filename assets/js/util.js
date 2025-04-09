@@ -793,14 +793,15 @@ const util = {
             break
 
             case "remittanceModal":
-                const remitmodal =  new bootstrap.Modal(document.getElementById('remittanceModal'),configObj);
-                remitmodal.show()  
-
+                
                 if(!asn.db.getItem('myCart')){
                     util.Toasted('Please make an Initial Entry by Opening Start Entry on the Menu!!!',3000,false)
                     util.speak('Please make an Initial Entry by Opening Start Entry on the Menu!!!')
                     return false
                 }else{
+
+                    const remitmodal =  new bootstrap.Modal(document.getElementById('remittanceModal'),configObj);
+                    remitmodal.show()  
 
                     const dbval = JSON.parse( asn.db.getItem('myCart'))
 
