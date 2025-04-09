@@ -974,7 +974,9 @@
                 <form id="remittanceUploadForm" name="remittanceUploadForm"  enctype="multipart/form-data" method="post">
                   <div class="form-outline">
                     <label class="form-label mb-0" for="ff_uploaded_file">Upload Remittance Receipt</label>
-                    <input onchange="javascript:asn.checkFileSize();" class="form-control equipmentxx" type="file" name="ff_uploaded_file" id="ff_uploaded_file" accept='image/*' capture="environment"  required />
+                    
+                    <!-- ONCHANGE=ASN.CHECKFILESIZE() -->
+                    <input onchange="" class="form-control equipmentxx" type="file" name="ff_uploaded_file" id="ff_uploaded_file" accept='image/*' capture="environment"  required />
                     
                     <div class="invalid-feedback">
                       Required Field!!!
