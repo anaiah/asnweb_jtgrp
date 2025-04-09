@@ -1300,6 +1300,7 @@ const asn = {
                 asn.db.clear() //delete database
 
                 //===update also chart and monthly performance card
+                asn.piedata.length = 0  //reset
                 asn.getMonthlyTransaction(util.getCookie('f_dbId'))
 
                 //===== click submit button of Upload Form
