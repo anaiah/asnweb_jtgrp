@@ -39,6 +39,7 @@ db.clear()
 const util = {
 	
 	scrollsTo:(cTarget)=>{
+        asn.collapz()
 		const elem = document.getElementById(cTarget)
 		elem.scrollIntoView()
 		
