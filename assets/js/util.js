@@ -797,10 +797,12 @@ const util = {
                 remitmodal.show()  
 
                 if(!asn.db.getItem('myCart')){
-
+                    util.Toasted('Please make an Initial Entry by Opening Start Entry on the Menu!!!',3000,false)
+                    util.speak('Please make an Initial Entry by Opening Start Entry on the Menu!!!')
+                    return false
                 }else{
 
-                    const dbval = JSON.parse( db.getItem('myCart'))
+                    const dbval = JSON.parse( asn.db.getItem('myCart'))
 
                     document.getElementById('trans_tbody').innerHTML=`<tr>
                         <td>${dbval.f_transnumber}</td>
