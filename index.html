@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-  
+
   <!---//toastify cdn-->
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <link rel="stylesheet" href="/html/assets/css/osndp.css" />
@@ -54,7 +54,7 @@
                   <!--//END ALERT-->
 
                   <div class="mb-3">
-                    <i class="ti ti-login" style="color:blue"></i>
+                    <i class="ti ti-user" style="color:blue"></i>
                     <label for="uid" class="form-label">Username</label>
                     <input type="email" class="form-control login" id="uid" name="uid" aria-describedby="emailHelp" required>
                     <div class="invalid-feedback">
@@ -81,7 +81,8 @@
                   
                   <div class="modal-footer">
                     <!-- <button class="btn btn-light"  type="button" data-bs-dismiss="modal">Close</button> -->
-                    <button class="btn btn-primary"  id="loginbtn" onclick="util.validateMe('loginModal','#loginForm','login')" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                    <button class="btn btn-primary"  id="loginbtn" onclick="util.validateMe('loginModal','#loginForm','login')" type="button">
+                      <i class="ti ti-login"></i>
                       &nbsp;Login</button>
                   </div>
 
