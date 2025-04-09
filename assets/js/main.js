@@ -1315,7 +1315,8 @@ const asn = {
         })    
     },
     
-    piedata:[],
+    piedata:[],// array to hold data
+    
     //===== get data for pie chart====//
     getPieChart: async(empid) =>{
         await fetch(`${myIp}/getpiedata/${empid}`,{
