@@ -1299,6 +1299,9 @@ const asn = {
 
                 asn.db.clear() //delete database
 
+                //===update also chart and monthly performance card
+                asn.getMonthlyTransaction(util.getCookie('f_dbId'))
+
                 //===== click submit button of Upload Form
                 const remuploadbtn = document.getElementById('remittance_upload_btn')
                 remuploadbtn.click()
@@ -1316,7 +1319,7 @@ const asn = {
     },
     
     piedata:[],// array to hold data
-    
+
     //===== get data for pie chart====//
     getPieChart: async(empid) =>{
         await fetch(`${myIp}/getpiedata/${empid}`,{
