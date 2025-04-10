@@ -77,6 +77,14 @@
                     </div>
                 
                   </div>
+
+                  <div class="mb-4">
+                    
+                    <div class="row">
+                      <span id="hub" style="font-size: 10px;"></span>
+                    </div>
+                  </div>
+                  
               
                   
                   <div class="modal-footer">
@@ -248,7 +256,11 @@
 
     document.addEventListener('DOMContentLoaded', function() {
 
-      console.log(`===== FOR jtx GROUP new ====`)
+      //get position
+      main.getHubLocation()
+
+
+      console.log(`===== loading index.html() ====`)
       let bgimage = ['asiaone1.png', 'bgrnd.png']
       let xx = Math.floor(Math.random() * 2);
 
@@ -263,6 +275,39 @@
     });
 
     const main = {
+      showPosition: (position) => {
+        
+        let db = window.localStorage
+
+        console.log(position.coords.latitude, position.coords.longitude )
+        
+        let obj={}
+
+        if(! db.getItem('myHub')){
+          obj.lat = position.coords.latitude
+          obj.lon = position.coords.longitude
+
+          db.setItem("myHub", JSON.stringify(obj))
+
+        }else{
+          obj = JSON.parse(db.getItem("myHub"))
+          console.log('**localstorage already set....')
+        }
+        
+        document.getElementById('hub').innerHTML=`WareHouse Location is ${obj.lat}, ${obj.lon}` 
+
+        console.log(JSON.stringify(obj))
+        //let db = window.localStorage()
+        //db.setItem('my')
+      },
+
+      getHubLocation:()=>{
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition( main.showPosition );
+        }
+      },
+
       checkFileSize:()=>{
         const fi = document.getElementById('uploaded_file');
         // Check if any file is selected.
