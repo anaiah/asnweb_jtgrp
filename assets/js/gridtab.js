@@ -38,7 +38,7 @@ const  gridtab = {
 
 // Create Tabulator on DOM element with id "table"
 var gridMonth = new Tabulator("#grid_month", {
-    ajaxURL: "http://192.168.38.221:10000/gridmonthlytransaction/1", // URL of your API endpoint
+    //ajaxURL: "http://192.168.38.221:10000/gridmonthlytransaction/1", // URL of your API endpoint
     height: "311px", // height of table
     
     layout:'fitColumns',
