@@ -63,7 +63,7 @@ var gridMonth = new Tabulator("#grid_month", {
     columns: [ // Define Table Columns
         { title: "Date", 
             field: "Dates", 
-            width:100,
+            width:110,
             resizable:false,
             formatter:"html", 
             headerSort:false, 
