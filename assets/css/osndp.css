@@ -49,8 +49,8 @@ background-color:#fff;
     background-color: rgb(244, 246, 248);
 }
 .my-container{
-  --bs-gutter-x:15px;
-  --bs-gutter-y:15px;
+  --bs-gutter-x:25px;
+  --bs-gutter-y:25px;
 }
 
 input:required:is-valid {
@@ -85,9 +85,6 @@ input:focus:is-invalid {
   }
   .modal-title{
     color:white;
-  }
-  .my-container{
-    --bs-gutter-x:2px;
   }
   .lets-hide{
     visibility: hidden;
