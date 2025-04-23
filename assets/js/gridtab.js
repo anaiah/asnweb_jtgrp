@@ -54,10 +54,16 @@ var gridMonth = new Tabulator("#grid_month", {
     //     formatter:"responsiveCollapse",
     // },
 
+    rowFormatter:function(row){
+        if(row.getData().total == ""){
+            row.getElement().style.backgroundColor = "lemonchiffon"; //mark rows with age greater than or equal to 18 as successful;
+        }
+    },
+
     columns: [ // Define Table Columns
         { title: "Date", 
             field: "Dates", 
-            width:150,
+            width:110,
             formatter:"html", 
             headerSort:false, 
             headerHozAlign:"center", 
