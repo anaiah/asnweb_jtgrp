@@ -50,7 +50,7 @@ background-color:#fff;
 }
 .my-container{
   margin-left: 5px;
-  margin-right:5px;
+  margin-right:5px; 
   --bs-gutter-x:25px;
   --bs-gutter-y:25px;
 }

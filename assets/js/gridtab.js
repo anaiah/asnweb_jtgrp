@@ -55,7 +55,7 @@ var gridMonth = new Tabulator("#grid_month", {
     // },
 
     rowFormatter:function(row){
-        if(row.getData().parcel==0){
+        if(row.getData().parcel==0  ){
             row.getElement().style.backgroundColor = "lemonchiffon"; //mark rows with age greater than or equal to 18 as successful;
         }
     },
@@ -81,6 +81,8 @@ var gridMonth = new Tabulator("#grid_month", {
                 thousand: ",",
                 precision:0
             },
+            width:90,
+            resizable:false
         },  
         
         { title: "Delivered", 
@@ -94,7 +96,9 @@ var gridMonth = new Tabulator("#grid_month", {
             bottomCalcFormatterParams:  {
                 thousand: ",",
                 precision:0
-            }
+            },
+            width:90,
+            resizable:false
                 //formatter sampl
                 // formatter: "money",
                 // bottomCalc: "sum",
