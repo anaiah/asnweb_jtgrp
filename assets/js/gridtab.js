@@ -41,7 +41,7 @@ var gridMonth = new Tabulator("#grid_month", {
     //ajaxURL: "http://192.168.38.221:10000/gridmonthlytransaction/1", // URL of your API endpoint
     height: "311px", // height of table
     
-    layout:'fitColumns',
+    layout:'fitDataFill',
 
     htmlOutputConfig:{
         formatCells: true
@@ -57,6 +57,7 @@ var gridMonth = new Tabulator("#grid_month", {
     columns: [ // Define Table Columns
         { title: "Date", 
             field: "Dates", 
+            width:150,
             formatter:"html", 
             headerSort:false, 
             headerHozAlign:"center", 
@@ -87,23 +88,7 @@ var gridMonth = new Tabulator("#grid_month", {
             bottomCalcFormatterParams:  {
                 thousand: ",",
                 precision:0
-            },
-            //formatter:'html',
-            formatter:(cell)=>{
-                if(cell.getRow().getData().parcel > 0){
-                    if(cell.getRow().getData().parcel > cell.getRow().getData().delivered){
-                        console.log('dito')
-                        return "<span><i class='ti ti-caret-down-filled'></i>&nbsp;"+ cell.getValue()+"</span>"
-                        //return "<span style='color:red'>"+cell.getValue()+"</span>"
-                    }else{
-                        return cell.getValue()
-                    }//eif
-                }else{
-                    return 0
-                }//eif
-                
-            },
-
+            }
                 //formatter sampl
                 // formatter: "money",
                 // bottomCalc: "sum",
