@@ -63,7 +63,8 @@ var gridMonth = new Tabulator("#grid_month", {
     columns: [ // Define Table Columns
         { title: "Date", 
             field: "Dates", 
-            width:110,
+            width:100,
+            resizable:false,
             formatter:"html", 
             headerSort:false, 
             headerHozAlign:"center", 
@@ -135,6 +136,8 @@ var gridMonth = new Tabulator("#grid_month", {
 
             // symbol: "$"
             },
+            width:95,
+            resizable:false
             
         },
         { title: "Remitted",
@@ -155,9 +158,19 @@ var gridMonth = new Tabulator("#grid_month", {
                 thousand: ",",
                 precision: 2
             // symbol: "$"
-            }
+            },
+            width:95,
+            resizable:false
         },    
-        { title: "Remarks", field: "remarks", formatter:"textarea", headerHozAlign:"center", headerSort:false }
+        { 
+            title: "Remarks", 
+            field: "remarks", 
+            formatter:"textarea", 
+            headerHozAlign:"center", 
+            headerSort:false,
+            width:100,
+            resizable:false, 
+        }
     ],
 
     locale:"en-us",
