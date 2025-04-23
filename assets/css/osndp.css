@@ -49,8 +49,8 @@ background-color:#fff;
     background-color: rgb(244, 246, 248);
 }
 .my-container{
-  --bs-gutter-x:5px;
-  --bs-gutter-y:5px;
+  --bs-gutter-x:15px;
+  --bs-gutter-y:15px;
 }
 
 input:required:is-valid {
