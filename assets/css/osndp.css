@@ -49,6 +49,8 @@ background-color:#fff;
     background-color: rgb(244, 246, 248);
 }
 .my-container{
+  margin-left: 5px;
+  margin-right:5px;
   --bs-gutter-x:25px;
   --bs-gutter-y:25px;
 }
