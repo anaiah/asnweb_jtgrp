@@ -48,11 +48,11 @@ var gridMonth = new Tabulator("#grid_month", {
     },
 
     //layout:"fitDataFill",
-    responsiveLayout:"collapse",
+    // responsiveLayout:"collapse",
 
-    rowHeader:{
-        formatter:"responsiveCollapse",
-    },
+    // rowHeader:{
+    //     formatter:"responsiveCollapse",
+    // },
 
     columns: [ // Define Table Columns
         { title: "Date", 
