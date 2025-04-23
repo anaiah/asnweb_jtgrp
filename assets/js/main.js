@@ -1227,7 +1227,7 @@ const asn = {
         
         xparam = `/${util.getCookie('f_region')}/${emp_id}/${util.getCookie('f_email')}`    
         
-        await fetch(`${myIp}/getmonthlytransaction/${emp_id}`,{
+        await fetch(`${myIp}/gridmonthlytransaction/${emp_id}`,{
             cache:'reload'
         })
         .then( (res) => res.json() )
