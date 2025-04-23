@@ -55,7 +55,7 @@ var gridMonth = new Tabulator("#grid_month", {
     // },
 
     rowFormatter:function(row){
-        if(row.getData().total == ""){
+        if(row.getData().parcel==0){
             row.getElement().style.backgroundColor = "lemonchiffon"; //mark rows with age greater than or equal to 18 as successful;
         }
     },
