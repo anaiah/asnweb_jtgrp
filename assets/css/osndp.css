@@ -1,17 +1,55 @@
-
-@import  "https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css";
-
-/* zebra  */
-tr:nth-of-type(even) td {
-  background: #d9dcde;
+.card-body{
+  box-sizing: border-box;
+  background-color:#fff;
 }
 
-.testbg{
-  background-color:lemonchiffon;
+.shadow{
+  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important;
 }
 
-tr:nth-of-type(odd) td {
-  background:#f2f2f2;
+.tabulator{
+  background-color: #f7f4f4;
+  border: 1px solid #e1dbdb;
+  border-radius: 3px;
+}
+
+.tabulator .tabulator-header .tabulator-col .tabulator-col-content {
+ /* box-sizing: border-box;
+padding: 4px;
+position: relative;  */
+color: #a3a0a0;
+background-color:#fff;
+}
+
+.tabulator .tabulator-header .tabulator-col{
+  background-color: #f7f4f4;
+  border-right: 1px solid #e1dbdb;
+  
+}
+
+.tabulator-row .tabulator-cell {
+  border-right: 1px solid #e1dbdb;
+} 
+
+.tabulator .tabulator-footer .tabulator-paginator {
+  color: #555;
+  flex: 1;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-align: left;
+}
+
+.tabulator .tabulator-footer .tabulator-footer-contents {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background-color: rgb(244, 246, 248);
+}
+.my-container{
+--bs-gutter-x:2px;
 }
 
 input:required:is-valid {

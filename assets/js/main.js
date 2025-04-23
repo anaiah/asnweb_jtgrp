@@ -1224,21 +1224,19 @@ const asn = {
 
     //==========get monthly  transaction for riders/transporters ====//
     getMonthlyTransaction:async( emp_id ) =>{
-        if(util.getCookie('grp_id')=="2"){
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`    
-        }else{
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`
-        }//eif
-
+        
+        xparam = `/${util.getCookie('f_region')}/${emp_id}/${util.getCookie('f_email')}`    
+        
         await fetch(`${myIp}/getmonthlytransaction/${emp_id}`,{
             cache:'reload'
         })
-        .then(res => res.text() )
+        .then( (res) => res.json() )
 
-        .then(text => {	
-            document.getElementById('month_transaction').innerHTML = ""
-            document.getElementById('month_transaction').innerHTML = text
-            
+        .then( (results)  => {
+
+            console.log('mydata ',results )
+            gridMonth.setData( results )
+
             //get chart
             asn.getPieChart(util.getCookie('f_dbId'))
 
