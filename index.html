@@ -259,7 +259,6 @@
       //get position
       main.getHubLocation()
 
-
       console.log(`===== loading index.html() ====`)
       let bgimage = ['asiaone1.png', 'bgrnd.png']
       let xx = Math.floor(Math.random() * 2);
@@ -297,8 +296,7 @@
         document.getElementById('hub').innerHTML=`WareHouse Location is ${obj.lat}, ${obj.lon}` 
 
         console.log(JSON.stringify(obj))
-        //let db = window.localStorage()
-        //db.setItem('my')
+       
       },
 
       getHubLocation:()=>{

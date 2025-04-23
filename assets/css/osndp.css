@@ -1,3 +1,19 @@
+
+@import  "https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css";
+
+/* zebra  */
+tr:nth-of-type(even) td {
+  background: #d9dcde;
+}
+
+.testbg{
+  background-color:lemonchiffon;
+}
+
+tr:nth-of-type(odd) td {
+  background:#f2f2f2;
+}
+
 input:required:is-valid {
   border-color: green;
 }
@@ -102,3 +118,4 @@ input:focus:is-invalid {
 }
 .sidebar { grid-area: sidebar; }
 .body { grid-area: body; }
+
