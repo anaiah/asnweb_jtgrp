@@ -1340,7 +1340,7 @@ const asn = {
         .then( (data) => {
 
             //console.log(data.data[0].delivered_pct, data.data[0].undelivered_pct )
-            if(!data.data){
+            if(!data.data[0]){
                 console.log('==NO DATA FOR PIECHART==')
                 return false;
             }else{
