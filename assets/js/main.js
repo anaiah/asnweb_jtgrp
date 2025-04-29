@@ -1251,7 +1251,19 @@ const asn = {
     saveToLocal:async(objfrm)=>{
         console.log(objfrm)
         
-        asn.db.setItem('myCart', JSON.stringify(objfrm))
+        let newdb = asn.db.getItem('myCart')
+
+        if(!newdb){
+            asn.db.setItem('myCart', JSON.stringify(objfrm))
+        }else{ //===if with prev record get prev rec and add
+
+            let finaldb = JSON.parse( newdb ) //get all value of old local storage
+
+            finaldb.parcel = parseInt(finaldb.parcel) + parseInt( objfrm.parcel)
+            finaldb.amount = parseFloat(finaldb.amount) + parseFloat( objfrm.amount)
+
+            asn.db.setItem('myCart', JSON.stringify(finaldb))
+        }
         
         const badge = document.getElementById('bell-badge')
         badge.innerHTML = 1
@@ -1263,7 +1275,7 @@ const asn = {
             
     },
 
-    //====rider  save transaction
+    //====rider  save transaction / save remittance
     saveTransaction:async function(frm,modal,url="",xdata={}){
 
         asn.speaks('Saving Transaction to Database, Please Wait!!!')
