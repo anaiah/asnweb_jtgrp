@@ -1259,8 +1259,8 @@ const asn = {
 
             let finaldb = JSON.parse( newdb ) //get all value of old local storage
 
-            finaldb.parcel = parseInt(finaldb.parcel) + parseInt( objfrm.parcel)
-            finaldb.amount = parseFloat(finaldb.amount) + parseFloat( objfrm.amount)
+            finaldb.f_parcel = parseInt(finaldb.f_parcel) + parseInt( objfrm.parcel)
+            finaldb.f_amount = parseFloat(finaldb.f_amount) + parseFloat( objfrm.amount)
 
             asn.db.setItem('myCart', JSON.stringify(finaldb))
         }
