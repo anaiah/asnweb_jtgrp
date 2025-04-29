@@ -61,14 +61,11 @@
     <script>
             function onScanSuccess(decodedText, decodedResult) {
                 setTimeout(() => {
-                    const audio  = new Audio('/html/intro.mp3')
-                    audio.play().catch(error => {
-                        console.error("Audio playback failed:", error);
-                    });
-                //document.getElementById('myCard').classList.add('show');// show login  card
-                }, 2000); // Delay of 1000 milliseconds (1 second)
+                    document.getElementById('result').innerText = `Scanned Code: ${decodedText}`;
+
+                }, 4000); // Delay of 1000 milliseconds (1 second)
             
-                document.getElementById('result').innerText = `Scanned Code: ${decodedText}`;
+                document.getElementById('result').innerText = ""
         }
 
         function onScanError(errorMessage) {
