@@ -1259,8 +1259,8 @@ const asn = {
 
             let finaldb = JSON.parse( newdb ) //get all value of old local storage
 
-            finaldb.f_parcel = parseInt(finaldb.f_parcel) + parseInt( objfrm.parcel)
-            finaldb.f_amount = parseFloat(finaldb.f_amount) + parseFloat( objfrm.amount)
+            finaldb.f_parcel = parseInt(finaldb.f_parcel) + parseInt( objfrm.f_parcel)
+            finaldb.f_amount = parseFloat(finaldb.f_amount) + parseFloat( objfrm.f_amount)
 
             asn.db.setItem('myCart', JSON.stringify(finaldb))
         }
@@ -1422,7 +1422,7 @@ const asn = {
 	//==,= main run
 	init :  () => {
         console.log('===asn.init()=== loaded!')
-        
+
         asn.speaks = (txt) =>{
             let speechsynth = new SpeechSynthesisUtterance();
             speechsynth.text = txt
