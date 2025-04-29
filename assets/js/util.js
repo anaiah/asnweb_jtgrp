@@ -1434,6 +1434,9 @@ const util = {
         
         console.log('==== asn.showPosition()  the distance is ',distance, d_meters)
 
+        //override muna the meeters
+        d_meters = 0.9 //DELETE LATER IF LIVE
+
         if( parseFloat(d_meters) <=  10){ // IF DISTANCE IS LESS OR EQ. 10METERS
 
             util.Toasted(`SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!`,6000,false)
