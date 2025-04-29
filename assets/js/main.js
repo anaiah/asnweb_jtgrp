@@ -1421,6 +1421,8 @@ const asn = {
 
 	//==,= main run
 	init :  () => {
+        console.log('===asn.init()=== loaded!')
+        
         asn.speaks = (txt) =>{
             let speechsynth = new SpeechSynthesisUtterance();
             speechsynth.text = txt
