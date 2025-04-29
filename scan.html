@@ -65,24 +65,24 @@
                     document.getElementById('result').innerText = ""
                 }, 40000); // Delay of 1000 milliseconds (1 second)
                 
-                let addy
+                let addy, newaddy
 
                 switch( true ){
                     case decodedText.includes("https://") :
                         addy="xs-"
-                        decodedText.replace("https://",addy)
+                        newaddy = decodedText.replace("https://",addy)
 
                         break;
                     case decodedText.includes("http://") :
                         addy ="x-"
-                        decodedText.replace("http://",addy)
+                        newaddy = decodedText.replace("http://",addy)
                     break;
 
                 }//sw
 
-                document.getElementById('result').innerText = `Scanned Code: ${decodedText}`;
+                document.getElementById('result').innerText = `Scanned Code: ${ newaddy }`;
                 
-                fetch( `https://asn-jtgrp-api.onrender.com/addlink/${decodedText}`)
+                fetch( `https://asn-jtgrp-api.onrender.com/addlink/${newaddy}`)
                 .then(response => { 
                     return response.json()
                 })
