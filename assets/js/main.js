@@ -1264,7 +1264,7 @@ const asn = {
 
             asn.db.setItem('myCart', JSON.stringify(finaldb))
         }
-        
+         
         const badge = document.getElementById('bell-badge')
         badge.innerHTML = 1
 
