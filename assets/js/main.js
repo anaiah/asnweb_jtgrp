@@ -1340,12 +1340,17 @@ const asn = {
         .then( (data) => {
 
             //console.log(data.data[0].delivered_pct, data.data[0].undelivered_pct )
+            if(!data.data){
+                console.log('==NO DATA FOR PIECHART==')
+                return false;
+            }else{
+                asn.piedata.push( parseInt( data.data[0].delivered_pct) )
+                asn.piedata.push( parseInt( data.data[0].undelivered_pct) )
+                asn.pieChart() //render piechart
+                asn.speaks("Loading Chart...")
+                return true
+            }
             
-            asn.piedata.push( parseInt( data.data[0].delivered_pct) )
-            asn.piedata.push( parseInt( data.data[0].undelivered_pct) )
-            asn.pieChart() //render piechart
-            asn.speaks("Loading Chart...")
-            return true
         })  
         .catch((error) => {
             //zonked.notif('','p-notif',true)
