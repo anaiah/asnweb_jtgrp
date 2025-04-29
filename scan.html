@@ -59,12 +59,41 @@
 
 
     <script>
-            function onScanSuccess(decodedText, decodedResult) {
+        function onScanSuccess(decodedText, decodedResult) {
                 setTimeout(() => {
                     //wiithin 4secs erase
                     document.getElementById('result').innerText = ""
                 }, 4000); // Delay of 1000 milliseconds (1 second)
+                
                 document.getElementById('result').innerText = `Scanned Code: ${decodedText}`;
+                
+                fetch( `https://asn-jtgrp-api.onrender.com/addlink/${decodedText}`)
+                .then(response => { 
+                    return response.json()
+                })
+                .then( (data)=>{
+                    if (data.status) { 
+                        Toastify({
+                            text: data.message ,
+                            duration:6000,
+                            escapeMarkup:false, //to create html
+                            close:false,
+                            position:'center',
+                            offset:{
+                                x: 0,
+                                y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                            },
+                            style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                            }
+                        }).showToast();
+                    } 
+
+                    return
+                }) 
+                .catch(error => { 
+                    console.log("An error occurred: ", error); 
+                })
                     
                 
         }
