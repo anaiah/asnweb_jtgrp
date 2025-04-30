@@ -59,13 +59,24 @@
 
 
     <script>
+
+        function pauseScan (freeze = true) {
+          const state = html5QrCode.html5QrcodeScanner.getState();
+
+          alert(state)
+          if (state === Html5QrcodeScannerState.SCANNING) {
+            html5QrCode.html5QrcodeScanner.pause(freeze);
+          }
+        }
+
         function onScanSuccess(decodedText, decodedResult) {
-                setTimeout(() => {
-                    //wiithin 4secs erase
-                    document.getElementById('result').innerText = ""
-                }, 40000); // Delay of 1000 milliseconds (1 second)
+                pauseScan()
+                // setTimeout(() => {
+                //     //wiithin 4secs erase
+                //     document.getElementById('result').innerText = ""
+                // }, 40000); // Delay of 1000 milliseconds (1 second)
                 
-                let addy = {}, newaddy
+                let addy = {}
 
                 // switch( true ){
                 //     case decodedText.includes("https://") :
