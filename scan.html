@@ -60,7 +60,7 @@
 
     <script>
 
-        
+        let html5QrCode
 
         function onScanSuccess(decodedText, decodedResult) {
                 setTimeout(() => {
@@ -84,7 +84,7 @@
 
                 // }//sw
 
-                html5QrCode.pause(true) //first pause
+                html5QrCode.pause() //first pause
 
                 document.getElementById('result').innerText = `Scanned Code: ${ decodedText }`;
                 
@@ -131,12 +131,12 @@
         }
 
         function onScanError(errorMessage) {
-            console.error(`Scan error: ${errorMessage}`);
+            //console.error(`Scan error: ${errorMessage}`);
         }
 
         // Initialize the QR Code scanner
         document.addEventListener("DOMContentLoaded", function() {
-            const html5QrCode = new Html5Qrcode("reader");
+            html5QrCode = new Html5Qrcode("reader");
             const config = { fps: 10, qrbox: 250 };
 
             html5QrCode.start(
