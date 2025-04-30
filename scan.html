@@ -60,21 +60,14 @@
 
     <script>
 
-        function pauseScan (freeze = true) {
-          const state = html5QrCode.html5QrcodeScanner.getState();
-
-          alert(state)
-          if (state === Html5QrcodeScannerState.SCANNING) {
-            html5QrCode.html5QrcodeScanner.pause(freeze);
-          }
-        }
+        
 
         function onScanSuccess(decodedText, decodedResult) {
-                pauseScan()
-                // setTimeout(() => {
-                //     //wiithin 4secs erase
-                //     document.getElementById('result').innerText = ""
-                // }, 40000); // Delay of 1000 milliseconds (1 second)
+                setTimeout(() => {
+                  html5QrCode.resume()
+                    //wiithin 4secs erase
+                    document.getElementById('result').innerText = "Resuming.."
+                }, 1200); // Delay of 1000 milliseconds (1 second)
                 
                 let addy = {}
 
@@ -90,6 +83,8 @@
                 //     break;
 
                 // }//sw
+
+                html5QrCode.pause(true) //first pause
 
                 document.getElementById('result').innerText = `Scanned Code: ${ decodedText }`;
                 
