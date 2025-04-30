@@ -1508,6 +1508,7 @@ const util = {
 
     setGroupCookie:(xid, xregion, xname,xgrp,xemail,xvoice,xpic)=>{
         util.setCookie("f_dbId",xid,0)
+        util.setCookie("f_id",xid,0)
         util.setCookie("f_region",xregion,0)
         util.setCookie("fname",xname,0)
         util.setCookie("grp_id",xgrp,0)
