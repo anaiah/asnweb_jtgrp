@@ -65,44 +65,55 @@
                     document.getElementById('result').innerText = ""
                 }, 40000); // Delay of 1000 milliseconds (1 second)
                 
-                let addy, newaddy
+                let addy = {}, newaddy
 
-                switch( true ){
-                    case decodedText.includes("https://") :
-                        addy="xs-"
-                        newaddy = decodedText.replace("https://",addy)
+                // switch( true ){
+                //     case decodedText.includes("https://") :
+                //         addy="xs-"
+                //         newaddy = decodedText.replace("https://",addy)
 
-                        break;
-                    case decodedText.includes("http://") :
-                        addy ="x-"
-                        newaddy = decodedText.replace("http://",addy)
-                    break;
+                //         break;
+                //     case decodedText.includes("http://") :
+                //         addy ="x-"
+                //         newaddy = decodedText.replace("http://",addy)
+                //     break;
 
-                }//sw
+                // }//sw
 
-                document.getElementById('result').innerText = `Scanned Code: ${ newaddy }`;
+                document.getElementById('result').innerText = `Scanned Code: ${ decodedText }`;
                 
-                fetch( `https://asn-jtgrp-api.onrender.com/addlink/${newaddy}`)
-                .then(response => { 
-                    return response.json()
+                let url = `https://asn-jtgrp-api.onrender.com/addlink` 
+                
+                addy.link = decodedText
+
+
+                fetch(url,{
+                    method:'POST',
+                    //cache:'no-cache',
+
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    
+                    body: JSON.stringify(addy)
                 })
                 .then( (data)=>{
-                    if (data.status) { 
-                        Toastify({
-                            text: data.message ,
-                            duration:6000,
-                            escapeMarkup:false, //to create html
-                            close:false,
-                            position:'center',
-                            offset:{
-                                x: 0,
-                                y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                            },
-                            style: {
-                            background: "linear-gradient(to right, #00b09b, #96c93d)",
-                            }
-                        }).showToast();
-                    } 
+                  if (data.status) { 
+                    Toastify({
+                        text: data.message ,
+                        duration:6000,
+                        escapeMarkup:false, //to create html
+                        close:false,
+                        position:'center',
+                        offset:{
+                            x: 0,
+                            y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                        },
+                        style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        }
+                    }).showToast();
+                  } 
 
                     return
                 }) 
