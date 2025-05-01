@@ -193,7 +193,7 @@ var gridMonth = new Tabulator("#grid_month", {
     pagination:true, //enable pagination
     //paginationElement: document.getElementById('grid_pagination'),
     paginationMode:"local", //enable remote pagination
-    paginationSize: 15, //optional parameter to request a certain number of rows per page
+    paginationSize: 16, //optional parameter to request a certain number of rows per page
     // paginationCounter:function(pageSize, currentRow, currentPage, totalRows, totalPages){
     //     return `<i class='ti ti-database-search'></i>&nbsp;Showing ${pageSize}  rows of ${totalRows} total`;
     // }

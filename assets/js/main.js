@@ -1342,14 +1342,16 @@ const asn = {
             //console.log(data.data[0].delivered_pct, data.data[0].undelivered_pct )
             if(!data.data[0]){
                 console.log('==NO DATA FOR PIECHART==')
-                return false;
+                
             }else{
                 asn.piedata.push( parseInt( data.data[0].delivered_pct) )
                 asn.piedata.push( parseInt( data.data[0].undelivered_pct) )
                 asn.pieChart() //render piechart
                 asn.speaks("Loading Chart...")
-                return true
+                
             }
+
+            return
             
         })  
         .catch((error) => {
