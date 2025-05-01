@@ -269,7 +269,8 @@
       if( db.getItem('profile')){
         //if there's profile set it up so rider wont type the name
         const uid = JSON.parse(db.getItem('profile'))
-        document.getElementById('uid') = uid.email
+        console.log(uid)
+        //document.getElementById('uid') = uid.email
         document.getElementById('pwd') ='123'
       }
 
