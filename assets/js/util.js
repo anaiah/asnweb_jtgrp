@@ -817,9 +817,7 @@ const util = {
                     document.getElementById('ff_transnumber').value= dbval.f_transnumber
                     document.getElementById('ff_parcel').value= dbval.f_parcel
                     document.getElementById('ff_amount').value= dbval.f_amount
-                    document.getElementById('ff_empid').value= xdb.id
-
-                    //document.getElementById('image_name').value = dbval.f_transnumber
+                    document.getElementById('ff_empid').value= xdb.id //get emp id frm localDb
  
                 }//eif
 
