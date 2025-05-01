@@ -860,7 +860,7 @@ const asn = {
             //     document.getElementById('project-badge').innerHTML = parseInt(document.getElementById('reccount').innerHTML)
             //     console.log( '**rec count** ',document.getElementById('reccount').innerHTML)
                 
-                util.scrollsTo('search_claim')
+                util.scrollsTo('claim_search')
 
                 //asn.getTopRider()
             
@@ -1266,7 +1266,7 @@ const asn = {
         }
          
         const badge = document.getElementById('bell-badge')
-        badge.innerHTML = 1
+        badge.innerHTML = 'With Entry'
 
         asn.speaks('Local Storage Successfully Saved!!!') //speak
         util.Toasted('Local Storage Successfully Saved!!!',3000,false)//alert
