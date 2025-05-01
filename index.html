@@ -253,6 +253,8 @@
   <script src="/html/assets/js/login.js?v=8"></script>
 
   <script>
+    
+    let db = window.localStorage
 
     document.addEventListener('DOMContentLoaded', function() {
 
@@ -262,6 +264,14 @@
       console.log(`===== loading index.html() ====`)
       let bgimage = ['asiaone1.png', 'bgrnd.png']
       let xx = Math.floor(Math.random() * 2);
+
+      //get frm localstorage
+      if( db.getItem('profile')){
+        //if there's profile set it up so rider wont type the name
+        const uid = JSON.parse(db.getItem('profile'))
+        document.getElementById('uid') = uid.email
+        document.getElementById('pwd') ='123'
+      }
 
       document.getElementById('myBody').style.backgroundImage = `url('/html/assets/images/backgrounds/${bgimage[xx] }')`
         setTimeout(() => {
@@ -276,8 +286,6 @@
     const main = {
       showPosition: (position) => {
         
-        let db = window.localStorage
-
         console.log(position.coords.latitude, position.coords.longitude )
         
         let obj={}

@@ -1276,7 +1276,7 @@ const asn = {
     },
 
     //====rider  save transaction / save remittance
-    saveTransaction:async function(frm,modal,url="",xdata={}){
+    saveTransaction:async function(url="",xdata={}){
 
         asn.speaks('Saving Transaction to Database, Please Wait!!!')
                             
@@ -1297,9 +1297,9 @@ const asn = {
             console.log(data)
             
             if(data.status){
-                console.log( 'savetransaction here...')
+                console.log( 'saveTransaction()...')
 
-                //change form action 
+                //change form action for posting the Image receipt
                 document.getElementById('remittanceUploadForm').action=`${myIp}/postimage/${document.getElementById('ff_transnumber').value}`
 
                 xmsg = "<i class='fa fa-spinner fa-pulse' ></i>  Uploading Receipt, please wait!!!"
@@ -1307,7 +1307,7 @@ const asn = {
                 
                 asn.speaks(data.voice);
 
-                asn.db.clear() //delete database
+                asn.db.removeItem('myCart') //delete myCart in localDB
 
                 //===update also chart and monthly performance card
                 asn.piedata.length = 0  //reset
@@ -1317,10 +1317,7 @@ const asn = {
                 const remuploadbtn = document.getElementById('remittance_upload_btn')
                 remuploadbtn.click()
 
-                //change form action 
-                //document.getElementById('remittanceUploadForm').action=`${myIp}/postimage`
             }//endif
-
            
         })  
         .catch((error) => {

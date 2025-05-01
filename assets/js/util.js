@@ -1450,14 +1450,27 @@ const util = {
                 return response.json();
             })
             .then((data) => {
-                console.log('data ko ', data )
-                console.log(`here data ${JSON.stringify(data)}`)
+                console.log(`login here data ${JSON.stringify(data)}`)
+                
                 //close ModalBox
                 if(data.found){
                     //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data.voice)
                     util.alertMsg(data.message,'success','loginPlaceHolder')
                     
+                    //addtocookie
                     util.setGroupCookie(data.id,data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
+                
+                    //add also to localdb
+                    let obj ={}
+
+                    obj.id = data.id
+                    obj.region = data.region
+                    obj.fullname = data.fname
+                    obj.grp_id = data.grp_id
+                    obj.email = data.email
+                    obj.pic = data.pic
+
+                    db.setItem('profile',JSON.stringify(obj))//save to localdb
                     
                     // if(data.grp_id=="2"){//business dev0
                     //location.href = '/main'
