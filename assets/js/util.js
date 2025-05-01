@@ -805,6 +805,7 @@ const util = {
                     remitmodal.show()  
 
                     const dbval = JSON.parse( asn.db.getItem('myCart'))
+                    const xdb = JSON.parse( asn.db.getItem('profile'))
 
                     document.getElementById('trans_tbody').innerHTML=`<tr>
                         <td>${dbval.f_transnumber}</td>
@@ -816,17 +817,11 @@ const util = {
                     document.getElementById('ff_transnumber').value= dbval.f_transnumber
                     document.getElementById('ff_parcel').value= dbval.f_parcel
                     document.getElementById('ff_amount').value= dbval.f_amount
-                    document.getElementById('ff_empid').value= util.getCookie('f_dbId')
+                    document.getElementById('ff_empid').value= xdb.id
 
                     //document.getElementById('image_name').value = dbval.f_transnumber
  
                 }//eif
-
-                
-                //todo
-                //get db.localstorage and  display
-
-                //document.getElementById('f_transnumber').value = util.getCode()
 
                 asn.collapz();
             break
