@@ -269,9 +269,9 @@
       if( db.getItem('profile')){
         //if there's profile set it up so rider wont type the name
         const uid = JSON.parse(db.getItem('profile'))
-        console.log(uid)
-        //document.getElementById('uid') = uid.email
-        document.getElementById('pwd') ='123'
+        //console.log(uid)
+        document.getElementById('uid').value = uid.email
+        document.getElementById('pwd').value ='123'
       }
 
       document.getElementById('myBody').style.backgroundImage = `url('/html/assets/images/backgrounds/${bgimage[xx] }')`
