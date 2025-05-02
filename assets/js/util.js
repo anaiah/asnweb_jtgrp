@@ -1386,7 +1386,7 @@ const util = {
                             break;
                             
                         }else{
-                            asn.saveTransaction(frm,frmModal,`${myIp}/savetransaction`,objfrm)
+                            asn.saveTransaction(`${myIp}/savetransaction`,objfrm)
                             break;
                         }//eif
                     }
