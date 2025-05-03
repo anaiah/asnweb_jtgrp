@@ -1418,6 +1418,12 @@ const asn = {
 
     db: window.localStorage, //instantiate localstorage
 
+    logout:()=>{
+        asn.db.removeItem('myCart')//remove transaction localdb
+        location.href = '/jtx'
+                    
+    },
+
 	//==,= main run
 	init :  () => {
         console.log('===asn.init()=== loaded!')
