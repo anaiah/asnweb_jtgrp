@@ -999,7 +999,6 @@ const asn = {
                       background: "linear-gradient(to right, #00b09b, #96c93d)",
                     }
                 }).showToast();
-    
             }
             
         })
@@ -1008,8 +1007,6 @@ const asn = {
             //util.Toast(`Error:, ${error}`,1000)
             console.error('Error:', error)
         })    
-
-
     },
 
     //==get top 5 hub pasaway
