@@ -258,6 +258,8 @@
 
     document.addEventListener('DOMContentLoaded', function() {
 
+      db.removeItem('myCart') //delete myCart in localDB
+
       //get position
       main.getHubLocation()
 
