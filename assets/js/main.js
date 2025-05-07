@@ -1262,8 +1262,8 @@ const asn = {
             asn.db.setItem('myCart', JSON.stringify(finaldb))
         }
          
-        const badge = document.getElementById('bell-badge')
-        badge.innerHTML = 'With Entry'
+        // const badge = document.getElementById('bell-badge')
+        // badge.innerHTML = 'With Entry'
 
         asn.speaks('Local Storage Successfully Saved!!!') //speak
         util.Toasted('Local Storage Successfully Saved!!!',3000,false)//alert

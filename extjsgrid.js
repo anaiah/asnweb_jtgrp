@@ -85,7 +85,7 @@ Ext.onReady(function(){
         width: 800,
         height: 450,
         frame: true,
-        title: `<i class="ti ti-user-plus" style="font-color:red;font-size:25px;"></i>&nbsp;&nbsp;Summary Per Location`,
+        title: `<i class="ti ti-user-plus" style="left:0px;font-color:red;font-size:25px;"></i>&nbsp;&nbsp;Summary Per Location`,
         iconCls: 'icon-grid',
         renderTo: 'grid_month',
         store: Ext.data.StoreManager.lookup('hubStore'),
