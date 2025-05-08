@@ -570,7 +570,7 @@ Ext.onReady(function(){
             hideable: false,
             renderer: function(value, meta, record) {
                 meta.tdCls = 'font10';
-                return value;
+                return ((value === 0 || value > 1) ?`( ${value} Days )` : `( 1 Day )`);
                 //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
                 //return value;
             },
