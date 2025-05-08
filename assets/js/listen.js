@@ -17,9 +17,6 @@ remitupload.addEventListener("submit", e => {
                 util.Toasted(`Receipt Image successfully uploaded!!!`,3000,false)
                 asn.speak('Receipt Image successfully uploaded!!!')
                 
-                //reset badge
-                document.getElementById('bell-badge').innerHTML=""
-
                 //reset form
                 let xform = document.getElementById('remittanceUploadForm')
                 xform.reset()
