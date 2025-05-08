@@ -149,13 +149,14 @@ Ext.onReady(function(){
     //hub GRID
     grid = Ext.create('Ext.grid.Panel', {
         width: 800,
-        height: 450,
+        height: 250,
         frame: true,
         title: `<i class="ti ti-user-plus" style="left:0px;font-color:red;font-size:25px;"></i>&nbsp;&nbsp;Summary Per Location`,
        //f iconCls: 'icon-grid',
         //renderTo: 'grid_month',
         store: Ext.data.StoreManager.lookup('hubStore'),
         //plugins: [cellEditing],  /* takeout editing */
+        layout:'fit',
 
         viewConfig: {
             stripeRows: true,
@@ -405,7 +406,7 @@ Ext.onReady(function(){
         }*/
        ],//endcolumn
 
-       region:'north',
+       //region:'north',
        border:false,
        //split:true,
     
@@ -420,7 +421,7 @@ Ext.onReady(function(){
 
     //RIDER GRID
     riderGrid = Ext.create('Ext.grid.Panel', {
-        region:'west',
+        //region:'west',
         split:true, 
         width:400,
         height: 700,
@@ -676,22 +677,37 @@ Ext.onReady(function(){
         split:true,
 
         items: [
+            {
+                xtype:'panel',
+                region:'center',
+                layout:'fit',
+                items:[
+                    grid
+                ]
 
-            grid,
-
-            riderGrid,
+            },
 
             {
                 xtype:'panel',
-                region: 'center',
-                width:200,
+                region:'south',
                 layout:'fit',
-                height:500,
-                frame:true,
-                border:true
+                items:[
+                    riderGrid
+                ]
+
+            // },
+
+            // {
+            //     xtype:'panel',
+            //     //region: 'center',
+            //     width:200,
+            //     layout:'fit',
+            //     height:500,
+            //     frame:true,
+            //     border:true
 
 
-            }
+            // }
                 
 
         ]
