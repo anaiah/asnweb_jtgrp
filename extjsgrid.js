@@ -1,80 +1,80 @@
 const myIp = "https://asn-jtgrp-api.onrender.com" 
 //const myIp = "http://192.168.214.221:10000"
 
-Ext.define(null, {
-    override: 'Ext.data.Store'
+// Ext.define(null, {
+//     override: 'Ext.data.Store'
 
-    ,sort: function(sorters, direction, where, doSort) {
-        var me = this,
-            sorter,
-            newSorters;
+//     ,sort: function(sorters, direction, where, doSort) {
+//         var me = this,
+//             sorter,
+//             newSorters;
 
-        if (Ext.isArray(sorters)) {
-            doSort = where;
-            where = direction;
-            newSorters = sorters;
-        }
-        else if (Ext.isObject(sorters)) {
-            doSort = where;
-            where = direction;
-            newSorters = [sorters];
-        }
-        else if (Ext.isString(sorters)) {
-            sorter = me.sorters.get(sorters);
+//         if (Ext.isArray(sorters)) {
+//             doSort = where;
+//             where = direction;
+//             newSorters = sorters;
+//         }
+//         else if (Ext.isObject(sorters)) {
+//             doSort = where;
+//             where = direction;
+//             newSorters = [sorters];
+//         }
+//         else if (Ext.isString(sorters)) {
+//             sorter = me.sorters.get(sorters);
 
-            if (!sorter) {
-                sorter = {
-                    property : sorters,
-                    direction: direction
-                };
-                newSorters = [sorter];
-            }
-            else if (direction === undefined) {
-                sorter.toggle();
-            }
-            else {
-                sorter.setDirection(direction);
-            }
-        }
+//             if (!sorter) {
+//                 sorter = {
+//                     property : sorters,
+//                     direction: direction
+//                 };
+//                 newSorters = [sorter];
+//             }
+//             else if (direction === undefined) {
+//                 sorter.toggle();
+//             }
+//             else {
+//                 sorter.setDirection(direction);
+//             }
+//         }
 
-        if (newSorters && newSorters.length) {
-            newSorters = me.decodeSorters(newSorters);
-            if (Ext.isString(where)) {
-                if (where === 'prepend') {
-                    // <code from 4.2.1>
-                    // me.sorters.insert(0, newSorters);
-                    // </code from 4.2.1>
+//         if (newSorters && newSorters.length) {
+//             newSorters = me.decodeSorters(newSorters);
+//             if (Ext.isString(where)) {
+//                 if (where === 'prepend') {
+//                     // <code from 4.2.1>
+//                     // me.sorters.insert(0, newSorters);
+//                     // </code from 4.2.1>
 
-                    // <code from 4.2.0>
-                    sorters = me.sorters.clone().items;
+//                     // <code from 4.2.0>
+//                     sorters = me.sorters.clone().items;
 
-                    me.sorters.clear();
-                    me.sorters.addAll(newSorters);
-                    me.sorters.addAll(sorters);
-                    // </code from 4.2.0>
-                }
-                else {
-                    me.sorters.addAll(newSorters);
-                }
-            }
-            else {
-                me.sorters.clear();
-                me.sorters.addAll(newSorters);
-            }
-        }
+//                     me.sorters.clear();
+//                     me.sorters.addAll(newSorters);
+//                     me.sorters.addAll(sorters);
+//                     // </code from 4.2.0>
+//                 }
+//                 else {
+//                     me.sorters.addAll(newSorters);
+//                 }
+//             }
+//             else {
+//                 me.sorters.clear();
+//                 me.sorters.addAll(newSorters);
+//             }
+//         }
 
-        if (doSort !== false) {
-            me.fireEvent('beforesort', me, newSorters);
-            me.onBeforeSort(newSorters);
+//         if (doSort !== false) {
+//             me.fireEvent('beforesort', me, newSorters);
+//             me.onBeforeSort(newSorters);
 
-            sorters = me.sorters.items;
-            if (sorters.length) {
+//             sorters = me.sorters.items;
+//             if (sorters.length) {
 
-                me.doSort(me.generateComparator());
-            }
-        }
-    }
-});
+//                 me.doSort(me.generateComparator());
+//             }
+//         }
+//     }
+// });
 
 Ext.require([
     'Ext.grid.*',
@@ -189,7 +189,8 @@ Ext.onReady(function(){
         storeId:'riderStore',
         groupField: 'full_name',
         autoLoad: false,
-        
+        remoteSort:true,
+
         proxy: {
             // load using HTTP
             type: 'ajax',
@@ -263,16 +264,21 @@ Ext.onReady(function(){
                     proxy.url =  `${myIp}/coor/ridersummary/${hub_search}`;
 
                     // or use `sorters` array directly
-                    rider_store.sort('delivered_pct', 'DESC');          
+                    //rider_store.sort('delivered_pct', 'DESC');          
                     
                     
                     // If you need to reload data from the new URL
-                    rider_store.load();
+                    //store.sort('yourField', 'ASC'); // set the sorting
+                    rider_store.load({
+                        callback: function() {
+                            // After loading, refresh the view
+                            riderGrid.getView().refresh();
+                        }
+                    });
 
-                    riderGrid.bindStore( rider_store )
+                    //riderGrid.bindStore( rider_store )
 
-                    riderGrid.getView().refresh();
-                    
+                                      
                     console.log( this.getStore().getAt(idx).get('hub') )
 
                 }//eif
@@ -506,7 +512,7 @@ Ext.onReady(function(){
         split:true, 
         width:400,
         height: 700,
-        remoteSort:true,
+    
         layout:'fit',
         id: '_riderGrid',
         frame: true,
