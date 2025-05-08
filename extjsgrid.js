@@ -680,6 +680,7 @@ Ext.onReady(function(){
             {
                 xtype:'panel',
                 region:'center',
+                height:350,
                 layout:'fit',
                 items:[
                     grid
@@ -690,6 +691,7 @@ Ext.onReady(function(){
             {
                 xtype:'panel',
                 region:'south',
+                height:300,
                 layout:'fit',
                 items:[
                     riderGrid
