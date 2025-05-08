@@ -317,6 +317,7 @@ Ext.onReady(function(){
             width:200,
             tdCls: 'task',
             menuDisabled:true,
+            sortable:false,
             dataIndex: 'hub',
             hideable: false,
             renderer: function(value, meta, record) {
@@ -454,7 +455,7 @@ Ext.onReady(function(){
         {
             header: '%',
             width: 100,
-            //sortable: true,
+            sortable: false,
             menuDisabled:true,
             //renderer: Ext.util.Format.usMoney,
             //summaryRenderer: Ext.util.Format.usMoney,
