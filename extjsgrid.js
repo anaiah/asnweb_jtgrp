@@ -316,7 +316,7 @@ Ext.onReady(function(){
             //flex: 1,
             width:200,
             tdCls: 'task',
-            sortable: true,
+            menuDisabled:true,
             dataIndex: 'hub',
             hideable: false,
             renderer: function(value, meta, record) {
@@ -334,6 +334,7 @@ Ext.onReady(function(){
             header: 'Location',
             width: 180,
             sortable: false,
+            menuDisabled:true,
             dataIndex: 'location',
             renderer: function(value, meta) {
                 console.log( 'hey',meta)
@@ -370,6 +371,7 @@ Ext.onReady(function(){
             }
         },*/ {
             header: 'Qty',
+            menuDisabled:true,
             width: 100,
             sortable: true,
             //renderer: Ext.util.Format.usMoney,
@@ -393,6 +395,7 @@ Ext.onReady(function(){
         },
         {
             header: 'Delivered',
+            menuDisabled:true,
             width: 100,
             sortable: false,
             //renderer: Ext.util.Format.usMoney,
@@ -414,6 +417,7 @@ Ext.onReady(function(){
         {
             header: 'Amount',
             width: 130,
+            menuDisabled:true,
             sortable: false,
             //renderer: Ext.util.Format.usMoney,
             //summaryRenderer: Ext.util.Format.usMoney,
@@ -432,6 +436,7 @@ Ext.onReady(function(){
             header: 'Remitted',
             width: 130,
             sortable: false,
+            menuDisabled:true,
             //renderer: Ext.util.Format.usMoney,
             //summaryRenderer: Ext.util.Format.usMoney,
             dataIndex: 'amount',
@@ -448,7 +453,8 @@ Ext.onReady(function(){
         {
             header: '%',
             width: 100,
-            sortable: true,
+            //sortable: true,
+            menuDisabled:true,
             //renderer: Ext.util.Format.usMoney,
             //summaryRenderer: Ext.util.Format.usMoney,
             align:'right',
@@ -564,6 +570,7 @@ Ext.onReady(function(){
             text: 'Working Day(s)',
             //flex: 1,
             width:200,
+            menuDisabled:true,
             //tdCls: 'task',
             sortable: true,
             dataIndex: 'transactions',
@@ -583,6 +590,7 @@ Ext.onReady(function(){
             header: '',
             width: 180,
             sortable: false,
+            menuDisabled:true,
             dataIndex: 'full_name',
             renderer: function(value, meta) {
                // console.log( 'hey',meta)
