@@ -373,7 +373,7 @@ Ext.onReady(function(){
             header: 'Qty',
             menuDisabled:true,
             width: 100,
-            sortable: true,
+            //sortable: true,
             //renderer: Ext.util.Format.usMoney,
             //summaryRenderer: Ext.util.Format.usMoney,
             align:'right',
