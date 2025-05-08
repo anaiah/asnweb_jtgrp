@@ -695,7 +695,7 @@ Ext.onReady(function(){
                     riderGrid
                 ]
 
-            // },
+             },
 
             // {
             //     xtype:'panel',
