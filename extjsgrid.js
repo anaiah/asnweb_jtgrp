@@ -183,6 +183,8 @@ Ext.onReady(function(){
                     var idx = this.getStore().indexOf(records[0]);
                     hub_search = this.getStore().getAt(idx).get('hub')
 
+                    rider_store.removeAll();
+
                     // To change the URL dynamically
                     var proxy = rider_store.getProxy();
                     proxy.url =  `${myIp}/coor/ridersummary/${hub_search}`;
