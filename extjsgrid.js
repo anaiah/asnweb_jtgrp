@@ -682,11 +682,12 @@ Ext.onReady(function(){
             {
                 xtype:'panel',
                 region:'center',
-                height:350,
+                height:400,
                 layout:'fit',
                 items:[
                     grid
                 ],
+                split:true,
                 
 
             },
