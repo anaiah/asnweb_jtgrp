@@ -50,7 +50,8 @@ function addCommas(nStr) {
     //     })
 
 
-var grid
+var grid, riderGrid
+
 Ext.onReady(function(){
     
     Ext.tip.QuickTipManager.init();
@@ -64,12 +65,23 @@ Ext.onReady(function(){
         proxy: {
             // load using HTTP
             type: 'ajax',
-            url: `http://192.168.5.221:10000/coor/summary`,
+            url: `http://192.168.214.221:10000/coor/summary`,
             // the return will be json, so lets set up a reader
             reader: {
                 type: 'json'
             }
         },
+
+        listeners: {
+            'load': function(records, operation, success){
+                if(this.getCount()>0){
+                    console.log('==store loaded w recs==')
+                    grid.getSelectionModel().select(0);
+                    
+                }//eif
+            }//end onload
+        }//end listen				 
+
     })
     store.load()
 
@@ -77,17 +89,14 @@ Ext.onReady(function(){
         clicksToEdit: 1
     });
 
-    
-
-
     var showSummary = true;
     grid = Ext.create('Ext.grid.Panel', {
         width: 800,
         height: 450,
         frame: true,
         title: `<i class="ti ti-user-plus" style="left:0px;font-color:red;font-size:25px;"></i>&nbsp;&nbsp;Summary Per Location`,
-        iconCls: 'icon-grid',
-        renderTo: 'grid_month',
+       //f iconCls: 'icon-grid',
+        //renderTo: 'grid_month',
         store: Ext.data.StoreManager.lookup('hubStore'),
         //plugins: [cellEditing],  /* takeout editing */
 
@@ -97,6 +106,19 @@ Ext.onReady(function(){
             emptyText:'No Records Found!!!',
         },    
 
+        listeners:{
+            cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
+                  console.log( record.get("location"))      
+            },
+            selectionchange: function(model, records ) {
+			
+                if(records[0]){
+                    var idx = this.getStore().indexOf(records[0]);
+                    console.log( this.getStore().getAt(idx).get('hub') )
+                }//eif
+            }//end selectionchange
+            
+        },
         // dockedItems: [
         //     {
         //     dock: 'top',
@@ -281,16 +303,72 @@ Ext.onReady(function(){
             },
             summaryRenderer: Ext.util.Format.usMoney
         }*/
-       ]//endcolumn
+       ],//endcolumn
+
+       region:'north',
+       border:false,
+       split:true,
+    
+    }); //==end grid
+
+    // var summaryRow = grid.getView().getFeature(0); 
+    // styleObj = {
+    // 'background-color': '#c4f185'  
+    // };
+    // summaryRow.view.el.setStyle(styleObj);
 
 
+    Ext.create('widget.panel', {
+        //title: 'Layout Window with title <em>after</em> tools',
+        // header: {
+        //     titlePosition: 2,
+        //     titleAlign: 'center'
+        // },
+        // closable: true,
+        // closeAction: 'hide',
+        // //width: 600,
+        minWidth: 350,
+        height: 700,
+        maximized:true,
+        border:false,
+        renderTo:'grid_rider',
+        //tools: [{type: 'pin'}],
+        layout: {
+            type: 'border',
+            padding: 5
+        },
+        split:true,
+
+        items: [
+
+            grid,
+
+            {
+                xtype:'panel',
+                region: 'west',
+                title: 'Navigation',
+                width:300,
+                height:500,
+                border:false,
+                split:true
+    
+
+                
+            },
+            {
+                xtype:'panel',
+                region: 'center',
+                title: 'Navigation',
+                width:200,
+                height:500,
+                border:false
+
+
+            }
+                
+
+        ]
     });
 
-    var summaryRow = grid.getView().getFeature(0); 
 
-    styleObj = {
-        // 'background-color': '#c4f185'  
-    };
-    //summaryRow.view.el.setStyle(styleObj);
-
-});
+}); //end ext on ready
