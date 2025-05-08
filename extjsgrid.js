@@ -486,11 +486,11 @@ Ext.onReady(function(){
                 //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
                 //return value;
             },
-            summaryType: 'count',
-            summaryRenderer: function(value, summaryData, dataIndex) {
-                //console.log(dataIndex)
-                return ((value === 0 || value > 1) ?`( ${value} Days )` : `( 1 Day )`);
-            }
+            //summaryType: 'count',
+            // summaryRenderer: function(value, summaryData, dataIndex) {
+            //     //console.log(dataIndex)
+            //     return ((value === 0 || value > 1) ?`( ${value} Days )` : `( 1 Day )`);
+            // }
         }, {
             header: '',
             width: 180,
@@ -535,14 +535,14 @@ Ext.onReady(function(){
             sortable: true,
             //renderer: Ext.util.Format.usMoney,
             //summaryRenderer: Ext.util.Format.usMoney,
-            align:'right',
+            align:'center',
             dataIndex: 'delivered_pct',
             //summaryType: 'sum',
             field: {
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font7'
+                meta.tdCls = 'font10g'
 
                 return `${value} %`
                 //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
@@ -668,13 +668,15 @@ Ext.onReady(function(){
         height: 700,
         maximized:true,
         border: true,
+        frame:true,
         renderTo:'grid_rider',
+        layout:'fit',
         //tools: [{type: 'pin'}],
-        layout: {
-            type: 'border',
-            padding: 1
-        },
-        split:true,
+        // layout: {
+        //     type: 'border',
+        //     padding: 1
+        // },
+        //split:true,
 
         items: [
             {
@@ -684,7 +686,8 @@ Ext.onReady(function(){
                 layout:'fit',
                 items:[
                     grid
-                ]
+                ],
+                split:true
 
             },
 
