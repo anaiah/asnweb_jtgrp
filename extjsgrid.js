@@ -670,7 +670,7 @@ Ext.onReady(function(){
         border: true,
         frame:true,
         renderTo:'grid_rider',
-        layout:'fit',
+        //layout:'fit',
         //tools: [{type: 'pin'}],
         // layout: {
         //     type: 'border',
