@@ -187,6 +187,8 @@ Ext.onReady(function(){
                     var proxy = rider_store.getProxy();
                     proxy.url =  `${myIp}/coor/ridersummary/${hub_search}`;
 
+                    // or use `sorters` array directly
+                    rider_store.sort('delivered_pct', 'DESC');          
                     // If you need to reload data from the new URL
                     rider_store.load();
 
