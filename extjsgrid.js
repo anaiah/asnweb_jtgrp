@@ -687,7 +687,7 @@ Ext.onReady(function(){
                 items:[
                     grid
                 ],
-                split:true
+                
 
             },
 
