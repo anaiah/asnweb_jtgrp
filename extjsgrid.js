@@ -264,11 +264,15 @@ Ext.onReady(function(){
 
                     // or use `sorters` array directly
                     rider_store.sort('delivered_pct', 'DESC');          
+                    
+                    
                     // If you need to reload data from the new URL
                     rider_store.load();
 
                     riderGrid.bindStore( rider_store )
 
+                    riderGrid.getView().refresh();
+                    
                     console.log( this.getStore().getAt(idx).get('hub') )
 
                 }//eif
@@ -502,6 +506,7 @@ Ext.onReady(function(){
         split:true, 
         width:400,
         height: 700,
+        remoteSort:true,
         layout:'fit',
         id: '_riderGrid',
         frame: true,
