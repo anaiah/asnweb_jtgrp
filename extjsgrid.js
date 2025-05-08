@@ -621,6 +621,7 @@ Ext.onReady(function(){
             header: 'Performance',
             width: 100,
             sortable: true,
+            menuDisabled:true,
             //renderer: Ext.util.Format.usMoney,
             //summaryRenderer: Ext.util.Format.usMoney,
             align:'center',
