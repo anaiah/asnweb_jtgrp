@@ -1,3 +1,8 @@
+const myIp = "https://asn-jtgrp-api.onrender.com" 
+//const myIp = "http://192.168.214.221:10000"
+
+
+
 Ext.require([
     'Ext.grid.*',
     'Ext.data.*',
@@ -86,7 +91,7 @@ Ext.onReady(function(){
         proxy: {
             // load using HTTP
             type: 'ajax',
-            url: `http://192.168.214.221:10000/coor/summary`,
+            url: `${myIp}/coor/summary`,
             // the return will be json, so lets set up a reader
             reader: {
                 type: 'json'
@@ -115,7 +120,7 @@ Ext.onReady(function(){
         proxy: {
             // load using HTTP
             type: 'ajax',
-            url: `http://192.168.214.221:10000/coor/ridersummary/${hub_search}`,
+            url: `${myIp}/coor/ridersummary/${hub_search}`,
             // the return will be json, so lets set up a reader
             reader: {
                 type: 'json'
@@ -179,7 +184,7 @@ Ext.onReady(function(){
 
                     // To change the URL dynamically
                     var proxy = rider_store.getProxy();
-                    proxy.url =  `http://192.168.214.221:10000/coor/ridersummary/${hub_search}`;
+                    proxy.url =  `${myIp}/coor/ridersummary/${hub_search}`;
 
                     // If you need to reload data from the new URL
                     rider_store.load();
