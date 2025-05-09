@@ -1,6 +1,6 @@
 
-//const myIp = "https://asn-jtgrp-api.onrender.com" 
-const myIp = "http://192.168.214.221:10000"
+const myIp = "https://asn-jtgrp-api.onrender.com" 
+//const myIp = "http://192.168.214.221:10000"
 
 Ext.require([
     'Ext.grid.*',
@@ -83,7 +83,7 @@ Ext.onReady(function(){
         groupField: 'location',
         autoLoad: false,
         remoteSort:true,
-        
+
         proxy: {
             // load using HTTP
             type: 'ajax',
