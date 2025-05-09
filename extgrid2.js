@@ -228,6 +228,7 @@ Ext.onReady(function(){
                         //flex: 1,
                         width:200,
                         tdCls: 'task',
+                        locked:true,
                         menuDisabled:true,
                         sortable:false,
                         dataIndex: 'hub',
