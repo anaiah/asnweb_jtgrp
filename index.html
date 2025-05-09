@@ -89,7 +89,7 @@
                   
                   <div class="modal-footer">
                     <!-- <button class="btn btn-light"  type="button" data-bs-dismiss="modal">Close</button> -->
-                    <button class="btn btn-primary"  id="loginbtn" onclick="util.validateMe('loginModal','#loginForm','login')" type="button">
+                    <button class="btn btn-primary"  id="loginbtn" onclick="main.checkinput()" type="button">
                       <i class="ti ti-login"></i>
                       &nbsp;Login</button>
                   </div>
@@ -260,13 +260,14 @@
 
       db.removeItem('myCart') //delete myCart in localDB
 
-      //get position
-      main.getHubLocation()
-
-      console.log(`===== loading index.html() ====`)
-      let bgimage = ['asiaone1.png', 'bgrnd.png']
-      let xx = Math.floor(Math.random() * 2);
-
+      //CHECK GPS FIRST
+      if (navigator.geolocation) {
+          main.getHubLocation()
+      }else{
+          alert('PLEASE TURN-ON YOUR PHONE LOCATION OR GPS THEN REFRESH YOUR BROWSER')
+          return false
+      }
+      
       //get frm localstorage
       if( db.getItem('profile')){
         //if there's profile set it up so rider wont type the name
@@ -276,17 +277,41 @@
         document.getElementById('pwd').value ='123'
       }
 
+      console.log(`===== loading index.html() ====`)
+      let bgimage = ['asiaone1.png', 'bgrnd.png']
+      let xx = Math.floor(Math.random() * 2);
+ 
       document.getElementById('myBody').style.backgroundImage = `url('/html/assets/images/backgrounds/${bgimage[xx] }')`
-        setTimeout(() => {
-            const audio  = new Audio('/html/intro.mp3')
-            audio.play().catch(error => {
-                console.error("Audio playback failed:", error);
-            });
-            document.getElementById('myCard').classList.add('show');// show login  card
-        }, 2000); // Delay of 1000 milliseconds (1 second)
-    });
+      
+      setTimeout(() => {
+          const audio  = new Audio('/html/intro.mp3')
+          audio.play().catch(error => {
+              console.error("Audio playback failed:", error);
+          });
+          document.getElementById('myCard').classList.add('show');// show login  card
+      }, 2000); // Delay of 1000 milliseconds (1 second)
+      
+    });//=====END DOM CONTENT LOADED=====
 
+    //=============================// main object // ====================
     const main = {
+      //check input first
+      checkinput:() => {
+        if( db.getItem('profile')){
+            const uid = JSON.parse( db.getItem('profile'))
+            if(uid.email !== document.getElementById('uid').value){
+                alert('PLEASE USE THE PHONE THAT YOU USED TO REGISTER YOUR EMAIL')
+                return false
+            }else{
+              util.validateMe('loginModal','#loginForm','login')
+            }//eif
+        }else{
+          util.validateMe('loginModal','#loginForm','login')
+        }//eif
+        
+      },
+      
+      ///show postiion of rider
       showPosition: (position) => {
         
         console.log(position.coords.latitude, position.coords.longitude )
@@ -314,6 +339,9 @@
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition( main.showPosition );
+        }else{
+          alert('PLEASE TURN-ON YOUR PHONE LOCATION OR GPS')
+          return false
         }
       },
 
