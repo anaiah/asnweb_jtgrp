@@ -9,10 +9,41 @@ nt-size: 13px;
 .x-panel-default-framed {
   border-color: #00b09b;
 } */
+/* groupheader rowclass */
+
+/*
+this is also used for groupheadertpl
+*/
+.x-grid-group-hd { 
+background-color: #cfcfce;  
+color: blue !important;
+  
+padding: 7px 0px 7px 15px; /*adjust the last number to move the header  name*/
+    /* font-weight: bold; */
+   box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important;
+   
+}
+
+span.xgrpheader{
+  /* background-color:#cfcfce; */
+  /* font-weight: bold; */
+  /* padding: 0px 0px 0px 15px; adjust the last number to move the header  name */
+  
+  color: purple;
+  /* padding-right:23px !important; */
+  /* box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important; */
+  
+}
 
 .font10{
-  color:purple;
+  color:green;
 }
+
+.font10p{
+  color:purple;
+  font-size:11px;
+}
+
 .font10g{
   color:green;
   font-size:11px;

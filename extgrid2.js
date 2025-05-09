@@ -1,6 +1,6 @@
 
 const myIp = "https://asn-jtgrp-api.onrender.com" 
-//const myIp = "http://192.168.214.221:10000"
+// const myIp = "http://192.168.214.221:10000"
 
 Ext.require([
     'Ext.grid.*',
@@ -170,18 +170,29 @@ Ext.onReady(function(){
                     loadingText:'Loading Please Wait!',
                     emptyText:'No Records Found!!!',
         
+                    //apply row css
+                    getRowClass: function(record) { 
+
+                        if(record.get('location')){
+                            //return "row-class shadow"
+                        }else{
+
+                        }
+                        //return record.get('clone') =="1" ? 'clone-row' : null; 
+                    }, 
+
                     listeners: {
                         viewready: function(view) {
-                            console.log('grid viewready');
-                            
-                            
+                            console.log('HUB grid viewready');
+                            /*                           
                             store.sort([
-                                { property: 'location', direction: 'ASC' },
                                 { property: 'qty_pct', direction: 'DESC' },
+                               
+                                { property: 'location', direction: 'ASC' },
                                 { property: 'hub', direction: 'ASC' },
                                 
                             ]);
-                            
+                            */
                             //load the store now
                             store.load()
         
@@ -189,6 +200,17 @@ Ext.onReady(function(){
                     }//end listeners viewconfig
                 },    
                 listeners:{
+                    afterrender: function(grid) {
+                        /*
+                        console.log('aferrender',grid.id)
+                        var view = grid.getView();
+                        // For example, add a class to all group headers
+                        view.el.select('.x-grid-group-hd').each(function(el) {
+                            el.addCls('xgrpheader');
+                        });
+                        */
+                    },
+                
                     cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
                           console.log( record.get("location"))      
                     },
@@ -216,8 +238,7 @@ Ext.onReady(function(){
                                     Ext.getCmp('rider-grid').getView().refresh();
                                 }
                             });
-        
-                                              
+                  
                             console.log( this.getStore().getAt(idx).get('hub') )
         
                         }//eif
@@ -227,10 +248,11 @@ Ext.onReady(function(){
                 features: [{
                     id: 'group',
                     ftype: 'groupingsummary',
-                    groupHeaderTpl: '<font color=blue   >{name}</font>',
+                    groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
                     //groupHeaderTpl: new Ext.XTemplate('<tpl for=".">', '<input type="button" value={name}></div>', '</tpl>'),
                     hideGroupedHeader: true,
-                    enableGroupingMenu: false
+                    enableGroupingMenu: false,
+                    collapsible:false
                 }],
                 columns: [ /* your columns */ 
                     {
@@ -264,12 +286,34 @@ Ext.onReady(function(){
                         renderer: function(value, meta) {
                             console.log( 'hey',meta)
                             meta.tdCls='font10'
-                            return value
+                            return `${value}`
                             //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
                             //return value;
                         }
                     }, 
-
+                    {
+                        header: '%',
+                        width: 50,
+                        sortable: false,
+                        menuDisabled:true,
+                        //renderer: Ext.util.Format.usMoney,
+                        //summaryRenderer: Ext.util.Format.usMoney,
+                        align:'right',
+                        dataIndex: 'qty_pct',
+                        //summaryType: 'sum',
+                        field: {
+                            xtype: 'numberfield'
+                        },
+                        renderer: function(value, meta, record) {
+                            meta.tdCls = 'font7'
+                            return `${value} %`
+                            //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
+                            //return value;
+                        },
+                        summaryRenderer:(value,summaryData,dataIndex)=>{
+                            //return addCommas(value)
+                        },
+                    },
                     {
                         header: 'Qty',
                         menuDisabled:true,
@@ -352,29 +396,7 @@ Ext.onReady(function(){
                             return addCommas(value)
                         },
                     },
-                    {
-                        header: '%',
-                        width: 70,
-                        sortable: false,
-                        menuDisabled:true,
-                        //renderer: Ext.util.Format.usMoney,
-                        //summaryRenderer: Ext.util.Format.usMoney,
-                        align:'right',
-                        dataIndex: 'qty_pct',
-                        //summaryType: 'sum',
-                        field: {
-                            xtype: 'numberfield'
-                        },
-                        renderer: function(value, meta, record) {
-                            meta.tdCls = 'font7'
-                            return `${value} %`
-                            //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
-                            //return value;
-                        },
-                        summaryRenderer:(value,summaryData,dataIndex)=>{
-                            //return addCommas(value)
-                        },
-                    },
+                   
                 ], //end columns
                 
                 
@@ -389,10 +411,9 @@ Ext.onReady(function(){
                 items: [
                     {   // West Grid
                         xtype: 'gridpanel',
-                        title: 'Riders Info',
+                        title: 'Rider Info',
                         id:    'rider-grid',
                         flex: 1,
-                        store: Ext.data.StoreManager.lookup('riderStore'),
                         frame:true,
                         height:'100%',
                         width:400,
@@ -467,15 +488,15 @@ Ext.onReady(function(){
                                 sortable: false,
                                 menuDisabled:true,
                                 dataIndex: 'full_name',
-                                renderer: function(value, meta) {
+                                renderer: function(value, meta, record) {
                                    // console.log( 'hey',meta)
-                                    meta.tdCls='font10g'
-                                    return value
+                                    meta.tdCls='font10p'
+                                    return `<i class="ti ti-user-filled"></i>&nbsp;${value} <br>(${record.get('transactions')} Day(s))`
                                     //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
                                     //return value;
                                 }
                             },{
-                                header: 'Performance',
+                                header: 'Delivery',
                                 width: 85,
                                 sortable: true,
                                 menuDisabled:true,
