@@ -173,6 +173,15 @@ Ext.onReady(function(){
                     listeners: {
                         viewready: function(view) {
                             console.log('grid viewready');
+                            
+                            
+                            store.sort([
+                                { property: 'location', direction: 'ASC' },
+                                { property: 'qty_pct', direction: 'DESC' },
+                                { property: 'hub', direction: 'ASC' },
+                                
+                            ]);
+                            
                             //load the store now
                             store.load()
         
