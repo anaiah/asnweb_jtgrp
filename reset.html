@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Page</title>
+</head>
+<body>
+<div id="msg"></div>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const db = window.localStorage
+        document.getElementById('msg').innerHTML = "Trying to Reset Your Profile..."
+        db.removeItem('profile')
+        document.getElementById('msg').innerHTML = "Your Profile have been Reset..."
+        alert('YOUR  FILE HAVE BEEN RESET, PLEASE  GO TO YOUR  HUB AND RE-LOGIN! THANK YOU!')
+        document.location.href = "/jtx"
+    })
+</script>
+</body>
+</html>
