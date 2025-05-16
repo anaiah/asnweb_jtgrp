@@ -5,7 +5,7 @@ Ext.define('MyApp.store.monthlyStore', {
     //alias: 'widget.poStore',
 
     storeId:'monthlyStore',
-    pageSize:15,
+    
     //groupField: 'po_number',
     //autoLoad: true,
     //data:[{po_number:'', invoice_number:''}], //blank

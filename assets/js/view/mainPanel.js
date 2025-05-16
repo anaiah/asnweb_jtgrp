@@ -25,19 +25,7 @@ Ext.define('MyApp.view.mainPanel', {
              //collapsible: true //dont collapse group header
             flex:1,
             split: true,
-            
-            // Define current page
-            currentPage : 1,
-            pageSize: 15,
-            
-            bbar: Ext.create('Ext.PagingToolbar', {
-                store: 'monthlyStore',
-                pageSize: Ext.getCmp('monthlyGrid').pageSize,
-                displayInfo: true,
-                plugins: {
-                    ptype: 'tabreorderer' // optional plugin
-                }
-            }),
+                        
             // features: [{
             //     id: 'group',
             //     ftype: 'groupingsummary',
@@ -279,26 +267,7 @@ Ext.define('MyApp.view.mainPanel', {
 
             },
             
-            loadPage(page) {
-                Ext.getCmp('monthlyGrid').currentPage = page;
-                var start = (page - 1) * Ext.getCmp('monthlyGrid').pageSize;
-                var end = start + Ext.getCmp('monthlyGrid').pageSize;
-                
-                var pageData = allData.slice(start, end);
-
-                store.loadData(pageData);
-                
-                // Update toolbar display if needed
-                var totalCount = allData.length;
-                var totalPages = Math.ceil(totalCount / pageSize);
-                pagingToolbar.setConfig({
-                    beforePageText: 'Page',
-                    displayMsg: 'Displaying items {0} - {1} of {2}',
-                    emptyMsg: "No data to display",
-                    doRefresh: function() { Ext.getCmp('monthlyGrid').loadPage( Ext.getCmp('monthlyGrid').currentPage); }
-                });
-                pagingToolbar.setPageNumber(Ext.getCmp('monthlyGrid').currentPage);
-            }
+           
         },//take  out east grid for now
 
       
