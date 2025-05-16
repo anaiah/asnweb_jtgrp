@@ -1232,7 +1232,9 @@ const asn = {
         .then( (results)  => {
 
             console.log('mydata ',results )
-            gridMonth.setData( results )
+
+            //replace with 
+           // gridMonth.setData( results )
 
             //get chart
             asn.getPieChart(util.getCookie('f_dbId'))
