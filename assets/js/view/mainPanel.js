@@ -26,6 +26,13 @@ Ext.define('MyApp.view.mainPanel', {
             flex:1,
             split: true,
             
+            bbar: Ext.create('Ext.PagingToolbar', {
+                store: 'monthlyStore',
+                displayInfo: true,
+                displayMsg: 'Displaying items {0} - {1} of {2}',
+                emptyMsg: "No data to display",
+                pageSize: 15
+            }),
             // features: [{
             //     id: 'group',
             //     ftype: 'groupingsummary',
@@ -286,14 +293,5 @@ Ext.define('MyApp.view.mainPanel', {
         // }
     ], //end items
 
-    checkImage:(image)=>{
-        return new Promise((resolve, reject)=> {
-        
-           
-                            
-            //reject()
-        
-        })
-    },
-
+    
 });
