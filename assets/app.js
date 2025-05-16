@@ -1,7 +1,7 @@
   //load ext
         Ext.application({
             name: 'MyApp',
-            appFolder: 'js',
+            appFolder: '/html/assets/js',
             models: ['monthlyModel'],
             stores: ['monthlyStore'],
             controllers: ['myController'],
