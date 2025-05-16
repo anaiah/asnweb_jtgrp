@@ -1,9 +1,9 @@
   //load ext
         Ext.application({
             name: 'MyApp',
-            appFolder: 'assets',
-            models: ['monthlyModel','riderMonthly'],
-            stores: ['monthlyStore','riderStore'],
+            appFolder: 'js',
+            models: ['monthlyModel'],
+            stores: ['monthlyStore'],
             controllers: ['myController'],
         
             // Launch method - called when app is ready

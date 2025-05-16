@@ -11,8 +11,8 @@ Ext.define('MyApp.store.monthlyStore', {
     
     listeners: {
         'datachanged':(store,e)=>{
-            console.log('===poStore.js STORE PO LISTENING === store loaded w recs==' , store.data.length )
-            console.log('===poStore.js GRID PO monthlyGrid FIRST RECORD SELECTED ==' )
+            console.log('===monthlyStore.js STORE PO LISTENING === store loaded w recs==' , store.data.length )
+            console.log('===monthlyStore.js GRID PO monthlyGrid FIRST RECORD SELECTED ==' )
             
             Ext.getCmp('monthlyGrid').getSelectionModel().select(0);
 

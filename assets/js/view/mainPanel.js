@@ -15,9 +15,9 @@ Ext.define('MyApp.view.mainPanel', {
         {
             region: 'west',
             xtype: 'grid',
-            title: 'Purchase Order',
-            store: 'poStore', // Your store
-            id:'poGrid',
+            title: 'Current Month Transaction',
+            store: 'monthlyStore', // Your store
+            id:'monthlyGrid',
             border:true,
             //width: 300,
             height:'100%',
@@ -26,69 +26,46 @@ Ext.define('MyApp.view.mainPanel', {
             flex:1,
             split: true,
             
-            features: [{
-                id: 'group',
-                ftype: 'groupingsummary',
-                groupHeaderTpl: `<span class=xgrpheader>PO# {name}</span>`,
-                //groupHeaderTpl: new Ext.XTemplate('<tpl for=".">', '<input type="button" value={name}></div>', '</tpl>'),
-                hideGroupedHeader: true,
-                enableGroupingMenu: false,
-                collapsible:false
-            }],
+            // features: [{
+            //     id: 'group',
+            //     ftype: 'groupingsummary',
+            //     groupHeaderTpl: `<span class=xgrpheader>PO# {name}</span>`,
+            //     //groupHeaderTpl: new Ext.XTemplate('<tpl for=".">', '<input type="button" value={name}></div>', '</tpl>'),
+            //     hideGroupedHeader: true,
+            //     enableGroupingMenu: false,
+            //     collapsible:false
+            // }],
             columns: [
                 { 
-                    text: '', 
-                    dataIndex: 'po_number', 
-                    width: 10,
+                    text: 'Date', 
+                    dataIndex: 'Dates', 
+                    width: 100,
                     menuDisabled:true,
                     sortable:false,
                     hideable: false,
-                    dataIndex: 'hub',
                   
-                },
-                { 
-                    text: '&nbsp;', 
-                    dataIndex: 'invoice_number', 
-                    //width:260,
-                    flex:1,
-                    menuDisabled:true,
-                    sortable:false,
-                    resizable:false,
-                    hideable: false,
-                    tdCls:'wrap-cell',
-                    renderer: function(value, meta, record) {
-                        // console.log( 'hey',meta)
-                         meta.tdCls='font10p'
-                         return `
-                            DATE : <b>${record.get('po_date')}</b><br>
-                            INVOICE : <b>${value} </b><br>
-                            EQPT NO : <b>${record.get('eqpt_no')} </b><br>
-                            TYPE : <b>${record.get('type')}</b><br>
-                            DESCRIPTION : <b>${record.get('description')} </b><br>
-                            TRANSACTION : <b>${record.get('transaction')}</b><br>
-                            CLIENT : <b>${record.get('client')}</b><br>
-                            COMPANY  : <b>${record.get('company')}</b><br><br>
-                            <button onclick="javascript:Ext.getCmp('poGrid').makesure('${util.getCookie('approver_type')}','${record.get('po_number')}','${value}')" class='btn btn-md btn-primary mt-1 mb-1'><i class='ti ti-circle-check'></i>&nbsp;Approve</button>
-                              `
-                            //<button onclick="javascript:Ext.getCmp('poGrid').makesure('${util.getCookie('approver_type')}','${record.get('po_number')}')" class='btn btn-md btn-primary mt-1 mb-1'><i class='ti ti-circle-check'></i>&nbsp;Approve</button>
-                              
-                            // "javascript:dash.showApprover(
-                            //             '${util.getCookie('approver_type')}',
-                            //             '${data.result[key].po_number}')"
-                    }
-
                 },
                 {
                     text:'Qty.',
-                    dataIndex: 'qty',
+                    dataIndex: 'parcel',
                     width:50,
                     menuDisabled:true,
                     sortable:false,
                     hideable: false,
                 },
+                {
+                    text:'Delivered',
+                    dataIndex: 'delivered',
+                    width:50,
+                    menuDisabled:true,
+                    sortable:false,
+                    hideable: false,
+                },
+               
+               
                 { 
                     text: 'Amt', 
-                    dataIndex: 'total', 
+                    dataIndex: 'total_amount', 
                     width:110,
                     menuDisabled:true,
                     sortable:false,
@@ -98,21 +75,22 @@ Ext.define('MyApp.view.mainPanel', {
                         return util.addCommas(value.toFixed(2))
                     },
                 },
-                
                 {
-                    text:'Rcpt',
-                    xtype: 'templatecolumn',
-                    //dataIndex:'avatarurl',
-                    width:100,
-                    tpl:`<img onclick="javascript:dash.showImage(this.src)" class='ximg' src="{avatarurl}" width="50" height="50" style="">`                               
-                            
-                },                    
+                    text: 'Remitted',
+                    width: 130,
+                    sortable: false,
+                    menuDisabled:true,
+                    //renderer: Ext.util.Format.usMoney,
+                    //summaryRenderer: Ext.util.Format.usMoney,
+                    dataIndex: 'amount_remitted',
+                    align:'right',
+                },
             ],
             //viewconfig
             viewConfig: {
                 stripeRows: true,
                 loadingText:'Loading Please Wait!',
-                emptyText:'No PO For Approval!!!',
+                emptyText:'No Monthly Transaction!!!',
     
                 //apply row css
                 getRowClass: function(record) { 
@@ -128,20 +106,21 @@ Ext.define('MyApp.view.mainPanel', {
                 listeners: {
                     viewready: (view)=> {
 
-                        console.log('PO grid viewready');
+                        console.log('rider grid viewready');
 
-                        var imgs = Ext.DomQuery.select('img', Ext.getCmp('poGrid').getEl().dom);
+                        // var imgs = Ext.DomQuery.select('img', Ext.getCmp('poGrid').getEl().dom);
     
-                        Ext.each(imgs, function(img) {
-                            Ext.get(img).on('error', function() {
-                                // When an image fails to load, you can replace it or style it
-                                Ext.get(img).setStyle({ opacity: 0.5, border: '2px solid red' });
-                                // OR replace src with a placeholder
-                                Ext.get(img).set({ src: '/no_image.png' });
-                            });
-                        });
+                        // Ext.each(imgs, function(img) {
+                        //     Ext.get(img).on('error', function() {
+                        //         // When an image fails to load, you can replace it or style it
+                        //         Ext.get(img).setStyle({ opacity: 0.5, border: '2px solid red' });
+                        //         // OR replace src with a placeholder
+                        //         Ext.get(img).set({ src: '/no_image.png' });
+                        //     });
+                        // });
 
-                        Ext.getCmp('poGrid').getView().refresh();
+                        //Ext.getCmp('poGrid').getView().refresh();
+
                         // xgrid = Ext.getCmp('poGrid')
 
                         // // set height via CSS class (more reliable)
@@ -194,7 +173,7 @@ Ext.define('MyApp.view.mainPanel', {
                     
                     if(records[0]){
                         var idx = this.getStore().indexOf(records[0]);
-                        dash.selected_po = this.getStore().getAt(idx).get('po_number')
+                        //dash.selected_po = this.getStore().getAt(idx).get('po_number')
     
                         // rider_store.removeAll();
     
@@ -228,7 +207,7 @@ Ext.define('MyApp.view.mainPanel', {
             //function
             makesure:(id,ponumber,sinumber)=>{
 
-                if(Ext.getCmp('poGrid').showToast){
+                if(Ext.getCmp('monthlyGrid').showToast){
                     return false;
                 }
 
@@ -260,16 +239,16 @@ Ext.define('MyApp.view.mainPanel', {
                     xxx.classList.add('hide-me')
 
                     console.log('**SAVING***',id,ponumber)
-                    Ext.getCmp('poGrid').showToast = false
+                    Ext.getCmp('monthlyGrid').showToast = false
 
-                    dash.equipmentApprove( ponumber,sinumber, id ) //dash obj.method approve
+                   //// dash.equipmentApprove( ponumber,sinumber, id ) //dash obj.method approve
                 });
 
                 $('#btnNo').on('click', function () {
                     
                     var xxx = document.querySelector('.toastify')
                     xxx.classList.add('hide-me')
-                    Ext.getCmp('poGrid').showToast = false
+                    Ext.getCmp('monthlyGrid').showToast = false
                     return false
                 });
 
