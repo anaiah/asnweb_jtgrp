@@ -6,6 +6,6 @@ Ext.define('MyApp.model.monthlyModel', {
         {name: 'total_amount', type: 'float'},
         {name: 'amount_remitted', type: 'float'},
         {name: 'remarks', type: 'string'},
-        {name: 'Dates', type: 'date', dateFormat:'Y-m-d'}
+        {name: 'Dates', type: 'string'}
     ]
 })
