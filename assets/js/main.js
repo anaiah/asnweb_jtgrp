@@ -1235,7 +1235,8 @@ const asn = {
 
             //replace with 
            // gridMonth.setData( results )
-
+            asn.ctrlExt.loadData(results)
+            
             //get chart
             asn.getPieChart(util.getCookie('f_dbId'))
 
@@ -1511,6 +1512,9 @@ const asn = {
     },
     //==========END  GETMENU
     
+    appExt:null,
+    ctrlExt:null,
+
 	//==,= main run
 	init :  () => {
 
@@ -1552,7 +1556,7 @@ const asn = {
         
         //if grp_id is equal  to  rider  get monthLy
         //for now, example only
-        asn.getMonthlyTransaction(util.getCookie('f_dbId'))
+        //asn.getMonthlyTransaction(util.getCookie('f_dbId'))
        
 
         //load the form to validate
@@ -1576,7 +1580,27 @@ const asn = {
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 
 	}//END init
+
+
 } //======================= end admin obj==========//
+
+Ext.onReady(function(){
+    console.log('ext on ready....')
+    Ext.tip.QuickTipManager.init();
+
+    asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
+
+    asn.getMonthlyTransaction(util.getCookie('f_dbId'))
+    
+    // Get the controller
+    asn.ctrlExt = asn.appExt.getController('myController');
+
+       
+
+})
+
+
+
 //osndp.Bubbl
 window.scrollTo(0,0);
 

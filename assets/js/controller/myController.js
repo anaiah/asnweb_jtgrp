@@ -12,11 +12,11 @@ Ext.define('MyApp.controller.myController', {
     },
 
     //== load po store / grid
-    loadPo:(ydata)=>{
-        console.log('after getpo, loadPO',ydata.length)
+    loadData:(ydata)=>{
+        console.log('myController.js===== after getpo, loadPO',ydata.length)
         if(ydata) { // if data  not null
             //====LOAD PO FOR APPROVAL====
-            const storeInstance = Ext.data.StoreManager.lookup('poStore')
+            const storeInstance = Ext.data.StoreManager.lookup('monthlyStore')
             //storeInstance.removeAll();
 
             storeInstance.loadData(ydata ) //load ARRAY OF DATA
