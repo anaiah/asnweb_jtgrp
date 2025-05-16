@@ -52,14 +52,22 @@ Ext.define('MyApp.view.mainPanel', {
                     menuDisabled:true,
                     sortable:false,
                     hideable: false,
+                    renderer: (value,meta,record)=>{
+                        meta.tdCls='font11p'
+                        return util.addCommas(value)
+                    },
                 },
                 {
                     text:'Delivered',
                     dataIndex: 'delivered',
-                    width:50,
+                    width:70,
                     menuDisabled:true,
                     sortable:false,
                     hideable: false,
+                    renderer: (value,meta,record)=>{
+                        meta.tdCls='font11p'
+                        return util.addCommas(value)
+                    },
                 },
                
                
@@ -70,6 +78,7 @@ Ext.define('MyApp.view.mainPanel', {
                     menuDisabled:true,
                     sortable:false,
                     hideable: false,
+                    align:'right',
                     renderer: (value,meta,record)=>{
                         meta.tdCls='font11p'
                         return util.addCommas(value.toFixed(2))
@@ -84,6 +93,10 @@ Ext.define('MyApp.view.mainPanel', {
                     //summaryRenderer: Ext.util.Format.usMoney,
                     dataIndex: 'amount_remitted',
                     align:'right',
+                    renderer: (value,meta,record)=>{
+                        meta.tdCls='font11p'
+                        return util.addCommas(value.toFixed(2))
+                    },
                 },
             ],
             //viewconfig
