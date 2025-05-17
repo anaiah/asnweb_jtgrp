@@ -19,10 +19,11 @@ Ext.define('MyApp.controller.myController', {
         
         asn.ctrlExt.sendData( pageData );
 
-        asn.ctrlExt.updatePageInfo() //refresh
+        //asn.ctrlExt.updatePageInfo() //refresh
 
         asn.currentPage = page;
     
+        console.log('==current page==', asn.currrentPage)
         // Optionally update UI components (like a paging toolbar)
         // and disable/enable buttons based on page
         // For example:
