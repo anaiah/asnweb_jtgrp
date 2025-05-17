@@ -29,7 +29,7 @@ Ext.define('MyApp.view.mainPanel', {
             bbar: [
                 {
                     xtype: 'button',
-                    text: 'Previous',
+                    text: '<i class="ti ti-player-skip-rewind"></i>&nbsp;Previous',
                     handler: function() {
                         if ( asn.currentPage > 1) {
                             asn.ctrlExt.loadPage( asn.currentPage - 1);
@@ -38,7 +38,7 @@ Ext.define('MyApp.view.mainPanel', {
                 },
                 {
                     xtype: 'button',
-                    text: 'Next',
+                    text: 'Next&nbsp;<i class="ti ti-player-skip-forward"></i>&nbsp;',
                     handler: function() {
                         if (( asn.currentPage * asn.pageSize) < asn.allData.length) {
                            asn.ctrlExt.loadPage( asn.currentPage + 1);
