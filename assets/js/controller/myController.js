@@ -32,8 +32,14 @@ Ext.define('MyApp.controller.myController', {
     },
 
     updatePageInfo:()=> {
-        var start = ( asn.currentPage - 1) * asn.pageSize + 1;
-        var end = Math.min(asn.currentPage * asn.pageSize, asn.allData.length);
+        if(asn.currrentPage == 1){
+            var start = ( asn.currentPage) * asn.pageSize ;
+            var end = Math.min(asn.currentPage * asn.pageSize, asn.allData.length);
+        }else{
+            var start = ( asn.currentPage - 1) * asn.pageSize + 1;
+            var end = Math.min(asn.currentPage * asn.pageSize, asn.allData.length);
+        }
+        
         Ext.getCmp('pageInfo').setText('Showing ' + start + ' - ' + end + ' of ' + asn.allData.length);
     },
 
@@ -49,7 +55,7 @@ Ext.define('MyApp.controller.myController', {
             storeInstance.loadData(ydata ) //load ARRAY OF DATA
             
             asn.ctrlExt.updatePageInfo()
-            
+
             if (storeInstance) {
                 // Get an array of all records
                 var records = storeInstance.getRange();
