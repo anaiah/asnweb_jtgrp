@@ -192,8 +192,6 @@ Ext.define('MyApp.view.mainPanel', {
             listeners:{
                 afterrender: function(grid) {
 
-                    asn.ctrlExt.loadPage( 1 ) //load first page
-
 
                     //this is the place to check all the DOMS
                     //esp checkingbroken img

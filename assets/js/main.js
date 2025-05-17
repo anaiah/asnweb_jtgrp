@@ -1242,9 +1242,10 @@ const asn = {
             //replace with 
            // gridMonth.setData( results )
             ////// take ot muna  asn.ctrlExt.loadData(results)
-            
+            asn.ctrlExt.loadPage( 1 ) //load first page
+                    
             //get chart
-            ////// take ot muna  asn.getPieChart(util.getCookie('f_dbId'))
+             asn.getPieChart(util.getCookie('f_dbId'))
 
         })	
         .catch((error) => {
