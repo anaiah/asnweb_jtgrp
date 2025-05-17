@@ -17,7 +17,7 @@ Ext.define('MyApp.controller.myController', {
         var end = start + asn.pageSize;
         var pageData = asn.allData.slice(start, end);
         
-        this.sendData(pageData);
+        asn.ctrlExt.sendData( pageData );
                 
         asn.currentPage = page;
     
