@@ -1219,6 +1219,10 @@ const asn = {
         })    
     },
 
+    allData:[],
+    pageSize:15,
+    currrentPage:1,
+
     //==========get monthly  transaction for riders/transporters ====//
     getMonthlyTransaction:async( emp_id ) =>{
         
@@ -1233,12 +1237,14 @@ const asn = {
 
             console.log('mydata ',results )
 
+            asn.allData = results //get  data
+
             //replace with 
            // gridMonth.setData( results )
-            asn.ctrlExt.loadData(results)
+            ////// take ot muna  asn.ctrlExt.loadData(results)
             
             //get chart
-            asn.getPieChart(util.getCookie('f_dbId'))
+            ////// take ot muna  asn.getPieChart(util.getCookie('f_dbId'))
 
         })	
         .catch((error) => {

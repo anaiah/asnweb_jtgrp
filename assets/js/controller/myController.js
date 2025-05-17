@@ -11,15 +11,41 @@ Ext.define('MyApp.controller.myController', {
 
     },
 
+    loadPage: (page)=> {
+
+        var start = (page - 1) * asn.pageSize;
+        var end = start + asn.pageSize;
+        var pageData = asn.allData.slice(start, end);
+        
+        this.sendData(pageData);
+                
+        asn.currentPage = page;
+    
+        // Optionally update UI components (like a paging toolbar)
+        // and disable/enable buttons based on page
+        // For example:
+        // Ext.getCmp('prevBtn').setDisabled(page === 1);
+        // Ext.getCmp('nextBtn').setDisabled(end >= allData.length);
+    },
+
+    updatePageInfo:()=> {
+        var start = ( asn.currentPage - 1) * asn.pageSize + 1;
+        var end = Math.min(asn.currentPage * asn.pageSize, asn.allData.length);
+        Ext.getCmp('pageInfo').setText('Showing ' + start + ' - ' + end + ' of ' + asn.allData.length);
+    },
+
     //== load po store / grid
-    loadData:(ydata)=>{
+    sendData:(ydata)=>{
         console.log('myController.js===== after getpo, loadPO',ydata.length)
+
         if(ydata) { // if data  not null
             //====LOAD PO FOR APPROVAL====
             const storeInstance = Ext.data.StoreManager.lookup('monthlyStore')
             //storeInstance.removeAll();
 
             storeInstance.loadData(ydata ) //load ARRAY OF DATA
+            this.updatePageInfo() //refresh
+
 
             if (storeInstance) {
                 // Get an array of all records

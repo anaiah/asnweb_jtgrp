@@ -25,6 +25,33 @@ Ext.define('MyApp.view.mainPanel', {
              //collapsible: true //dont collapse group header
             flex:1,
             split: true,
+
+            bbar: [
+                {
+                    xtype: 'button',
+                    text: 'Previous',
+                    handler: function() {
+                        if ( asn.currentPage > 1) {
+                            asn.ctrlExt.loadPage( asn.currentPage - 1);
+                        }
+                    }
+                },
+                {
+                    xtype: 'button',
+                    text: 'Next',
+                    handler: function() {
+                        if (( asn.currentPage * asn.pageSize) < asn.allData.length) {
+                           asn.ctrlExt.loadPage( asn.currentPage + 1);
+                        }
+                    }
+                },
+                // Optional display of current page info
+                {
+                    xtype: 'tbtext',
+                    id: 'pageInfo',
+                    text: 'Page 1'
+                }
+            ],
                         
             // features: [{
             //     id: 'group',
@@ -164,6 +191,10 @@ Ext.define('MyApp.view.mainPanel', {
             //listener
             listeners:{
                 afterrender: function(grid) {
+
+                    asn.ctrlExt.loadPage( 1 ) //load first page
+
+
                     //this is the place to check all the DOMS
                     //esp checkingbroken img
                    
