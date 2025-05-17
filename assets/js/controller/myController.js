@@ -18,12 +18,12 @@ Ext.define('MyApp.controller.myController', {
         var pageData = asn.allData.slice(start, end);
         
         asn.ctrlExt.sendData( pageData );
+        
+        asn.currentPage = page;
 
         asn.ctrlExt.updatePageInfo() //refresh
 
-        asn.currentPage = page;
-    
-        console.log('==current page==', asn.currrentPage)
+        console.log('==current page==', asn.currentPage)
         // Optionally update UI components (like a paging toolbar)
         // and disable/enable buttons based on page
         // For example:
@@ -32,13 +32,10 @@ Ext.define('MyApp.controller.myController', {
     },
 
     updatePageInfo:()=> {
-        if(asn.currrentPage == 1){
-            var start = ( asn.currentPage) * asn.pageSize ;
-            var end = Math.min(asn.currentPage * asn.pageSize, asn.allData.length);
-        }else{
+        
             var start = ( asn.currentPage - 1) * asn.pageSize + 1;
             var end = Math.min(asn.currentPage * asn.pageSize, asn.allData.length);
-        }
+
         
         Ext.getCmp('pageInfo').setText('Showing ' + start + ' - ' + end + ' of ' + asn.allData.length);
     },
