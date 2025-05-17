@@ -1245,7 +1245,7 @@ const asn = {
             asn.ctrlExt.loadPage( asn.currentPage ) //load first page
                     
             //get chart
-             asn.getPieChart(util.getCookie('f_dbId'))
+            asn.getPieChart(util.getCookie('f_dbId'))
 
         })	
         .catch((error) => {
@@ -1337,6 +1337,8 @@ const asn = {
 
     //===== get data for pie chart====//
     getPieChart: async(empid) =>{
+
+        console.log('===firing getPieChart()===')
         await fetch(`${myIp}/getpiedata/${empid}`,{
             cache:'reload'
         })
