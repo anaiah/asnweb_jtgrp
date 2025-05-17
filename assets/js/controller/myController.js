@@ -19,7 +19,7 @@ Ext.define('MyApp.controller.myController', {
         
         asn.ctrlExt.sendData( pageData );
 
-        //asn.ctrlExt.updatePageInfo() //refresh
+        asn.ctrlExt.updatePageInfo() //refresh
 
         asn.currentPage = page;
     

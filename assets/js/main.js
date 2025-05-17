@@ -1221,7 +1221,7 @@ const asn = {
 
     allData:[],
     pageSize:15,
-    currrentPage:1,
+    currentPage:1,
 
     //==========get monthly  transaction for riders/transporters ====//
     getMonthlyTransaction:async( emp_id ) =>{
@@ -1242,7 +1242,7 @@ const asn = {
             //replace with 
            // gridMonth.setData( results )
             ////// take ot muna  asn.ctrlExt.loadData(results)
-            asn.ctrlExt.loadPage( currentPage ) //load first page
+            asn.ctrlExt.loadPage( asn.currentPage ) //load first page
                     
             //get chart
              asn.getPieChart(util.getCookie('f_dbId'))
