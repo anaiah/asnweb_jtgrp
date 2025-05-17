@@ -44,8 +44,8 @@ Ext.define('MyApp.controller.myController', {
             //storeInstance.removeAll();
 
             storeInstance.loadData(ydata ) //load ARRAY OF DATA
-            this.updatePageInfo() //refresh
-
+            
+            asn.ctrlExt.updatePageInfo() //refresh
 
             if (storeInstance) {
                 // Get an array of all records
