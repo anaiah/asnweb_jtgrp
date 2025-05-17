@@ -18,7 +18,9 @@ Ext.define('MyApp.controller.myController', {
         var pageData = asn.allData.slice(start, end);
         
         asn.ctrlExt.sendData( pageData );
-                
+
+        asn.ctrlExt.updatePageInfo() //refresh
+
         asn.currentPage = page;
     
         // Optionally update UI components (like a paging toolbar)
@@ -45,8 +47,7 @@ Ext.define('MyApp.controller.myController', {
 
             storeInstance.loadData(ydata ) //load ARRAY OF DATA
             
-            asn.ctrlExt.updatePageInfo() //refresh
-
+            
             if (storeInstance) {
                 // Get an array of all records
                 var records = storeInstance.getRange();
