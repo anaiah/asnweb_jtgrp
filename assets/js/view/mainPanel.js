@@ -62,6 +62,12 @@ Ext.define('MyApp.view.mainPanel', {
             //     enableGroupingMenu: false,
             //     collapsible:false
             // }],
+
+            features: [{
+                ftype: 'summary',
+                dock: 'bottom' // position at the bottom
+            }],
+
             columns: [
                 { 
                     text: 'Date', 
@@ -83,6 +89,7 @@ Ext.define('MyApp.view.mainPanel', {
                         meta.tdCls='font11p'
                         return util.addCommas(value)
                     },
+                    summaryType:'count',
                 },
                 {
                     text:'Delivered',
@@ -95,6 +102,7 @@ Ext.define('MyApp.view.mainPanel', {
                         meta.tdCls='font11p'
                         return util.addCommas(value)
                     },
+                    summaryType:'count',
                 },
                
                
@@ -110,6 +118,7 @@ Ext.define('MyApp.view.mainPanel', {
                         meta.tdCls='font11p'
                         return util.addCommas(value.toFixed(2))
                     },
+                    summaryType:'sum',
                 },
                 {
                     text: 'Remitted',
@@ -124,6 +133,7 @@ Ext.define('MyApp.view.mainPanel', {
                         meta.tdCls='font11p'
                         return util.addCommas(value.toFixed(2))
                     },
+                    summaryType:'sum',
                 },
             ],
             //viewconfig
