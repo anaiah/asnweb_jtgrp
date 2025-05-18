@@ -93,7 +93,7 @@ Ext.define('MyApp.view.mainPanel', {
                     summaryType:'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         //console.log(dataIndex)
-                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value.toFixed(2)) + '</div>';
+                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value) + '</div>';
                     }
                 },
                 {
@@ -111,7 +111,7 @@ Ext.define('MyApp.view.mainPanel', {
                     summaryType:'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         //console.log(dataIndex)
-                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value.toFixed(2)) + '</div>';
+                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value) + '</div>';
                     }
                 },
                
@@ -131,7 +131,7 @@ Ext.define('MyApp.view.mainPanel', {
                     summaryType:'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         //console.log(dataIndex)
-                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value.toFixed(2)) + '</div>';
+                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value.toFixed(2)) + '&nbsp;&nbsp;&nbsp;</div>';
                     }
                 },
                 {
@@ -150,7 +150,7 @@ Ext.define('MyApp.view.mainPanel', {
                     summaryType:'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         //console.log(dataIndex)
-                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value.toFixed(2)) + '&nbsp;&nbsp;</div>';
+                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value.toFixed(2)) + '&nbsp;&nbsp;&nbsp;</div>';
                     }
                 },
             ],
