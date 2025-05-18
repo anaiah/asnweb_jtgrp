@@ -85,6 +85,7 @@ Ext.define('MyApp.view.mainPanel', {
                     menuDisabled:true,
                     sortable:false,
                     hideable: false,
+                    align:'right',
                     renderer: (value,meta,record)=>{
                         meta.tdCls='font11p'
                         return util.addCommas(value)
@@ -102,6 +103,7 @@ Ext.define('MyApp.view.mainPanel', {
                     menuDisabled:true,
                     sortable:false,
                     hideable: false,
+                    align:'right',
                     renderer: (value,meta,record)=>{
                         meta.tdCls='font11p'
                         return util.addCommas(value)
