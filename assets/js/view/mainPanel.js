@@ -92,7 +92,7 @@ Ext.define('MyApp.view.mainPanel', {
                     summaryType:'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         //console.log(dataIndex)
-                        return '<div style="font-weight:bold; color:red;">' + value + '</div>';
+                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value.toFixed(2)) + '</div>';
                     }
                 },
                 {
@@ -109,7 +109,7 @@ Ext.define('MyApp.view.mainPanel', {
                     summaryType:'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         //console.log(dataIndex)
-                        return '<div style="font-weight:bold; color:red;">' + value + '</div>';
+                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value.toFixed(2)) + '</div>';
                     }
                 },
                
@@ -129,7 +129,7 @@ Ext.define('MyApp.view.mainPanel', {
                     summaryType:'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         //console.log(dataIndex)
-                        return '<div style="font-weight:bold; color:red;">' + value + '</div>';
+                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value.toFixed(2)) + '</div>';
                     }
                 },
                 {
@@ -148,7 +148,7 @@ Ext.define('MyApp.view.mainPanel', {
                     summaryType:'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         //console.log(dataIndex)
-                        return '<div style="font-weight:bold; color:red;">' + value + '</div>';
+                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value.toFixed(2)) + '</div>';
                     }
                 },
             ],
