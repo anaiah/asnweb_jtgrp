@@ -81,7 +81,7 @@ Ext.define('MyApp.view.mainPanel', {
                 {
                     text:'Qty.',
                     dataIndex: 'parcel',
-                    width:50,
+                    width:70,
                     menuDisabled:true,
                     sortable:false,
                     hideable: false,
@@ -99,7 +99,7 @@ Ext.define('MyApp.view.mainPanel', {
                 {
                     text:'Delivered',
                     dataIndex: 'delivered',
-                    width:70,
+                    width:80,
                     menuDisabled:true,
                     sortable:false,
                     hideable: false,
@@ -150,7 +150,7 @@ Ext.define('MyApp.view.mainPanel', {
                     summaryType:'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         //console.log(dataIndex)
-                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value.toFixed(2)) + '</div>';
+                        return '<div style="font-weight:bold; color:red;">' + util.addCommas(value.toFixed(2)) + '&nbsp;&nbsp;</div>';
                     }
                 },
             ],
