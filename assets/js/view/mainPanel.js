@@ -119,7 +119,7 @@ Ext.define('MyApp.view.mainPanel', {
                 { 
                     text: 'Amt', 
                     dataIndex: 'total_amount', 
-                    width:110,
+                    width:130,
                     menuDisabled:true,
                     sortable:false,
                     hideable: false,
