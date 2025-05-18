@@ -89,7 +89,11 @@ Ext.define('MyApp.view.mainPanel', {
                         meta.tdCls='font11p'
                         return util.addCommas(value)
                     },
-                    summaryType:'count',
+                    summaryType:'sum',
+                    summaryRenderer: function(value, summaryData, dataIndex) {
+                        //console.log(dataIndex)
+                        return '<div style="font-weight:bold; color:red;">' + value + '</div>';
+                    }
                 },
                 {
                     text:'Delivered',
@@ -102,7 +106,11 @@ Ext.define('MyApp.view.mainPanel', {
                         meta.tdCls='font11p'
                         return util.addCommas(value)
                     },
-                    summaryType:'count',
+                    summaryType:'sum',
+                    summaryRenderer: function(value, summaryData, dataIndex) {
+                        //console.log(dataIndex)
+                        return '<div style="font-weight:bold; color:red;">' + value + '</div>';
+                    }
                 },
                
                
@@ -119,6 +127,10 @@ Ext.define('MyApp.view.mainPanel', {
                         return util.addCommas(value.toFixed(2))
                     },
                     summaryType:'sum',
+                    summaryRenderer: function(value, summaryData, dataIndex) {
+                        //console.log(dataIndex)
+                        return '<div style="font-weight:bold; color:red;">' + value + '</div>';
+                    }
                 },
                 {
                     text: 'Remitted',
@@ -134,6 +146,10 @@ Ext.define('MyApp.view.mainPanel', {
                         return util.addCommas(value.toFixed(2))
                     },
                     summaryType:'sum',
+                    summaryRenderer: function(value, summaryData, dataIndex) {
+                        //console.log(dataIndex)
+                        return '<div style="font-weight:bold; color:red;">' + value + '</div>';
+                    }
                 },
             ],
             //viewconfig
