@@ -6,17 +6,17 @@
             stores: 
             [
                 'monthlyStore',
-                'coordStore',
-                'headStore',
-                'opmgrStore'
+                // 'coordStore',
+                // 'headStore',
+                // 'opmgrStore'
             ],
 
             controllers:
             [   
                 'myController',
-                'coordCtrl',
-                'headCtrl',
-                'opmgrCtrl',
+                // 'coordCtrl',
+                // 'headCtrl',
+                // 'opmgrCtrl',
             ],
         
             // Launch method - called when app is ready
@@ -24,6 +24,7 @@
                 
                 console.log('====Ext.app 4.2 Launch() ====y',)
                 MyApp.app = this
+
 
                 var myPanel = Ext.create('MyApp.view.mainPanel', {
                     renderTo: 'grid_month',
