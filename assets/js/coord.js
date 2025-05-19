@@ -358,7 +358,7 @@ const asn = {
     loadbarChart: async( ctrans )=>{
         console.log('loading... loadbarchart()')
 
-        await fetch(`${myIp}/coor/topfivehub/${util.getCookie('f_email')}`,{
+        await fetch(`${myIp}/coor/topfivehub/${util.getCookie('f_email')}/ctrans`,{
             cache: 'reload'
         })
         .then((res) => {  //promise... then 
@@ -457,7 +457,7 @@ const asn = {
                 xaxis: {
                     categories: null,
                     title: {
-                        text: 'Parcel Delivered',
+                        text: 'PARCEL SUCCESSFULLY DELIVERED',
                         style: {
                             fontSize: '10px',
                             fontWeight: 'bold',
@@ -491,6 +491,10 @@ const asn = {
             options.series[0].data = series_data
             options.xaxis.categories = category_data
 
+            if(ctrans=="rider"){
+                options.yaxis.title.text = "Riders"
+            }
+
             var chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
             chart.render();
         
@@ -498,8 +502,6 @@ const asn = {
         .catch((error) => {
             console.error('Error:', error)
         })
-
-
         
     },
     appExt:null,
@@ -543,6 +545,11 @@ const asn = {
         });//========================initiate socket handshake ================
         
         asn.loadbarChart('hub')
+
+        setTimeout(() => {
+            asn.loadbarChart('rider');
+        }, 1000)
+
         console.log('===loadbarchart()===')
 
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
