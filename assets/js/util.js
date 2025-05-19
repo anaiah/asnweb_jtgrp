@@ -1456,7 +1456,6 @@ const util = {
     //==== for login posting
     loginPost: (frm,modal,url="") => {
 
-        
         fetch(util.url, {
             cache:'reload'
         
@@ -1497,18 +1496,17 @@ const util = {
                             navigator.geolocation.getCurrentPosition( util.showPosition );
                         }
   
-  
                     break
                 
-                    case "4": // coordinator
+                    case 4: // coordinator
                         location.href = '/jtx/coord'    
                     break
 
-                    case "3":  //head coord
+                    case 3:  //head coord
                         location.href = '/jtx/headcoord'    
                     break
                 
-                    case "5": // operations mgr
+                    case 5: // operations mgr
                         location.href = '/jtx/operations'    
                     break
 
