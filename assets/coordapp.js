@@ -34,7 +34,7 @@
                 var rideGrid = Ext.create('MyApp.view.riderGrid', {
                     renderTo: 'rider_grid',
                     width: 500,
-                    height: 200
+                    height: 400
                 });
 
             },
