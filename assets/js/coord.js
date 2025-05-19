@@ -457,7 +457,13 @@ const asn = {
                 xaxis: {
                     categories: null,
                     title: {
-                        text: 'Parcel Delivered'
+                        text: 'Parcel Delivered',
+                        style: {
+                            fontSize: '10px',
+                            fontWeight: 'bold',
+                            fontFamily: 'Helvetica, Arial, sans-serif',
+                            color: '#6699ff' // set your desired color
+                        }
                     }
                 },
                 yaxis: {
