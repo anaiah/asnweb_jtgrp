@@ -15,7 +15,9 @@ Ext.define('MyApp.view.locationGrid' ,{
     id:'locationGrid',
     title: 'Location',
     autoHeight:true,
-    //height:400,
+    //
+    width:500,
+    height:300,
     //height:'100%',
     //minWidth:300,
     //layout:'fit',

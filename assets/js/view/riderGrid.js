@@ -15,8 +15,10 @@ Ext.define('MyApp.view.riderGrid' ,{
     id:    'riderGrid',
     flex: 1,
     frame:true,
-    height:300,
-    //width:400,
+    
+    height:200,
+    width:500
+    ,
     store: Ext.data.StoreManager.lookup('riderStore'),  //store.storeID
     //plugins: [cellEditing],  /* takeout editing */
 
