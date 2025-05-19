@@ -22,7 +22,7 @@
             // Launch method - called when app is ready
             launch: function() {
                 
-                console.log('====Ext.app 4.2 Launch() ====y',)
+                console.log('====Ext.app 4.2 Launch() ====',)
                 MyApp.app = this
 
 
