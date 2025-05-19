@@ -446,7 +446,7 @@ const asn = {
 
             var chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
             chart.render();
-/*
+
             if(ctrans=="rider"){
                 chart.updateOptions({
                     yaxis: {
@@ -457,7 +457,7 @@ const asn = {
                 });
             }
             //ennd exis
-  */      
+     
         })
         .catch((error) => {
             console.error('Error:', error)
@@ -506,9 +506,9 @@ const asn = {
         
         asn.loadbarChart('hub')
 
-        // setTimeout(() => {
-        //     asn.loadbarChart('rider');
-        // }, 1000)
+        setTimeout(() => {
+            asn.loadbarChart('rider');
+        }, 1000)
 
         console.log('===loadbarchart()===')
 
