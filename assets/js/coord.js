@@ -467,7 +467,7 @@ const asn = {
                             fontSize: '10px',
                             fontWeight: 'bold',
                             fontFamily: 'Helvetica, Arial, sans-serif',
-                            color: '#333' // set your desired color
+                            color: '#6699ff' // set your desired color
                         }
                     }    
                 }
