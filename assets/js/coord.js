@@ -457,7 +457,7 @@ const asn = {
                 xaxis: {
                     categories: null,
                     title: {
-                        text: 'Qty.'
+                        text: 'Parcel Delivered'
                     }
                 },
                 yaxis: {
