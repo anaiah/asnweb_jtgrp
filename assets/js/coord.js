@@ -84,131 +84,6 @@ const asn = {
     },//end func speak	
     //=======================END VOICE SYNTHESIS==========
 
-    //===========================addtocart
-    addtoCart:async (elemId, eqptId, nKey) =>{
-        let qtys = document.getElementById(elemId)
-        let adata = osndp.dataforTag[nKey].equipment_value
-        const badge = document.getElementById('bell-badge')
-            
-        //console.log(nKey)
-
-        if(osndp.shopCart.length > 0){
-        
-            let oFind = osndp.shopCart.find( (cart)=> cart.id == eqptId)
-             
-            if(oFind === undefined){
-                osndp.shopCart.push({
-                    id: eqptId, 
-                    data: adata,
-                    qty: qtys.value,
-                    price: osndp.dataforTag[nKey].price,
-                    sale: osndp.dataforTag[nKey].sale_price,
-                    total: qtys.value * osndp.dataforTag[nKey].sale_price
-                })
-
-                badge.innerHTML = osndp.shopCart.length
-                
-                util.Toast("Item Successfully Added!",2000)
-            }else{
-                  
-                console.log('present!,...ignore')
-                util.Toast('THIS ITEM IS ALREADY IN CART!',2000)
-                return true;  
-            }
-        
-        }else{
-            osndp.shopCart.push({
-                id: eqptId, 
-                data: adata,
-                qty: qtys.value,
-                price: osndp.dataforTag[nKey].price,
-                sale: osndp.dataforTag[nKey].sale_price,
-                total: qtys.value * osndp.dataforTag[nKey].sale_price
-            })
-
-            badge.innerHTML = osndp.shopCart.length
-            
-            util.Toast("Item Successfully Added!",2000)
-        }
-   
-        console.log( '====TOTAL SHOPCART===',osndp.shopCart) 
-    },
-
-
-    showCartModal:()=>{
-        const configObj = { keyboard: false, backdrop:'static' }
-        
-        let pocartmodal =  new bootstrap.Modal(document.getElementById('pocartModal'),configObj);
-        
-        let pocartModalEl = document.getElementById('pocartModal')
-
-        if(osndp.shopCart.length == 0){
-            util.Toast('SHOPPING CART EMPTY!',2000)
-            e.preventDefault()
-            e.stopPropagation()
-            return false
-        
-        }else{
-            osndp.showcart()
-            pocartmodal.show()
-          
-        }//eif
-        
-    },
-
-    //======================= show cart
-    showcart:() => {
-                
-        if(osndp.shopCart.length > 0){
-            
-            document.getElementById('cart-content').innerHTML = ""
-            
-            for (let key in osndp.shopCart) {
-                
-                const info = JSON.parse(osndp.shopCart[key].data)
-
-                document.getElementById('cart-content').innerHTML += `
-                <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)">
-                <div class="me-3">
-                    <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                </div>
-                <div>
-                
-                <span class=eqptno>
-                ${info.equipment_type.toUpperCase()}<br>
-                ${info.eqpt_description}<br>
-                </span>
-                <span class='eqptmain' >
-                ${info.serial}<br>
-                Qty. ${osndp.shopCart[key].qty}<br>
-                Price : &#8369;${ util.addCommas(parseFloat(osndp.shopCart[key].sale).toFixed(2)) }<br>
-                TOTAL : &#8369;${ util.addCommas(parseFloat(osndp.shopCart[key].total).toFixed(2)) }<br></span>
-                </div>
-                </a>`
-                
-            }//===========end for next
-        } 
-    },
-
-    getimagename:()=>{
-        document.getElementById('serial_image').value = document.getElementById('client_po').value
-    },
-   
-    //===========================show modal and iamge
-    showPdf: async (src) => {
-        console.log('*** showImage() ****')
-        console.log(src)
-      
-        osndp.fileExists( src )
-        
-    },
-
-    //=============== SHOW COMMENT MODAL ============//
-    showIssue: async (id) => {
-        console.log('==eo site number== ', id)
-        util.modalShow('commentsModal')
-    },
-
     //===check file exist in server
     fileExists:async (url, )=> {
         const configObj = { keyboard: false, backdrop:'static' }
@@ -246,251 +121,6 @@ const asn = {
         })
          
     },
-
-    //for badge countr
-    fetchBadgeData: async()=>{ //first to fire to update badge
-        fetch(`/fetch\\data`).then((response) => {  //promise... then 
-            return response.json();
-        })
-        .then((data) => {
-            
-            console.log(data)
-            //==== update badage for pending approv
-            const badge = document.getElementById('bell-badge')
-            badge.innerHTML = data.result[2].status_count
-
-            const rentbadge = document.getElementById('rent-badge')
-            rentbadge.innerHTML = data.result[0].status_count
-            
-            const salebadge = document.getElementById('sale-badge')
-            salebadge.innerHTML = data.result[1].status_count
-            
-        })
-        .catch((error) => {
-            util.Toast(`Error:,dito nga ${error}`,1000)
-            console.error('Error:', error)
-        })    
-
-    },
-
-    /*
-    filterArr:(cSerial, aArrid, transtype) => {
-       		
-        //table
-        const  tbodyRef = document.getElementById('dataTagTable').getElementsByTagName('tbody')[0];
-        tbodyRef.innerHTML="" //RESET FIRST
-
-        let newRow = tbodyRef.insertRow();
-        // Insert a cell
-        let cell1 = newRow.insertCell(0);
-        let cell2 = newRow.insertCell(1);
-        let cell3 = newRow.insertCell(2);
-        
-        let newArray = osndp.dataforTag.filter(function (el)
-        {
-          return el.equipment_id  == aArrid //return object record if id matched with param ID
-        }
-        )
-        let newVal = JSON.parse(newArray[0].equipment_value)
-        
-        ////console.log( newVal)
-        //value
-        cell1.innerHTML =   `<span class='eqptno' >${newVal.serial}<br>
-        ${newVal.equipment_type.toUpperCase()}<br>${newVal.eqpt_description}</span>`
-        
-        cell2.innerHTML =   `&#8369;${util.addCommas(parseFloat(newVal.price).toFixed(2))}`
-        cell2.style.textAlign = "right"
-        
-        cell3.innerHTML =   newVal.date_reg
-        
-        let divrentsale = document.getElementById('div-rent-sale')
-        divrentsale.innerHTML='' //reset
-        
-        //=============template
-        if(transtype=="rent"){
-            divrentsale.innerHTML=`
-            <div class="row">
-            <div class="col">
-                <label for="client_po">PO Number</label>
-                <input type="text" onkeydown='javascript:imagepo()' style="text-transform: uppercase" id="client_po" name="client_po" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row">
-            <div class="col">
-                <label for="client_invoice">Invoice Number</label>
-                <input type="text" style="text-transform: uppercase" id="client_invoice" name="client_invoice" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row">
-            <div class="col">
-                <label for="client_name">Client Full Name</label>
-                <input type="text" style="text-transform: uppercase" id="client_name" name="client_name" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row">
-            <div class="col">
-                <label for="company_name">Company Name</label>
-                <input type="text" style="text-transform: uppercase" id="company_name" name="company_name" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row">
-            <div class="col">
-                <label for="company_address">Company Address</label>
-                <input type="text" style="text-transform: uppercase" id="company_address" name="company_address" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row"> 
-            <div class="col">
-                <label for="company_phone">Company Phone</label>
-                <input type="text" id="company_phone" name="company_phone" placeholder="0917-123-1234" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row">
-            <div class="col">
-                <label for="company_email">Company Email</label>
-                <input type="email" style="text-transform: lowercase" id="company_email" name="company_email" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row">
-            <div class="col">
-                <label for="rent-price">Rent Price</label>
-                <input type="text" id="eqpt_id" name="eqpt_id" value="${aArrid}" class="lets-hide">
-                <input type="text" id="trans_type" name="trans_type" value="rent" class="lets-hide">
-                <input type="number" step="0.01" placeholder="0.00" class="form-control equipmentxx" id="rent_price" name="rent_price" required  />
-            </div>           
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="rent-start">Rent Start</label>
-                    <input type="date" class="form-control equipmentxx" id="rent_start" name="rent_start" required />    
-                </div>           
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="rent-end">Rent End</label>
-                    <input type="date" class="form-control equipmentxx" id="rent_end" name="rent_end" required />    
-                </div>           
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label class="form-label " for="client_remarks">Remarks</label>
-                    <textarea class="form-control equipmentxx" id="client_remarks" name="client_remarks" rows="4" required></textarea>
-                </div>  
-            </div>
-            `
-        }else{  //==============SALE
-            divrentsale.innerHTML=`
-            <div class="row">
-            <div class="col">
-                <label for="client_po">PO Number</label>
-                <input type="text" style="text-transform: uppercase" id="client_po" name="client_po" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row">
-            <div class="col">
-                <label for="client_invoice">Invoice Number</label>
-                <input type="text" style="text-transform: uppercase" id="client_invoice" name="client_invoice" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>            
-            <div class="row">
-            <div class="col">
-                <label for="client_name">Client Full Name</label>
-                <input type="text" style="text-transform: uppercase" id="client_name" name="client_name" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row">
-            <div class="col">
-                <label for="company_name">Company Name</label>
-                <input type="text"  style="text-transform: uppercase" id="company_name" name="company_name" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row">
-            <div class="col">
-                <label for="company_address">Company Address</label>
-                <input type="text" style="text-transform: uppercase" id="company_address" name="company_address" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row">
-            <div class="col">
-                <label for="company_phone">Company Phone</label>
-                <input type="text" id="company_phone" name="company_phone" value="" placeholder="0917-123-1234" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row">
-            <div class="col">
-                <label for="company_email">Company Email</label>
-                <input type="email" style="text-transform: lowercase" id="company_email" name="company_email" value="" class="form-control equipmentxx" value=""  required/>
-            </div>           
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="sale-price">Sale Price</label>
-                    <input type="text" id="eqpt_id" name="eqpt_id" value="${aArrid}" class="lets-hide">
-                    <input type="text" id="trans_type" name="trans_type" value="sale" class="lets-hide">
-                    <input type="number" min=1000 step="0.01" placeholder="0.00" value="9999" class="form-control equipmentxx" id="sale_price" name="sale_price" required />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label class="form-label " for="client_remarks">Remarks</label>
-                    <textarea class="form-control equipmentxx" id="client_remarks" name="client_remarks" rows="4" required></textarea>
-                </div>  
-            </div>
-            `
-        }    
-         //==load modal for tagging
-        util.loadModals('equipmentTagModal','equipmentTagForm','#equipmentTagForm','equipmentTagPlaceHolder') //PRE-LOAD MODALS)
-	    util.modalShow('equipmenttagmodal')
-
-        
-    },
-    */
-
-    //===========OPEN MODAL FOR CATEGORY OF SELECTED EQUIPMENT===========
-    showMallCategory:(cCategory,cTxt)=>{
-        console.log('showmallcategory()',cTxt)
-        if(cCategory==""){
-            return false
-        }
-        ///console.log('chosen is ', cCategory)
-        //off keyboard cofig
-        const configObj = { keyboard: false, backdrop:'static' }
-
-        const eqptcatmodal =  new bootstrap.Modal(document.getElementById('equipmentTypeModal'),configObj);
-            
-        let eqptcatModalEl = document.getElementById('equipmentTypeModal')
-
-        eqptcatModalEl.addEventListener('hide.bs.modal', function (event) {
-            
-            //take away alert
-            let cDiv = document.getElementById('equipmentTypePlaceHolder')
-            cDiv.innerHTML=""
-
-            //this is for the next element to have focus
-            //readonly field gets checked is-valid w/ chek icon
-            document.getElementById("mall_description").focus()
-            document.getElementById("mall_description").blur()
-
-            //then moves the next field with focus()
-            setTimeout(() => document.getElementById("business_name").focus(), 0)
-            
-        },false)
-        
-       document.getElementById('mall-label').innerHTML = "Select " + cTxt //cCategory 
-
-        //DOM reference for select
-        const categoryType = document.getElementById("categoryType");
-        
-        //reset select content
-        categoryType.innerHTML = ""
-
-        //get equipment type,
-        osndp.getMall(`https://localhost:10000/getmall/${cCategory}`, categoryType)
-
-        eqptcatmodal.show() /// show modal box
-
-    },
-
 
     //=== FOR POPULATING DROPDOWN SELECT
     populate:async ( selectElement, department )=>{
@@ -551,123 +181,6 @@ const asn = {
         }
     },
 
-    //===get Malls
-    //esp getting values for SELECT DROPDOWNS
-    getMall:(url,cSelect)=>{
-
-        fetch(url)
-        .then((response) => {  //promise... then 
-            return response.json();
-        })
-        .then((data) => {
-            //console.log( 'webmall ',data )
-            
-            osndp.removeOptions( cSelect)
-
-            let option = document.createElement("option")
-            option.setAttribute('value', "")
-            option.setAttribute('selected','selected')
-              
-            let optionText = document.createTextNode( "-- Pls Select --" )
-            option.appendChild(optionText)
-            
-            cSelect.appendChild(option)
-            
-
-            for (let key in data.result) {
-                let option = document.createElement("option")
-                option.setAttribute('value', data.result[key].mall_name)
-              
-                let optionText = document.createTextNode( data.result[key].mall_name )
-                option.appendChild(optionText)
-              
-                cSelect.appendChild(option)
-            }
-
-            cSelect.focus()
-            
-        })
-        .catch((error) => {
-            util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })
-    },
-        
-    updateMallDesc:(optionValue)=>{
-        //dom reference
-        //eqptdesc.focus()
-        
-        const eqptdesc = document.getElementById('mall_description')
-        eqptdesc.value = optionValue
-        
-        
-       // document.getElementById("business_name").focus()
-    },
-
-
-    //filter mall
-    filterMall:(url,cSelect)=>{
-        console.log('===filterMall() osndp.filterMall()===')
-        fetch(url)
-        .then((response) => {  //promise... then 
-            return response.json();
-        })
-        .then((data) => {
-            //console.log( 'webmall ',data )
-            
-            osndp.removeOptions( cSelect)
-            /* TAKE OUT PLS SELECT VALUE
-            let option = document.createElement("option")
-            option.setAttribute('value', "")
-            //option.setAttribute('selected','selected')
-              
-            let optionText = document.createTextNode( "-- Pls Select --" )
-            option.appendChild(optionText)
-          
-            cSelect.appendChild(option)
-            */
-
-            for (let key in data.result) {
-                let option = document.createElement("option")
-                option.setAttribute('value', data.result[key].unique_id)
-              
-                let optionText = document.createTextNode( data.result[key].mall_name )
-                option.appendChild(optionText)
-              
-                cSelect.appendChild(option)
-            }
-
-            cSelect.focus()
-            
-        })
-        .catch((error) => {
-            util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })
-    },
-
-    //===============filter method
-    filterBy:(val)=>{
-
-        //==========Filter By====
-        
-        console.log('==filterBy()===', val )
-
-        osndp.getAll("1", val )
-        ///// temporarily out osndp.fetchBadgeData()
-    },
-
-    //===== get transaction if rent or sale
-    getTransact:(ctype)=>{
-        const configObj = { keyboard: false, backdrop:'static' }
-        const transModal =  new bootstrap.Modal(document.getElementById('msgModal'),configObj);
-        
-        const msg = document.getElementById('xmsg4')
-        msg.innerHTML = `Are you sure this is for ${ctype.toUpperCase()}?`
-        transModal.show()
-        
-    },
-
     //===========for socket.io
     getMsg:()=>{
         console.log( '====getMsg()=== ')
@@ -684,61 +197,6 @@ const asn = {
           */  
         
     },
-    //=======check file size before upload
-    //for now acceptable is 2mb max
-    checkFileSize:()=>{
-        const fi = document.getElementById('ff_uploaded_file');
-        // Check if any file is selected.
-        if (fi.files.length > 0) {
-            for (let i = 0; i <= fi.files.length - 1; i++) {
-
-                const fsize = fi.files.item(i).size;
-                const file = Math.round((fsize / 1024));
-                // The size of the file.
-                if (file >= 1000) { // 1Mb
-                    const btnupload = document.getElementById('remittance_upload_btn')
-                    btnupload.disabled = true
-
-                    util.Toasted(`File too Big ${file}Mb, pls select a smaller in file size!`,4000,false);
-                    
-                    fi.value=null
-                    //go bottom page
-                    util.scrollsTo('ff_blindspot')
-
-                    return false;
-
-                }else{
-                    
-                    document.getElementById('ff_size').innerHTML=""//reset
-                    const btnupload = document.getElementById('remittance_upload_btn')
-                    btnupload.disabled = false
-                }
-                /* turn off display of filesize */
-                ///document.getElementById('size').innerHTML ='<b>'+ file + '</b> KB';
-                
-            }
-        }
-    },
-
-    //======main func get all Claims per person =====
-    getClaims: async (emp_id, emp_name)=>{
-        console.log('==running getClaims()')
-        
-        await fetch(`${myIp}/getclaims/${emp_id}/${emp_name}/3/${nPage}`,{
-            cache:'reload'
-        })
-        .then(res => res.text() )
-
-        .then(text => {	
-        
-            util.scrollsTo('current_projects')
-        })	
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
-    },
-
     notif:(msg,xclear)=>{
         if(!xclear){
             document.getElementById('p-notif').innerHTML = `<i id='i-notif' class='fa fa-spinner fa-pulse' ></i>
@@ -760,463 +218,6 @@ const asn = {
         }
         /// take out muna document.getElementById("sidebarCollapse").click()
         //focus on emp number claims filter
-    },
-
-    getRecord: (e_num,e_name) =>{
-        let xmsg
-        
-        asn.speaks('Searching...')
-
-        if(e_num=="" && e_name==""){
-            console.log('both blank')
-            xmsg = "<div class='text-wrap' style='width: 20rem;'>PLS CHECK YOUR INPUT, YOU CAN SEARCH BY EMPLOYEE NUMBER OR BY EMPLOYEE NAME!</div>"
-            Toastify({
-                text: xmsg ,
-                duration:6000,
-                escapeMarkup:false, //to create html
-                close:false,
-                position:'center',
-                offset:{
-                    x: 0,
-                    y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                },
-                style: {
-                  background: "linear-gradient(to right, #00b09b, #96c93d)",
-                }
-            }).showToast();
-            return false
-        
-        }
-
-        let xclass = [], aForm = ['filter_number','filter_name']
-        xclass.push(document.getElementById('filter_number').className ) 
-        xclass.push(document.getElementById('filter_name').className)
-
-        let nn = xclass.indexOf('form-control is-invalid')
-        
-        if ( nn > -1 ){
-            xmsg = "<div class='text-wrap' style='width: 20rem;'>PLS CHECK YOUR INPUT, THERE'S ERROR!</div>"
-            Toastify({
-                text: xmsg ,
-                duration:3000,
-                escapeMarkup:false, //to create html
-                close:false,
-                position:'center', 
-                offset:{
-                    x: 0,
-                    y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                },
-                style: {
-                    background: "linear-gradient(to right, #00b09b, #96c93d)",
-                }
-            }).showToast();
-
-            document.getElementById( aForm[nn] ).classList.remove('is-invalid')
-            document.getElementById( aForm[nn] ).value=""
-
-            return false         
-        }else{
-            console.log('redy to search')
-            let xurl = ""
-            if(e_num!=="" && e_name==""){
-                xurl = `${myIp}/getrecord/${e_num}/blank/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
-            }else if (e_num=="" && e_name!==""){
-                xurl = `${myIp}/getrecord/blank/${e_name}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
-            }else{
-                xurl = `${myIp}/getrecord/${e_num}/${e_name}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
-            }
-
-            fetch( xurl ,{
-                cache:'reload'
-            })
-            .then(res => res.text() )
-
-            .then(text => {	
-            //    // console.log('what the text? ',text)
-            //     osndp.notif('',true)
-                let divchild = `   
-                    <div class="row">
-                    <div class="col-lg-8 d-flex ">
-                    <div class="card w-100">
-                        <div class="card-body p-4">
-                        <div class="mb-4">
-                            <h5 class="card-title fw-semibold"><i style="color:green;font-size:25px;" class="ti ti-list-search"></i>&nbsp;Search Result</h5>
-                        </div>
-                        <div id="claim_search">
-        
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    </div>`
-
-                document.getElementById('search_claim' ).classList.add('container-fluid')
-                document.getElementById('search_claim' ).classList.add('ms-3')
-                
-                document.getElementById('search_claim').innerHTML = divchild
-
-                document.getElementById('claim_search').innerHTML = ""
-                document.getElementById('claim_search').innerHTML = text
-            //     document.getElementById('project-badge').innerHTML = parseInt(document.getElementById('reccount').innerHTML)
-            //     console.log( '**rec count** ',document.getElementById('reccount').innerHTML)
-                
-                util.scrollsTo('claim_search')
-
-                //asn.getTopRider()
-            
-            })	
-            .catch((error) => {
-                //util.Toast(`Error:, ${error}`,1000)
-                console.error('Error:', error)
-            })    
-        }///eif
-    },
-
-    //===== check if pdf is already produced or not, if produced, don't download again
-    checkpdf: (e_num)=> {
-        
-        asn.speaks('DOWNLOADING PDF PLEASE WAIT!')
-
-        fetch(`${myIp}/checkpdf/${e_num}/${util.getCookie('grp_id')}`,{
-            cache:'reload'
-        })
-        .then(response => {  
-            return response.json()
-        })
-        .then( data => {
-            if(data.status){
-                //print if not created
-                asn.createpdf(e_num,data.batch)
-                asn.speaks('Creating PDF...')
-            }else{
-
-                asn.speaks(`ERROR! ATD ALREADY DOWNLOADED WITH BATCH ${data.batch}`)
-                Toastify({
-                    text: `ERROR! ATD ALREADY DOWNLOADED WITH BATCH ${data.batch}`,
-                    duration:6000,
-                    escapeMarkup:false, //to create html
-                    close:false,
-                    position:'center',
-                    offset:{
-                        x: 0,
-                        y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                    },
-                    style: {
-                      background: "linear-gradient(to right, #00b09b, #96c93d)",
-                    }
-                }).showToast();
-    
-            }
-
-            return true
-        })
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        }) 
-    },
-
-    //===============download report
-    createpdf: (e_num, batch) =>{
-        fetch(`${myIp}/createpdf/${e_num}/${batch}`,{
-            cache:'reload'
-        })
-        .then(response => { 
-            return response.blob()
-            // Get the content type from the response headers
-            /*
-            const contentType = response.headers.get('Content-Type');
-
-            if (contentType && contentType.includes('application/json')) {
-                return response.json();
-            } else if (contentType && contentType.includes('image/') || contentType.includes('application/octet-stream')) {
-                return response.blob();
-            } else {
-                throw new Error('Unsupported content type: ' + contentType);
-            }
-                */
-        })
-        .then(blob => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `ASN_${e_num}.pdf`; // Set the file name for the download
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            window.URL.revokeObjectURL(url); // Clean up the URL object
-
-            asn.deletepdf( e_num ) //cleanup pdf
-
-            Toastify({
-                text: 'PDF Ready for Download!!!' ,
-                duration:3000,
-                escapeMarkup:false, //to create html
-                close:false,
-                position:'center',
-                offset:{
-                    x: 0,
-                    y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                },
-                style: {
-                  background: "linear-gradient(to right, #00b09b, #96c93d)",
-                }
-            }).showToast();
-            
-            return true
-
-            //delete pdf
-        })
-       
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
-
-    },
-
-    //==== cleanup
-    deletepdf:(e_num) =>{
-        fetch(`${myIp}/deletepdf/${e_num}`,{
-            cache:'reload'
-        })
-        .then(response => { 
-            return response.json()
-        })
-        .then( (data ) => {
-            if(data.status){
-                Toastify({
-                    text: 'PDF Ready for Download!!!' ,
-                    duration:3000,
-                    escapeMarkup:false, //to create html
-                    close:false,
-                    position:'center',
-                    offset:{
-                        x: 0,
-                        y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                    },
-                    style: {
-                      background: "linear-gradient(to right, #00b09b, #96c93d)",
-                    }
-                }).showToast();
-            }
-            
-        })
-       
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
-    },
-
-    //==get top 5 hub pasaway
-    getTopHub: async()=>{
-
-        let xparam = ""
-
-        if(util.getCookie('grp_id')=="2"){
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`    
-        }else{
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`
-        }//eif
-
-        await fetch(`${myIp}/gethub${xparam}`,{
-            cache:'reload'
-        })
-        .then(res => res.text() )
-
-        .then(text => {	
-        //    // console.log('what the text? ',text)
-        //     osndp.notif('',true)
-            document.getElementById('hub').innerHTML = ""
-            document.getElementById('hub').innerHTML = text
-        //     document.getElementById('project-badge').innerHTML = parseInt(document.getElementById('reccount').innerHTML)
-        //     console.log( '**rec count** ',document.getElementById('reccount').innerHTML)
-            
-            util.scrollsTo('hub')
-
-            asn.getTopRider()
-        
-        })	
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
-    },
-
-    // =====get top 5 rider pasaway
-    getTopRider: async() => {
-
-        let xparam = ""
-
-        if(util.getCookie('grp_id')=="2"){
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}` 
-        }else{
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`
-        }//eif
-
-        await fetch(`${myIp}/getrider${xparam}`,{
-            cache:'reload'
-        })
-        .then(res => res.text() )
-
-        .then(text => {	
-        //    // console.log('what the text? ',text)
-        //     osndp.notif('',true)
-            document.getElementById('rider').innerHTML = ""
-            document.getElementById('rider').innerHTML = text
-        //     document.getElementById('project-badge').innerHTML = parseInt(document.getElementById('reccount').innerHTML)
-        //     console.log( '**rec count** ',document.getElementById('reccount').innerHTML)
-            
-            util.scrollsTo('claimsupdate')
-            asn.getClaimsUpdate()
-       
-        })	
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
-    },
-
-
-    // get overall uploaded
-    getClaimsUpdate: async() => {
-
-        let xparam = ""
-
-        if(util.getCookie('grp_id')=="2"){
-           xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`    
-        }else{
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`
-        }//eif
-
-        await fetch(`${myIp}/claimsupdate${xparam}`,{
-            cache:'reload'
-        })
-        .then(res => res.text() )
-
-        .then(text => {	
-            
-            const myul = document.getElementById('claimsupdate')
-            
-            myul.innerHTML = text
-            
-            console.log( text)
-            console.log('claims total', document.getElementById('gxtotal').value)
-            
-            document.getElementById('xgtotal').innerHTML= `Claims Recent Transaction 
-                <span class='text-primary fw-semibold'>P ${document.getElementById('gxtotal').value} </span>`
-
-            util.scrollsTo('current_projects')
-        
-            if(util.getCookie('grp_id')!=="2"){
-                asn.getListPdf(1) // call List of ATDs
-            }else{
-                document.getElementById('list_atd').remove()
-                
-            }//eif
-        })	
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
-    },
-
-    //get pie chart comparison of
-    // with ATD and no ATDs
-    getAtdUpdate: async() =>{
-        await fetch(`${myIp}/atdupdate`,{
-            cache:'reload'
-        })
-        .then(res => res.json() )
-
-        .then(data => {	
-            
-            const myul = document.getElementById('claimsupdate')
-            
-            myul.innerHTML = text
-                        
-            console.log( text)
-            console.log('claims total', document.getElementById('gxtotal').value)
-            
-            document.getElementById('xgtotal').innerHTML= `Claims Recent Transaction 
-                <span class='text-primary fw-semibold'>P ${document.getElementById('gxtotal').value} </span>`
-
-            util.scrollsTo('current_projects')
-        
-        })	
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
-    },
-
-    //===== show List of completed PDFs
-    getListPdf: async( nPage) =>{
-
-        document.getElementById('claims_select').innerHTML = "" //reset
-        
-        await fetch(`${myIp}/getlistpdf/1/${nPage}`,{
-            cache:'reload'
-        })
-        .then(res => res.text() )
-        .then(text => {
-
-            const texts =`<div class="container-fluid">
-                <div>${text}</div>
-                </div>
-                `
-
-            document.getElementById('claims_select').innerHTML = texts
-
-            console.log( '**rec count** ',document.getElementById('reccount').innerHTML)
-
-            return true
-        })  
-        .catch((error) => {
-            zonked.notif('','p-notif',true)
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
-            
-    
-    },
-
-    //====== for finance peeps ===
-    getFinance: async( region ) =>{
-        console.log('finance')
-        let xparam = ""
-
-
-        if(util.getCookie('grp_id')=="2" ||
-            util.getCookie('grp_id')=="3"){
-            xparam = `/${region}/${util.getCookie('f_email')}`    
-        }else{
-
-        }//eif
-
-        await fetch(`${myIp}/getfinance${xparam}`,{
-            cache:'reload'
-        })
-        .then(res => res.text() )
-
-        .then(text => {	
-        //    // console.log('what the text? ',text)
-        //     osndp.notif('',true)
-            document.getElementById('claims_pasaways').innerHTML = ""
-            document.getElementById('claims_pasaways').innerHTML += text
-        //     document.getElementById('project-badge').innerHTML = parseInt(document.getElementById('reccount').innerHTML)
-        //     console.log( '**rec count** ',document.getElementById('reccount').innerHTML)
-            
-            util.scrollsTo('hub')
-
-            asn.getTopRider()
-        
-        })	
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
     },
 
     allData:[],
@@ -1354,7 +355,91 @@ const asn = {
                     
     },
 
+    loadbarChart: async( )=>{
+        console.log('loading... loadbarchart()')
 
+        await fetch(`${dash.myIp}/coor/topfivehub/${util.getCookie('f_email')}`,{
+            cache: 'reload'
+        })
+        .then((res) => {  //promise... then 
+            return res.json();
+        })
+        .then((xdata) => {
+
+            console.log('merege',cTrans)
+
+            // const mergedData = dash.mergeFinalData(xdata.xdata, cTrans );
+
+            // console.log('my merge data ', mergedData);
+            
+            // //let colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF5'];
+            // let colors = ['#FF0000', '#FFFF00', '#0000FF', '#00FFFF'];
+
+            // // Fisher-Yates shuffle
+            // for (let i = colors.length - 1; i > 0; i--) {
+            //     const j = Math.floor(Math.random() * (i + 1));
+            //     [colors[i], colors[j]] = [colors[j], colors[i]]; // swap elements
+            // }//endfor   
+
+            // var options = {
+            //     series: mergedData,
+                
+            //     colors: colors,
+
+            //     chart: {
+            //         redrawOnParentResize: false,
+            //         redrawOnWindowResize: false,
+            //         width: 400,
+            //         height: 350,
+            //         type: 'bar'
+            //     },
+            //     plotOptions: {
+            //         bar: {
+            //         horizontal: false,
+            //         columnWidth: '75%',
+            //         borderRadius: 5,
+            //         borderRadiusApplication: 'end'
+            //         },
+            //     },
+            //     dataLabels: {
+            //         enabled: false
+            //     },
+            //     stroke: {
+            //         show: true,
+            //         width: 2,
+            //         colors: ['transparent']
+            //     },
+            //     xaxis: {
+            //         categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+            //     },
+            //     yaxis: {
+            //         title: {
+            //         text: 'Qty.'
+            //         }
+            //     },
+            //     fill: {
+            //         opacity: 1
+            //     },
+            //     tooltip: {
+            //         y: {
+            //         formatter: function (val) {
+            //             return  val + " (Qty)"
+            //         }
+            //         }
+            //     }
+            // };//==end options
+      
+            // var chart = new ApexCharts(document.querySelector((cTrans=="transaction"?"#pie-chart":"#prod-chart")), options);
+            // chart.render();
+        
+        })
+        .catch((error) => {
+            console.error('Error:', error)
+        })
+
+
+        
+    },
     appExt:null,
     ctrlExt:null,
 
@@ -1395,7 +480,9 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
         
-       
+        asn.loadbarChart()
+        console.log('===loadbarchart()===')
+
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 
 	}//END init
