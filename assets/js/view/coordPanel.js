@@ -195,7 +195,7 @@ Ext.define('MyApp.view.coordPanel', {
                         return util.addCommas(value)
                     },
                     summaryRenderer:(value,summaryData,dataIndex)=>{
-                        return util.addCommas(value)
+                        return `<b>${util.addCommas(value)}</b>`
                     },
                 },
                 {
@@ -214,7 +214,7 @@ Ext.define('MyApp.view.coordPanel', {
                         return util.addCommas(value)
                     },
                     summaryRenderer:(value,summaryData,dataIndex)=>{
-                        return( value )
+                        return `<b>${util.addCommas(value)}</b>`
                     },
                 },
                 {
@@ -232,6 +232,9 @@ Ext.define('MyApp.view.coordPanel', {
                         meta.tdCls = 'font7'
                         return util.addCommas(value)
                     },
+                    summaryRenderer:(value,summaryData,dataIndex)=>{
+                        return `<b>${util.addCommas(value)}</b>`
+                    },
                 }, 
                 {
                     header: 'Remitted',
@@ -247,6 +250,9 @@ Ext.define('MyApp.view.coordPanel', {
                     renderer: function(value, meta, record) {
                         meta.tdCls = 'font7'
                         return util.addCommas(value)
+                    },
+                    summaryRenderer:(value,summaryData,dataIndex)=>{
+                        return `<b>${util.addCommas(value)}</b>`
                     },
                 },
                
