@@ -27,7 +27,7 @@ Ext.define('MyApp.store.riderStore', {
     proxy: {
         // load using HTTP
         type: 'ajax',
-        url: `${myIp}/coor/summary/${util.getCookie('f_email')}`,
+        url: `${myIp}/coor/ridersummary/${hub_search}`,
         // the return will be json, so lets set up a reader
         reader: {
             type: 'json'
