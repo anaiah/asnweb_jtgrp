@@ -507,9 +507,9 @@ const asn = {
         
         asn.loadbarChart('hub')
 
-        setTimeout(() => {
-            asn.loadbarChart('rider');
-        }, 1000)
+        // setTimeout(() => {
+        //     asn.loadbarChart('rider');
+        // }, 1000)
 
         console.log('===loadbarchart()===')
 
