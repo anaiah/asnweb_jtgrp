@@ -78,6 +78,7 @@ Ext.define('MyApp.view.locationGrid' ,{
         selectionchange: function(model, records ) {
         
             console.log('hub grid selectionchange() fired')
+            this.setLoading(`Loading Riders for ${hub_search}`);
 
             if(records[0]){ 
 
@@ -85,8 +86,7 @@ Ext.define('MyApp.view.locationGrid' ,{
                 var idx = this.getStore().indexOf(records[0]);
                 hub_search = this.getStore().getAt(idx).get('hub')
                 
-                this.setLoading(`Loading Riders for ${hub_search}`);
-
+                
                 console.log('hubsearch', hub_search)
 
                 const riderstore = Ext.data.StoreManager.lookup('riderStore') 
