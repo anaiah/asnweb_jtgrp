@@ -358,7 +358,7 @@ const asn = {
     loadbarChart: async( ctrans )=>{
         console.log('loading... loadbarchart()')
 
-        await fetch(`${myIp}/coor/topfivehub/${util.getCookie('f_email')}/ctrans`,{
+        await fetch(`${myIp}/coor/topfivehub/${util.getCookie('f_email')}/${ctrans}`,{
             cache: 'reload'
         })
         .then((res) => {  //promise... then 
@@ -380,56 +380,7 @@ const asn = {
                 [colors[i], colors[j]] = [colors[j], colors[i]]; // swap elements
             }//endfor   
 
-            /*
-            var options = {
-                series: mergedData,
-                
-                colors: colors,
-
-                chart: {
-                    redrawOnParentResize: false,
-                    redrawOnWindowResize: false,
-                    width: 400,
-                    height: 350,
-                    type: 'bar'
-                },
-                plotOptions: {
-                    bar: {
-                    horizontal: false,
-                    columnWidth: '75%',
-                    borderRadius: 5,
-                    borderRadiusApplication: 'end'
-                    },
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    show: true,
-                    width: 2,
-                    colors: ['transparent']
-                },
-                xaxis: {
-                    categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-                },
-                yaxis: {
-                    title: {
-                    text: 'Qty.'
-                    }
-                },
-                fill: {
-                    opacity: 1
-                },
-                tooltip: {
-                    y: {
-                    formatter: function (val) {
-                        return  val + " (Qty)"
-                    }
-                    }
-                }
-            };//==end options
-            */
-
+          
             
             var options = {
                 series: [{
