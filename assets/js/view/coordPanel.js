@@ -7,7 +7,7 @@ Ext.define('MyApp.view.coordPanel', {
     //     type: 'border',
     //     align: 'stretch'
     // },
-    layout:'hbox',
+    layout:'vbox',
     frame:true,
     border:true,
     //renderTo:'grid_month',
