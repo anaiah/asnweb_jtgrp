@@ -78,7 +78,7 @@ Ext.define('MyApp.view.locationGrid' ,{
         selectionchange: function(model, records ) {
         
             console.log('hub grid selectionchange() fired')
-            this.setLoading(`Loading Riders for ${hub_search}`);
+            this.setLoading(`..searching`);
 
             if(records[0]){ 
 
