@@ -366,7 +366,7 @@ const asn = {
         })
         .then((xdata) => {
 
-            console.log('merege',cTrans)
+            console.log('merege',xdata.xdata)
 
             // const mergedData = dash.mergeFinalData(xdata.xdata, cTrans );
 
