@@ -358,7 +358,7 @@ const asn = {
     loadbarChart: async( )=>{
         console.log('loading... loadbarchart()')
 
-        await fetch(`${dash.myIp}/coor/topfivehub/${util.getCookie('f_email')}`,{
+        await fetch(`${myIp}/coor/topfivehub/${util.getCookie('f_email')}`,{
             cache: 'reload'
         })
         .then((res) => {  //promise... then 
