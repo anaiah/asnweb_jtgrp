@@ -13,7 +13,7 @@ Ext.define('MyApp.view.coordPanel', {
     //renderTo:'grid_month',
     items: [
         {
-            region: 'west',
+            region: 'north',
             xtype: 'gridpanel',
             id:'locationGrid',
             title: 'Location',
@@ -77,32 +77,31 @@ Ext.define('MyApp.view.coordPanel', {
                 selectionchange: function(model, records ) {
                 
                     console.log('hub grid selectionchange() fired')
-                    // if(records[0]){ tanggal muna
-                    //     var idx = this.getStore().indexOf(records[0]);
-                    //     hub_search = this.getStore().getAt(idx).get('hub')
+
+                    if(records[0]){ 
+                        var idx = this.getStore().indexOf(records[0]);
+                        hub_search = this.getStore().getAt(idx).get('hub')
     
-                    //     rider_store.removeAll();
+                        Ext.data.StoreManager.lookup('riderStore').removeAll()
+
+                        // To change the URL dynamically
+                        var proxy = rider_store.getProxy();
+                        proxy.url =  `${myIp}/coor/ridersummary/${hub_search}`;
     
-                    //     // To change the URL dynamically
-                    //     var proxy = rider_store.getProxy();
-                    //     proxy.url =  `${myIp}/coor/ridersummary/${hub_search}`;
-    
-                    //     // or use `sorters` array directly
-                    //     //rider_store.sort('delivered_pct', 'DESC');          
+                        // or use `sorters` array directly
+                        //rider_store.sort('delivered_pct', 'DESC');          
                         
                         
-                    //     // If you need to reload data from the new URL
-                    //     //store.sort('yourField', 'ASC'); // set the sorting
-                    //     rider_store.load({
-                    //         callback: function() {
-                    //             // After loading, refresh the view
-                    //             Ext.getCmp('rider-grid').getView().refresh();
-                    //         }
-                    //     });
-              
-                    //     console.log( this.getStore().getAt(idx).get('hub') )
-    
-                    // }//eif
+                        // If you need to reload data from the new URL
+                        //store.sort('yourField', 'ASC'); // set the sorting
+                        Ext.data.StoreManager.lookup('riderStore').load({
+                            callback: function() {
+                                // After loading, refresh the view
+                                Ext.getCmp('riderGrid').getView().refresh();
+                            }
+                        });
+                    }//EIF
+
                 }//end selectionchange
                 
             },
@@ -264,22 +263,118 @@ Ext.define('MyApp.view.coordPanel', {
            
         },//take  out east grid for now
 
-      
-        // {
-        //     region: 'east',
-        //     xtype: 'grid',
-        //     title: 'Client',
-        //     store: '', // Your other store
-        //     border:true,
-        //     height:'100%',
-        //     columns: [
-        //         { text: 'Code', dataIndex: 'code', width: 100 },
-        //         { text: 'Description', dataIndex: 'desc', flex: 1 }
-        //     ],
-        //     width: 300,
-        //     //split: true,
-        //     //collapsible: true
-        // }
+        {   // West Grid
+            region:'south',
+            xtype: 'gridpanel',
+            title: 'Rider Info',
+            id:    'riderGrid',
+            flex: 1,
+            frame:true,
+            height:'100%',
+            //width:400,
+            store: Ext.data.StoreManager.lookup('riderStore'),  //store.storeID
+            //plugins: [cellEditing],  /* takeout editing */
+
+            viewConfig: {
+                stripeRows: true,
+                loadingText:'Loading Please Wait!',
+                emptyText:'No Records Found!!!',
+
+                listeners: {
+                    viewready: function(view) {
+                        console.log('riders grid viewready');
+
+                    
+                    }//end viewready
+                }//end listeners viewconfig
+            },    
+
+            listeners:{
+                cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
+                    //console.log( record.get("location"))      
+                },
+                selectionchange: function(model, records ) {
+                    
+                console.log('===ridersGrid selectionchange()===')
+                /*
+                    if(records[0]){
+                        var idx = this.getStore().indexOf(records[0]);
+                        console.log( this.getStore().getAt(idx).get('hub') )
+                    }//eif
+                    */
+                }//end selectionchange
+                
+            },
+
+            // features: [{
+            //     id: 'group',
+            //     ftype: 'groupingsummary',
+            //     groupHeaderTpl: '<font color=blue   >{name}</font>',
+            //     //groupHeaderTpl: new Ext.XTemplate('<tpl for=".">', '<input type="button" value={name}></div>', '</tpl>'),
+            //     hideGroupedHeader: true,
+            //     enableGroupingMenu: false
+            // }],
+            
+            columns: [/*
+                {
+                    text: 'Working Day(s)',
+                    //flex: 1,
+                    width:200,
+                    menuDisabled:true,
+                    //tdCls: 'task',
+                    sortable: true,
+                    dataIndex: 'transactions',
+                    hideable: false,
+                    renderer: function(value, meta, record) {
+                        meta.tdCls = 'font10';
+                        return ((value === 0 || value > 1) ?`( ${value} Days )` : `( 1 Day )`);
+                        //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
+                        //return value;
+                    },
+                    //summaryType: 'count',
+                    // summaryRenderer: function(value, summaryData, dataIndex) {
+                    //     //console.log(dataIndex)
+                    //     return ((value === 0 || value > 1) ?`( ${value} Days )` : `( 1 Day )`);
+                    // }
+                },*/
+                {
+                    header: 'Name',
+                    width: 180,
+                    sortable: false,
+                    menuDisabled:true,
+                    dataIndex: 'full_name',
+                    renderer: function(value, meta, record) {
+                       // console.log( 'hey',meta)
+                        meta.tdCls='font10p'
+                        return `<i class="ti ti-user-filled"></i>&nbsp;${value} <br>(${record.get('transactions')} Day(s))`
+                        //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
+                        //return value;
+                    }
+                },
+                {
+                    header: 'Delivery',
+                    width: 85,
+                    sortable: true,
+                    menuDisabled:true,
+                    //renderer: Ext.util.Format.usMoney,
+                    //summaryRenderer: Ext.util.Format.usMoney,
+                    align:'center',
+                    dataIndex: 'delivered_pct',
+                    sortable:false,
+                    //summaryType: 'sum',
+                    field: {
+                        xtype: 'numberfield'
+                    },
+                    renderer: function(value, meta, record) {
+                        meta.tdCls = 'font10g'
+        
+                        return `${value} %`
+                        //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
+                        //return value;
+                    }
+                },
+            ],//end columns
+        },
     ], //end items panel
 
     

@@ -6,6 +6,7 @@
             stores: 
             [
                 'locationStore',
+                'riderStore'
                 // 'coordStore',
                 // 'headStore',
                 // 'opmgrStore'

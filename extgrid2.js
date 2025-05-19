@@ -416,7 +416,7 @@ Ext.onReady(function(){
                         flex: 1,
                         frame:true,
                         height:'100%',
-                        width:400,
+                        //width:400,
                         store: Ext.data.StoreManager.lookup('riderStore'),  //store.storeID
                         //plugins: [cellEditing],  /* takeout editing */
 
