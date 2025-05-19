@@ -355,7 +355,7 @@ const asn = {
                     
     },
 
-    loadbarChart: async( )=>{
+    loadbarChart: async( ctrans )=>{
         console.log('loading... loadbarchart()')
 
         await fetch(`${myIp}/coor/topfivehub/${util.getCookie('f_email')}`,{
@@ -368,69 +368,108 @@ const asn = {
 
             console.log('merege',xdata)
 
-            // const mergedData = dash.mergeFinalData(xdata.xdata, cTrans );
+            //const mergedData = ''dash.mergeFinalData(xdata.xdata, cTrans );
+            const mergedData = asn.mergeFinalData(xdata.xdata, cTrans );
 
-            // console.log('my merge data ', mergedData);
+            console.log('my merge data ', mergedData);
             
-            // //let colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF5'];
-            // let colors = ['#FF0000', '#FFFF00', '#0000FF', '#00FFFF'];
+            //let colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF5'];
+            let colors = ['#FF0000', '#FFFF00', '#0000FF', '#00FFFF'];
 
-            // // Fisher-Yates shuffle
-            // for (let i = colors.length - 1; i > 0; i--) {
-            //     const j = Math.floor(Math.random() * (i + 1));
-            //     [colors[i], colors[j]] = [colors[j], colors[i]]; // swap elements
-            // }//endfor   
+            // Fisher-Yates shuffle
+            for (let i = colors.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [colors[i], colors[j]] = [colors[j], colors[i]]; // swap elements
+            }//endfor   
 
-            // var options = {
-            //     series: mergedData,
+            /*
+            var options = {
+                series: mergedData,
                 
-            //     colors: colors,
+                colors: colors,
 
-            //     chart: {
-            //         redrawOnParentResize: false,
-            //         redrawOnWindowResize: false,
-            //         width: 400,
-            //         height: 350,
-            //         type: 'bar'
-            //     },
-            //     plotOptions: {
-            //         bar: {
-            //         horizontal: false,
-            //         columnWidth: '75%',
-            //         borderRadius: 5,
-            //         borderRadiusApplication: 'end'
-            //         },
-            //     },
-            //     dataLabels: {
-            //         enabled: false
-            //     },
-            //     stroke: {
-            //         show: true,
-            //         width: 2,
-            //         colors: ['transparent']
-            //     },
-            //     xaxis: {
-            //         categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-            //     },
-            //     yaxis: {
-            //         title: {
-            //         text: 'Qty.'
-            //         }
-            //     },
-            //     fill: {
-            //         opacity: 1
-            //     },
-            //     tooltip: {
-            //         y: {
-            //         formatter: function (val) {
-            //             return  val + " (Qty)"
-            //         }
-            //         }
-            //     }
-            // };//==end options
-      
-            // var chart = new ApexCharts(document.querySelector((cTrans=="transaction"?"#pie-chart":"#prod-chart")), options);
-            // chart.render();
+                chart: {
+                    redrawOnParentResize: false,
+                    redrawOnWindowResize: false,
+                    width: 400,
+                    height: 350,
+                    type: 'bar'
+                },
+                plotOptions: {
+                    bar: {
+                    horizontal: false,
+                    columnWidth: '75%',
+                    borderRadius: 5,
+                    borderRadiusApplication: 'end'
+                    },
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    show: true,
+                    width: 2,
+                    colors: ['transparent']
+                },
+                xaxis: {
+                    categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                },
+                yaxis: {
+                    title: {
+                    text: 'Qty.'
+                    }
+                },
+                fill: {
+                    opacity: 1
+                },
+                tooltip: {
+                    y: {
+                    formatter: function (val) {
+                        return  val + " (Qty)"
+                    }
+                    }
+                }
+            };//==end options
+            */
+
+            
+            var options = {
+                series: [{
+                data: null
+              }],
+                chart: {
+                type: 'bar',
+                height: 350
+              },
+              plotOptions: {
+                bar: {
+                  borderRadius: 4,
+                  borderRadiusApplication: 'end',
+                  horizontal: true,
+                }
+              },
+              dataLabels: {
+                enabled: false
+              },
+              xaxis: {
+                categories: null,
+              }
+            
+            };
+
+            let series_data=[]
+            let category_data=[]
+
+            xdata.forEach( hub  => {
+                series_data.push( (!hub.parcel_delivered ? 0 : hub.parcel_delivered) )
+                category_data.push( hub.hub)
+            });
+
+            options.series[0].data = series_data
+            options.xaxis.categories = category_data
+            
+            var chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
+            chart.render();
         
         })
         .catch((error) => {
