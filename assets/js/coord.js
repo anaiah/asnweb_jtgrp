@@ -370,8 +370,6 @@ const asn = {
 
             //const mergedData = ''dash.mergeFinalData(xdata.xdata, cTrans );
             //const mergedData = asn.mergeFinalData(xdata.xdata, cTrans );
-
-            console.log('my merge data ', mergedData);
             
             //let colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF5'];
             let colors = ['#FF0000', '#FFFF00', '#0000FF', '#00FFFF'];
@@ -435,25 +433,30 @@ const asn = {
             
             var options = {
                 series: [{
-                data: null
-              }],
+                    data: null
+                }],
+
+                colors: colors,
                 chart: {
-                type: 'bar',
-                height: 350
-              },
-              plotOptions: {
-                bar: {
-                  borderRadius: 4,
-                  borderRadiusApplication: 'end',
-                  horizontal: true,
+                    type: 'bar',
+                    height: 350,
+                    redrawOnParentResize: false,
+                    redrawOnWindowResize: false,
+                    width: 400,
+                },
+                plotOptions: {
+                    bar: {
+                    borderRadius: 4,
+                    borderRadiusApplication: 'end',
+                    horizontal: true,
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                xaxis: {
+                    categories: null,
                 }
-              },
-              dataLabels: {
-                enabled: false
-              },
-              xaxis: {
-                categories: null,
-              }
             
             };
 
