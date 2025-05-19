@@ -55,7 +55,7 @@ Ext.define('MyApp.view.coordPanel', {
                         //load the store now
                         this.store.load()
     
-                        this.getView().refresh();
+                       
                     }//end viewready
                 }//end listeners viewconfig
             },    
@@ -172,7 +172,7 @@ Ext.define('MyApp.view.coordPanel', {
                         //return value;
                     },
                     summaryRenderer:(value,summaryData,dataIndex)=>{
-                        //return addCommas(value)
+                        //return util.addCommas(value)
                     },
                 },
                 {
@@ -192,10 +192,10 @@ Ext.define('MyApp.view.coordPanel', {
                     renderer: function(value, meta, record) {
                         meta.tdCls = 'font7'
         
-                        return addCommas(value)
+                        return util.addCommas(value)
                     },
                     summaryRenderer:(value,summaryData,dataIndex)=>{
-                        return addCommas(value)
+                        return util.addCommas(value)
                     },
                 },
                 {
@@ -211,7 +211,7 @@ Ext.define('MyApp.view.coordPanel', {
                     },
                     renderer: function(value, meta, record) {
                         meta.tdCls = 'font7'
-                        return addCommas(value)
+                        return util.addCommas(value)
                     },
                     summaryRenderer:(value,summaryData,dataIndex)=>{
                         return( value )
@@ -230,7 +230,7 @@ Ext.define('MyApp.view.coordPanel', {
                     },
                     renderer: function(value, meta, record) {
                         meta.tdCls = 'font7'
-                        return addCommas(value)
+                        return util.addCommas(value)
                     },
                 }, 
                 {
@@ -246,7 +246,7 @@ Ext.define('MyApp.view.coordPanel', {
                     },
                     renderer: function(value, meta, record) {
                         meta.tdCls = 'font7'
-                        return addCommas(value)
+                        return util.addCommas(value)
                     },
                 },
                
