@@ -17,7 +17,8 @@ Ext.define('MyApp.view.coordPanel', {
             xtype: 'gridpanel',
             id:'locationGrid',
             title: 'Location',
-            height:400,
+            autoHeight:true,
+            //height:400,
             //height:'100%',
             //minWidth:300,
             //layout:'fit',
@@ -85,11 +86,13 @@ Ext.define('MyApp.view.coordPanel', {
                         hub_search = this.getStore().getAt(idx).get('hub')
                         
                         console.log('hubsearch', hub_search)
+
+                        const riderstore = Ext.data.StoreManager.lookup('riderStore') 
                         
-                        Ext.data.StoreManager.lookup('riderStore').removeAll()
+                        riderstore.removeAll()
 
                         // To change the URL dynamically
-                        var proxy = Ext.data.StoreManager.lookup('riderStore').getProxy();
+                        var proxy = riderstore.getProxy();
                         proxy.url =  `${myIp}/coor/ridersummary/${hub_search}`;
     
                         // or use `sorters` array directly
@@ -98,7 +101,7 @@ Ext.define('MyApp.view.coordPanel', {
                         
                         // If you need to reload data from the new URL
                         //store.sort('yourField', 'ASC'); // set the sorting
-                        Ext.data.StoreManager.lookup('riderStore').load({
+                        riderstore.load({
                             callback: function() {
                                 // After loading, refresh the view
                                 Ext.getCmp('riderGrid').getView().refresh();
@@ -274,7 +277,7 @@ Ext.define('MyApp.view.coordPanel', {
             id:    'riderGrid',
             flex: 1,
             frame:true,
-            height:400,
+            height:300,
             //width:400,
             store: Ext.data.StoreManager.lookup('riderStore'),  //store.storeID
             //plugins: [cellEditing],  /* takeout editing */
