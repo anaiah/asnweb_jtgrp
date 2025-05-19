@@ -31,6 +31,8 @@
                     width: 600,
                     height: 400
                 });
+
+                Ext.getCmp('')
             },
 
             test:(obj)=>{
