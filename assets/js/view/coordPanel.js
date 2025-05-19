@@ -85,7 +85,7 @@ Ext.define('MyApp.view.coordPanel', {
                         Ext.data.StoreManager.lookup('riderStore').removeAll()
 
                         // To change the URL dynamically
-                        var proxy = rider_store.getProxy();
+                        var proxy = Ext.data.StoreManager.lookup('riderStore').getProxy();
                         proxy.url =  `${myIp}/coor/ridersummary/${hub_search}`;
     
                         // or use `sorters` array directly
