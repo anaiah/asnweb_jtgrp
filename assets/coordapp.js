@@ -32,7 +32,6 @@
                     height: 400
                 });
 
-                //Ext.getCmp('')
             },
 
             test:(obj)=>{

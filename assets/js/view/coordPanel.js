@@ -3,11 +3,11 @@ Ext.define('MyApp.view.coordPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.coordPanel',
     id:'coordPanel',
-    layout: {
-        type: 'border',
-        align: 'stretch'
-    },
-    //layout:'vbox',
+    // layout: {
+    //     type: 'border',
+    //     align: 'stretch'
+    // },
+    layout:'border',
     frame:true,
     border:true,
     //renderTo:'grid_month',
