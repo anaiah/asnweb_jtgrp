@@ -81,9 +81,12 @@ Ext.define('MyApp.view.locationGrid' ,{
 
             if(records[0]){ 
 
+                
                 var idx = this.getStore().indexOf(records[0]);
                 hub_search = this.getStore().getAt(idx).get('hub')
                 
+                this.setLoading(`Loading Riders for ${hub_search}`);
+
                 console.log('hubsearch', hub_search)
 
                 const riderstore = Ext.data.StoreManager.lookup('riderStore') 
@@ -104,6 +107,7 @@ Ext.define('MyApp.view.locationGrid' ,{
                     callback: function() {
                         // After loading, refresh the view
                         Ext.getCmp('riderGrid').getView().refresh();
+                        this.setLoading(false)
                     }
                 });
             }//EIF
