@@ -1603,8 +1603,6 @@ Ext.onReady(function(){
     
     // Get the controller
     asn.ctrlExt = asn.appExt.getController('myController');
-
-    asn.ctrlExt.getmenu()
        
 
 })
