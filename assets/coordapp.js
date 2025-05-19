@@ -29,7 +29,12 @@
                 var locGrid = Ext.create('MyApp.view.locationGrid', {
                     renderTo: 'grid_month',
                     width: 600,
-                    height: 500
+                    height: 300
+                });
+                var rideGrid = Ext.create('MyApp.view.riderGrid', {
+                    renderTo: 'rider_grid',
+                    width: 600,
+                    height: 200
                 });
 
             },
