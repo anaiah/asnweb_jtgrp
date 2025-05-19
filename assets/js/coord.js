@@ -462,9 +462,14 @@ const asn = {
                 },
                 yaxis: {
                     title: {
-                    text: 'HUB'
+                    text: 'HUB',
+                    style: {
+                    fontSize: '10px',
+                    fontWeight: 'bold',
+                    fontFamily: 'Helvetica, Arial, sans-serif',
+                    color: '#333' // set your desired color
                     }
-                },
+                }
 
             
             };
