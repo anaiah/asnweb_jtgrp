@@ -491,12 +491,19 @@ const asn = {
             options.series[0].data = series_data
             options.xaxis.categories = category_data
 
-            if(ctrans=="rider"){
-                options.yaxis.title.text = "Riders"
-            }
-
             var chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
             chart.render();
+
+            if(ctrans=="rider"){
+                chart.updateOptions({
+                    yaxis: {
+                      title: {
+                        text: 'RIDERS' // your new dynamic text
+                      }
+                    }
+                });
+            }
+            
         
         })
         .catch((error) => {
