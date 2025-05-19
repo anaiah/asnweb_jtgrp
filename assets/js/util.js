@@ -1434,56 +1434,7 @@ const util = {
 
             util.Toasted(`SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!`,6000,false)
             
-            fetch(util.url, {
-                cache:'reload'
-            
-            })
-            .then((response) => {  //promise... then 
-                
-                return response.json();
-            })
-            .then((data) => {
-                console.log(`login here data ${JSON.stringify(data)}`)
-                
-                //close ModalBox
-                if(data.found){
-                    //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data.voice)
-                    util.alertMsg(data.message,'success','loginPlaceHolder')
-                    
-                    //addtocookie
-                    util.setGroupCookie(data.id,data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
-                
-                    //add also to localdb
-                    let obj ={}
-
-                    obj.id = data.id
-                    obj.region = data.region
-                    obj.fullname = data.fname
-                    obj.grp_id = data.grp_id
-                    obj.email = data.email
-                    obj.pic = data.pic
-
-                    db.setItem('profile',JSON.stringify(obj))//save to localdb
-                    
-                    // if(data.grp_id=="2"){//business dev0
-                    //location.href = '/main'
-                    location.href = '/jtx/dashboard'
-                    
-                            
-                }else{
-                    util.speak(data.voice)
-                    util.alertMsg(data.message,'warning','loginPlaceHolder')
-                    console.log('notfound',data.message)
-                    return false
-                }
-                
-            })
-            .catch((error) => {
-                util.speak(data.voice)
-                util.alertMsg(data.message,'warning','loginPlaceHolder')
-                console.log('not found',data.message)
-                return false
-            })
+            location.href = '/jtx/dashboard'
             
         }else{
             
@@ -1505,11 +1456,79 @@ const util = {
     //==== for login posting
     loginPost: (frm,modal,url="") => {
 
-        //check distance before proceeding to login
-        //take out chcking of distance bring back  later
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition( util.showPosition );
-        }
+        
+        fetch(util.url, {
+            cache:'reload'
+        
+        })
+        .then((response) => {  //promise... then 
+            
+            return response.json();
+        })
+
+        .then((data) => {
+            console.log(`login here data ${JSON.stringify(data)}`)
+            
+            //close ModalBox
+            if(data.found){
+                //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data.voice)
+                util.alertMsg(data.message,'success','loginPlaceHolder')
+                
+                //addtocookie
+                util.setGroupCookie(data.id,data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
+            
+                //add also to localdb
+                let obj ={}
+
+                obj.id = data.id
+                obj.region = data.region
+                obj.fullname = data.fname
+                obj.grp_id = data.grp_id
+                obj.email = data.email
+                obj.pic = data.pic
+
+                db.setItem('profile',JSON.stringify(obj))//save to localdb
+                                    
+                switch ( data.grp_id ){
+                    case "1":
+                        //check distance before proceeding to login
+                        //take out chcking of distance bring back  later
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition( util.showPosition );
+                        }
+  
+  
+                    break
+                
+                    case "4": // coordinator
+                        location.href = '/jtx/coord'    
+                    break
+
+                    case "3":  //head coord
+                        location.href = '/jtx/headcoord'    
+                    break
+                
+                    case "5": // operations mgr
+                        location.href = '/jtx/operations'    
+                    break
+
+                }//===== endswitch
+                        
+            }else{
+                util.speak(data.voice)
+                util.alertMsg(data.message,'warning','loginPlaceHolder')
+                console.log('notfound',data.message)
+                return false
+            }
+            
+        })
+        .catch((error) => {
+            util.speak(data.voice)
+            util.alertMsg(data.message,'warning','loginPlaceHolder')
+            console.log('not found',data.message)
+            return false
+        })
+
     },
 
     setGroupCookie:(xid, xregion, xname,xgrp,xemail,xvoice,xpic)=>{

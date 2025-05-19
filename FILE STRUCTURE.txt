@@ -1,0 +1,10 @@
+
+coord grp 
+    coord.html
+        coordapp.js
+            launch view/coordPanel.js
+                   view/coordGrid.js
+                   store/coordStore.js
+                    -- no more models --
+
+

@@ -3,13 +3,26 @@
             name: 'MyApp',
             appFolder: '/html/assets/js',
             models: ['monthlyModel'],
-            stores: ['monthlyStore'],
-            controllers: ['myController'],
+            stores: 
+            [
+                'monthlyStore',
+                'coordStore',
+                'headStore',
+                'opmgrStore'
+            ],
+
+            controllers:
+            [   
+                'myController',
+                'coordCtrl',
+                'headCtrl',
+                'opmgrCtrl',
+            ],
         
             // Launch method - called when app is ready
             launch: function() {
                 
-                console.log('====Ext.app 4.2 Launch() ====yey')
+                console.log('====Ext.app 4.2 Launch() ====y',)
                 MyApp.app = this
 
                 var myPanel = Ext.create('MyApp.view.mainPanel', {
