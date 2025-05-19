@@ -15,7 +15,7 @@ Ext.define('MyApp.view.coordPanel', {
         {
             region: 'west',
             xtype: 'gridpanel',
-            id:'hub-grid',
+            id:'locationGrid',
             title: 'Location',
             //minWidth:300,
             //layout:'fit',
@@ -51,7 +51,7 @@ Ext.define('MyApp.view.coordPanel', {
                         ]);
                         */
                         //load the store now
-                        Ext.getCmp('locationStore').load()
+                        //Ext.getCmp('locationStore').load()
     
                     }//end viewready
                 }//end listeners viewconfig
