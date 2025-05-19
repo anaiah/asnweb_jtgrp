@@ -456,7 +456,14 @@ const asn = {
                 },
                 xaxis: {
                     categories: null,
-                }
+                   
+                },
+                yaxis: {
+                    title: {
+                    text: 'Qty.'
+                    }
+                },
+
             
             };
 
