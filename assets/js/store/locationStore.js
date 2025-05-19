@@ -24,7 +24,7 @@ Ext.define('MyApp.store.locationStore', {
     proxy: {
         // load using HTTP
         type: 'ajax',
-        url: `${myIp}/coor/summary`,
+        url: `${myIp}/coor/summary/${util.getCookie('f_email')}`,
         // the return will be json, so lets set up a reader
         reader: {
             type: 'json'
