@@ -1226,9 +1226,9 @@ const asn = {
     //==========get monthly  transaction for riders/transporters ====//
     getMonthlyTransaction:async( emp_id ) =>{
         
-        xparam = `/${util.getCookie('f_region')}/${emp_id}/${util.getCookie('f_email')}`    
+        //xparam = `/${util.getCookie('f_region')}/${emp_id}/${util.getCookie('f_email')}`    
         
-        await fetch(`${myIp}/gridmonthlytransaction/${emp_id}`,{
+        await fetch(`${myIp}/coor/summary/${util.getCookie('f_email')}`,{
             cache:'reload'
         })
         .then( (res) => res.json() )
@@ -1242,93 +1242,14 @@ const asn = {
             //replace with 
            // gridMonth.setData( results )
             ////// take ot muna  asn.ctrlExt.loadData(results)
-            asn.ctrlExt.loadPage( asn.currentPage ) //load first page
+            //asn.ctrlExt.loadPage( asn.currentPage ) //load first page
                     
             //get chart
-            asn.getPieChart(util.getCookie('f_dbId'))
+            ///asn.getPieChart(util.getCookie('f_dbId'))
 
         })	
         .catch((error) => {
             //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
-    },
-
-    //===save to localstorage
-    saveToLocal:async(objfrm)=>{
-        console.log(objfrm)
-        
-        let newdb = asn.db.getItem('myCart')
-
-        if(!newdb){
-            asn.db.setItem('myCart', JSON.stringify(objfrm))
-        }else{ //===if with prev record get prev rec and add
-
-            let finaldb = JSON.parse( newdb ) //get all value of old local storage
-
-            finaldb.f_parcel = parseInt(finaldb.f_parcel) + parseInt( objfrm.f_parcel)
-            finaldb.f_amount = parseFloat(finaldb.f_amount) + parseFloat( objfrm.f_amount)
-
-            asn.db.setItem('myCart', JSON.stringify(finaldb))
-        }
-         
-        // const badge = document.getElementById('bell-badge')
-        // badge.innerHTML = 'With Entry'
-
-        asn.speaks('Local Storage Successfully Saved!!!') //speak
-        util.Toasted('Local Storage Successfully Saved!!!',3000,false)//alert
-
-        util.hideModal('dataEntryModal',2000)    
-            
-    },
-
-    //====rider  save transaction / save remittance
-    saveTransaction:async function(url="",xdata={}){
-
-        asn.speaks('Saving Transaction to Database, Please Wait!!!')
-                            
-        await fetch(url,{
-            method:'POST',
-            cache:'reload',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            
-            body: JSON.stringify(xdata)
-        })
-        .then((response) => {  //promise... then 
-            return response.json();
-        })
-        .then( (data) => {
-
-            console.log(data)
-            
-            if(data.status){
-                console.log( 'saveTransaction()...')
-
-                //change form action for posting the Image receipt
-                document.getElementById('remittanceUploadForm').action=`${myIp}/postimage/${document.getElementById('ff_transnumber').value}`
-
-                xmsg = "<i class='fa fa-spinner fa-pulse' ></i>  Uploading Receipt, please wait!!!"
-                util.Toasted( xmsg, 3000, false)
-                
-                asn.speaks(data.voice);
-
-                asn.db.removeItem('myCart') //delete myCart in localDB
-
-                //===update also chart and monthly performance card
-                asn.piedata.length = 0  //reset
-                asn.getMonthlyTransaction(util.getCookie('f_dbId'))
-
-                //===== click submit button of Upload Form
-                const remuploadbtn = document.getElementById('remittance_upload_btn')
-                remuploadbtn.click()
-
-            }//endif
-           
-        })  
-        .catch((error) => {
-            util.Toasted(`Error:, ${error}`,2000,false)
             console.error('Error:', error)
         })    
     },
@@ -1434,93 +1355,6 @@ const asn = {
     },
 
 
-    //  //===========GETMENU==========
-    //  getmenu: async(grp_id) =>{
-    //     console.log('=====FIRING ggetmenu()==========')
-    //     await fetch(`${myIp}/menu/${grp_id}`,{
-    //         cache:'reload'
-    //     })
-    //     .then( (res)  => res.json() )
-    //     .then( (data) => {	
-
-    //         var xdata = []
-            
-    //         xdata.push(data)
-    //         console.log(xdata)
-            
-    //         const ul = document.getElementById('sidebarnav'); // Get the <ul> or <ol>
-
-    //         //remove all elements of UL
-    //         while (ul.firstChild) {
-    //           ul.removeChild(ul.firstChild);
-    //         }
-              
-    //         xdata[0].forEach(info => {  
-              
-    //             const li = document.createElement('li'); // Create a new <li>
-    //             li.classList.add("nav-small-cap")
-
-    //             const ii =  document.createElement('i')
-    //             ii.classList.add("fs-10")
-                
-    //             li.appendChild( ii )
-
-    //             const span =  document.createElement('span')
-    //             span.textContent = info.menu
-    //             span.classList.add('hide-menu')  
-    //             //span.appendChild(ii)
-                
-    //             li.appendChild(span)
-
-    //             ul.appendChild(li); // Append the <li> to the list
-              
-    //             //var subdata = JSON.parse(info.list)
-    //             //console.log( info )
-    //             var aList = []
-    //             // //loop submenu
-    //             aList.push( JSON.parse(info.list) )
-    //             console.log( "yo", info.list  )
-                    
-    //             aList[0].forEach(xmenu => {  
-    //                 // //=================== submenu
-    //                 const li2 = document.createElement('li'); // Create a new <li>
-    //                 li2.classList.add("sidebar-item")
-                    
-    //                 const span1 =  document.createElement('span')
-    //                 const i2 =  document.createElement('i')
-    //                 i2.classList.add("ti",`${xmenu.icon}`)
-    //                 span1.appendChild(i2)
-
-    //                 const span2 =  document.createElement('span')
-    //                 span2.classList.add('hide-menu')  
-    //                 span2.textContent = `${xmenu.sub}`
-
-    //                 const aa = document.createElement('a'); // Create a new <li>
-    //                 aa.classList.add("sidebar-link")
-
-    //                 aa.appendChild(  span1 )
-    //                 aa.appendChild(  span2 )
-
-    //                 aa.href = xmenu.href
-                    
-    //                 li2.appendChild(aa)
-                    
-    //                 ul.appendChild(li2); // Append the <li> to the list                    
-            
-    //             })//===end subdata
-    
-    //         })//end foreach
-
-    //         return true;
-            
-    //     })	
-    //     .catch((error) => {
-    //         //util.Toast(`Error:, ${error}`,1000)
-    //         console.error('Error:', error)
-    //     })    
-    // },
-    // //==========END  GETMENU
-    
     appExt:null,
     ctrlExt:null,
 

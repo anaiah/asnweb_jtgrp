@@ -16,8 +16,8 @@ Ext.define('MyApp.view.mainPanel', {
             region: 'west',
             xtype: 'grid',
             title: 'Current Month Transaction',
-            store: 'monthlyStore', // Your store
-            id:'monthlyGrid',
+            store: 'locationStore', // Your store
+            id:'locationGrid',
             border:true,
             //width: 300,
             height:'100%',
@@ -158,7 +158,7 @@ Ext.define('MyApp.view.mainPanel', {
             viewConfig: {
                 stripeRows: true,
                 loadingText:'Loading Please Wait!',
-                emptyText:'No Monthly Transaction!!!',
+                emptyText:'No location Transaction!!!',
     
                 //apply row css
                 getRowClass: function(record) { 
@@ -277,7 +277,7 @@ Ext.define('MyApp.view.mainPanel', {
             //=================functions
             makesure:(id,ponumber,sinumber)=>{
 
-                if(Ext.getCmp('monthlyGrid').showToast){
+                if(Ext.getCmp('locationGrid').showToast){
                     return false;
                 }
 
@@ -309,7 +309,7 @@ Ext.define('MyApp.view.mainPanel', {
                     xxx.classList.add('hide-me')
 
                     console.log('**SAVING***',id,ponumber)
-                    Ext.getCmp('monthlyGrid').showToast = false
+                    Ext.getCmp('locationGrid').showToast = false
 
                    //// dash.equipmentApprove( ponumber,sinumber, id ) //dash obj.method approve
                 });
@@ -318,7 +318,7 @@ Ext.define('MyApp.view.mainPanel', {
                     
                     var xxx = document.querySelector('.toastify')
                     xxx.classList.add('hide-me')
-                    Ext.getCmp('monthlyGrid').showToast = false
+                    Ext.getCmp('locationGrid').showToast = false
                     return false
                 });
 
