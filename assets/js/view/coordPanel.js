@@ -80,9 +80,12 @@ Ext.define('MyApp.view.coordPanel', {
                     console.log('hub grid selectionchange() fired')
 
                     if(records[0]){ 
+
                         var idx = this.getStore().indexOf(records[0]);
                         hub_search = this.getStore().getAt(idx).get('hub')
-    
+                        
+                        console.log('hubsearch', hub_search)
+                        
                         Ext.data.StoreManager.lookup('riderStore').removeAll()
 
                         // To change the URL dynamically
