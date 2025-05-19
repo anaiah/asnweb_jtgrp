@@ -51,7 +51,7 @@ Ext.define('MyApp.view.coordPanel', {
                         ]);
                         */
                         //load the store now
-                        //Ext.getCmp('locationStore').load()
+                        this.store.load()
     
                     }//end viewready
                 }//end listeners viewconfig
