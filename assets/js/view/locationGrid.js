@@ -24,6 +24,8 @@ Ext.define('MyApp.view.locationGrid' ,{
     store: Ext.data.StoreManager.lookup('locationStore'),
 
     border:true,
+    frame:true,
+    
     flex:1,
     viewConfig: {
         stripeRows: true,
