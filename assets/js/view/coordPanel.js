@@ -17,9 +17,11 @@ Ext.define('MyApp.view.coordPanel', {
             xtype: 'gridpanel',
             id:'locationGrid',
             title: 'Location',
+            height:'100%',
             //minWidth:300,
             //layout:'fit',
             store: Ext.data.StoreManager.lookup('locationStore'),
+
             border:true,
             flex:1,
             viewConfig: {
@@ -53,6 +55,7 @@ Ext.define('MyApp.view.coordPanel', {
                         //load the store now
                         this.store.load()
     
+                        this.getView().refresh();
                     }//end viewready
                 }//end listeners viewconfig
             },    
@@ -271,7 +274,7 @@ Ext.define('MyApp.view.coordPanel', {
         //     //split: true,
         //     //collapsible: true
         // }
-    ], //end items
+    ], //end items panel
 
     
 });
