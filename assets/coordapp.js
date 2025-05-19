@@ -26,10 +26,10 @@
                 console.log('====Ext.app 4.2 Launch() ====',)
                 MyApp.app = this
 
-                var myPanel = Ext.create('MyApp.view.coordPanel', {
+                var locGrid = Ext.create('MyApp.view.locationGrid', {
                     renderTo: 'grid_month',
                     width: 600,
-                    height: 800
+                    height: 500
                 });
 
             },
