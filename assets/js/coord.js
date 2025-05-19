@@ -435,9 +435,12 @@ const asn = {
             let category_data=[]
 
             xdata.forEach( hub  => {
-                series_data.push( (!hub.parcel_delivered ? 0 : hub.parcel_delivered) )
-                category_data.push( hub.hub)
-            });
+                if(!hub.hub){
+                    series_data.push( (!hub.parcel_delivered ? 0 : hub.parcel_delivered) )
+                    category_data.push( hub.hub)
+    
+                }
+             });
 
             options.series[0].data = series_data
             options.xaxis.categories = category_data
