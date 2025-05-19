@@ -1527,8 +1527,6 @@ const asn = {
 	//==,= main run
 	init :  () => {
 
-        asn.ctrlExt.getmenu(util.getCookie('grp_id'))    
-
         console.log('===asn.init()=== loaded!')
 
         asn.speaks = (txt) =>{
@@ -1563,28 +1561,6 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
         
-        //if grp_id is equal  to  rider  get monthLy
-        //for now, example only
-        //asn.getMonthlyTransaction(util.getCookie('f_dbId'))
-       
-
-        //load the form to validate
-        util.loadFormValidation('#newempForm')
-        
-        util.loadFormValidation('#dataEntryForm')
-        util.loadFormValidation('#remittanceForm')
-
-       // util.loadFormValidation('#remitttanceUploadForm')
-        
-        //load listeners
-        util.modalListeners('claimsModal')
-        util.modalListeners('newempModal')
-        util.modalListeners('dataEntryModal')
-
-        util.modalListeners('remittanceModal')
-
-        ///////asn.getTopHub()
-        util.modalShow('dataEntryModal') // show initial data entry modal
        
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 
@@ -1604,6 +1580,7 @@ Ext.onReady(function(){
     // Get the controller
     asn.ctrlExt = asn.appExt.getController('myController');
        
+    asn.ctrlExt.getmenu(util.getCookie('grp_id'))    
 
 })
 
