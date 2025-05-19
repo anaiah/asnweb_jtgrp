@@ -456,11 +456,13 @@ const asn = {
                 },
                 xaxis: {
                     categories: null,
-                   
+                    title: {
+                        text: 'Qty.'
+                    }
                 },
                 yaxis: {
                     title: {
-                    text: 'Qty.'
+                    text: 'HUB'
                     }
                 },
 
