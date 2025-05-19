@@ -107,7 +107,7 @@ Ext.define('MyApp.view.locationGrid' ,{
                     callback: function() {
                         // After loading, refresh the view
                         Ext.getCmp('riderGrid').getView().refresh();
-                        this.setLoading(false)
+                        
                     }
                 });
             }//EIF
