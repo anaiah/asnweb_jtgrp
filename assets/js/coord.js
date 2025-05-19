@@ -369,7 +369,7 @@ const asn = {
             console.log('merege',xdata)
 
             //const mergedData = ''dash.mergeFinalData(xdata.xdata, cTrans );
-            const mergedData = asn.mergeFinalData(xdata.xdata, cTrans );
+            //const mergedData = asn.mergeFinalData(xdata.xdata, cTrans );
 
             console.log('my merge data ', mergedData);
             
@@ -467,7 +467,7 @@ const asn = {
 
             options.series[0].data = series_data
             options.xaxis.categories = category_data
-            
+
             var chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
             chart.render();
         
@@ -519,7 +519,7 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
         
-        asn.loadbarChart()
+        asn.loadbarChart('hub')
         console.log('===loadbarchart()===')
 
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
