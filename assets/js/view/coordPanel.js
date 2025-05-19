@@ -17,7 +17,8 @@ Ext.define('MyApp.view.coordPanel', {
             xtype: 'gridpanel',
             id:'locationGrid',
             title: 'Location',
-            height:'100%',
+            height:400,
+            //height:'100%',
             //minWidth:300,
             //layout:'fit',
             store: Ext.data.StoreManager.lookup('locationStore'),
@@ -270,7 +271,7 @@ Ext.define('MyApp.view.coordPanel', {
             id:    'riderGrid',
             flex: 1,
             frame:true,
-            height:'100%',
+            height:400,
             //width:400,
             store: Ext.data.StoreManager.lookup('riderStore'),  //store.storeID
             //plugins: [cellEditing],  /* takeout editing */

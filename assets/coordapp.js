@@ -29,7 +29,7 @@
                 var myPanel = Ext.create('MyApp.view.coordPanel', {
                     renderTo: 'grid_month',
                     width: 600,
-                    height: 400
+                    height: 800
                 });
 
             },
