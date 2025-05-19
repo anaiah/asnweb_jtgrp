@@ -1490,7 +1490,7 @@ const util = {
                 db.setItem('profile',JSON.stringify(obj))//save to localdb
                                     
                 switch ( data.grp_id ){
-                    case "1":
+                    case 1:
                         //check distance before proceeding to login
                         //take out chcking of distance bring back  later
                         if (navigator.geolocation) {
