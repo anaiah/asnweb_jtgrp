@@ -431,6 +431,18 @@ const asn = {
                     }    
                 },
 
+                events: {
+                    dataPointClick: function(event, chartContext, config) {
+                      // config contains the data point info
+                      const { dataPointIndex, seriesIndex } = config;
+              
+                      // Show tooltip manually at this data point
+                      chart.openTooltip({
+                        dataPointIndex: dataPointIndex,
+                        seriesIndex: seriesIndex
+                      });
+                    }
+                },
                 //tooltip
                 tooltip: {
                     enabled: true,
