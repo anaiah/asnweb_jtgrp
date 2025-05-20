@@ -397,11 +397,20 @@ const asn = {
                     redrawOnWindowResize: false,
                     width: 400,
 
-                    
+                    events: {
+                        dataPointSelection: (event, chartContext, config) => {
+
+                            console.log('click is here',  chart)
+                            if (chart) {
+                                chart.showTooltip({ dataPointIndex: config.dataPointIndex, seriesIndex: config.seriesIndex });
+                              }
+                        }    
+                    }, //END EVENTS
+
                 },
                 //tooltip
                 tooltip: {
-                    enabled: true,
+                    enabled: false,
                     shared: false,
                     custom: function({ series, seriesIndex, dataPointIndex, w }) {
                     const value = series[seriesIndex][dataPointIndex];
