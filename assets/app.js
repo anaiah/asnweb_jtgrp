@@ -31,35 +31,6 @@
                     width: 600,
                     height: 400
                 });
-
-                Ext.getCmp('')
             },
 
-            test:(obj)=>{
-                //console.log('success', obj)
-                const myarg = []
-                myarg.push( obj  )
-
-                //var store = Ext.getStore('poStore');
-                var storeInstance = Ext.data.StoreManager.lookup('poStore')
-
-                storeInstance.loadData(myarg)
-
-                //storeInstance.load()
-
-                console.log(storeInstance)
-
-                if (storeInstance) {
-                    // Get an array of all records
-                    var records = storeInstance.getRange();
-                
-                    // Loop through records
-                    Ext.each(records, function(record) {
-                        console.log('tutssa',record.get('po_number'), record.get('invoice_number'));
-                    });
-                } else{
-                    console.log('boge')
-                }
-
-            }
         });
