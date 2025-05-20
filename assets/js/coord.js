@@ -395,6 +395,19 @@ const asn = {
                     redrawOnParentResize: false,
                     redrawOnWindowResize: false,
                     width: 400,
+                    events: {
+                        dataPointClick: function(event, chartContext, config) {
+                            console.log('clickedbar')
+                          // config contains the data point info
+                          const { dataPointIndex, seriesIndex } = config;
+                  
+                          // Show tooltip manually at this data point
+                          chart.openTooltip({
+                            dataPointIndex: dataPointIndex,
+                            seriesIndex: seriesIndex
+                          });
+                        }
+                    },
                 },
                 plotOptions: {
                     bar: {
@@ -432,19 +445,7 @@ const asn = {
                     }    
                 },
 
-                events: {
-                    dataPointClick: function(event, chartContext, config) {
-                        console.log('clickedbar')
-                      // config contains the data point info
-                      const { dataPointIndex, seriesIndex } = config;
-              
-                      // Show tooltip manually at this data point
-                      chart.openTooltip({
-                        dataPointIndex: dataPointIndex,
-                        seriesIndex: seriesIndex
-                      });
-                    }
-                },
+                
                 //tooltip
                 tooltip: {
                     enabled: true,
