@@ -25,7 +25,7 @@
                 console.log('====Ext.app 4.2 Launch()RiderApp ====',)
                 MyApp.app = this
 
-                var myPanel = Ext.create('riderApp.view.mainPanel', {
+                var myPanel = Ext.create('MyApp.view.mainPanel', {
                     renderTo: 'grid_month',
                     width: 600,
                     height: 400
