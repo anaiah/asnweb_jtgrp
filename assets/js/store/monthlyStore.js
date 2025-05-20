@@ -1,7 +1,7 @@
-Ext.define('MyApp.store.monthlyStore', {
+Ext.define('riderApp.store.monthlyStore', {
     extend: 'Ext.data.Store',
 
-    model: 'MyApp.model.monthlyModel',
+    model: 'riderApp.model.monthlyModel',
     //alias: 'widget.poStore',
 
     storeId:'monthlyStore',

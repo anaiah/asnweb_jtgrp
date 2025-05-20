@@ -1,6 +1,6 @@
   //load ext
         Ext.application({
-            name: 'MyApp',
+            name: 'riderApp',
             appFolder: '/html/assets/js',
             models: ['monthlyModel'],
             stores: 
@@ -13,7 +13,7 @@
 
             controllers:
             [   
-                'myController',
+                'riderController',
                 // 'coordCtrl',
                 // 'headCtrl',
                 // 'opmgrCtrl',
@@ -23,14 +23,13 @@
             launch: function() {
                 
                 console.log('====Ext.app 4.2 Launch() ====',)
-                MyApp.app = this
+                riderApp.app = this
 
-
-                // var myPanel = Ext.create('MyApp.view.mainPanel', {
-                //     renderTo: 'grid_month',
-                //     width: 600,
-                //     height: 400
-                // });
+                var myPanel = Ext.create('riderApp.view.mainPanel', {
+                    renderTo: 'grid_month',
+                    width: 600,
+                    height: 400
+                });
             },
 
         });

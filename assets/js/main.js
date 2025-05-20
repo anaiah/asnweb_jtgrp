@@ -1597,7 +1597,7 @@ Ext.onReady(function(){
     console.log('ext on ready....')
     Ext.tip.QuickTipManager.init();
 
-    asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
+    asn.appExt = riderApp.app ; //get instance of Ext.application MyApp.app
 
     
     // Get the controller

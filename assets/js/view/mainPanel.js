@@ -1,5 +1,5 @@
 
-Ext.define('MyApp.view.mainPanel', {
+Ext.define('riderApp.view.mainPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.mainpanel',
     id:'mainPanel',
