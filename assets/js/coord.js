@@ -399,7 +399,7 @@ const asn = {
                         dataPointClick: function(e, chart, config) {
                           console.log('clickedbar');
                           
-                          console.log(chart); // Check what is this?
+                          console.log('xchart',chart); // Check what is this?
                           // Use the outside variable
                           if (myChart) {
                             myChart.openTooltip({
