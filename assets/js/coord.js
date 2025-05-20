@@ -397,41 +397,7 @@ const asn = {
                     redrawOnWindowResize: false,
                     width: 400,
 
-                    events: {
-                        dataPointSelection: (event, chartContext, config) => {
-
-                            console.log('click is here',  chart)
-
-                            // Instead of openTooltip, toggle the `enabled` state temporarily
-                            chart.updateOptions({
-                                tooltip: {
-                                    enabled: true // Enable tooltip temporarily for this click
-                                }
-                            }, false); // `false` to prevent full re-render
-                
-                            // Programmatically trigger the tooltip
-                            console.log('chart.seriesNames:', chart.seriesNames);
-                            console.log('config.seriesIndex:', config.seriesIndex);
-                              setTimeout(() => {
-                                  if (chart.seriesNames && chart.seriesNames[config.seriesIndex]) {  // Check if seriesNames exists and has the index
-                                      chart.toggleSeries(chart.seriesNames[config.seriesIndex]);
-                                      chart.updateOptions({
-                                          tooltip: {
-                                              enabled: false // Disable after showing
-                                          }
-                                      }, false); // `false` to prevent full re-render
-                                  } else {
-                                      console.warn("chart.seriesNames is undefined or seriesIndex is out of bounds.");
-                                      chart.updateOptions({
-                                          tooltip: {
-                                              enabled: false // Disable after showing
-                                          }
-                                      }, false); // `false` to prevent full re-render
-                                  }
-                              }, 500);
-                        }
-                    }, //END EVENTS
-
+                    
                 },
                 //tooltip
                 tooltip: {
