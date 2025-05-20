@@ -390,7 +390,7 @@ const asn = {
                 colors: colors,
                 chart: {
                     type: 'bar',
-                    height: 350,
+                    height: 250,
                     redrawOnParentResize: false,
                     redrawOnWindowResize: false,
                     width: 400,
@@ -400,6 +400,8 @@ const asn = {
                     borderRadius: 4,
                     borderRadiusApplication: 'end',
                     horizontal: true,
+                    columnWidth: '30%' // Thinner bars
+                    
                     }
                 },
                 dataLabels: {
