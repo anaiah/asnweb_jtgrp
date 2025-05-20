@@ -1566,8 +1566,7 @@ const asn = {
         //if grp_id is equal  to  rider  get monthLy
         //for now, example only
         //asn.getMonthlyTransaction(util.getCookie('f_dbId'))
-        asn.getMonthlyTransaction(util.getCookie('f_dbId'))
-   
+       
 
         //load the form to validate
         util.loadFormValidation('#newempForm')
@@ -1604,7 +1603,8 @@ Ext.onReady(function(){
     // Get the controller
     asn.ctrlExt = asn.appExt.getController('myController');
        
-
+    asn.getMonthlyTransaction(util.getCookie('f_dbId'))
+    
 })
 
 
