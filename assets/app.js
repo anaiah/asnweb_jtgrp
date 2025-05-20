@@ -26,11 +26,11 @@
                 MyApp.app = this
 
 
-                var myPanel = Ext.create('MyApp.view.mainPanel', {
-                    renderTo: 'grid_month',
-                    width: 600,
-                    height: 400
-                });
+                // var myPanel = Ext.create('MyApp.view.mainPanel', {
+                //     renderTo: 'grid_month',
+                //     width: 600,
+                //     height: 400
+                // });
             },
 
         });
