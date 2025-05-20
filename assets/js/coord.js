@@ -373,7 +373,7 @@ const asn = {
             
             //let colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF5'];
             let colors = ['#FF0000', '#FFFF00', '#0000FF', '#00FFFF'];
-            let myChart
+            let chart
 
             // Fisher-Yates shuffle
             for (let i = colors.length - 1; i > 0; i--) {
@@ -395,25 +395,31 @@ const asn = {
                     redrawOnParentResize: false,
                     redrawOnWindowResize: false,
                     width: 400,
-                    events: {
-                        dataPointClick: function(e, chart, config) {
-                          console.log('clickedbar');
-                          
-                          console.log('xchart',chart); // Check what is this?
-                          // Use the outside variable
-                        //   if (myChart) {
-                        //     myChart.openTooltip({
-                        //       dataPointIndex: config.dataPointIndex,
-                        //       seriesIndex: config.seriesIndex
-                        //     });
-                        //   }
-                          if (myChart) {
-                            myChart.showTooltip({ dataPointIndex: config.dataPointIndex, seriesIndex: config.seriesIndex });
-                          }
-                         
-                        }
-                    },
+
+                    // events: {
+                    //     dataPointClick: function(e, chart, config) {
+                    //       console.log('clickedbar');
+                    //       chart.openTooltip({
+                    //         dataPointIndex: config.dataPointIndex,
+                    //         seriesIndex: config.seriesIndex
+                    //       });
+                    //     }
+                    //   }
                     
+                },
+
+                events: {
+                    dataPointClick: function(event, chartContext, config) {
+                        console.log('clickedbar')
+                      // config contains the data point info
+                      const { dataPointIndex, seriesIndex } = config;
+              
+                      // Show tooltip manually at this data point
+                      chart.openTooltip({
+                        dataPointIndex: dataPointIndex,
+                        seriesIndex: seriesIndex
+                      }); 
+                    }
                 },
                 plotOptions: {
                     bar: {
@@ -499,8 +505,8 @@ const asn = {
             options.xaxis.categories = category_data
              console.log( options.xaxis.categories)
 
-            myChart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
-            myChart.render();
+            chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
+            chart.render();
      
         })
         .catch((error) => {
