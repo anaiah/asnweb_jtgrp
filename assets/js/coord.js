@@ -419,7 +419,7 @@ const asn = {
                 },
                 yaxis: {
                     title: {
-                        text: 'HUB',
+                        text: (ctrans=="hub"?"HUB":"RIDER"),
                         style: {
                             fontSize: '10px',
                             fontWeight: 'bold',
@@ -437,6 +437,7 @@ const asn = {
             xdata.forEach( hub  => {
         
                     series_data.push( (!hub.parcel_delivered ? 0 : hub.parcel_delivered) )
+                    
                     if(ctrans=="rider"){
                         category_data.push( hub.xname)
     
@@ -453,16 +454,16 @@ const asn = {
             var chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
             chart.render();
 
-            if(ctrans=="rider"){
-                chart.updateOptions({
-                    yaxis: {
-                      title: {
-                        text: 'RIDERS' // your new dynamic text
-                      }
-                    }
-                });
-            }
-            //ennd exis
+            // if(ctrans=="rider"){
+            //     chart.updateOptions({
+            //         yaxis: {
+            //           title: {
+            //             text: 'RIDERS' // your new dynamic text
+            //           }
+            //         }
+            //     });
+            // }
+            // //ennd exis
      
         })
         .catch((error) => {
