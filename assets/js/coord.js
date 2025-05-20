@@ -373,7 +373,7 @@ const asn = {
             
             //let colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF5'];
             let colors = ['#FF0000', '#FFFF00', '#0000FF', '#00FFFF'];
-            let chart
+            let myChart
 
             // Fisher-Yates shuffle
             for (let i = colors.length - 1; i > 0; i--) {
@@ -398,10 +398,17 @@ const asn = {
                     events: {
                         dataPointClick: function(e, chart, config) {
                           console.log('clickedbar');
-                          chart.openTooltip({
-                            dataPointIndex: config.dataPointIndex,
-                            seriesIndex: config.seriesIndex
-                          });
+                          
+                          console.log(chart); // Check what is this?
+                          // Use the outside variable
+                          if (myChart) {
+                            myChart.openTooltip({
+                              dataPointIndex: config.dataPointIndex,
+                              seriesIndex: config.seriesIndex
+                            });
+                          }
+
+                         
                         }
                     },
                     
@@ -490,8 +497,8 @@ const asn = {
             options.xaxis.categories = category_data
              console.log( options.xaxis.categories)
 
-            chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
-            chart.render();
+            myChart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
+            myChart.render();
      
         })
         .catch((error) => {
