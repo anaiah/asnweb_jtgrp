@@ -435,7 +435,7 @@ const asn = {
                 },
                 //tooltip
                 tooltip: {
-                    enabled: false,
+                    enabled: true,
                     shared: false,
                     custom: function({ series, seriesIndex, dataPointIndex, w }) {
                     const value = series[seriesIndex][dataPointIndex];
@@ -515,7 +515,7 @@ const asn = {
 
             options.series[0].data = series_data
 
-            console.log( options.series[0].data )
+            console.log( 'series[0]', options.series[0].data )
             options.xaxis.categories = category_data
              console.log( options.xaxis.categories)
 
