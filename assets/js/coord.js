@@ -405,22 +405,30 @@ const asn = {
                     //       });
                     //     }
                     //   }
+
+                    events: {
+                        dataPointSelection: (event, chartContext, config) => {
+                            // 'config' contains information about the clicked data point
+                            const seriesIndex = config.seriesIndex;
+                            const dataPointIndex = config.dataPointIndex;
+            
+                            // Get the data for the clicked bar
+                            const xValue = chart.series[seriesIndex].data[dataPointIndex].x; // Or however your data is structured
+                            const yValue = chart.series[seriesIndex].data[dataPointIndex].y;
+            
+
+                            chart.openTooltip({
+                                        dataPointIndex: config.dataPointIndex,
+                                        seriesIndex: config.seriesIndex
+                                      });
+                            // Create and display your custom tooltip (implementation depends on your needs)
+                            //showCustomTooltip(xValue, yValue, event.clientX, event.clientY); // Example
+                        }
+                    }
                     
                 },
 
-                events: {
-                    dataPointClick: function(event, chartContext, config) {
-                        console.log('clickedbar')
-                      // config contains the data point info
-                      const { dataPointIndex, seriesIndex } = config;
-              
-                      // Show tooltip manually at this data point
-                      chart.openTooltip({
-                        dataPointIndex: dataPointIndex,
-                        seriesIndex: seriesIndex
-                      }); 
-                    }
-                },
+                
                 plotOptions: {
                     bar: {
                     borderRadius: 4,
@@ -460,7 +468,7 @@ const asn = {
                 
                 //tooltip
                 tooltip: {
-                    enabled: true,
+                    enabled: false,
                     shared: false,
                     custom: function({ series, seriesIndex, dataPointIndex, w }) {
                       const value = series[seriesIndex][dataPointIndex];
