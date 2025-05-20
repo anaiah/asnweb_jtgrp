@@ -436,13 +436,20 @@ const asn = {
 
             xdata.forEach( item  => {
         
-                    series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
                     
                     if(ctrans=="rider"){
-                        category_data.push( item.xname)
+                        if(item.xname){
+                            category_data.push(item.xname )
+                            // category_data.push( (!item.xname )
+                            series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
+                    
+                        }
+                        // category_data.push( (!item.xname )
     
                     }else{
                         category_data.push( item.hub)
+                        series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
+                    
                     }    
              });
 
