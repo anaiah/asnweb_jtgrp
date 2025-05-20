@@ -386,7 +386,7 @@ const asn = {
             var options = {
                 series: [{
                     name: 'Initial Deliveries', // ADD A NAME HERE - IMPORTANT
-                    data: null
+                    data: [2,2,3]
                 }],
 
                 colors: colors,
@@ -460,7 +460,7 @@ const asn = {
                     enabled: true
                 },
                 xaxis: {
-                    categories: null,
+                    categories: ['me,','imee','irene'],
                     title: {
                         text: 'PARCEL SUCCESSFULLY DELIVERED',
                         style: {
