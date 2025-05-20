@@ -396,18 +396,15 @@ const asn = {
                     redrawOnWindowResize: false,
                     width: 400,
                     events: {
-                        dataPointClick: function(event, chartContext, config) {
-                            console.log('clickedbar')
-                          // config contains the data point info
-                          const { dataPointIndex, seriesIndex } = config;
-                  
-                          // Show tooltip manually at this data point
+                        dataPointClick: function(e, chart, config) {
+                          console.log('clickedbar');
                           chart.openTooltip({
-                            dataPointIndex: dataPointIndex,
-                            seriesIndex: seriesIndex
-                          }); 
+                            dataPointIndex: config.dataPointIndex,
+                            seriesIndex: config.seriesIndex
+                          });
                         }
                     },
+                    
                 },
                 plotOptions: {
                     bar: {
