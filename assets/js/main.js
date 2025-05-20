@@ -1657,7 +1657,7 @@ Ext.onReady(function(){
     console.log('ext on ready....')
     Ext.tip.QuickTipManager.init();
 
-    asn.appExt = riderApp.app ; //get instance of Ext.application MyApp.app
+    asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
 
     
     // Get the controller
@@ -1666,7 +1666,6 @@ Ext.onReady(function(){
     asn.getMonthlyTransaction(util.getCookie('f_dbId'))
     
 })
-
 
 
 //osndp.Bubbl

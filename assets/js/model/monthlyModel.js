@@ -1,4 +1,4 @@
-Ext.define('riderApp.model.monthlyModel', {
+Ext.define('MyApp.model.monthlyModel', {
     extend: 'Ext.data.Model',
     fields: [
         {name: 'delivered', type: 'int'},

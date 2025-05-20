@@ -1,4 +1,4 @@
-Ext.define('riderApp.controller.riderController', {
+Ext.define('MyApp.controller.riderController', {
     extend: 'Ext.app.Controller',
 
     init: function() {
