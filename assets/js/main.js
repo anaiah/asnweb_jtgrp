@@ -1601,7 +1601,7 @@ Ext.onReady(function(){
 
     
     // Get the controller
-    asn.ctrlExt = asn.appExt.getController('myController');
+    asn.ctrlExt = asn.appExt.getController('riderController');
        
     asn.getMonthlyTransaction(util.getCookie('f_dbId'))
     
