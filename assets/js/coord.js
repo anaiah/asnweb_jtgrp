@@ -385,6 +385,7 @@ const asn = {
             
             var options = {
                 series: [{
+                    name: 'Initial Deliveries', // ADD A NAME HERE - IMPORTANT
                     data: null
                 }],
 
@@ -427,6 +428,7 @@ const asn = {
                               }, 500);
                         }
                     }, //END EVENTS
+
                 },
                 //tooltip
                 tooltip: {
