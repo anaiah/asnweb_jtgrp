@@ -445,7 +445,7 @@ const asn = {
                 },
                 //tooltip
                 tooltip: {
-                    enabled: true,
+                    //enabled: true,
                     //shared: true,
                     custom: function({ series, seriesIndex, dataPointIndex, w }) {
                       const value = series[seriesIndex][dataPointIndex];
