@@ -17,7 +17,7 @@ Ext.define('riderApp.view.mainPanel', {
             xtype: 'grid',
             title: 'Current Month Transaction',
             store: 'monthlyStore', // Your store
-            id:'locationGrid',
+            id:'monthlyGrid',
             border:true,
             //width: 300,
             height:'100%',
