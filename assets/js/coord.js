@@ -434,6 +434,7 @@ const asn = {
 
                 events: {
                     dataPointClick: function(event, chartContext, config) {
+                        console.log('clickedbar')
                       // config contains the data point info
                       const { dataPointIndex, seriesIndex } = config;
               
