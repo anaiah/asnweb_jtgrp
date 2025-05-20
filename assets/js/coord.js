@@ -405,7 +405,7 @@ const asn = {
                           chart.openTooltip({
                             dataPointIndex: dataPointIndex,
                             seriesIndex: seriesIndex
-                          });
+                          }); 
                         }
                     },
                 },

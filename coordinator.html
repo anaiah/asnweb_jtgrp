@@ -73,6 +73,9 @@
     width: 400px;
     height: 350px;
   } 
+  .apexcharts-tooltip {
+  display: none !important;
+}
   </style>
 </head>
 
@@ -247,6 +250,10 @@
   <script> 
     document.addEventListener('DOMContentLoaded', function() {
         console.log('===coordinator complete==')
+
+        document.querySelector('#chart').addEventListener('click', function(e) {
+        console.log('Clicked on chart element', e);
+        });
     })
   </script>
 
