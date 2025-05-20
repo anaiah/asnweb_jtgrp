@@ -366,7 +366,7 @@ const asn = {
         })
         .then((xdata) => {
 
-            console.log('merege',xdata)
+            //console.log('merge',xdata.length)
 
             //const mergedData = ''dash.mergeFinalData(xdata.xdata, cTrans );
             //const mergedData = asn.mergeFinalData(xdata.xdata, cTrans );
@@ -381,8 +381,6 @@ const asn = {
                 [colors[i], colors[j]] = [colors[j], colors[i]]; // swap elements
             }//endfor   
 
-          
-            
             var options = {
                 series: [{
                     //name: 'Initial Deliveries', // ADD A NAME HERE - IMPORTANT
@@ -444,9 +442,6 @@ const asn = {
                     }    
                 },
 
-                
-                
-
             };//end options
 
             let series_data=[]
@@ -473,9 +468,9 @@ const asn = {
 
             options.series[0].data = series_data
 
-            console.log( 'series[0]', options.series[0].data )
+            //console.log( 'series[0]', options.series[0].data )
             options.xaxis.categories = category_data
-             console.log( options.xaxis.categories)
+             //console.log( options.xaxis.categories)
 
             chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
             chart.render();
