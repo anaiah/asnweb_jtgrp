@@ -373,6 +373,7 @@ const asn = {
             
             //let colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF5'];
             let colors = ['#FF0000', '#FFFF00', '#0000FF', '#00FFFF'];
+            let chart
 
             // Fisher-Yates shuffle
             for (let i = colors.length - 1; i > 0; i--) {
@@ -490,7 +491,7 @@ const asn = {
             options.xaxis.categories = category_data
              console.log( options.xaxis.categories)
 
-            var chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
+            chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
             chart.render();
      
         })
