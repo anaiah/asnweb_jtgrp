@@ -413,8 +413,8 @@ const asn = {
                             const dataPointIndex = config.dataPointIndex;
             
                             // Get the data for the clicked bar
-                            const xValue = chart.series[seriesIndex].data[dataPointIndex].x; // Or however your data is structured
-                            const yValue = chart.series[seriesIndex].data[dataPointIndex].y;
+                            //const xValue = chart.series[seriesIndex].data[dataPointIndex].x; // Or however your data is structured
+                            //const yValue = chart.series[seriesIndex].data[dataPointIndex].y;
             
 
                             chart.openTooltip({
