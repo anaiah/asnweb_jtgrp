@@ -401,13 +401,15 @@ const asn = {
                           
                           console.log('xchart',chart); // Check what is this?
                           // Use the outside variable
+                        //   if (myChart) {
+                        //     myChart.openTooltip({
+                        //       dataPointIndex: config.dataPointIndex,
+                        //       seriesIndex: config.seriesIndex
+                        //     });
+                        //   }
                           if (myChart) {
-                            myChart.openTooltip({
-                              dataPointIndex: config.dataPointIndex,
-                              seriesIndex: config.seriesIndex
-                            });
+                            myChart.showTooltip({ dataPointIndex: config.dataPointIndex, seriesIndex: config.seriesIndex });
                           }
-
                          
                         }
                     },
