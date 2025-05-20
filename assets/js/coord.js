@@ -443,7 +443,7 @@ const asn = {
                       return `
                         <div style="background:#fff; padding:10px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-family:Arial, sans-serif;">
                           <h4 style="margin:0; font-size:14px; color:#333;">${category}</h4>
-                          <p style="margin:8px 0 0 0; font-size:12px; color:#666;">Sales: <strong>${value}</strong></p>
+                          <p style="margin:8px 0 0 0; font-size:12px; color:#666;">Parcel Delivered: <strong>${value}</strong></p>
                         </div>`;
                     }
                   }
