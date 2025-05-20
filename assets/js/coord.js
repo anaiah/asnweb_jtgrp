@@ -400,13 +400,14 @@ const asn = {
                     events: {
                         dataPointSelection: (event, chartContext, config) => {
 
-                            console.log('click is here',  chart)
-                            if (chart) {
+                            console.log('click is here',  chart, config.seriesIndex,  config.dataPointIndex)
+                            chart.openTooltip()
+                            
                                 chart.openTooltip({
                                     dataPointIndex: config.dataPointIndex,
                                     seriesIndex: config.seriesIndex
                                 });
-                            }
+                            
                         }    
                     }, //END EVENTS
 
