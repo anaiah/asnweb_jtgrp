@@ -22,7 +22,7 @@
             // Launch method - called when app is ready
             launch: function() {
                 
-                console.log('====Ext.app 4.2 Launch() ====',)
+                console.log('====Ext.app 4.2 Launch()RiderApp ====',)
                 riderApp.app = this
 
                 var myPanel = Ext.create('riderApp.view.mainPanel', {
@@ -30,6 +30,7 @@
                     width: 600,
                     height: 400
                 });
+                
             },
 
         });

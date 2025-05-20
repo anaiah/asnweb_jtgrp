@@ -16,7 +16,7 @@ Ext.define('riderApp.view.mainPanel', {
             region: 'west',
             xtype: 'grid',
             title: 'Current Month Transaction',
-            store: 'locationStore', // Your store
+            store: 'monthlyStore', // Your store
             id:'locationGrid',
             border:true,
             //width: 300,
@@ -272,57 +272,6 @@ Ext.define('riderApp.view.mainPanel', {
                 
             },
            
-            showToast:false,
-
-            //=================functions
-            makesure:(id,ponumber,sinumber)=>{
-
-                if(Ext.getCmp('locationGrid').showToast){
-                    return false;
-                }
-
-
-                const butt1 = `<div><p class='text-center'>ARE YOU SURE YOU WANT TO APPROVE PO#<br>${ponumber}?<br><br /><button type='button' id='btnYes' class='btn btn-primary'>Yes</button>
-                &nbsp;<button type='button' id='btnNo' class='btn btn-primary'>No</button></p></div>`
-                
-                Ext.getCmp('poGrid').showToast = true
-
-                Toastify({
-                    text: butt1,
-                    duration:0,
-                    close:false,
-                    position:'center',
-                    offset:{
-                        x: 0,
-                        y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                    },
-                    escapeMarkup:false, //to create html
-                    style: {
-                        
-                        background: "linear-gradient(to right, #00b09b, #96c93d)",
-                    }
-                }).showToast();
-
-                $('#btnYes').on('click', function () {
-                    
-                    var xxx = document.querySelector('.toastify')
-                    xxx.classList.add('hide-me')
-
-                    console.log('**SAVING***',id,ponumber)
-                    Ext.getCmp('locationGrid').showToast = false
-
-                   //// dash.equipmentApprove( ponumber,sinumber, id ) //dash obj.method approve
-                });
-
-                $('#btnNo').on('click', function () {
-                    
-                    var xxx = document.querySelector('.toastify')
-                    xxx.classList.add('hide-me')
-                    Ext.getCmp('locationGrid').showToast = false
-                    return false
-                });
-
-            },
             
            
         },//take  out east grid for now
