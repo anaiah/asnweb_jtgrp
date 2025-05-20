@@ -399,6 +399,9 @@ const asn = {
 
                     events: {
                         dataPointSelection: (event, chartContext, config) => {
+
+                            console.log('click is here')
+                            
                             // Instead of openTooltip, toggle the `enabled` state temporarily
                             chart.updateOptions({
                                 tooltip: {
