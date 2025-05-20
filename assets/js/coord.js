@@ -396,38 +396,45 @@ const asn = {
                     redrawOnWindowResize: false,
                     width: 400,
 
-                    // events: {
-                    //     dataPointClick: function(e, chart, config) {
-                    //       console.log('clickedbar');
-                    //       chart.openTooltip({
-                    //         dataPointIndex: config.dataPointIndex,
-                    //         seriesIndex: config.seriesIndex
-                    //       });
-                    //     }
-                    //   }
-
                     events: {
                         dataPointSelection: (event, chartContext, config) => {
-                            // 'config' contains information about the clicked data point
-                            const seriesIndex = config.seriesIndex;
-                            const dataPointIndex = config.dataPointIndex;
-            
-                            // Get the data for the clicked bar
-                            //const xValue = chart.series[seriesIndex].data[dataPointIndex].x; // Or however your data is structured
-                            //const yValue = chart.series[seriesIndex].data[dataPointIndex].y;
-            
-
-                            chart.openTooltip({
-                                        dataPointIndex: config.dataPointIndex,
-                                        seriesIndex: config.seriesIndex
-                                      });
-                            // Create and display your custom tooltip (implementation depends on your needs)
-                            //showCustomTooltip(xValue, yValue, event.clientX, event.clientY); // Example
+                            // Instead of openTooltip, toggle the `enabled` state temporarily
+                            chart.updateOptions({
+                                tooltip: {
+                                    enabled: true // Enable tooltip temporarily for this click
+                                }
+                            }, false); // `false` to prevent full re-render
+                
+                            // Programmatically trigger the tooltip
+                            chart.toggleSeries(chart.seriesNames[config.seriesIndex]);
+                
+                            // After a short delay, disable the tooltip again
+                            setTimeout(() => {
+                                chart.updateOptions({
+                                    tooltip: {
+                                        enabled: false // Disable after showing
+                                    }
+                                }, false); // `false` to prevent full re-render
+                            }, 500); // Adjust delay as needed (milliseconds)
                         }
-                    }
-                    
+                    }, //END EVENTS    
                 },
+                //tooltip
+                tooltip: {
+                    enabled: false,
+                    shared: false,
+                    custom: function({ series, seriesIndex, dataPointIndex, w }) {
+                    const value = series[seriesIndex][dataPointIndex];
+                    const category = w.globals.labels[dataPointIndex];
 
+                    // Custom HTML styling for tooltip
+                    return `
+                        <div style="background:#fff; padding:10px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-family:Arial, sans-serif;">
+                        <h4 style="margin:0; font-size:14px; color:#333;">${category}</h4>
+                        <p style="margin:8px 0 0 0; font-size:12px; color:#666;">Parcel Delivered: <strong>${value}</strong></p>
+                        </div>`;
+                    }
+                },
                 
                 plotOptions: {
                     bar: {
@@ -466,22 +473,7 @@ const asn = {
                 },
 
                 
-                //tooltip
-                tooltip: {
-                    enabled: false,
-                    shared: false,
-                    custom: function({ series, seriesIndex, dataPointIndex, w }) {
-                      const value = series[seriesIndex][dataPointIndex];
-                      const category = w.globals.labels[dataPointIndex];
                 
-                      // Custom HTML styling for tooltip
-                      return `
-                        <div style="background:#fff; padding:10px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-family:Arial, sans-serif;">
-                          <h4 style="margin:0; font-size:14px; color:#333;">${category}</h4>
-                          <p style="margin:8px 0 0 0; font-size:12px; color:#666;">Parcel Delivered: <strong>${value}</strong></p>
-                        </div>`;
-                    }
-                  }
 
             };//end options
 
