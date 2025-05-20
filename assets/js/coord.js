@@ -403,7 +403,7 @@ const asn = {
                     }
                 },
                 dataLabels: {
-                    enabled: false
+                    enabled: true
                 },
                 xaxis: {
                     categories: null,
@@ -434,18 +434,16 @@ const asn = {
             let series_data=[]
             let category_data=[]
 
-            xdata.forEach( hub  => {
+            xdata.forEach( item  => {
         
-                    series_data.push( (!hub.parcel_delivered ? 0 : hub.parcel_delivered) )
+                    series_data.push( (! item.parcel_delivered ? 0 : item.parcel_delivered) )
                     
                     if(ctrans=="rider"){
-                        category_data.push( hub.xname)
+                        category_data.push( item.xname)
     
                     }else{
-                        category_data.push( hub.hub)
-    
+                        category_data.push( item.hub)
                     }    
-                    
              });
 
             options.series[0].data = series_data
@@ -453,17 +451,6 @@ const asn = {
 
             var chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
             chart.render();
-
-            // if(ctrans=="rider"){
-            //     chart.updateOptions({
-            //         yaxis: {
-            //           title: {
-            //             text: 'RIDERS' // your new dynamic text
-            //           }
-            //         }
-            //     });
-            // }
-            // //ennd exis
      
         })
         .catch((error) => {
