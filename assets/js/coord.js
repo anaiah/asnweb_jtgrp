@@ -372,7 +372,7 @@ const asn = {
             //const mergedData = asn.mergeFinalData(xdata.xdata, cTrans );
             
             //let colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF5'];
-            let colors = ['#FF0000', '#FFFF00', '#0000FF', '#00FFFF'];
+            let colors = ['#0277bd', '#00838f   ', '#00695c', '#2e7d32','#558b2f','#9e9d24','#ff8f00','#d84315'];
             let chart
 
             // Fisher-Yates shuffle
