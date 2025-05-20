@@ -434,7 +434,7 @@ const asn = {
                 //tooltip
                 tooltip: {
                     enabled: true,
-                    shared: true,
+                    //shared: true,
                     custom: function({ series, seriesIndex, dataPointIndex, w }) {
                       const value = series[seriesIndex][dataPointIndex];
                       const category = w.globals.labels[dataPointIndex];
