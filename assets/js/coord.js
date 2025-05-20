@@ -406,18 +406,27 @@ const asn = {
                             }, false); // `false` to prevent full re-render
                 
                             // Programmatically trigger the tooltip
-                            chart.toggleSeries(chart.seriesNames[config.seriesIndex]);
-                
-                            // After a short delay, disable the tooltip again
-                            setTimeout(() => {
-                                chart.updateOptions({
-                                    tooltip: {
-                                        enabled: false // Disable after showing
-                                    }
-                                }, false); // `false` to prevent full re-render
-                            }, 500); // Adjust delay as needed (milliseconds)
+                            console.log('chart.seriesNames:', chart.seriesNames);
+                            console.log('config.seriesIndex:', config.seriesIndex);
+                              setTimeout(() => {
+                                  if (chart.seriesNames && chart.seriesNames[config.seriesIndex]) {  // Check if seriesNames exists and has the index
+                                      chart.toggleSeries(chart.seriesNames[config.seriesIndex]);
+                                      chart.updateOptions({
+                                          tooltip: {
+                                              enabled: false // Disable after showing
+                                          }
+                                      }, false); // `false` to prevent full re-render
+                                  } else {
+                                      console.warn("chart.seriesNames is undefined or seriesIndex is out of bounds.");
+                                      chart.updateOptions({
+                                          tooltip: {
+                                              enabled: false // Disable after showing
+                                          }
+                                      }, false); // `false` to prevent full re-render
+                                  }
+                              }, 500);
                         }
-                    }, //END EVENTS    
+                    }, //END EVENTS
                 },
                 //tooltip
                 tooltip: {
