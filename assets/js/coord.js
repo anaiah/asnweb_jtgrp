@@ -436,7 +436,7 @@ const asn = {
 
             xdata.forEach( item  => {
         
-                    series_data.push( (! item.parcel_delivered ? 0 : item.parcel_delivered) )
+                    series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
                     
                     if(ctrans=="rider"){
                         category_data.push( item.xname)
@@ -451,7 +451,7 @@ const asn = {
             console.log( options.series[0].data )
             options.xaxis.categories = category_data
              console.log( options.xaxis.categories)
-             
+
             var chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
             chart.render();
      
