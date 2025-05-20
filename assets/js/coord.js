@@ -402,8 +402,11 @@ const asn = {
 
                             console.log('click is here',  chart)
                             if (chart) {
-                                chart.showTooltip({ dataPointIndex: config.dataPointIndex, seriesIndex: config.seriesIndex });
-                              }
+                                chart.openTooltip({
+                                    dataPointIndex: config.dataPointIndex,
+                                    seriesIndex: config.seriesIndex
+                                });
+                            }
                         }    
                     }, //END EVENTS
 
