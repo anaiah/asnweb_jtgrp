@@ -38,7 +38,7 @@ Ext.define('MyApp.controller.riderController', {
 
     //== load po store / grid
     sendData:(ydata)=>{
-        console.log('myController.js===== after getpo, loadPO',ydata.length)
+        console.log('riderController.js===== after asn.getMonthlyTransaction()===',ydata.length)
 
         if(ydata) { // if data  not null
             //====LOAD PO FOR APPROVAL====

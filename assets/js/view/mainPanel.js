@@ -239,7 +239,7 @@ Ext.define('MyApp.view.mainPanel', {
                       //console.log( record.get("location"))      
                 },
                 selectionchange: function(model, records ) {
-                    console.log('poGrid SELECTION CHANGE FIRED======')
+                    console.log('monnthlyGrid SELECTION CHANGE FIRED======')
                     
                     if(records[0]){
                         var idx = this.getStore().indexOf(records[0]);
