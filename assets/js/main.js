@@ -753,7 +753,7 @@ const asn = {
 
     collapz: () => {
         console.log('Setting up collapse...');
-        const links = document.querySelectorAll('#sidebarnav a');
+        const links = document.querySelectorAll('#leftsidebar a');
         console.log('Links found:', links.length);
         links.forEach(function(link) {
           link.addEventListener('click', function(e) {
