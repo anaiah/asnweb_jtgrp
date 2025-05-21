@@ -501,7 +501,6 @@ const asn = {
                 if(item.location){
                     category_data.push(item.location )
                     series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
-            
                 }
                         
              });
@@ -732,7 +731,6 @@ const asn = {
 
             asn.collapz()//invoke one time
             
-
             return true;
             
         })	
@@ -745,9 +743,7 @@ const asn = {
    
 	//==,= main run
 	init :  () => {
-
         asn.getmenu(util.getCookie('grp_id')) 
-
         console.log('===asn.init()=== loaded!')
 
         asn.speaks = (txt) =>{
@@ -782,7 +778,6 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
         
-
         //===load mtd-chart
         asn.loadbarMTDChart()
 
@@ -800,7 +795,6 @@ const asn = {
 
 	}//END init
 
-
 } //======================= end admin obj==========//
 
 Ext.onReady(function(){
@@ -816,7 +810,6 @@ Ext.onReady(function(){
 
 //osndp.Bubbl
 window.scrollTo(0,0);
-
 asn.init() //instantiate now
 
 
