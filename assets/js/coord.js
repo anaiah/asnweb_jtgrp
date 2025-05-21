@@ -408,6 +408,8 @@ const asn = {
         })
         .then((xdata) => {
 
+            console.log('mtd data==',  xdata)
+            
             let colors = ['#0277bd', '#00838f   ', '#00695c', '#2e7d32','#558b2f','#9e9d24','#ff8f00','#d84315'];
             let mtdchart
 
