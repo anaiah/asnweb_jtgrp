@@ -80,7 +80,7 @@ Ext.define('MyApp.view.headareaGrid' ,{
         selectionchange: function(model, records ) {
         
             console.log('hub grid selectionchange() fired')
-            this.setLoading(`..searching`);
+           // this.setLoading(`..searching`);
 
             if(records[0]){ 
 
