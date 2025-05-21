@@ -84,6 +84,7 @@ Ext.define('MyApp.view.headareaGrid' ,{
 
             if(records[0]){ 
 
+                /*  BALIK MO ITO CARLO LATER HA?
                 
                 var idx = this.getStore().indexOf(records[0]);
                 hub_search = this.getStore().getAt(idx).get('hub')
@@ -91,7 +92,6 @@ Ext.define('MyApp.view.headareaGrid' ,{
                 
                 console.log('hubsearch', hub_search)
 
-                /*  BALIK MO ITO CARLO LATER HA?
                 const riderstore = Ext.data.StoreManager.lookup('riderStore') 
                 
                 riderstore.removeAll()
