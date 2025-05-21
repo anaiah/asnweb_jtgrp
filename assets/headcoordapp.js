@@ -27,7 +27,7 @@ Ext.application({
 
         
         var locGrid = Ext.create('MyApp.view.headareaGrid', {
-            renderTo: 'grid_month',
+            renderTo: 'area-grid',
             width: 500,
             height: 300
         });
