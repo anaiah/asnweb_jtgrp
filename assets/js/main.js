@@ -753,7 +753,7 @@ const asn = {
 
     collapz: () => {
         console.log('Setting up collapse...');
-        const links = document.querySelectorAll('#leftsidebar a');
+        const links = document.querySelectorAll('#sidebarnav a');
         console.log('Links found:', links.length);
         links.forEach(function(link) {
           link.addEventListener('click', function(e) {
@@ -1684,6 +1684,10 @@ Ext.onReady(function(){
     asn.ctrlExt = asn.appExt.getController('riderController');
        
     asn.getMonthlyTransaction(util.getCookie('f_dbId'))
+
+    //listener to click sidebar
+    asn.collapz()
+    
     
 })
 
