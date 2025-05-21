@@ -770,8 +770,9 @@ const asn = {
                 document.querySelector(hrefAttr).scrollIntoView({ behavior: 'smooth' });
             } else if (hrefAttr.startsWith('javascript:')) {
                 // Extract and call the function
-                const funcName = hrefAttr.substring('javascript:'.length);
-                window[funcName]();
+                // const funcName = hrefAttr.substring('javascript:'.length);
+                // window[funcName]();
+                console.log(hrefAttr)
             }
 
             if (window.innerWidth < 1200) {
