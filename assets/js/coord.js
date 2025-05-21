@@ -396,6 +396,119 @@ const asn = {
                     
     },
 
+    //==== for mtd chart
+    loadbarMTDChart: async()=>{
+        console.log('loading... loadbarMTDchart()')
+
+        await fetch(`${myIp}/coor/mtdlocation/${util.getCookie('f_email')}`,{
+            cache: 'reload'
+        })
+        .then((res) => {  //promise... then 
+            return res.json();
+        })
+        .then((xdata) => {
+
+            let colors = ['#0277bd', '#00838f   ', '#00695c', '#2e7d32','#558b2f','#9e9d24','#ff8f00','#d84315'];
+            let mtdchart
+
+            // Fisher-Yates shuffle
+            for (let i = colors.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [colors[i], colors[j]] = [colors[j], colors[i]]; // swap elements
+            }//endfor   
+
+            var options = {
+                series: [{
+                    //name: 'Initial Deliveries', // ADD A NAME HERE - IMPORTANT
+                    //data: [2,2,3]
+                }],
+
+                colors: colors,
+                chart: {
+                    type: 'bar',
+                    height: 250,
+                    redrawOnParentResize: false,
+                    redrawOnWindowResize: false,
+                    width: 400,
+
+                },
+                //tooltip
+                tooltip: {
+                    enabled: true,
+                    shared: false,
+                    custom: ({ series, seriesIndex, dataPointIndex, w }) => {
+                      const val = series[seriesIndex][dataPointIndex];
+                      const cat = w.globals.labels[dataPointIndex];
+                      return `<div style="background:#fff;padding:10px;border-radius:8px;">${cat}: ${val}</div>`;
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                    borderRadius: 4,
+                    borderRadiusApplication: 'end',
+                    horizontal: true,
+                    columnWidth: '30%' // Thinner bars
+                    
+                    }
+                },
+                dataLabels: {
+                    enabled: true
+                },
+                xaxis: {
+                    categories: [],
+                    title: {
+                        text: 'PARCEL SUCCESSFULLY DELIVERED',
+                        style: {
+                            fontSize: '10px',
+                            fontWeight: 'bold',
+                            fontFamily: 'Helvetica, Arial, sans-serif',
+                            color: '#6699ff' // set your desired color
+                        }
+                    }
+                },
+                yaxis: {
+                    title: {
+                        text: 'LOCATION',
+                        style: {
+                            fontSize: '10px',
+                            fontWeight: 'bold',
+                            fontFamily: 'Helvetica, Arial, sans-serif',
+                            color: '#6699ff' // set your desired color
+                        }
+                    }    
+                },
+
+            };//end options
+
+            let series_data=[]
+            let category_data=[]
+
+            xdata.forEach( item  => {
+                if(item.location){
+                    category_data.push(item.location )
+                    series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
+            
+                }
+                        
+             });
+
+            options.series[0].data = series_data
+
+            //console.log( 'series[0]', options.series[0].data )
+            options.xaxis.categories = category_data
+             //console.log( options.xaxis.categories)
+
+            mtdchart = new ApexCharts(document.querySelector('#mtd-chart'), options);
+            mtdchart.render();
+     
+        })
+        .catch((error) => {
+            console.error('Error:', error)
+        })
+        
+    },
+
+    //===for top 5 chart
     loadbarChart: async( ctrans )=>{
         console.log('loading... loadbarchart()')
 
@@ -521,10 +634,10 @@ const asn = {
             console.error('Error:', error)
         })
         
-    },
+    }, //===end top 5
+
     appExt:null,
     ctrlExt:null,
-
 
      //===========GETMENU==========
      getmenu: async(grp_id) =>{
@@ -655,8 +768,14 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
         
+
+        //===load mtd-chart
+        asn.loadbarMTDChart()
+
+        //==load grid month, rider month
         asn.loadbarChart('hub')
 
+        //===load top5
         setTimeout(() => {
             asn.loadbarChart('rider');
         }, 1000)
