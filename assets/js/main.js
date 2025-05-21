@@ -771,14 +771,7 @@ const asn = {
             } else if (hrefAttr.startsWith('javascript:')) {
                 // Extract and call the function
                 const funcName = hrefAttr.substring('javascript:'.length);
-            if (typeof window[funcName] === 'function') {
                 window[funcName]();
-            } else {
-                console.warn('Function', funcName, 'is not defined');
-            }
-            } else {
-                // For other URLs, fallback (e.g., open in new tab, etc.)
-                window.location.href = hrefAttr;
             }
 
             if (window.innerWidth < 1200) {
