@@ -764,6 +764,8 @@ const asn = {
                     document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
                 }
                 
+                console.log('Window width:', window.innerWidth);
+                
                 // Collapse sidebar on mobile
                 if (window.innerWidth < 1200) {
                     document.getElementById('sidebarCollapse').click();
