@@ -1,8 +1,17 @@
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.panel.*',
+    'Ext.form.field.Number',
+    'Ext.form.field.Date',
+    'Ext.tip.QuickTipManager'
+]);
+  
   //load ext
         Ext.application({
             name: 'MyApp',
             appFolder: '/html/assets/js',
-            models: ['monthlyModel'],
+            //models: ['monthlyModel'],
             stores: 
             [
                 'locationStore',
@@ -24,7 +33,7 @@
             launch: function() {
                 
                 console.log('====Ext.app 4.2 Launch() ====',)
-                MyApp.app = this
+                MyApp.app = this    
 
                 var locGrid = Ext.create('MyApp.view.locationGrid', {
                     renderTo: 'grid_month',
@@ -37,35 +46,5 @@
                     height: 400
                 });
 
-                
-
             },
-
-            test:(obj)=>{
-                //console.log('success', obj)
-                const myarg = []
-                myarg.push( obj  )
-
-                //var store = Ext.getStore('poStore');
-                var storeInstance = Ext.data.StoreManager.lookup('poStore')
-
-                storeInstance.loadData(myarg)
-
-                //storeInstance.load()
-
-                console.log(storeInstance)
-
-                if (storeInstance) {
-                    // Get an array of all records
-                    var records = storeInstance.getRange();
-                
-                    // Loop through records
-                    Ext.each(records, function(record) {
-                        console.log('tutssa',record.get('po_number'), record.get('invoice_number'));
-                    });
-                } else{
-                    console.log('boge')
-                }
-
-            }
         });
