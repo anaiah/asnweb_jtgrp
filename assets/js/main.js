@@ -772,7 +772,21 @@ const asn = {
                 // Extract and call the function
                 // const funcName = hrefAttr.substring('javascript:'.length);
                 // window[funcName]();
-                window.eval(hrefAttr)
+                // Extract the code after 'javascript:'
+                const jsCode = hrefAttr.substring('javascript:'.length).trim();
+                    
+                // If the code is a function call like util.goNow()
+                // or just an expression, you can use Function constructor:
+
+                try {
+                    // Create a new Function and execute it safely
+                    new Function(jsCode)();
+                } catch (err) {
+                    console.error('Error executing JavaScript from href:', err);
+                }
+
+
+                //window.eval(hrefAttr)
             }
 
             if (window.innerWidth < 1200) {
