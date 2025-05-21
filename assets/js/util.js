@@ -41,7 +41,8 @@ const util = {
 	scrollsTo:(cTarget)=>{
         //asn.collapz()
 		const elem = document.getElementById(cTarget)
-		elem.scrollIntoView()
+		elem.scrollIntoView({ behavior: 'smooth' });
+
 		
 	},
 
@@ -790,7 +791,7 @@ const util = {
 
                 document.getElementById('f_transnumber').value = util.getCode()
 
-                asn.collapz();
+                //asn.collapz();
             break
 
             case "remittanceModal":
@@ -821,7 +822,7 @@ const util = {
  
                 }//eif
 
-                asn.collapz();
+                //asn.collapz();
             break
 
 

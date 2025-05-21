@@ -755,16 +755,18 @@ const asn = {
         const links = document.querySelectorAll('#sidebarnav a');
         links.forEach(function(link) {
             link.addEventListener('click', function(e) {
-            e.preventDefault(); // prevent default link behavior
-            const targetId = this.getAttribute('href');
-            if (targetId && targetId.startsWith('#')) {
-                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-            }
-            
-            // Collapse sidebar on mobile
-            if (window.innerWidth < 1200) {
-                document.getElementById('sidebarCollapse').click();
-            }
+                e.preventDefault(); // prevent default link behavior
+                
+                const targetId = this.getAttribute('href');
+                
+                if (targetId || targetId.startsWith('#')) {
+                    document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Collapse sidebar on mobile
+                if (window.innerWidth < 1200) {
+                    document.getElementById('sidebarCollapse').click();
+                }
             });
         });
     },
