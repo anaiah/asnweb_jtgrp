@@ -400,7 +400,7 @@ const asn = {
     loadbarMTDChart: async()=>{
         console.log('loading... loadbarMTDchart()')
 
-        await fetch(`${myIp}/coor/mtdlocation/${util.getCookie('f_email')}`,{
+        await fetch(`${myIp}/headcoor/mtdlocation/${util.getCookie('f_email')}`,{
             cache: 'reload'
         })
         .then((res) => {  //promise... then 
@@ -525,7 +525,7 @@ const asn = {
     loadbarChart: async( ctrans )=>{
         console.log('loading... loadbarchart()')
 
-        await fetch(`${myIp}/coor/topfivehub/${util.getCookie('f_email')}/${ctrans}`,{
+        await fetch(`${myIp}/headcoor/topfivehub/${util.getCookie('f_email')}/${ctrans}`,{
             cache: 'reload'
         })
         .then((res) => {  //promise... then 
