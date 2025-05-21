@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+
+  <title>AsiaNow Enc. Inc.</title>
+  <!-- <link rel="shortcut icon" type="image/png" href="../html/assets/images/logos/favicon.png" /> -->
+  <link rel="shortcut icon" href="/html/assets/images/logos/asiaoneico.png" type="image/x-icon" sizes="32x32">  
+
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+  <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+
+  <!-- partial tabler css -->
+  <link rel="stylesheet" href="/html/assets/css/styles.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/css/tabler.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+
+  <!---//toastify cdn-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  
+  <!-- extjs -->
+  <link rel="stylesheet" href="/html/extjs422/resources/ext-theme-neptune/ext-theme-neptune-all.css">
+  
+  <link rel="stylesheet" href="/html/assets/css/osndp.css" />
+
+  <style>
+    .hide-me{
+      display:none;
+    }
+   .font10p{
+      color:green;
+      font-size:10px;
+   }
+   .font11p{
+      color:darkslategray;
+      font-size:13px;
+   }
+   /* Bootstrap-like styles for the button */
+  .my-bootstrap-btn {
+      /* background-color: #007bff !important  ; Bootstrap primary blue */
+      border: 1px solid #0069d9;
+      color: #fff; /* Bootstrap text color for btn-primary */
+      /* background-image: url("")  !important; */
+      padding: 5px 12px;
+      border-radius: 4px; /* Bootstrap border radius */
+      font-size: 14px;
+      cursor: pointer;
+  }
+  .my-bootstrap-btn:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+  }
+  .x-bottom-toolbar {
+    height: 60px; /* desired height */
+    line-height: 60px; /* to vertically center text/buttons */
+    padding: 15px; /* optional padding */
+  }
+ 
+  #chartContainer {
+    width: 400px;
+    height: 350px;
+  } 
+  /* .apexcharts-tooltip {
+  display: none !important;
+} */
+  </style>
+</head>
+
+<body>
+  
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar" >
+      <!-- Sidebar scroll-->
+      <div id="leftsidebar" >
+        <!--//LOGO//-->
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="/jtx" class="text-nowrap logo-img">
+            <img src="/html/assets/images/logos/asiaone_.png" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+
+        <!-- //============= Sidebar navigation ===============//-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav"></ul>
+   
+        </nav>
+        <!-- End Sidebar navigation -->
+      
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header boxshadoe">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                <i class="ti ti-bell-ringing"></i>
+                <div class="notification bg-primary rounded-circle"></div>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              
+              <!-- <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a>
+               -->
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+
+                  <!--//=== AVATAR ==== //-->
+                  <img id='img-profile' src="" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-mail fs-6"></i>
+                      <p class="mb-0 fs-3">My Account</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-list-check fs-6"></i>
+                      <p class="mb-0 fs-3">My Task</p>
+                    </a>
+                    <a href="./" class="btn btn-danger mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+ 
+      <div class="container-fluid mb-0"> </div>
+
+      <div class="container my-3">
+        <div class="row" id="trans-month">
+          <!-- First Column: Two stacked cards -->
+          <div class="col-lg-6 mb-3 mb-lg-0">
+            <!-- First Card: Month Transaction -->
+            <div class="card boxshadoe shadow mb-3">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold">Month-To-Date Transaction</h5>
+                <div class="table-responsive mb-2">
+                  <div id="grid_month"></div>
+                </div>
+                <div class="table-responsive">
+                  <div id="rider_grid"></div>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Second Card: New Card below the first -->
+            <div class="card boxshadoe shadow">
+              <div class="card-body p-4">
+                <h5 class="fw-semibold">Month-To-Date Location</h5>
+                <!-- Your content here -->
+                <div class="table-responsive">
+                  <div id="mtd-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Second Column with chart cards stacked -->
+          <div class="col-lg-6" id="xchart">
+            <div class="d-flex flex-column gap-3">
+              <!-- Chart Card 1 -->
+              <div class="card boxshadoe shadow">
+                <div class="card-body p-4">
+                  <h5 class="fw-semibold mb-3">Top 5 Hub</h5>
+                  <div id="hub-chart"></div>
+                </div>
+              </div>
+              <!-- Chart Card 2 -->
+              <div class="card boxshadoe shadow">
+                <div class="card-body p-4">
+                  <h5 class="fw-semibold mb-3">Top 5 Rider</h5>
+                  <div id="rider-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
+  
+  <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/js/tabler.min.js"></script>
+
+  <script src="/html/assets/libs/jquery/dist/jquery.min.js"></script> <!--//sidebarmenu dependent-->
+  <!-- <script src="/html/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+  
+  <script src="/html/assets/js/sidebarmenu.js"></script>
+  <script src="/html/assets/js/app.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>  
+
+  <script src="/html/assets/libs/simplebar/dist/simplebar.js"></script>
+
+  <!-- toastify -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+  <!-- offline version -->
+  <!-- <script src="http://192.168.165.221:10000/socket.io/socket.io.js"></script> -->
+  
+  <!-- //online version//-->
+  <script src="https://asn-jtgrp-api.onrender.com/socket.io/socket.io.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+  <script src="/html/extjs422/ext-all.js"></script>
+  <script src="/html/extjs422/ext-theme-neptune.js"></script>
+
+  
+  <script src="/html/assets/headcoordapp.js?v=8"></script>
+  <script src="/html/assets/js/util.js?v=8"></script>
+  <script src="/html/assets/js/headcoord.js?v=8"></script>
+
+    
+  <!-- <script src="/html/assets/js/main.js?v=8"></script> -->
+  <!-- <script src="/html/assets/js/listen.js?v=8"></script> -->
+
+  <!-- takeout muna gridtab palit extjs -->
+  <!-- <script src="/html/assets/js/gridtab.js?v=8"></script> -->
+
+  <script> 
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('===HEAD coordinator complete==')
+    })
+  </script>
+
+</body>
+
+</html>
