@@ -1,4 +1,4 @@
-Ext.define('riderApp.store.locationStore', {
+Ext.define('MyApp.store.locationStore', {
     extend: 'Ext.data.Store',
 
     //model: 'MyApp.model.locationModel',
