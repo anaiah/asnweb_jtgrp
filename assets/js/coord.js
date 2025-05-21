@@ -409,7 +409,19 @@ const asn = {
         .then((xdata) => {
 
             console.log('mtd data==',  xdata)
+            // Replace null qty with 0
+            xdata.forEach(item => {
+                if (item.parcel_delivered === null) {
+                    item.parcel_delivered  = 0;
+                }
+            });
             
+            // Sort the array in descending order (change to < for ascending)
+            xdata.sort((a, b) => b.parcel_delivered - a.parcel_delivered);
+
+            //asc order sample
+            //xdata.sort((a, b) => a.qty - b.qty);
+
             let colors = ['#0277bd', '#00838f   ', '#00695c', '#2e7d32','#558b2f','#9e9d24','#ff8f00','#d84315'];
             let mtdchart
 
