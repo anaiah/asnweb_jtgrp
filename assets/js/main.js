@@ -752,14 +752,21 @@ const asn = {
     speaks:null,
 
     collapz: () =>{
-        if( ! document.getElementById("sidebarCollapse") ){
-            //document.getElementById('filter_number').focus()
-        }else{
-            document.getElementById("sidebarCollapse").click()
-           // document.getElementById('filter_number').focus()
-        }
-        /// take out muna document.getElementById("sidebarCollapse").click()
-        //focus on emp number claims filter
+        const links = document.querySelectorAll('#sidebarnav a');
+        links.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+            e.preventDefault(); // prevent default link behavior
+            const targetId = this.getAttribute('href');
+            if (targetId && targetId.startsWith('#')) {
+                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Collapse sidebar on mobile
+            if (window.innerWidth < 1200) {
+                document.getElementById('sidebarCollapse').click();
+            }
+            });
+        });
     },
 
     getRecord: (e_num,e_name) =>{
