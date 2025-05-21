@@ -772,7 +772,7 @@ const asn = {
                 // Extract and call the function
                 // const funcName = hrefAttr.substring('javascript:'.length);
                 // window[funcName]();
-                console.log(hrefAttr)
+                window.eval(hrefAttr)
             }
 
             if (window.innerWidth < 1200) {
