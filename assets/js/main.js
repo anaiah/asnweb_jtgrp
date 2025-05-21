@@ -751,26 +751,34 @@ const asn = {
 
     speaks:null,
 
-    collapz: () =>{
-        console.log('it is collapsing...')
+    collapz: () => {
+        console.log('Setting up collapse...');
         const links = document.querySelectorAll('#sidebarnav a');
+        console.log('Links found:', links.length);
         links.forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault(); // prevent default link behavior
-                
-                const targetId = this.getAttribute('href');
-                
-                if (targetId || targetId.startsWith('#')) {
-                    document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-                }
-                
-                console.log('Window width:', window.innerWidth);
-                
-                // Collapse sidebar on mobile
-                if (window.innerWidth < 1200) {
-                    document.getElementById('sidebarCollapse').click();
-                }
-            });
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+      
+            const targetId = this.getAttribute('href');
+            console.log('Clicked link:', targetId);
+            
+            if (targetId && targetId.startsWith('#')) {
+              document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            console.log('Window width:', window.innerWidth);
+            
+            if (window.innerWidth < 1200) {
+              const toggleBtn = document.getElementById('sidebarCollapse');
+              if (toggleBtn) {
+                console.log('Clicking sidebarCollapse button');
+                toggleBtn.click();
+              } else {
+                console.log('No sidebarCollapse element found');
+                // fallback: manually hide sidebar
+              }
+            }
+          });
         });
     },
 
