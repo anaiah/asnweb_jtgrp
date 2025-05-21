@@ -582,11 +582,9 @@ Ext.onReady(function(){
     Ext.tip.QuickTipManager.init();
 
     asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
-
-   //asn.getMonthlyTransaction(util.getCookie('f_dbId'))
     
     // Get the controller
-    asn.ctrlExt = asn.appExt.getController('myController');
+    asn.ctrlExt = asn.appExt.getController('coordController');
        
     asn.ctrlExt.getmenu(util.getCookie('grp_id'))    
 

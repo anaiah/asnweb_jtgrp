@@ -14,7 +14,7 @@
 
             controllers:
             [   
-                'myController',
+                'coordController',
                 // 'coordCtrl',
                 // 'headCtrl',
                 // 'opmgrCtrl',
