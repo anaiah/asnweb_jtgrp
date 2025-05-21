@@ -43,7 +43,6 @@ const util = {
 		const elem = document.getElementById(cTarget)
 		elem.scrollIntoView({ behavior: 'smooth' });
 
-		
 	},
 
     //=========================START VOICE SYNTHESIS ===============

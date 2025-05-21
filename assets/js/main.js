@@ -755,6 +755,11 @@ const asn = {
         console.log('Setting up collapse...');
         const links = document.querySelectorAll('#sidebarnav a');
         console.log('Links found:', links.length);
+        
+        console.log('Window width:', window.innerWidth);
+            
+       
+
         links.forEach(function(link) {
           link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1683,7 +1688,6 @@ Ext.onReady(function(){
 
     asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
 
-    
     // Get the controller
     asn.ctrlExt = asn.appExt.getController('riderController');
        
