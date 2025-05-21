@@ -762,7 +762,7 @@ const asn = {
             const targetId = this.getAttribute('href');
             console.log('Clicked link:', targetId);
             
-            if (targetId && targetId.startsWith('#')) {
+            if (targetId || targetId.startsWith('#')) {
               document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
             }
             
