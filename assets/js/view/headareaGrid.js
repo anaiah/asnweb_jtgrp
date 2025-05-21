@@ -158,7 +158,7 @@ Ext.define('MyApp.view.headareaGrid' ,{
             menuDisabled:true,
             dataIndex: 'location',
             renderer: function(value, meta) {
-                console.log( 'hey',meta)
+                ///console.log( 'hey',meta)
                 meta.tdCls='font10'
                 return `${value}`
                 //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
