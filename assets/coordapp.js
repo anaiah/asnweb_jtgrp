@@ -35,16 +35,16 @@ Ext.require([
                 console.log('====Ext.app 4.2 Launch() ====',)
                 MyApp.app = this    
 
-                var locGrid = Ext.create('MyApp.view.locationGrid', {
-                    renderTo: 'grid_month',
-                    width: 500,
-                    height: 300
-                });
-                var rideGrid = Ext.create('MyApp.view.riderGrid', {
-                    renderTo: 'rider_grid',
-                    width: 500,
-                    height: 400
-                });
+                // var locGrid = Ext.create('MyApp.view.locationGrid', {
+                //     renderTo: 'grid_month',
+                //     width: 500,
+                //     height: 300
+                // });
+                // var rideGrid = Ext.create('MyApp.view.riderGrid', {
+                //     renderTo: 'rider_grid',
+                //     width: 500,
+                //     height: 400
+                // });
 
             },
         });
