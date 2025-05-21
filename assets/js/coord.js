@@ -678,12 +678,8 @@ Ext.onReady(function(){
     
     // Get the controller
     asn.ctrlExt = asn.appExt.getController('coordController');
-       
-      
-
+   
 })
-
-
 
 //osndp.Bubbl
 window.scrollTo(0,0);

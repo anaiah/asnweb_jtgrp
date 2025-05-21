@@ -45,7 +45,7 @@ Ext.define('MyApp.view.locationGrid' ,{
 
         listeners: {
             viewready: function(view) {
-                console.log('HUB grid viewready');
+                console.log('HUB locaion grid viewready');
                 /*                           
                 store.sort([
                     { property: 'qty_pct', direction: 'DESC' },
