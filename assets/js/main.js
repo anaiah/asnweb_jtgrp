@@ -1591,6 +1591,10 @@ const asn = {
     
             })//end foreach
 
+
+            //listener to click sidebar
+            asn.collapz()
+    
             return true;
             
         })	
@@ -1685,8 +1689,6 @@ Ext.onReady(function(){
        
     asn.getMonthlyTransaction(util.getCookie('f_dbId'))
 
-    //listener to click sidebar
-    asn.collapz()
     
     
 })
