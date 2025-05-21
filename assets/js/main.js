@@ -752,6 +752,7 @@ const asn = {
     speaks:null,
 
     collapz: () =>{
+        console.log('it is collapsing...')
         const links = document.querySelectorAll('#sidebarnav a');
         links.forEach(function(link) {
             link.addEventListener('click', function(e) {
