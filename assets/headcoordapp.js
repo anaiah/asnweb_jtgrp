@@ -5,8 +5,7 @@ Ext.application({
     //models: ['monthlyModel'],
     stores: 
     [
-        'locationStore',
-        'riderStore'
+        'headareaStore',
         // 'coordStore',
         // 'headStore',
         // 'opmgrStore'
@@ -26,12 +25,13 @@ Ext.application({
         console.log('====Ext.app 4.2 Launch() ====',)
         MyApp.app = this    
 
-        /*
-        var locGrid = Ext.create('MyApp.view.locationGrid', {
+        
+        var locGrid = Ext.create('MyApp.view.headareaGrid', {
             renderTo: 'grid_month',
             width: 500,
             height: 300
         });
+        /*
         var rideGrid = Ext.create('MyApp.view.riderGrid', {
             renderTo: 'rider_grid',
             width: 500,
