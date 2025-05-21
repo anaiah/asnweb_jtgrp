@@ -208,16 +208,57 @@ const asn = {
     },
 
     speaks:null,
+    
+    collapz: () => {
+        console.log('Setting up collapse...');
+        const links = document.querySelectorAll('#sidebarnav a');
+        console.log('Links found:', links.length);
+        
+        console.log('Window width:', window.innerWidth);
+                
 
-    collapz: () =>{
-        if( ! document.getElementById("sidebarCollapse") ){
-            //document.getElementById('filter_number').focus()
-        }else{
-            document.getElementById("sidebarCollapse").click()
-           // document.getElementById('filter_number').focus()
-        }
-        /// take out muna document.getElementById("sidebarCollapse").click()
-        //focus on emp number claims filter
+        links.forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+      
+            const hrefAttr = this.getAttribute('href');
+
+            if (hrefAttr.startsWith('#')) {
+                // Handle in-page anchor
+                document.querySelector(hrefAttr).scrollIntoView({ behavior: 'smooth' });
+            } else if (hrefAttr.startsWith('javascript:')) {
+                // Extract and call the function
+                // const funcName = hrefAttr.substring('javascript:'.length);
+                // window[funcName]();
+                // Extract the code after 'javascript:'
+                const jsCode = hrefAttr.substring('javascript:'.length).trim();
+                    
+                // If the code is a function call like util.goNow()
+                // or just an expression, you can use Function constructor:
+
+                try {
+                    // Create a new Function and execute it safely
+                    new Function(jsCode)();
+                } catch (err) {
+                    console.error('Error executing JavaScript from href:', err);
+                }
+
+
+                //window.eval(hrefAttr)
+            }
+
+            if (window.innerWidth < 1200) {
+              const toggleBtn = document.getElementById('sidebarCollapse');
+              if (toggleBtn) {
+                console.log('Clicking sidebarCollapse button');
+                toggleBtn.click();
+              } else {
+                console.log('No sidebarCollapse element found');
+                // fallback: manually hide sidebar
+              }
+            }
+          });
+        });
     },
 
     allData:[],

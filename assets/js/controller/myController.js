@@ -84,6 +84,9 @@ Ext.define('MyApp.controller.myController', {
     
             })//end foreach
 
+            asn.collapz()//invoke one time
+            
+
             return true;
             
         })	
