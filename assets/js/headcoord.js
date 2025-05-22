@@ -775,10 +775,10 @@ const asn = {
         //==load grid month, rider month
         asn.loadbarChart('hub')
 
-        // //===load top5
-        // setTimeout(() => {
-        //     asn.loadbarChart('rider');
-        // }, 1000)
+        //===load top5
+        setTimeout(() => {
+            asn.loadbarChart('rider');
+        }, 1000)
 
         console.log('===loadbarchart()===')
 
