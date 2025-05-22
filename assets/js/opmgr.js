@@ -807,7 +807,7 @@ Ext.onReady(function(){
     //call grid load
     var grid = Ext.getCmp('opmgrGrid')
     
-    grid.getStore().load()
+    
                     
     grid.getSelectionModel().on('selectionchange', (model, records) => {
         //if (ignoreSelectionEvent) return;
