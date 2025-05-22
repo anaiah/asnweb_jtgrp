@@ -28,23 +28,22 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     
     flex:1,
     viewConfig: {
-        //stripeRows: true,
-        loadingText:'Loading Please Wait!',
-        emptyText:'No Records Found!!!',
-
-        //apply row css
-        getRowClass: function(record) { 
-
-        }, 
-
+        stripeRows: true,
+        loadingText: 'Loading Please Wait!',
+        emptyText: 'No Records Found!!!',
+        getRowClass: function(record) { /* your code */ },
         listeners: {
             viewready: function(view) {
-                console.log('REGION grid viewready');
-                this.getStore().load()
-                console.log('aferrender fired this.getSTore().oad()')
-
-            }//end viewready
-        }//end listeners viewconfig
+                console.log('viewready fired');
+                // 'view' is the grid's view, but 'this' likely isn't your grid
+                // So, get the grid component explicitly (assuming you have its id)
+                var grid = Ext.getCmp('opmgrGrid'); // replace with your grid's id
+                if (grid) {
+                    grid.getStore().load();
+                    console.log('Loaded store upon viewready');
+                }
+            }.bind(this) // Or set scope below
+        }
     },    
     
         //selModel:{
