@@ -819,7 +819,8 @@ Ext.onReady(function(){
         if (records.length === 0) {
           asn.ignoreSelectionEvent = true;
           if (model.getStore().getCount() > 0) {
-            //model.select(0);
+            model.select(0);
+            return false
           }
           asn.ignoreSelectionEvent = false;
         }
