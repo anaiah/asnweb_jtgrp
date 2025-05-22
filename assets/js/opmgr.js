@@ -810,19 +810,18 @@ Ext.onReady(function(){
     var ignoreSelectionEvent = false
 
     grid.getSelectionModel().on('selectionchange', (model, records) => {
-        if (ignoreSelectionEvent) return;
+        //if (ignoreSelectionEvent) return;
   
         console.log('selectionchange fired');
-  
-        if (records.length === 0) {
-          ignoreSelectionEvent = true;
-          if (model.getStore().getCount() > 0) {
-            model.select(0);
         
-          }
-          ignoreSelectionEvent = false;
+        if(records[0]){ 
+       
+            var idx = this.getStore().indexOf(records[0]);
+
+            console.log(this.getStore().getAt(idx).get('area'))
+            this.getSelectionModel().deselectAll()
         }
-        
+
       });
  //osndp.Bubbl
  window.scrollTo(0,0);
