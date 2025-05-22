@@ -810,19 +810,9 @@ Ext.onReady(function(){
     var store = grid.getStore()
                     
     grid.getSelectionModel().on('selectionchange', (model, records) => {
-        //if (ignoreSelectionEvent) return;
-        //grid.getSelectionModel().deselectAll()
-        store.suspendEvents();
            
         console.log('selectionchange fired');
-        
-            
-            // your selection/deselection code here
-            
-            store.resumeEvents();
-            store.fireEvent('refresh'); 
-            //return false
-     
+       
       });
  //osndp.Bubbl
  window.scrollTo(0,0);
