@@ -61,21 +61,13 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         }//end listeners viewconfig
     },    
     
-        //selModel:{
+        selModel:{
 
             listeners:{
                 afterrender: function(grid) {
                     this.getStore().load()
                     console.log('aferrender fired this.getSTore().oad()')
 
-                    /*
-                    console.log('aferrender',grid.id)
-                    var view = grid.getView();
-                    // For example, add a class to all group headers
-                    view.el.select('.x-grid-group-hd').each(function(el) {
-                        el.addCls('xgrpheader');
-                    });
-                    */
                 },
             
                 cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
@@ -87,7 +79,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                 
             },//end listener
 
-        //}, //end selmodel
+        }, //end selmodel
     
     features: [{
         id: 'group',
