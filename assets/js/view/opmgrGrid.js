@@ -11,8 +11,11 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     //     ftype: 'summary'
     // }],
     features: [{
-        groupHeaderTpl: 'Subject: {name}',
-        ftype: 'groupingsummary'
+        id: 'group',
+        ftype: 'groupingsummary',
+        groupHeaderTpl: '{name}',
+        hideGroupedHeader: true,
+        enableGroupingMenu: false
     }],
     columns: [
         { text: 'Region', dataIndex: 'region', flex: 1 },
