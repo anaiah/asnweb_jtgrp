@@ -17,7 +17,25 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     ],
     viewConfig: {
         stripeRows: true,
-        emptyText: 'No data available'
+        emptyText: 'No data available',
+
+        listeners: {
+            viewready: function(view) {
+                console.log('HUB locaion grid viewready');
+                /*                           
+                store.sort([
+                    { property: 'qty_pct', direction: 'DESC' },
+                   
+                    { property: 'location', direction: 'ASC' },
+                    { property: 'hub', direction: 'ASC' },
+                    
+                ]);
+                */
+                //load the store now
+                this.getStore().load()
+
+            }//end viewready
+        }//end listeners viewconfig
     },
     //renderTo: Ext.getBody() // or your container
 });

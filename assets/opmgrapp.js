@@ -32,7 +32,6 @@ Ext.application({
         });
 
         // then load the store
-        Ext.getCmp('opmgrStore').load();
         /*
         var rideGrid = Ext.create('MyApp.view.riderGrid', {
             renderTo: 'rider_grid',
