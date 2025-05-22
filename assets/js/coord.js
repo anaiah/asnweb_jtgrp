@@ -409,15 +409,16 @@ const asn = {
         .then((xdata) => {
 
             console.log('mtd data==',  xdata)
-            // Replace null qty with 0
-            xdata.forEach(item => {
-                if (item.parcel_delivered === null) {
-                    item.parcel_delivered  = 0;
-                }
-            });
+           
+            // // Replace null qty with 0
+            // xdata.forEach(item => {
+            //     if (item.parcel_delivered === null) {
+            //         item.parcel_delivered  = 0;
+            //     }
+            // });
             
             // Sort the array in descending order (change to < for ascending)
-            xdata.sort((a, b) => b.parcel_delivered - a.parcel_delivered);
+            //xdata.sort((a, b) => b.parcel_delivered - a.parcel_delivered);
 
             //asc order sample
             //xdata.sort((a, b) => a.qty - b.qty);
@@ -533,7 +534,7 @@ const asn = {
         })
         .then((xdata) => {
 
-            //console.log('merge',xdata.length)
+            console.log(`TOP 5 ${ctrans} ${xdata}`)
 
             //const mergedData = ''dash.mergeFinalData(xdata.xdata, cTrans );
             //const mergedData = asn.mergeFinalData(xdata.xdata, cTrans );
