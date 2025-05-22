@@ -1,5 +1,3 @@
-var ignoreSelectionEvent= false
-
 Ext.define('MyApp.view.opmgrGrid' ,{
     extend: 'Ext.grid.Panel',
     alias : 'widget.opmgrGrid',
@@ -80,18 +78,18 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         },
         selectionchange: function(model, records ) {
 
-            if (ignoreSelectionEvent) return;
-    
-            // your logic, e.g., avoiding re-selection
-            // To select first record only once:
-            if (records.length === 0) {
-                ignoreSelectionEvent = true;
-                model.select(0);
-                ignoreSelectionEvent = false;
-            }
+            if (asn.ignoreSelectionEvent) return;
+            console.log('selectionchange fired');
         
-            console.log('REGION GRID selectionchange() fired')
-           // this.setLoading(`..searching`);
+            if (records.length === 0) {
+                asn.ignoreSelectionEvent = true;
+                if (model.getStore().getCount() > 0) {
+                    model.select(0);
+                }
+                asn.ignoreSelectionEvent = false;
+            }
+            
+            // this.setLoading(`..searching`);
             /*  BALIK MO ITO CARLO LATER HA?
                 
             if(records[0]){ 

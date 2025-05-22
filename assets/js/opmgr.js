@@ -732,6 +732,8 @@ const asn = {
     },
     //==========END  GETMENU
    
+    ignoreSelectionEvent:false,
+    
 	//==,= main run
 	init :  () => {
         asn.getmenu(util.getCookie('grp_id')) 
