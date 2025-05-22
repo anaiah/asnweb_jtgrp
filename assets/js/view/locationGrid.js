@@ -233,25 +233,6 @@ Ext.define('MyApp.view.locationGrid' ,{
             width: 130,
             menuDisabled:true,
             sortable: false,
-            dataIndex: 'amount_remitted',
-            align:'right',
-            summaryType: 'sum',
-            field: {
-                xtype: 'numberfield'
-            },
-            renderer: function(value, meta, record) {
-                meta.tdCls = 'font7'
-                return util.addCommas(value)
-            },
-            summaryRenderer:(value,summaryData,dataIndex)=>{
-                return `<b>${util.addCommas(value)}</b>`
-            },
-        }, 
-        {
-            header: 'Remitted',
-            width: 130,
-            sortable: false,
-            menuDisabled:true,
             dataIndex: 'amount',
             align:'right',
             summaryType: 'sum',
@@ -260,10 +241,29 @@ Ext.define('MyApp.view.locationGrid' ,{
             },
             renderer: function(value, meta, record) {
                 meta.tdCls = 'font7'
-                return util.addCommas(value)
+                return util.addCommas(value.toFixed(2))
             },
             summaryRenderer:(value,summaryData,dataIndex)=>{
-                return `<b>${util.addCommas(value)}</b>`
+                return `<b>${util.addCommas(value.toFixed(2))}</b>`
+            },
+        }, 
+        {
+            header: 'Remitted',
+            width: 130,
+            sortable: false,
+            menuDisabled:true,
+            dataIndex: 'amount_remitted',
+            align:'right',
+            summaryType: 'sum',
+            field: {
+                xtype: 'numberfield'
+            },
+            renderer: function(value, meta, record) {
+                meta.tdCls = 'font7'
+                return util.addCommas(value.toFixed(2))
+            },
+            summaryRenderer:(value,summaryData,dataIndex)=>{
+                return `<b>${util.addCommas(value.toFixed(2))}</b>`
             },
         },
        
