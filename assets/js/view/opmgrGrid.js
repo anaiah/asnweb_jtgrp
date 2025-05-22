@@ -80,10 +80,10 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         
             console.log('REGION GRID selectionchange() fired')
            // this.setLoading(`..searching`);
-
+/*  BALIK MO ITO CARLO LATER HA?
+                
             if(records[0]){ 
 
-                /*  BALIK MO ITO CARLO LATER HA?
                 
                 var idx = this.getStore().indexOf(records[0]);
                 hub_search = this.getStore().getAt(idx).get('hub')
@@ -112,9 +112,9 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                         
                     }
                 });
-                */
+                
             }//EIF
-
+            */
         }//end selectionchange
         
     },

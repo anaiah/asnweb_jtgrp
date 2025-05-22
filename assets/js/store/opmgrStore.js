@@ -35,11 +35,18 @@ Ext.define('MyApp.store.opmgrStore', {
     //data:[{po_number:'', invoice_number:''}], //blank
     
     listeners: {
+        'load':()=>{
+            var sm = Ext.getCmp('opmgrGrid').getSelectionModel();
+         
+            if (store.getCount() > 0 && !sm.hasSelection()) {
+                sm.select(0);
+            }
+        },
         'datachanged':(store,e)=>{
             console.log('===opmgrStore.js STORE PO LISTENING === store loaded w recs==' , store.data.length )
             console.log('===opmgrStore.js GRID opmgr REGIONAL FIRST RECORD SELECTED ==' )
             
-            Ext.getCmp('opmgrGrid').getSelectionModel().select(0);
+            //Ext.getCmp('opmgrGrid').getSelectionModel().select(0);
 
         }
     }//end listen				 
