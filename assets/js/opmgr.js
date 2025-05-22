@@ -790,7 +790,7 @@ const asn = {
 
         //call grid load
         var grid = Ext.getCmp('opmgrGrid')
-
+        grid.on('afterrender', function() {
         grid.getSelectionModel().on('selectionchange', (model, records) => {
             if (asn.ignoreSelectionEvent) return;
       
@@ -804,6 +804,7 @@ const asn = {
               asn.ignoreSelectionEvent = false;
             }
           });
+        })
 
 	}//END init
 
