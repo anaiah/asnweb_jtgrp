@@ -28,19 +28,13 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     
     flex:1,
     viewConfig: {
-        stripeRows: true,
+        //stripeRows: true,
         loadingText:'Loading Please Wait!',
         emptyText:'No Records Found!!!',
 
         //apply row css
         getRowClass: function(record) { 
 
-            if(record.get('location')){
-                //return "row-class shadow"
-            }else{
-
-            }
-            //return record.get('clone') =="1" ? 'clone-row' : null; 
         }, 
 
         listeners: {
@@ -49,22 +43,11 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                 this.getStore().load()
                 console.log('aferrender fired this.getSTore().oad()')
 
-                /*                           
-                store.sort([
-                    { property: 'qty_pct', direction: 'DESC' },
-                   
-                    { property: 'location', direction: 'ASC' },
-                    { property: 'hub', direction: 'ASC' },
-                    
-                ]);
-                */
-                //load the store now
-               
             }//end viewready
         }//end listeners viewconfig
     },    
     
-        selModel:{
+        //selModel:{
 
             listeners:{
                 afterrender: function(grid) {
@@ -80,7 +63,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                 
             },//end listener
 
-        }, //end selmodel
+        //}, //end selmodel
     
     features: [{
         id: 'group',
