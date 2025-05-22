@@ -811,24 +811,18 @@ Ext.onReady(function(){
                     
     grid.getSelectionModel().on('selectionchange', (model, records) => {
         //if (ignoreSelectionEvent) return;
-  
+        //grid.getSelectionModel().deselectAll()
+        store.suspendEvents();
+           
         console.log('selectionchange fired');
         
-        if(records[0]){ 
-       
-            //grid.getSelectionModel().deselectAll()
-            store.suspendEvents();
-            var idx = grid.getStore().indexOf(records[0]);
-
-            console.log( grid.getStore().getAt(idx).get('area'))
-           
+            
             // your selection/deselection code here
             
             store.resumeEvents();
             store.fireEvent('refresh'); 
             //return false
-        }
-
+     
       });
  //osndp.Bubbl
  window.scrollTo(0,0);
