@@ -1,3 +1,12 @@
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.form.field.Number',
+    'Ext.form.field.Date',
+    'Ext.tip.QuickTipManager'
+]);
+
+
 Ext.define('MyApp.view.opmgrGrid' ,{
     extend: 'Ext.grid.Panel',
     alias : 'widget.opmgrGrid',
