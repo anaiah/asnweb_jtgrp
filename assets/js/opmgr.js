@@ -788,24 +788,7 @@ const asn = {
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 
 
-        //call grid load
-        var grid = Ext.getCmp('opmgrGrid')
-        grid.on('afterrender', function() {
-        grid.getSelectionModel().on('selectionchange', (model, records) => {
-            if (asn.ignoreSelectionEvent) return;
-      
-            console.log('selectionchange fired');
-      
-            if (records.length === 0) {
-              asn.ignoreSelectionEvent = true;
-              if (model.getStore().getCount() > 0) {
-                //model.select(0);
-              }
-              asn.ignoreSelectionEvent = false;
-            }
-          });
-        })
-
+        
 	}//END init
 
 } //======================= end admin obj==========//
@@ -814,16 +797,38 @@ Ext.onReady(function(){
     console.log('ext on ready....')
     Ext.tip.QuickTipManager.init();
 
+    //osndp.Bubbl
+    window.scrollTo(0,0);
+    asn.init() //instantiate now
+
+
     asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
     
     // Get the controller
     asn.ctrlExt = asn.appExt.getController('coordController');
-   
+
+    //call grid load
+    var grid = Ext.getCmp('opmgrGrid')
+        
+    
+    grid.getSelectionModel().on('selectionchange', (model, records) => {
+        if (asn.ignoreSelectionEvent) return;
+  
+        console.log('selectionchange fired');
+  
+        if (records.length === 0) {
+          asn.ignoreSelectionEvent = true;
+          if (model.getStore().getCount() > 0) {
+            //model.select(0);
+          }
+          asn.ignoreSelectionEvent = false;
+        }
+      });
+    
+
+
 })
 
-//osndp.Bubbl
-window.scrollTo(0,0);
-asn.init() //instantiate now
 
 
 
