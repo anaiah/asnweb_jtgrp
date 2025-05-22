@@ -4,47 +4,49 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     id: 'opmgrGrid',
     title: 'Operation Management Summary',
     store: Ext.data.StoreManager.lookup('opmgrStore'), // your storeId
-    width: 700,
-    height: 400,
+    width: 500,
+    height: 300,
 
     features: [{
         ftype: 'summary'
     }],
-    
+
     columns: [
         { text: 'Region', dataIndex: 'region', flex: 1 },
         { text: 'Area', dataIndex: 'area', flex: 1 },
-        { text: 'Parcel', dataIndex: 'parcel', width: 80, 
+        { text: '% Qty', dataIndex: 'qty_pct', width: 80,
+            renderer: function(value) { return value + '%'; },
+            summaryType: function(records, field) {
+                // For custom summary, e.g., average
+                var total = 0;
+                var count = 0;
+                Ext.each(records, function(r) {
+                    var val = r.get(field);
+                    if (Ext.isNumber(val)) {
+                        total += val;
+                        count++;
+                    }
+                });
+                return count > 0 ? Ext.Number.toFixed(total / count, 2) : 0;
+            }
+            },
+        { text: 'Parcel', dataIndex: 'parcel', width: 120, 
         summaryType: 'sum', 
         renderer: Ext.util.Format.numberRenderer('0') 
         },
-        { text: 'Amount', dataIndex: 'amount', width: 100, 
+        { text: 'Delivered', dataIndex: 'parcel_delivered', width: 120, 
+            summaryType: 'sum'
+        },
+        { text: 'Amount', dataIndex: 'amount', width: 150, 
         summaryType: 'sum', 
         renderer: Ext.util.Format.usMoney
         },
-        { text: 'Delivered', dataIndex: 'parcel_delivered', width: 80, 
-        summaryType: 'sum'
-        },
-        { text: 'Remitted', dataIndex: 'amount_remitted', width: 100, 
+       
+        { text: 'Remitted', dataIndex: 'amount_remitted', width: 150, 
         summaryType: 'sum',
         renderer: Ext.util.Format.usMoney
         },
-        { text: '% Qty', dataIndex: 'qty_pct', width: 80,
-        renderer: function(value) { return Ext.Number.toFixed(value * 100, 1) + '%'; },
-        summaryType: function(records, field) {
-            // For custom summary, e.g., average
-            var total = 0;
-            var count = 0;
-            Ext.each(records, function(r) {
-                var val = r.get(field);
-                if (Ext.isNumber(val)) {
-                    total += val;
-                    count++;
-                }
-            });
-            return count > 0 ? Ext.Number.toFixed(total / count, 2) : 0;
-        }
-        }
+        
     ],
 
     viewConfig: {
