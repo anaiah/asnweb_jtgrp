@@ -38,7 +38,7 @@ Ext.define('MyApp.store.opmgrStore', {
         'load':()=>{
             var sm = Ext.getCmp('opmgrGrid').getSelectionModel();
          
-            if (store.getCount() > 0 && !sm.hasSelection()) {
+            if (this.getCount() > 0 && !sm.hasSelection()) {
                 sm.select(0);
             }
         },
