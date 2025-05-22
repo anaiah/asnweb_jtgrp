@@ -7,10 +7,10 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     width: 700,
     height: 400,
 
-    plugins: [{
-        ptype: 'gridsummary'
+    features: [{
+        ftype: 'summary'
     }],
-
+    
     columns: [
         { text: 'Region', dataIndex: 'region', flex: 1 },
         { text: 'Area', dataIndex: 'area', flex: 1 },
