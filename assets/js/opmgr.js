@@ -797,10 +797,7 @@ Ext.onReady(function(){
     console.log('ext on ready....')
     Ext.tip.QuickTipManager.init();
 
-    //osndp.Bubbl
-    window.scrollTo(0,0);
-    asn.init() //instantiate now
-
+    
 
     asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
     
@@ -809,7 +806,6 @@ Ext.onReady(function(){
 
     //call grid load
     var grid = Ext.getCmp('opmgrGrid')
-        
     
     grid.getSelectionModel().on('selectionchange', (model, records) => {
         if (asn.ignoreSelectionEvent) return;
@@ -825,8 +821,9 @@ Ext.onReady(function(){
           asn.ignoreSelectionEvent = false;
         }
       });
-    
-
+ //osndp.Bubbl
+ window.scrollTo(0,0);
+ asn.init() //instantiate now
 
 })
 

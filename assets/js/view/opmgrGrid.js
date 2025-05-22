@@ -45,7 +45,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
 
         listeners: {
             viewready: function(view) {
-                console.log('REGION grid viewready');
+                console.log('REGION grid viewready loading store');
                 /*                           
                 store.sort([
                     { property: 'qty_pct', direction: 'DESC' },
@@ -56,16 +56,17 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                 ]);
                 */
                 //load the store now
-                this.store.load()
-
+               
             }//end viewready
         }//end listeners viewconfig
     },    
     
-        selModel:{
+        //selModel:{
 
             listeners:{
                 afterrender: function(grid) {
+                    this.store.load()
+
                     /*
                     console.log('aferrender',grid.id)
                     var view = grid.getView();
@@ -85,7 +86,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                 
             },//end listener
 
-        }, //end selmodel
+        //}, //end selmodel
     
     features: [{
         id: 'group',
