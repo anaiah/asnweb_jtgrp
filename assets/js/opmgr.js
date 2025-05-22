@@ -818,7 +818,7 @@ Ext.onReady(function(){
             var idx = grid.getStore().indexOf(records[0]);
 
             console.log( grid.getStore().getAt(idx).get('area'))
-            grid.getSelectionModel().deselectAll()
+            //grid.getSelectionModel().deselectAll()
 
             return false
         }
