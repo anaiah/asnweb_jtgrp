@@ -30,6 +30,9 @@ Ext.application({
             width: 500,
             height: 300
         });
+
+        // then load the store
+Ext.getCmp('opmgrStore').load();
         /*
         var rideGrid = Ext.create('MyApp.view.riderGrid', {
             renderTo: 'rider_grid',
