@@ -129,7 +129,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     }],
     columns: [ /* your columns */ 
         {
-            text: 'Hub',
+            text: 'Area',
             //flex: 1,
             width:185,
             tdCls: 'task',
@@ -151,11 +151,11 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             }
         }, 
         {
-            header: 'Location',
+            header: '',
             width: 180,
             sortable: false,
             menuDisabled:true,
-            dataIndex: 'location',
+            dataIndex: 'region',
             renderer: function(value, meta) {
                 ///console.log( 'hey',meta)
                 meta.tdCls='font10'
