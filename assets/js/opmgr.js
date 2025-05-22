@@ -807,19 +807,22 @@ Ext.onReady(function(){
     //call grid load
     var grid = Ext.getCmp('opmgrGrid')
     
+    var ignoreSelectionEvent = false
+
     grid.getSelectionModel().on('selectionchange', (model, records) => {
-        if (asn.ignoreSelectionEvent) return;
+        if (ignoreSelectionEvent) return;
   
         console.log('selectionchange fired');
   
         if (records.length === 0) {
-          asn.ignoreSelectionEvent = true;
+          ignoreSelectionEvent = true;
           if (model.getStore().getCount() > 0) {
-            //model.select(0);
-            return false
+            model.select(0);
+        
           }
-          asn.ignoreSelectionEvent = false;
+          ignoreSelectionEvent = false;
         }
+        return false
       });
  //osndp.Bubbl
  window.scrollTo(0,0);

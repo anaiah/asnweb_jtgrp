@@ -45,7 +45,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
 
         listeners: {
             viewready: function(view) {
-                console.log('REGION grid viewready loading store');
+                console.log('REGION grid viewready');
                 /*                           
                 store.sort([
                     { property: 'qty_pct', direction: 'DESC' },
