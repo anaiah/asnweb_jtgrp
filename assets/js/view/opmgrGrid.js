@@ -61,73 +61,79 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             }//end viewready
         }//end listeners viewconfig
     },    
-    listeners:{
-        afterrender: function(grid) {
-            /*
-            console.log('aferrender',grid.id)
-            var view = grid.getView();
-            // For example, add a class to all group headers
-            view.el.select('.x-grid-group-hd').each(function(el) {
-                el.addCls('xgrpheader');
-            });
-            */
-        },
     
-        cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
-              //console.log( record.get("location"))      
-        },
-        selectionchange: function(model, records ) {
+        selModel:{
 
-            if (asn.ignoreSelectionEvent) return;
-            console.log('selectionchange fired');
-        
-            if (records.length === 0) {
-                asn.ignoreSelectionEvent = true;
-                if (model.getStore().getCount() > 0) {
-                    model.select(0);
-                }
-                asn.ignoreSelectionEvent = false;
-            }
+            listeners:{
+                afterrender: function(grid) {
+                    /*
+                    console.log('aferrender',grid.id)
+                    var view = grid.getView();
+                    // For example, add a class to all group headers
+                    view.el.select('.x-grid-group-hd').each(function(el) {
+                        el.addCls('xgrpheader');
+                    });
+                    */
+                },
             
-            // this.setLoading(`..searching`);
-            /*  BALIK MO ITO CARLO LATER HA?
-                
-            if(records[0]){ 
-
-                
-                var idx = this.getStore().indexOf(records[0]);
-                hub_search = this.getStore().getAt(idx).get('hub')
-                
-                
-                console.log('hubsearch', hub_search)
-
-                const riderstore = Ext.data.StoreManager.lookup('riderStore') 
-                
-                riderstore.removeAll()
-
-                // To change the URL dynamically
-                var proxy = riderstore.getProxy();
-                proxy.url =  `${myIp}/coor/ridersummary/${hub_search}`;
-
-                // or use `sorters` array directly
-                //rider_store.sort('delivered_pct', 'DESC');          
-                
-                
-                // If you need to reload data from the new URL
-                //store.sort('yourField', 'ASC'); // set the sorting
-                riderstore.load({
-                    callback: function() {
-                        // After loading, refresh the view
-                        Ext.getCmp('riderGrid').getView().refresh();
-                        
-                    }
-                });
-                
-            }//EIF
-            */
-        }//end selectionchange
+                cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
+                      //console.log( record.get("location"))      
+                },
+                selectionchange: function(model, records ) {
         
-    },
+                    if (asn.ignoreSelectionEvent) return;
+                    console.log('selectionchange fired');
+                
+                    if (records.length === 0) {
+                        asn.ignoreSelectionEvent = true;
+                        if (model.getStore().getCount() > 0) {
+                            model.select(0);
+                        }
+                        asn.ignoreSelectionEvent = false;
+                    }
+                    
+                    // this.setLoading(`..searching`);
+                    /*  BALIK MO ITO CARLO LATER HA?
+                        
+                    if(records[0]){ 
+        
+                        
+                        var idx = this.getStore().indexOf(records[0]);
+                        hub_search = this.getStore().getAt(idx).get('hub')
+                        
+                        
+                        console.log('hubsearch', hub_search)
+        
+                        const riderstore = Ext.data.StoreManager.lookup('riderStore') 
+                        
+                        riderstore.removeAll()
+        
+                        // To change the URL dynamically
+                        var proxy = riderstore.getProxy();
+                        proxy.url =  `${myIp}/coor/ridersummary/${hub_search}`;
+        
+                        // or use `sorters` array directly
+                        //rider_store.sort('delivered_pct', 'DESC');          
+                        
+                        
+                        // If you need to reload data from the new URL
+                        //store.sort('yourField', 'ASC'); // set the sorting
+                        riderstore.load({
+                            callback: function() {
+                                // After loading, refresh the view
+                                Ext.getCmp('riderGrid').getView().refresh();
+                                
+                            }
+                        });
+                        
+                    }//EIF
+                    */
+                }//end selectionchange
+                
+            },//end listener
+
+        }, //end selmodel
+    
     features: [{
         id: 'group',
         ftype: 'groupingsummary',
