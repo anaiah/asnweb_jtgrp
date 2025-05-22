@@ -87,7 +87,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             dataIndex: 'region',
             renderer: function(value, meta) {
                 ///console.log( 'hey',meta)
-                meta.tdCls='font10'
+                //meta.tdCls='font10'
                 return `${value}`
                 //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
                 //return value;
@@ -104,7 +104,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             dataIndex: 'area',
             hideable: false,
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font10';
+                //meta.tdCls = 'font10';
                 return value;
                 //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
                 //return value;
@@ -126,7 +126,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             dataIndex: 'qty_pct',
             
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font7'
+                //meta.tdCls = 'font7'
                 return `${value} %`
                 
             }
@@ -146,7 +146,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font7'
+                //meta.tdCls = 'font7'
 
                 return util.addCommas(value)
             },
@@ -166,7 +166,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font7'
+                //meta.tdCls = 'font7'
                 return util.addCommas(value)
             },
             summaryRenderer:(value,summaryData,dataIndex)=>{
@@ -185,7 +185,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font7'
+                //meta.tdCls = 'font7'
                 return util.addCommas(value.toFixed(2))
             },
             summaryRenderer:(value,summaryData,dataIndex)=>{
@@ -204,7 +204,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font7'
+                //meta.tdCls = 'font7'
                 return util.addCommas(value.toFixed(2))
             },
             summaryRenderer:(value,summaryData,dataIndex)=>{
