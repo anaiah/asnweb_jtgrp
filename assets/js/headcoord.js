@@ -615,29 +615,25 @@ const asn = {
             let category_data=[]
 
             xdata.forEach( item  => {
-        
-                    
-                    if(ctrans=="rider"){
-                        if(item.xname){
-                            category_data.push(item.xname )
-                            // category_data.push( (!item.xname )
-                            series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
-                    
-                        }
+                     
+                if(ctrans=="rider"){
+                    if(item.xname){
+                        category_data.push(item.xname )
                         // category_data.push( (!item.xname )
-    
-                    }else{
-                        category_data.push( item.hub)
                         series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
-                    
-                    }    
-             });
+                
+                    }
+                    // category_data.push( (!item.xname )
+
+                }else{
+                    category_data.push( item.hub)
+                    series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
+                
+                }    
+            });
 
             options.series[0].data = series_data
-
-            //console.log( 'series[0]', options.series[0].data )
             options.xaxis.categories = category_data
-             //console.log( options.xaxis.categories)
 
             chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
             chart.render();
@@ -782,7 +778,7 @@ const asn = {
         asn.loadbarMTDChart()
 
         //==load grid month, rider month
-        // asn.loadbarChart('hub')
+        asn.loadbarChart('hub')
 
         // //===load top5
         // setTimeout(() => {

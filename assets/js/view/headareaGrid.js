@@ -58,7 +58,6 @@ Ext.define('MyApp.view.headareaGrid' ,{
                 //load the store now
                 this.store.load()
 
-               
             }//end viewready
         }//end listeners viewconfig
     },    
