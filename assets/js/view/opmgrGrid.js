@@ -7,10 +7,13 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     width: 500,
     height: 300,
 
-    features: [ {
-        ftype: 'summary'
+    // features: [ {
+    //     ftype: 'summary'
+    // }],
+    features: [{
+        groupHeaderTpl: 'Subject: {name}',
+        ftype: 'groupingsummary'
     }],
-
     columns: [
         { text: 'Region', dataIndex: 'region', flex: 1 },
         { text: 'Area', dataIndex: 'area', flex: 1 },
