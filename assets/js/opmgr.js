@@ -816,10 +816,10 @@ Ext.onReady(function(){
         
         if(records[0]){ 
        
-            var idx = this.getStore().indexOf(records[0]);
+            var idx = grid.getStore().indexOf(records[0]);
 
-            console.log(this.getStore().getAt(idx).get('area'))
-            this.getSelectionModel().deselectAll()
+            console.log( grid.getStore().getAt(idx).get('area'))
+            grid.getSelectionModel().deselectAll()
         }
 
       });
