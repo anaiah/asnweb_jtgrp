@@ -28,11 +28,15 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     
     flex:1,
     viewConfig: {
+
         stripeRows: true,
         loadingText: 'Loading Please Wait!',
         emptyText: 'No Records Found!!!',
         getRowClass: function(record) { /* your code */ },
         listeners: {
+            refresh: function(view) {
+                console.log('View refreshed');
+            },
             viewready: function(view) {
                 console.log('viewready fired');
                 // 'view' is the grid's view, but 'this' likely isn't your grid
