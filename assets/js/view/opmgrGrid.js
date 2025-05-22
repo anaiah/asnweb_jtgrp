@@ -57,7 +57,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     viewConfig: {
         stripeRows: true,
         emptyText: 'No data available',
-
+        preserveScrollOnRefresh: true,
         listeners: {
             viewready: function(view) {
                 console.log('HUB locaion grid viewready');
