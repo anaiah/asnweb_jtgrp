@@ -35,10 +35,10 @@ Ext.define('MyApp.store.opmgrStore', {
     //data:[{po_number:'', invoice_number:''}], //blank
     
     listeners: {
-        'load':()=>{
+        'load':(store)=>{
             var sm = Ext.getCmp('opmgrGrid').getSelectionModel();
          
-            if (this.getCount() > 0 && !sm.hasSelection()) {
+            if ( store.getCount() > 0 && !sm.hasSelection()) {
                 sm.select(0);
             }
         },
