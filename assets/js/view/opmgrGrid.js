@@ -92,6 +92,21 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         collapsible:false
     }],
     columns: [ /* your columns */ 
+        
+        {
+            header: 'Region',
+            width: 180,
+            sortable: false,
+            menuDisabled:true,
+            dataIndex: 'region',
+            renderer: function(value, meta) {
+                ///console.log( 'hey',meta)
+                meta.tdCls='font10'
+                return `${value}`
+                //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
+                //return value;
+            }
+        },
         {
             text: 'Area',
             //flex: 1,
@@ -115,20 +130,6 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             }
         }, 
         {
-            header: '',
-            width: 180,
-            sortable: false,
-            menuDisabled:true,
-            dataIndex: 'region',
-            renderer: function(value, meta) {
-                ///console.log( 'hey',meta)
-                meta.tdCls='font10'
-                return `${value}`
-                //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
-                //return value;
-            }
-        }, 
-        {
             header: '%',
             width: 50,
             sortable: false,
@@ -137,19 +138,12 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             //summaryRenderer: Ext.util.Format.usMoney,
             align:'right',
             dataIndex: 'qty_pct',
-            //summaryType: 'sum',
-            field: {
-                xtype: 'numberfield'
-            },
+            
             renderer: function(value, meta, record) {
                 meta.tdCls = 'font7'
                 return `${value} %`
-                //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
-                //return value;
-            },
-            summaryRenderer:(value,summaryData,dataIndex)=>{
-                //return util.addCommas(value)
-            },
+                
+            }
         },
         {
             header: 'Qty',
