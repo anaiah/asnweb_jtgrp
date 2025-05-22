@@ -20,23 +20,23 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     columns: [
         { text: 'Region', dataIndex: 'region', flex: 1 },
         { text: 'Area', dataIndex: 'area', flex: 1 },
-        { text: '% Qty', dataIndex: 'qty_pct', width: 80,
-            renderer: function(value) { return value + '%'; },
-            summaryType: function(records, field) {
-                // For custom summary, e.g., average
-                var total = 0;
-                var count = 0;
-                Ext.each(records, function(r) {
-                    var val = r.get(field);
-                    if (Ext.isNumber(val)) {
-                        total += val;
-                        count++;
-                    }
-                });
+        // { text: '% Qty', dataIndex: 'qty_pct', width: 80,
+        //     renderer: function(value) { return value + '%'; },
+        //     summaryType: function(records, field) {
+        //         // For custom summary, e.g., average
+        //         var total = 0;
+        //         var count = 0;
+        //         Ext.each(records, function(r) {
+        //             var val = r.get(field);
+        //             if (Ext.isNumber(val)) {
+        //                 total += val;
+        //                 count++;
+        //             }
+        //         });
 
-                //return count > 0 ? Ext.Number.toFixed(total / count, 2) : 0;
-            }
-            },
+        //         //return count > 0 ? Ext.Number.toFixed(total / count, 2) : 0;
+        //     }
+        //     },
         { text: 'Parcel', dataIndex: 'parcel', width: 120, 
         summaryType: 'sum', 
         renderer: Ext.util.Format.numberRenderer('0') 
