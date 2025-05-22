@@ -39,7 +39,7 @@ Ext.define('MyApp.store.opmgrStore', {
             var sm = Ext.getCmp('opmgrGrid').getSelectionModel();
             if (store.getCount() > 0 && !sm.hasSelection()) {
             
-                sm.select(0);
+                //sm.select(0);
             
                 console.log('===opmgrStore.js onLoad() STORE PO LISTENING === store loaded w recs==' , store.data.length )
                 console.log('===opmgrStore.js onLoad() GRID opmgr REGIONAL FIRST RECORD SELECTED ==' )
