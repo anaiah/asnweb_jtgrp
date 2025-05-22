@@ -797,8 +797,6 @@ Ext.onReady(function(){
     console.log('ext on ready....')
     Ext.tip.QuickTipManager.init();
 
-    
-
     asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
     
     // Get the controller
@@ -815,10 +813,10 @@ Ext.onReady(function(){
        
       });
  //osndp.Bubbl
- window.scrollTo(0,0);
- asn.init() //instantiate now
 
 })
+window.scrollTo(0,0);
+asn.init() //instantiate now
 
 
 
