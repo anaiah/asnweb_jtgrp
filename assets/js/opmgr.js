@@ -733,7 +733,7 @@ const asn = {
     //==========END  GETMENU
    
     ignoreSelectionEvent:false,
-    
+
 	//==,= main run
 	init :  () => {
         asn.getmenu(util.getCookie('grp_id')) 
@@ -786,6 +786,24 @@ const asn = {
         console.log('===loadbarchart()===')
         */
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
+
+
+        //call grid load
+        var grid = Ext.getCmp('opmgrGrid')
+
+        grid.getSelectionModel().on('selectionchange', (model, records) => {
+            if (asn.ignoreSelectionEvent) return;
+      
+            console.log('selectionchange fired');
+      
+            if (records.length === 0) {
+              asn.ignoreSelectionEvent = true;
+              if (model.getStore().getCount() > 0) {
+                //model.select(0);
+              }
+              asn.ignoreSelectionEvent = false;
+            }
+          });
 
 	}//END init
 
