@@ -8,6 +8,10 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     height: 300,
 
     features: [{
+        ftype: 'grouping',
+        groupHeaderTpl: '{name}', // customize as needed
+        // groupAll: true // optional
+    }, {
         ftype: 'summary'
     }],
 
@@ -27,7 +31,8 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                         count++;
                     }
                 });
-                return count > 0 ? Ext.Number.toFixed(total / count, 2) : 0;
+
+                //return count > 0 ? Ext.Number.toFixed(total / count, 2) : 0;
             }
             },
         { text: 'Parcel', dataIndex: 'parcel', width: 120, 
