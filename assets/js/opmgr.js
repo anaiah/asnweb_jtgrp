@@ -822,7 +822,7 @@ Ext.onReady(function(){
           }
           ignoreSelectionEvent = false;
         }
-        return false
+        
       });
  //osndp.Bubbl
  window.scrollTo(0,0);
