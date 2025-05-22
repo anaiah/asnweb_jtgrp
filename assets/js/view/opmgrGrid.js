@@ -65,9 +65,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
 
             listeners:{
                 afterrender: function(grid) {
-                    this.getStore().load()
-                    console.log('aferrender fired this.getSTore().oad()')
-
+                    
                 },
             
                 cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
