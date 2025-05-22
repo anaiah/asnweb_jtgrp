@@ -3,7 +3,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     alias : 'widget.opmgrGrid',
     id: 'opmgrGrid',
     title: 'Operation Management Summary',
-    store: 'opmgrStore', // your storeId
+    store: Ext.data.StoreManager.lookup('opmgrStore'), // your storeId
     width: 700,
     height: 400,
     columns: [
