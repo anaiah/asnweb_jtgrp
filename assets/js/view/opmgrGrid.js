@@ -7,11 +7,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     width: 500,
     height: 300,
 
-    features: [{
-        ftype: 'grouping',
-        groupHeaderTpl: '{name}', // customize as needed
-        // groupAll: true // optional
-    }, {
+    features: [ {
         ftype: 'summary'
     }],
 
