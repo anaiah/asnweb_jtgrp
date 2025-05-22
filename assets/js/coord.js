@@ -616,30 +616,22 @@ const asn = {
             let category_data=[]
 
             xdata.forEach( item  => {
-        
-                    
-                    if(ctrans=="rider"){
-                        if(item.xname){
-                            category_data.push(item.xname )
-                            // category_data.push( (!item.xname )
-                            series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
-                    
-                        }
-                        // category_data.push( (!item.xname )
-    
-                    }else{
-                        category_data.push( item.hub)
+                if(ctrans=="rider"){
+                    if(item.xname){
+                        category_data.push(item.xname )
                         series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
-                    
-                    }    
-             });
+                    }
+                
+                }else{
+                    category_data.push( item.hub)
+                    series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
+                }//EIF    
+            });
 
             options.series[0].data = series_data
 
-            //console.log( 'series[0]', options.series[0].data )
             options.xaxis.categories = category_data
-             //console.log( options.xaxis.categories)
-
+            
             chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
             chart.render();
      

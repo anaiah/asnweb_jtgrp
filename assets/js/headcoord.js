@@ -410,14 +410,14 @@ const asn = {
 
             console.log('mtd data==',  xdata)
             // Replace null qty with 0
-            xdata.forEach(item => {
-                if (item.parcel_delivered === null) {
-                    item.parcel_delivered  = 0;
-                }
-            });
+            // xdata.forEach(item => {
+            //     if (item.parcel_delivered === null) {
+            //         item.parcel_delivered  = 0;
+            //     }
+            // });
             
-            // Sort the array in descending order (change to < for ascending)
-            xdata.sort((a, b) => b.parcel_delivered - a.parcel_delivered);
+            // // Sort the array in descending order (change to < for ascending)
+            // xdata.sort((a, b) => b.parcel_delivered - a.parcel_delivered);
 
             //asc order sample
             //xdata.sort((a, b) => a.qty - b.qty);
@@ -615,21 +615,16 @@ const asn = {
             let category_data=[]
 
             xdata.forEach( item  => {
-                     
                 if(ctrans=="rider"){
                     if(item.xname){
                         category_data.push(item.xname )
-                        // category_data.push( (!item.xname )
                         series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
-                
                     }
-                    // category_data.push( (!item.xname )
-
+                
                 }else{
                     category_data.push( item.hub)
                     series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
-                
-                }    
+                }//EIF    
             });
 
             options.series[0].data = series_data
