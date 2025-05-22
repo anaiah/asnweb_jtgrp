@@ -19,5 +19,5 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         stripeRows: true,
         emptyText: 'No data available'
     },
-    renderTo: Ext.getBody() // or your container
+    //renderTo: Ext.getBody() // or your container
 });
