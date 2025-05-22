@@ -65,7 +65,8 @@ Ext.define('MyApp.view.opmgrGrid' ,{
 
             listeners:{
                 afterrender: function(grid) {
-                    this.store.load()
+                    this.getStore().load()
+                    console.log('aferrender fired this.getSTore().oad()')
 
                     /*
                     console.log('aferrender',grid.id)
