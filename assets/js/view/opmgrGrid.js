@@ -1,218 +1,23 @@
 Ext.define('MyApp.view.opmgrGrid' ,{
     extend: 'Ext.grid.Panel',
     alias : 'widget.opmgrGrid',
-	
-	//static member
-	statics:{
-		myTitle:''
-	},
-
-    //title : 'testList',
-	columnLines:true,
-    region: 'center',
-    //renderTo:'grid_month',
-    
-    id:'opmgrGrid',
-    title: 'Region',
-    autoHeight:true,
-    //
-    width:500,
-    height:300,
-    //height:'100%',
-    //minWidth:300,
-    //layout:'fit',
-    store: Ext.data.StoreManager.lookup('opmgrStore'),
-
-    border:true,
-    frame:true,
-    
-    flex:1,
+    id: 'opmgrGrid',
+    title: 'Operation Management Summary',
+    store: 'opmgrStore', // your storeId
+    width: 700,
+    height: 400,
+    columns: [
+        { text: 'Region', dataIndex: 'region', flex: 1 },
+        { text: 'Area', dataIndex: 'area', flex: 1 },
+        { text: 'Parcel', dataIndex: 'parcel', width: 80 },
+        { text: 'Amount', dataIndex: 'amount', width: 100, renderer: Ext.util.Format.usMoney },
+        { text: 'Delivered', dataIndex: 'parcel_delivered', width: 80 },
+        { text: 'Remitted', dataIndex: 'amount_remitted', width: 100, renderer: Ext.util.Format.usMoney },
+        { text: '% Qty', dataIndex: 'qty_pct', width: 80, renderer: function(value) { return Ext.Number.toFixed(value * 100, 1) + '%'; } }
+    ],
     viewConfig: {
-
         stripeRows: true,
-        loadingText: 'Loading Please Wait!',
-        emptyText: 'No Records Found!!!',
-        getRowClass: function(record) { /* your code */ },
-        listeners: {
-            refresh: function(view) {
-                console.log('View refreshed');
-            },
-            viewready: function(view) {
-                console.log('viewready fired');
-                // 'view' is the grid's view, but 'this' likely isn't your grid
-                // So, get the grid component explicitly (assuming you have its id)
-                var grid = Ext.getCmp('opmgrGrid'); // replace with your grid's id
-                if (grid) {
-                    grid.getStore().load();
-                    console.log('Loaded store upon viewready');
-                }
-            }.bind(this) // Or set scope below
-        }
-    },    
-    
-        //selModel:{
-
-            listeners:{
-                afterrender: function(grid) {
-                    
-                },
-            
-                cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
-                      //console.log( record.get("location"))      
-                },
-                selectionchange: function(model, records ) {
-        
-                }//end selectionchange
-                
-            },//end listener
-
-        //}, //end selmodel
-    
-    features: [{
-        id: 'group',
-        ftype: 'groupingsummary',
-        groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
-        //groupHeaderTpl: new Ext.XTemplate('<tpl for=".">', '<input type="button" value={name}></div>', '</tpl>'),
-        hideGroupedHeader: true,
-        enableGroupingMenu: false,
-        collapsible:false
-    }],
-    columns: [ /* your columns */ 
-        
-        {
-            header: 'Region',
-            width: 180,
-            sortable: false,
-            menuDisabled:true,
-            dataIndex: 'region',
-            renderer: function(value, meta) {
-                ///console.log( 'hey',meta)
-                //meta.tdCls='font10'
-                return `${value}`
-                //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
-                //return value;
-            }
-        },
-        {
-            text: 'Area',
-            //flex: 1,
-            width:185,
-            tdCls: 'task',
-            //dont lock muna locked:true,
-            menuDisabled:true,
-            sortable:false,
-            dataIndex: 'area',
-            hideable: false,
-            renderer: function(value, meta, record) {
-                //meta.tdCls = 'font10';
-                return value;
-                //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
-                //return value;
-            },
-            summaryType: 'count',
-            summaryRenderer: function(value, summaryData, dataIndex) {
-                //console.log(dataIndex)
-                return ((value === 0 || value > 1) ?`( ${value} Hubs )` : `( 1 Hub )`);
-            }
-        }, 
-        {
-            header: '%',
-            width: 50,
-            sortable: false,
-            menuDisabled:true,
-            //renderer: Ext.util.Format.usMoney,
-            //summaryRenderer: Ext.util.Format.usMoney,
-            align:'right',
-            dataIndex: 'qty_pct',
-            
-            renderer: function(value, meta, record) {
-                //meta.tdCls = 'font7'
-                return `${value} %`
-                
-            }
-        },
-        {
-            header: 'Qty',
-            menuDisabled:true,
-            sortable:false,
-            width: 85,
-            //sortable: true,
-            //renderer: Ext.util.Format.usMoney,
-            //summaryRenderer: Ext.util.Format.usMoney,
-            align:'right',
-            dataIndex: 'parcel',
-            summaryType: 'sum',
-            field: {
-                xtype: 'numberfield'
-            },
-            renderer: function(value, meta, record) {
-                //meta.tdCls = 'font7'
-
-                return util.addCommas(value)
-            },
-            summaryRenderer:(value,summaryData,dataIndex)=>{
-                return `<b>${util.addCommas(value)}</b>`
-            },
-        },
-        {
-            header: 'Delivered',
-            menuDisabled:true,
-            width: 85,
-            sortable: false,
-            align:'right',
-            dataIndex: 'parcel_delivered',
-            summaryType: 'sum',
-            field: {
-                xtype: 'numberfield'
-            },
-            renderer: function(value, meta, record) {
-                //meta.tdCls = 'font7'
-                return util.addCommas(value)
-            },
-            summaryRenderer:(value,summaryData,dataIndex)=>{
-                return `<b>${util.addCommas(value)}</b>`
-            },
-        },
-        {
-            header: 'Amount',
-            width: 130,
-            menuDisabled:true,
-            sortable: false,
-            dataIndex: 'amount',
-            align:'right',
-            summaryType: 'sum',
-            field: {
-                xtype: 'numberfield'
-            },
-            renderer: function(value, meta, record) {
-                //meta.tdCls = 'font7'
-                return util.addCommas(value.toFixed(2))
-            },
-            summaryRenderer:(value,summaryData,dataIndex)=>{
-                return `<b>${util.addCommas(value.toFixed(2))}</b>`
-            },
-        }, 
-        {
-            header: 'Remitted',
-            width: 130,
-            sortable: false,
-            menuDisabled:true,
-            dataIndex: 'amount_remitted',
-            align:'right',
-            summaryType: 'sum',
-            field: {
-                xtype: 'numberfield'
-            },
-            renderer: function(value, meta, record) {
-                //meta.tdCls = 'font7'
-                return util.addCommas(value.toFixed(2))
-            },
-            summaryRenderer:(value,summaryData,dataIndex)=>{
-                return `<b>${util.addCommas(value.toFixed(2))}</b>`
-            },
-        },
-       
-    ], //end columns
-   
-
-})
+        emptyText: 'No data available'
+    },
+    renderTo: Ext.getBody() // or your container
+});
