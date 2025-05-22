@@ -84,9 +84,9 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     
             // your logic, e.g., avoiding re-selection
             // To select first record only once:
-            if (selected.length === 0) {
+            if (records.length === 0) {
                 ignoreSelectionEvent = true;
-                selModel.select(0);
+                model.select(0);
                 ignoreSelectionEvent = false;
             }
         
