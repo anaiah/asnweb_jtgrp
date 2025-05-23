@@ -16,7 +16,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         id: 'xgroup',
         ftype: 'groupingsummary',
         groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
-        
+            
         hideGroupedHeader: true,
         enableGroupingMenu: false,
         collapsible:false
