@@ -747,8 +747,8 @@ const asn = {
         .then((xdata) => {
 
             console.log('loadopmgrArea() data->',xdata)
-            asn.ctrlExt.loadPage( asn.currentPage ) //load first page
-              
+            //asn.ctrlExt.loadPage( asn.currentPage ) //load first page
+            
         
         })
         .catch((error) => {

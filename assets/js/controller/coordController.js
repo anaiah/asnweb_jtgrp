@@ -39,7 +39,7 @@ Ext.define('MyApp.controller.coordController', {
 
     //== load po store / grid
     sendData:(ydata, whatStore)=>{
-        console.log('myController.js===== after getpo, loadPO',ydata.length)
+        console.log('ccoordController.js===== after getpo, loadPO',ydata.length)
 
         if(ydata) { // if data  not null
             //====LOAD PO FOR APPROVAL====
