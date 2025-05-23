@@ -29,14 +29,14 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             hideable:false,
             menuDisabled:true,
          },
-        // { 
-        //     text: 'Area', 
-        //     dataIndex: 'area', 
-        //     width:150,
-        //     sortable:false,
-        //     hideable:false,
-        //     menuDisabled:true,
-        // },
+        { 
+            text: '', 
+            dataIndex: 'hub', 
+            width:150,
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
+        },
         // { text: '% Qty', dataIndex: 'qty_pct', width: 80,
         //     renderer: function(value) { return value + '%'; },
         //     summaryType: function(records, field) {
