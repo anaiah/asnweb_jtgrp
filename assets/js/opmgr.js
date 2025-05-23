@@ -847,8 +847,9 @@ Ext.onReady(function(){
         if (selected.length > 0) {
             var record = selected[0];
             console.log(record.get('location'))
-            record.suspendEvents(); // Prevent events while setting the value
-            record.resumeEvents();  // Re-enable events
+
+            // record.suspendEvents(); // Prevent events while setting the value
+            // record.resumeEvents();  // Re-enable events
         }
     });
 
