@@ -14,7 +14,7 @@ Ext.define('MyApp.controller.coordController', {
         var end = start + asn.pageSize;
         var pageData = asn.allData.slice(start, end);
         
-        asn.ctrlExt.sendData( pageData );
+        asn.ctrlExt.sendData( pageData, 'opmgrStore' );
         
         asn.currentPage = page;
 
@@ -38,12 +38,12 @@ Ext.define('MyApp.controller.coordController', {
     },
 
     //== load po store / grid
-    sendData:(ydata)=>{
+    sendData:(ydata, whatStore)=>{
         console.log('myController.js===== after getpo, loadPO',ydata.length)
 
         if(ydata) { // if data  not null
             //====LOAD PO FOR APPROVAL====
-            const storeInstance = Ext.data.StoreManager.lookup('monthlyStore')
+            const storeInstance = Ext.data.StoreManager.lookup(whatStore)
             //storeInstance.removeAll();
 
             storeInstance.loadData(ydata ) //load ARRAY OF DATA
