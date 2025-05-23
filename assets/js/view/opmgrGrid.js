@@ -16,7 +16,6 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         id: 'xgroup',
         ftype: 'groupingsummary',
         groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
-            
         hideGroupedHeader: true,
         enableGroupingMenu: false,
         collapsible:false
@@ -75,7 +74,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             summaryType: 'sum', 
             //renderer: Ext.util.Format.usMoney
             summaryRenderer:(value,summaryData,dataIndex)=>{
-                return `<b>${util.addCommas(value)}</b>`
+                return `<b>${util.addCommas(value.toFixed(2))}</b>`
             },
         },
        
@@ -86,7 +85,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             summaryType: 'sum',
             //renderer: Ext.util.Format.usMoney
             summaryRenderer:(value,summaryData,dataIndex)=>{
-                return `<b>${util.addCommas(value)}</b>`
+                return `<b>${util.addCommas(value.toFixed(2))}</b>`
             },
         },
         
