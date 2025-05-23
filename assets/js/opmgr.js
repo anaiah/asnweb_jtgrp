@@ -846,6 +846,10 @@ Ext.onReady(function(){
                     
     grid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
         if (selected.length > 0) {
+
+            //scrollto location-grid
+            util.scrollsTo('location-grid')
+            
             var record = selected[0];
             var areaValue = record.get('area');
 
