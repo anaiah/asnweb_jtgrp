@@ -2,6 +2,7 @@
 Ext.define('MyApp.view.opmgrLocationGrid', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.opmgrlocationgrid',
+    id:'opmgrLocationGrid',
     store: Ext.data.StoreManager.lookup('opmgrLocationStore'), // your storeId
     columns: [
         { text: 'Location',  dataIndex: 'location' },  //  Matches model
