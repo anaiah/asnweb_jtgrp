@@ -85,7 +85,9 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             align: 'right',       // Align the column values to the right
             headerAlign: 'center',
             summaryType: 'sum', 
-            //renderer: Ext.util.Format.numberRenderer('0')
+            renderer: (value)=> { 
+                return util.addCommas(value) 
+            },
             summaryRenderer:(value,summaryData,dataIndex)=>{
                 return `<b>${util.addCommas(value)}</b>`
             }, 
@@ -99,7 +101,9 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             align: 'right',       // Align the column values to the right
             headerAlign: 'center',
             summaryType: 'sum',
-            //enderer: Ext.util.Format.numberRenderer('0') 
+            renderer: (value)=> { 
+                return util.addCommas(value) 
+            },
             summaryRenderer:(value,summaryData,dataIndex)=>{
                 return `<b>${util.addCommas(value)}</b>`
             },
@@ -114,8 +118,9 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             align: 'right',       // Align the column values to the right
             headerAlign: 'center',
             summaryType: 'sum', 
-
-            //renderer: Ext.util.Format.usMoney
+            renderer: (value)=> { 
+                return util.addCommas(value.toFixed(2)) 
+            },
             summaryRenderer:(value,summaryData,dataIndex)=>{
                 return `<b>${util.addCommas(value.toFixed(2))}</b>`
             },
@@ -131,7 +136,9 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             align: 'right',       // Align the column values to the right
             headerAlign: 'center',
             summaryType: 'sum',
-            //renderer: Ext.util.Format.usMoney
+            renderer: (value)=> { 
+                return util.addCommas(value.toFixed(2)) 
+            },
             summaryRenderer:(value,summaryData,dataIndex)=>{
                 return `<b>${util.addCommas(value.toFixed(2))}</b>`
             },
