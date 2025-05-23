@@ -11,7 +11,9 @@ Ext.application({
     requires: [
         'MyApp.overrides.GroupingSummary',  // <---- ADD THIS LINE
         'MyApp.overrides.SelectionModel',  // <---- ADD THIS LINE
-        'MyApp.view.opmgrLocationGrid'  // <---- ADD THIS LINE
+        'MyApp.view.opmgrLocationGrid',  // <---- ADD THIS LINE
+        'MyApp.view.opmgrGrid'  // <---- ADD THIS LINE
+        
     ],
 
     models: ['opmgrModel'],

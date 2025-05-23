@@ -32,7 +32,7 @@ Ext.define('MyApp.store.opmgrLocationStore', {
     },
 
     groupField: 'location',
-    //autoLoad: true,
+    autoLoad: false,
     //data:[{po_number:'', invoice_number:''}], //blank
     
     listeners: {
