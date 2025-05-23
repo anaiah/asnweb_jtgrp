@@ -18,7 +18,7 @@ Ext.define('MyApp.store.opmgrRiderStore', {
         }
     },
 
-    groupField: 'full_name',
+    //groupField: 'full_name',
     //autoLoad: true,
     //data:[{po_number:'', invoice_number:''}], //blank
     

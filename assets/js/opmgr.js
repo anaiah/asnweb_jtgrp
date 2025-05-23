@@ -841,7 +841,7 @@ Ext.onReady(function(){
     // Get the controller
     asn.ctrlExt = asn.appExt.getController('coordController');
 
-    //call grid load
+    //call Maiin Area grid load
     var grid = Ext.getCmp('opmgrGrid')
                     
     grid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
@@ -849,7 +849,7 @@ Ext.onReady(function(){
 
             //scrollto location-grid
             util.scrollsTo('location-grid')
-            
+
             var record = selected[0];
             var areaValue = record.get('area');
 
@@ -874,6 +874,55 @@ Ext.onReady(function(){
                     opmgrlocstore.loadData(data); // Load the data into the store
 
                     console.log('Data loaded successfully');
+                },
+                failure: function(response) {
+                    console.error('Failed to load data');
+                    Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
+                }
+            });
+            
+            // record.suspendEvents(); // Prevent events while setting the value
+            // record.resumeEvents();  // Re-enable events
+        }else{
+            // No row is selected (clear the store)
+            //var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
+            //opmgrlocstore.removeAll();
+        
+        }//====end if
+    });
+
+    //call Location / hub Grid
+    var locgrid = Ext.getCmp('opmgrLocationGrid')
+    locgrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
+        if (selected.length > 0) {
+
+            //scrollto location-grid
+            util.scrollsTo('rider-grid')
+
+            var record = selected[0];
+            var locValue = record.get('location');
+
+            console.log('Selected Location:', locValue);
+
+            //SET TITLE
+			Ext.getCmp('opmgrRiderGrid').setTitle( areaValue ) 
+            
+            // Get the store
+            //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+            var opmgrriderstore = Ext.getCmp('opmgrRiderGrid').getStore();
+            opmgrriderstore.removeAll();
+        
+            // Make an AJAX request to get the data from the server
+            Ext.Ajax.request({
+                url: `${myIp}/coor/ridersummary/${locValue}`,
+                success: function(response) {
+                    
+                    var data = Ext.decode(response.responseText); // Decode the JSON data
+                    
+                    //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+                    opmgrriderstore.loadData(data); // Load the data into the store
+
+                    console.log('RIDER Data loaded successfully');
                 },
                 failure: function(response) {
                     console.error('Failed to load data');
