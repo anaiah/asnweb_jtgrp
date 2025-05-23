@@ -44,9 +44,6 @@ Ext.application({
             height: 300
         });
 
- 
-   
-
         //make container later
         Ext.define('MyApp.view.OpmgrContainer', {
             extend: 'Ext.panel.Panel',
