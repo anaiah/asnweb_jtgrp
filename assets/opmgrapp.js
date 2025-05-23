@@ -66,13 +66,17 @@ Ext.application({
         Ext.define('MyApp.view.OpmgrRiderContainer', {
             extend: 'Ext.panel.Panel',
             alias: 'widget.opmgrridercontainer',
-            layout: 'fit',
-            height:300,
+            layout: {
+                type: 'hbox',
+                align: 'stretch' // stretch to fill height
+            },
+            height:600,
             items: [
                 {
-                    region: 'west',
+                   // region: 'west',
                     xtype: 'grid',
-                    height:300, // or use flex with layout like 'hbox'
+                    flex:1,
+                    height:600, // or use flex with layout like 'hbox'
                     title: 'Left Grid',
                     //store: yourLeftStore,
                     columns: [/* columns */
@@ -85,7 +89,8 @@ Ext.application({
                 {
                     region: 'east',
                     xtype: 'grid',
-                    height:300,
+                    height:600,
+                    flex:1,
                     title: 'Right Grid',
                     //store: yourRightStore,
                     columns: [
