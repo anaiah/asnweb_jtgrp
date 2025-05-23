@@ -869,8 +869,8 @@ Ext.onReady(function(){
             opmgrlocstore.load({
                 callback: function() {
                     // After loading, refresh the view
-                    //Ext.getCmp('riderGrid').getView().refresh();
-                    Ext.getCmp('opmgrLocationGrid').bindStore( opmgrlocstore );
+                    Ext.getCmp('opmgrLocationGrid').getView().refresh();
+                    //Ext.getCmp('opmgrLocationGrid').bindStore( opmgrlocstore );
 
                 }
             });

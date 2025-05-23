@@ -125,16 +125,16 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
         listeners: {
             viewready: function(view) {
                 
-                // Select the first row after the grid has been rendered
-                var grid = Ext.getCmp('opmgrGrid');
-                var xstore = grid.getStore()
-                console.log('===viewRead loaded === store loaded w recs==' , xstore.data.length )
+                // // Select the first row after the grid has been rendered
+                // var grid = Ext.getCmp('opmgrGrid');
+                // var xstore = grid.getStore()
+                // console.log('===viewRead loaded === store loaded w recs==' , xstore.data.length )
 
-                if (xstore.getCount() > 0) {
+                // if (xstore.getCount() > 0) {
                     
-                    grid.getSelectionModel().select(0);
+                //     grid.getSelectionModel().select(0);
                 
-                }
+                // }
                 /*                           
                 store.sort([
                     { property: 'qty_pct', direction: 'DESC' },
