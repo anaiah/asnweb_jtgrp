@@ -66,7 +66,7 @@ Ext.application({
         Ext.define('MyApp.view.OpmgrRiderContainer', {
             extend: 'Ext.panel.Panel',
             alias: 'widget.opmgrridercontainer',
-            layout: 'border',
+            layout: 'fit',
             height:300,
             items: [
                 {
