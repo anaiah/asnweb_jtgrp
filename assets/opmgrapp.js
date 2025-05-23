@@ -36,7 +36,6 @@ Ext.application({
         console.log('====Ext.app 4.2 Launch() ====',)
         MyApp.app = this    
 
-        
         var locGrid = Ext.create('MyApp.view.opmgrGrid', {
             renderTo: 'region-grid',
             width: 500,

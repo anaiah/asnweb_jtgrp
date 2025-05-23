@@ -746,6 +746,7 @@ const asn = {
         })
         .then((xdata) => {
             
+            //sort here 
             xdata.sort(function(a, b) {
                 var parcelDeliveredA = parseInt(a.parcel_delivered, 10);
                 var parcelDeliveredB = parseInt(b.parcel_delivered, 10);

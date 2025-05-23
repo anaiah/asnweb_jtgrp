@@ -44,7 +44,7 @@ Ext.define('MyApp.controller.coordController', {
         if(ydata) { // if data  not null
 
             //sort
-            ydata.sort((a, b) => b.parcel_delivered - a.parcel_delivered);
+            //ydata.sort((a, b) => b.parcel_delivered - a.parcel_delivered);
 
             const storeInstance = Ext.data.StoreManager.lookup(whatStore)
             //storeInstance.removeAll();
