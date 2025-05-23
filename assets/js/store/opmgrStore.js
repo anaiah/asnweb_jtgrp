@@ -26,7 +26,11 @@ Ext.define('MyApp.store.opmgrStore', {
     
     listeners: {
         'load':(store)=>{
-             //   console.log('===opmgrStore.js onLoad() STORE PO LISTENING === store loaded w recs==' , store.data.length )
+               console.log('===opmgrStore.js onLoad() STORE PO LISTENING === store loaded w recs==' , store.data.length )
+             store.sort({
+                property: 'parcel_delivered',
+                direction: 'ASC' // or 'DESC'
+            });
            
         },
         'datachanged':(store,e)=>{ //this is triggered by store.loadData(array)
