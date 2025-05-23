@@ -18,7 +18,7 @@ Ext.define('MyApp.controller.coordController', {
         
         asn.currentPage = page;
 
-        asn.ctrlExt.updatePageInfo() //refresh
+       /// asn.ctrlExt.updatePageInfo() //refresh
 
         console.log('==current page==', asn.currentPage)
         // Optionally update UI components (like a paging toolbar)
@@ -33,8 +33,8 @@ Ext.define('MyApp.controller.coordController', {
             var start = ( asn.currentPage - 1) * asn.pageSize + 1;
             var end = Math.min(asn.currentPage * asn.pageSize, asn.allData.length);
 
-        
-        Ext.getCmp('pageInfo').setText('Showing ' + start + ' - ' + end + ' of ' + asn.allData.length);
+        //off muna page bar
+        //Ext.getCmp('pageInfo').setText('Showing ' + start + ' - ' + end + ' of ' + asn.allData.length);
     },
 
     //== load po store / grid
