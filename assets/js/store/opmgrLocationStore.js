@@ -19,7 +19,7 @@ Ext.define('MyApp.store.opmgrLocationStore', {
         }
     },
 
-    groupField: 'location',
+    //groupField: 'location',
     autoLoad: false,
     //data:[{po_number:'', invoice_number:''}], //blank
     
@@ -29,7 +29,7 @@ Ext.define('MyApp.store.opmgrLocationStore', {
             console.log('===location loading opmgr store loaded w recs==' , store.data.length )
             // console.log('===locationStore.js GRID PO locationGrid FIRST RECORD SELECTED ==' )
             
-            Ext.getCmp('opmgrLocationGrid').getSelectionModel().select(0);
+            Ext.getCmp('opmgrLocationGrid').getSelectionModel().select();
 
         }
     }//end listen				 
