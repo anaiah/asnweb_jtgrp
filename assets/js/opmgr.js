@@ -734,7 +734,7 @@ const asn = {
    
     ignoreSelectionEvent:false,
 
-    loadopmgrArea: async( ctrans )=>{
+    loadopmgrArea: async()=>{
         console.log('loading... load op mgr Area ')
 
         await fetch(`${myIp}/opmgr/summary/${util.getCookie('f_email')}`,{
@@ -744,6 +744,8 @@ const asn = {
             return res.json();
         })
         .then((xdata) => {
+
+            console.log('loadopmgrArea() data->',xdata)
             asn.ctrlExt.loadPage( asn.currentPage ) //load first page
               
         
