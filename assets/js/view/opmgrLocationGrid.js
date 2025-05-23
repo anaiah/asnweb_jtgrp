@@ -39,7 +39,10 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
         groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
         hideGroupedHeader: true,
         enableGroupingMenu: false,
-        collapsible:false
+        collapsible:false,
+        getGroupHeaderContent: function(groupField, groupValue) {
+            return 'Total For ' + groupValue;
+        }
     }],
     columns: [
         { 
