@@ -3,6 +3,7 @@ Ext.define('MyApp.store.opmgrLocationStore', {
     alias: 'store.opmgrlocationstore',
     storeId: 'opmgrLocationStore',
     model: 'MyApp.model.opmgrLocModel',  // set your model here
+    groupField:'location',
     listeners: {
         'load': function(store, records, successful, operation, eOpts) {
             console.log('===location loading opmgr store loaded w recs==', store.data.length);
