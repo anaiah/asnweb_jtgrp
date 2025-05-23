@@ -69,12 +69,15 @@ Ext.application({
             extend: 'Ext.panel.Panel',
             alias: 'widget.opmgrridercontainer',
             layout: 'border',
+            border:true,
             width:500,
             height:300,
             items: [
                 {
                    region: 'west',
                     xtype: 'opmgrridergrid',
+                    split:true,
+
                    
                 },
                 {
