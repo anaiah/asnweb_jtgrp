@@ -154,6 +154,12 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
         //stripeRows: true,
         emptyText: 'No data available',
         preserveScrollOnRefresh: true,
+        getRowClass: function(record) {
+            if (record.get('isSummary')) {
+                return 'my-summary-row-class';
+            }
+            return '';
+        },
         listeners: {
             viewready: function(view) {
                 

@@ -14,7 +14,9 @@ nt-size: 13px;
 /*
 this is also used for groupheadertpl
 */
-
+.my-summary-row-class {
+  background-color: #d3d3d3 !important;
+}
 .hide-me{
   display:none;
 }
@@ -57,7 +59,7 @@ text-align: center !important; /* Override ExtJS styles */
 /* .apexcharts-tooltip {
 display: none !important;
 } */
- 
+
 div #myCard{
   opacity:0.9;
 /* }
