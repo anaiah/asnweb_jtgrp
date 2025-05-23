@@ -905,7 +905,7 @@ Ext.onReady(function(){
             console.log('Selected Location:', locValue);
 
             //SET TITLE
-			Ext.getCmp('opmgrRiderGrid').setTitle( areaValue ) 
+			Ext.getCmp('opmgrRiderGrid').setTitle( locValue ) 
             
             // Get the store
             //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
