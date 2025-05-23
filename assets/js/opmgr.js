@@ -852,8 +852,7 @@ Ext.onReady(function(){
             console.log('Selected Area:', areaValue);
 
             //SET TITLE
-			Ext.getCmp('_storeList').setTitle( "COMPLIANCE STORE LIST FOR " + 
-            this.getStore().getAt(idx).get('proj_name') );
+			Ext.getCmp('opmgrLocationGrid').setTitle( "Location Performance  for " + areaValue) 
             
             //SET STORE
             
