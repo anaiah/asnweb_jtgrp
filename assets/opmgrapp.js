@@ -76,7 +76,7 @@ Ext.application({
                 }
             ],
             renderTo: 'location-grid'
-        });
+        }); 
 
        
         Ext.create('MyApp.view.OpmgrContainer');
