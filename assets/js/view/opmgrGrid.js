@@ -52,6 +52,11 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             text: 'Parcel', 
             dataIndex: 'parcel', 
             width: 120, 
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
+            align: 'right',       // Align the column values to the right
+            headerAlign: 'center',
             summaryType: 'sum', 
             //renderer: Ext.util.Format.numberRenderer('0')
             summaryRenderer:(value,summaryData,dataIndex)=>{
@@ -61,6 +66,11 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         {   text: 'Delivered',  
             dataIndex: 'parcel_delivered', 
             width: 120, 
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
+            align: 'right',       // Align the column values to the right
+            headerAlign: 'center',
             summaryType: 'sum',
             //enderer: Ext.util.Format.numberRenderer('0') 
             summaryRenderer:(value,summaryData,dataIndex)=>{
@@ -71,7 +81,13 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             text: 'Amount', 
             dataIndex: 'amount', 
             width: 150, 
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
+            align: 'right',       // Align the column values to the right
+            headerAlign: 'center',
             summaryType: 'sum', 
+
             //renderer: Ext.util.Format.usMoney
             summaryRenderer:(value,summaryData,dataIndex)=>{
                 return `<b>${util.addCommas(value.toFixed(2))}</b>`
@@ -82,6 +98,11 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             text: 'Remitted', 
             dataIndex: 'amount_remitted', 
             width: 150, 
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
+            align: 'right',       // Align the column values to the right
+            headerAlign: 'center',
             summaryType: 'sum',
             //renderer: Ext.util.Format.usMoney
             summaryRenderer:(value,summaryData,dataIndex)=>{
