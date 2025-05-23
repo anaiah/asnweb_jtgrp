@@ -916,15 +916,17 @@ Ext.onReady(function(){
             Ext.Ajax.request({
                 url: `${myIp}/coor/ridersummary/${locValue}`,
                 success: function(response) {
-                    
-                    var data = Ext.decode(response.responseText).data ; // Decode the JSON data
+                    var json = Ext.decode(response.responseText);
+                    var data = json.data || json; // if data is wrapped or not
+                    opmgrriderstore.loadData(data);
+                    // var data = Ext.decode(response.responseText) ; // Decode the JSON data
                     
 
-                    console.log( 'rider data...',data)
-                    //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
-                    opmgrriderstore.loadData(data); // Load the data into the store
+                    // console.log( 'rider data...',data)
+                    // //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+                    // opmgrriderstore.loadData(data); // Load the data into the store
 
-                    console.log('RIDER Data loaded successfully');
+                    // console.log('RIDER Data loaded successfully');
                 },
                 failure: function(response) {
                     console.error('Failed to load data');
