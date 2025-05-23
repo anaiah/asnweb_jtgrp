@@ -2,7 +2,7 @@
 Ext.define('MyApp.view.opmgrLocationGrid' ,{
     extend: 'Ext.grid.Panel',
     alias : 'widget.opmgrlocationgrid',
-    id: 'opmgrLoationGrid',
+    id: 'opmgrLocationGrid',
     title: 'Location Summary',
     store: Ext.data.StoreManager.lookup('opmgrLocationStore'), // your storeId
     //width: 500,
