@@ -917,7 +917,7 @@ Ext.onReady(function(){
                 url: `${myIp}/coor/ridersummary/${locValue}`,
                 success: function(response) {
                     
-                    var data = Ext.decode(response.responseText); // Decode the JSON data
+                    var data = Ext.decode(response.responseText).data ; // Decode the JSON data
                     
 
                     console.log( 'rider data...',data)
