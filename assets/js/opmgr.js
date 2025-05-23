@@ -869,7 +869,7 @@ Ext.onReady(function(){
                 success: function(response) {
                     var json = Ext.decode(response.responseText);
                     var data = json.data || json; // if data is wrapped or not
-                    opmgrriderstore.loadData(data);
+                    opmgrlocstore.loadData(data);
 
                     // var data = Ext.decode(response.responseText); // Decode the JSON data
                     
