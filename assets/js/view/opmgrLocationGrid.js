@@ -5,7 +5,7 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
     id: 'opmgrLoationGrid',
     title: 'Location Summary',
     store: Ext.data.StoreManager.lookup('opmgrLocationStore'), // your storeId
-    width: 500,
+    //width: 500,
     height: 300,
     cls: 'centered-headers-grid',
     
