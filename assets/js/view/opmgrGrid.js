@@ -101,6 +101,12 @@ Ext.define('MyApp.view.opmgrGrid' ,{
 
                 // Select the first row after the grid has been rendered
                 var grid = Ext.getCmp('opmgrGrid');
+                var xstore = grid.getStore()
+                console.log('===opmgrStore.js onLoad() STORE PO LISTENING === store loaded w recs==' , store.data.length )
+            xstore.sort({
+               property: 'parcel_delivered',
+               direction: 'DESC' // or 'DESC'
+           });
                 if (grid.getStore().getCount() > 0) {
                     grid.getSelectionModel().select(0);
                 }
