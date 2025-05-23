@@ -102,12 +102,14 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                 var grid = Ext.getCmp('opmgrGrid');
                 var xstore = grid.getStore()
                 console.log('===viewRead loaded === store loaded w recs==' , xstore.data.length )
-            xstore.sort({
-               property: 'parcel_delivered',
-               direction: 'DESC' // or 'DESC'
-           });
-                if (grid.getStore().getCount() > 0) {
-                    grid.getSelectionModel().select(0);
+
+                if (xstore.getCount() > 0) {
+                    xstore.sort({
+                    property: 'parcel_delivered',
+                    direction: 'DESC' // or 'DESC'
+                });
+                grid.getSelectionModel().select(0);
+                
                 }
                 /*                           
                 store.sort([
