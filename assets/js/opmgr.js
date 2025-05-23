@@ -866,7 +866,7 @@ Ext.onReady(function(){
                 callback: function(records, operation, success) {
                     if (success) {
                         console.log('Successfully loaded data for area:', areaValue);
-                        Ext.getCmp('opmgrLocationGrid').getSelectionModel().select(records[0]); 
+                        //Ext.getCmp('opmgrLocationGrid').getSelectionModel().select(records[0]); //with reference to model.Model(()) 
                         //Ext.getCmp('opmgrLocationgrid').getView().refresh()
 
                     } else {
@@ -885,8 +885,8 @@ Ext.onReady(function(){
             // record.resumeEvents();  // Re-enable events
         }else{
             // No row is selected (clear the store)
-            var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
-            opmgrlocstore.removeAll();
+            //var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
+            //opmgrlocstore.removeAll();
         
         }
        
