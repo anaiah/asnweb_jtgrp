@@ -20,15 +20,24 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     //     ftype: 'summary'
     // }],
     features: [{
-        id: 'group',
+        id: 'xgroup',
         ftype: 'groupingsummary',
-        groupHeaderTpl: '{name}',
+        groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
         hideGroupedHeader: true,
-        enableGroupingMenu: false
+        enableGroupingMenu: false,
+        collapsible:false
     }],
     columns: [
-        { text: 'Region', dataIndex: 'region', flex: 1 },
-        { text: 'Area', dataIndex: 'area', flex: 1 },
+        { 
+            text: 'Region', 
+            dataIndex: 'region',
+            width:150 
+        },
+        { 
+            text: 'Area', 
+            dataIndex: 'area', 
+            width:150 
+        },
         // { text: '% Qty', dataIndex: 'qty_pct', width: 80,
         //     renderer: function(value) { return value + '%'; },
         //     summaryType: function(records, field) {
@@ -46,27 +55,39 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         //         //return count > 0 ? Ext.Number.toFixed(total / count, 2) : 0;
         //     }
         //     },
-        { text: 'Parcel', dataIndex: 'parcel', width: 120, 
-        summaryType: 'sum', 
-        renderer: Ext.util.Format.numberRenderer('0') 
+        { 
+            text: 'Parcel', 
+            dataIndex: 'parcel', 
+            width: 120, 
+            summaryType: 'sum', 
+            renderer: Ext.util.Format.numberRenderer('0') 
         },
-        { text: 'Delivered', dataIndex: 'parcel_delivered', width: 120, 
-            summaryType: 'sum'
+        {   text: 'Delivered',  
+            dataIndex: 'parcel_delivered', 
+            width: 120, 
+            summaryType: 'sum',
+            enderer: Ext.util.Format.numberRenderer('0') 
         },
-        { text: 'Amount', dataIndex: 'amount', width: 150, 
-        summaryType: 'sum', 
-        renderer: Ext.util.Format.usMoney
+        { 
+            text: 'Amount', 
+            dataIndex: 'amount', 
+            width: 150, 
+            summaryType: 'sum', 
+            renderer: Ext.util.Format.usMoney
         },
        
-        { text: 'Remitted', dataIndex: 'amount_remitted', width: 150, 
-        summaryType: 'sum',
-        renderer: Ext.util.Format.usMoney
+        {   
+            text: 'Remitted', 
+            dataIndex: 'amount_remitted', 
+            width: 150, 
+            summaryType: 'sum',
+            renderer: Ext.util.Format.usMoney
         },
         
     ],
 
     viewConfig: {
-        stripeRows: true,
+        //stripeRows: true,
         emptyText: 'No data available',
         preserveScrollOnRefresh: true,
         listeners: {
@@ -82,7 +103,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                 ]);
                 */
                 //load the store now
-                this.getStore().load()
+                //this.getStore().load()
 
             }//end viewready
         }//end listeners viewconfig

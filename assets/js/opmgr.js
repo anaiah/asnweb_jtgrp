@@ -734,6 +734,26 @@ const asn = {
    
     ignoreSelectionEvent:false,
 
+    loadopmgrArea: async( ctrans )=>{
+        console.log('loading... load op mgr Area ')
+
+        await fetch(`${myIp}/opmgr/summary/${util.getCookie('f_email')}`,{
+            cache: 'reload'
+        })
+        .then((res) => {  //promise... then 
+            return res.json();
+        })
+        .then((xdata) => {
+            asn.ctrlExt.loadPage( asn.currentPage ) //load first page
+              
+        
+        })
+        .catch((error) => {
+            console.error('Error:', error)
+        })
+        
+    }, //===end top 5
+
 	//==,= main run
 	init :  () => {
         asn.getmenu(util.getCookie('grp_id')) 
@@ -786,8 +806,6 @@ const asn = {
         console.log('===loadbarchart()===')
         */
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
-
-
         
 	}//END init
 
@@ -811,12 +829,17 @@ Ext.onReady(function(){
            
         console.log('selectionchange fired');
        
-      });
+    });
+
+    window.scrollTo(0,0);
+    asn.init() //instantiate now
+
+    asn.loadopmgrArea()
+
  //osndp.Bubbl
 
 })
-window.scrollTo(0,0);
-asn.init() //instantiate now
+
 
 
 

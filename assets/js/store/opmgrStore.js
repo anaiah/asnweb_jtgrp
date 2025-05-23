@@ -13,13 +13,13 @@ Ext.define('MyApp.store.opmgrStore', {
         {name: 'amount', type: 'float'},
         {name: 'parcel_delivered', type: 'int'},
         {name: 'amount_remitted', type: 'float'},
-        {name: 'qty_pct', type: 'float'},
+        {name: 'qty_pct', type: 'int'},
         // {name: 'cost', type: 'float'},
         // {name: 'due', type: 'date', dateFormat:'m/d/Y'}
     ],
 
     remoteSort:true,
-
+    /*
     proxy: {
         // load using HTTP
         type: 'ajax',
@@ -29,6 +29,7 @@ Ext.define('MyApp.store.opmgrStore', {
             type: 'json'
         }
     },
+    */
 
     groupField: 'region',
     //autoLoad: true,

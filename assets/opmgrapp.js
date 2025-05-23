@@ -22,7 +22,7 @@ Ext.application({
 
     controllers:
     [   
-        // 'coordCtrl',
+        'coordController',
         // 'headCtrl',
         // 'opmgrCtrl',
     ],
