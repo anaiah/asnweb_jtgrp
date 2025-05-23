@@ -900,7 +900,7 @@ Ext.onReady(function(){
             util.scrollsTo('rider-grid')
 
             var record = selected[0];
-            var locValue = record.get('location');
+            var locValue = record.get('hub');
 
             console.log('Selected Location:', locValue);
 
