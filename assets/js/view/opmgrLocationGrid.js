@@ -57,9 +57,11 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             sortable:false,
             hideable:false,
             menuDisabled:true,
-            
             summaryRenderer: function(value, summaryData, dataIndex) {
-                return `<b>Total :</b>`;
+                // Assuming that 'groupField' is the field by which you are grouping
+                // and `summaryData.record` contains a representative record for the group
+                var groupValue = summaryData.record.get('location');
+                return 'Total For ' + groupValue;
             }
             
         },
