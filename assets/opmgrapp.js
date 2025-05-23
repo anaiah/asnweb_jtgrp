@@ -71,7 +71,7 @@ Ext.application({
             layout: 'border',
             border:true,
             width:500,
-            height:300,
+            height:600,
             items: [
                 {
                    region: 'center',
