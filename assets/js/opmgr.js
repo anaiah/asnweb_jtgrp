@@ -866,7 +866,7 @@ Ext.onReady(function(){
                 callback: function(records, operation, success) {
                     if (success) {
                         console.log('Successfully loaded data for area:', areaValue);
-                        grid.getSelectionModel().select(records[0]); 
+                        Ext.getCmp('opmgrLocationGrid').getSelectionModel().select(records[0]); 
                         //Ext.getCmp('opmgrLocationgrid').getView().refresh()
 
                     } else {
