@@ -1,10 +1,4 @@
-Ext.define('MyApp.overrides.SelectionModel', {
-    override: 'Ext.selection.Model',
-    select: function(records, keepExisting, suppressEvent) {
-        console.log('Ext.selection.Model.select called with:', records, keepExisting, suppressEvent);
-        this.callParent(arguments); // Call the original method
-    }
-});
+
 
 Ext.define('MyApp.view.opmgrGrid' ,{
     extend: 'Ext.grid.Panel',
@@ -18,14 +12,14 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     // features: [ {
     //     ftype: 'summary'
     // }],
-    // features: [{
-    //     id: 'xgroup',
-    //     ftype: 'groupingsummary',
-    //     groupHeaderTpl: `{name}`,
-    //     hideGroupedHeader: true,
-    //     enableGroupingMenu: false,
-    //     collapsible:false
-    // }],
+    features: [{
+        id: 'xgroup',
+        ftype: 'groupingsummary',
+        groupHeaderTpl: `{name}`,
+        hideGroupedHeader: true,
+        enableGroupingMenu: false,
+        collapsible:false
+    }],
     columns: [
         { 
             text: 'Region', 
