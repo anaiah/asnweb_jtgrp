@@ -76,6 +76,8 @@ Ext.application({
             ],
             height: 400
         });
+        Ext.create('MyApp.view.OpmgrLocGrid');
+        
         Ext.create('MyApp.view.OpmgrContainer');
         
         // then load the store
