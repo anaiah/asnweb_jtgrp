@@ -36,8 +36,8 @@ Ext.define('MyApp.store.opmgrLocationStore', {
     //data:[{po_number:'', invoice_number:''}], //blank
     
     listeners: {
-        'datachanged':(store,e)=>{
-            // console.log('===locationStore.js STORE PO LISTENING === store loaded w recs==' , store.data.length )
+        'load':(store,e)=>{
+            console.log('===location loading opmgr store loaded w recs==' , store.data.length )
             // console.log('===locationStore.js GRID PO locationGrid FIRST RECORD SELECTED ==' )
             
             //Ext.getCmp('locationGrid').getSelectionModel().select(0);
