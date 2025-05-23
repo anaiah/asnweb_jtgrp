@@ -60,6 +60,37 @@ Ext.application({
         }); 
        
         Ext.create('MyApp.view.OpmgrContainer');
-      
-    },
+        
+        
+        //make container later
+        Ext.define('MyApp.view.OpmgrRiderContainer', {
+            extend: 'Ext.panel.Panel',
+            alias: 'widget.opmgrridercontainer',
+            layout: 'border',
+            height:300,
+            items: [
+                {
+                    region: 'west',
+                    xtype: 'grid',
+                    width: 500, // or use flex with layout like 'hbox'
+                    title: 'Left Grid',
+                    store: yourLeftStore,
+                    columns: [/* columns */]
+                },
+                {
+                    region: 'east',
+                    xtype: 'grid',
+                    width: 500,
+                    title: 'Right Grid',
+                    store: yourRightStore,
+                    columns: [/* columns */]
+                }
+            ],
+            renderTo: 'rider-grid'
+        }); 
+
+        Ext.create('MyApp.view.OpmgrRiderContainer');
+        
+    }, //==== END LAUNCH EXTJS
+
 });
