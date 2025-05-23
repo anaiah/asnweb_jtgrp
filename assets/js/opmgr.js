@@ -867,6 +867,9 @@ Ext.onReady(function(){
                 callback: function(records, operation, success) {
                     if (success) {
                         console.log('Successfully loaded data for area:', areaValue);
+
+                        Ext.getCmp('opmgrLocationgrid').getView().refresh()
+                        
                     } else {
                         console.error('Failed to load data for area:', areaValue);
                         // Handle the error (e.g., display an error message)
