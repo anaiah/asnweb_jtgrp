@@ -26,18 +26,13 @@ Ext.define('MyApp.store.opmgrStore', {
     
     listeners: {
         'load':(store)=>{
-            var sm = Ext.getCmp('opmgrGrid').getSelectionModel();
-            if (store.getCount() > 0 && !sm.hasSelection()) {
-            
-                //sm.select(0);
-            
                 console.log('===opmgrStore.js onLoad() STORE PO LISTENING === store loaded w recs==' , store.data.length )
-                console.log('===opmgrStore.js onLoad() GRID opmgr REGIONAL FIRST RECORD SELECTED ==' )
-            
-            }
+           
         },
         'datachanged':(store,e)=>{ //this is triggered by store.loadData(array)
             
+            console.log('===opmgrStore.js dataChanged() STORE PO LISTENING === store loaded w recs==' , store.data.length )
+           
             //Ext.getCmp('opmgrGrid').getSelectionModel().select(0);
 
         }
