@@ -74,18 +74,18 @@ Ext.application({
             height:300,
             items: [
                 {
-                   region: 'west',
+                   region: 'center',
                     xtype: 'opmgrridergrid',
                     split:true,
 
                    
                 },
                 {
-                    region: 'east',
+                    region: 'south',
                     xtype: 'grid',
                     height:300,
                     width:300,
-                    title: 'Right Grid',
+                    title: 'Attendance',
                     //store: yourRightStore,
                     columns: [
                         /* columns */
