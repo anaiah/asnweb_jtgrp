@@ -49,6 +49,7 @@ Ext.application({
             extend: 'Ext.panel.Panel',
             alias: 'widget.opmgrcontainer',
             layout: 'fit',
+            height:300,
             items: [
                 {
                     //xtype: 'opmgrLocationGrid'
