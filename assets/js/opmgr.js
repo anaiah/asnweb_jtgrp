@@ -870,7 +870,7 @@ Ext.onReady(function(){
                 callback: function() {
                     // After loading, refresh the view
                     //Ext.getCmp('riderGrid').getView().refresh();
-                    Ext.getCmp('opmgrLocationGrid').bindStore( opmgrlocstores );
+                    Ext.getCmp('opmgrLocationGrid').bindStore( opmgrlocstore );
 
                 }
             });
