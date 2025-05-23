@@ -49,11 +49,6 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             sortable:false,
             hideable:false,
             menuDisabled:true,
-            summaryRenderer: function(value, summaryData, dataIndex) {
-                const groupField = this.up('gridpanel').getView().getFeature('groupingsummary').groupField;
-                
-                return `<b>Total for ${groupField} (${summaryData.groupString}):,</b>`;
-            }
          },
         { 
             text: '', 
@@ -62,6 +57,12 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             sortable:false,
             hideable:false,
             menuDisabled:true,
+            
+            summaryRenderer: function(value, summaryData, dataIndex) {
+                const groupField = this.up('gridpanel').getView().getFeature('groupingsummary').groupField;
+                
+                return `<b>Total for ${groupField} (${summaryData.groupString}):,</b>`;
+            }
             
         },
         // { text: '% Qty', dataIndex: 'qty_pct', width: 80,
