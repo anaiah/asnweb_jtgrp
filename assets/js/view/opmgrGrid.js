@@ -97,12 +97,11 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         preserveScrollOnRefresh: true,
         listeners: {
             viewready: function(view) {
-                console.log('HUB locaion grid viewready');
-
+                
                 // Select the first row after the grid has been rendered
                 var grid = Ext.getCmp('opmgrGrid');
                 var xstore = grid.getStore()
-                console.log('===opmgrStore.js onLoad() STORE PO LISTENING === store loaded w recs==' , store.data.length )
+                console.log('===viewRead loaded === store loaded w recs==' , xstore.data.length )
             xstore.sort({
                property: 'parcel_delivered',
                direction: 'DESC' // or 'DESC'
