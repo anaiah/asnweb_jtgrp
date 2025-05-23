@@ -11,7 +11,8 @@ Ext.define('MyApp.view.headareaGrid' ,{
 	columnLines:true,
     region: 'center',
     renderTo:'grid_month',
-    
+    cls: 'centered-headers-grid',
+
     id:'headareaGrid',
     title: 'Area',
     autoHeight:true,
@@ -134,10 +135,12 @@ Ext.define('MyApp.view.headareaGrid' ,{
             width:185,
             tdCls: 'task',
             //dont lock muna locked:true,
-            menuDisabled:true,
-            sortable:false,
             dataIndex: 'area',
-            hideable: false,
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
+            align: 'left',       // Align the column values to the right
+            headerAlign: 'center',
             renderer: function(value, meta, record) {
                 meta.tdCls = 'font10';
                 return value;
@@ -153,9 +156,11 @@ Ext.define('MyApp.view.headareaGrid' ,{
         {
             header: 'Location',
             width: 180,
-            sortable: false,
+            sortable:false,
+            hideable:false,
             menuDisabled:true,
-            dataIndex: 'location',
+            align: 'left',       // Align the column values to the right
+            headerAlign: 'center',dataIndex: 'location',
             renderer: function(value, meta) {
                 ///console.log( 'hey',meta)
                 meta.tdCls='font10'
@@ -167,9 +172,11 @@ Ext.define('MyApp.view.headareaGrid' ,{
         {
             header: '%',
             width: 50,
-            sortable: false,
+            sortable:false,
+            hideable:false,
             menuDisabled:true,
-            //renderer: Ext.util.Format.usMoney,
+            align: 'center',       // Align the column values to the right
+            headerAlign: 'center',//renderer: Ext.util.Format.usMoney,
             //summaryRenderer: Ext.util.Format.usMoney,
             align:'right',
             dataIndex: 'qty_pct',
@@ -190,12 +197,12 @@ Ext.define('MyApp.view.headareaGrid' ,{
         {
             header: 'Qty',
             menuDisabled:true,
-            sortable:false,
             width: 85,
-            //sortable: true,
-            //renderer: Ext.util.Format.usMoney,
-            //summaryRenderer: Ext.util.Format.usMoney,
-            align:'right',
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
+            align: 'right',       // Align the column values to the right
+            headerAlign: 'center',
             dataIndex: 'parcel',
             summaryType: 'sum',
             field: {
@@ -212,11 +219,12 @@ Ext.define('MyApp.view.headareaGrid' ,{
         },
         {
             header: 'Delivered',
-            menuDisabled:true,
             width: 85,
-            sortable: false,
-            align:'right',
-            dataIndex: 'parcel_delivered',
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
+            align: 'right',       // Align the column values to the right
+            headerAlign: 'center',dataIndex: 'parcel_delivered',
             summaryType: 'sum',
             field: {
                 xtype: 'numberfield'
@@ -232,10 +240,12 @@ Ext.define('MyApp.view.headareaGrid' ,{
         {
             header: 'Amount',
             width: 130,
+            sortable:false,
+            hideable:false,
             menuDisabled:true,
-            sortable: false,
+            align: 'right',       // Align the column values to the right
+            headerAlign: 'center',
             dataIndex: 'amount',
-            align:'right',
             summaryType: 'sum',
             field: {
                 xtype: 'numberfield'
@@ -251,10 +261,12 @@ Ext.define('MyApp.view.headareaGrid' ,{
         {
             header: 'Remitted',
             width: 130,
-            sortable: false,
+            sortable:false,
+            hideable:false,
             menuDisabled:true,
+            align: 'right',       // Align the column values to the right
+            headerAlign: 'center',
             dataIndex: 'amount_remitted',
-            align:'right',
             summaryType: 'sum',
             field: {
                 xtype: 'numberfield'

@@ -128,10 +128,12 @@ Ext.define('MyApp.view.coordPanel', {
                     width:185,
                     tdCls: 'task',
                     //dont lock muna locked:true,
-                    menuDisabled:true,
                     sortable:false,
+                    hideable:false,
+                    menuDisabled:true,
+                    align: 'left',       // Align the column values to the right
+                    headerAlign: 'center',
                     dataIndex: 'hub',
-                    hideable: false,
                     renderer: function(value, meta, record) {
                         meta.tdCls = 'font10';
                         return value;
@@ -147,8 +149,11 @@ Ext.define('MyApp.view.coordPanel', {
                 {
                     header: 'Location',
                     width: 180,
-                    sortable: false,
+                    sortable:false,
+                    hideable:false,
                     menuDisabled:true,
+                    align: 'left',       // Align the column values to the right
+                    headerAlign: 'center',
                     dataIndex: 'location',
                     renderer: function(value, meta) {
                         console.log( 'hey',meta)
@@ -161,11 +166,11 @@ Ext.define('MyApp.view.coordPanel', {
                 {
                     header: '%',
                     width: 50,
-                    sortable: false,
+                    sortable:false,
+                    hideable:false,
                     menuDisabled:true,
-                    //renderer: Ext.util.Format.usMoney,
-                    //summaryRenderer: Ext.util.Format.usMoney,
-                    align:'right',
+                    align: 'center',       // Align the column values to the right
+                    headerAlign: 'center',
                     dataIndex: 'qty_pct',
                     //summaryType: 'sum',
                     field: {
@@ -186,10 +191,11 @@ Ext.define('MyApp.view.coordPanel', {
                     menuDisabled:true,
                     sortable:false,
                     width: 85,
-                    //sortable: true,
-                    //renderer: Ext.util.Format.usMoney,
-                    //summaryRenderer: Ext.util.Format.usMoney,
-                    align:'right',
+                    sortable:false,
+                    hideable:false,
+                    menuDisabled:true,
+                    align: 'right',       // Align the column values to the right
+                    headerAlign: 'center',
                     dataIndex: 'parcel',
                     summaryType: 'sum',
                     field: {
@@ -208,8 +214,11 @@ Ext.define('MyApp.view.coordPanel', {
                     header: 'Delivered',
                     menuDisabled:true,
                     width: 85,
-                    sortable: false,
-                    align:'right',
+                    sortable:false,
+                    hideable:false,
+                    menuDisabled:true,
+                    align: 'right',       // Align the column values to the right
+                    headerAlign: 'center',
                     dataIndex: 'parcel_delivered',
                     summaryType: 'sum',
                     field: {
@@ -227,9 +236,12 @@ Ext.define('MyApp.view.coordPanel', {
                     header: 'Amount',
                     width: 130,
                     menuDisabled:true,
-                    sortable: false,
+                    sortable:false,
+                    hideable:false,
+                    menuDisabled:true,
+                    align: 'right',       // Align the column values to the right
+                    headerAlign: 'center',
                     dataIndex: 'amount',
-                    align:'right',
                     summaryType: 'sum',
                     field: {
                         xtype: 'numberfield'
@@ -245,10 +257,12 @@ Ext.define('MyApp.view.coordPanel', {
                 {
                     header: 'Remitted',
                     width: 130,
-                    sortable: false,
+                    sortable:false,
+                    hideable:false,
                     menuDisabled:true,
+                    align: 'right',       // Align the column values to the right
+                    headerAlign: 'center',
                     dataIndex: 'amount_remitted',
-                    align:'right',
                     summaryType: 'sum',
                     field: {
                         xtype: 'numberfield'
@@ -347,8 +361,11 @@ Ext.define('MyApp.view.coordPanel', {
                 {
                     header: 'Name',
                     width: 180,
-                    sortable: false,
+                    sortable:false,
+                    hideable:false,
                     menuDisabled:true,
+                    align: 'left',       // Align the column values to the right
+                    headerAlign: 'center',
                     dataIndex: 'full_name',
                     renderer: function(value, meta, record) {
                        // console.log( 'hey',meta)
@@ -361,14 +378,12 @@ Ext.define('MyApp.view.coordPanel', {
                 {
                     header: 'Delivery',
                     width: 85,
-                    sortable: true,
-                    menuDisabled:true,
-                    //renderer: Ext.util.Format.usMoney,
-                    //summaryRenderer: Ext.util.Format.usMoney,
-                    align:'center',
-                    dataIndex: 'delivered_pct',
                     sortable:false,
-                    //summaryType: 'sum',
+                    hideable:false,
+                    menuDisabled:true,
+                    align: 'right',       // Align the column values to the right
+                    headerAlign: 'center',
+                    dataIndex: 'delivered_pct',
                     field: {
                         xtype: 'numberfield'
                     },

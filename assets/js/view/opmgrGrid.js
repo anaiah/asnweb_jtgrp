@@ -1,5 +1,4 @@
 
-
 Ext.define('MyApp.view.opmgrGrid' ,{
     extend: 'Ext.grid.Panel',
     alias : 'widget.opmgrGrid',
@@ -25,12 +24,18 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         { 
             text: 'Region', 
             dataIndex: 'region',
-            width:150 
+            width:150,
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
         },
         { 
             text: 'Area', 
             dataIndex: 'area', 
-            width:150 
+            width:150,
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
         },
         // { text: '% Qty', dataIndex: 'qty_pct', width: 80,
         //     renderer: function(value) { return value + '%'; },

@@ -15,9 +15,52 @@ nt-size: 13px;
 this is also used for groupheadertpl
 */
 
+.hide-me{
+  display:none;
+}
+.font10p{
+  color:green;
+  font-size:10px;
+}
+.font11p{
+  color:darkslategray;
+  font-size:13px;
+}
+/* Bootstrap-like styles for the button */
+.my-bootstrap-btn {
+  /* background-color: #007bff !important  ; Bootstrap primary blue */
+  border: 1px solid #0069d9;
+  color: #fff; /* Bootstrap text color for btn-primary */
+  /* background-image: url("")  !important; */
+  padding: 5px 12px;
+  border-radius: 4px; /* Bootstrap border radius */
+  font-size: 14px;
+  cursor: pointer;
+}
+.my-bootstrap-btn:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+.x-bottom-toolbar {
+height: 60px; /* desired height */
+line-height: 60px; /* to vertically center text/buttons */
+padding: 15px; /* optional padding */
+}
+
+#chartContainer {
+width: 400px;
+height: 350px;
+} 
+.centered-headers-grid .x-column-header {
+text-align: center !important; /* Override ExtJS styles */
+}
+/* .apexcharts-tooltip {
+display: none !important;
+} */
+ 
 div #myCard{
   opacity:0.9;
-}
+/* }
 .x-grid-group-hd { 
 background-color: #cfcfce;  
 color: blue !important;
@@ -26,7 +69,7 @@ padding: 7px 0px 7px 15px; /*adjust the last number to move the header  name*/
     /* font-weight: bold; */
    box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important;
    
-}
+} */
 
 span.xgrpheader{
   /* background-color:#cfcfce; */
