@@ -1,11 +1,4 @@
-Ext.require([
-    'Ext.grid.*',
-    'Ext.data.*',
-    'Ext.form.field.Number',
-    'Ext.form.field.Date',
-    'Ext.tip.QuickTipManager'
-]); 
- 
+
  
  //load ext
 Ext.application({

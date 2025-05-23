@@ -734,8 +734,9 @@ const asn = {
    
     ignoreSelectionEvent:false,
 
+    //================load data opmgr
     loadopmgrArea: async()=>{
-        console.log('loading... load op mgr Area ')
+        console.log('loading... load op mgr Area ', `${myIp}/opmgr/summary/${util.getCookie('f_email')}`)
 
         await fetch(`${myIp}/opmgr/summary/${util.getCookie('f_email')}`,{
             cache: 'reload'
@@ -793,6 +794,8 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
         
+        asn.loadopmgrArea()
+
         /*
         //===load mtd-chart
         asn.loadbarMTDChart()
@@ -824,8 +827,6 @@ Ext.onReady(function(){
 
     //call grid load
     var grid = Ext.getCmp('opmgrGrid')
-    
-    var store = grid.getStore()
                     
     grid.getSelectionModel().on('selectionchange', (model, records) => {
            
@@ -836,8 +837,7 @@ Ext.onReady(function(){
     window.scrollTo(0,0);
     asn.init() //instantiate now
 
-    asn.loadopmgrArea()
-
+   
  //osndp.Bubbl
 
 })
