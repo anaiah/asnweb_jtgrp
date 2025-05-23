@@ -82,7 +82,6 @@ Ext.application({
                     xtype: 'grid',
                     height:300,
                     width:300,
-                    flex:1,
                     title: 'Right Grid',
                     //store: yourRightStore,
                     columns: [
