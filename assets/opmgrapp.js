@@ -74,7 +74,8 @@ Ext.application({
                 {
                    region: 'west',
                     xtype: 'riderGrid',
-                    flex:1,
+                    //flex:1,
+                    width:300,
                     height:600, // or use flex with layout like 'hbox'
                     // title: 'Left Grid',
                     // //store: yourLeftStore,
@@ -89,6 +90,7 @@ Ext.application({
                     region: 'east',
                     xtype: 'grid',
                     height:600,
+                    width:300,
                     flex:1,
                     title: 'Right Grid',
                     //store: yourRightStore,
