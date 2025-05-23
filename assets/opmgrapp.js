@@ -43,21 +43,7 @@ Ext.application({
             height: 300
         });
 
-        //make container later
-        Ext.define('MyApp.view.OpmgrContainer', {
-            extend: 'Ext.panel.Panel',
-            alias: 'widget.opmgrcontainer',
-            layout: 'fit',
-            items: [
-                {
-                    //xtype: 'opmgrLocationGrid'
-                    xtype:'OpmgrLocGrid'
-                }
-            ],
-            renderTo: 'location-grid'
-        });
-
-        
+ 
         Ext.define('MyApp.view.OpmgrLocGrid', {
             extend: 'Ext.grid.Panel',
             alias: 'widget.opmgrlocgrid',
@@ -76,8 +62,23 @@ Ext.application({
             ],
             height: 400
         });
-        Ext.create('MyApp.view.OpmgrLocGrid');
-        
+
+
+        //make container later
+        Ext.define('MyApp.view.OpmgrContainer', {
+            extend: 'Ext.panel.Panel',
+            alias: 'widget.opmgrcontainer',
+            layout: 'fit',
+            items: [
+                {
+                    //xtype: 'opmgrLocationGrid'
+                    xtype:'opmgrlocgrid'
+                }
+            ],
+            renderTo: 'location-grid'
+        });
+
+       
         Ext.create('MyApp.view.OpmgrContainer');
         
         // then load the store
