@@ -4,7 +4,7 @@
 Ext.application({
     name: 'MyApp',
     appFolder: '/html/assets/js',
-    //models: ['monthlyModel'],
+    models: ['opmgrModel'],
     stores: 
     [
         'opmgrStore',
