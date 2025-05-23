@@ -17,7 +17,7 @@ Ext.define('MyApp.view.riderGrid' ,{
     frame:true,
     
     height:400,
-    //width:500,
+    width:500,
     store: Ext.data.StoreManager.lookup('riderStore'),  //store.storeID
     //plugins: [cellEditing],  /* takeout editing */
 
