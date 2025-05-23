@@ -15,7 +15,8 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     features: [{
         id: 'xgroup',
         ftype: 'groupingsummary',
-        groupHeaderTpl: `{name}`,
+        groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
+        
         hideGroupedHeader: true,
         enableGroupingMenu: false,
         collapsible:false
@@ -104,11 +105,8 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                 console.log('===viewRead loaded === store loaded w recs==' , xstore.data.length )
 
                 if (xstore.getCount() > 0) {
-                    xstore.sort({
-                    property: 'parcel_delivered',
-                    direction: 'DESC' // or 'DESC'
-                    });
-                     grid.getSelectionModel().select(0);
+                    
+                    grid.getSelectionModel().select(0);
                 
                 }
                 /*                           
