@@ -18,14 +18,14 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     // features: [ {
     //     ftype: 'summary'
     // }],
-    features: [{
-        id: 'xgroup',
-        ftype: 'groupingsummary',
-        groupHeaderTpl: `{name}`,
-        hideGroupedHeader: true,
-        enableGroupingMenu: false,
-        collapsible:false
-    }],
+    // features: [{
+    //     id: 'xgroup',
+    //     ftype: 'groupingsummary',
+    //     groupHeaderTpl: `{name}`,
+    //     hideGroupedHeader: true,
+    //     enableGroupingMenu: false,
+    //     collapsible:false
+    // }],
     columns: [
         { 
             text: 'Region', 

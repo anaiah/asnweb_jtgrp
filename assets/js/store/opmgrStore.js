@@ -7,7 +7,7 @@ Ext.define('MyApp.store.opmgrStore', {
     storeId:'opmgrStore',
     
 
-    remoteSort:true,
+    //remoteSort:true,
     /*
     proxy: {
         // load using HTTP
@@ -20,7 +20,7 @@ Ext.define('MyApp.store.opmgrStore', {
     },
     */
 
-    groupField: 'region',
+    //groupField: 'region',
     //autoLoad: true,
     //data:[{po_number:'', invoice_number:''}], //blank
     
