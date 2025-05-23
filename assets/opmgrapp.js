@@ -69,7 +69,7 @@ Ext.application({
             extend: 'Ext.panel.Panel',
             alias: 'widget.opmgrridercontainer',
             layout: 'border',
-            border:true,
+            //border:true,
             width:500,
             height:600,
             items: [
@@ -84,7 +84,7 @@ Ext.application({
                     region: 'south',
                     xtype: 'grid',
                     height:300,
-                    width:300,
+                    width:250,
                     title: 'Attendance',
                     //store: yourRightStore,
                     columns: [
