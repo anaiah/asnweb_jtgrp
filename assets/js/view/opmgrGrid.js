@@ -8,7 +8,8 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     store: Ext.data.StoreManager.lookup('opmgrStore'), // your storeId
     width: 500,
     height: 300,
-
+    cls: 'centered-headers-grid',
+    
     // features: [ {
     //     ftype: 'summary'
     // }],
