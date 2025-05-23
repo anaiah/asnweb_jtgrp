@@ -42,7 +42,10 @@ Ext.define('MyApp.controller.coordController', {
         console.log('ccoordController.js===== after getpo, loadPO',ydata.length)
 
         if(ydata) { // if data  not null
-            //====LOAD PO FOR APPROVAL====
+
+            //sort
+            ydata.sort((a, b) => b.parcel_delivered - a.parcel_delivered);
+
             const storeInstance = Ext.data.StoreManager.lookup(whatStore)
             //storeInstance.removeAll();
 

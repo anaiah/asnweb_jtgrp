@@ -107,8 +107,8 @@ Ext.define('MyApp.view.opmgrGrid' ,{
                     xstore.sort({
                     property: 'parcel_delivered',
                     direction: 'DESC' // or 'DESC'
-                });
-                grid.getSelectionModel().select(0);
+                    });
+                     grid.getSelectionModel().select(0);
                 
                 }
                 /*                           
