@@ -57,6 +57,10 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             sortable:false,
             hideable:false,
             menuDisabled:true,
+            summaryRenderer: function(value, summaryData, dataIndex) {
+                //return Ext.String.format('Total for {0}: {1}', summaryData.groupString, Ext.util.Format.usMoney(value));
+                return "<b>Total :</b>"
+            }
         },
         // { text: '% Qty', dataIndex: 'qty_pct', width: 80,
         //     renderer: function(value) { return value + '%'; },
