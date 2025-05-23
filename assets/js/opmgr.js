@@ -856,26 +856,21 @@ Ext.onReady(function(){
             
             // Get the store
             var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
-             // To change the URL dynamically - set it BEFORE removing data
-            var proxy = opmgrlocstore.getProxy();
-            proxy.url = `${myIp}/opmgr/opmgrlocation/${areaValue}`;
+            // Make an AJAX request to get the data from the server
+        Ext.Ajax.request({
+            url: `${myIp}/opmgr/opmgrlocation/${areaValue}`,
+            success: function(response) {
+                var data = Ext.decode(response.responseText); // Decode the JSON data
+                var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+                opmgrlocstore.loadData(data); // Load the data into the store
 
-            // Load the data from the new URL
-            opmgrlocstore.load({
-                scope: this,  // Added scope for 'this' context
-                callback: function(records, operation, success) {
-                    if (success) {
-                        console.log('Successfully loaded data for area:', areaValue);
-                        //Ext.getCmp('opmgrLocationGrid').getSelectionModel().select(records[0]); //with reference to model.Model(()) 
-                        //Ext.getCmp('opmgrLocationgrid').getView().refresh()
-
-                    } else {
-                        console.error('Failed to load data for area:', areaValue);
-                        // Handle the error (e.g., display an error message)
-                        Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
-                    }
-                }
-            });
+                console.log('Data loaded successfully');
+            },
+            failure: function(response) {
+                console.error('Failed to load data');
+                Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
+            }
+        });
         
             //var idx = grid.getStore().indexOf(record);
                 
