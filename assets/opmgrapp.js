@@ -12,7 +12,7 @@ Ext.application({
         'MyApp.overrides.GroupingSummary',  // <---- ADD THIS LINE
         'MyApp.overrides.SelectionModel',  // <---- ADD THIS LINE
         'MyApp.view.opmgrLocationGrid',  // <---- ADD THIS LINE
-        'MyApp.view.opmgRiderGrid',  // <---- ADD THIS LINE
+        'MyApp.view.opmgrRiderGrid',  // <---- ADD THIS LINE
         
     ],
 
