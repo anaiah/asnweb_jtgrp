@@ -15,7 +15,7 @@ Ext.application({
         
     ],
 
-    models: ['opmgrModel'],
+    models: ['opmgrModel','opmgrLocModel'],
     stores: 
     [
         'opmgrStore',
