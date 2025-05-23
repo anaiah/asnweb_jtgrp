@@ -846,6 +846,7 @@ Ext.onReady(function(){
     grid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
         if (selected.length > 0) {
             var record = selected[0];
+            console.log(record.get('location'))
             record.suspendEvents(); // Prevent events while setting the value
             record.resumeEvents();  // Re-enable events
         }
