@@ -15,7 +15,7 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
     
     height:300,
     width:300,
-    
+
     store: Ext.data.StoreManager.lookup('opmgrRiderStore'),  //store.storeID
     //plugins: [cellEditing],  /* takeout editing */
 
@@ -59,7 +59,13 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
     //     enableGroupingMenu: false
     // }],
     
-    columns: [/*
+    columns: [
+        {
+            text:'Name',
+            dataIndex:'full_name'
+
+        }
+        /*
         {
             text: 'Working Day(s)',
             //flex: 1,
@@ -81,6 +87,7 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
             //     return ((value === 0 || value > 1) ?`( ${value} Days )` : `( 1 Day )`);
             // }
         },*/
+        /*
         {
             header: 'Name',
             width: 180,
@@ -120,6 +127,7 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
                 //return value;
             }
         },
+        */
     ],//end columns 
 
 })
