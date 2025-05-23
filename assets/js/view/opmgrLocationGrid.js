@@ -51,7 +51,7 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             menuDisabled:true,
          },
         { 
-            text: '', 
+            text: 'Hub', 
             dataIndex: 'hub', 
             width:150,
             sortable:false,
@@ -59,9 +59,7 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             menuDisabled:true,
             
             summaryRenderer: function(value, summaryData, dataIndex) {
-                const groupField = this.up('gridpanel').getView().getFeature('groupingsummary').groupField;
-                
-                return `<b>Total for ${groupField}</b>`;
+                return `<b>Total :</b>`;
             }
             
         },
