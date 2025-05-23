@@ -69,14 +69,15 @@ Ext.application({
             extend: 'Ext.panel.Panel',
             alias: 'widget.opmgrridercontainer',
             layout: 'border',
-            height:600,
+            width:500,
+            height:300,
             items: [
                 {
                    region: 'west',
                     xtype: 'riderGrid',
                     //flex:1,
                     width:300,
-                    height:600, // or use flex with layout like 'hbox'
+                    height:300, // or use flex with layout like 'hbox'
                     // title: 'Left Grid',
                     // //store: yourLeftStore,
                     // columns: [/* columns */
@@ -89,7 +90,7 @@ Ext.application({
                 {
                     region: 'east',
                     xtype: 'grid',
-                    height:600,
+                    height:300,
                     width:300,
                     flex:1,
                     title: 'Right Grid',
