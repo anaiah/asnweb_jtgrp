@@ -856,6 +856,9 @@ Ext.onReady(function(){
             
             // Get the store
             var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+             var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
+            opmgrlocstore.removeAll();
+        
             // Make an AJAX request to get the data from the server
         Ext.Ajax.request({
             url: `${myIp}/opmgr/opmgrlocation/${areaValue}`,
