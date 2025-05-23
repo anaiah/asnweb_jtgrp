@@ -25,11 +25,11 @@ Ext.define('MyApp.store.opmgrLocationStore', {
     
     listeners: {
         'load':(store,e)=>{
-            Ext.getCmp('opmgrLocationGrid').getView().refresh(); // <---- Try this
+            //Ext.getCmp('opmgrLocationGrid').getView().refresh(); // <---- Try this
             console.log('===location loading opmgr store loaded w recs==' , store.data.length )
             // console.log('===locationStore.js GRID PO locationGrid FIRST RECORD SELECTED ==' )
             
-            //Ext.getCmp('locationGrid').getSelectionModel().select(0);
+            Ext.getCmp('opmgrLocationGrid').getSelectionModel().select(0);
 
         }
     }//end listen				 

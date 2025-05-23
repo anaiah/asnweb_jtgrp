@@ -11,15 +11,15 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
     
     // features: [ {
     //     ftype: 'summary'
+    // // }],
+    // features: [{
+    //     id: 'ygroup',
+    //     ftype: 'groupingsummary',
+    //     groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
+    //     hideGroupedHeader: true,
+    //     enableGroupingMenu: false,
+    //     collapsible:false
     // }],
-    features: [{
-        id: 'ygroup',
-        ftype: 'groupingsummary',
-        groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
-        hideGroupedHeader: true,
-        enableGroupingMenu: false,
-        collapsible:false
-    }],
     columns: [
         { 
             text: '', 
