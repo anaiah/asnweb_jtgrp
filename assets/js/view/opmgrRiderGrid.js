@@ -9,7 +9,6 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
 
     //title : 'testList',
 	columnLines:true,
-    renderTo:'rider_grid',
     
     title: 'Rider Info',
     id:    'opmgrRiderGrid',

@@ -75,17 +75,7 @@ Ext.application({
                 {
                    region: 'west',
                     xtype: 'opmgrridergrid',
-                    //flex:1,
-                    width:300,
-                    height:300, // or use flex with layout like 'hbox'
-                    // title: 'Left Grid',
-                    // //store: yourLeftStore,
-                    // columns: [/* columns */
-                    //     {
-                    //         text:'col1'
-                    //     }
-
-                    // ]
+                   
                 },
                 {
                     region: 'east',
