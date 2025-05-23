@@ -39,10 +39,7 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
         groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
         hideGroupedHeader: true,
         enableGroupingMenu: false,
-        collapsible:false,
-        getGroupHeaderContent: function(groupField, groupValue) {
-            return 'Total For ' + groupValue;
-        }
+        collapsible:false
     }],
     columns: [
         { 
@@ -61,10 +58,7 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             hideable:false,
             menuDisabled:true,
             summaryRenderer: function(value, summaryData, dataIndex) {
-                // Assuming that 'groupField' is the field by which you are grouping
-                // and `summaryData.record` contains a representative record for the group
-                var groupValue = summaryData.record.get('location');
-                return 'Total For ' + groupValue;
+                return `<b>Total :</b>`
             }
             
         },
