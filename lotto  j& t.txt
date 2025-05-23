@@ -1,0 +1,29 @@
+https://asianowapp.com/jtx
+
+android mobile
+chrome  browser
+
+1.)use the fone  app only when  you are remitting money
+
+2) do not use other's fone when  u login, it will not work 
+
+3) u  r  inside the  hub?
+
+4) give me rider fullname
+email address
+hub 
+
+Ext.define('MyApp.view.opmgrLocationGrid', {
+    extend: 'Ext.grid.Panel',
+    alias: 'widget.opmgrlocationgrid',
+    store: 'opmgrLocationStore',
+    columns: [
+        { text: 'Location',  dataIndex: 'location' },  //  Matches model
+        { text: 'Hub',       dataIndex: 'hub' },       //  Matches model
+        { text: 'Parcel',    dataIndex: 'parcel', align: 'right' },    // Matches model
+        { text: 'Amount',    dataIndex: 'amount', align: 'right', renderer: Ext.util.Format.usMoney },  // Matches model
+        { text: 'Delivered', dataIndex: 'parcel_delivered', align: 'right' }, // Matches model
+        { text: 'Remitted',  dataIndex: 'amount_remitted', align: 'right', renderer: Ext.util.Format.usMoney }   // Matches model
+    ],
+    // ... other config ...
+});17 23 32 40 12 5
