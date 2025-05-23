@@ -851,13 +851,38 @@ Ext.onReady(function(){
 
             console.log('Selected Area:', areaValue);
 
+            //SET TITLE
+			Ext.getCmp('_storeList').setTitle( "COMPLIANCE STORE LIST FOR " + 
+            this.getStore().getAt(idx).get('proj_name') );
+            
+            //SET STORE
+            
+            var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
+            
+            opmgrlocstore.removeAll();
+            
+            // To change the URL dynamically
+            var proxy = opmgrlocstore.getProxy();
+            proxy.url =  `${myIp}/opmgr/opmgrlocation/${areaValue}}`;
+
+            // If you need to reload data from the new URL
+            //store.sort('yourField', 'ASC'); // set the sorting
+            opmgrlocstore.load({
+                callback: function() {
+                    // After loading, refresh the view
+                    //Ext.getCmp('riderGrid').getView().refresh();
+                    Ext.getCmp('opmgrLocationGrid').bindStore( opmgrlocstores );
+
+                }
+            });
+        
             //var idx = grid.getStore().indexOf(record);
                 
             //var areaValue = grid.getStore().getAt(idx).get('location');
             
             // record.suspendEvents(); // Prevent events while setting the value
             // record.resumeEvents();  // Re-enable events
-        }
+        }//====end if
     });
 
     window.scrollTo(0,0);
