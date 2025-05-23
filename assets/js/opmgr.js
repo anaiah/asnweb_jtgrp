@@ -855,29 +855,27 @@ Ext.onReady(function(){
 			Ext.getCmp('opmgrLocationGrid').setTitle( "Location Performance  for " + areaValue) 
             
             // Get the store
-            var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
-             var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
+            //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+            var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
             opmgrlocstore.removeAll();
         
             // Make an AJAX request to get the data from the server
-        Ext.Ajax.request({
-            url: `${myIp}/opmgr/opmgrlocation/${areaValue}`,
-            success: function(response) {
-                var data = Ext.decode(response.responseText); // Decode the JSON data
-                var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
-                opmgrlocstore.loadData(data); // Load the data into the store
+            Ext.Ajax.request({
+                url: `${myIp}/opmgr/opmgrlocation/${areaValue}`,
+                success: function(response) {
+                    
+                    var data = Ext.decode(response.responseText); // Decode the JSON data
+                    
+                    //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+                    opmgrlocstore.loadData(data); // Load the data into the store
 
-                console.log('Data loaded successfully');
-            },
-            failure: function(response) {
-                console.error('Failed to load data');
-                Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
-            }
-        });
-        
-            //var idx = grid.getStore().indexOf(record);
-                
-            //var areaValue = grid.getStore().getAt(idx).get('location');
+                    console.log('Data loaded successfully');
+                },
+                failure: function(response) {
+                    console.error('Failed to load data');
+                    Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
+                }
+            });
             
             // record.suspendEvents(); // Prevent events while setting the value
             // record.resumeEvents();  // Re-enable events
@@ -886,16 +884,11 @@ Ext.onReady(function(){
             //var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
             //opmgrlocstore.removeAll();
         
-        }
-       
-        //====end if
+        }//====end if
     });
 
     window.scrollTo(0,0);
     asn.init() //instantiate now
-
-   
- //osndp.Bubbl
 
 })
 
