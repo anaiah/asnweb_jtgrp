@@ -854,24 +854,21 @@ Ext.onReady(function(){
             //SET TITLE
 			Ext.getCmp('opmgrLocationGrid').setTitle( "Location Performance  for " + areaValue) 
             
-            //SET STORE
-            
-            var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
-            
-            opmgrlocstore.removeAll();
-            
-            // To change the URL dynamically
+             // To change the URL dynamically - set it BEFORE removing data
             var proxy = opmgrlocstore.getProxy();
-            proxy.url =  `${myIp}/opmgr/opmgrlocation/${areaValue}}`;
+            proxy.url = `${myIp}/opmgr/opmgrlocation/${areaValue}`;
 
-            // If you need to reload data from the new URL
-            //store.sort('yourField', 'ASC'); // set the sorting
+            // Load the data from the new URL
             opmgrlocstore.load({
-                callback: function() {
-                    // After loading, refresh the view
-                    Ext.getCmp('opmgrLocationGrid').getView().refresh();
-                    //Ext.getCmp('opmgrLocationGrid').bindStore( opmgrlocstore );
-
+                scope: this,  // Added scope for 'this' context
+                callback: function(records, operation, success) {
+                    if (success) {
+                        console.log('Successfully loaded data for area:', areaValue);
+                    } else {
+                        console.error('Failed to load data for area:', areaValue);
+                        // Handle the error (e.g., display an error message)
+                        Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
+                    }
                 }
             });
         
@@ -881,7 +878,14 @@ Ext.onReady(function(){
             
             // record.suspendEvents(); // Prevent events while setting the value
             // record.resumeEvents();  // Re-enable events
-        }//====end if
+        }else{
+            // No row is selected (clear the store)
+            var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
+            opmgrlocstore.removeAll();
+        
+        }
+        
+        //====end if
     });
 
     window.scrollTo(0,0);
