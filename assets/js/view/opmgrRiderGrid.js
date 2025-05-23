@@ -62,8 +62,10 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
     columns: [
         {
             text:'Name',
-            dataIndex:'full_name'
-
+            dataIndex:'full_name',
+            width:120,
+            align: 'left',       // Align the column values to the right
+            headerAlign: 'center',
         }
         /*
         {
