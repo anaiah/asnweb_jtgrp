@@ -61,7 +61,7 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             summaryRenderer: function(value, summaryData, dataIndex) {
                 const groupField = this.up('gridpanel').getView().getFeature('groupingsummary').groupField;
                 
-                return `<b>Total for ${groupField} (${summaryData.groupString}):,</b>`;
+                return `<b>Total for ${groupField}</b>`;
             }
             
         },
