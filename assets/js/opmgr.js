@@ -854,6 +854,9 @@ Ext.onReady(function(){
             //SET TITLE
 			Ext.getCmp('opmgrLocationGrid').setTitle( "Location Performance  for " + areaValue) 
             
+            // Get the store
+            var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
+
              // To change the URL dynamically - set it BEFORE removing data
             var proxy = opmgrlocstore.getProxy();
             proxy.url = `${myIp}/opmgr/opmgrlocation/${areaValue}`;
