@@ -87,8 +87,11 @@ Ext.define('MyApp.view.riderGrid' ,{
         {
             header: 'Name',
             width: 180,
-            sortable: false,
+            sortable:false,
+            hideable:false,
             menuDisabled:true,
+            align: 'left',       // Align the column values to the right
+            headerAlign: 'center',
             dataIndex: 'full_name',
             renderer: function(value, meta, record) {
                // console.log( 'hey',meta)
@@ -101,11 +104,11 @@ Ext.define('MyApp.view.riderGrid' ,{
         {
             header: 'Delivery',
             width: 85,
-            sortable: true,
+            sortable:false,
+            hideable:false,
             menuDisabled:true,
-            //renderer: Ext.util.Format.usMoney,
-            //summaryRenderer: Ext.util.Format.usMoney,
-            align:'center',
+            align: 'center',       // Align the column values to the right
+            headerAlign: 'center',
             dataIndex: 'delivered_pct',
             sortable:false,
             //summaryType: 'sum',
