@@ -74,17 +74,17 @@ Ext.application({
             items: [
                 {
                    // region: 'west',
-                    xtype: 'grid',
+                    xtype: 'riderGrid',
                     flex:1,
                     height:600, // or use flex with layout like 'hbox'
-                    title: 'Left Grid',
-                    //store: yourLeftStore,
-                    columns: [/* columns */
-                        {
-                            text:'col1'
-                        }
+                    // title: 'Left Grid',
+                    // //store: yourLeftStore,
+                    // columns: [/* columns */
+                    //     {
+                    //         text:'col1'
+                    //     }
 
-                    ]
+                    // ]
                 },
                 {
                     region: 'east',
