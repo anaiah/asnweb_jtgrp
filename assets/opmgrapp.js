@@ -72,25 +72,25 @@ Ext.application({
                 {
                     region: 'west',
                     xtype: 'grid',
-                    width: 500, // or use flex with layout like 'hbox'
+                    height:300, // or use flex with layout like 'hbox'
                     title: 'Left Grid',
-                    store: yourLeftStore,
-                    columns: [/* columns */]
+                    //store: yourLeftStore,
+                    //columns: [/* columns */]
                 },
                 {
                     region: 'east',
                     xtype: 'grid',
-                    width: 500,
+                    height:300,
                     title: 'Right Grid',
-                    store: yourRightStore,
-                    columns: [/* columns */]
+                    //store: yourRightStore,
+                    //columns: [/* columns */]
                 }
             ],
             renderTo: 'rider-grid'
         }); 
 
         Ext.create('MyApp.view.OpmgrRiderContainer');
-        
+
     }, //==== END LAUNCH EXTJS
 
 });
