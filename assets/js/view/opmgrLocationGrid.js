@@ -156,6 +156,7 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
         preserveScrollOnRefresh: true,
         getRowClass: function(record) {
             if (record.get('isSummary')) {
+                console.log(record.get('location'))
                 return 'my-summary-row-class';
             }
             return '';
