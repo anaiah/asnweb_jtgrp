@@ -68,7 +68,18 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
             width:120,
             align: 'left',       // Align the column values to the right
             headerAlign: 'center',
-        }
+            renderer: function(value) {
+                if (!value) return '';
+        
+                var parts = value.split(',');
+                if (parts.length !== 2) return value;
+        
+                var lastName = parts[0].trim();
+                var firstNames = parts[1].trim();
+        
+                return firstNames + ' ' + lastName;
+            }
+        },
         /*
         {
             text: 'Working Day(s)',
@@ -109,6 +120,7 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
                 //return value;
             }
         },
+        */
         {
             header: 'Delivery',
             width: 85,
@@ -131,7 +143,7 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
                 //return value;
             }
         },
-        */
+        
     ],//end columns 
 
 })
