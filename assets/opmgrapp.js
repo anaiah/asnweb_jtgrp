@@ -1,4 +1,4 @@
-
+ 
  
  //load ext
 Ext.application({
@@ -33,6 +33,7 @@ Ext.application({
             height: 300
         });
 
+        
         // then load the store
         /*
         var rideGrid = Ext.create('MyApp.view.riderGrid', {

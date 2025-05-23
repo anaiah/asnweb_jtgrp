@@ -829,10 +829,12 @@ Ext.onReady(function(){
     //call grid load
     var grid = Ext.getCmp('opmgrGrid')
                     
-    grid.getSelectionModel().on('selectionchange', (model, records) => {
-           
-        console.log('selectionchange fired');
-       
+    grid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
+        if (selected.length > 0) {
+            var record = selected[0];
+            record.suspendEvents(); // Prevent events while setting the value
+            record.resumeEvents();  // Re-enable events
+        }
     });
 
     window.scrollTo(0,0);
