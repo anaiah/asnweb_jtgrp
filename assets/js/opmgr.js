@@ -867,13 +867,16 @@ Ext.onReady(function(){
             Ext.Ajax.request({
                 url: `${myIp}/opmgr/opmgrlocation/${areaValue}`,
                 success: function(response) {
-                    
-                    var data = Ext.decode(response.responseText); // Decode the JSON data
-                    
-                    //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
-                    opmgrlocstore.loadData(data); // Load the data into the store
+                    var json = Ext.decode(response.responseText);
+                    var data = json.data || json; // if data is wrapped or not
+                    opmgrriderstore.loadData(data);
 
-                    console.log('Data loaded successfully');
+                    // var data = Ext.decode(response.responseText); // Decode the JSON data
+                    
+                    // //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+                    // opmgrlocstore.loadData(data); // Load the data into the store
+
+                    console.log('location Data loaded successfully');
                 },
                 failure: function(response) {
                     console.error('Failed to load data');
@@ -926,7 +929,7 @@ Ext.onReady(function(){
                     // //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
                     // opmgrriderstore.loadData(data); // Load the data into the store
 
-                    // console.log('RIDER Data loaded successfully');
+                     console.log('RIDER Data loaded successfully');
                 },
                 failure: function(response) {
                     console.error('Failed to load data');
