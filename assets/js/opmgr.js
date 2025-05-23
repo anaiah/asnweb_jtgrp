@@ -746,8 +746,9 @@ const asn = {
         })
         .then((xdata) => {
             
+            asn.allData = xdata
             console.log('loadopmgrArea() data->',xdata)
-            asn.ctrlExt.loadPage( asn.currentPage ) //load first page
+            asn.ctrlExt.sendData(asn.allData,'opmgrStore') //load first page
             
         
         })
