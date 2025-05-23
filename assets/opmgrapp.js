@@ -74,7 +74,7 @@ Ext.application({
             items: [
                 {
                    region: 'west',
-                    xtype: 'riderGrid',
+                    xtype: 'opmgrridergrid',
                     //flex:1,
                     width:300,
                     height:300, // or use flex with layout like 'hbox'

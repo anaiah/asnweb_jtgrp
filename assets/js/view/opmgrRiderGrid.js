@@ -14,8 +14,8 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
     title: 'Rider Info',
     id:    'opmgrRiderGrid',
     
-    height:400,
-    width:500,
+    height:300,
+    width:300,
     store: Ext.data.StoreManager.lookup('opmgrRiderStore'),  //store.storeID
     //plugins: [cellEditing],  /* takeout editing */
 
