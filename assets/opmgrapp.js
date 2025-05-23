@@ -72,7 +72,7 @@ Ext.application({
             items: [
                 {
                     //xtype: 'opmgrLocationGrid'
-                    xtype:'opmgrLocationnGrid'
+                    xtype:'opmgrlocationgrid'
                 }
             ],
             renderTo: 'location-grid'
