@@ -68,14 +68,11 @@ Ext.application({
         Ext.define('MyApp.view.OpmgrRiderContainer', {
             extend: 'Ext.panel.Panel',
             alias: 'widget.opmgrridercontainer',
-            layout: {
-                type: 'hbox',
-                align: 'stretch' // stretch to fill height
-            },
+            layout: 'border',
             height:600,
             items: [
                 {
-                   // region: 'west',
+                   region: 'west',
                     xtype: 'riderGrid',
                     flex:1,
                     height:600, // or use flex with layout like 'hbox'
