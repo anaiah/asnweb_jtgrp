@@ -1,4 +1,10 @@
-
+Ext.define('MyApp.overrides.SelectionModel', {
+    override: 'Ext.selection.Model',
+    select: function(records, keepExisting, suppressEvent) {
+        console.log('Ext.selection.Model.select called with:', records, keepExisting, suppressEvent);
+        this.callParent(arguments); // Call the original method
+    }
+});
 
 Ext.define('MyApp.view.opmgrGrid' ,{
     extend: 'Ext.grid.Panel',
@@ -86,6 +92,12 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         listeners: {
             viewready: function(view) {
                 console.log('HUB locaion grid viewready');
+
+                // Select the first row after the grid has been rendered
+                var grid = Ext.getCmp('opmgrGrid');
+                if (grid.getStore().getCount() > 0) {
+                    grid.getSelectionModel().select(0);
+                }
                 /*                           
                 store.sort([
                     { property: 'qty_pct', direction: 'DESC' },

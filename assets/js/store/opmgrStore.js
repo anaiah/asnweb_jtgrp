@@ -26,12 +26,12 @@ Ext.define('MyApp.store.opmgrStore', {
     
     listeners: {
         'load':(store)=>{
-                console.log('===opmgrStore.js onLoad() STORE PO LISTENING === store loaded w recs==' , store.data.length )
+             //   console.log('===opmgrStore.js onLoad() STORE PO LISTENING === store loaded w recs==' , store.data.length )
            
         },
         'datachanged':(store,e)=>{ //this is triggered by store.loadData(array)
             
-            console.log('===opmgrStore.js dataChanged() STORE PO LISTENING === store loaded w recs==' , store.data.length )
+           // console.log('===opmgrStore.js dataChanged() STORE PO LISTENING === store loaded w recs==' , store.data.length )
            
             //Ext.getCmp('opmgrGrid').getSelectionModel().select(0);
 
