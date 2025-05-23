@@ -846,12 +846,13 @@ Ext.onReady(function(){
     grid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
         if (selected.length > 0) {
             var record = selected[0];
+            var areaValue = record.get('area');
 
-            var idx = grid.getStore().indexOf(record);
-                
-            var areaValue = grid.getStore().getAt(idx).get('location');
-            
             console.log('Selected Area:', areaValue);
+
+            //var idx = grid.getStore().indexOf(record);
+                
+            //var areaValue = grid.getStore().getAt(idx).get('location');
             
             // record.suspendEvents(); // Prevent events while setting the value
             // record.resumeEvents();  // Re-enable events
