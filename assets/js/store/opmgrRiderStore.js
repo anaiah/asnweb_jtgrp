@@ -2,7 +2,7 @@ Ext.define('MyApp.store.opmgrRiderStore', {
     extend: 'Ext.data.Store',
 
     model: 'MyApp.model.riderModel',
-    alias: 'widget.opmgrRiderStore',
+    alias: 'store.opmgrriderstore',
 
     storeId:'opmgrRiderStore',
     
