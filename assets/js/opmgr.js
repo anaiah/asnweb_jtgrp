@@ -746,7 +746,21 @@ const asn = {
         })
         .then((xdata) => {
             
-            asn.allData = xdata
+            xdata.sort(function(a, b) {
+                var parcelDeliveredA = parseInt(a.parcel_delivered, 10);
+                var parcelDeliveredB = parseInt(b.parcel_delivered, 10);
+              
+                if (parcelDeliveredA > parcelDeliveredB) {
+                  return -1;
+                }
+                if (parcelDeliveredA < parcelDeliveredB) {
+                  return 1;
+                }
+                return 0;
+              });
+            
+              asn.allData = xdata
+              
             console.log('loadopmgrArea() data->',xdata)
             asn.ctrlExt.sendData(asn.allData,'opmgrStore') //load first page
             
