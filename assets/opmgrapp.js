@@ -75,7 +75,12 @@ Ext.application({
                     height:300, // or use flex with layout like 'hbox'
                     title: 'Left Grid',
                     //store: yourLeftStore,
-                    //columns: [/* columns */]
+                    columns: [/* columns */
+                        {
+                            text:'col1'
+                        }
+
+                    ]
                 },
                 {
                     region: 'east',
@@ -83,7 +88,12 @@ Ext.application({
                     height:300,
                     title: 'Right Grid',
                     //store: yourRightStore,
-                    //columns: [/* columns */]
+                    columns: [
+                        /* columns */
+                        {
+                            text:'col2'
+                        }
+                    ]
                 }
             ],
             renderTo: 'rider-grid'
