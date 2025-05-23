@@ -53,13 +53,19 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             dataIndex: 'parcel', 
             width: 120, 
             summaryType: 'sum', 
-            //renderer: Ext.util.Format.numberRenderer('0') 
+            //renderer: Ext.util.Format.numberRenderer('0')
+            summaryRenderer:(value,summaryData,dataIndex)=>{
+                return `<b>${util.addCommas(value)}</b>`
+            }, 
         },
         {   text: 'Delivered',  
             dataIndex: 'parcel_delivered', 
             width: 120, 
             summaryType: 'sum',
             //enderer: Ext.util.Format.numberRenderer('0') 
+            summaryRenderer:(value,summaryData,dataIndex)=>{
+                return `<b>${util.addCommas(value)}</b>`
+            },
         },
         { 
             text: 'Amount', 
@@ -67,6 +73,9 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             width: 150, 
             summaryType: 'sum', 
             //renderer: Ext.util.Format.usMoney
+            summaryRenderer:(value,summaryData,dataIndex)=>{
+                return `<b>${util.addCommas(value)}</b>`
+            },
         },
        
         {   
@@ -75,6 +84,9 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             width: 150, 
             summaryType: 'sum',
             //renderer: Ext.util.Format.usMoney
+            summaryRenderer:(value,summaryData,dataIndex)=>{
+                return `<b>${util.addCommas(value)}</b>`
+            },
         },
         
     ],
