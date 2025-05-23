@@ -15,7 +15,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     features: [{
         id: 'xgroup',
         ftype: 'groupingsummary',
-        groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
+        groupHeaderTpl: `{name}`,
         hideGroupedHeader: true,
         enableGroupingMenu: false,
         collapsible:false
@@ -53,20 +53,20 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             dataIndex: 'parcel', 
             width: 120, 
             summaryType: 'sum', 
-            renderer: Ext.util.Format.numberRenderer('0') 
+            //renderer: Ext.util.Format.numberRenderer('0') 
         },
         {   text: 'Delivered',  
             dataIndex: 'parcel_delivered', 
             width: 120, 
             summaryType: 'sum',
-            enderer: Ext.util.Format.numberRenderer('0') 
+            //enderer: Ext.util.Format.numberRenderer('0') 
         },
         { 
             text: 'Amount', 
             dataIndex: 'amount', 
             width: 150, 
             summaryType: 'sum', 
-            renderer: Ext.util.Format.usMoney
+            //renderer: Ext.util.Format.usMoney
         },
        
         {   
@@ -74,7 +74,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             dataIndex: 'amount_remitted', 
             width: 150, 
             summaryType: 'sum',
-            renderer: Ext.util.Format.usMoney
+            //renderer: Ext.util.Format.usMoney
         },
         
     ],
