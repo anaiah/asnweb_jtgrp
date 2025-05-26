@@ -52,14 +52,14 @@ Ext.application({
         var locGrid = Ext.create('MyApp.view.locationGrid', {
             renderTo: 'location-grid',
             width: 500,
-            height: 200
+            height: 300
         });
 
         var ridergrid = Ext.create('MyApp.view.riderGrid', {
             renderTo: 'rider-grid',
             //title:'Regional Performance Summary',
             width: 500,
-            height: 300
+            height: 200
         });
 
         var calendargrid = Ext.create('MyApp.view.opmgrcalendarGrid', {
