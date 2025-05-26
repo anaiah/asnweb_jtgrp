@@ -56,12 +56,7 @@
           </div>
         </div>
     </div><!--//end container-fluid//-->
-    <audio id="beepSound" preload="auto">
-        <source src="beep.mp3" type="audio/mpeg">
-        <source src="beep.ogg" type="audio/ogg">
-        Your browser does not support the audio element.
-    </audio>
-
+    
     <script>
 
         let html5QrCode
@@ -72,16 +67,14 @@
                     //wiithin 4secs erase
                     document.getElementById('result').innerText = "Scan Resuming.."
                 }, 3000); // Delay of 1000 milliseconds (1 second)
+
+                  setTimeout(() => {
+                    const audio  = new Audio('/html/beep.ogg')
+                    audio.play().catch(error => {
+                        console.error("Audio playback failed:", error);
+                    });
+                }, 0); // Delay of 1000 milliseconds (1 second)
                 
-                var beepSound = document.getElementById('beepSound');
-                if (beepSound) {
-                    beepSound.play().catch(error => {
-                        console.warn("Autoplay prevented:", error);
-                        // Optionally, show a button to allow the user to trigger the sound
-                    }); // Play the sound
-                } else {
-                    console.warn('Beep sound element not found!');
-                }
 
                 let addy = {}
 
