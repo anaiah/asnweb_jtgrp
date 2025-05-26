@@ -126,7 +126,8 @@
             const config = { fps: 10, qrbox: 250 };
 
             html5QrCode.start(
-                { facingMode: "user" }, //{ facingMode: "environment" },back camera!
+                //{ facingMode: "user" }, //{ facingMode: "environment" },back camera!
+                { facingMode: "environment" },
                 config,
                 onScanSuccess,
                 onScanError
