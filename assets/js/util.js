@@ -1499,17 +1499,17 @@ const util = {
                     break
                 
                     case 4: // coordinator
-                        location.href = 'coord'    
+                        location.href = '/jtx/coord'    
                     break
 
                     case 3:  //head coord
-                        location.href = 'headcoord'    
+                        location.href = '/jtx/headcoord'    
                     break
                 
                     case 5: // operations mgr
                     console.log('poooknnatt')
                         
-                    location.href ='operations'    
+                    location.href ='/jtx/operations'    
                     break
 
                 }//===== endswitch
