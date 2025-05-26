@@ -1,6 +1,6 @@
 Ext.define('MyApp.view.headareaGrid' ,{
     extend: 'Ext.grid.Panel',
-    alias : 'widget.headareaGrid',
+    alias : 'widget.headareagrid',
 	
 	//static member
 	statics:{
@@ -10,24 +10,14 @@ Ext.define('MyApp.view.headareaGrid' ,{
     //title : 'testList',
 	columnLines:true,
     region: 'center',
-    renderTo:'grid_month',
+    
     cls: 'centered-headers-grid',
 
     id:'headareaGrid',
     title: 'Area',
-    autoHeight:true,
-    //
-    width:500,
-    height:300,
-    //height:'100%',
-    //minWidth:300,
-    //layout:'fit',
-    store: Ext.data.StoreManager.lookup('headareaStore'),
-
-    border:true,
-    frame:true,
     
-    flex:1,
+    store: 'headareaStore',//storeId Ext.data.StoreManager.lookup('headareaStore'),
+
     viewConfig: {
         stripeRows: true,
         loadingText:'Loading Please Wait!',
@@ -35,95 +25,31 @@ Ext.define('MyApp.view.headareaGrid' ,{
 
         //apply row css
         getRowClass: function(record) { 
-
-            if(record.get('location')){
-                //return "row-class shadow"
-            }else{
-
-            }
-            //return record.get('clone') =="1" ? 'clone-row' : null; 
         }, 
 
         listeners: {
             viewready: function(view) {
-                console.log('HUB locaion grid viewready');
-                /*                           
-                store.sort([
-                    { property: 'qty_pct', direction: 'DESC' },
-                   
-                    { property: 'location', direction: 'ASC' },
-                    { property: 'hub', direction: 'ASC' },
-                    
-                ]);
-                */
-                //load the store now
-                this.getStore().load()
-
+         
             }//end viewready
         }//end listeners viewconfig
     },    
     listeners:{
         afterrender: function(grid) {
-            /*
-            console.log('aferrender',grid.id)
-            var view = grid.getView();
-            // For example, add a class to all group headers
-            view.el.select('.x-grid-group-hd').each(function(el) {
-                el.addCls('xgrpheader');
-            });
-            */
+         
         },
     
         cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
-              console.log( record.get("location"))      
+                  
         },
         selectionchange: function(model, records ) {
         
-            console.log('hub grid selectionchange() fired')
-           // this.setLoading(`..searching`);
-
-            if(records[0]){ 
-
-                /*  BALIK MO ITO CARLO LATER HA?
-                
-                var idx = this.getStore().indexOf(records[0]);
-                hub_search = this.getStore().getAt(idx).get('hub')
-                
-                
-                console.log('hubsearch', hub_search)
-
-                const riderstore = Ext.data.StoreManager.lookup('riderStore') 
-                
-                riderstore.removeAll()
-
-                // To change the URL dynamically
-                var proxy = riderstore.getProxy();
-                proxy.url =  `${myIp}/coor/ridersummary/${hub_search}`;
-
-                // or use `sorters` array directly
-                //rider_store.sort('delivered_pct', 'DESC');          
-                
-                
-                // If you need to reload data from the new URL
-                //store.sort('yourField', 'ASC'); // set the sorting
-                riderstore.load({
-                    callback: function() {
-                        // After loading, refresh the view
-                        Ext.getCmp('riderGrid').getView().refresh();
-                        
-                    }
-                });
-                */
-            }//EIF
-
         }//end selectionchange
         
     },
     features: [{
-        id: 'group',
+        id: 'hgroup',
         ftype: 'groupingsummary',
-        groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
-        //groupHeaderTpl: new Ext.XTemplate('<tpl for=".">', '<input type="button" value={name}></div>', '</tpl>'),
+        groupHeaderTpl: `<i class='ti ti-map-pins'></i>&nbsp;<span class=xgrpheader>{name}</span>`,
         hideGroupedHeader: true,
         enableGroupingMenu: false,
         collapsible:false
@@ -142,11 +68,8 @@ Ext.define('MyApp.view.headareaGrid' ,{
             align: 'left',       // Align the column values to the right
             headerAlign: 'center',
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font10';
                 return value;
-                //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
-                //return value;
-            },
+                           },
             summaryType: 'count',
             summaryRenderer: function(value, summaryData, dataIndex) {
                 //console.log(dataIndex)
@@ -160,18 +83,16 @@ Ext.define('MyApp.view.headareaGrid' ,{
             hideable:false,
             menuDisabled:true,
             align: 'left',       // Align the column values to the right
-            headerAlign: 'center',dataIndex: 'location',
+            headerAlign: 'center',
+            dataIndex: 'location',
             renderer: function(value, meta) {
-                ///console.log( 'hey',meta)
-                meta.tdCls='font10'
                 return `${value}`
-                //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
-                //return value;
+               
             }
         }, 
         {
             header: '%',
-            width: 50,
+            width:60,
             sortable:false,
             hideable:false,
             menuDisabled:true,
@@ -185,7 +106,6 @@ Ext.define('MyApp.view.headareaGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font7'
                 return `${value} %`
                 //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
                 //return value;
@@ -209,8 +129,7 @@ Ext.define('MyApp.view.headareaGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font7'
-
+               
                 return util.addCommas(value)
             },
             summaryRenderer:(value,summaryData,dataIndex)=>{
@@ -230,7 +149,6 @@ Ext.define('MyApp.view.headareaGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font7'
                 return util.addCommas(value)
             },
             summaryRenderer:(value,summaryData,dataIndex)=>{
@@ -251,7 +169,6 @@ Ext.define('MyApp.view.headareaGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font7'
                 return util.addCommas(value.toFixed(2))
             },
             summaryRenderer:(value,summaryData,dataIndex)=>{
@@ -272,7 +189,6 @@ Ext.define('MyApp.view.headareaGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font7'
                 return util.addCommas(value.toFixed(2))
             },
             summaryRenderer:(value,summaryData,dataIndex)=>{

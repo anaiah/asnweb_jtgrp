@@ -1,32 +1,25 @@
+/*  THE STORE IS LOADING IN VIEWREADY, I'LL PUT IN CONTROLLER */
+
 Ext.define('MyApp.view.locationGrid' ,{
     extend: 'Ext.grid.Panel',
-    alias : 'widget.locationGrid',
+    alias : 'widget.locationgrid',
 	
+    id:'locationGrid',
+
+    cls: 'centered-headers-grid',
+    
 	//static member
 	statics:{
 		myTitle:''
 	},
 
-    //title : 'testList',
-	columnLines:true,
-    region: 'center',
-    renderTo:'grid_month',
+    columnLines:true,
     
-    id:'locationGrid',
     title: 'Location',
-    autoHeight:true,
-    //
-    width:500,
-    height:300,
-    //height:'100%',
-    //minWidth:300,
-    //layout:'fit',
-    store: Ext.data.StoreManager.lookup('locationStore'),
-
-    border:true,
-    frame:true,
     
-    flex:1,
+    //========store of grid====
+    store: 'locationStore',//storeID
+
     viewConfig: {
         stripeRows: true,
         loadingText:'Loading Please Wait!',
@@ -34,94 +27,30 @@ Ext.define('MyApp.view.locationGrid' ,{
 
         //apply row css
         getRowClass: function(record) { 
-
-            if(record.get('location')){
-                //return "row-class shadow"
-            }else{
-
-            }
-            //return record.get('clone') =="1" ? 'clone-row' : null; 
         }, 
 
         listeners: {
             viewready: function(view) {
-                console.log('HUB locaion grid viewready');
-                /*                           
-                store.sort([
-                    { property: 'qty_pct', direction: 'DESC' },
-                   
-                    { property: 'location', direction: 'ASC' },
-                    { property: 'hub', direction: 'ASC' },
-                    
-                ]);
-                */
-                //load the store now
-                this.store.load()
-
                
             }//end viewready
         }//end listeners viewconfig
     },    
     listeners:{
         afterrender: function(grid) {
-            /*
-            console.log('aferrender',grid.id)
-            var view = grid.getView();
-            // For example, add a class to all group headers
-            view.el.select('.x-grid-group-hd').each(function(el) {
-                el.addCls('xgrpheader');
-            });
-            */
         },
     
         cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
-              console.log( record.get("location"))      
+                   
         },
         selectionchange: function(model, records ) {
         
-            console.log('hub grid selectionchange() fired')
-            this.setLoading(`..searching`);
-
-            if(records[0]){ 
-
-                
-                var idx = this.getStore().indexOf(records[0]);
-                hub_search = this.getStore().getAt(idx).get('hub')
-                
-                
-                console.log('hubsearch', hub_search)
-
-                const riderstore = Ext.data.StoreManager.lookup('riderStore') 
-                
-                riderstore.removeAll()
-
-                // To change the URL dynamically
-                var proxy = riderstore.getProxy();
-                proxy.url =  `${myIp}/coor/ridersummary/${hub_search}`;
-
-                // or use `sorters` array directly
-                //rider_store.sort('delivered_pct', 'DESC');          
-                
-                
-                // If you need to reload data from the new URL
-                //store.sort('yourField', 'ASC'); // set the sorting
-                riderstore.load({
-                    callback: function() {
-                        // After loading, refresh the view
-                        Ext.getCmp('riderGrid').getView().refresh();
-                        
-                    }
-                });
-            }//EIF
-
         }//end selectionchange
         
     },
     features: [{
-        id: 'group',
+        id: 'zzgroup',
         ftype: 'groupingsummary',
-        groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
-        //groupHeaderTpl: new Ext.XTemplate('<tpl for=".">', '<input type="button" value={name}></div>', '</tpl>'),
+        groupHeaderTpl: `<i class='ti ti-map-pins'></i>&nbsp;<span class=xgrpheader>{name}</span>`,
         hideGroupedHeader: true,
         enableGroupingMenu: false,
         collapsible:false
@@ -131,7 +60,7 @@ Ext.define('MyApp.view.locationGrid' ,{
             text: 'Hub',
             //flex: 1,
             width:185,
-            tdCls: 'task',
+            //tdCls: 'task',
             //dont lock muna locked:true,
             menuDisabled:true,
             sortable:false,

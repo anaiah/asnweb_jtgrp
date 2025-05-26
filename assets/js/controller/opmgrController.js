@@ -1,15 +1,12 @@
-Ext.define('MyApp.controller.coordController', {
+Ext.define('MyApp.controller.opmgrController', {
     extend: 'Ext.app.Controller',
- 
+
     init: function() {
         // initialization code
         //this.loadChartData()
-      var me = this  
+
     },
-    //static member
-	statics:{
-		ex: this
-	},
+    
     scrollsTo:(grid)=>{
         console.log('scrolling')
         var gridView = grid.getView();  // grid is a reference to your Ext.grid.Panel
@@ -25,176 +22,11 @@ Ext.define('MyApp.controller.coordController', {
         }
 
     },
-
-    //head
-    areaReset:()=>{
-        //reset rider / calendar /location as well
-        //RESET RIDDER
-        const arearidergrid = Ext.ComponentQuery.query('ridergrid')[0] //load alias
-        arearidergrid.setTitle('RIDER INFO')
-        const areariderstore = arearidergrid.getStore();
-        areariderstore.removeAll();
-
-        //reset location
-        const locationgrid = Ext.ComponentQuery.query('locationgrid')[0] //load alias
-        locationgrid.setTitle('LOCATION')
-        const locationstore = locationgrid.getStore();
-        locationstore.removeAll();
-     
-        
-    },
-
-    opmgrReset:()=>{
-         //RESET RIDDER
-         const arearidergrid = Ext.ComponentQuery.query('opmgrridergrid')[0] //load alias
-         arearidergrid.setTitle('RIDER INFO')
-         const areariderstore = arearidergrid.getStore();
-         areariderstore.removeAll();
-        //reset calendar
-        const calendargrid = Ext.ComponentQuery.query('opmgrcalendargrid')[0] //load alias
-        calendargrid.setTitle('&nbsp;');
-        const opmgrcalendarstore = calendar.getStore();
-        opmgrcalendarstore.removeAll();
-        //reset location
-        const locationgrid = Ext.ComponentQuery.query('opmgrlocationgrid')[0] //load alias
-        locationgrid.setTitle('LOCATION')
-        const locationstore = locationgrid.getStore();
-        locationstore.removeAll();
-    },
-
-    //head
-    listenviewreadyArea:()=>{
-        console.log('firing listenviewReadyArea() coordcontroller.js')
-    
-        var areagrid = Ext.ComponentQuery.query('headareagrid')[0] //load alias
-        var areastore = areagrid.getStore()
-        
-        if (areagrid) {
-
-            if (areagrid.view.rendered) {
-                console.warn("The View Is already rendered!");
-                
-                Ext.Ajax.request({
-                    
-                    url: `${myIp}/headcoor/summary/${util.getCookie('f_email')}`,
-        
-                    success: function(response) {
-                        var json = Ext.decode(response.responseText);
-                        var data = json.data || json; // if data is wrapped or not
-                        
-                        areastore.loadData(data);
-                        
-                        console.log('ArEA Data loaded successfully');
-                    },
-                    failure: function(response) {
-                        console.error('Failed to load data');
-                        Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
-                    }
-                }); //end ajax
-
-            
-                //==============if selectionchanged
-                areagrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
-                    console.warn( 'areaGrid() selectionchange fired!!!')
-                    
-                    const locationgrid = Ext.ComponentQuery.query('locationgrid')[0] //load alias
-                    const locationstore = locationgrid.getStore();
-        
-                    if (selected.length > 0) {
-
-                        //reset
-                        asn.ctrlExt.areaReset()
-                        
-                        //scrollto location-grid
-                        util.scrollsTo('location-grid')
-        
-                        var record = selected[0];
-                        var locValue = record.get('location');
-        
-                        console.log('Selected Location:', locValue);
-                                
-                        // Make an AJAX request to get the data from the server
-                        Ext.Ajax.request({
-                            
-                            url: `${myIp}/headcoor/lochub/${util.getCookie('f_email')}/${locValue}`,
-                            
-                            success: function(response) {
-                                var json = Ext.decode(response.responseText);
-                                var data = json.data || json; // if data is wrapped or not
-        
-                                console.log('LOCATION HUB==', data)
-                                locationstore.loadData(data);
-                                
-                                console.log('LOCATION Data loaded successfully');
-                            },
-                            failure: function(response) {
-                                console.error('Failed to load data');
-                                Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
-                            }
-                        });
-                    
-                    }//====end if
-        
-                })
-
-            }//EIF
-
-        } else {
-            console.warn('Area grid not found with alias "areagrid"');
-        }
-    },
-    //coord,
-    listenviewReady:()=>{
-        console.log('firing listenviewReady() coordcontroller.js')
-    
-        var arealocgrid = Ext.ComponentQuery.query('locationgrid')[0] //load alias
-        var arealocstore = arealocgrid.getStore()
-        
-        //asn.ctrlExt.callme()
-        
-        //console.log('locgrid',locgrid)
-        if (arealocgrid) {
-
-            if (arealocgrid.view.rendered) {
-                console.warn("The View lOCATION Is already rendered!");
-                
-                Ext.Ajax.request({
-                    url: `${myIp}/coor/summary/${util.getCookie('f_email')}`,
-
-                    success: function(response) {
-                        var json = Ext.decode(response.responseText);
-                        var data = json.data || json; // if data is wrapped or not
-                        //console.log('DATA LOCATION ', data)
-
-                        arealocstore.loadData(data);
-                        
-                        console.log('LOCATION Data loaded successfully');
-                    },
-                    failure: function(response) {
-                        console.error('Failed to load data');
-                        Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
-                    }
-                }); //end ajax
-            
-
-                //load selection change locationgrid
-                arealocgrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
-                    console.log('LOCATION  GRID, CHANGED SELECTION, REST RIDERS')
-
-                   
-                })
-            }//EIF    
-
-        } else {
-            console.warn('Location grid not found with alias "locationgrid"');
-        }
-    },
-
     //coord,
     listencoordLocation:()=>{
-        console.log('listenCoordLocation() coordController.js fird===')
+        console.log('listenCoordLocation() opmgrController.js fird===')
        
-        const locgrid = Ext.ComponentQuery.query('locationgrid')[0] //load alias
+        var locgrid = Ext.ComponentQuery.query('locationgrid')[0] //load alias
 
         locgrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
             if (selected.length > 0) {
@@ -207,20 +39,16 @@ Ext.define('MyApp.controller.coordController', {
 
                 console.log('Selected Location:', locValue);
 
-                const ridergrid = Ext.ComponentQuery.query('ridergrid')[0] //load alias
-                
                 //SET TITLE
-                ridergrid.setTitle( locValue + ' RIDERS' ) 
+                Ext.getCmp('riderGrid').setTitle( locValue ) 
                 
                 // Get the store
-                const riderstore = ridergrid.getStore();
+                var riderstore = locgrid.getStore();
                 riderstore.removeAll();
             
                 // Make an AJAX request to get the data from the server
                 Ext.Ajax.request({
-                    
                     url: `${myIp}/coor/ridersummary/${locValue}`,
-                    
                     success: function(response) {
                         var json = Ext.decode(response.responseText);
                         var data = json.data || json; // if data is wrapped or not
@@ -243,58 +71,79 @@ Ext.define('MyApp.controller.coordController', {
 
     },
 
-    //COORD
-    listencoordRider:()=>{
-    
+   //opmgr
+   listenRegion:()=>{
+        console.log('listenRegion() opmgrController.js fird===')
+        //call Maiin Area grid load
+        const grid = Ext.ComponentQuery.query('opmgrgrid')[0]
 
-        console.log('===listencoordRider() coordcontroller.js===')
-        
-        const ridergrid = Ext.ComponentQuery.query('ridergrid')[0] //load alias
-        
-        ridergrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
+        if(grid){
 
-            //reset calendar
-            Ext.getCmp('opmgrcalendarGrid').setTitle('&nbsp;');
-            var opmgrcalendarstore = Ext.getCmp('opmgrcalendarGrid').getStore();
-            opmgrcalendarstore.removeAll();
+            if(grid.view.rendered){
             
-            if (selected.length > 0) {
-
-                //scrollto location-grid
-                util.scrollsTo('calendar-grid')
-
-                var record = selected[0];
-                var empidValue = record.get('emp_id');
-
-                console.log('Selected Employee ID:', empidValue);
-
-                //SET TITLE
-                Ext.getCmp('opmgrcalendarGrid').setTitle( `${record.get('full_name')}, ${record.get('transactions')} Working Day(s)`) 
-                                
-                // Make an AJAX request to get the data from the server
                 Ext.Ajax.request({
                     
-                    url: `${myIp}/gridmonthlytransaction/${empidValue}`,
-
+                    url: `${myIp}/opmgr/summary/${util.getCookie('f_email')}`,
+        
                     success: function(response) {
                         var json = Ext.decode(response.responseText);
                         var data = json.data || json; // if data is wrapped or not
+            
+                        var areaStore = grid.getStore()
+                        areaStore.removeAll()
+
+                        areaStore.loadData(data);
                         
-                        opmgrcalendarstore.loadData(data);
-                        
-                        console.log('calendar Data loaded successfully===',  data);
+                        console.log('Region Data loaded successfully');
                     },
                     failure: function(response) {
                         console.error('Failed to load data');
                         Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
                     }
-                });
-            
-            }//====end if        
-        })
-    },
+                }); //end ajax
 
-  
+                //load listener selectionchange
+                grid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
+        
+                    if (selected.length > 0) {
+
+                        //scrollto location-grid
+                        util.scrollsTo('location-grid')
+                    
+                        var record = selected[0];
+                        var areaValue = record.get('area');
+        
+                        console.log('Selected Area:', areaValue);
+        
+                        //SET TITLE
+                        Ext.getCmp('opmgrLocationGrid').setTitle("Location Performance for " + areaValue) 
+                        var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
+                        opmgrlocstore.removeAll();
+                    
+                        // Make an AJAX request to get the data from the server
+                        Ext.Ajax.request({
+                            url: `${myIp}/opmgr/opmgrlocation/${areaValue}`,
+                            success: function(response) {
+                                var json = Ext.decode(response.responseText);
+                                var data = json.data || json; // if data is wrapped or not
+                                
+                                opmgrlocstore.loadData(data);
+        
+                                console.log('location Data loaded successfully');
+                            },
+                            failure: function(response) {
+                                console.error('Failed to load data');
+                                Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
+                            }
+                        });
+                    
+                    }//====end if
+                });
+
+            }//eif viewready
+        }//eif grid
+    
+    },
     //opmgr
     listenLocation:()=>{
         console.log('listenLocation() opmgrController.js fird===')
@@ -303,18 +152,27 @@ Ext.define('MyApp.controller.coordController', {
         //var locgrid = Ext.getCmp('opmgrLocationGrid')
         var locgrid = Ext.ComponentQuery.query('opmgrlocationgrid')[0] //load alias
         
+        if(locgrid.view.rendered){
+            //SET TITLE
+            Ext.getCmp('opmgrcalendarGrid').setTitle('&nbsp;' ) 
+            
+            // Get the store
+            //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+            var opmgrcalendarstore = Ext.getCmp('opmgrcalendarGrid').getStore();
+            opmgrcalendarstore.removeAll();
+
+        }//eif
+
         locgrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
-        
             if (selected.length > 0) {
 
-                console.log('hey locgrid location  ().change')
-             
+                Ext.getCmp('opmgrcalendarGrid').setTitle('&nbsp;' ) 
+            
+                // Get the store
+                //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+                var opmgrcalendarstore = Ext.getCmp('opmgrcalendarGrid').getStore();
+                opmgrcalendarstore.removeAll();
 
-                //rider
-                Ext.getCmp('opmgrRiderGrid').setTitle('&nbsp;')
-                var opmgrriderstore = Ext.getCmp('opmgrRiderGrid').getStore();
-                opmgrriderstore.removeAll();
-         
                 //scrollto location-grid
                 util.scrollsTo('rider-grid')
 
@@ -328,15 +186,22 @@ Ext.define('MyApp.controller.coordController', {
                 
                 // Get the store
                 //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
-              
+                var opmgrriderstore = Ext.getCmp('opmgrRiderGrid').getStore();
+                opmgrriderstore.removeAll();
+            
                 // Make an AJAX request to get the data from the server
                 Ext.Ajax.request({
                     url: `${myIp}/coor/ridersummary/${locValue}`,
                     success: function(response) {
                         var json = Ext.decode(response.responseText);
                         var data = json.data || json; // if data is wrapped or not
-                        
                         opmgrriderstore.loadData(data);
+                        // var data = Ext.decode(response.responseText) ; // Decode the JSON data
+                        
+
+                        // console.log( 'rider data...',data)
+                        // //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+                        // opmgrriderstore.loadData(data); // Load the data into the store
 
                         console.log('RIDER Data loaded successfully');
                     },
@@ -345,6 +210,13 @@ Ext.define('MyApp.controller.coordController', {
                         Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
                     }
                 });
+                
+                // record.suspendEvents(); // Prevent events while setting the value
+                // record.resumeEvents();  // Re-enable events
+            }else{
+                // No row is selected (clear the store)
+                //var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
+                //opmgrlocstore.removeAll();
             
             }//====end if
         });
@@ -356,14 +228,20 @@ Ext.define('MyApp.controller.coordController', {
         
         var ridergrid = Ext.ComponentQuery.query('opmgrridergrid')[0] //load alias
         
-        ridergrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
-
-             
-            //reset calendar
-            Ext.getCmp('opmgrcalendarGrid').setTitle('&nbsp;');
+        //viewonreaady
+        if(ridergrid.view.rendered){
+            //SET TITLE
+            Ext.getCmp('opmgrcalendarGrid').setTitle('&nbsp;' ) 
+            
+            // Get the store
+            //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
             var opmgrcalendarstore = Ext.getCmp('opmgrcalendarGrid').getStore();
             opmgrcalendarstore.removeAll();
-          
+    
+        
+        }
+        ridergrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
+
             if (selected.length > 0) {
 
                 //scrollto location-grid
@@ -377,6 +255,11 @@ Ext.define('MyApp.controller.coordController', {
                 //SET TITLE
                 Ext.getCmp('opmgrcalendarGrid').setTitle( `${record.get('full_name')}, ${record.get('transactions')} Working Day(s)`) 
                 
+                // Get the store
+                //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+                var opmgrcalendarstore = Ext.getCmp('opmgrcalendarGrid').getStore();
+                opmgrcalendarstore.removeAll();
+            
                 // Make an AJAX request to get the data from the server
                 Ext.Ajax.request({
                     
@@ -399,7 +282,6 @@ Ext.define('MyApp.controller.coordController', {
                 // record.suspendEvents(); // Prevent events while setting the value
                 // record.resumeEvents();  // Re-enable events
             }else{
-                
                 // No row is selected (clear the store)
                 //var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
                 //opmgrlocstore.removeAll();

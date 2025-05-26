@@ -733,7 +733,8 @@ const asn = {
         })    
     },
     //==========END  GETMENU
-   
+   ctrl:null,
+
 	//==,= main run
 	init :  () => {
         asn.getmenu(util.getCookie('grp_id')) 
@@ -798,12 +799,17 @@ Ext.onReady(function(){
     
     // Get the controller
     asn.ctrlExt = asn.appExt.getController('coordController');
-   
+    
+    asn.ctrlExt.listenviewReady()
+    
+    asn.ctrlExt.listencoordLocation('')
+    asn.ctrlExt.listencoordRider()
+    
+    window.scrollTo(0,0);
+    asn.init() //instantiate now
 })
 
-//osndp.Bubbl
-window.scrollTo(0,0);
-asn.init() //instantiate now
+
 
 
 

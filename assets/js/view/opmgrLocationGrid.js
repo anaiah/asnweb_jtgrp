@@ -23,11 +23,11 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
     extend: 'Ext.grid.Panel',
     alias : 'widget.opmgrlocationgrid',
     id: 'opmgrLocationGrid',
-    title: 'Location Summary',
+
     cls: 'centered-headers-grid',
+    
     store: 'opmgrLocationStore', // your storeId
-    //width: 500,
-    height: 300,
+    
     cls: 'centered-headers-grid',
     
     // features: [ {
@@ -36,7 +36,7 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
     features: [{
         id: 'ygroup',
         ftype: 'groupingsummary',
-        groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
+        groupHeaderTpl: `<i class='ti ti-map-pins'></i>&nbsp;<span class=xgrpheader>{name}</span>`,
         hideGroupedHeader: true,
         enableGroupingMenu: false,
         collapsible:false
@@ -53,12 +53,12 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
         { 
             text: 'Hub', 
             dataIndex: 'hub', 
-            width:150,
+            width:180,
             sortable:false,
             hideable:false,
             menuDisabled:true,
             summaryRenderer: function(value, summaryData, dataIndex) {
-                return `<b>Total :</b>`
+                return `<b>TOTAL :</b>`
             }
             
         },
@@ -82,7 +82,7 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
         { 
             text: 'Parcel', 
             dataIndex: 'parcel', 
-            width: 120, 
+            width: 100, 
             sortable:false,
             hideable:false,
             menuDisabled:true,
@@ -98,7 +98,7 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
         },
         {   text: 'Delivered',  
             dataIndex: 'parcel_delivered', 
-            width: 120, 
+            width: 100, 
             sortable:false,
             hideable:false,
             menuDisabled:true,

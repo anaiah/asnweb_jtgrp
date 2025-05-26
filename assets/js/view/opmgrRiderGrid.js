@@ -13,8 +13,7 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
     title: 'Rider Info',
     id:    'opmgrRiderGrid',
     
-    height:300,
-    width:300,
+   
 
     //store: Ext.data.StoreManager.lookup('opmgrRiderStore'),  //store.storeID
     //plugins: [cellEditing],  /* takeout editing */
@@ -39,15 +38,8 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
         cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
             //console.log( record.get("location"))      
         },
-        selectionchange: function(model, records ) {
-            
-        console.log('===ridersGrid selectionchange()===')
-        /*
-            if(records[0]){
-                var idx = this.getStore().indexOf(records[0]);
-                console.log( this.getStore().getAt(idx).get('hub') )
-            }//eif
-            */
+        selectionchange:function(sm, selected, eOpts) {
+
         }//end selectionchange
         
     },
@@ -65,9 +57,13 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
         {
             text:'Name',
             dataIndex:'full_name',
-            width:120,
+            width:250,
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
             align: 'left',       // Align the column values to the right
             headerAlign: 'center',
+            resizable:false,
             renderer: function(value) {
                 if (!value) return '';
         
@@ -136,7 +132,7 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font10g'
+                //meta.tdCls = 'font10g'
 
                 return `${value} %`
                 //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");

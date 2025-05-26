@@ -7,7 +7,7 @@ modals,forms,utilities
 
 */ 
 const myIp = "https://asn-jtgrp-api.onrender.com" 
-//const myIp = "http://192.168.165.221:10000"
+//const myIp = "http://192.168.62.221:10000"
 
 const requirements = document.querySelectorAll(".requirements")
 const specialChars = "!@#$%^&*()-_=+[{]}\\| :'\",<.>/?`~"
@@ -41,7 +41,7 @@ const util = {
 	scrollsTo:(cTarget)=>{
         //asn.collapz()
 		const elem = document.getElementById(cTarget)
-		elem.scrollIntoView({ behavior: 'smooth' });
+		elem.scrollIntoView(true,{ behavior: 'smooth', block:'start', inline:'nearest' });
 
 	},
 
@@ -1499,15 +1499,17 @@ const util = {
                     break
                 
                     case 4: // coordinator
-                        location.href = '/jtx/coord'    
+                        location.href = 'coord'    
                     break
 
                     case 3:  //head coord
-                        location.href = '/jtx/headcoord'    
+                        location.href = 'headcoord'    
                     break
                 
                     case 5: // operations mgr
-                        location.href = '/jtx/operations'    
+                    console.log('poooknnatt')
+                        
+                    location.href ='operations'    
                     break
 
                 }//===== endswitch

@@ -1,30 +1,17 @@
 Ext.define('MyApp.store.locationStore', {
     extend: 'Ext.data.Store',
 
-    //model: 'MyApp.model.locationModel',
+    model: 'MyApp.model.locationModel',
     //alias: 'widget.poStore',
 
     storeId:'locationStore',
-    fields: [
-        //{name: 'projectId', type: 'int'},
-        {name: 'coordinator', type: 'string'},
-        {name: 'location', type: 'string'},
-        {name: 'hub', type: 'string'},
-        {name: 'parcel', type: 'int'},
-        {name: 'amount', type: 'float'},
-        {name: 'parcel_delivered', type: 'int'},
-        {name: 'amount_remitted', type: 'float'},
-        {name: 'qty_pct', type: 'float'},
-        // {name: 'cost', type: 'float'},
-        // {name: 'due', type: 'date', dateFormat:'m/d/Y'}
-    ],
-
+    
     remoteSort:true,
 
     proxy: {
         // load using HTTP
         type: 'ajax',
-        url: `${myIp}/coor/summary/${util.getCookie('f_email')}`,
+        //url: `${myIp}/coor/summary/${util.getCookie('f_email')}`,
         // the return will be json, so lets set up a reader
         reader: {
             type: 'json'
@@ -32,15 +19,17 @@ Ext.define('MyApp.store.locationStore', {
     },
 
     groupField: 'location',
-    //autoLoad: true,
+    autoLoad: false,
+
     //data:[{po_number:'', invoice_number:''}], //blank
     
     listeners: {
         'datachanged':(store,e)=>{
-            console.log('===locationStore.js STORE PO LISTENING === store loaded w recs==' , store.data.length )
-            console.log('===locationStore.js GRID PO locationGrid FIRST RECORD SELECTED ==' )
+            //console.lo
+            //console.log('===locationStore.js STORE PO LISTENING === store loaded w recs==' , store.data.length )
+            console.log('===locationStore.js locationGrid FIRST RECORD SELECTED ==' )
             
-            Ext.getCmp('locationGrid').getSelectionModel().select(0);
+           // Ext.getCmp('locationGrid').getSelectionModel().select(0);
 
         }
     }//end listen				 

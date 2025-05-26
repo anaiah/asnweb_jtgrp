@@ -5,7 +5,8 @@
  //load ext
 Ext.application({
     name: 'MyApp',
-    appFolder: '/html/assets/js',
+    //appFolder: 'assets/js',
+    appFolder: '/html/assets/js',//<-- bringbak when uploading
 
     // ... other configs ...
     requires: [
@@ -13,15 +14,17 @@ Ext.application({
         'MyApp.overrides.SelectionModel',  // <---- ADD THIS LINE
         'MyApp.view.opmgrLocationGrid',  // <---- ADD THIS LINE
         'MyApp.view.opmgrRiderGrid',  // <---- ADD THIS LINE
+        'MyApp.view.opmgrcalendarGrid',  // <---- ADD THIS LINE
         
     ],
 
-    models: ['opmgrModel','opmgrLocModel','riderModel'],
+    models: ['opmgrModel','opmgrLocModel','riderModel', 'monthlyModel'],
     stores: 
     [
         'opmgrStore',
         'opmgrLocationStore',
         'opmgrRiderStore',
+        'opmgrcalendarStore',
         // 'coordStore',
         // 'headStore',
         // 'opmgrStore'
@@ -29,7 +32,7 @@ Ext.application({
 
     controllers:
     [   
-        'coordController',
+        'opmgrController',
         // 'headCtrl',
         // 'opmgrCtrl',
     ],
@@ -40,12 +43,36 @@ Ext.application({
         console.log('====Ext.app 4.2 Launch() ====',)
         MyApp.app = this    
 
-        var locGrid = Ext.create('MyApp.view.opmgrGrid', {
+        var regiongrid = Ext.create('MyApp.view.opmgrGrid', {
             renderTo: 'region-grid',
+            title:'Regional Performance Summary',
             width: 500,
             height: 300
         });
 
+        var locgrid = Ext.create('MyApp.view.opmgrLocationGrid', {
+            renderTo: 'location-grid',
+            title:'&nbsp;',
+            width: 500,
+            height: 300
+        });
+
+        var ridergrid = Ext.create('MyApp.view.opmgrRiderGrid', {
+            renderTo: 'rider-grid',
+            //title:'Regional Performance Summary',
+            width: 500,
+            height: 200
+        });
+
+        var calendargrid = Ext.create('MyApp.view.opmgrcalendarGrid', {
+            renderTo: 'calendar-grid',
+            //title:'Regional Performance Summary',
+            width: 500,
+            height: 300
+        });
+
+
+        /*
         //make container later
         Ext.define('MyApp.view.OpmgrContainer', {
             extend: 'Ext.panel.Panel',
@@ -74,31 +101,25 @@ Ext.application({
             height:600,
             items: [
                 {
-                   region: 'center',
+                    region: 'center',
                     xtype: 'opmgrridergrid',
                     split:true,
-
+                    height:300,
+                    width:300,
                    
                 },
                 {
                     region: 'south',
-                    xtype: 'grid',
+                    xtype: 'opmgrcalendargrid',
                     height:300,
-                    width:250,
-                    title: 'Attendance',
-                    //store: yourRightStore,
-                    columns: [
-                        /* columns */
-                        {
-                            text:'col2'
-                        }
-                    ]
+                    width:300
                 }
             ],
             renderTo: 'rider-grid'
         }); 
 
         Ext.create('MyApp.view.OpmgrRiderContainer');
+        */
 
     }, //==== END LAUNCH EXTJS
 

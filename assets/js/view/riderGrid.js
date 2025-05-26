@@ -1,24 +1,21 @@
 Ext.define('MyApp.view.riderGrid' ,{
     extend: 'Ext.grid.Panel',
-    alias : 'widget.riderGrid',
-	
+    alias : 'widget.ridergrid',
+    id:    'riderGrid',
+   
 	//static member
 	statics:{
 		myTitle:''
 	},
 
+    cls: 'centered-headers-grid',
+   
     //title : 'testList',
 	columnLines:true,
-    renderTo:'rider_grid',
     
     title: 'Rider Info',
-    id:    'riderGrid',
-    flex: 1,
-    frame:true,
-    
-    height:400,
-    width:500,
-    store: Ext.data.StoreManager.lookup('riderStore'),  //store.storeID
+
+    store: 'riderStore',  //store.storeID
     //plugins: [cellEditing],  /* takeout editing */
 
     viewConfig: {
@@ -40,28 +37,34 @@ Ext.define('MyApp.view.riderGrid' ,{
             //console.log( record.get("location"))      
         },
         selectionchange: function(model, records ) {
-            
-        console.log('===ridersGrid selectionchange()===')
-        /*
-            if(records[0]){
-                var idx = this.getStore().indexOf(records[0]);
-                console.log( this.getStore().getAt(idx).get('hub') )
-            }//eif
-            */
-        }//end selectionchange
-        
+        }
     },
 
-    // features: [{
-    //     id: 'group',
-    //     ftype: 'groupingsummary',
-    //     groupHeaderTpl: '<font color=blue   >{name}</font>',
-    //     //groupHeaderTpl: new Ext.XTemplate('<tpl for=".">', '<input type="button" value={name}></div>', '</tpl>'),
-    //     hideGroupedHeader: true,
-    //     enableGroupingMenu: false
-    // }],
-    
-    columns: [/*
+   
+    columns: [
+        {
+            text:'Name',
+            dataIndex:'full_name',
+            width:250,
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
+            align: 'left',       // Align the column values to the right
+            headerAlign: 'center',
+            resizable:false,
+            renderer: function(value) {
+                if (!value) return '';
+        
+                var parts = value.split(',');
+                if (parts.length !== 2) return value;
+        
+                var lastName = parts[0].trim();
+                var firstNames = parts[1].trim();
+        
+                return firstNames + ' ' + lastName;
+            }
+        },
+        /*
         {
             text: 'Working Day(s)',
             //flex: 1,
@@ -83,6 +86,7 @@ Ext.define('MyApp.view.riderGrid' ,{
             //     return ((value === 0 || value > 1) ?`( ${value} Days )` : `( 1 Day )`);
             // }
         },*/
+        /*
         {
             header: 'Name',
             width: 180,
@@ -100,6 +104,7 @@ Ext.define('MyApp.view.riderGrid' ,{
                 //return value;
             }
         },
+        */
         {
             header: 'Delivery',
             width: 85,
@@ -115,13 +120,14 @@ Ext.define('MyApp.view.riderGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font10g'
+                //meta.tdCls = 'font10g'
 
                 return `${value} %`
                 //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
                 //return value;
             }
         },
+        
     ],//end columns 
 
 })

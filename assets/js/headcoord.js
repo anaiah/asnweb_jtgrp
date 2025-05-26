@@ -796,12 +796,17 @@ Ext.onReady(function(){
     
     // Get the controller
     asn.ctrlExt = asn.appExt.getController('coordController');
-   
+
+    asn.ctrlExt.listenviewreadyArea()  //load Area
+    asn.ctrlExt.listencoordLocation()//loadLoc
+    asn.ctrlExt.listencoordRider()//rider to load calendar
+    
+    //osndp.Bubbl
+    window.scrollTo(0,0);
+    asn.init() //instantiate now
+
 })
 
-//osndp.Bubbl
-window.scrollTo(0,0);
-asn.init() //instantiate now
 
 
 

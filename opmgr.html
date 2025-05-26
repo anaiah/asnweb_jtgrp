@@ -43,17 +43,47 @@ span.xgrpheader{
   /* font-weight: bold; */
   /* padding: 0px 0px 0px 15px; adjust the last number to move the header  name */
   
-  color: purple;
+  color:#08304d;
   /* padding-right:23px !important; */
   /* box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important; */
   
 }
+/* row backgnd color of group summary */
+.x-grid-row-summary {
+    color:#cc1524!important;
+    background-color: #edfbfb !important;
+    /* background-color: #E2EFF9 !important; */
+    /* background-color: #f0f0f0; Change background color */
+    font-weight: bold;         /* Make text bold */
+    /* color: #333;               Change text color */
+    /* color :rgb(192, 5, 5) !important; */
+  }
+
+  /* row background color of grouping summary header */
+.x-grid-group-hd { 
+  /* background-color: #6de73c !important; */
+  background-color: #edfbfb !important;
+  color: rgb(5, 33, 170) !important;
+
+  padding: 7px 0px 7px 10px; /*adjust the last number to move the header  name*/
+    /* font-weight: bold; */
+   box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important;
+ 
+   
+
+}
+
+/* for getrowclass to work */
+.x-grid-row.with-work td.x-grid-cell { /* Using the grid's ID */
+  background-color: #C5DFF2 !important;
+
+}
+ 
   </style>
 
 </head>
 
 <body>
-  
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
@@ -159,6 +189,10 @@ span.xgrpheader{
                   <div id="rider-grid"></div>
                 </div>
 
+                <div class="table-responsive mb-4">
+                  <div id="calendar-grid"></div>
+                </div>
+
               </div>
             </div>
       
@@ -228,6 +262,8 @@ span.xgrpheader{
   <script src="/html/assets/js/util.js?v=8"></script>
   <script src="/html/assets/js/opmgr.js?v=8"></script>
 
+  <style>
+  </style>
     
   <!-- <script src="/html/assets/js/main.js?v=8"></script> -->
   <!-- <script src="/html/assets/js/listen.js?v=8"></script> -->

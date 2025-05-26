@@ -810,7 +810,7 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
         
-        asn.loadopmgrArea()
+       // asn.loadopmgrArea()
 
         /*
         //===load mtd-chart
@@ -839,114 +839,46 @@ Ext.onReady(function(){
     asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
     
     // Get the controller
-    asn.ctrlExt = asn.appExt.getController('coordController');
+    asn.ctrlExt = asn.appExt.getController('opmgrController');
 
-    //call Maiin Area grid load
-    var grid = Ext.getCmp('opmgrGrid')
-                    
-    grid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
-        if (selected.length > 0) {
+    //listen main region grid
+    asn.ctrlExt.listenRegion()
 
-            //scrollto location-grid
-            util.scrollsTo('location-grid')
+    asn.ctrlExt.listenLocation()
 
-            var record = selected[0];
-            var areaValue = record.get('area');
+    asn.ctrlExt.listenRider()
 
-            console.log('Selected Area:', areaValue);
-
-            //SET TITLE
-			Ext.getCmp('opmgrLocationGrid').setTitle( "Location Performance  for " + areaValue) 
-            
-            // Get the store
-            //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
-            var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
-            opmgrlocstore.removeAll();
-        
-            // Make an AJAX request to get the data from the server
-            Ext.Ajax.request({
-                url: `${myIp}/opmgr/opmgrlocation/${areaValue}`,
-                success: function(response) {
-                    var json = Ext.decode(response.responseText);
-                    var data = json.data || json; // if data is wrapped or not
-                    opmgrlocstore.loadData(data);
-
-                    // var data = Ext.decode(response.responseText); // Decode the JSON data
-                    
-                    // //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
-                    // opmgrlocstore.loadData(data); // Load the data into the store
-
-                    console.log('location Data loaded successfully');
-                },
-                failure: function(response) {
-                    console.error('Failed to load data');
-                    Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
-                }
-            });
-            
-            // record.suspendEvents(); // Prevent events while setting the value
-            // record.resumeEvents();  // Re-enable events
-        }else{
-            // No row is selected (clear the store)
-            //var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
-            //opmgrlocstore.removeAll();
-        
-        }//====end if
-    });
-
-    //call Location / hub Grid
-    var locgrid = Ext.getCmp('opmgrLocationGrid')
-    locgrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
-        if (selected.length > 0) {
-
-            //scrollto location-grid
-            util.scrollsTo('rider-grid')
-
-            var record = selected[0];
-            var locValue = record.get('hub');
-
-            console.log('Selected Location:', locValue);
-
-            //SET TITLE
-			Ext.getCmp('opmgrRiderGrid').setTitle( locValue ) 
-            
-            // Get the store
-            //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
-            var opmgrriderstore = Ext.getCmp('opmgrRiderGrid').getStore();
-            opmgrriderstore.removeAll();
-        
-            // Make an AJAX request to get the data from the server
-            Ext.Ajax.request({
-                url: `${myIp}/coor/ridersummary/${locValue}`,
-                success: function(response) {
-                    var json = Ext.decode(response.responseText);
-                    var data = json.data || json; // if data is wrapped or not
-                    opmgrriderstore.loadData(data);
-                    // var data = Ext.decode(response.responseText) ; // Decode the JSON data
-                    
-
-                    // console.log( 'rider data...',data)
-                    // //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
-                    // opmgrriderstore.loadData(data); // Load the data into the store
-
-                     console.log('RIDER Data loaded successfully');
-                },
-                failure: function(response) {
-                    console.error('Failed to load data');
-                    Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
-                }
-            });
-            
-            // record.suspendEvents(); // Prevent events while setting the value
-            // record.resumeEvents();  // Re-enable events
-        }else{
-            // No row is selected (clear the store)
-            //var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
-            //opmgrlocstore.removeAll();
-        
-        }//====end if
-    });
-
+   //test
+    // Ext.create('Ext.grid.Panel', {
+    //     title: 'Test Grid',
+    //     store: Ext.create('Ext.data.Store', {
+    //         fields: ['name', 'total_amount'],
+    //         data: [
+    //             { name: 'Item 1', total_amount: 10 },
+    //             { name: 'Item 2', total_amount: 0 }
+    //         ]
+    //     }),
+    //     columns: [
+    //         { text: 'Name',  dataIndex: 'name' },
+    //         { text: 'Amount', dataIndex: 'total_amount' }
+    //     ],
+    //     viewConfig: {
+    //         scope:this,
+    //         getRowClass: function(record, rowIndex, rowParams, store) {
+                
+    //             if (record.get('total_amount') > 0) {
+    //                 //      rowParams.style = 'background-color:rgb(80, 243, 16) !important;';  // Inline style
+    //                 return "with-work";
+    //             }
+    //             //return null;
+    //         }
+    //     },
+    //     width: 400,
+    //     height: 300,
+    //     renderTo: 'mtd-chart'
+    // });
+    // //end test
+   
     window.scrollTo(0,0);
     asn.init() //instantiate now
 

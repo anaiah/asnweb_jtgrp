@@ -2,11 +2,26 @@
 Ext.application({
     name: 'MyApp',
     appFolder: '/html/assets/js',
-    //models: ['monthlyModel'],
+    
+    //appFolder: 'assets/js',
+    
+    models: ['opmgrModel','riderModel', 'locationModel','monthlyModel'], //monthlyModel is  for Calendargrid
+    
+    // ... other configs ...
+    requires: [
+        'MyApp.overrides.GroupingSummary',  // <---- ADD THIS LINE
+        'MyApp.overrides.SelectionModel',  // <---- ADD THIS LINE
+        'MyApp.view.locationGrid',  // <---- ADD THIS LINE
+        'MyApp.view.riderGrid',  // <---- ADD THIS LINE
+        'MyApp.view.opmgrcalendarGrid',  // <---- ADD THIS LINE
+    ],
+
     stores: 
     [
         'locationStore',
-        'riderStore'
+        'riderStore',
+        'opmgrcalendarStore',
+
         // 'coordStore',
         // 'headStore',
         // 'opmgrStore'
@@ -14,7 +29,7 @@ Ext.application({
 
     controllers:
     [   
-        'coordController',
+        'MyApp.controller.coordController',
         // 'coordCtrl',
         // 'headCtrl',
         // 'opmgrCtrl',
@@ -27,14 +42,19 @@ Ext.application({
         MyApp.app = this    
 
         var locGrid = Ext.create('MyApp.view.locationGrid', {
-            renderTo: 'grid_month',
+            renderTo: 'location-grid',
             width: 500,
             height: 300
         });
         var rideGrid = Ext.create('MyApp.view.riderGrid', {
-            renderTo: 'rider_grid',
+            renderTo: 'rider-grid',
             width: 500,
-            height: 400
+            height: 250
+        });
+        var calendarGrid = Ext.create('MyApp.view.opmgrcalendarGrid', {
+            renderTo: 'calendar-grid',
+            width: 500,
+            height: 300
         });
 
     },

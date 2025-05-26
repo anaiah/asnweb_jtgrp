@@ -40,39 +40,46 @@
     .hide-me{
       display:none;
     }
-   .font10p{
-      color:green;
-      font-size:10px;
-   }
-   .font11p{
-      color:darkslategray;
-      font-size:13px;
-   }
-   /* Bootstrap-like styles for the button */
-  .my-bootstrap-btn {
-      /* background-color: #007bff !important  ; Bootstrap primary blue */
-      border: 1px solid #0069d9;
-      color: #fff; /* Bootstrap text color for btn-primary */
-      /* background-image: url("")  !important; */
-      padding: 5px 12px;
-      border-radius: 4px; /* Bootstrap border radius */
-      font-size: 14px;
-      cursor: pointer;
+    
+    span.xgrpheader{
+  /* background-color:#cfcfce; */
+  /* font-weight: bold; */
+  /* padding: 0px 0px 0px 15px; adjust the last number to move the header  name */
+  
+  color:#08304d;
+  /* padding-right:23px !important; */
+  /* box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important; */
+  
+}
+/* row backgnd color of group summary */
+.x-grid-row-summary {
+    color:#cc1524!important;
+    background-color: #edfbfb !important;
+    /* background-color: #E2EFF9 !important; */
+    /* background-color: #f0f0f0; Change background color */
+    font-weight: bold;         /* Make text bold */
+    /* color: #333;               Change text color */
+    /* color :rgb(192, 5, 5) !important; */
   }
-  .my-bootstrap-btn:hover {
-      background-color: #0069d9;
-      border-color: #0062cc;
-  }
-  .x-bottom-toolbar {
-    height: 60px; /* desired height */
-    line-height: 60px; /* to vertically center text/buttons */
-    padding: 15px; /* optional padding */
-  }
- 
-  #chartContainer {
-    width: 400px;
-    height: 350px;
-  } 
+
+  /* row background color of grouping summary header */
+.x-grid-group-hd { 
+  /* background-color: #6de73c !important; */
+  background-color: #edfbfb !important;
+  color: rgb(5, 33, 170) !important;
+
+  padding: 7px 0px 7px 10px; /*adjust the last number to move the header  name*/
+    /* font-weight: bold; */
+   box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important;
+
+}
+
+/* for getrowclass to work */
+.x-grid-row.with-work td.x-grid-cell { /* Using the grid's ID */
+  background-color: #C5DFF2 !important;
+
+}
+
   /* .apexcharts-tooltip {
   display: none !important;
 } */
@@ -173,12 +180,19 @@
             <div class="card boxshadoe shadow mb-3">
               <div class="card-body p-4">
                 <h5 class="card-title fw-semibold">Month-To-Date Transaction</h5>
-                <div class="table-responsive mb-2">
-                  <div id="grid_month"></div>
+
+                <div class="table-responsive mb-4">
+                  <div id="location-grid"></div>
                 </div>
-                <div class="table-responsive">
-                  <div id="rider_grid"></div>
+
+                <div class="table-responsive mb-4">
+                  <div id="rider-grid"></div>
                 </div>
+
+                <div class="table-responsive mb-4">
+                  <div id="calendar-grid"></div>
+                </div>
+
               </div>
             </div>
       

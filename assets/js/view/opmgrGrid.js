@@ -1,12 +1,14 @@
 
 Ext.define('MyApp.view.opmgrGrid' ,{
     extend: 'Ext.grid.Panel',
-    alias : 'widget.opmgrGrid',
+    alias : 'widget.opmgrgrid',
+
     id: 'opmgrGrid',
-    title: 'Operation Management Summary',
-    store: Ext.data.StoreManager.lookup('opmgrStore'), // your storeId
+    //title: 'Area Performance Summary',
+    store: 'opmgrStore',//Ext.data.StoreManager.lookup('opmgrStore'), // your storeId
     width: 500,
     height: 300,
+    
     cls: 'centered-headers-grid',
     
     // features: [ {
@@ -15,7 +17,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
     features: [{
         id: 'xgroup',
         ftype: 'groupingsummary',
-        groupHeaderTpl: `<span class=xgrpheader>{name}</span>`,
+        groupHeaderTpl: `<i class='ti ti-map-pin'></i>&nbsp;<span class=xgrpheader>{name} REGION</span>`,
         hideGroupedHeader: true,
         enableGroupingMenu: false,
         collapsible:false
@@ -36,6 +38,9 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             sortable:false,
             hideable:false,
             menuDisabled:true,
+            renderer: (value)=> { 
+                return `&nbsp;&nbsp;&nbsp;${value}` 
+            },
         },
         // { text: '% Qty', dataIndex: 'qty_pct', width: 80,
         //     renderer: function(value) { return value + '%'; },
@@ -64,9 +69,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
             align: 'right',       // Align the column values to the right
             headerAlign: 'center',
             summaryType: 'sum', 
-            renderer: (value)=> { 
-                return util.addCommas(value) 
-            },
+            
             summaryRenderer:(value,summaryData,dataIndex)=>{
                 return `<b>${util.addCommas(value)}</b>`
             }, 
@@ -131,29 +134,7 @@ Ext.define('MyApp.view.opmgrGrid' ,{
         preserveScrollOnRefresh: true,
         listeners: {
             viewready: function(view) {
-                
-                // Select the first row after the grid has been rendered
-                var grid = Ext.getCmp('opmgrGrid');
-                var xstore = grid.getStore()
-                console.log('===viewRead loaded === store loaded w recs==' , xstore.data.length )
-
-                if (xstore.getCount() > 0) {
-                    
-                    grid.getSelectionModel().select(0);
-                
-                }
-                /*                           
-                store.sort([
-                    { property: 'qty_pct', direction: 'DESC' },
-                   
-                    { property: 'location', direction: 'ASC' },
-                    { property: 'hub', direction: 'ASC' },
-                    
-                ]);
-                */
-                //load the store now
-                //this.getStore().load()
-
+              
             }//end viewready
         }//end listeners viewconfig
     },

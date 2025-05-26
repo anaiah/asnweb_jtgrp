@@ -24,11 +24,7 @@ Ext.define('MyApp.store.riderStore', {
     
     listeners: {
         'datachanged':(store,e)=>{
-            console.log('===riderStore.js STORE PO LISTENING === store loaded w recs==' , store.data.length )
-            console.log('===riderStore.js GRID PO riderGrid FIRST RECORD SELECTED ==' )
-            Ext.getCmp('locationGrid').setLoading(false)
-            Ext.getCmp('riderGrid').getSelectionModel().select(0);
-
+           
         }
     }//end listen				 
     
