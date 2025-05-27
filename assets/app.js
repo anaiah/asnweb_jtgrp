@@ -2,6 +2,7 @@
         Ext.application({
             name: 'MyApp',
             appFolder: '/html/assets/js',
+            //appFolder: '/assets/js',
             models: ['monthlyModel'],
             stores: 
             [

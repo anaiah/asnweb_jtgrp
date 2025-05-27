@@ -761,14 +761,24 @@ const asn = {
 
         //==HANDSHAKE FIRST WITH SOCKET.IO
         const userName = { token : authz[1] , mode: 1}//full name token
-
-        asn.socket = io.connect(`${myIp}`, {            //withCredentials: true,
+        asn.socket = io.connect(`${myIp}`, {
+            //withCredentials: true,
+            transports: ['websocket', 'polling'], // Same as server
+            upgrade: true, // Ensure WebSocket upgrade is attempted
+            rememberTransport: false, //Don't keep transport after refresh
             query:`userName=${JSON.stringify(userName)}`
             // extraHeaders: {
             //   "osndp-header": "osndp"
             // }
         });//========================initiate socket handshake ================
-        
+
+        asn.socket.on('connect', () => {
+            console.log('Connected to Socket.IO server using:', asn.socket.io.engine.transport.name); // Check the transport
+        });
+
+        asn.socket.on('disconnect', () => {
+            console.log('Disconnected from Socket.IO server');
+        }); 
         //===load mtd-chart
         asn.loadbarMTDChart()
 

@@ -720,16 +720,37 @@ const asn = {
         //==HANDSHAKE FIRST WITH SOCKET.IO
         const userName = { token : authz[1] , mode: 1}//full name token
 
-        asn.socket = io.connect(`${myIp}`, {            //withCredentials: true,
+        asn.socket = io.connect(`${myIp}`, {
+            //withCredentials: true,
+            transports: ['websocket', 'polling'], // Same as server
+            upgrade: true, // Ensure WebSocket upgrade is attempted
+            rememberTransport: false, //Don't keep transport after refresh
             query:`userName=${JSON.stringify(userName)}`
             // extraHeaders: {
             //   "osndp-header": "osndp"
             // }
         });//========================initiate socket handshake ================
+
+        asn.socket.on('toboss', (oMsg) => {
+            let xmsg = []
+            
+            xmsg.push( oMsg )
+            console.warn('====== MESSAGE FROM  MARS RECEIVED ======', xmsg)
+
+
+            asn.speaks('TOTAL LOGGED IN IS...  ' + xmsg[0].total, ' RIDER IS...' + xmsg[0].rider )
+            console.log('====== MESSAGE FROM  MARS RECEIVED ======', xmsg, xmsg[0].total, ' RIDER ', xmsg[0].rider)
+            ///// temporarily out   osndp.fetchBadgeData()// update badges
         
-        //if grp_id is equal  to  rider  get monthLy
-        //for now, example only
-        //asn.getMonthlyTransaction(util.getCookie('f_dbId'))
+        })
+        
+        asn.socket.on('connect', () => {
+            console.log('Connected to Socket.IO server using:', asn.socket.io.engine.transport.name); // Check the transport
+        });
+
+        asn.socket.on('disconnect', () => {
+            console.log('Disconnected from Socket.IO server');
+        });
        
 
         //load the form to validate
@@ -767,8 +788,7 @@ Ext.onReady(function(){
     asn.ctrlExt = asn.appExt.getController('riderController');
        
     asn.getMonthlyTransaction(util.getCookie('f_dbId'))
-
-    
+   
     
 })
 

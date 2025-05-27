@@ -800,16 +800,61 @@ const asn = {
         
         console.log(authz[1])
 
-        //==HANDSHAKE FIRST WITH SOCKET.IO
-        const userName = { token : authz[1] , mode: 1}//full name token
+        console.log('handshake.io.conek==',authz[1],authz[0])
 
-        asn.socket = io.connect(`${myIp}`, {            //withCredentials: true,
+        //==HANDSHAKE FIRST WITH SOCKET.IO
+        const userName = { token : authz[1] , mode: authz[0]}//full name token
+
+        asn.socket = io.connect(`${myIp}`, {
+            //withCredentials: true,
+            transports: ['websocket', 'polling'], // Same as server
+            upgrade: true, // Ensure WebSocket upgrade is attempted
+            rememberTransport: false, //Don't keep transport after refresh
             query:`userName=${JSON.stringify(userName)}`
             // extraHeaders: {
             //   "osndp-header": "osndp"
             // }
         });//========================initiate socket handshake ================
-        
+
+        asn.socket.on('xboss', (oMsg) => {
+            console.log('xboss  listening')
+            let xmsg = []
+            
+            xmsg.push( oMsg )
+            console.warn('====== MESSAGE FROM  MARS RECEIVED ======', xmsg)
+
+            const hubChartElement = document.getElementById('hub-chart');
+            
+            if (hubChartElement) {
+                // Create the dashboard elements
+                const ridersElement = document.createElement('p');
+                ridersElement.textContent = 'Riders: ' + xmsg[0].rider;
+
+                const totalElement = document.createElement('p');
+                totalElement.textContent = 'Total: ' + xmsg[0].total;
+
+                const percentageElement = document.createElement('p');
+                percentageElement.textContent = `Percentage: ${xmsg[0].pct} %`;
+
+                // Clear existing content and append the new elements
+                hubChartElement.innerHTML = ''; // Clear existing content
+                hubChartElement.appendChild(ridersElement);
+                hubChartElement.appendChild(totalElement);
+                hubChartElement.appendChild(percentageElement);
+            } else {
+                console.warn('hub-chart element not found!');
+            }
+
+        })
+
+        asn.socket.on('connect', () => {
+            console.log('Connected to Socket.IO server using:', asn.socket.io.engine.transport.name); // Check the transport
+        });
+
+        asn.socket.on('disconnect', () => {
+            console.log('Disconnected from Socket.IO server');
+        });
+
        // asn.loadopmgrArea()
 
         /*
