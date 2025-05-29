@@ -62,7 +62,7 @@ Ext.define('MyApp.controller.coordController', {
         locationstore.removeAll();
     },
 
-    //head
+    //head//first to fire
     listenviewreadyArea:()=>{
         console.log('firing listenviewReadyArea() coordcontroller.js')
     
@@ -99,6 +99,7 @@ Ext.define('MyApp.controller.coordController', {
                     
                     const locationgrid = Ext.ComponentQuery.query('locationgrid')[0] //load alias
                     const locationstore = locationgrid.getStore();
+                    locationstore.removeAll();
         
                     if (selected.length > 0) {
 
@@ -123,6 +124,7 @@ Ext.define('MyApp.controller.coordController', {
                                 var data = json.data || json; // if data is wrapped or not
         
                                 console.log('LOCATION HUB==', data)
+                                locationgrid.setTitle('LOCATION '+ locValue)
                                 locationstore.loadData(data);
                                 
                                 console.log('LOCATION Data loaded successfully');
