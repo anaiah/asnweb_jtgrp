@@ -6,7 +6,7 @@ Ext.define('MyApp.store.headareaStore', {
 
     storeId:'headareaStore',
     
-    remoteSort:true,
+    //remoteSort:true,
 
     proxy: {
         // load using HTTP

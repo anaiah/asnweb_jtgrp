@@ -6,7 +6,7 @@ Ext.define('MyApp.store.locationStore', {
 
     storeId:'locationStore',
     
-    remoteSort:true,
+    //remoteSort:true,
 
     proxy: {
         // load using HTTP

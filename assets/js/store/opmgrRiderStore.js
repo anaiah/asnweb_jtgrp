@@ -6,7 +6,7 @@ Ext.define('MyApp.store.opmgrRiderStore', {
 
     storeId:'opmgrRiderStore',
     
-    remoteSort:true,
+    //remoteSort:true,
 
     proxy: {
         // load using HTTP

@@ -828,13 +828,13 @@ const asn = {
             if (hubChartElement) {
                 // Create the dashboard elements
                 const ridersElement = document.createElement('p');
-                ridersElement.textContent = 'Riders: ' + xmsg[0].rider;
+                ridersElement.textContent = 'Total Riders: ' + xmsg[0].rider;
 
                 const totalElement = document.createElement('p');
-                totalElement.textContent = 'Total: ' + xmsg[0].total;
+                totalElement.textContent = 'Total Delivery: ' + xmsg[0].total;
 
                 const percentageElement = document.createElement('p');
-                percentageElement.textContent = `Percentage: ${xmsg[0].pct} %`;
+                percentageElement.textContent = `Delivery Percentage: ${xmsg[0].pct} %`;
 
                 // Clear existing content and append the new elements
                 hubChartElement.innerHTML = ''; // Clear existing content
