@@ -6,8 +6,8 @@ this is for utilities
 modals,forms,utilities
 
 */ 
-const myIp = "https://asn-jtgrp-api.onrender.com" 
-//const myIp = "http://192.168.62.221:10000"
+//const myIp = "https://asn-jtgrp-api.onrender.com" 
+const myIp = "http://192.168.62.221:10000"
 
 const requirements = document.querySelectorAll(".requirements")
 const specialChars = "!@#$%^&*()-_=+[{]}\\| :'\",<.>/?`~"
@@ -1361,7 +1361,9 @@ const util = {
 
                 case "#dataEntryForm":
                     objfrm.transnumber = document.getElementById('f_transnumber').value
-                    asn.saveToLocal(objfrm)                
+                    //asn.saveToLocal(objfrm)
+                    asn.saveToLogin(objfrm)
+
                 break
 
                 case "#remittanceForm":
@@ -1373,7 +1375,7 @@ const util = {
                     const dbval = JSON.parse( db.getItem('myCart')) //get old value from localStorage
                     objfrm.old_transnumber = dbval.f_transnumber
                     objfrm.old_parcel = dbval.f_parcel
-                    objfrm.old_amount = dbval.f_amount
+                    ///objfrm.old_amount = dbval.f_amount
                     
                     //// objfrm.grp_id="1" <-- if u want additional key value
 
@@ -1417,9 +1419,22 @@ const util = {
         return R * c; // Distance in kilometers
     },
 
+    //logout
+    logOut:()=>{
+        //clear items
+        if(db.setItem('logged')){
+            db.setItem('logged')=false
+        }
+        
+        location.href = '/jtx'
+    },
+
+    //=====THIS IS FOR RIDERS========//
     showPosition: async (position)=>{
         //let micasalat = '14.58063721485018'
         //let micasalon = '121.01563811625266'
+        util.speak('Checking your Position... please Wait!')
+                
         let mypos = JSON.parse(db.getItem('myHub'))
                 
         let distance = util.getDistance(mypos.lat, mypos.lon, position.coords.latitude, position.coords.longitude)
@@ -1434,7 +1449,14 @@ const util = {
 
             util.Toasted(`SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!`,6000,false)
             
-            location.href = '/jtx/dashboard'
+            //check flag if logged  or not
+            if(!db.getItem('logged')){
+                db.setItem('logged')=true
+            }else{ //iif found
+                db.setItem('logged')=true
+            }
+
+            location.href = '/dashboard'
             
         }else{
             
@@ -1444,7 +1466,7 @@ const util = {
             util.Toasted(`ERROR -- PLEASE TRY AGAIN! <BR>YOUR DISTANCE FROM THE HUB  IS ${d_meters} METER(S) 
                 <br> PLEASE GO NEARER INSIDE THE WAREHOUSE!`,8000,false)
             
-            util.speak(ermsg)
+            util.speak(errmsg)
                 
             document.getElementById('loginPlaceHolder').innerHTML = "" //reset alertmsg
 
@@ -1492,6 +1514,7 @@ const util = {
                     case 1:
                         //check distance before proceeding to login
                         //take out chcking of distance bring back  later
+                    
                         if (navigator.geolocation) {
                             navigator.geolocation.getCurrentPosition( util.showPosition );
                         }
@@ -1499,17 +1522,17 @@ const util = {
                     break
                 
                     case 4: // coordinator
-                        location.href = '/jtx/coord'    
+                        location.href = 'coord'    
                     break
 
                     case 3:  //head coord
-                        location.href = '/jtx/headcoord'    
+                        location.href = 'headcoord'    
                     break
                 
                     case 5: // operations mgr
                     console.log('poooknnatt')
                         
-                    location.href ='/jtx/operations'    
+                    location.href ='operations'    
                     break
 
                 }//===== endswitch
