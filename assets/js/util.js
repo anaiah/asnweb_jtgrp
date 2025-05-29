@@ -1423,7 +1423,7 @@ const util = {
     logOut:()=>{
         //clear items
         if(db.setItem('logged')){
-            db.setItem('logged')=false
+            db.setItem('logged', false)
         }
         
         location.href = '/jtx'
@@ -1451,9 +1451,9 @@ const util = {
             
             //check flag if logged  or not
             if(!db.getItem('logged')){
-                db.setItem('logged')=true
+                db.setItem('logged', true)
             }else{ //iif found
-                db.setItem('logged')=true
+                db.setItem('logged', true)
             }
 
             location.href = '/dashboard'
@@ -1488,29 +1488,29 @@ const util = {
         })
 
         .then((data) => {
-            console.log(`login here data ${JSON.stringify(data)}`)
+            //console.log(`login here data ${JSON.stringify(data)}`)
             
             //close ModalBox
-            if(data.found){
-                //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data.voice)
-                util.alertMsg(data.message,'success','loginPlaceHolder')
+            if(data[0].found){
+                //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data[0].voice)
+                util.alertMsg(data[0].message,'success','loginPlaceHolder')
                 
                 //addtocookie
-                util.setGroupCookie(data.id,data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
+                util.setGroupCookie(data[0].id,data[0].region, data[0].fname, data[0].grp_id, data[0].email, data[0].voice, data[0].pic)/*=== SET GROUP COOKIE */
             
                 //add also to localdb
                 let obj ={}
 
-                obj.id = data.id
-                obj.region = data.region
-                obj.fullname = data.fname
-                obj.grp_id = data.grp_id
-                obj.email = data.email
-                obj.pic = data.pic
+                obj.id = data[0].id
+                obj.region = data[0].region
+                obj.fullname = data[0].fname
+                obj.grp_id = data[0].grp_id
+                obj.email = data[0].email
+                obj.pic = data[0].pic
 
                 db.setItem('profile',JSON.stringify(obj))//save to localdb
                                     
-                switch ( data.grp_id ){
+                switch ( data[0].grp_id ){
                     case 1:
                         //check distance before proceeding to login
                         //take out chcking of distance bring back  later
@@ -1538,17 +1538,17 @@ const util = {
                 }//===== endswitch
                         
             }else{
-                util.speak(data.voice)
-                util.alertMsg(data.message,'warning','loginPlaceHolder')
-                console.log('notfound',data.message)
+                util.speak(data[0].voice)
+                util.alertMsg(data[0].message,'warning','loginPlaceHolder')
+                console.log('notfound',data[0].message)
                 return false
             }
             
         })
         .catch((error) => {
-            util.speak(data.voice)
-            util.alertMsg(data.message,'warning','loginPlaceHolder')
-            console.log('not found',data.message)
+            util.speak(data[0].voice)
+            util.alertMsg(data[0].message,'warning','loginPlaceHolder')
+            console.log('not found',data[0].message)
             return false
         })
 
