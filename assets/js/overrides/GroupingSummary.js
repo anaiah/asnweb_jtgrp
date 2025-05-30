@@ -6,10 +6,10 @@ Ext.define('MyApp.overrides.GroupingSummary', {
         this.callParent(arguments);
     },
     generateSummaryData: function(groupName, records, generateEmpty) {
-        console.log('generateSummaryData called for group:', groupName);
-        console.log('Records:', records);
+        //console.log('generateSummaryData called for group:', groupName);
+        //console.log('Records:', records);
         var summary = this.callParent(arguments);
-        console.log('Summary:', summary);
+        //console.log('Summary:', summary);
         return summary;
     }
 });
