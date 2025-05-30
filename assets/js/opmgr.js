@@ -937,7 +937,7 @@ const asn = {
             
             //UPDATE NEXTCHART AFTER 1SEC
             setTimeout(() => {
-               asn.ctrlExt.updateChart(parcelData)
+               //asn.ctrlExt.updateChart(parcelData)
             }, 2000)
         
             console.log('=====CHARTDATA=====',attendanceData, parcelData)
