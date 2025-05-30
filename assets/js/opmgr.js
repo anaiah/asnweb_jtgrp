@@ -876,75 +876,79 @@ const asn = {
         //         }
         //     }
         // });
-        asn.socket.on('graph', (data) => {
-            console.log('HERES UR GRAPH DATA', data)
-
-           // console.log('chart sum',asn.ctrlExt.calculateChartData(data))
-
-            const attendance_keysToExtract = ['reg', 'logged']; // add coluumns here 'parcel__delivered', Array of keys to extract
-            const parcel_keysToExtract = ['parcel', 'parcel_delivered']
-
-            const attendance_seriesNames = {
-                reg: 'Registered',
-                logged: 'Reported',
-                //parcel_delivered: 'Delivered'
-            };
-
-            const parcel_seriesNames = {
-                parcel: 'Parcel',
-                parcel_delivered: 'Delivered',
-                //parcel_delivered: 'Delivered'
-            };
-
-            const attendanceData = attendance_keysToExtract.map(key => ({
-                name: attendance_seriesNames[key] || key,  // Use seriesNames or the key if not found
-                data: data.map(item => item[key])
-            }));
-
-            
-            const parcelData = parcel_keysToExtract.map(key => ({
-                name: parcel_seriesNames[key] || key,  // Use seriesNames or the key if not found
-                data: data.map(item => item[key])
-            }));
-
-            //================FOR  NATIONWIDE  CALCULATIONS=================
-            let anationwide = []
-            anationwide.push(asn.ctrlExt.calculateChartData(data))
-            //=====================================================
-
-            //nationwide
-            document.getElementById('x-parcel').innerHTML =  anationwide[0].parcel
-            document.getElementById('x-delivered').innerHTML =  anationwide[0].parcel_delivered
-
-            if( anationwide[0].parcel_delivered < anationwide[0].parcel){
-                document.getElementById('xs-delivered').classList.add('text-danger')
-            }else{
-                document.getElementById('xs-delivered').classList.add('text-primary')
-            }
-            
-            document.getElementById('x-remit').innerHTML =  util.formatNumber(anationwide[0].amount_remitted)
-
-            const variance = anationwide[0].amount - anationwide[0].amount_remitted
-            
-            if( anationwide[0].amount_remitted < anationwide[0].amount){
-                document.getElementById('x-variance').classList.add('text-danger')
-            }
-            document.getElementById('x-variance').innerHTML =  util.formatNumber(variance)
-            
-
-            //UPDATE CHART
-            asn.ctrlExt.updateChart(attendanceData)
-            
-            //UPDATE NEXTCHART AFTER 1SEC
-            setTimeout(() => {
-               //asn.ctrlExt.updateChart(parcelData)
-            }, 500)
         
-            console.log('=====CHARTDATA=====',attendanceData, parcelData)
-        })
-
         asn.socket.on('connect', () => {
             console.log('Connected to Socket.IO server using:', asn.socket.io.engine.transport.name); // Check the transport
+        
+            asn.socket.on('graph', (data) => {
+                console.log('HERES UR GRAPH DATA', data)
+
+            // console.log('chart sum',asn.ctrlExt.calculateChartData(data))
+
+                const attendance_keysToExtract = ['reg', 'logged']; // add coluumns here 'parcel__delivered', Array of keys to extract
+                const parcel_keysToExtract = ['parcel', 'parcel_delivered']
+
+                const attendance_seriesNames = {
+                    reg: 'Registered',
+                    logged: 'Reported',
+                    //parcel_delivered: 'Delivered'
+                };
+
+                const parcel_seriesNames = {
+                    parcel: 'Parcel',
+                    parcel_delivered: 'Delivered',
+                    //parcel_delivered: 'Delivered'
+                };
+
+                const attendanceData = attendance_keysToExtract.map(key => ({
+                    name: attendance_seriesNames[key] || key,  // Use seriesNames or the key if not found
+                    data: data.map(item => item[key])
+                }));
+
+                
+                const parcelData = parcel_keysToExtract.map(key => ({
+                    name: parcel_seriesNames[key] || key,  // Use seriesNames or the key if not found
+                    data: data.map(item => item[key])
+                }));
+
+                //================FOR  NATIONWIDE  CALCULATIONS=================
+                let anationwide = []
+                anationwide.push(asn.ctrlExt.calculateChartData(data))
+                //=====================================================
+
+                //nationwide
+                document.getElementById('x-parcel').innerHTML =  anationwide[0].parcel
+                document.getElementById('x-delivered').innerHTML =  anationwide[0].parcel_delivered
+
+                if( anationwide[0].parcel_delivered < anationwide[0].parcel){
+                    document.getElementById('xs-delivered').classList.add('text-danger')
+                }else{
+                    document.getElementById('xs-delivered').classList.add('text-primary')
+                }
+                
+                document.getElementById('x-remit').innerHTML =  util.formatNumber(anationwide[0].amount_remitted)
+
+                const variance = anationwide[0].amount - anationwide[0].amount_remitted
+                
+                if( anationwide[0].amount_remitted < anationwide[0].amount){
+                    document.getElementById('x-variance').classList.add('text-danger')
+                }
+                document.getElementById('x-variance').innerHTML =  util.formatNumber(variance)
+                
+
+                //UPDATE CHART
+                asn.ctrlExt.updateChart(attendanceData)
+                
+                //UPDATE NEXTCHART AFTER 1SEC
+                setTimeout(() => {
+                //asn.ctrlExt.updateChart(parcelData)
+                }, 500)
+            
+                console.log('=====CHARTDATA=====',attendanceData, parcelData)
+            })
+
+        
+        
         });
 
         asn.socket.on('disconnect', () => {
