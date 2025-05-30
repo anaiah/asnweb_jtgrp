@@ -1003,9 +1003,9 @@ Ext.onReady(function(){
     //lodchart first  REgional performance    
     asn.ctrlExt.loadCurrentRegionChart('attendance-chart')
 
-    setTimeout(() => {
+    //setTimeout(() => {
         //asn.ctrlExt.loadCurrentRegionChart('parcel-chart')
-    }, 500)
+    //}, 500)
 
     //call chart data via socket.io/ fetch data
     asn.ctrlExt.loadinitialChart()
