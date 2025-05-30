@@ -886,7 +886,8 @@ const asn = {
             // console.log('chart sum',asn.ctrlExt.calculateChartData(data))
 
                 const attendance_keysToExtract = ['reg', 'logged']; // add coluumns here 'parcel__delivered', Array of keys to extract
-                const parcel_keysToExtract = ['parcel', 'parcel_delivered']
+                
+                //const parcel_keysToExtract = ['parcel', 'parcel_delivered']
 
                 const attendance_seriesNames = {
                     reg: 'Registered',
@@ -894,11 +895,11 @@ const asn = {
                     //parcel_delivered: 'Delivered'
                 };
 
-                const parcel_seriesNames = {
-                    parcel: 'Parcel',
-                    parcel_delivered: 'Delivered',
-                    //parcel_delivered: 'Delivered'
-                };
+                // const parcel_seriesNames = {
+                //     parcel: 'Parcel',
+                //     parcel_delivered: 'Delivered',
+                //     //parcel_delivered: 'Delivered'
+                // };
 
                 const attendanceData = attendance_keysToExtract.map(key => ({
                     name: attendance_seriesNames[key] || key,  // Use seriesNames or the key if not found
@@ -906,10 +907,10 @@ const asn = {
                 }));
 
                 
-                const parcelData = parcel_keysToExtract.map(key => ({
-                    name: parcel_seriesNames[key] || key,  // Use seriesNames or the key if not found
-                    data: data.map(item => item[key])
-                }));
+                // const parcelData = parcel_keysToExtract.map(key => ({
+                //     name: parcel_seriesNames[key] || key,  // Use seriesNames or the key if not found
+                //     data: data.map(item => item[key])
+                // }));
 
                 //================FOR  NATIONWIDE  CALCULATIONS=================
                 let anationwide = []
@@ -940,9 +941,9 @@ const asn = {
                 asn.ctrlExt.updateChart(attendanceData)
                 
                 //UPDATE NEXTCHART AFTER 1SEC
-                setTimeout(() => {
-                //asn.ctrlExt.updateChart(parcelData)
-                }, 500)
+                // setTimeout(() => {
+                // //asn.ctrlExt.updateChart(parcelData)
+                // }, 500)
             
                 console.log('=====CHARTDATA=====',attendanceData, parcelData)
             })
