@@ -937,8 +937,8 @@ const asn = {
             
             //UPDATE NEXTCHART AFTER 1SEC
             setTimeout(() => {
-               //asn.ctrlExt.updateChart(parcelData)
-            }, 2000)
+               asn.ctrlExt.updateChart(parcelData)
+            }, 500)
         
             console.log('=====CHARTDATA=====',attendanceData, parcelData)
         })
@@ -1005,7 +1005,7 @@ Ext.onReady(function(){
 
     setTimeout(() => {
         asn.ctrlExt.loadCurrentRegionChart('parcel-chart')
-    }, 2000)
+    }, 500)
 
     //call chart data via socket.io/ fetch data
     asn.ctrlExt.loadinitialChart()
