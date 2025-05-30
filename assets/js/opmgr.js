@@ -773,6 +773,13 @@ const asn = {
         
     }, //===end top 5
 
+    //====execute socket io after each update from Rider
+    execute:()=>{
+            alert('Graph pls.')
+    },
+
+    chart:null,
+
 	//==,= main run
 	init :  () => {
         asn.getmenu(util.getCookie('grp_id')) 
@@ -804,7 +811,7 @@ const asn = {
 
         //==HANDSHAKE FIRST WITH SOCKET.IO
         const userName = { token : authz[1] , mode: authz[0]}//full name token
-
+        
         asn.socket = io.connect(`${myIp}`, {
             //withCredentials: true,
             transports: ['websocket', 'polling'], // Same as server
@@ -816,6 +823,7 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
 
+        /*
         asn.socket.on('xboss', (oMsg) => {
             console.log('xboss  listening')
             let xmsg = []
@@ -828,13 +836,13 @@ const asn = {
             if (hubChartElement) {
                 // Create the dashboard elements
                 const ridersElement = document.createElement('p');
-                ridersElement.textContent = 'Total Riders: ' + xmsg[0].rider;
+                ridersElement.textContent = 'Riders: ' + xmsg[0].rider;
 
                 const totalElement = document.createElement('p');
-                totalElement.textContent = 'Total Delivery: ' + xmsg[0].total;
+                totalElement.textContent = 'Total: ' + xmsg[0].total;
 
                 const percentageElement = document.createElement('p');
-                percentageElement.textContent = `Delivery Percentage: ${xmsg[0].pct} %`;
+                percentageElement.textContent = `Percentage: ${xmsg[0].pct} %`;
 
                 // Clear existing content and append the new elements
                 hubChartElement.innerHTML = ''; // Clear existing content
@@ -846,6 +854,94 @@ const asn = {
             }
 
         })
+        */
+        //emit app.excute to execute//take out muna
+        // asn.socket.on('execute', (data) => {
+        //     console.log('Received execute event:', data); // Log the data
+
+        //     //  Here's where you'd actually *do* something with the data
+        //     if (data && data.app === 'asn.execute()') {
+        //         // DO NOT use eval()!  It's dangerous!
+
+        //         // Example (assuming 'asn' is an object available in the client-side scope):
+        //         if (typeof asn === 'object' && typeof asn.execute === 'function') {
+        //             console.log("executing asn.execute() here!")
+
+        //             setTimeout(() => {
+        //                 asn.execute(); // Execute the function on the client
+        //             }, 1000)
+
+        //         } else {
+        //             console.warn("asn.execute() is not defined or is not a function on the client.");
+        //         }
+        //     }
+        // });
+        asn.socket.on('graph', (data) => {
+            console.log('HERES UR GRAPH DATA', data)
+
+           // console.log('chart sum',asn.ctrlExt.calculateChartData(data))
+
+            const attendance_keysToExtract = ['reg', 'logged']; // add coluumns here 'parcel__delivered', Array of keys to extract
+            const parcel_keysToExtract = ['parcel', 'parcel_delivered']
+
+            const attendance_seriesNames = {
+                reg: 'Registered',
+                logged: 'Reported',
+                //parcel_delivered: 'Delivered'
+            };
+
+            const parcel_seriesNames = {
+                parcel: 'Parcel',
+                parcel_delivered: 'Delivered',
+                //parcel_delivered: 'Delivered'
+            };
+
+            const attendanceData = attendance_keysToExtract.map(key => ({
+                name: attendance_seriesNames[key] || key,  // Use seriesNames or the key if not found
+                data: data.map(item => item[key])
+            }));
+
+            
+            const parcelData = parcel_keysToExtract.map(key => ({
+                name: parcel_seriesNames[key] || key,  // Use seriesNames or the key if not found
+                data: data.map(item => item[key])
+            }));
+
+            //================FOR  NATIONWIDE  CALCULATIONS=================
+            let anationwide = []
+            anationwide.push(asn.ctrlExt.calculateChartData(data))
+            //=====================================================
+
+            //nationwide
+            document.getElementById('x-parcel').innerHTML =  anationwide[0].parcel
+            document.getElementById('x-delivered').innerHTML =  anationwide[0].parcel_delivered
+
+            if( anationwide[0].parcel_delivered < anationwide[0].parcel){
+                document.getElementById('xs-delivered').classList.add('text-danger')
+            }else{
+                document.getElementById('xs-delivered').classList.add('text-primary')
+            }
+            
+            document.getElementById('x-remit').innerHTML =  util.formatNumber(anationwide[0].amount_remitted)
+
+            const variance = anationwide[0].amount - anationwide[0].amount_remitted
+            
+            if( anationwide[0].amount_remitted < anationwide[0].amount){
+                document.getElementById('x-variance').classList.add('text-danger')
+            }
+            document.getElementById('x-variance').innerHTML =  util.formatNumber(variance)
+            
+
+            //UPDATE CHART
+            asn.ctrlExt.updateChart(attendanceData)
+            
+            //UPDATE NEXTCHART AFTER 1SEC
+            setTimeout(() => {
+                asn.ctrlExt.updateChart(parcelData)
+            }, 1000)
+        
+            console.log('=====CHARTDATA=====',attendanceData, parcelData)
+        })
 
         asn.socket.on('connect', () => {
             console.log('Connected to Socket.IO server using:', asn.socket.io.engine.transport.name); // Check the transport
@@ -855,7 +951,11 @@ const asn = {
             console.log('Disconnected from Socket.IO server');
         });
 
-       // asn.loadopmgrArea()
+        //title chart
+        document.getElementById('region').innerHTML= util.strDate() + ' (Regional Performance)'
+        document.getElementById('nationwide').innerHTML= util.strDate() + ' (Nationwide Performance)'
+        
+        // asn.loadopmgrArea()
 
         /*
         //===load mtd-chart
@@ -893,6 +993,22 @@ Ext.onReady(function(){
 
     asn.ctrlExt.listenRider()
 
+    // const bogusdata = [
+    //         { region: 'BSL', reg: 29, logged: 0, attendance_pct: 10, parcel: '0' },
+    //         { region: 'CENTRAL VISAYAS', reg: 14, logged: 0, attendance_pct: 10, parcel: '0' },
+    //         { region: 'NCR', reg: 6, logged: 1, attendance_pct: 10, parcel: '50' },
+    //         { region: 'PANAY', reg: 6, logged: 0, attendance_pct: 10, parcel: '0' }
+    //     ];
+    
+    //lodchart first  REgional performance    
+    asn.ctrlExt.loadCurrentRegionChart('attendance-chart')
+
+    setTimeout(() => {
+        asn.ctrlExt.loadCurrentRegionChart('parcel-chart')
+    }, 1000)
+
+    //call chart data via socket.io/ fetch data
+    asn.ctrlExt.loadinitialChart()
    //test
     // Ext.create('Ext.grid.Panel', {
     //     title: 'Test Grid',

@@ -6,8 +6,8 @@ this is for utilities
 modals,forms,utilities
 
 */ 
-const myIp = "https://asn-jtgrp-api.onrender.com" 
-//const myIp = "http://192.168.62.221:10000"
+//const myIp = "https://asn-jtgrp-api.onrender.com" 
+const myIp = "http://192.168.62.221:10000"
 
 const requirements = document.querySelectorAll(".requirements")
 const specialChars = "!@#$%^&*()-_=+[{]}\\| :'\",<.>/?`~"
@@ -529,7 +529,25 @@ const util = {
 
         today = mm + '-' + dd + '-' + yyyy
         return today
+    },
+    nugetDate:()=>{
+        var today = new Date() 
+        var dd = String(today.getDate()).padStart(2, '0')
+        var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+        var yyyy = today.getFullYear()
 
+        today = yyyy +  '-' + mm + '-' + dd
+        return today
+    },
+
+    strDate:()=>{
+        var today = new Date() 
+        var dd = String(today.getDate()).padStart(2, '0')
+        var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+        var yyyy = today.getFullYear()
+        var mos = new Date(`${today.getMonth()+1}/${dd}/${yyyy}`).toLocaleString('en-PH',  {month:'long'})
+        today = `${mos} ${dd}, ${yyyy}`
+        return today
     },
 
     formatDate2:(xdate)=>{
@@ -553,6 +571,19 @@ const util = {
         return today
 
     },
+    
+    formatNumber: (num)=> {
+        const absNum = Math.abs(num);
+
+        if (absNum >= 1000000) {
+            return (num / 1000000).toFixed(1) + 'M';
+        } else if (absNum >= 1000) {
+            return (num / 1000).toFixed(1) + 'K';
+        } else {
+            return num.toFixed(0); // Or format as needed for smaller numbers
+        }
+    },
+    
     addCommas: (nStr)=> {
         nStr += '';
         x = nStr.split('.');
@@ -786,8 +817,9 @@ const util = {
 
             case "dataEntryModal":
                 const dataentrymodal =  new bootstrap.Modal(document.getElementById('dataEntryModal'),configObj);
-                dataentrymodal.show()  
 
+                 dataentrymodal.show()  
+                
                 document.getElementById('f_transnumber').value = util.getCode()
 
                 //asn.collapz();
@@ -810,11 +842,12 @@ const util = {
                     document.getElementById('trans_tbody').innerHTML=`<tr>
                         <td>${dbval.f_transnumber}</td>
                         <td>${dbval.f_parcel}</td>
-                        <td>${dbval.f_amount}</td>
+                        
                         </tr>`
 
                     //update also form as to guide for present data
                     document.getElementById('ff_transnumber').value= dbval.f_transnumber
+                    document.getElementById('x_parcel').value= dbval.f_parcel
                     document.getElementById('ff_parcel').value= dbval.f_parcel
                     document.getElementById('ff_amount').value= dbval.f_amount
                     document.getElementById('ff_empid').value= xdb.id //get emp id frm localDb
@@ -1314,7 +1347,7 @@ const util = {
                     util.alertMsg( xmsg,'danger','loginPlaceHolder')
 
                     util.url = `${myIp}/loginpost/${objfrm.uid}/${objfrm.pwd}`
-
+                    
                     util.loginPost(frm ,frmModal,`${util.url}`)
 
                 break
@@ -1360,9 +1393,12 @@ const util = {
                 break
 
                 case "#dataEntryForm":
+
+                    objfrm.login_date = util.nugetDate() 
                     objfrm.transnumber = document.getElementById('f_transnumber').value
+
                     //asn.saveToLocal(objfrm)
-                    asn.saveToLogin(objfrm)
+                    asn.saveToLogin(`${myIp}/savetologin/${util.getCookie('f_id')}`,objfrm)
 
                 break
 
@@ -1388,7 +1424,7 @@ const util = {
                             break;
                             
                         }else{
-                            asn.saveTransaction(`${myIp}/savetransaction`,objfrm)
+                            asn.saveTransaction(`${myIp}/savetransaction/${util.getCookie('f_id')}`,objfrm)
                             break;
                         }//eif
                     }
@@ -1422,9 +1458,10 @@ const util = {
     //logout
     logOut:()=>{
         //clear items
-        if(db.setItem('logged')){
-            db.setItem('logged', false)
-        }
+        //db.removeItem('logged')
+        // if(db.getItem('logged')){
+        //     db.setItem('logged', false)
+        // }
         
         location.href = '/jtx'
     },
@@ -1449,13 +1486,6 @@ const util = {
 
             util.Toasted(`SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!`,6000,false)
             
-            //check flag if logged  or not
-            if(!db.getItem('logged')){
-                db.setItem('logged', true)
-            }else{ //iif found
-                db.setItem('logged', true)
-            }
-
             location.href = '/dashboard'
             
         }else{
@@ -1491,7 +1521,7 @@ const util = {
             //console.log(`login here data ${JSON.stringify(data)}`)
             
             //close ModalBox
-            if(data[0].found){
+            if(data[0] .found){
                 //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data[0].voice)
                 util.alertMsg(data[0].message,'success','loginPlaceHolder')
                 

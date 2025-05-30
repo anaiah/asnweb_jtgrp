@@ -415,19 +415,46 @@ const asn = {
 
 
     //===save to localstorage
-    saveToLocal:async(objfrm)=>{
-        console.log(objfrm)
+    saveToLogin:async(url="",xdata={})=>{
+        //console.log(xdata)
         
         let newdb = asn.db.getItem('myCart')
 
-        if(!newdb){
-            asn.db.setItem('myCart', JSON.stringify(objfrm))
+        if(!newdb){ //FIRST DATA ENTRY
+
+            //set mycart localstorage
+            asn.db.setItem('myCart', JSON.stringify(xdata))
+            const url = `${myIp}/savetologin/${util.getCookie('f_id')}`
+            
+            //=== save as login
+            await fetch(url,{
+                method:'POST',
+                cache:'reload',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            
+                body: JSON.stringify(xdata)
+            })
+            .then((response) => {  //promise... then 
+                return response.json();
+            })
+            .then( (data) => {
+                console.log(data)
+            })    
+            .catch((error) => {
+                alert(`Error:, ${error}`)
+
+                console.error('Error:', error)
+            })    
+        
+        //2ND DATA ENTRY
         }else{ //===if with prev record get prev rec and add
 
             let finaldb = JSON.parse( newdb ) //get all value of old local storage
 
-            finaldb.f_parcel = parseInt(finaldb.f_parcel) + parseInt( objfrm.f_parcel)
-            finaldb.f_amount = parseFloat(finaldb.f_amount) + parseFloat( objfrm.f_amount)
+            finaldb.f_parcel = parseInt(finaldb.f_parcel) + parseInt( xdata.f_parcel)
+            //finaldb.f_amount = parseFloat(finaldb.f_amount) + parseFloat( objfrm.f_amount)
 
             asn.db.setItem('myCart', JSON.stringify(finaldb))
         }
@@ -475,7 +502,7 @@ const asn = {
                 asn.speaks(data.voice);
 
                 asn.db.removeItem('myCart') //delete myCart in localDB
-
+                
                 //===update also chart and monthly performance card
                 asn.piedata.length = 0  //reset
                 asn.getMonthlyTransaction(util.getCookie('f_dbId'))
@@ -484,7 +511,9 @@ const asn = {
                 const remuploadbtn = document.getElementById('remittance_upload_btn')
                 remuploadbtn.click()
 
-            }//endif
+            }else{
+                asn.speaks('DATABASE ERROR! PLEASE CHECK!')
+            }
            
         })  
         .catch((error) => {
@@ -588,8 +617,9 @@ const asn = {
     db: window.localStorage, //instantiate localstorage
 
     logout:()=>{
+        asn.db.removeItem('logged') //clear record of  being  logged 
         asn.db.removeItem('myCart')//remove transaction localdb
-        location.href = '/jtx'
+        location.href = './'
                     
     },
 
@@ -731,6 +761,7 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
 
+        /*
         asn.socket.on('toboss', (oMsg) => {
             let xmsg = []
             
@@ -743,7 +774,11 @@ const asn = {
             ///// temporarily out   osndp.fetchBadgeData()// update badges
         
         })
-        
+        */
+        asn.socket.on('graph', (data) => {
+            console.log('HERES UR GRAPH DATA', data)
+
+        })
         asn.socket.on('connect', () => {
             console.log('Connected to Socket.IO server using:', asn.socket.io.engine.transport.name); // Check the transport
         });
@@ -769,8 +804,9 @@ const asn = {
         util.modalListeners('remittanceModal')
 
         ///////asn.getTopHub()
-        util.modalShow('dataEntryModal') // show initial data entry modal
-       
+        if(!asn.db.getItem('myCart')){ //if initial no cart data thenshow.. if with  cart. dont show
+            util.modalShow('dataEntryModal') // show initial data entry modal
+        }
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 
 	}//END init
@@ -789,14 +825,14 @@ Ext.onReady(function(){
        
     asn.getMonthlyTransaction(util.getCookie('f_dbId'))
    
-    
+    //osndp.Bubbl
+    window.scrollTo(0,0);
+
+    asn.init() //instantiate now
+
 })
 
 
-//osndp.Bubbl
-window.scrollTo(0,0);
-
-asn.init() //instantiate now
 
 
 

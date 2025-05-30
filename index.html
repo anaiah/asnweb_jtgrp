@@ -257,8 +257,13 @@
     db = window.localStorage
 
     document.addEventListener('DOMContentLoaded', function() {
+      console.log('=======DOM CONTENT LOADED=====')
 
-      db.removeItem('myCart') //delete myCart in localDB everytime browser open/refreshed
+      //===firstthing  to do remove cart
+      if(db.getItem('myCart')){
+        console.log('removing cart localstorage....')
+        db.removeItem('myCart') //delete myCart in localDB everytime browser open/refreshed
+      }
 
       //CHECK GPS FIRST
       if (navigator.geolocation) {
@@ -281,10 +286,10 @@
       let bgimage = ['asiaone1.png', 'bgrnd.png']
       let xx = Math.floor(Math.random() * 2);
  
-      document.getElementById('myBody').style.backgroundImage = `url('/html/assets/images/backgrounds/${bgimage[xx] }')`
+      document.getElementById('myBody').style.backgroundImage = `url('/assets/images/backgrounds/${bgimage[xx] }')`
       
       setTimeout(() => {
-          const audio  = new Audio('/html/intro.mp3')
+          const audio  = new Audio('./intro.mp3')
           audio.play().catch(error => {
               console.error("Audio playback failed:", error);
           });
@@ -314,7 +319,7 @@
       ///show postiion of rider
       showPosition: (position) => {
         
-        console.log(position.coords.latitude, position.coords.longitude )
+        console.log('GETTING POSITION ',position.coords.latitude, position.coords.longitude )
         
         let obj={}
 
@@ -322,9 +327,12 @@
           obj.lat = position.coords.latitude
           obj.lon = position.coords.longitude
 
+          //===
+          console.log( 'setting myHub localstorage===')
           db.setItem("myHub", JSON.stringify(obj))
 
         }else{
+
           obj = JSON.parse(db.getItem("myHub"))
           console.log('**localstorage already set....')
         }

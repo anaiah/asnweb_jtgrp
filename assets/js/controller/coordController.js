@@ -25,7 +25,7 @@ Ext.define('MyApp.controller.coordController', {
         }
 
     },
-
+   
     //head
     areaReset:()=>{
         //reset rider / calendar /location as well
@@ -248,7 +248,6 @@ Ext.define('MyApp.controller.coordController', {
     //COORD
     listencoordRider:()=>{
     
-
         console.log('===listencoordRider() coordcontroller.js===')
         
         const ridergrid = Ext.ComponentQuery.query('ridergrid')[0] //load alias

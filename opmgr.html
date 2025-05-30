@@ -11,8 +11,8 @@
   
 
   <title>AsiaNow Enc. Inc.</title>
-  <!-- <link rel="shortcut icon" type="image/png" href="../html/assets/images/logos/favicon.png" /> -->
-  <link rel="shortcut icon" href="/html/assets/images/logos/asiaoneico.png" type="image/x-icon" sizes="32x32">  
+  <!-- <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" /> -->
+  <link rel="shortcut icon" href="/assets/images/logos/asiaoneico.png" type="image/x-icon" sizes="32x32">  
 
   <!-- bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -21,7 +21,7 @@
   <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
 
   <!-- partial tabler css -->
-  <link rel="stylesheet" href="/html/assets/css/styles.min.css" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/css/tabler.min.css">
@@ -32,9 +32,9 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   
   <!-- extjs -->
-  <link rel="stylesheet" href="/html/extjs422/resources/ext-theme-neptune/ext-theme-neptune-all.css">
+  <link rel="stylesheet" href="/extjs422/resources/ext-theme-neptune/ext-theme-neptune-all.css">
   
-  <link rel="stylesheet" href="/html/assets/css/osndp.css" />
+  <link rel="stylesheet" href="/assets/css/osndp.css" />
 
   <style>
     
@@ -68,17 +68,43 @@ span.xgrpheader{
   padding: 7px 0px 7px 10px; /*adjust the last number to move the header  name*/
     /* font-weight: bold; */
    box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important;
- 
-   
-
-}
+ }
 
 /* for getrowclass to work */
 .x-grid-row.with-work td.x-grid-cell { /* Using the grid's ID */
   background-color: #C5DFF2 !important;
-
 }
- 
+.card-metrics {
+      border-radius: 10px;
+      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+      border: none;
+    }
+    .xcard-title {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-bottom: 0.25rem;
+    }
+    .card-value {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .card-percentage {
+      font-size: 1rem;
+      color: #28a745; /* Green for positive */
+      margin-right: 0.25rem;
+    }
+    .card-expenses .card-percentage {
+      color: #dc3545; /* Red for negative */
+    }
+    .card-footer {
+      background-color: transparent;
+      border-top: none;
+      padding: 0.5rem 1rem;
+    }
+    .card-footer-text {
+      font-size: 0.75rem;
+      color: #6c757d;
+    } 
   </style>
 
 </head>
@@ -94,7 +120,7 @@ span.xgrpheader{
         <!--//LOGO//-->
         <div class="brand-logo d-flex align-items-center justify-content-between">
           <a href="/jtx" class="text-nowrap logo-img">
-            <img src="/html/assets/images/logos/asiaone_.png" width="180" alt="" />
+            <img src="/assets/images/logos/asiaone_.png" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -168,7 +194,93 @@ span.xgrpheader{
  
       <div class="container-fluid mb-0"> </div>
 
+      <div class="container-fluid mt-2">
+        <div class="row">
+          <h5 class="card-title mb-1 "><b>Nationwide Performance</b></h5>
+          <div class="col-md-3 mb-1">
+            <div class="card card-metrics border-start border-primary">
+              <div class="card-body">
+                <h5 class="xcard-title text-muted">Parcel</h5>
+                <div class="card-value">
+                  <span id='xs-parcel' class="card-percentage text-primary"><i class="ti ti-package"></i>&nbsp;<span id="x-parcel"></span></span>
+                  <!-- <span class="card-footer-text text-muted">58</span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-1">
+            <div class="card card-metrics border-start border-danger card-expenses">
+              <div class="card-body">
+                <h5 class="xcard-title text-muted">Delivered</h5>
+                <div class="card-value">
+                  <span id='xs-delivered' class="card-percentage"><i class="ti ti-package"></i>&nbsp;<span id="x-delivered"></span></span>
+                  <!-- <span class="card-footer-text text-muted">62</span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-1">
+            <div class="card card-metrics border-start border-warning">
+              <div class="card-body">
+                <h5 class="xcard-title text-muted">Amount Remitted</h5>
+                <div class="card-value" id="x-remit">
+                  1.45M
+                  <!-- <span class="card-footer-text text-muted">72</span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-1">
+            <div class="card card-metrics border-start border-success">
+              <div class="card-body">
+                <h5 class="xcard-title text-muted">Variance</h5>
+                <div class="card-value" id="x-variance">
+                  2.5M
+                  <!-- <span class="card-footer-text text-muted">81</span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <div class="container my-3">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <!-- Content for the first column -->
+             <div class="card boxshadoe shadow mb-3">
+              <div class="card-body p-4">
+                <!-- title  dynamically JS produced -->
+                <h5 class="card-title fw-semibold"><span id='region'></span></h5> 
+                
+                <div class="table-responsive mb-4">
+                  <div id="attendance-chart"></div>
+                </div>
+               </div>
+              </div> 
+            
+          </div>
+        
+          <div class="col-12 col-md-6">
+            <!-- Content for the second column -->
+            <div class="card boxshadoe shadow mb-3">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold"><span id='nationwide'></span></h5>
+                
+                <div class="table-responsive mb-4">
+                  <div id="parcel-chart"> </div>
+                </div>
+               </div>
+              </div> 
+            
+          </div>
+        </div>
+
+
         <div class="row" id="trans-month">
           <!-- First Column: Two stacked cards -->
           <div class="col-lg-6 mb-3 mb-lg-0">
@@ -214,7 +326,7 @@ span.xgrpheader{
               <!-- Chart Card 1 -->
               <div class="card boxshadoe shadow">
                 <div class="card-body p-4">
-                  <h5 class="fw-semibold mb-3">Top 5 Hub</h5>
+                  <h5 class="fw-semibold mb-3">Today's Perfomance</h5>
                   <div id="hub-chart"></div>
                 </div>
               </div>
@@ -233,15 +345,15 @@ span.xgrpheader{
   
   <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/js/tabler.min.js"></script>
 
-  <script src="/html/assets/libs/jquery/dist/jquery.min.js"></script> <!--//sidebarmenu dependent-->
-  <!-- <script src="/html/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+  <script src="/assets/libs/jquery/dist/jquery.min.js"></script> <!--//sidebarmenu dependent-->
+  <!-- <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
   
-  <script src="/html/assets/js/sidebarmenu.js"></script>
-  <script src="/html/assets/js/app.min.js"></script>
+  <script src="/assets/js/sidebarmenu.js"></script>
+  <script src="/assets/js/app.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>  
 
-  <script src="/html/assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="/assets/libs/simplebar/dist/simplebar.js"></script>
 
   <!-- toastify -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
@@ -254,22 +366,18 @@ span.xgrpheader{
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
-  <script src="/html/extjs422/ext-all.js"></script>
-  <script src="/html/extjs422/ext-theme-neptune.js"></script>
-
+  <script src="/extjs422/ext-all.js"></script>
+  <script src="/extjs422/ext-theme-neptune.js"></script>
   
-  <script src="/html/assets/opmgrapp.js?v=8"></script>
-  <script src="/html/assets/js/util.js?v=8"></script>
-  <script src="/html/assets/js/opmgr.js?v=8"></script>
-
-  <style>
-  </style>
+  <script src="/assets/opmgrapp.js?v=8"></script>
+  <script src="/assets/js/util.js?v=8"></script>
+  <script src="/assets/js/opmgr.js?v=8"></script>
     
-  <!-- <script src="/html/assets/js/main.js?v=8"></script> -->
-  <!-- <script src="/html/assets/js/listen.js?v=8"></script> -->
+  <!-- <script src="/assets/js/main.js?v=8"></script> -->
+  <!-- <script src="/assets/js/listen.js?v=8"></script> -->
 
   <!-- takeout muna gridtab palit extjs -->
-  <!-- <script src="/html/assets/js/gridtab.js?v=8"></script> -->
+  <!-- <script src="/assets/js/gridtab.js?v=8"></script> -->
 
   <script> 
     document.addEventListener('DOMContentLoaded', function() {
