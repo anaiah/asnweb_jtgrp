@@ -22,6 +22,156 @@ Ext.define('MyApp.controller.opmgrController', {
         }
 
     },
+    calculateChartData:(data)=>{
+        const keysToSum = ['reg', 'logged', 'parcel', 'amount', 'amount_remitted', 'parcel_delivered'];
+        const totalSums = {};
+
+        for (const key of keysToSum) {
+            totalSums[key] = data.reduce((sum, item) => {
+                const value = Number(item[key] || 0); // Use 0 if the key doesn't exist
+                if (isNaN(value)) {
+                    console.warn(`Invalid value for key "${key}" in item:`, item);
+                    return sum; // Skip this value
+                }
+                return sum + value;
+            }, 0); // Initial sum is 0
+        }
+
+        return totalSums;
+
+    },
+    
+    loadinitialChart:()=>{
+        const url = `${myIp}/initialchart`;
+
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log('io.emit  on  the way====')
+            //document.getElementById('result').textContent = data.result; // Display the result
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    },
+    updateChart:(nuData)=>{
+
+        //this to convert value of a key to number
+        // const newSeries2 = nuData.map(item => parseInt(item.attendance_pct, 10));
+        console.log('updating chart... ', nuData )
+        //const newLabels2 = newData2.map(item => item.region);
+        asn.chart.updateSeries(nuData);
+     
+    },
+    loadCurrentRegionChart:(chartarea)=>{
+
+        console.log('loading from  controller  chart.....')
+        let val
+
+        if(chartarea=='attendance-chart'){
+            val = [
+                {
+                    name:"Registered",
+                    data:[0,0,0,0]
+                },
+                {
+                    name:"Reported",
+                    data:[0,0,0,0]
+                },         
+            ]
+                
+        }else{
+            val = [
+                {
+                    name:"Parcel",
+                    data:[0,0,0,0]
+                },
+                {
+                    name:"Delivered",
+                    data:[0,0,0,0]
+                },         
+            ]
+
+        }//if
+
+        let colors = ['#0277bd', '#00838f   ', '#00695c', '#2e7d32','#558b2f','#9e9d24','#ff8f00','#d84315'];
+        
+        // Fisher-Yates shuffle
+        for (let i = colors.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [colors[i], colors[j]] = [colors[j], colors[i]]; // swap elements
+        }//endfor   
+
+
+        var options = {
+          series:val, 
+          colors:colors,
+          chart: {
+            type: 'bar',
+            height: 350,
+            width: 380,
+            redrawOnParentResize: false,
+            redrawOnWindowResize: false,
+                    
+        },
+
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '55%',
+            borderRadius: 5,
+            borderRadiusApplication: 'end'
+          },
+        },
+        dataLabels: {
+          enabled: true,
+          
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
+        },
+        xaxis: {
+                categories: ['BSL','CENTRAL VISAYAS','NCR','PANAY'],
+                title: {
+                    text: 'REGION',
+                    style: {
+                        fontSize: '10px',
+                        fontWeight: 'bold',
+                        fontFamily: 'Helvetica, Arial, sans-serif',
+                        color: '#6699ff' // set your desired color
+                    }
+                }
+        },
+        yaxis: {
+            title: {
+                text: 'STATUS',
+                style: {
+                    fontSize: '10px',
+                    fontWeight: 'bold',
+                    fontFamily: 'Helvetica, Arial, sans-serif',
+                    color: '#6699ff' // set your desired color
+                }
+            }    
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return val 
+            }
+          }
+        }
+        };
+
+        asn.chart = new ApexCharts(document.querySelector((chartarea=='attendance-chart'?"#attendance-chart":'#parcel-chart')), options);
+        asn.chart.render();
+
+    },
+
     //coord,
     listencoordLocation:()=>{
         console.log('listenCoordLocation() opmgrController.js fird===')
@@ -127,7 +277,7 @@ Ext.define('MyApp.controller.opmgrController', {
                                 var json = Ext.decode(response.responseText);
                                 var data = json.data || json; // if data is wrapped or not
                                 
-                                opmgrlocstore.loadData(data);
+                                opmgrlocstore.loadData(data);   
         
                                 console.log('location Data loaded successfully');
                             },
