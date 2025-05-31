@@ -504,7 +504,7 @@ const asn = {
                 xmsg = "<i class='fa fa-spinner fa-pulse' ></i>  Uploading Receipt, please wait!!!"
                 util.Toasted( xmsg, 3000, false)
                 
-                asn.speaks(data.voice);
+                asn.speaks("Transaction Saved");
 
                 asn.db.removeItem('myCart') //delete myCart in localDB
                 

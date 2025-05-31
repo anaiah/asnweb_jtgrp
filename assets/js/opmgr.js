@@ -186,7 +186,7 @@ const asn = {
         console.log( '====getMsg()=== ')
         
         /*
-        osndp.socket.on('FLles', (oMsg) => {
+        osndp.socket.on('sales', (oMsg) => {
             let xmsg = JSON.parse(oMsg)
 
             util.speak( xmsg.msg )
@@ -778,6 +778,7 @@ const asn = {
             alert('Graph pls.')
     },
 
+
     chart1:null,
     chart2:null,
 	//==,= main run
@@ -879,8 +880,8 @@ const asn = {
         // });
 
 
-        asn.socket.on('loadchart', (data) => {
-            console.log('HERES UR GRAPH DATA', data)
+        asn.socket.on('loadchart', (xresult) => {
+            console.log('HERES UR GRAPH DATA',xresult)
 
            // console.log('chart sum',asn.ctrlExt.calculateChartData(data))
 
@@ -901,18 +902,18 @@ const asn = {
 
             const attendanceData = attendance_keysToExtract.map(key => ({
                 name: attendance_seriesNames[key] || key,  // Use seriesNames or the key if not found
-                data: data.map(item => item[key])
+                data: xresult.map(item => item[key])
             }));
 
             
             const parcelData = parcel_keysToExtract.map(key => ({
                 name: parcel_seriesNames[key] || key,  // Use seriesNames or the key if not found
-                data: data.map(item => item[key])
+                data: xresult.map(item => item[key])
             }));
 
             //================FOR  NATIONWIDE  CALCULATIONS=================
             let anationwide = []
-            anationwide.push(asn.ctrlExt.calculateChartData(data))
+            anationwide.push(asn.ctrlExt.calculateChartData(xresult))
             //=====================================================
 
             //nationwide
@@ -1002,9 +1003,6 @@ Ext.onReady(function(){
     setTimeout(() => {
         asn.ctrlExt.loadCurrentRegionChart('parcel-chart', 'chart2')
     }, 1000)
-
-    //call chart data via socket.io/ fetch data
-    asn.ctrlExt.loadinitialChart()
    
     window.scrollTo(0,0);
     asn.init() //instantiate now
