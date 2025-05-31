@@ -41,21 +41,79 @@ Ext.define('MyApp.controller.opmgrController', {
 
     },
     
-    // loadinitialChart:()=>{
-    //     const url = `${myIp}/initialchart`;
+    loadinitialChart:()=>{
+        const url = `${myIp}/initialchart`;
 
-    //     fetch(url)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         const xdata = data.data
-    //         console.log('***%%%%%%%%%% INITIAL CHART FROM NODEJS*****', xdata)
-    //         asn.socket.emit('sendtoOpMgr', xdata)
-    //         //document.getElementById('result').textContent = data.result; // Display the result
-    //     })
-    //     .catch(error => {
-    //         console.error('Error:', error);
-    //     });
-    // },
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const xdata = data.data
+            console.log('***%%%%%%%%%% INITIAL CHART FROM NODEJS and INITIAL  CHART LOAD*****', xdata)
+            
+            //asn.socket.emit('sendtoOpMgr', xdata)
+
+            const attendance_keysToExtract = ['reg', 'logged']; // add coluumns here 'parcel__delivered', Array of keys to extract
+            const parcel_keysToExtract = ['parcel', 'parcel_delivered']
+
+            const attendance_seriesNames = {
+                reg: 'Registered',
+                logged: 'Reported',
+                //parcel_delivered: 'Delivered'
+            };
+
+            const parcel_seriesNames = {
+                parcel: 'Parcel',
+                parcel_delivered: 'Delivered',
+                //parcel_delivered: 'Delivered'
+            };
+
+            const attendanceData = attendance_keysToExtract.map(key => ({
+                name: attendance_seriesNames[key] || key,  // Use seriesNames or the key if not found
+                data: xdata.map(item => item[key])
+            }));
+
+            
+            const parcelData = parcel_keysToExtract.map(key => ({
+                name: parcel_seriesNames[key] || key,  // Use seriesNames or the key if not found
+                data: xdata.map(item => item[key])
+            }));
+
+            let anationwide = []
+            anationwide.push(asn.ctrlExt.calculateChartData(xdata))
+            
+            document.getElementById('x-parcel').innerHTML = anationwide[0].parcel
+            document.getElementById('x-delivered').innerHTML =  anationwide[0].parcel_delivered
+            
+            if( anationwide[0].parcel_delivered < anationwide[0].parcel){
+                document.getElementById('xs-delivered').classList.add('text-danger')
+            }else{
+                document.getElementById('xs-delivered').classList.add('text-primary')
+            }
+            
+            document.getElementById('x-remit').innerHTML =  util.formatNumber(anationwide[0].amount_remitted)
+
+            const variance = anationwide[0].amount - anationwide[0].amount_remitted
+            
+            if( anationwide[0].amount_remitted < anationwide[0].amount){
+                document.getElementById('x-variance').classList.add('text-danger')
+            }
+            document.getElementById('x-variance').innerHTML =  util.formatNumber(variance)
+            
+             //UPDATE CHART
+            asn.ctrlExt.updateChart(attendanceData, 'chart1')
+        
+            //UPDATE NEXTCHART AFTER 1SEC
+            setTimeout(() => {
+                asn.ctrlExt.updateChart(parcelData, 'chart2')
+            }, 1000)
+        
+
+            //document.getElementById('result').textContent = data.result; // Display the result
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    },
     updateChart:(nuData,xchart)=>{
 
         //this to convert value of a key to number

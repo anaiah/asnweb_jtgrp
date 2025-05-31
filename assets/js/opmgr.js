@@ -1004,13 +1004,10 @@ Ext.onReady(function(){
         asn.ctrlExt.loadCurrentRegionChart('parcel-chart', 'chart2')
     }, 1000)
    
+    //===LOAD INITIAL CHART
+    asn.ctrlExt.loadinitialChart()
+      
     window.scrollTo(0,0);
     asn.init() //instantiate now
 
 })
-
-
-
-
-
-  
