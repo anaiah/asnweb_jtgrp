@@ -88,7 +88,7 @@
               
                   
                   <div class="modal-footer">
-                    <!-- <button class="btn btn-light"  type="button" data-bs-dismiss="modal">Close</button> -->
+                    <button class="btn btn-danger" onclick="javascript:main.help()"  type="button"><i class="ti ti-help"></i> HELP</button>
                     <button class="btn btn-primary"  id="loginbtn" onclick="main.checkinput()" type="button">
                       <i class="ti ti-login"></i>
                       &nbsp;Login</button>
@@ -300,6 +300,9 @@
 
     //=============================// main object // ====================
     const main = {
+      help:()=>{
+        window.location.replace("help.html");
+      },
       //check input first
       checkinput:() => {
         if( db.getItem('profile')){
