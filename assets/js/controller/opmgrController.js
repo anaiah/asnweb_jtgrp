@@ -112,9 +112,8 @@ Ext.define('MyApp.controller.opmgrController', {
                 audio.play().catch(error => {
                     console.error("Audio playback failed:", error);
                 });
-                document.getElementById('myCard').classList.add('show');// show login  card
-            }, 2000); // Delay of 1000 milliseconds (1 second)
-
+            }, 0); // Delay of 1000 milliseconds (1 second)
+                
             //document.getElementById('result').textContent = data.result; // Display the result
         })
         .catch(error => {
