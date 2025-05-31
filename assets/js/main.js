@@ -440,7 +440,9 @@ const asn = {
                 return response.json();
             })
             .then( (data) => {
-                console.log(data)
+                const xdata = data.data
+                console.log('***%%%%%%%%%% FROM NODEJS*****', xdata)
+                asn.socket.emit('sendtoOpMgr', xdata)
             })    
             .catch((error) => {
                 alert(`Error:, ${error}`)
@@ -488,10 +490,13 @@ const asn = {
         })
         .then( (data) => {
 
-            console.log(data)
-            
-            if(data.status){
-                console.log( 'saveTransaction()...')
+            const xdata = data.data
+            console.log('***%%%%%%%%%% FROM NODEJS*****', xdata)
+            asn.socket.emit('sendtoOpMgr', xdata)
+
+            if(data.success=="ok")
+                {
+                console.log( '+++++ saveTransaction()...')
 
                 //change form action for posting the Image receipt
                 document.getElementById('remittanceUploadForm').action=`${myIp}/postimage/${document.getElementById('ff_transnumber').value}`

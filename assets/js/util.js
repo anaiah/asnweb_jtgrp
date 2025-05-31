@@ -6,8 +6,8 @@ this is for utilities
 modals,forms,utilities
 
 */ 
-const myIp = "https://asn-jtgrp-api.onrender.com" 
-//const myIp = "http://192.168.62.221:10000"
+//const myIp = "https://asn-jtgrp-api.onrender.com" 
+const myIp = "http://192.168.62.221:10000"
 
 const requirements = document.querySelectorAll(".requirements")
 const specialChars = "!@#$%^&*()-_=+[{]}\\| :'\",<.>/?`~"
@@ -1486,7 +1486,7 @@ const util = {
 
             util.Toasted(`SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!`,6000,false)
             
-            location.href = 'jtx/dashboard'
+            location.href = '/dashboard'
             
         }else{
             
@@ -1552,17 +1552,17 @@ const util = {
                     break
                 
                     case 4: // coordinator
-                        location.href = 'jtx/coord'    
+                        location.href = 'coord'    
                     break
 
                     case 3:  //head coord
-                        location.href = 'jtx/headcoord'    
+                        location.href = 'headcoord'    
                     break
                 
                     case 5: // operations mgr
                     console.log('poooknnatt')
                         
-                    location.href ='jtx/operations'    
+                    location.href ='operations'    
                     break
 
                 }//===== endswitch

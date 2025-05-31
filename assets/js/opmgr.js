@@ -778,8 +778,8 @@ const asn = {
             alert('Graph pls.')
     },
 
-    chart:null,
-
+    chart1:null,
+    chart2:null,
 	//==,= main run
 	init :  () => {
         asn.getmenu(util.getCookie('grp_id')) 
@@ -823,6 +823,7 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
 
+        
         /*
         asn.socket.on('xboss', (oMsg) => {
             console.log('xboss  listening')
@@ -876,80 +877,77 @@ const asn = {
         //         }
         //     }
         // });
+
+
+        asn.socket.on('loadchart', (data) => {
+            console.log('HERES UR GRAPH DATA', data)
+
+           // console.log('chart sum',asn.ctrlExt.calculateChartData(data))
+
+            const attendance_keysToExtract = ['reg', 'logged']; // add coluumns here 'parcel__delivered', Array of keys to extract
+            const parcel_keysToExtract = ['parcel', 'parcel_delivered']
+
+            const attendance_seriesNames = {
+                reg: 'Registered',
+                logged: 'Reported',
+                //parcel_delivered: 'Delivered'
+            };
+
+            const parcel_seriesNames = {
+                parcel: 'Parcel',
+                parcel_delivered: 'Delivered',
+                //parcel_delivered: 'Delivered'
+            };
+
+            const attendanceData = attendance_keysToExtract.map(key => ({
+                name: attendance_seriesNames[key] || key,  // Use seriesNames or the key if not found
+                data: data.map(item => item[key])
+            }));
+
+            
+            const parcelData = parcel_keysToExtract.map(key => ({
+                name: parcel_seriesNames[key] || key,  // Use seriesNames or the key if not found
+                data: data.map(item => item[key])
+            }));
+
+            //================FOR  NATIONWIDE  CALCULATIONS=================
+            let anationwide = []
+            anationwide.push(asn.ctrlExt.calculateChartData(data))
+            //=====================================================
+
+            //nationwide
+            document.getElementById('x-parcel').innerHTML =  anationwide[0].parcel
+            document.getElementById('x-delivered').innerHTML =  anationwide[0].parcel_delivered
+
+            if( anationwide[0].parcel_delivered < anationwide[0].parcel){
+                document.getElementById('xs-delivered').classList.add('text-danger')
+            }else{
+                document.getElementById('xs-delivered').classList.add('text-primary')
+            }
+            
+            document.getElementById('x-remit').innerHTML =  util.formatNumber(anationwide[0].amount_remitted)
+
+            const variance = anationwide[0].amount - anationwide[0].amount_remitted
+            
+            if( anationwide[0].amount_remitted < anationwide[0].amount){
+                document.getElementById('x-variance').classList.add('text-danger')
+            }
+            document.getElementById('x-variance').innerHTML =  util.formatNumber(variance)
+            
+
+            //UPDATE CHART
+            asn.ctrlExt.updateChart(attendanceData, 'chart1')
+            
+            //UPDATE NEXTCHART AFTER 1SEC
+            setTimeout(() => {
+                asn.ctrlExt.updateChart(parcelData, 'chart2')
+            }, 1000)
         
+            console.log('=====CHARTDATA=====',attendanceData, parcelData)
+        })
+
         asn.socket.on('connect', () => {
             console.log('Connected to Socket.IO server using:', asn.socket.io.engine.transport.name); // Check the transport
-        
-            asn.socket.on('graph', (data) => {
-                console.log('HERES UR GRAPH DATA', data)
-
-            // console.log('chart sum',asn.ctrlExt.calculateChartData(data))
-
-                const attendance_keysToExtract = ['reg', 'logged']; // add coluumns here 'parcel__delivered', Array of keys to extract
-                
-                //const parcel_keysToExtract = ['parcel', 'parcel_delivered']
-
-                const attendance_seriesNames = {
-                    reg: 'Registered',
-                    logged: 'Reported',
-                    //parcel_delivered: 'Delivered'
-                };
-
-                // const parcel_seriesNames = {
-                //     parcel: 'Parcel',
-                //     parcel_delivered: 'Delivered',
-                //     //parcel_delivered: 'Delivered'
-                // };
-
-                const attendanceData = attendance_keysToExtract.map(key => ({
-                    name: attendance_seriesNames[key] || key,  // Use seriesNames or the key if not found
-                    data: data.map(item => item[key])
-                }));
-
-                
-                // const parcelData = parcel_keysToExtract.map(key => ({
-                //     name: parcel_seriesNames[key] || key,  // Use seriesNames or the key if not found
-                //     data: data.map(item => item[key])
-                // }));
-
-                //================FOR  NATIONWIDE  CALCULATIONS=================
-                let anationwide = []
-                anationwide.push(asn.ctrlExt.calculateChartData(data))
-                //=====================================================
-
-                //nationwide
-                document.getElementById('x-parcel').innerHTML =  anationwide[0].parcel
-                document.getElementById('x-delivered').innerHTML =  anationwide[0].parcel_delivered
-
-                if( anationwide[0].parcel_delivered < anationwide[0].parcel){
-                    document.getElementById('xs-delivered').classList.add('text-danger')
-                }else{
-                    document.getElementById('xs-delivered').classList.add('text-primary')
-                }
-                
-                document.getElementById('x-remit').innerHTML =  util.formatNumber(anationwide[0].amount_remitted)
-
-                const variance = anationwide[0].amount - anationwide[0].amount_remitted
-                
-                if( anationwide[0].amount_remitted < anationwide[0].amount){
-                    document.getElementById('x-variance').classList.add('text-danger')
-                }
-                document.getElementById('x-variance').innerHTML =  util.formatNumber(variance)
-                
-
-                //UPDATE CHART
-                asn.ctrlExt.updateChart(attendanceData)
-                
-                //UPDATE NEXTCHART AFTER 1SEC
-                // setTimeout(() => {
-                // //asn.ctrlExt.updateChart(parcelData)
-                // }, 500)
-            
-                console.log('=====CHARTDATA=====',attendanceData, parcelData)
-            })
-
-        
-        
         });
 
         asn.socket.on('disconnect', () => {
@@ -1006,44 +1004,14 @@ Ext.onReady(function(){
     //     ];
     
     //lodchart first  REgional performance    
-    asn.ctrlExt.loadCurrentRegionChart('attendance-chart')
+    asn.ctrlExt.loadCurrentRegionChart('attendance-chart', 'chart1')
 
-    //setTimeout(() => {
-        //asn.ctrlExt.loadCurrentRegionChart('parcel-chart')
-    //}, 500)
+    setTimeout(() => {
+        asn.ctrlExt.loadCurrentRegionChart('parcel-chart', 'chart2')
+    }, 1000)
 
     //call chart data via socket.io/ fetch data
-    asn.ctrlExt.loadinitialChart()
-   //test
-    // Ext.create('Ext.grid.Panel', {
-    //     title: 'Test Grid',
-    //     store: Ext.create('Ext.data.Store', {
-    //         fields: ['name', 'total_amount'],
-    //         data: [
-    //             { name: 'Item 1', total_amount: 10 },
-    //             { name: 'Item 2', total_amount: 0 }
-    //         ]
-    //     }),
-    //     columns: [
-    //         { text: 'Name',  dataIndex: 'name' },
-    //         { text: 'Amount', dataIndex: 'total_amount' }
-    //     ],
-    //     viewConfig: {
-    //         scope:this,
-    //         getRowClass: function(record, rowIndex, rowParams, store) {
-                
-    //             if (record.get('total_amount') > 0) {
-    //                 //      rowParams.style = 'background-color:rgb(80, 243, 16) !important;';  // Inline style
-    //                 return "with-work";
-    //             }
-    //             //return null;
-    //         }
-    //     },
-    //     width: 400,
-    //     height: 300,
-    //     renderTo: 'mtd-chart'
-    // });
-    // //end test
+    //LATER asn.ctrlExt.loadinitialChart()
    
     window.scrollTo(0,0);
     asn.init() //instantiate now

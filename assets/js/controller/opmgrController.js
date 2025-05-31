@@ -54,19 +54,25 @@ Ext.define('MyApp.controller.opmgrController', {
             console.error('Error:', error);
         });
     },
-    updateChart:(nuData)=>{
+    updateChart:(nuData,xchart)=>{
 
         //this to convert value of a key to number
         // const newSeries2 = nuData.map(item => parseInt(item.attendance_pct, 10));
         console.log('updating chart... ', nuData )
         //const newLabels2 = newData2.map(item => item.region);
-        asn.chart.updateSeries(nuData);
+        if(xchart=="chart1"){
+            asn.chart1.updateSeries(nuData);
      
+        }else{
+            asn.chart2.updateSeries(nuData);
+     
+        }
+        
     },
-    loadCurrentRegionChart:(chartarea)=>{
+    loadCurrentRegionChart:(chartarea, xChart )=>{
 
         console.log('loading from  controller  chart.....')
-        let val
+        let val, chart
 
         if(chartarea=='attendance-chart'){
             val = [
@@ -167,9 +173,16 @@ Ext.define('MyApp.controller.opmgrController', {
         }
         };
 
-        asn.chart = new ApexCharts(document.querySelector((chartarea=='attendance-chart'?"#attendance-chart":'#parcel-chart')), options);
-        asn.chart.render();
+        if(xChart=="chart1"){
+            asn.chart1 = new ApexCharts(document.querySelector("#attendance-chart"), options);
+            asn.chart1.render();
 
+        }else{
+            asn.chart2 = new ApexCharts(document.querySelector("#parcel-chart"), options);
+            asn.chart2.render();
+
+        }
+        
     },
 
     //coord,
