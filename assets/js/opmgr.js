@@ -995,13 +995,6 @@ Ext.onReady(function(){
     asn.ctrlExt.listenLocation()
 
     asn.ctrlExt.listenRider()
-
-    // const bogusdata = [
-    //         { region: 'BSL', reg: 29, logged: 0, attendance_pct: 10, parcel: '0' },
-    //         { region: 'CENTRAL VISAYAS', reg: 14, logged: 0, attendance_pct: 10, parcel: '0' },
-    //         { region: 'NCR', reg: 6, logged: 1, attendance_pct: 10, parcel: '50' },
-    //         { region: 'PANAY', reg: 6, logged: 0, attendance_pct: 10, parcel: '0' }
-    //     ];
     
     //lodchart first  REgional performance    
     asn.ctrlExt.loadCurrentRegionChart('attendance-chart', 'chart1')

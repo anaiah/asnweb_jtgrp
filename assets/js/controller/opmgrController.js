@@ -41,19 +41,19 @@ Ext.define('MyApp.controller.opmgrController', {
 
     },
     
-    loadinitialChart:()=>{
-        const url = `${myIp}/initialchart`;
+    // loadinitialChart:()=>{
+    //     const url = `${myIp}/initialchart`;
 
-        fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            console.log('io.emit  on  the way====')
-            //document.getElementById('result').textContent = data.result; // Display the result
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    },
+    //     fetch(url)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log('io.emit  on  the way====')
+    //         //document.getElementById('result').textContent = data.result; // Display the result
+    //     })
+    //     .catch(error => {
+    //         console.error('Error:', error);
+    //     });
+    // },
     updateChart:(nuData,xchart)=>{
 
         //this to convert value of a key to number
