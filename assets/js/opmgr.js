@@ -186,7 +186,7 @@ const asn = {
         console.log( '====getMsg()=== ')
         
         /*
-        osndp.socket.on('sales', (oMsg) => {
+        osndp.socket.on('FLles', (oMsg) => {
             let xmsg = JSON.parse(oMsg)
 
             util.speak( xmsg.msg )
@@ -1004,7 +1004,7 @@ Ext.onReady(function(){
     }, 1000)
 
     //call chart data via socket.io/ fetch data
-    //LATER asn.ctrlExt.loadinitialChart()
+    asn.ctrlExt.loadinitialChart()
    
     window.scrollTo(0,0);
     asn.init() //instantiate now
