@@ -107,6 +107,13 @@ Ext.define('MyApp.controller.opmgrController', {
                 asn.ctrlExt.updateChart(parcelData, 'chart2')
             }, 1000)
         
+            setTimeout(() => {
+                const audio  = new Audio('/html/beep.ogg')
+                audio.play().catch(error => {
+                    console.error("Audio playback failed:", error);
+                });
+                document.getElementById('myCard').classList.add('show');// show login  card
+            }, 2000); // Delay of 1000 milliseconds (1 second)
 
             //document.getElementById('result').textContent = data.result; // Display the result
         })
