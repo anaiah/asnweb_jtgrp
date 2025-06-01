@@ -795,11 +795,11 @@ const asn = {
         };
         
         const xvoice= window.speechSynthesis
-
-        xvoice.forEach(voice => {
-                if(voice.name.indexOf("English")>-1){	
+       console.log(xvoice)
+        xvoice.forEach(voices => {
+                if(voices.name.indexOf("English")>-1){	
                     ///// take out bring back later, 
-                    console.log("speaking voice is ",voice.name)
+                    console.log("speaking voice is ",voices.name)
                     //speakText.voice = voice
                     
                 }
