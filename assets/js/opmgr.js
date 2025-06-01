@@ -6,7 +6,7 @@ author : Carlo O. Dominguez
 
 //
 //speech synthesis
- voices = synth.getVoices()
+
 const asn = {
 	
     offset: 0,
@@ -791,11 +791,12 @@ const asn = {
             let speechsynth = new SpeechSynthesisUtterance();
             speechsynth.text = txt
             speechsynth.lang = "en-US"
-
-            
             speechSynthesis.speak( speechsynth )
-        };    
-        voices.forEach(voice => {
+        };
+        
+        const xvoice= window.speechSynthesis
+
+        xvoice.forEach(voice => {
                 if(voice.name.indexOf("English")>-1){	
                     ///// take out bring back later, 
                     console.log("speaking voice is ",voice.name)
