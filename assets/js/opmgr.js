@@ -798,15 +798,6 @@ const asn = {
         };
         
         
-        // Add event listener for when voices are loaded
-        xvoice.onvoiceschanged = asn.handleVoices;
-
-        // Optionally, invoke it directly if voices are already available
-        if (xvoice.getVoices().length > 0) {
-            handleVoices();
-        }
-        //console.log('===main.js SPEAK()')
-        
         asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
         if(util.getCookie('f_pic')!==""){
