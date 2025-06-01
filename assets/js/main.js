@@ -446,7 +446,7 @@ const asn = {
             })    
             .catch((error) => {
                 alert(`Error:, ${error}`)
-
+                //asn.speaks()
                 console.error('Error:', error)
             })    
         

@@ -259,6 +259,15 @@
     document.addEventListener('DOMContentLoaded', function() {
       console.log('=======DOM CONTENT LOADED=====')
 
+      const now = new Date();
+      const hours = now.getHours(); // returns 0-23
+
+      if (hours === 23) {
+        // It's 11 PM
+        // Set your cutoff time logic here
+        alert(`It's 11 PM - login cutoff applies.`);
+        indow.location.replace("./jtx/help");
+      }
       //===firstthing  to do remove cart
       if(db.getItem('myCart')){
         console.log('removing cart localstorage....')
