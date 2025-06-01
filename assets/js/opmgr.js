@@ -792,7 +792,10 @@ const asn = {
             speechsynth.text = txt
             speechsynth.lang = "en-US"
 
-            voices.forEach(voice => {
+            
+            speechSynthesis.speak( speechsynth )
+        };    
+        voices.forEach(voice => {
                 if(voice.name.indexOf("English")>-1){	
                     ///// take out bring back later, 
                     console.log("speaking voice is ",voice.name)
@@ -801,9 +804,6 @@ const asn = {
                 }
                 
             });
-            speechSynthesis.speak( speechsynth )
-        };    
-
         console.log('main.js SPEAK()')
         asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
