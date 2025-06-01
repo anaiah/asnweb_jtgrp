@@ -791,6 +791,16 @@ const asn = {
             let speechsynth = new SpeechSynthesisUtterance();
             speechsynth.text = txt
             speechsynth.lang = "en-US"
+
+            voices.forEach(voice => {
+                if(voice.name.indexOf("English")>-1){	
+                    ///// take out bring back later, 
+                    console.log("speaking voice is ",voice.name)
+                    //speakText.voice = voice
+                    
+                }
+                
+            });
             speechSynthesis.speak( speechsynth )
         };    
 
