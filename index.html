@@ -258,16 +258,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
       console.log('=======DOM CONTENT LOADED=====')
-
-      const now = new Date();
-      const hours = now.getHours(); // returns 0-23
-      console.log(hours)
-      if (hours >= 22) {
-        // It's 11 PM
-        // Set your cutoff time logic here
-        alert(`It's 11 PM - login cutoff applies.`);
-        window.location.replace("./jtx/help");
-      }
+      
       //===firstthing  to do remove cart
       if(db.getItem('myCart')){
         console.log('removing cart localstorage....')
@@ -276,7 +267,17 @@
 
       //CHECK GPS FIRST
       if (navigator.geolocation) {
-          main.getHubLocation()
+        
+        if(db.getItem('profile')){
+          const xgrp = JSON.parse(db.getItem('profile'))
+          
+          if(xgrp.grp_id == 1){
+            main.getHubLocation()
+          }else{
+            console.log('no need hub loc') 
+          }//eif
+        }
+          
       }else{
           alert('PLEASE TURN-ON YOUR PHONE LOCATION OR GPS THEN REFRESH YOUR BROWSER')
           return false
