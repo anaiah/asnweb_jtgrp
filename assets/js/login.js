@@ -3,8 +3,6 @@
 author : Carlo O. Dominguez
 */
 const login = {
-	
-
 	//==,= main run
 	init : async () => {
 		//change form action 
