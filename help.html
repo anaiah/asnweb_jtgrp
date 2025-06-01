@@ -200,13 +200,19 @@
       </ul>
     </section>
 
-    <p><a href="javascript:window.location.href='asianowapp.com/jtx';" class="button-link">Back to AsiaNow</a></p>
+    <p><a href="javascript:helper.gotonow()';" class="button-link">Back to AsiaNow</a></p>
   </main> 
 
   <footer class="container py-5">
     <p>&copy; 2025 AsiaNow Enterprises Inc. All rights reserved.</p>
   </footer>
-
+  <script>
+    const helper ={
+        gotonow:()=>{
+          window.location.href='./jtx'
+        }
+    }
+  </script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
