@@ -787,6 +787,7 @@ const asn = {
         asn.getmenu(util.getCookie('grp_id')) 
         console.log('===asn.init()=== loaded!')
 
+        /*
         asn.speaks = (txt) =>{
             let speechsynth = new SpeechSynthesisUtterance();
             speechsynth.text = txt
@@ -796,9 +797,40 @@ const asn = {
             console.log('===main.js SPEAK()');
         
         };
+        */
+asn.speaks = (txt, voiceName) => {
+    const speechsynth = new SpeechSynthesisUtterance();
+    speechsynth.text = txt;
+    speechsynth.lang = "en-US";
+
+    const voices = window.speechSynthesis.getVoices();
+
+    // Find the voice by name
+    const selectedVoice = voices.find(voice => voice.name === voiceName);
+
+    if (selectedVoice) {
+        speechsynth.voice = selectedVoice;
+    } else {
+        console.warn(`Voice "${voiceName}" not found. Using default.`);
+    }
+
+    speechSynthesis.speak(speechsynth);
+    console.log('===main.js SPEAK()');
+};
+
+// Usage: specify the voice name you want
+// List available voices first to find the exact name
+// For example, "Google UK English Male" or "Microsoft Hazel Desktop - English (United Kingdom)"
+// You can log all voices to find the correct name:
+function listVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    console.log('Available voices:', voices);
+}
+// Call this after the voices are loaded
+window.speechSynthesis.onvoiceschanged = listVoices;
+
         
-        
-        asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
+        asn.speaks(  util.getCookie('f_voice'),'Google UK English Male') //==FIRST welcome GREETING HERE ===
         
         if(util.getCookie('f_pic')!==""){
             document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
