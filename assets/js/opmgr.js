@@ -795,7 +795,7 @@ const asn = {
         };
         
         const xvoice= window.speechSynthesis
-       console.log('xvoices ',xvoice)
+        console.log('xvoices ',xvoice)
 
         // xvoice.forEach(voices => {
         //         if(voices.name.indexOf("English")>-1){	
@@ -806,7 +806,7 @@ const asn = {
         //         }
                 
         //     });
-        console.log('main.js SPEAK()')
+        console.log('===main.js SPEAK()')
         asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
         if(util.getCookie('f_pic')!==""){
