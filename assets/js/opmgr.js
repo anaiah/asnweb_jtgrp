@@ -795,7 +795,7 @@ const asn = {
         };
         
         const xvoice= window.speechSynthesis
-       console.log(xvoice)
+       console.log('xvoices ',xvoice)
 
         // xvoice.forEach(voices => {
         //         if(voices.name.indexOf("English")>-1){	
