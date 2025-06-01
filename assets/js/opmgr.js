@@ -958,7 +958,7 @@ const asn = {
         //title chart
         document.getElementById('region').innerHTML= util.strDate() + '<br>(Regional Performance)'
         document.getElementById('nationwide').innerHTML= util.strDate() + '<br>(Regional Performance)'
-        
+        document.getElementById('xlabel').innerHTML= util.strDate() + ' <b>Nationwide Performance</b>'
         // asn.loadopmgrArea()
 
         /*
