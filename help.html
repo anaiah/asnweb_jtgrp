@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Guide - Your App Name</title>
+  <title>AsiaNow Enc. Inc.</title>
+  <!-- <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" /> -->
+  <link rel="shortcut icon" href="/assets/images/logos/asiaoneico.png" type="image/x-icon" sizes="32x32">  
+  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
@@ -16,9 +19,9 @@
     img {
       max-width: 100%;
       height: auto;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-bottom: 1rem;
+      /* border: 1px solid #ccc; */
+      /* border-radius: 5px; */
+      /* margin-bottom: 1rem; */
     }
     .section {
       margin-bottom: 3rem;
@@ -40,13 +43,28 @@
     .navbar-custom .navbar-brand,
     .navbar-custom .navbar-nav .nav-link {
       color: white;
+
+    }
+     .button-link {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff; /* Blue color */
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+    .button-link:hover {
+      color: white; /*inherit;        /* Inherit the original color */
+      text-decoration: none; /* Remove underline */
     }
   </style>
 </head>
 <body>
 
   <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
-    <a class="navbar-brand" href="#">AsiaNow OnRoute App - User Guide</a>
+    <a class="navbar-brand" href="#"><img border="'0" src="/assets/images/logos/asiaoneico.png" width="32px"> OnRoute App - User Guide</a>
 <!--     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -151,10 +169,10 @@
       <ul>
         <li>You can correct, change the value of "Parcel(s) from Hub", the value should be the number of parcels scanned.</li>
         <li>For the "Actual Parcels Delivered", the value should be the Actual Parcels that you Delivered.</li>
-        <li>The COD amount (left of Sprinter App) Should be copied in "Hub Amount"</li>
-        <li>The COD Remittance Amount (right of Sprinter App) should be copied in "Actual Amount Remittance"</li>
-        <li>The Screenshot of Your Sprinter App (Fig.2) should be uploaded on the last  part of the Form (see video below how) as 
-            a "receipt" of your work.
+        <li>The <b>COD amount (left of Sprinter App) Should be copied in "Hub Amount"</b></li>
+        <li>The <b>COD Remittance Amount (right of Sprinter App) should be copied in "Actual Amount Remittance"</b></li>
+        <li>The <b>Screenshot of Your Sprinter App (see Fig.2) should be uploaded on the last part of the Form (see video below how) as 
+            a "receipt" of your work.</b>
         </li>
       </ul>
       <p>Watch the video below for step-by-step instruction on how to use the Remittance Entry.</p>
@@ -164,7 +182,7 @@
             Your browser does not support the video tag.
       </video>
 
-      <p> PLEASE DON'T FORGET TO LOGOUT, for  you to complete and close your transaction and your Daily Time Record.  </p>
+      <p> <b>PLEASE <i>DON'T FORGET TO LOGOUT</i> AFTER FINISHING REMITTANCE ENTRY</b>, for  you to complete and close your transaction and your Daily Time Record.  </p>
     </section>
 
     <!-- Add more sections for each feature -->
@@ -182,7 +200,7 @@
       </ul>
     </section>
 
-    <p><a href="javascript:history.back(-1)">Back to AsiaNow</a></p>
+    <p><a href="javascript:history.back(-1)" class="button-link">Back to AsiaNow</a></p>
   </main> 
 
   <footer class="container py-5">
