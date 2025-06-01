@@ -792,25 +792,12 @@ const asn = {
             speechsynth.text = txt
             speechsynth.lang = "en-US"
             speechSynthesis.speak( speechsynth )
+            
+            console.log('===main.js SPEAK()');
+        
         };
         
-        const xvoice = window.speechSynthesis;
-
-        console.log('xvoices ', xvoice);
-
-        asn.handleVoices = () => {
-            const voices = xvoice.getVoices();
-            console.log('Available voices:', voices);
-            // Example: find an English voice
-            voices.forEach(voice => {
-                if (voice.name.indexOf('English') > -1) {
-                    console.log('Speaking voice is:', voice.name);
-                    // Assign the voice to your utterance here
-                }
-            });
-            console.log('===main.js SPEAK()');
-        }
-
+        
         // Add event listener for when voices are loaded
         xvoice.onvoiceschanged = asn.handleVoices;
 
