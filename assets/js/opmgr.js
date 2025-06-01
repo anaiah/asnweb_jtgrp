@@ -6,7 +6,7 @@ author : Carlo O. Dominguez
 
 //
 //speech synthesis
-
+ voices = synth.getVoices()
 const asn = {
 	
     offset: 0,
@@ -35,8 +35,9 @@ const asn = {
 
     //speak method
     speak:(theMsg)=> {
+        
                         
-        console.log("SPEAK()",voices)
+        console.log("SPEAK()-->",voices)
         
         // If the speech mode is on we dont want to load
         // another speech
