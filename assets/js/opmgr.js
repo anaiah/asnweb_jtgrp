@@ -794,19 +794,32 @@ const asn = {
             speechSynthesis.speak( speechsynth )
         };
         
-        const xvoice= window.speechSynthesis
-        console.log('xvoices ',xvoice)
+        const xvoice = window.speechSynthesis;
 
-        // xvoice.forEach(voices => {
-        //         if(voices.name.indexOf("English")>-1){	
-        //             ///// take out bring back later, 
-        //             console.log("speaking voice is ",voices.name)
-        //             //speakText.voice = voice
-                    
-        //         }
-                
-        //     });
-        console.log('===main.js SPEAK()')
+        console.log('xvoices ', xvoice);
+
+        asn.handleVoices = () => {
+            const voices = xvoice.getVoices();
+            console.log('Available voices:', voices);
+            // Example: find an English voice
+            voices.forEach(voice => {
+                if (voice.name.indexOf('English') > -1) {
+                    console.log('Speaking voice is:', voice.name);
+                    // Assign the voice to your utterance here
+                }
+            });
+            console.log('===main.js SPEAK()');
+        }
+
+        // Add event listener for when voices are loaded
+        xvoice.onvoiceschanged = asn.handleVoices;
+
+        // Optionally, invoke it directly if voices are already available
+        if (xvoice.getVoices().length > 0) {
+            handleVoices();
+        }
+        //console.log('===main.js SPEAK()')
+        
         asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
         if(util.getCookie('f_pic')!==""){
