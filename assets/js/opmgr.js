@@ -796,15 +796,16 @@ const asn = {
         
         const xvoice= window.speechSynthesis
        console.log(xvoice)
-        xvoice.forEach(voices => {
-                if(voices.name.indexOf("English")>-1){	
-                    ///// take out bring back later, 
-                    console.log("speaking voice is ",voices.name)
-                    //speakText.voice = voice
+
+        // xvoice.forEach(voices => {
+        //         if(voices.name.indexOf("English")>-1){	
+        //             ///// take out bring back later, 
+        //             console.log("speaking voice is ",voices.name)
+        //             //speakText.voice = voice
                     
-                }
+        //         }
                 
-            });
+        //     });
         console.log('main.js SPEAK()')
         asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
