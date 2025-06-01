@@ -956,8 +956,8 @@ const asn = {
         });
 
         //title chart
-        document.getElementById('region').innerHTML= util.strDate() + ' (Regional Performance)'
-        document.getElementById('nationwide').innerHTML= util.strDate() + ' (Nationwide Performance)'
+        document.getElementById('region').innerHTML= util.strDate() + '<br>(Regional Performance)'
+        document.getElementById('nationwide').innerHTML= util.strDate() + '<br>(Regional Performance)'
         
         // asn.loadopmgrArea()
 
