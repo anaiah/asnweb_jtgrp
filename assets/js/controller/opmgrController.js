@@ -199,9 +199,9 @@ Ext.define('MyApp.controller.opmgrController', {
         },
         plotOptions: {
             bar: {
-                dataLabels: {
-                    position: 'top'
-                }
+            dataLabels: {
+                position: 'top'
+            }
             }
         },
         
