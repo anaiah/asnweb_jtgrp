@@ -90,6 +90,8 @@ Ext.define('MyApp.controller.opmgrController', {
                 document.getElementById('xs-delivered').classList.add('text-primary')
             }
             
+            console.log('<<<<<<<total amt vs remit>>>>>',anationwide[0].amount, anationwide[0].amount_remitted)
+            
             document.getElementById('x-remit').innerHTML =  util.formatNumber(anationwide[0].amount_remitted)
 
             const variance = anationwide[0].amount - anationwide[0].amount_remitted
