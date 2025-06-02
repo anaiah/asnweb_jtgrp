@@ -105,17 +105,17 @@ span.xgrpheader{
       font-size: 0.75rem;
       color: #6c757d;
       } 
-/* Rotate labels 90 degrees and position them so they stay visible */
-.apexcharts-datalabel {
-  display: inline-block !important;
-  white-space: nowrap !important;
-    /* example: move labels after rotation */
-  transform: rotate(90deg) translateX(10px);
-  transform: rotate(90deg);
-  transform-origin: bottom left; /* or top left, experiment as needed */
-  margin-top: 10px; /* adjust to move labels down */
-  /* optional: add a small translation if needed */
-}
+  /* Make all label elements rotate vertically */
+  .apexcharts-datalabel {
+    white-space: nowrap !important;
+    display: inline-block;
+    /* ensure transform works */
+    transform-origin: bottom left;
+  }
+  .vertical-label {
+    display: inline-block !important; /* override */
+    transform: rotate(90deg);
+  }
   </style>
 
 </head>
