@@ -188,14 +188,7 @@ Ext.define('MyApp.controller.opmgrController', {
                     
         },
 
-         dataLabels: {
-            enabled: true,
-            // style: {
-            //     cssClass: 'vertical-label' // optional, for more control
-            // },
-            // offsetX: 0,// or try negative or positive to move labels
-            // offsetY: 0
-        },
+        
         plotOptions: {
             bar: {
                 dataLabels: {
@@ -205,7 +198,20 @@ Ext.define('MyApp.controller.opmgrController', {
             }
         },
         
-
+        dataLabels: {
+            enabled: true,
+            dropShadow: {
+                enabled: true,
+                left: 2,
+                top: 2,
+                opacity: 0.5
+            },
+            // style: {
+            //     cssClass: 'vertical-label' // optional, for more control
+            // },
+            // offsetX: 0,// or try negative or positive to move labels
+            // offsetY: 0
+        },
         // plotOptions: {
         //   bar: {
         //     horizontal: false,
