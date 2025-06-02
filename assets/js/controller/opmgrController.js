@@ -22,6 +22,17 @@ Ext.define('MyApp.controller.opmgrController', {
         }
 
     },
+    addCommas: (nStr)=> {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        }
+        return x1 + x2;
+    },
     calculateChartData:(data)=>{
         const keysToSum = ['reg', 'logged', 'parcel', 'amount', 'amount_remitted', 'parcel_delivered'];
         const totalSums = {};
@@ -80,8 +91,8 @@ Ext.define('MyApp.controller.opmgrController', {
             let anationwide = []
             anationwide.push(asn.ctrlExt.calculateChartData(xdata))
             
-            document.getElementById('x-parcel').innerHTML = util.addCommas(anationwide[0].parcel)
-            document.getElementById('x-delivered').innerHTML =  util.addCommas(anationwide[0].parcel_delivered)
+            document.getElementById('x-parcel').innerHTML = util.addCommas(parseFloat(anationwide[0].parcel))
+            document.getElementById('x-delivered').innerHTML =  util.addCommas(parseFloat(anationwide[0].parcel_delivered))
             
             if( anationwide[0].parcel_delivered < anationwide[0].parcel){
                 document.getElementById('xs-delivered').classList.add('text-danger')
@@ -91,7 +102,7 @@ Ext.define('MyApp.controller.opmgrController', {
             
             console.log('<<<<<<<total amt vs remit>>>>>',anationwide[0].amount, anationwide[0].amount_remitted)
             
-            document.getElementById('x-remit').innerHTML =  util.formatNumber(anationwide[0].amount_remitted)
+            document.getElementById('x-remit').innerHTML =  util.formatNumber(anationwide[0].amount_remitted) //turns number to M  or K
 
             const variance = anationwide[0].amount - anationwide[0].amount_remitted
             
