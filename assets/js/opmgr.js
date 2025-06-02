@@ -932,7 +932,7 @@ const asn = {
             }
             
             document.getElementById('x-remit').innerHTML =  util.formatNumber(anationwide[0].amount_remitted)
-
+            console.log('total amt vs remit',anationwide[0].amount, anationwide[0].amount_remitted)
             const variance = anationwide[0].amount - anationwide[0].amount_remitted
             
             if( anationwide[0].amount_remitted < anationwide[0].amount){
