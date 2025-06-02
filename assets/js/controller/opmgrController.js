@@ -192,14 +192,16 @@ Ext.define('MyApp.controller.opmgrController', {
          dataLabels: {
             enabled: true,
             style: {
-            cssClass: 'vertical-label'
-            }
+                cssClass: 'vertical-label' // optional, for more control
+            },
+            offsetX: 0, // or try negative or positive to move labels
+            offsetY: 0
         },
         plotOptions: {
             bar: {
-            dataLabels: {
-                position: 'top'
-            }
+                dataLabels: {
+                    position: 'top'
+                }
             }
         },
         
