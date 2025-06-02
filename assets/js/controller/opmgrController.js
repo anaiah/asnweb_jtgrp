@@ -199,6 +199,10 @@ Ext.define('MyApp.controller.opmgrController', {
         },
         dataLabels: {
           enabled: true,
+          useHTML:true,
+          formatter: function (val) {
+                return '<div style="transform: rotate(90deg); white-space: nowrap;">' + val + '</div>';
+            }
           
         },
         stroke: {
