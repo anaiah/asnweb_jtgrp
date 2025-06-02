@@ -202,8 +202,8 @@ Ext.define('MyApp.controller.opmgrController', {
             enabled: true,
             dropShadow: {
                 enabled: true,
-                left: 2,
-                top: 2,
+                left: 1,
+                top: 1,
                 opacity: 0.5
             },
             // style: {
