@@ -194,8 +194,8 @@ Ext.define('MyApp.controller.opmgrController', {
             style: {
                 cssClass: 'vertical-label' // optional, for more control
             },
-            offsetX: 0, // or try negative or positive to move labels
-            offsetY: 0
+            offsetX: -20, // or try negative or positive to move labels
+            offsetY: -20
         },
         plotOptions: {
             bar: {
