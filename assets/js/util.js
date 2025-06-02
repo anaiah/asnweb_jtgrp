@@ -1487,7 +1487,7 @@ const util = {
 
             util.Toasted(`SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!`,6000,false)
             
-            location.href = './jtx/dashboard'
+            location.href = '../jtx/dashboard'
             
         }else{
             
@@ -1553,17 +1553,17 @@ const util = {
                     break
                 
                     case 4: // coordinator
-                        location.href = './jtx/coord'    
+                        location.href = '../jtx/coord'    
                     break
 
                     case 3:  //head coord
-                        location.href = './jtx/headcoord'    
+                        location.href = '../jtx/headcoord'    
                     break
                 
                     case 5: // operations mgr
                     console.log('poooknnatt')
                         
-                    location.href ='./jtx/operations'    
+                    location.href ='../jtx/operations'    
                     break
 
                 }//===== endswitch
