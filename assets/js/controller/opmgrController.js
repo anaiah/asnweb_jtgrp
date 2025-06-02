@@ -80,8 +80,8 @@ Ext.define('MyApp.controller.opmgrController', {
             let anationwide = []
             anationwide.push(asn.ctrlExt.calculateChartData(xdata))
             
-            document.getElementById('x-parcel').innerHTML = anationwide[0].parcel
-            document.getElementById('x-delivered').innerHTML =  anationwide[0].parcel_delivered
+            document.getElementById('x-parcel').innerHTML = util.addCommas(anationwide[0].parcel)
+            document.getElementById('x-delivered').innerHTML =  util.addCommas(anationwide[0].parcel_delivered)
             
             if( anationwide[0].parcel_delivered < anationwide[0].parcel){
                 document.getElementById('xs-delivered').classList.add('text-danger')
