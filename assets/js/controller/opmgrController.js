@@ -206,6 +206,15 @@ Ext.define('MyApp.controller.opmgrController', {
                 top: 1,
                 opacity: 0.5
             },
+            formatter: function (val) {
+                if (val >= 1000000) {
+                    return (val / 1000000).toFixed(1) + 'M';
+                } else if (val >= 1000) {
+                    return (val / 1000).toFixed(1) + 'K';
+                }
+                
+                return val;
+            },
             // style: {
             //     cssClass: 'vertical-label' // optional, for more control
             // },
