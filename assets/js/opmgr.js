@@ -889,6 +889,7 @@ const asn = {
             console.log('HERES UR GRAPH DATA',xresult)
 
            // console.log('chart sum',asn.ctrlExt.calculateChartData(data))
+            asn.speaks('INCOMING DATA!!!')
 
             const attendance_keysToExtract = ['reg', 'logged']; // add coluumns here 'parcel__delivered', Array of keys to extract
             const parcel_keysToExtract = ['parcel', 'parcel_delivered']
@@ -932,6 +933,7 @@ const asn = {
             }
             
             document.getElementById('x-remit').innerHTML =  util.formatNumber(anationwide[0].amount_remitted)
+
             console.log('<<<<<<<total amt vs remit>>>>>',anationwide[0].amount, anationwide[0].amount_remitted)
             const variance = anationwide[0].amount - anationwide[0].amount_remitted
             

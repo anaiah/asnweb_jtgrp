@@ -50,7 +50,7 @@ Ext.define('MyApp.controller.opmgrController', {
             const xdata = data.data
             console.log('***%%%%%%%%%% INITIAL CHART FROM NODEJS and INITIAL  CHART LOAD*****', xdata)
             
-            //asn.socket.emit('sendtoOpMgr', xdata)
+            asn.speaks('INCOMING DATA!!!')
 
             const attendance_keysToExtract = ['reg', 'logged']; // add coluumns here 'parcel__delivered', Array of keys to extract
             const parcel_keysToExtract = ['parcel', 'parcel_delivered']
