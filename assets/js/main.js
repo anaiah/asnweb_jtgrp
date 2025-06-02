@@ -413,6 +413,7 @@ const asn = {
     //     }//eif poData is not null
     // },
 
+    saveobjfrm:null,
 
     //===save to localstorage
     saveToLogin:async(url="",xdata={})=>{
@@ -422,8 +423,6 @@ const asn = {
 
         if(!newdb){ //FIRST DATA ENTRY
 
-            //set mycart localstorage
-            asn.db.setItem('myCart', JSON.stringify(xdata))
             const url = `${myIp}/savetologin/${util.getCookie('f_id')}`
             
             //=== save as login
@@ -440,9 +439,27 @@ const asn = {
                 return response.json();
             })
             .then( (data) => {
-                const xdata = data.data
-                console.log('***%%%%%%%%%% FROM NODEJS*****', xdata)
-                asn.socket.emit('sendtoOpMgr', xdata)
+                
+                if(data.success == "fail"){
+        
+                    asn.speaks(data.msg)
+                    
+                    asn.db.removeItem('myCart')
+
+                    util.hideModal('dataEntryModal',2000)    
+        
+                    return false;
+
+                }else{
+                    //set mycart localstorage
+                    asn.db.setItem('myCart', JSON.stringify(asn.saveobjfrm))
+            
+                    const mydata = data.data
+                    console.log('***%%%%%%%%%% FROM NODEJS*****', mydata)
+                    asn.socket.emit('sendtoOpMgr', mydata)
+
+                }
+                
             })    
             .catch((error) => {
                 alert(`Error:, ${error}`)
@@ -464,10 +481,11 @@ const asn = {
         // const badge = document.getElementById('bell-badge')
         // badge.innerHTML = 'With Entry'
 
-        asn.speaks('Local Storage Successfully Saved!!!') //speak
-        util.Toasted('Local Storage Successfully Saved!!!',3000,false)//alert
-
-        util.hideModal('dataEntryModal',2000)    
+        if(asn.db.getItem('myCart')){
+            asn.speaks('Local Storage Successfully Saved!!!') //speak
+            util.Toasted('Local Storage Successfully Saved!!!',3000,false)//alert
+            util.hideModal('dataEntryModal',2000)    
+        }
             
     },
 
@@ -492,6 +510,8 @@ const asn = {
 
             const xdata = data.data
             console.log('***%%%%%%%%%% FROM NODEJS*****', xdata)
+
+            //everytime save notify opmgr
             asn.socket.emit('sendtoOpMgr', xdata)
 
             if(data.success=="ok")
@@ -506,7 +526,7 @@ const asn = {
                 
                 asn.speaks("Transaction Saved");
 
-                asn.db.removeItem('myCart') //delete myCart in localDB
+                asn.db.removeItem('myCart') //delete myCart in localDB after final remittance
                 
                 //===update also chart and monthly performance card
                 asn.piedata.length = 0  //reset
@@ -623,7 +643,9 @@ const asn = {
 
     logout:()=>{
         asn.db.removeItem('logged') //clear record of  being  logged 
-        asn.db.removeItem('myCart')//remove transaction localdb
+        
+        //asn.db.removeItem('myCart')//remove transaction localdb
+        
         location.href = './'
                     
     },

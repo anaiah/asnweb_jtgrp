@@ -1,0 +1,10 @@
+
+//TARGET PROBLEMATIC RIDER ENTRIES
+
+SELECT a.id, b.emp_id ,a.xname, a.hub,c.head as headcoord,b.parcel, b.actual_parcel,b.amount,b.actual_amount,b.created_at
+from asn_users a
+join asn_transaction b 
+on a.id = b.emp_id
+join  asn_hub c 
+on c.hub = a.hub
+where( b.created_at between '2025-06-01' and '2025-06-02') and b.amount =  1000;
