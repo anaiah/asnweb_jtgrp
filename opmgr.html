@@ -104,12 +104,18 @@ span.xgrpheader{
     .card-footer-text {
       font-size: 0.75rem;
       color: #6c757d;
-    } 
-    /* Target data labels specifically: */
-.apexcharts-datalabel {
-  white-space: nowrap !important;
-  display: inline-block !important;
-}
+      } 
+  /* Make all label elements rotate vertically */
+  .apexcharts-datalabel {
+    white-space: nowrap !important;
+    display: inline-block;
+    /* ensure transform works */
+    transform-origin: bottom left;
+  }
+  .vertical-label {
+    display: inline-block !important; /* override */
+    transform: rotate(90deg);
+  }
   </style>
 
 </head>
