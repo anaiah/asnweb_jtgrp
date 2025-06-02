@@ -71,7 +71,6 @@ Ext.define('MyApp.controller.opmgrController', {
                 name: attendance_seriesNames[key] || key,  // Use seriesNames or the key if not found
                 data: xdata.map(item => item[key])
             }));
-
             
             const parcelData = parcel_keysToExtract.map(key => ({
                 name: parcel_seriesNames[key] || key,  // Use seriesNames or the key if not found
@@ -199,9 +198,10 @@ Ext.define('MyApp.controller.opmgrController', {
         },
         plotOptions: {
             bar: {
-            dataLabels: {
-                position: 'top'
-            }
+                dataLabels: {
+                    position: 'top',
+                    orientation:'vertical'
+                }
             }
         },
         
