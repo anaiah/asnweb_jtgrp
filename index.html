@@ -326,22 +326,32 @@
       help:()=>{
         window.location.replace("./jtx/help");
       },
-      //check input first
+            //check input first
       checkinput:() => {
-        if( db.getItem('profile')){
+        try{
+          if( db.getItem('profile')){
             const uid = JSON.parse( db.getItem('profile'))
             if(uid.email !== document.getElementById('uid').value){
                 alert('PLEASE USE THE PHONE THAT YOU USED TO REGISTER YOUR EMAIL')
                 return false
-            }else{
-              util.validateMe('loginModal','#loginForm','login')
+              
             }//eif
-        }else{
+          }
+
+        }catch(error){
+
+        }finally{
+          let button = document.getElementById('loginbtn')
+          button.disabled = true;
+          button.setAttribute('aria-disabled', 'true'); //Optional, but helps screen readers
+          
+          xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Searching Database please wait...</div>"
+          util.alertMsg( xmsg,'danger','loginPlaceHolder')
+    
           util.validateMe('loginModal','#loginForm','login')
-        }//eif
-        
+        }//end try
       },
-      
+
       ///show postiion of rider
       showPosition: (position) => { 
         

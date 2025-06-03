@@ -1471,7 +1471,7 @@ const util = {
     showPosition: async (position)=>{
         //let micasalat = '14.58063721485018'
         //let micasalon = '121.01563811625266'
-        util.speak('Checking your Position... please Wait!')
+       // util.speak('Checking your Position... please Wait!')
                 
         let mypos = JSON.parse(db.getItem('myHub'))
                 
