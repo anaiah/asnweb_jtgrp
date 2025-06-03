@@ -518,7 +518,7 @@ const asn = {
             
             if(data.success=="ok")
                 {
-                console.log( '+++++ saveTransaction()...')
+                console.log( '+++++ saveTransaction()++++')
 
                 //change form action for posting the Image receipt
                 document.getElementById('remittanceUploadForm').action=`${myIp}/postimage/${document.getElementById('ff_transnumber').value}`
@@ -526,8 +526,9 @@ const asn = {
                 xmsg = "<i class='fa fa-spinner fa-pulse' ></i>  Uploading Receipt, please wait!!!"
                 util.Toasted( xmsg, 3000, false)
                 
-                asn.speaks("Transaction Saved");
-                
+                //asn.speaks("Transaction Saved");
+                asn.playcod('uwian')
+
                 //everytime save notify opmgr
                 asn.socket.emit('sendtoOpMgr', xdata)
 
@@ -763,6 +764,9 @@ const asn = {
                 break
                 case "hubqty":
                     audio  = new Audio('/html/video/rcpt_upload.mp3')
+                break
+                case "uwian":
+                    audio  = new Audio('/html/video/uwian.mp3')
                 break
 
             }//endsw
