@@ -61,7 +61,7 @@ Ext.define('MyApp.controller.opmgrController', {
             const xdata = data.data
             console.log('***%%%%%%%%%% INITIAL CHART FROM NODEJS and INITIAL  CHART LOAD*****', xdata)
             
-            asn.speaks('INCOMING DATA!!!')
+            asn.speaks('INCOMING INITIAL DATA!!!')
 
             const attendance_keysToExtract = ['reg', 'logged']; // add coluumns here 'parcel__delivered', Array of keys to extract
             const parcel_keysToExtract = ['parcel', 'parcel_delivered']
@@ -137,6 +137,9 @@ Ext.define('MyApp.controller.opmgrController', {
         //this to convert value of a key to number
         // const newSeries2 = nuData.map(item => parseInt(item.attendance_pct, 10));
         console.log('updating chart... ', nuData )
+        
+        asn.speaks('INCOMING DATA!!!')
+
         //const newLabels2 = newData2.map(item => item.region);
         if(xchart=="chart1"){
             asn.chart1.updateSeries(nuData);

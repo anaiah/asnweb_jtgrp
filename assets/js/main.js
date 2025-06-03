@@ -455,7 +455,7 @@ const asn = {
                     asn.db.setItem('myCart', JSON.stringify(asn.saveobjfrm))
             
                     const mydata = data.data
-                    console.log('***%%%%%%%%%% FROM NODEJS*****', mydata)
+                    console.log('***%%%%%%%%%% FROM NODEJS SAVELOGIN() TRIGGER SOCKET EMIT*****', mydata)
                     asn.socket.emit('sendtoOpMgr', mydata)
 
                 }
@@ -509,11 +509,8 @@ const asn = {
         .then( (data) => {
 
             const xdata = data.data
-            console.log('***%%%%%%%%%% FROM NODEJS*****', xdata)
-
-            //everytime save notify opmgr
-            asn.socket.emit('sendtoOpMgr', xdata)
-
+            console.log('***%%%%%%%%%% FROM NODEJS SAVETRANSACTION() TRIGGER SOCKET EMIT *****', xdata)
+            
             if(data.success=="ok")
                 {
                 console.log( '+++++ saveTransaction()...')
@@ -525,6 +522,9 @@ const asn = {
                 util.Toasted( xmsg, 3000, false)
                 
                 asn.speaks("Transaction Saved");
+                
+                //everytime save notify opmgr
+                asn.socket.emit('sendtoOpMgr', xdata)
 
                 asn.db.removeItem('myCart') //delete myCart in localDB after final remittance
                 
