@@ -747,16 +747,23 @@ const asn = {
     },
     //==========END  GETMENU
     
-     //==========END  GETMENU
+    //==========play mp3
     playcod:(ctype)=>{
         let audio
         setTimeout(() => {
-            if(ctype==="cod"){
-                audio  = new Audio('/html/video/cod_amount.mp3')
-            }else{
-                audio  = new Audio('/html/video/cod_remit.mp3')
-            
-            }
+            switch(ctype){
+                case "cod":
+                    audio  = new Audio('/html/video/cod_amount.mp3')
+                break
+                case "remit":
+                    audio  = new Audio('/html/video/cod_remit.mp3')
+                break
+                case "hubqty":
+                    audio  = new Audio('/html/video/hub_qty.mp3')
+                break
+
+            }//endsw
+          
             audio.play().catch(error => {
                 console.error("Audio playback failed:", error);
             });
