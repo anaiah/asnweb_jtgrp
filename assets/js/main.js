@@ -752,9 +752,9 @@ const asn = {
         let audio
         setTimeout(() => {
             if(ctype==="cod"){
-                audio  = new Audio('../video/cod_amount.mp3')
+                audio  = new Audio('/html/video/cod_amount.mp3')
             }else{
-                audio  = new Audio('../video/cod_remit.mp3')
+                audio  = new Audio('/html/video/cod_remit.mp3')
             
             }
             audio.play().catch(error => {
