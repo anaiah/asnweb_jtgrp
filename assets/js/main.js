@@ -761,6 +761,9 @@ const asn = {
                 case "hubqty":
                     audio  = new Audio('/html/video/hub_qty.mp3')
                 break
+                case "hubqty":
+                    audio  = new Audio('/html/video/rcpt_upload.mp3')
+                break
 
             }//endsw
           
@@ -864,6 +867,21 @@ const asn = {
         if(!asn.db.getItem('myCart')){ //if initial no cart data thenshow.. if with  cart. dont show
             util.modalShow('dataEntryModal') // show initial data entry modal
         }
+
+        //detect listen if upload reeceipt is clickeed
+        document.getElementById('ff_uploaded_file').addEventListener('click', function(event) {
+            
+            asn.playcod('rcpt')
+
+            // const selectedFile = event.target.files[0];
+
+            // if (selectedFile) {
+            //     console.log("File selected:", selectedFile.name);
+            //     // You can add more code here to handle the selected file
+            // } else {
+            //     console.log("No file selected.");
+            // }
+        });
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 
 	}//END init
