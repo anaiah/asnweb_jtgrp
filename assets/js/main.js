@@ -326,6 +326,11 @@ const asn = {
     //==========get monthly  transaction for riders/transporters ====//
     getMonthlyTransaction:async( emp_id ) =>{
         
+        if(emp_id===null || emp_id ===""){
+            asn.speaks('The system detects that you have an Empty ID, Please Login again')
+            location.href = './'
+        }//endif
+
         xparam = `/${util.getCookie('f_region')}/${emp_id}/${util.getCookie('f_email')}`    
         
         await fetch(`${myIp}/gridmonthlytransaction/${emp_id}`,{
@@ -530,7 +535,7 @@ const asn = {
                 
                 //===update also chart and monthly performance card
                 asn.piedata.length = 0  //reset
-                asn.getMonthlyTransaction(util.getCookie('f_dbId'))
+                asn.getMonthlyTransaction(util.getCookie('f_id'))
 
                 //===== click submit button of Upload Form
                 const remuploadbtn = document.getElementById('remittance_upload_btn')
@@ -742,6 +747,22 @@ const asn = {
     },
     //==========END  GETMENU
     
+     //==========END  GETMENU
+    playcod:(ctype)=>{
+        let audio
+        setTimeout(() => {
+            if(ctype==="cod"){
+                audio  = new Audio('../video/cod_amount.mp3')
+            }else{
+                audio  = new Audio('../video/cod_remit.mp3')
+            
+            }
+            audio.play().catch(error => {
+                console.error("Audio playback failed:", error);
+            });
+        }, 0); // Delay of 1000 milliseconds (1 second)
+    },
+
     appExt:null,
     ctrlExt:null,
 
@@ -830,6 +851,8 @@ const asn = {
 
         util.modalListeners('remittanceModal')
 
+        asn.getMonthlyTransaction(util.getCookie('f_id'))
+   
         ///////asn.getTopHub()
         if(!asn.db.getItem('myCart')){ //if initial no cart data thenshow.. if with  cart. dont show
             util.modalShow('dataEntryModal') // show initial data entry modal
@@ -850,8 +873,7 @@ Ext.onReady(function(){
     // Get the controller
     asn.ctrlExt = asn.appExt.getController('riderController');
        
-    asn.getMonthlyTransaction(util.getCookie('f_dbId'))
-   
+    
     //osndp.Bubbl
     window.scrollTo(0,0);
 
