@@ -1525,7 +1525,7 @@ const util = {
             if(data[0] .found){
                 //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data[0].voice)
                 util.alertMsg(data[0].message,'success','loginPlaceHolder')
-                
+                //document.getElementById('loginBtn').classList.add('hide-me')
                 //addtocookie
                 util.setGroupCookie(data[0].id,data[0].region, data[0].fname, data[0].grp_id, data[0].email, data[0].voice, data[0].pic)/*=== SET GROUP COOKIE */
             
