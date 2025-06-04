@@ -902,7 +902,7 @@ const asn = {
             asn.playAudio(audioPath);
         });
 
-        document.getElementById('ff_uploaded_file').addEventListener('focus', function() {
+        document.getElementById('ff_uploaded_file').addEventListener('click', function() {
             const audioPath = this.getAttribute('data-audio');
             asn.playAudio(audioPath);
         });
