@@ -889,7 +889,7 @@ const asn = {
         // });
 
         // Add focus event listeners to the input fields
-        document.getElementById('f_parcel').addEventListener('focus', function() {
+        document.getElementById('f_parcel').addEventListener('click', function() {//hub_qty
             const audioPath = this.getAttribute('data-audio');
             asn.playAudio(audioPath);
         });
