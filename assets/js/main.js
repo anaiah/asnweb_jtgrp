@@ -536,6 +536,8 @@ const asn = {
                 
                 //===update also chart and monthly performance card
                 asn.piedata.length = 0  //reset
+
+
                 asn.getMonthlyTransaction(util.getCookie('f_id'))
 
                 //===== click submit button of Upload Form
@@ -857,8 +859,15 @@ const asn = {
 
         util.modalListeners('remittanceModal')
 
-        asn.getMonthlyTransaction(util.getCookie('f_id'))
-   
+        //
+        if(typeof util.getCookie('f_id') === 'undefined' || util.getCookie('f_id')===null || util.getCookie('f_id') === ""){
+            alert('ERROR, PLEASE ADVISE COORDINATOR TO CONTACT ASIANOW TECHNICAL SUPPORT TEAM!')
+            return false
+        }else{
+            asn.getMonthlyTransaction(util.getCookie('f_id'))
+        }
+
+        
         ///////asn.getTopHub()
         if(!asn.db.getItem('myCart')){ //if initial no cart data thenshow.. if with  cart. dont show
             util.modalShow('dataEntryModal') // show initial data entry modal
