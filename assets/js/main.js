@@ -573,7 +573,7 @@ const asn = {
                 asn.piedata.push( parseInt( data.data[0].delivered_pct) )
                 asn.piedata.push( parseInt( data.data[0].undelivered_pct) )
                 asn.pieChart() //render piechart
-                asn.speaks("Loading Chart...")
+                //asn.speaks("Loading Chart...")
                 
             }
 
