@@ -258,78 +258,101 @@
 
     document.addEventListener('DOMContentLoaded', function() {
       console.log('=======DOM CONTENT LOADED=====')
-      
 
-      // //===firstthing  to do remove cart
-      // if(db.getItem('myCart')){
-      //   console.log('removing cart localstorage....')
-      //   db.removeItem('myCart') //delete myCart in localDB everytime browser open/refreshed
-      // }
-
-      const now = new Date();
-      const hours = now.getHours(); // returns 0-23
-      const wHrs = hours % 24;
-
-      if (wHrs === 0) { // Check for 12 AM (0)
-        alert('CutOff system!')
-        window.location.replace("./jtx/help");
-      } else if (wHrs >= 0 && wHrs < 6) { //AM period
-        // Set your cutoff time logic here
-        alert('CutOff system!')
-        window.location.replace("./jtx/help");
-      }
-
-      //CHECK GPS FIRST
-      if (navigator.geolocation) {
-        
-        if(db.getItem('profile')){
-          const xgrp = JSON.parse(db.getItem('profile'))
-          
-          if(xgrp.grp_id == 1){
-            main.getHubLocation()
-          }else{
-            console.log('no need hub loc') 
-          }//eif
-        }else{
-          main.getHubLocation()
+      if (!main.isChrome()) {  // Use ! to check if NOT Chrome
+        alert('PLEASE USE CHROME BROWSER!');
+        // Prevent login
+        let button = document.getElementById('loginbtn');
+        if (button) { // Check if button exists before disabling
+            button.disabled = true;
+            button.setAttribute('aria-disabled', 'true');
+            window.location.replace("./jtx/help");
         }
-          
-      }else{
-          alert('PLEASE TURN-ON YOUR PHONE LOCATION OR GPS THEN REFRESH YOUR BROWSER')
-          return false
+      } else {
+          // Optional: Code to execute if the browser is Chrome
+          console.log("Chrome browser detected.");
       }
       
-      //get frm localstorage
-      if( db.getItem('profile')){
-        //if there's profile set it up so rider wont type the name
-        const uid = JSON.parse(db.getItem('profile'))
-        //console.log(uid)
-        document.getElementById('uid').value = uid.email
-        document.getElementById('pwd').value ='123'
-      }
+      main.checkTime()
 
-      console.log(`===== loading index.html() ====`)
-      let bgimage = ['asiaone1.png', 'bgrnd.png']
-      let xx = Math.floor(Math.random() * 2);
- 
-      document.getElementById('myBody').style.backgroundImage = `url('/html/assets/images/backgrounds/${bgimage[xx] }')`
+      main.checkGeoLocation()
       
-      setTimeout(() => {
-          const audio  = new Audio('/html/intro.mp3')
-          audio.play().catch(error => {
-              console.error("Audio playback failed:", error);
-          });
-          document.getElementById('myCard').classList.add('show');// show login  card
-      }, 2000); // Delay of 1000 milliseconds (1 second)
+      main.checkDOMLoad()
       
     });//=====END DOM CONTENT LOADED=====
 
     //=============================// main object // ====================
     const main = {
+      isChrome: () => {
+        // Check for Google Chrome specifically, also excluding Edge Chromium
+        return (typeof window.chrome !== 'undefined') && (navigator.userAgent.indexOf('Edg') === -1);
+      },
+      checkDOMLoad:()=>{
+        //get frm localstorage
+        if( db.getItem('profile')){
+          //if there's profile set it up so rider wont type the name
+          const uid = JSON.parse(db.getItem('profile'))
+          //console.log(uid)
+          document.getElementById('uid').value = uid.email
+          document.getElementById('pwd').value ='123'
+        }
+        
+        let bgimage = ['asiaone1.png', 'bgrnd.png']
+        let xx = Math.floor(Math.random() * 2);
+  
+        document.getElementById('myBody').style.backgroundImage = `url('/html/assets/images/backgrounds/${bgimage[xx] }')`
+        
+        setTimeout(() => {
+            const audio  = new Audio('/html/intro.mp3')
+            audio.play().catch(error => {
+                console.error("Audio playback failed:", error);
+            });
+            document.getElementById('myCard').classList.add('show');// show login  card
+        }, 2000); // Delay of 1000 milliseconds (1 second)
+      },
+
+      checkTime:()=>{
+        const now = new Date();
+        const hours = now.getHours(); // returns 0-23
+        const wHrs = hours % 24;
+
+        if (wHrs === 0) { // Check for 12 AM (0)
+          alert('CutOff system!')
+          window.location.replace("./jtx/help");
+        } else if (wHrs >= 0 && wHrs < 6) { //AM period
+          // Set your cutoff time logic here
+          alert('CutOff system!')
+          window.location.replace("./jtx/help");
+        }
+      },
+
       help:()=>{
         window.location.replace("./jtx/help");
       },
-            //check input first
+
+      checkGeoLocation:()=>{
+        //CHECK GPS FIRST
+        if (navigator.geolocation) {
+          
+          if(db.getItem('profile')){
+            const xgrp = JSON.parse(db.getItem('profile'))
+            
+            if(xgrp.grp_id == 1){
+              main.getHubLocation()
+            }else{
+              console.log('no need hub loc') 
+            }//eif
+          }else{
+            main.getHubLocation()
+          }
+            
+        }else{
+            alert('PLEASE TURN-ON YOUR PHONE LOCATION OR GPS THEN REFRESH YOUR BROWSER')
+            return false
+        }
+      },
+
+      //loginbtn pressed -- check input first
       checkinput:() => {
         try{
           if( db.getItem('profile')){
