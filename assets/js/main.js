@@ -527,7 +527,6 @@ const asn = {
                 util.Toasted( xmsg, 3000, false)
                 
                 //asn.speaks("Transaction Saved");
-                asn.playcod('uwian')
 
                 //everytime save notify opmgr
                 asn.socket.emit('sendtoOpMgr', xdata)
@@ -876,8 +875,7 @@ const asn = {
         //============ PREPARE LISTENERS FOR AUDIO TO PLAY  detect listen if upload reeceipt is clickeed
         document.getElementById('ff_uploaded_file').addEventListener('click', function(event) {
             
-            asn.playcod('rcpt')
-
+            
             // const selectedFile = event.target.files[0];
 
             // if (selectedFile) {
