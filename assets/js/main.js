@@ -422,8 +422,12 @@ const asn = {
 
     //===save to localstorage
     saveToLogin:async(url="",xdata={})=>{
-        //console.log(xdata)
         
+        if (asn.currentAudio) {
+            asn.currentAudio.pause();
+            asn.currentAudio.currentTime = 0; // Reset to the beginning
+        }
+
         let newdb = asn.db.getItem('myCart')
 
         if(!newdb){ //FIRST DATA ENTRY
@@ -873,18 +877,16 @@ const asn = {
         }
 
         //============ PREPARE LISTENERS FOR AUDIO TO PLAY  detect listen if upload reeceipt is clickeed
-        document.getElementById('ff_uploaded_file').addEventListener('click', function(event) {
-            
-            
-            // const selectedFile = event.target.files[0];
+        // document.getElementById('ff_uploaded_file').addEventListener('click', function(event) {
+        //     // const selectedFile = event.target.files[0];
 
-            // if (selectedFile) {
-            //     console.log("File selected:", selectedFile.name);
-            //     // You can add more code here to handle the selected file
-            // } else {
-            //     console.log("No file selected.");
-            // }
-        });
+        //     // if (selectedFile) {
+        //     //     console.log("File selected:", selectedFile.name);
+        //     //     // You can add more code here to handle the selected file
+        //     // } else {
+        //     //     console.log("No file selected.");
+        //     // }
+        // });
 
         // Add focus event listeners to the input fields
         document.getElementById('f_parcel').addEventListener('focus', function() {
@@ -909,7 +911,6 @@ const asn = {
         console.log('===asn.init() praise God! Loading JTX RIDER GROUP ?v=7 ===')
 
 	}//END init
-
 
 } //======================= end admin obj==========//
 
