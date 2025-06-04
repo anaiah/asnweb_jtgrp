@@ -270,11 +270,13 @@
       const hours = now.getHours(); // returns 0-23
       const wHrs = hours % 24;
 
-      if (wHrs >= 0 || wHrs < 6) {  //orig is >=23
-      // It's between 10 PM and 6 AM
-          // Set your cutoff time logic here
-          alert('CutOff system!')
-          window.location.replace("./jtx/help");
+      if (wHrs === 0) { // Check for 12 AM (0)
+        alert('CutOff system!')
+        window.location.replace("./jtx/help");
+      } else if (wHrs >= 0 && wHrs < 6) { //AM period
+        // Set your cutoff time logic here
+        alert('CutOff system!')
+        window.location.replace("./jtx/help");
       }
 
       //CHECK GPS FIRST
