@@ -834,7 +834,7 @@ const util = {
                 }else{
 
                     const remitmodal =  new bootstrap.Modal(document.getElementById('remittanceModal'),configObj);
-                    remitmodal.show()  
+                    remitmodal.show() 
 
                     const dbval = JSON.parse( asn.db.getItem('myCart'))
                     const xdb = JSON.parse( asn.db.getItem('profile'))
@@ -1316,7 +1316,7 @@ const util = {
         })
 
         if(aValid.includes(false)){
-            util.Toasted('Error, check our Entry',3000,false)
+            util.Toasted('Error, Please CHECK Your Entry, ERROR FIELDS MARKED IN RED!',3000,false)
             console.log('don\'t post')
             return false
         }else{
@@ -1418,7 +1418,9 @@ const util = {
                     const remitamt =parseInt( document.getElementById('ff_amount').value)
                     
                     if( remitamt > hubamt){
+                        util.Toasted('Error!!! Remitted Amount greater than Amount of Scanned Parcels!!!',3000,false)
                         asn.speaks('Error!!! Remitted Amount  is greater than Amount of Scanned Parcels!!!')
+                        document.getElementById('f_amount').focus()
                         break
                     }
 
