@@ -748,33 +748,25 @@ const asn = {
     },
     //==========END  GETMENU
     
-    //==========play mp3
-    playcod:(ctype)=>{
-        let audio
-        setTimeout(() => {
-            switch(ctype){
-                case "cod":
-                    audio  = new Audio('/html/video/cod_amount.mp3')
-                break
-                case "remit":
-                    audio  = new Audio('/html/video/cod_remit.mp3')
-                break
-                case "hubqty":
-                    audio  = new Audio('/html/video/hub_qty.mp3')
-                break
-                case "hubqty":
-                    audio  = new Audio('/html/video/rcpt_upload.mp3')
-                break
-                case "uwian":
-                    audio  = new Audio('/html/video/uwian.mp3')
-                break
+    currentAudio:null,
 
-            }//endsw
-          
-            audio.play().catch(error => {
-                console.error("Audio playback failed:", error);
-            });
-        }, 0); // Delay of 1000 milliseconds (1 second)
+    //==========play mp3
+    playAudio: (audioPath) =>  {
+      // Stop any currently playing audio
+      if (asn.currentAudio) {
+        asn.currentAudio.pause();
+        asn.currentAudio.currentTime = 0; // Reset to the beginning
+      }
+
+      // Create and play the new audio
+      asn.currentAudio = new Audio(audioPath);
+      asn.currentAudio.play()
+        .then(() => {
+          console.log("Audio playing:", audioPath);
+        })
+        .catch(error => {
+          console.error("Audio playback failed:", error);
+        });
     },
 
     appExt:null,
@@ -872,7 +864,7 @@ const asn = {
             util.modalShow('dataEntryModal') // show initial data entry modal
         }
 
-        //detect listen if upload reeceipt is clickeed
+        //============ PREPARE LISTENERS FOR AUDIO TO PLAY  detect listen if upload reeceipt is clickeed
         document.getElementById('ff_uploaded_file').addEventListener('click', function(event) {
             
             asn.playcod('rcpt')
@@ -886,7 +878,28 @@ const asn = {
             //     console.log("No file selected.");
             // }
         });
-        console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
+
+        // Add focus event listeners to the input fields
+        document.getElementById('f_parcel').addEventListener('focus', function() {
+            const audioPath = this.getAttribute('data-audio');
+            asn.playAudio(audioPath);
+        });
+
+        document.getElementById('f_amount').addEventListener('focus', function() {
+            const audioPath = this.getAttribute('data-audio');
+            asn.playAudio(audioPath);
+        });
+
+        document.getElementById('ff_amount').addEventListener('focus', function() {
+            const audioPath = this.getAttribute('data-audio');
+            asn.playAudio(audioPath);
+        });
+
+        document.getElementById('ff_uploaded_file').addEventListener('focus', function() {
+            const audioPath = this.getAttribute('data-audio');
+            asn.playAudio(audioPath);
+        });
+        console.log('===asn.init() praise God! Loading JTX RIDER GROUP ?v=7 ===')
 
 	}//END init
 
@@ -909,9 +922,3 @@ Ext.onReady(function(){
     asn.init() //instantiate now
 
 })
-
-
-
-
-
-  

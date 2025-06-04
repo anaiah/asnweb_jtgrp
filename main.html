@@ -828,7 +828,7 @@
                 <div class="col-lg-4 mb-3">
                   <div class="form-outline">
                       <label class="form-label mb-0" for="f_parcel">Parcel Qty.</label>
-                      <input value="1" onfocus="javscript:asn.playcod('hubqty')"  type="number" step="1" onblur="" id="f_parcel" name="f_parcel" placeholder="0" class="form-control equipmentx" min="1" required />
+                      <input value="1" data-audio="/html/video/hub_qty.mp3"  type="number" step="1" onblur="" id="f_parcel" name="f_parcel" placeholder="0" class="form-control equipmentx" min="1" required />
                       <div class="invalid-feedback">
                           Required Field
                       </div>
@@ -942,7 +942,7 @@
                <div class="col-lg-4 mb-3">
                   <div class="form-outline">
                       <label class="form-label mb-0" for="ff_parcel">Actual Parcel(s) Delivered</label>
-                      <input value="0" onclick="this.select()" type="number" step="1" onblur="" id="ff_parcel" name="ff_parcel" placeholder="0" class="form-control equipmentx" min="1" required />
+                      <input value="1" onclick="this.select()" type="number" step="1" onblur="" id="ff_parcel" name="ff_parcel" placeholder="0" class="form-control equipmentx" min="1" required />
                       <div class="invalid-feedback">
                           Required Field
                       </div>
@@ -958,7 +958,7 @@
                     <div class="form-outline">
                       <P><img src="/html/video/sprinter_actual_amount.JPG" width="300px"></P>
                         <label class="form-label mb-0" for="f_amount">Hub Amount</label>
-                        <input onfocus="javscript:asn.playcod('cod')" value="0" type="number" step="0.01" onblur="" id="f_amount" name="f_amount" placeholder="0.00" class="form-control equipmentx" min="20"  required />
+                        <input data-audio="/html/video/cod_amount.mp3"  value="1000" type="number" step="0.01" onblur="" id="f_amount" name="f_amount" placeholder="0.00" class="form-control equipmentx" min="20"  required />
                         <div class="invalid-feedback">
                             Required Field
                         </div>
@@ -976,7 +976,7 @@
                     <div class="form-outline">
                       <P><img src="/html/video/sprinter_remit_amount.JPG" width="300px"></P>
                         <label class="form-label mb-0" for="ff_amount">Actual Amount Remittance</label>
-                        <input onfocus="javscript:asn.playcod('remit')" value="0" type="number" step="0.01" onblur="" id="ff_amount" name="ff_amount" placeholder="0.00" class="form-control equipmentx" min="20"  required />
+                        <input data-audio="/html/video/cod_remit.mp3" value="1000" type="number" step="0.01" onblur="" id="ff_amount" name="ff_amount" placeholder="0.00" class="form-control equipmentx" min="20"  required />
                         <div class="invalid-feedback">
                             Required Field
                         </div>
@@ -1012,7 +1012,7 @@
                     <!-- ONCHANGE=ASN.CHECKFILESIZE() -->
                     <!-- <input onchange="" class="form-control equipmentxx" type="file" name="ff_uploaded_file" id="ff_uploaded_file" accept='image/*' capture="environment"  required />
                      -->
-                    <input onchange="" class="form-control equipmentxx" type="file" name="ff_uploaded_file" id="ff_uploaded_file" accept='image/*'   required />
+                    <input data-audio="/html/video/rcpt_upload.mp3"  class="form-control equipmentxx" type="file" name="ff_uploaded_file" id="ff_uploaded_file" accept='image/*'   required />
                     
                     <div class="invalid-feedback">
                       Required Field!!!
