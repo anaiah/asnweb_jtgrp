@@ -1414,6 +1414,14 @@ const util = {
                     objfrm.old_parcel = dbval.f_parcel
                     ///objfrm.old_amount = dbval.f_amount
                     
+                    const hubamt = parseInt( document.getElementById('f_amount').value) 
+                    const remitamt =parseInt( document.getElementById('ff_amount').value)
+                    
+                    if( remitamt > hubamt){
+                        asn.speaks('Error!!! Remitted Amount  is greater than Amount of Scanned Parcels!!!')
+                        break
+                    }
+
                     //// objfrm.grp_id="1" <-- if u want additional key value
 
                     
@@ -1429,7 +1437,6 @@ const util = {
                             break;
                         }//eif
                     }
-
 
                 break
             }//end switch
