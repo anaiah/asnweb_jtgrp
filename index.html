@@ -250,13 +250,14 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   
   <script src="/html/assets/js/util.js?v=8"></script>
-  <script src="/html/assets/js/login.js?v=8"></script>
+  <!-- <script src="/html/assets/js/login.js?v=8"></script> -->
 
   <script>
     
     db = window.localStorage
 
     document.addEventListener('DOMContentLoaded', function() {
+      
       console.log('=======DOM CONTENT LOADED=====')
 
       if (!main.isChrome()) {  // Use ! to check if NOT Chrome
@@ -269,20 +270,33 @@
             window.location.replace("./jtx/help");
         }
       } else {
-          // Optional: Code to execute if the browser is Chrome
-          console.log("Chrome browser detected.");
+        // Optional: Code to execute if the browser is Chrome
+        console.log("Chrome browser detected.");
+          
+        main.formValidate()          
+        main.checkTime()
+        main.checkGeoLocation()
+        main.checkDOMLoad()
+      
       }
       
-      main.checkTime()
-
-      main.checkGeoLocation()
-      
-      main.checkDOMLoad()
       
     });//=====END DOM CONTENT LOADED=====
 
     //=============================// main object // ====================
     const main = {
+      
+      formValidate:()=>{
+        //change form action 
+        document.getElementById('uploadForm').action=`http://${myIp}/postimage`
+
+        util.loadFormValidation('#loginForm')
+        util.loadFormValidation('#newempForm')
+        util.modalListeners('newempModal')
+            
+        console.log('loadformValidation() loaded==')
+      },
+
       isChrome: () => {
         // Check for Google Chrome specifically, also excluding Edge Chromium
         return (typeof window.chrome !== 'undefined') && (navigator.userAgent.indexOf('Edg') === -1);
