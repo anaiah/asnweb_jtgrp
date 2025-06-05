@@ -314,7 +314,7 @@
       checkTime:()=>{
         const now = new Date();
         const hours = now.getHours(); // returns 0-23
-        const wHrs = hours % 24;
+        const wHrs = hours % 24; //modules to get 12am as 0
 
         if (wHrs === 0) { // Check for 12 AM (0)
           alert('CutOff system!')
