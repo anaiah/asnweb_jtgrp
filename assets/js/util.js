@@ -839,9 +839,11 @@ const util = {
                     const dbval = JSON.parse( asn.db.getItem('myCart'))
                     const xdb = JSON.parse( asn.db.getItem('profile'))
 
+                    //====from myCartlocal Storage
                     document.getElementById('trans_tbody').innerHTML=`<tr>
                         <td>${dbval.f_transnumber}</td>
                         <td>${dbval.f_parcel}</td>
+                        <td>${dbval.login_date}</td>
                         
                         </tr>`
 
