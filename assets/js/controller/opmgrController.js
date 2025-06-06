@@ -138,7 +138,7 @@ Ext.define('MyApp.controller.opmgrController', {
         // const newSeries2 = nuData.map(item => parseInt(item.attendance_pct, 10));
         console.log('updating chart... ', nuData )
         
-        asn.speaks('UPDATE CHHART INCOMING DATA!!!')
+        //asn.speaks('UPDATE CHART INCOMING DATA!!!')
 
         //const newLabels2 = newData2.map(item => item.region);
         if(xchart=="chart1"){

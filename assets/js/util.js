@@ -1496,7 +1496,7 @@ const util = {
 
             util.Toasted(`SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!`,6000,false)
             
-            location.href = '../jtx/dashboard'
+            myFunction(  util.getCookie('f_voice'), () => { location.href = '../jtx/dashboard'; });
             
         }else{
             
@@ -1604,8 +1604,35 @@ const util = {
         util.setCookie("f_voice",xvoice,0)
         util.setCookie("f_pic",xpic,0)
     },
-    
-    translate:async(xmsg)=>{
+
+    audio:null,
+
+    // Usage:
+    // func('my message'); // Calls with only 1 param, other_func defaults to empty function
+    // Function('hey', () => { console.log('Running!'); });
+    // func('my message', asn.other_func); // Calls with second param as a function
+    translate:async(xmsg, runwhat = () => {}, cRedirect )=>{  //1st param string, 2nd param func
+        
+        const aActs = [
+            " Ingat po sa Byahe!", 
+            " Galingan naten today ha?",
+            " Kayang-kaya mo yan!!!!",
+            " Wag pabayaan ang sarili!!!",
+            " Magdasal lagi sa Panginoon!",
+            " Gawin mong  sandigan ng lakas ang iyong Pamilya!"]
+        
+        const now = new Date();
+        const hours = now.getHours(); // returns 0-23
+        const wHrs = hours % 24;
+        
+        if (wHrs >= 6 && wHrs < 12) { // Check for 12 AM (0)
+            util.translate(`MAGANDANG UMAGA!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`)        
+        } else if (wHrs >= 12 && wHrs <= 17) { //AM period
+            util.translate(`MAGANDANG HAPON!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`)
+        } else if (wHrs >= 18 && wHrs <= 23) { //AM period
+            util.translate(`MAGANDANG GABI!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`)
+         
+        }
 
         const apiKey = 'sk_71ec2e7034a4e78f766acbbfd418beb2d6e7c8febfc94507'; // your API key
         const voiceId = 'NEqPvTuKWuvwUMAEPBPR'; // your voice ID
@@ -1630,13 +1657,20 @@ const util = {
 
         const audioBlob = await response.blob();
         const url = URL.createObjectURL(audioBlob);
-        const audio = new Audio(url);
-        audio.play();
+        util.audio = new Audio(url);
+        
+        util.audio.play();
 
+        audio.addEventListener('ended', () => {
+            // This code runs after the audio finishes
+            
+            if (typeof runwhat === 'function') {
+                runwhat();
+            }//eif
+        });
         } catch (error) {
         console.error('Error:', error);
         }
-    
 
 
     },
