@@ -792,7 +792,7 @@ const asn = {
         };    
 
         console.log('main.js SPEAK()')
-        
+
         if(util.getCookie('f_pic')!==""){
             document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
         }else{
@@ -858,7 +858,6 @@ const asn = {
         util.modalListeners('claimsModal')
         util.modalListeners('newempModal')
         util.modalListeners('dataEntryModal')
-
         util.modalListeners('remittanceModal')
 
         //
@@ -869,10 +868,17 @@ const asn = {
             asn.getMonthlyTransaction(util.getCookie('f_id'))
         }
 
-        
-        ///////asn.getTopHub()
-        if(!asn.db.getItem('myCart')){ //if initial no cart data thenshow.. if with  cart. dont show
+         if(!asn.db.getItem('myCart')){ //if initial no cart data thenshow.. if with  cart. dont show
             util.modalShow('dataEntryModal') // show initial data entry modal
+        }else{  // else, if  there's a present cart and notdeleted, rider shud  close
+            
+            util.translate({
+                xmsg: `May Pending ka pala, paki-out sa paggamit ng Remittance entry!!!`,
+                runwhat: () => {
+                    util.modalShow('remittanceModal')
+                }
+            });
+
         }
 
         //============ PREPARE LISTENERS FOR AUDIO TO PLAY  detect listen if upload reeceipt is clickeed

@@ -1612,8 +1612,8 @@ const util = {
     // Function('hey', () => { console.log('Running!'); });
     // func('my message', asn.other_func); // Calls with second param as a function
     isPlaying:false,
-    ///=========================PLAY GREETINGS===============
-    translate:async ({ xmsg, runwhat = () => {}, cRedirect } = {}) => {
+///=========================PLAY GREETINGS===============
+  translate:async ({ xmsg, runwhat = () => {}, cRedirect } = {}) => {
 
         if (util.isPlaying) return; // prevent re-entry
   
@@ -1632,7 +1632,7 @@ const util = {
         const wHrs = hours % 24;
         let xvoice
 
-        if (wHrs >= 6 && wHrs < 12) { // Check for 12 AM (0)
+        if (wHrs >= 0 && wHrs < 12) { // Check for 12 AM (0)
             xvoice = `MAGANDANG UMAGA!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`  
         } else if (wHrs >= 12 && wHrs <= 17) { //AM period
             xvoice =`MAGANDANG HAPON!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`
@@ -1666,6 +1666,9 @@ const util = {
             const url = URL.createObjectURL(audioBlob);
             const audio = new Audio(url);
 
+            //carlo
+            audio.onended = null; // Remove previous handle
+
             // use onended instead of addEventListener
             audio.onended = () => {
                 util.isPlaying = false; // reset flag
@@ -1675,16 +1678,17 @@ const util = {
                 }
                 if (typeof runwhat === 'function') {
                     runwhat();
+                   
                 }
             }//ended onended
             
             audio.play();
         } catch (error) {
         console.error('Error:', error);
+            util.isPlaying = false; // Reset flag on error
         }
 
-    },
-      
+    },    
     //new site posting 
     newempPost:async function(frm,modal,url="",xdata={}){
         fetch(url,{
