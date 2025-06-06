@@ -1496,8 +1496,8 @@ const util = {
 
             util.Toasted(`SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!`,6000,false)
             
-            //util.translate(  util.getCookie('f_voice'), () => { location.href = '../jtx/dashboard'; });
-            location.href = '../jtx/dashboard';
+            util.translate({xmsg: util.getCookie('f_voice'), cRedirect:"../jtx/dashboard"})
+            
         }else{
             
             const errmsg =`ERROR -- PLEASE TRY AGAIN! YOUR DISTANCE FROM THE HUB  IS ${d_meters} METER(S) 
@@ -1611,8 +1611,14 @@ const util = {
     // func('my message'); // Calls with only 1 param, other_func defaults to empty function
     // Function('hey', () => { console.log('Running!'); });
     // func('my message', asn.other_func); // Calls with second param as a function
-    translate:async(xmsg, runwhat = () => {}, cRedirect )=>{  //1st param string, 2nd param func
-        
+    isPlaying:false,
+    ///=========================PLAY GREETINGS===============
+    translate:async ({ xmsg, runwhat = () => {}, cRedirect } = {}) => {
+
+        if (util.isPlaying) return; // prevent re-entry
+  
+        util.isPlaying = true;
+
         const aActs = [
             " Ingat po sa Byahe!", 
             " Galingan naten today ha?",
@@ -1624,13 +1630,14 @@ const util = {
         const now = new Date();
         const hours = now.getHours(); // returns 0-23
         const wHrs = hours % 24;
-        
+        let xvoice
+
         if (wHrs >= 6 && wHrs < 12) { // Check for 12 AM (0)
-            util.translate(`MAGANDANG UMAGA!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`)        
+            xvoice = `MAGANDANG UMAGA!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`  
         } else if (wHrs >= 12 && wHrs <= 17) { //AM period
-            util.translate(`MAGANDANG HAPON!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`)
-        } else if (wHrs >= 18 && wHrs <= 23) { //AM period
-            util.translate(`MAGANDANG GABI!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`)
+            xvoice =`MAGANDANG HAPON!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`
+        } else if (wHrs > 17 && wHrs <= 23) { //AM period
+            xvoice = `MAGANDANG GABI!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`
          
         }
 
@@ -1638,43 +1645,46 @@ const util = {
         const voiceId = 'NEqPvTuKWuvwUMAEPBPR'; // your voice ID
 
         try {
-        const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            'xi-api-key': apiKey,
-            },
-            body: JSON.stringify({
-            text: xmsg,
-            model_id: 'eleven_multilingual_v2',
-            output_format: 'mp3',
-            }),
-        });
+            const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                'xi-api-key': apiKey,
+                },
+                body: JSON.stringify({
+                text: xvoice ,
+                model_id: 'eleven_multilingual_v2',
+                output_format: 'mp3',
+                }),
+            });
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
 
-        const audioBlob = await response.blob();
-        const url = URL.createObjectURL(audioBlob);
-        util.audio = new Audio(url);
-        
-        util.audio.play();
+            const audioBlob = await response.blob();
+            const url = URL.createObjectURL(audioBlob);
+            const audio = new Audio(url);
 
-        audio.addEventListener('ended', () => {
-            // This code runs after the audio finishes
+            // use onended instead of addEventListener
+            audio.onended = () => {
+                util.isPlaying = false; // reset flag
             
-            if (typeof runwhat === 'function') {
-                runwhat();
-            }//eif
-        });
+                if (cRedirect !== undefined && cRedirect !== null) {
+                    window.location.href = cRedirect;
+                }
+                if (typeof runwhat === 'function') {
+                    runwhat();
+                }
+            }//ended onended
+            
+            audio.play();
         } catch (error) {
         console.error('Error:', error);
         }
 
-
     },
-    
+      
     //new site posting 
     newempPost:async function(frm,modal,url="",xdata={}){
         fetch(url,{
