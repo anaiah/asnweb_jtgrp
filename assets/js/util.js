@@ -1604,7 +1604,43 @@ const util = {
         util.setCookie("f_voice",xvoice,0)
         util.setCookie("f_pic",xpic,0)
     },
+    
+    translate:async(xmsg)=>{
 
+        const apiKey = 'sk_71ec2e7034a4e78f766acbbfd418beb2d6e7c8febfc94507'; // your API key
+        const voiceId = 'NEqPvTuKWuvwUMAEPBPR'; // your voice ID
+
+        try {
+        const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            'xi-api-key': apiKey,
+            },
+            body: JSON.stringify({
+            text: xmsg,
+            model_id: 'eleven_multilingual_v2',
+            output_format: 'mp3',
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+
+        const audioBlob = await response.blob();
+        const url = URL.createObjectURL(audioBlob);
+        const audio = new Audio(url);
+        audio.play();
+
+        } catch (error) {
+        console.error('Error:', error);
+        }
+    
+
+
+    },
+    
     //new site posting 
     newempPost:async function(frm,modal,url="",xdata={}){
         fetch(url,{

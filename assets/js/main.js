@@ -792,8 +792,27 @@ const asn = {
         };    
 
         console.log('main.js SPEAK()')
-        asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
+        const now = new Date();
+        const hours = now.getHours(); // returns 0-23
+        const wHrs = hours % 24;
+
+        const aActs = [
+            " Ingat po sa Byahe!", 
+            " Galingan naten today ha?",
+            " Kayang-kaya mo yan!!!!",
+            " Wag pabayaan ang sarili!!!",
+            " Magdasal lagi sa Panginoon!",
+            " Gawin mong  sandigan ng lakas ang iyong Pamilya!"]
+
         
+        if (wHrs >= 6 && wHrs < 12) { // Check for 12 AM (0)
+            util.translate(`MAGANDANG UMAGA!!! ${util.getCookie('f_voice')} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`)        
+        } else if (wHrs >= 12 && wHrs <= 17) { //AM period
+            util.translate(`MAGANDANG HAPON!!! ${util.getCookie('f_voice')} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`)
+        } else if (wHrs >= 18 && wHrs <= 23) { //AM period
+            util.translate(`MAGANDANG GABI!!! ${util.getCookie('f_voice')} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`)
+         
+        }
         if(util.getCookie('f_pic')!==""){
             document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
         }else{
