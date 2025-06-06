@@ -804,7 +804,9 @@ const asn = {
             " Wag pabayaan ang sarili!!!",
             " Magdasal lagi sa Panginoon!",
             " Gawin mong  sandigan ng lakas ang iyong Pamilya!"]
-
+        const now = new Date();
+        const hours = now.getHours(); // returns 0-23
+        const wHrs = hours % 24;
         
         if (wHrs >= 6 && wHrs < 12) { // Check for 12 AM (0)
             util.translate(`MAGANDANG UMAGA!!! ${util.getCookie('f_voice')} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`)        
@@ -814,7 +816,7 @@ const asn = {
             util.translate(`MAGANDANG GABI!!! ${util.getCookie('f_voice')} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`)
          
         }
-        
+
         if(util.getCookie('f_pic')!==""){
             document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
         }else{
