@@ -1496,7 +1496,7 @@ const util = {
 
             util.Toasted(`SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!`,6000,false)
             
-            myFunction(  util.getCookie('f_voice'), () => { location.href = '../jtx/dashboard'; });
+            util.translate(  util.getCookie('f_voice'), () => { location.href = '../jtx/dashboard'; });
             
         }else{
             
