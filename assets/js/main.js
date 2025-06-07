@@ -872,12 +872,12 @@ const asn = {
             util.modalShow('dataEntryModal') // show initial data entry modal
         }else{  // else, if  there's a present cart and notdeleted, rider shud  close
             
-            util.translate({
-                xmsg: `May Pending ka pala, paki-out sa paggamit ng Remittance entry!!!`,
-                runwhat: () => {
-                    util.modalShow('remittanceModal')
-                }
-            });
+            // util.translate({
+            //     xmsg: `May Pending ka pala, paki-out sa paggamit ng Remittance entry!!!`,
+            //     runwhat: () => {
+            //         util.modalShow('remittanceModal')
+            //     }
+            // });
 
         }
 
