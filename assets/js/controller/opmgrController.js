@@ -229,7 +229,7 @@ Ext.define('MyApp.controller.opmgrController', {
                 
                 return val;
             },
-            offsetY:-30,
+            offsetY:-20,
                 style: {
                     fontSize: "12px",
                     colors: ["#d84315"]
