@@ -871,7 +871,7 @@ const asn = {
          if(!asn.db.getItem('myCart')){ //if initial no cart data thenshow.. if with  cart. dont show
             util.modalShow('dataEntryModal') // show initial data entry modal
         }else{  // else, if  there's a present cart and notdeleted, rider shud  close
-            
+            alert('YOU HAVEA PENDING REMITTANCE, OPEN  REMITTANCE ENTRY!')
             // util.translate({
             //     xmsg: `May Pending ka pala, paki-out sa paggamit ng Remittance entry!!!`,
             //     runwhat: () => {
