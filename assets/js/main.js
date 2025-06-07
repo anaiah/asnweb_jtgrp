@@ -874,7 +874,7 @@ const asn = {
             //alert('YOU HAVEA PENDING REMITTANCE, OPEN  REMITTANCE ENTRY!')
             util.Toasted('YOU HAVEA PENDING REMITTANCE!!!',3000,false)//alert
             util.modalShow('remittanceModal')
-            
+
             // util.translate({
             //     xmsg: `May Pending ka pala, paki-out sa paggamit ng Remittance entry!!!`,
             //     runwhat: () => {
