@@ -207,7 +207,7 @@ Ext.define('MyApp.controller.opmgrController', {
             bar: {
                 dataLabels: {
                     position: 'top',
-                    orientation:'vertical'
+                    //orientation:'vertical'
                 }
             }
         },
@@ -232,7 +232,7 @@ Ext.define('MyApp.controller.opmgrController', {
             offsetY:0,
                 style: {
                     fontSize: "12px",
-                    colors: ["#00695c"]
+                    colors: ["#d84315"]
             },
             // style: {
             //     cssClass: 'vertical-label' // optional, for more control
