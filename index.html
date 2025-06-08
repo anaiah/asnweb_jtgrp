@@ -288,7 +288,7 @@
       
       formValidate:()=>{
         //change form action 
-        document.getElementById('uploadForm').action=`http://${myIp}/postimage`
+        document.getElementById('uploadForm').action=`${myIp}/postimage`
 
         util.loadFormValidation('#loginForm')
         util.loadFormValidation('#newempForm')

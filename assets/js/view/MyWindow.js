@@ -112,7 +112,7 @@
                                 handler: function() {
 
                                     console.log( myIp )
-                                    
+
                                     var form = this.up('form').getForm();
                                     if (form.isValid()) {
                                         // Example submit, adapt URL as needed
@@ -120,14 +120,18 @@
                                             url: `${myIp}/coor/adduser`,
 
                                             success: function(form, action) {
+                                                console.log('action is',action)
+
                                                 Ext.Msg.alert('Success', action.result.msg);
                                                 form.reset(); // Clear the form after successful submission
                                             },
                                             failure: function(form, action) {
+                                                console.log('fail action is',action)
+                                                
                                                 Ext.Msg.alert('Failed', action.result ? action.result.msg : 'Error');
                                             }
                                         });
-                                    }
+                                    }//==========end form isvalid()
                                 }
                             }
                         ]//end buttons
