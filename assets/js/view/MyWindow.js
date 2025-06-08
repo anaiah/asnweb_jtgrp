@@ -14,7 +14,7 @@
         ],
 
         initComponent: function() {
-            // var me = this;
+            var me = this;
             // var myIp = 'http://192.168.62.221:10000'; // Keep your URL if needed
 
             //apply
