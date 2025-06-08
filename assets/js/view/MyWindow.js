@@ -120,15 +120,20 @@
                                             url: `${myIp}/coor/adduser`,
 
                                             success: function(form, action) {
-                                                console.log('action is',action)
-
                                                 Ext.Msg.alert('Success', action.result.msg);
                                                 form.reset(); // Clear the form after successful submission
                                             },
                                             failure: function(form, action) {
-                                                console.log('fail action is',action)
-                                                
-                                                Ext.Msg.alert('Failed', action.result ? action.result.msg : 'Error');
+                                                let message = 'Error';
+                                                if (action.response) {
+                                                    try {
+                                                        const res = Ext.decode(action.response.responseText);
+                                                        message = res.msg || message;
+                                                    } catch (e) {
+                                                        console.error('Error parsing response:', e);
+                                                    }
+                                                }
+                                                Ext.Msg.alert('Failed', message);
                                             }
                                         });
                                     }//==========end form isvalid()
