@@ -6,6 +6,7 @@
         width: 400,
         height: 400,
         resizable:false,
+        modal:true,
         //html: 'Hello World',
         autoShow: true,
         requires: [
@@ -13,8 +14,8 @@
         ],
 
         initComponent: function() {
-            var me = this;
-            var myIp = 'http://192.168.62.221:10000'; // Keep your URL if needed
+            // var me = this;
+            // var myIp = 'http://192.168.62.221:10000'; // Keep your URL if needed
 
             //apply
             Ext.applyIf(me, {
@@ -113,7 +114,7 @@
                                     if (form.isValid()) {
                                         // Example submit, adapt URL as needed
                                         form.submit({
-                                            url: `${util.myIp}/coor/adduser`,
+                                            url: `${myIp}/coor/adduser`,
 
                                             success: function(form, action) {
                                                 Ext.Msg.alert('Success', action.result.msg);
@@ -147,7 +148,7 @@
             var me = this;
             Ext.Ajax.request({
                 //autoLoad:false,
-                url: `${util.myIp}/coor/getlocation/${util.getCookie('f_email')}`,
+                url: `${myIp}/coor/getlocation/${util.getCookie('f_email')}`,
                 success: function(response) {
                     var data = Ext.decode(response.responseText);
                    
@@ -169,7 +170,7 @@
             var locationName= records[0].get('location').toLowerCase();
             Ext.Ajax.request({
                 //autoLoad:false,
-                url: `${util.myIp}/coor/gethub/${locationName}/${util.getCookie('f_email')}`,
+                url: `${myIp}/coor/gethub/${locationName}/${util.getCookie('f_email')}`,
             
                 success: function(response) {
                     var data = Ext.decode(response.responseText);
