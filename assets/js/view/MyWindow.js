@@ -4,7 +4,7 @@
         id:'mywindow',
         title: 'ADD USER',
         width: 400,
-        height: 400,
+        height: 300,
         resizable:false,
         modal:true,
         //html: 'Hello World',
