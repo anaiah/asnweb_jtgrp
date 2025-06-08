@@ -110,6 +110,9 @@
                             {
                                 text: 'Save',
                                 handler: function() {
+
+                                    console.log( myIp )
+                                    
                                     var form = this.up('form').getForm();
                                     if (form.isValid()) {
                                         // Example submit, adapt URL as needed
