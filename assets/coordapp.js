@@ -14,6 +14,7 @@ Ext.application({
         'MyApp.view.locationGrid',  // <---- ADD THIS LINE
         'MyApp.view.riderGrid',  // <---- ADD THIS LINE
         'MyApp.view.opmgrcalendarGrid',  // <---- ADD THIS LINE
+        'MyApp.view.MyWindow',  // <---- ADD THIS LINE
     ],
 
     stores: 

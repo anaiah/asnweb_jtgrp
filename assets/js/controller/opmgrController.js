@@ -230,9 +230,9 @@ Ext.define('MyApp.controller.opmgrController', {
                 return val;
             },
             offsetY:-20,
-                style: {
-                    fontSize: "12px",
-                    colors: ["#d84315","#00695c"]
+            style: {
+                fontSize: "12px",
+                colors: ["#d84315","#00695c"]
             },
             // style: {
             //     cssClass: 'vertical-label' // optional, for more control
