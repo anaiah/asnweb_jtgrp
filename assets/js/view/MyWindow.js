@@ -118,6 +118,7 @@
 
                                             success: function(form, action) {
                                                 Ext.Msg.alert('Success', action.result.msg);
+                                                form.reset(); // Clear the form after successful submission
                                             },
                                             failure: function(form, action) {
                                                 Ext.Msg.alert('Failed', action.result ? action.result.msg : 'Error');
