@@ -113,7 +113,7 @@
                                     if (form.isValid()) {
                                         // Example submit, adapt URL as needed
                                         form.submit({
-                                            url: `${myIp}/coor/adduser`,
+                                            url: `${util.myIp}/coor/adduser`,
 
                                             success: function(form, action) {
                                                 Ext.Msg.alert('Success', action.result.msg);
@@ -139,10 +139,6 @@
 
         },//END INITCOMPONENT
     
-        //global var, remove later
-        myIp:  'http://192.168.62.221:10000',
-        email: `salimbagat.mcgold24@gmail.com`,
-
         //==add the methods
         loadLocationData: function() {
        //     var myIp = 'http://192.168.62.221:10000'; // Keep your URL if needed
@@ -151,7 +147,7 @@
             var me = this;
             Ext.Ajax.request({
                 //autoLoad:false,
-                url: `${me.myIp}/coor/getlocation/${me.email}`,
+                url: `${util.myIp}/coor/getlocation/${util.getCookie('f_email')}`,
                 success: function(response) {
                     var data = Ext.decode(response.responseText);
                    
@@ -173,7 +169,7 @@
             var locationName= records[0].get('location').toLowerCase();
             Ext.Ajax.request({
                 //autoLoad:false,
-                url: `${me.myIp}/coor/gethub/${locationName}/${me.email}`,
+                url: `${util.myIp}/coor/gethub/${locationName}/${util.getCookie('f_email')}`,
             
                 success: function(response) {
                     var data = Ext.decode(response.responseText);
