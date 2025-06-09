@@ -3,10 +3,12 @@
         alias: 'widget.mywindow',
         id:'mywindow',
         title: 'ADD USER',
-        width: 400,
+        width: '80%', // or null
+        minWidth: 200,
         height: 250,
         resizable:false,
         modal:true,
+        constrainHeader: true
         //html: 'Hello World',
         autoShow: true,
         requires: [
@@ -22,13 +24,19 @@
                 items:[
                     {
                         xtype:'form',
-                        bodyPadding: 10,
+                        layout: 'vbox', // vertical box layout for internal responsiveness
                         defaults: {
-                            labelAlign: 'right',    // labels align to right
-                            labelWidth: 80,         // fixed label width
-                            labelPad: 5,            // space between label and field
-                            width: 350              // wider input fields
+                            labelAlign: 'top',
+                            margin: '0 0 10 0',
+                            width: '100%'
                         },
+                        // bodyPadding: 10,
+                        // defaults: {
+                        //     labelAlign: 'right',    // labels align to right
+                        //     labelWidth: 80,         // fixed label width
+                        //     labelPad: 5,            // space between label and field
+                        //     width: 350              // wider input fields
+                        // },
                         items: [
                             
                             {
