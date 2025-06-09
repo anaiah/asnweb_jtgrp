@@ -814,7 +814,7 @@ Ext.onReady(function(){
     asn.ctrlExt.listencoordLocation('')
     asn.ctrlExt.listencoordRider()
         
-    var win = Ext.create('xApp.view.MyWindow', {
+    var win = Ext.create('MyApp.view.MyWindow', {
         autoShow: false // create but don't show
     });
     win.on('afterrender', function() {
