@@ -26,10 +26,14 @@
                 items:[
                     {
                         xtype:'form',
-                        layout: 'vbox', // vertical box layout for internal responsiveness
+                        //layout: 'vbox', // vertical box layout for internal responsiveness
+                        layout: {
+                            type: 'vbox',
+                            align: 'center'
+                        },
                         defaults: {
                             labelAlign: 'top',
-                            margin: '0 0 10 0',
+                            margin: '10 0',
                             width: '80%'
                         },
                         // bodyPadding: 10,
@@ -43,6 +47,7 @@
                             
                             {
                                 xtype: 'combobox',
+                                editable:false,
                                 fieldLabel: 'Location',
                                 name: 'location',
                                 store: Ext.create('Ext.data.Store', {
@@ -60,6 +65,7 @@
                             
                             {
                                 xtype: 'combobox',
+                                editable:false,
                                 fieldLabel: 'Hub',
                                 name: 'hub',
                                 store: Ext.create('Ext.data.Store', {
