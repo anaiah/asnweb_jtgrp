@@ -58,14 +58,7 @@ Ext.application({
             height: 300
         });
 
-        MyApp.app.win = Ext.create('MyApp.view.MyWindow', {
-            autoShow: false // create but don't show
-        });
-        MyApp.app.win.on('afterrender', function() {
-            this.center();
-            this.show(); // now show it
-        });
-        
+       
         //win.show(); // or just call show() in code, then center()
 
     },
