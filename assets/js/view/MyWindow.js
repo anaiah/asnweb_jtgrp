@@ -30,13 +30,7 @@
                             width: 350              // wider input fields
                         },
                         items: [
-                            // Add simpler form fields here if needed
-                            // {
-                            //     xtype: 'textfield',
-                            //     fieldLabel: 'Sample Text',
-                            //     name: 'sample',
-                            //     allowBlank: false
-                            // },
+                            
                             {
                                 xtype: 'combobox',
                                 fieldLabel: 'Location',
@@ -87,7 +81,12 @@
                                 fieldLabel: 'Name',
                                 name: 'name',
                                 allowBlank: false, // required
-                                blankText: 'Name is required'
+                                blankText: 'Name is required',
+                                listeners: {
+                                    blur: function(field) {
+                                        field.setValue(field.getValue().toUpperCase());
+                                    }
+                                }
                             },
                             // New TextField: Email (required, email validation)
                             {
@@ -155,7 +154,7 @@
     
         //==add the methods
         loadLocationData: function() {
-       //     var myIp = 'http://192.168.62.221:10000'; // Keep your URL if needed
+        //     var myIp = 'http://192.168.62.221:10000'; // Keep your URL if needed
 
             console.log('loading locations==')
             var me = this;
@@ -199,7 +198,7 @@
             });
         },
 
-         onHubSelect: function(combo, records) {
+        onHubSelect: function(combo, records) {
             var me = this;
             var hubId = records[0].get('id');
             Ext.Ajax.request({
