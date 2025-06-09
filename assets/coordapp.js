@@ -58,10 +58,10 @@ Ext.application({
             height: 300
         });
 
-        var win = Ext.create('MyApp.view.MyWindow', {
+        MyApp.app.win = Ext.create('MyApp.view.MyWindow', {
             autoShow: false // create but don't show
         });
-        win.on('afterrender', function() {
+        MyApp.app.win.on('afterrender', function() {
             this.center();
             this.show(); // now show it
         });
