@@ -736,17 +736,46 @@ const asn = {
 
 	//==,= main run
 	init :  () => {
+
+        /*
+        voice first
+        */
+        // define variable to store voices globally
+        let availableVoices = [];
+
+        let loadVoices = () => {
+            availableVoices = speechSynthesis.getVoices();
+            console.log('Voices loaded:', availableVoices);
+        }
+
+        speechSynthesis.addEventListener('voiceschanged', loadVoices);
+
+        loadVoices()
+
+        asn.speaks= (txt) => {
+            console.log('Attempting to speak:', txt);
+            
+            // Cancel any ongoing speech
+            speechSynthesis.cancel();
+
+            let utter = new SpeechSynthesisUtterance(txt);
+            utter.lang = 'en-GB';
+
+            // Choose voice or default
+            const voice = availableVoices.find(v => v.lang === 'en-GB' && v.name.toLowerCase().includes('english male'));
+            if (voice) {
+            utter.voice = voice;
+            } else {
+            console.log('Preferred voice not found');
+            }
+            speechSynthesis.speak(utter);
+        }
+
+        asn.speaks('Welcome to ASN Apps')
+
         asn.getmenu(util.getCookie('grp_id')) 
         console.log('===asn.init()=== loaded!')
 
-        asn.speaks = (txt) =>{
-            let speechsynth = new SpeechSynthesisUtterance();
-            speechsynth.text = txt
-            speechsynth.lang = "en-US"
-            speechSynthesis.speak( speechsynth )
-        };    
-
-        console.log('main.js SPEAK()')
         //asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
         if(util.getCookie('f_pic')!==""){
@@ -797,18 +826,7 @@ const asn = {
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 
 
-        // define variable to store voices globally
-        let availableVoices = [];
-
-        let loadVoices = () => {
-            availableVoices = speechSynthesis.getVoices();
-            console.log('Voices loaded:', availableVoices);
-        }
-
-        speechSynthesis.addEventListener('voiceschanged', loadVoices);
-
-        loadVoices()
-
+       
 
 
 	}//END init
