@@ -4,8 +4,10 @@
         id:'mywindow',
         title: 'ADD USER',
         width: '80%', // or null
+        height:  '80%',
         minWidth: 200,
-        height: 250,
+
+        minHeight: 300,
         resizable:false,
         modal:true,
         constrainHeader: true,
@@ -28,7 +30,7 @@
                         defaults: {
                             labelAlign: 'top',
                             margin: '0 0 10 0',
-                            width: '100%'
+                            width: '80%'
                         },
                         // bodyPadding: 10,
                         // defaults: {
