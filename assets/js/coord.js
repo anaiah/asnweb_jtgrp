@@ -763,11 +763,14 @@ const asn = {
 
             // Choose voice or default
             const voice = availableVoices.find(v => v.lang === 'en-GB' && v.name.toLowerCase().includes('english male'));
-            if (voice) {
-            utter.voice = voice;
+            
+             if (voice) {
+                console.log('voice is ',voice)
+                utter.voice = voice;
             } else {
-            console.log('Preferred voice not found');
+                console.log('Preferred voice not found');
             }
+            
             speechSynthesis.speak(utter);
         }
 
