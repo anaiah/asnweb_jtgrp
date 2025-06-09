@@ -4,7 +4,7 @@
         id:'mywindow',
         title: 'ADD USER',
         width: '80%', // or null
-        height:  '80%',
+        height:  '50%',
         minWidth: 200,
 
         minHeight: 300,
