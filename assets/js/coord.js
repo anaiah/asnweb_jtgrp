@@ -747,7 +747,7 @@ const asn = {
         };    
 
         console.log('main.js SPEAK()')
-        asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
+        //asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
         if(util.getCookie('f_pic')!==""){
             document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
@@ -796,6 +796,21 @@ const asn = {
 
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 
+
+        // define variable to store voices globally
+        let availableVoices = [];
+
+        let loadVoices = () => {
+            availableVoices = speechSynthesis.getVoices();
+            console.log('Voices loaded:', availableVoices);
+        }
+
+        speechSynthesis.addEventListener('voiceschanged', loadVoices);
+
+        loadVoices()
+
+
+
 	}//END init
 
 } //======================= end admin obj==========//
@@ -819,9 +834,3 @@ Ext.onReady(function(){
     window.scrollTo(0,0);
     asn.init() //instantiate now
 })
-
-
-
-
-
-  
