@@ -8,7 +8,7 @@
         height: 250,
         resizable:false,
         modal:true,
-        constrainHeader: true
+        constrainHeader: true,
         //html: 'Hello World',
         autoShow: true,
         requires: [
