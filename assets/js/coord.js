@@ -814,13 +814,7 @@ Ext.onReady(function(){
     asn.ctrlExt.listencoordLocation('')
     asn.ctrlExt.listencoordRider()
         
-    asn.appExt.win = Ext.create('MyApp.view.MyWindow', {
-            autoShow: false // create but don't show
-    });
-    asn.appExt.win.on('afterrender', function() {
-        this.center();
-        this.show(); // now show it
-    });
+    
         
     window.scrollTo(0,0);
     asn.init() //instantiate now

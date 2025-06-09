@@ -10,7 +10,12 @@
         minHeight: 300,
         resizable:false,
         modal:true,
-        constrainHeader: true,
+        //constrainHeader: true,
+        listeners: {
+            afterrender: function(win) {
+                win.center();
+            }
+        },
         //html: 'Hello World',
         //autoShow: true,
         requires: [

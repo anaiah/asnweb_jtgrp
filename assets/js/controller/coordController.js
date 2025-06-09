@@ -26,6 +26,14 @@ Ext.define('MyApp.controller.coordController', {
 
     },
    
+    showWindow:()=>{
+        var win = Ext.create('MyApp.view.MyWindow', {
+            autoShow: false, // create but don't show
+            //closeAction: 'hide'
+        });
+        win.show()
+    
+    },
     //head
     areaReset:()=>{
         //reset rider / calendar /location as well
