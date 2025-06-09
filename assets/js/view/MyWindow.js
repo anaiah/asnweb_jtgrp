@@ -4,7 +4,7 @@
         id:'mywindow',
         title: 'ADD USER',
         width: '80%', // or null
-        height:  '50%',
+        height:  '55%',
         minWidth: 200,
 
         minHeight: 300,
@@ -12,7 +12,7 @@
         modal:true,
         constrainHeader: true,
         //html: 'Hello World',
-        autoShow: true,
+        //autoShow: true,
         requires: [
             'Ext.form.Panel'
         ],
