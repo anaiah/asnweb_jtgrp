@@ -260,25 +260,29 @@
       
       console.log('=======DOM CONTENT LOADED=====')
 
-      if (!main.isChrome()) {  // Use ! to check if NOT Chrome
-        alert('PLEASE USE CHROME BROWSER!');
-        // Prevent login
-        let button = document.getElementById('loginbtn');
-        if (button) { // Check if button exists before disabling
-            button.disabled = true;
-            button.setAttribute('aria-disabled', 'true');
-            window.location.replace("./jtx/help");
-        }
-      } else {
-        // Optional: Code to execute if the browser is Chrome
-        console.log("Chrome browser detected.");
+      // if (!main.isChrome()) {  // Use ! to check if NOT Chrome
+      //   alert('PLEASE USE CHROME BROWSER!');
+      //   // Prevent login
+      //   let button = document.getElementById('loginbtn');
+      //   if (button) { // Check if button exists before disabling
+      //       button.disabled = true;
+      //       button.setAttribute('aria-disabled', 'true');
+      //       window.location.replace("./jtx/help");
+      //   }
+      // } else {
+      //   // Optional: Code to execute if the browser is Chrome
+      //   console.log("Chrome browser detected.");
           
+      //   main.formValidate()          
+      //   main.checkTime()
+      //   main.checkGeoLocation()
+      //   main.checkDOMLoad()
+      
+      // }
         main.formValidate()          
         main.checkTime()
         main.checkGeoLocation()
         main.checkDOMLoad()
-      
-      }
       
       
     });//=====END DOM CONTENT LOADED=====
