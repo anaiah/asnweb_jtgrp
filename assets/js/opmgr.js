@@ -887,7 +887,7 @@ const asn = {
             console.log('HERES UR GRAPH DATA',xresult)
 
            // console.log('chart sum',asn.ctrlExt.calculateChartData(data))
-            asn.speaks('ASN SOCKET INCOMING DATA!!!')
+            ///asn.speaks('ASN SOCKET INCOMING DATA!!!')
 
             const attendance_keysToExtract = ['reg', 'logged']; // add coluumns here 'parcel__delivered', Array of keys to extract
             const parcel_keysToExtract = ['parcel', 'parcel_delivered']
