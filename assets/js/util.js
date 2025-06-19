@@ -1573,9 +1573,9 @@ const util = {
                     break
                 
                     case 5: // operations mgr
-                    console.log('poooknnatt')
-                        
-                    location.href ='../jtx/operations'    
+                    case 8: //hr
+                        console.log('poooknnatt')
+                        location.href ='../jtx/operations'    
                     break
 
                 }//===== endswitch
