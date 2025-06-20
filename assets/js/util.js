@@ -1399,9 +1399,10 @@ const util = {
                     objfrm.login_date = util.nugetDate() 
                     objfrm.transnumber = document.getElementById('f_transnumber').value
 
+                    util.toggleButton('start-btn',true)
+                    
                     asn.saveobjfrm = objfrm
                     asn.saveToLogin(`${myIp}/savetologin/${util.getCookie('f_id')}`,objfrm)
-
 
                 break
 
@@ -1437,6 +1438,7 @@ const util = {
                             break;
                             
                         }else{
+                            util.toggleButton('remittance-btn',true)
                             asn.saveTransaction(`${myIp}/savetransaction/${util.getCookie('f_id')}`,objfrm)
                             break;
                         }//eif
@@ -1448,6 +1450,13 @@ const util = {
             return
 
         }//endif
+    },
+
+    //disable enable buttons
+    toggleButton:(element,lshow)=>{
+        let button = document.getElementById(element) //turn off remittance save btn
+        button.disabled = lshow;
+        button.setAttribute('aria-disabled', `${lshowstr}`  ); //Optional, but helps screen readers
     },
 
     //===calculate the distance haverstine ====//    

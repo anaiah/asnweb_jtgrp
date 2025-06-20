@@ -456,6 +456,8 @@ const asn = {
                     asn.db.removeItem('myCart')
 
                     util.hideModal('dataEntryModal',2000)    
+
+                    util.toggleButton('start-btn',false)
         
                     return false;
 
@@ -465,6 +467,9 @@ const asn = {
             
                     const mydata = data.data
                     console.log('***%%%%%%%%%% FROM NODEJS SAVELOGIN() TRIGGER SOCKET EMIT*****', mydata)
+
+                    util.toggleButton('start-btn',false)
+
                     asn.socket.emit('sendtoOpMgr', mydata)
 
                 }
@@ -485,6 +490,8 @@ const asn = {
             //finaldb.f_amount = parseFloat(finaldb.f_amount) + parseFloat( objfrm.f_amount)
 
             asn.db.setItem('myCart', JSON.stringify(finaldb))
+
+            util.toggleButton('start-btn',false)
         }
          
         // const badge = document.getElementById('bell-badge')
@@ -550,6 +557,8 @@ const asn = {
             }else{
                 asn.speaks('DATABASE ERROR! PLEASE CHECK!')
             }
+
+            util.toggleButton('remittance-btn',false)
            
         })  
         .catch((error) => {
