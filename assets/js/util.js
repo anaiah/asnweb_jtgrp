@@ -1456,7 +1456,7 @@ const util = {
     toggleButton:(element,lshow)=>{
         let button = document.getElementById(element) //turn off remittance save btn
         button.disabled = lshow;
-        button.setAttribute('aria-disabled', `${lshowstr}`  ); //Optional, but helps screen readers
+        button.setAttribute('aria-disabled', `${lshow}`  ); //Optional, but helps screen readers
     },
 
     //===calculate the distance haverstine ====//    
