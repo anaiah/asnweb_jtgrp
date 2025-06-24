@@ -181,7 +181,7 @@ Ext.define('MyApp.controller.opmgrController', {
 
         }//if
 
-        let colors = ['#0277bd', '#00838f   ', '#00695c', '#2e7d32','#558b2f','#9e9d24','#ff8f00','#d84315'];
+        let colors = ['#0277bd', '#00838f', '#00695c', '#2e7d32','#558b2f','#9e9d24','#ff8f00','#d84315'];
         
         // Fisher-Yates shuffle
         for (let i = colors.length - 1; i > 0; i--) {
@@ -196,7 +196,7 @@ Ext.define('MyApp.controller.opmgrController', {
           chart: {
             type: 'bar',
             height: 350,
-            width: 380,
+            width: 400,
             redrawOnParentResize: false,
             redrawOnWindowResize: false,
                     
