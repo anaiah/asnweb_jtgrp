@@ -266,7 +266,7 @@ Ext.define('MyApp.controller.opmgrController', {
           colors: ['transparent']
         },
         xaxis: {
-                categories: ['BSL','CENTRAL VISAYAS','CMNVA','CMNL','SMNL','PANAY'],
+                categories: ['BCOL','SMR-LYTE','CVIS','CMNVA','CMNL','SMNL','PANAY'],
                 title: {
                     text: 'REGION',
                     style: {
