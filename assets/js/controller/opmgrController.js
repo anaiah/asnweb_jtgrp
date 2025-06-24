@@ -182,12 +182,13 @@ Ext.define('MyApp.controller.opmgrController', {
         }//if
 
         //let colors = ['#0277bd', '#00838f', '#00695c', '#2e7d32','#558b2f','#9e9d24','#ff8f00','#d84315'];
-        let colors = [ '#2e7d32','#558b2f']
+        let colors = [ '#2e7d32','#d84315']
+        
         // Fisher-Yates shuffle
-        for (let i = colors.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [colors[i], colors[j]] = [colors[j], colors[i]]; // swap elements
-        }//endfor   
+        // for (let i = colors.length - 1; i > 0; i--) {
+        //     const j = Math.floor(Math.random() * (i + 1));
+        //     [colors[i], colors[j]] = [colors[j], colors[i]]; // swap elements
+        // }//endfor   
 
 
         var options = {
