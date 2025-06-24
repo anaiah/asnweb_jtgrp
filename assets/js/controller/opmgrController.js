@@ -379,6 +379,7 @@ Ext.define('MyApp.controller.opmgrController', {
                         var json = Ext.decode(response.responseText);
                         var data = json.data || json; // if data is wrapped or not
             
+                        console.log(('opmgr/summar/email', data))
                         var areaStore = grid.getStore()
                         areaStore.removeAll()
 
