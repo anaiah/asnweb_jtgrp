@@ -25,6 +25,10 @@ remitupload.addEventListener("submit", e => {
                 //hide modal
                 util.hideModal('remittanceModal',2000)//then close form    
 
+                setTimeout(() => {
+                    asn.logout()
+                }, 3000);
+
             } //eif
 
         })
