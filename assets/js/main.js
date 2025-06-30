@@ -501,6 +501,9 @@ const asn = {
             asn.speaks('Local Storage Successfully Saved!!!') //speak
             util.Toasted('Local Storage Successfully Saved!!!',3000,false)//alert
             util.hideModal('dataEntryModal',2000)    
+            setTimeout(() => {
+                    asn.logout()
+                }, 2000);
         }
             
     },

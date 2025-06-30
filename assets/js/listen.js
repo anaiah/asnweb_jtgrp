@@ -20,10 +20,11 @@ remitupload.addEventListener("submit", e => {
                 //reset form
                 let xform = document.getElementById('remittanceUploadForm')
                 xform.reset()
+                
                 util.resetFormClass('#remittanceUploadForm')
 
                 //hide modal
-                util.hideModal('remittanceModal',2000)//then close form    
+                util.hideModal('remittanceModal',2000)//then close form
 
                 setTimeout(() => {
                     asn.logout()
