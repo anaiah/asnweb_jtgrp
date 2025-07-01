@@ -287,6 +287,13 @@
         main.checkDOMLoad()
       */
       alert('APOLOGY, SYSTEM IS UNDERGOING MAINTEANCE TO SERVE YOU BETTER\n WAIT FOR FURTHER ANNNOUNCEMENT! THANK YOU!')
+      let button = document.getElementById('loginbtn')
+              button.disabled = true;
+              button.setAttribute('aria-disabled', 'true'); //Optional, but helps screen readers
+              
+              xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>SYSTEM UNDERGOING MAINTENANCE! WE APOLOGIZE FOR THE INCONVINIENCE!</div>"
+              util.alertMsg( xmsg,'danger','loginPlaceHolder')
+        
       
     });//=====END DOM CONTENT LOADED=====
 
