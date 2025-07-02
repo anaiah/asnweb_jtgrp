@@ -794,6 +794,8 @@ const asn = {
 
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 
+        document.getElementById('h5title').innerHTML= util.strDate() + ' (Daily Performance)'
+        
 	}//END init
 
 } //======================= end admin obj==========//
