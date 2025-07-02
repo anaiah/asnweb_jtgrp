@@ -946,7 +946,6 @@ Ext.onReady(function(){
     
     //osndp.Bubbl
     window.scrollTo(0,0);
-
-    asn.init() //instantiate now
+    asn.init()
 
 })
