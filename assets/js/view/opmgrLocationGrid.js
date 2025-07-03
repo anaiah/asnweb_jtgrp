@@ -41,6 +41,39 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
         enableGroupingMenu: false,
         collapsible:false
     }],
+
+    listeners: {
+        viewready: function(grid) {
+
+            var store = grid.getStore();
+            store.sort('parcel', 'DESC'); // replace 'fieldName' with your actual field
+        
+            
+            // // Select the first row after the grid has been rendered
+            // var grid = Ext.getCmp('opmgrGrid');
+            // var xstore = grid.getStore()
+            // console.log('===viewRead loaded === store loaded w recs==' , xstore.data.length )
+
+            // if (xstore.getCount() > 0) {
+                
+            //     grid.getSelectionModel().select(0);
+            
+            // }
+            /*                           
+            store.sort([
+                { property: 'qty_pct', direction: 'DESC' },
+                
+                { property: 'location', direction: 'ASC' },
+                { property: 'hub', direction: 'ASC' },
+                
+            ]);
+            */
+            //load the store now
+            //this.getStore().load()
+
+        }//end viewready
+    },//end listeners viewconfig
+
     columns: [
         { 
             text: '', 
@@ -159,33 +192,6 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
         //stripeRows: true,
         emptyText: 'No data available',
         preserveScrollOnRefresh: true,
-        listeners: {
-            viewready: function(view) {
-                
-                // // Select the first row after the grid has been rendered
-                // var grid = Ext.getCmp('opmgrGrid');
-                // var xstore = grid.getStore()
-                // console.log('===viewRead loaded === store loaded w recs==' , xstore.data.length )
-
-                // if (xstore.getCount() > 0) {
-                    
-                //     grid.getSelectionModel().select(0);
-                
-                // }
-                /*                           
-                store.sort([
-                    { property: 'qty_pct', direction: 'DESC' },
-                   
-                    { property: 'location', direction: 'ASC' },
-                    { property: 'hub', direction: 'ASC' },
-                    
-                ]);
-                */
-                //load the store now
-                //this.getStore().load()
-
-            }//end viewready
-        }//end listeners viewconfig
     },
     //renderTo: Ext.getBody() // or your container
 });

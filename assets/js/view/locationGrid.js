@@ -28,15 +28,12 @@ Ext.define('MyApp.view.locationGrid' ,{
         //apply row css
         getRowClass: function(record) { 
         }, 
-
-        listeners: {
-            viewready: function(grid) {
-                var store = grid.getStore();
-                store.sort('parcel', 'DESC'); // replace 'fieldName' with your actual field
-            }//end viewready
-        }//end listeners viewconfig
     },    
     listeners:{
+        viewready: function(grid) {
+            var store = grid.getStore();
+            store.sort('parcel', 'DESC'); // replace 'fieldName' with your actual field
+        },//end viewready
         afterrender: function(grid) {
         },
     
