@@ -25,6 +25,15 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
         loadingText:'Loading Please Wait!',
         emptyText:'No Records Found!!!',
 
+        //colorize row for value
+        getRowClass: function(record, rowIndex, rowParams, store){
+            var qty = record.get('qty'); // the field based on which you color
+            if (qty > 0) {
+                return 'my-row-class';
+            }
+            
+        },
+
         listeners: {
             viewready: function(view) {
                 console.log('riders grid viewready');
@@ -117,6 +126,30 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
             }
         },
         */
+
+         {
+            header: 'Parcel',
+            width: 85,
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
+            align: 'center',       // Align the column values to the right
+            headerAlign: 'center',
+            dataIndex: 'qty',
+            sortable:false,
+            //summaryType: 'sum',
+            field: {
+                xtype: 'numberfield'
+            },
+            renderer: function(value, meta, record) {
+                //meta.tdCls = 'font10g'
+
+                return `${value}`
+                //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
+                //return value;
+            }
+        },
+
         {
             header: 'Delivery',
             width: 85,
