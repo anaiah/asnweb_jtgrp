@@ -130,9 +130,13 @@ Ext.define('MyApp.view.locationGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font10'
-
-                return util.addCommas(value)
+                if(parseInt(value)>0){
+                    meta.tdCls = 'font10'
+                    return util.addCommas(value)
+                }else{
+                    return util.addCommas(value)
+                }
+                
             },
             summaryRenderer:(value,summaryData,dataIndex)=>{
                 return `<b>${util.addCommas(value)}</b>`
