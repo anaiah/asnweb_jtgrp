@@ -30,8 +30,9 @@ Ext.define('MyApp.view.locationGrid' ,{
         }, 
 
         listeners: {
-            viewready: function(view) {
-               
+            viewready: function(grid) {
+                var store = grid.getStore();
+                store.sort('qty', 'DESC'); // replace 'fieldName' with your actual field
             }//end viewready
         }//end listeners viewconfig
     },    
