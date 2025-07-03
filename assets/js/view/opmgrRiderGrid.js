@@ -40,7 +40,7 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
     },    
 
     listeners:{
-        viewready: function(view) {
+        viewready: function(grid) {
             console.log('riders grid viewready');
             var store = grid.getStore()
              store.sort('qty', 'DESC');
