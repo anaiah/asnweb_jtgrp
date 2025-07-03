@@ -25,7 +25,7 @@ Ext.define('MyApp.view.riderGrid' ,{
 
         listeners: {
             viewready: function(grid) {
-                console.log('riders grid viewready');
+                console.log('@@@riders grid viewready');
                 var store = grid.getStore();
                 store.sort('qty', 'DESC'); // replace 'fieldName' with your actual field
             
