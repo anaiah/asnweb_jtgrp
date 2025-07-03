@@ -35,15 +35,17 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
         },
 
         listeners: {
-            viewready: function(view) {
-                console.log('riders grid viewready');
-
             
-            }//end viewready
         }//end listeners viewconfig
     },    
 
     listeners:{
+        viewready: function(view) {
+            console.log('riders grid viewready');
+            var store = grid.getStore()
+             store.sort('qty', 'DESC');
+            
+        },//end viewready
         cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
             //console.log( record.get("location"))      
         },
