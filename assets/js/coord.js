@@ -523,7 +523,7 @@ const asn = {
 
     //===for top 5 chart
     loadbarChart: async( ctrans )=>{
-        console.log('loading... loadbarchart()')
+        console.log('loading... ctrans, loadbarchart()')
 
         await fetch(`${myIp}/coor/topfivehub/${util.getCookie('f_email')}/${ctrans}`,{
             cache: 'reload'
