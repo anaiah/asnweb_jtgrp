@@ -28,14 +28,18 @@ Ext.define('MyApp.view.riderGrid' ,{
     listeners:{
         viewready: function(grid) {
             console.log('@@@riders grid viewready');
-            var store = grid.getStore();
-            store.sort('qty', 'DESC'); // replace 'fieldName' with your actual field
-        
+           
         },//end viewready
         cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
             //console.log( record.get("location"))      
         },
         selectionchange: function(model, records ) {
+            var gridInstance = this; // 'this' is the grid
+            var store = gridInstance.getStore();
+
+            if (store.getCount() > 0) {
+                store.sort('qty', 'DESC');
+            }
         }
     },
 
