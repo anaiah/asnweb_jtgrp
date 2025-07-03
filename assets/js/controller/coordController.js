@@ -237,6 +237,9 @@ Ext.define('MyApp.controller.coordController', {
 
                         riderstore.loadData(data);
                         
+                        const store = ridergrid.getStore();
+                        store.sort('qty', 'DESC'); // replace 'fieldName' with your actual field
+            
                         console.log('RIDER Data loaded successfully');
                     },
                     failure: function(response) {
