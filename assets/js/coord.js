@@ -533,7 +533,7 @@ const asn = {
         })
         .then((data) => {
 
-            const xdata =[data]
+            const xdata = data
 
             console.log(`TOP   ${JSON.stringify(xdata)})`)
 
