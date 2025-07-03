@@ -24,9 +24,10 @@ Ext.define('MyApp.view.riderGrid' ,{
         emptyText:'No Records Found!!!',
 
         listeners: {
-            viewready: function(view) {
+            viewready: function(grid) {
                 console.log('riders grid viewready');
-
+                var store = grid.getStore();
+                store.sort('qty', 'DESC'); // replace 'fieldName' with your actual field
             
             }//end viewready
         }//end listeners viewconfig
