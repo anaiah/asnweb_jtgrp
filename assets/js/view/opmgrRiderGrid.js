@@ -148,6 +148,8 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
                 if(parseInt(value)>0){
                     return `<b>${value}</b>`
                 
+                }else{
+                    return value
                 }
                 //return value;
             }
