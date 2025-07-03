@@ -531,9 +531,11 @@ const asn = {
         .then((res) => {  //promise... then 
             return res.json();
         })
-        .then((xdata) => {
+        .then((data) => {
 
-            console.log(`TOP 5 ${ctrans} ${xdata}`)
+            const xdata =[data]
+
+            console.log(`TOP   ${JSON.stringify(xdata)})`)
 
             //const mergedData = ''dash.mergeFinalData(xdata.xdata, cTrans );
             //const mergedData = asn.mergeFinalData(xdata.xdata, cTrans );
