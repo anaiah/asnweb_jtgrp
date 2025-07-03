@@ -27,7 +27,7 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
 
         //colorize row for value
         getRowClass: function(record, rowIndex, rowParams, store){
-            var qty = record.get('qty'); // the field based on which you color
+            var qty = parseInt(record.get('qty')); // the field based on which you color
             if (qty > 0) {
                 return 'my-row-class';
             }
@@ -142,10 +142,11 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                //meta.tdCls = 'font10g'
-
+                meta.tdCls = 'font10g'
+                
+                (parseInt(value) > 0 ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
+                
                 return `${value}`
-                //(value=="1" ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
                 //return value;
             }
         },
