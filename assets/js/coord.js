@@ -629,6 +629,7 @@ const asn = {
                 }//EIF    
             });
 
+            console.log('category data chart ', category_data)
             options.series[0].data = series_data
 
             options.xaxis.categories = category_data
