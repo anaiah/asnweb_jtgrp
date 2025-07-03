@@ -142,11 +142,13 @@ Ext.define('MyApp.view.opmgrRiderGrid' ,{
                 xtype: 'numberfield'
             },
             renderer: function(value, meta, record) {
-                meta.tdCls = 'font10g'
+                //meta.tdCls = 'font10g'
                 
-                (parseInt(value) > 0 ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
+                //(parseInt(value) > 0 ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
+                if(parseInt(value)>0){
+                    return `<b>${value}</b>`
                 
-                return `${value}`
+                }
                 //return value;
             }
         },
