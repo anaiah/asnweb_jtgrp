@@ -90,7 +90,12 @@ Ext.define('MyApp.view.opmgrLocationGrid' ,{
             headerAlign: 'center',
             summaryType: 'sum', 
             renderer: (value)=> { 
-                return util.addCommas(value) 
+                if(parseInt(value)>0){
+                    return `<b>${util.addCommas(value)}</b>`    
+                }else{
+                    return util.addCommas(value)
+                }
+                 
             },
             summaryRenderer:(value,summaryData,dataIndex)=>{
                 return `<b>${util.addCommas(value)}</b>`

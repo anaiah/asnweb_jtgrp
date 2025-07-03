@@ -105,6 +105,33 @@ Ext.define('MyApp.view.riderGrid' ,{
             }
         },
         */
+       {
+            header: 'Parcel',
+            width: 85,
+            sortable:false,
+            hideable:false,
+            menuDisabled:true,
+            align: 'center',       // Align the column values to the right
+            headerAlign: 'center',
+            dataIndex: 'qty',
+            sortable:false,
+            //summaryType: 'sum',
+            field: {
+                xtype: 'numberfield'
+            },
+            renderer: function(value, meta, record) {
+                //meta.tdCls = 'font10g'
+                
+                //(parseInt(value) > 0 ? meta.tdCls += "uploaded" : meta.tdCls += "unuploaded");
+                if(parseInt(value)>0){
+                    return `<b>${value}</b>`
+                
+                }else{
+                    return value
+                }
+                //return value;
+            }
+        },
         {
             header: 'Delivery',
             width: 85,
