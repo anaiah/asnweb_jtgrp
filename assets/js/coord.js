@@ -523,7 +523,7 @@ const asn = {
 
     //===for top 5 chart
     loadbarChart: async( ctrans )=>{
-        console.log('loading... ctrans, loadbarchart()')
+        console.log('loading loadbarchart()')
 
         await fetch(`${myIp}/coor/topfivehub/${util.getCookie('f_email')}/${ctrans}`,{
             cache: 'reload'
@@ -535,7 +535,7 @@ const asn = {
 
             const xdata = data
 
-            console.log(`TOP   ${JSON.stringify(xdata)})`)
+            //console.log(`TOP   ${JSON.stringify(xdata)})`)
 
             //const mergedData = ''dash.mergeFinalData(xdata.xdata, cTrans );
             //const mergedData = asn.mergeFinalData(xdata.xdata, cTrans );
