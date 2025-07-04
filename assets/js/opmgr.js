@@ -948,7 +948,14 @@ const asn = {
             setTimeout(() => {
                 asn.ctrlExt.updateChart(parcelData, 'chart2')
             }, 1000)
-        
+
+            //**************** RELOAD THE  GRIDS========= */
+            asn.ctrlExt.listenRegion()
+
+            asn.ctrlExt.listenLocation()
+
+            asn.ctrlExt.listenRider()
+           
             console.log('=====CHARTDATA=====',attendanceData, parcelData)
         })
 
