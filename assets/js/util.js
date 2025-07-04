@@ -1566,11 +1566,12 @@ const util = {
                     case 1:
                         //check distance before proceeding to login
                         //take out chcking of distance bring back  later
-                    
+                    /*  
                         if (navigator.geolocation) {
                             navigator.geolocation.getCurrentPosition( util.showPosition );
                         }
-  
+                    */
+                        location.href = '../jtx/dashboard' 
                     break
                 
                     case 4: // coordinator
