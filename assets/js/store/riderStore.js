@@ -24,11 +24,7 @@ Ext.define('MyApp.store.riderStore', {
     
     listeners: {
         'datachanged':(store,e)=>{
-           console.log('store datachanged') 
            
-            
-            store.sort('qty', 'DESC');
-
         }
     }//end listen				 
     
