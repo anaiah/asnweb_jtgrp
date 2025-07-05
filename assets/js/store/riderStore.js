@@ -24,7 +24,10 @@ Ext.define('MyApp.store.riderStore', {
     
     listeners: {
         'datachanged':(store,e)=>{
-           
+            setTimeout(() => {
+                store.sort('qty', 'DESC'); 
+                //ridergrid.getView().refresh(); // Refresh view to reflect changes
+            }, 50); 
         }
     }//end listen				 
     
