@@ -235,7 +235,12 @@ Ext.define('MyApp.controller.coordController', {
                         var json = Ext.decode(response.responseText);
                         var data = json.data || json; // if data is wrapped or not
 
-                         data.sort((a, b) => b.qty - a.qty); // Assuming qty is an integer
+                        // Ensure all qty values are numbers in your data array before sorting
+                        data.forEach(function(item) {
+                            item.qty = parseInt(item.qty, 10); // Convert string to integer
+                        });
+
+                        data.sort((a, b) => b.qty - a.qty); // Assuming qty is an integer
             
                         console.log('rider array data', data)
             
@@ -267,6 +272,7 @@ Ext.define('MyApp.controller.coordController', {
 
             //reset calendar
             Ext.getCmp('opmgrcalendarGrid').setTitle('&nbsp;');
+            
             var opmgrcalendarstore = Ext.getCmp('opmgrcalendarGrid').getStore();
             opmgrcalendarstore.removeAll();
             
