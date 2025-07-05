@@ -7,11 +7,7 @@ Ext.define('MyApp.store.riderStore', {
     storeId:'riderStore',
     
     //remoteSort:true,
-    sorters: [{
-        property: 'qty',
-        direction: 'DESC'
-    }],
-
+    
     proxy: {
         // load using HTTP
         type: 'ajax',
