@@ -304,117 +304,118 @@ Ext.define('MyApp.controller.coordController', {
 
   
     //opmgr
-    listenLocation:()=>{
-        console.log('listenLocation() opmgrController.js fird===')
+    // listenLocation:()=>{
+    //     console.log('listenLocation() opmgrController.js fird===')
        
-        //call Location / hub Grid
-        //var locgrid = Ext.getCmp('opmgrLocationGrid')
-        var locgrid = Ext.ComponentQuery.query('opmgrlocationgrid')[0] //load alias
+    //     //call Location / hub Grid
+    //     //var locgrid = Ext.getCmp('opmgrLocationGrid')
+    //     var locgrid = Ext.ComponentQuery.query('opmgrlocationgrid')[0] //load alias
         
-        locgrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
+    //     locgrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
         
-            if (selected.length > 0) {
+    //         if (selected.length > 0) {
 
-                console.log('hey locgrid location  ().change')
+    //             console.log('hey locgrid location  ().change')
              
 
-                //rider
-                Ext.getCmp('riderGrid').setTitle('&nbsp;')
-                var opmgrriderstore = Ext.getCmp('riderGrid').getStore();
-                opmgrriderstore.removeAll();
+    //             //rider
+    //             Ext.getCmp('riderGrid').setTitle('&nbsp;')
+    //             var opmgrriderstore = Ext.getCmp('riderGrid').getStore();
+    //             opmgrriderstore.removeAll();
          
-                //scrollto location-grid
-                util.scrollsTo('rider-grid')
+    //             //scrollto location-grid
+    //             util.scrollsTo('rider-grid')
 
-                var record = selected[0];
-                var locValue = record.get('hub');
+    //             var record = selected[0];
+    //             var locValue = record.get('hub');
 
-                console.log('Selected Location:', locValue);
+    //             console.log('Selected Location:', locValue);
 
-                //SET TITLE
-                Ext.getCmp('riderGrid').setTitle( locValue ) 
+    //             //SET TITLE
+    //             Ext.getCmp('riderGrid').setTitle( locValue ) 
                 
-                // Get the store
-                //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
+    //             // Get the store
+    //             //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
               
-                // Make an AJAX request to get the data from the server
-                Ext.Ajax.request({
-                    url: `${myIp}/coor/ridersummary/${locValue}`,
-                    success: function(response) {
-                        var json = Ext.decode(response.responseText);
-                        var data = json.data || json; // if data is wrapped or not
+    //             // Make an AJAX request to get the data from the server
+    //             Ext.Ajax.request({
+    //                 url: `${myIp}/coor/ridersummary/${locValue}`,
+    //                 success: function(response) {
+    //                     var json = Ext.decode(response.responseText);
+    //                     var data = json.data || json; // if data is wrapped or not
                         
-                        opmgrriderstore.loadData(data);
+    //                     opmgrriderstore.loadData(data);
 
-                        console.log('RIDER Data loaded successfully');
-                    },
-                    failure: function(response) {
-                        console.error('Failed to load data');
-                        Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
-                    }
-                });
+    //                     console.log('RIDER Data loaded successfully');
+    //                 },
+    //                 failure: function(response) {
+    //                     console.error('Failed to load data');
+    //                     Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
+    //                 }
+    //             });
             
-            }//====end if
-        });
+    //         }//====end if
+    //     });
 
-    },
-    //opmgr
-    listenRider:()=>{
-        console.log('===listenRider() opmgrcontroller.js===')
+    // },
+
+    // //opmgr
+    // listenRider:()=>{
+    //     console.log('===listenRider() opmgrcontroller.js===')
         
-        var ridergrid = Ext.ComponentQuery.query('ridergrid')[0] //load alias
+    //     var ridergrid = Ext.ComponentQuery.query('ridergrid')[0] //load alias
         
-        ridergrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
+    //     ridergrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
 
              
-            //reset calendar
-            Ext.getCmp('opmgrcalendarGrid').setTitle('&nbsp;');
-            var opmgrcalendarstore = Ext.getCmp('opmgrcalendarGrid').getStore();
-            opmgrcalendarstore.removeAll();
+    //         //reset calendar
+    //         Ext.getCmp('opmgrcalendarGrid').setTitle('&nbsp;');
+    //         var opmgrcalendarstore = Ext.getCmp('opmgrcalendarGrid').getStore();
+    //         opmgrcalendarstore.removeAll();
           
-            if (selected.length > 0) {
+    //         if (selected.length > 0) {
 
-                //scrollto location-grid
-                util.scrollsTo('calendar-grid')
+    //             //scrollto location-grid
+    //             util.scrollsTo('calendar-grid')
 
-                var record = selected[0];
-                var empidValue = record.get('emp_id');
+    //             var record = selected[0];
+    //             var empidValue = record.get('emp_id');
 
-                console.log('Selected Employee ID:', empidValue);
+    //             console.log('Selected Employee ID:', empidValue);
 
-                //SET TITLE
-                Ext.getCmp('opmgrcalendarGrid').setTitle( `${record.get('full_name')}, ${record.get('transactions')} Working Day(s)`) 
+    //             //SET TITLE
+    //             Ext.getCmp('opmgrcalendarGrid').setTitle( `${record.get('full_name')}, ${record.get('transactions')} Working Day(s)`) 
                 
-                // Make an AJAX request to get the data from the server
-                Ext.Ajax.request({
+    //             // Make an AJAX request to get the data from the server
+    //             Ext.Ajax.request({
                     
-                    url: `${myIp}/gridmonthlytransaction/${empidValue}`,
+    //                 url: `${myIp}/gridmonthlytransaction/${empidValue}`,
 
-                    success: function(response) {
-                        var json = Ext.decode(response.responseText);
-                        var data = json.data || json; // if data is wrapped or not
+    //                 success: function(response) {
+    //                     var json = Ext.decode(response.responseText);
+    //                     var data = json.data || json; // if data is wrapped or not
                         
-                        opmgrcalendarstore.loadData(data);
+    //                     opmgrcalendarstore.loadData(data);
                         
-                        console.log('calendar Data loaded successfully===',  data);
-                    },
-                    failure: function(response) {
-                        console.error('Failed to load data');
-                        Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
-                    }
-                });
+    //                     console.log('calendar Data loaded successfully===',  data);
+    //                 },
+    //                 failure: function(response) {
+    //                     console.error('Failed to load data');
+    //                     Ext.Msg.alert('Error', 'Failed to load data. Please try again.');
+    //                 }
+    //             });
                 
-                // record.suspendEvents(); // Prevent events while setting the value
-                // record.resumeEvents();  // Re-enable events
-            }else{
+    //             // record.suspendEvents(); // Prevent events while setting the value
+    //             // record.resumeEvents();  // Re-enable events
+    //         }else{
                 
-                // No row is selected (clear the store)
-                //var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
-                //opmgrlocstore.removeAll();
+    //             // No row is selected (clear the store)
+    //             //var opmgrlocstore = Ext.getCmp('opmgrLocationGrid').getStore();
+    //             //opmgrlocstore.removeAll();
             
-            }//====end if        
-        })
-    },
+    //         }//====end if        
+    //     })
+    // },
     
     loadPage: (page)=> {
 
