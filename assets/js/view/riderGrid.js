@@ -34,6 +34,8 @@ Ext.define('MyApp.view.riderGrid' ,{
             //console.log( record.get("location"))      
         },
         selectionchange: function(model, records ) {
+
+            console.log('ditooo  ba?')
             var gridInstance = this; // 'this' is the grid
             var store = gridInstance.getStore();
 
