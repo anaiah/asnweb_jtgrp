@@ -319,8 +319,8 @@ Ext.define('MyApp.controller.coordController', {
              
 
                 //rider
-                Ext.getCmp('riderGrid').setTitle('&nbsp;')
-                var opmgrriderstore = Ext.getCmp('riderGrid').getStore();
+                Ext.getCmp('opmgrRiderGrid').setTitle('&nbsp;')
+                var opmgrriderstore = Ext.getCmp('opmgrRiderGrid').getStore();
                 opmgrriderstore.removeAll();
          
                 //scrollto location-grid
@@ -332,7 +332,7 @@ Ext.define('MyApp.controller.coordController', {
                 console.log('Selected Location:', locValue);
 
                 //SET TITLE
-                Ext.getCmp('riderGrid').setTitle( locValue ) 
+                Ext.getCmp('opmgrRiderGrid').setTitle( locValue ) 
                 
                 // Get the store
                 //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
@@ -362,7 +362,7 @@ Ext.define('MyApp.controller.coordController', {
     listenRider:()=>{
         console.log('===listenRider() opmgrcontroller.js===')
         
-        var ridergrid = Ext.ComponentQuery.query('ridergrid')[0] //load alias
+        var ridergrid = Ext.ComponentQuery.query('opmgrridergrid')[0] //load alias
         
         ridergrid.getSelectionModel().on('selectionchange', function(sm, selected, eOpts) {
 
