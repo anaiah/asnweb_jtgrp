@@ -28,7 +28,8 @@ Ext.define('MyApp.view.riderGrid' ,{
     listeners:{
         viewready: function(grid) {
             console.log('@@@riders grid viewready');
-            
+             var store = grid.getStore()
+             store.sort('qty', 'DESC');
            
         },//end viewready
         cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){
