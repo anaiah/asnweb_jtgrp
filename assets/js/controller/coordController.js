@@ -220,7 +220,7 @@ Ext.define('MyApp.controller.coordController', {
                 const ridergrid = Ext.ComponentQuery.query('ridergrid')[0] //load alias
                 
                 //SET TITLE
-                ridergrid.setTitle( locValue + ' RIDERS' ) 
+                ridergrid.setTitle( locValue + ' RIDERS v1' ) 
                 
                 // Get the store
                 const riderstore = ridergrid.getStore();
