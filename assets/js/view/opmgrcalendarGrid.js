@@ -40,7 +40,8 @@ Ext.define('MyApp.view.opmgrcalendarGrid' ,{
             align:'right',
             renderer: (value,meta,record)=>{
                 //meta.tdCls='font11p'
-                return util.addCommas(value)
+                
+                return (parseInt(value)>0,`<b>${util.addCommas(value)}</b>`,util.addCommas(value))
             },
             summaryType:'sum',
             summaryRenderer: function(value, summaryData, dataIndex) {
@@ -66,7 +67,7 @@ Ext.define('MyApp.view.opmgrcalendarGrid' ,{
             align:'right',
             renderer: (value,meta,record)=>{
                 //meta.tdCls='font11p'
-                return util.addCommas(value)
+                eturn (parseInt(value)>0,`<b>${util.addCommas(value)}</b>`,util.addCommas(value))
             },
             summaryType:'sum',
             summaryRenderer: function(value, summaryData, dataIndex) {
