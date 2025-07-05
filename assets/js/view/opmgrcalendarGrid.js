@@ -66,8 +66,9 @@ Ext.define('MyApp.view.opmgrcalendarGrid' ,{
             hideable: false,
             align:'right',
             renderer: (value,meta,record)=>{
-                //meta.tdCls='font11p'
-                return (parseInt(value)>0,`<b>${util.addCommas(value)}</b>`,util.addCommas(value))
+                meta.tdCls='font11p'
+                //return (parseInt(value)>0,`<b>${util.addCommas(value)}</b>`,util.addCommas(value))
+                return value
             },
             summaryType:'sum',
             summaryRenderer: function(value, summaryData, dataIndex) {
