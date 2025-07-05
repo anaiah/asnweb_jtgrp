@@ -34,12 +34,14 @@ Ext.define('MyApp.view.riderGrid' ,{
             //console.log( record.get("location"))      
         },
         selectionchange: function(model, records ) {
-            // var gridInstance = this; // 'this' is the grid
-            // var store = gridInstance.getStore();
+            var gridInstance = this; // 'this' is the grid
+            var store = gridInstance.getStore();
 
-            // if (store.getCount() > 0) {
-            //     store.sort('qty', 'DESC');
-            // }
+             setTimeout(() => {
+                store.sort('qty', 'DESC'); 
+                gridInstance.getView().refresh(); // Refresh view to reflect changes
+            }, 50); 
+            
         }
     },
 
