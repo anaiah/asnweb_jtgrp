@@ -28,6 +28,7 @@ Ext.define('MyApp.view.riderGrid' ,{
     listeners:{
         viewready: function(grid) {
             console.log('@@@riders grid viewready');
+            
            
         },//end viewready
         cellmousedown: function(view, cell, cellIdx, record, row, rowIdx, eOpts){

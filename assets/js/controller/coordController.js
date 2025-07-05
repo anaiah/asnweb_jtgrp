@@ -236,8 +236,7 @@ Ext.define('MyApp.controller.coordController', {
                         var data = json.data || json; // if data is wrapped or not
 
                         riderstore.loadData(data);
-                        
-                        console.log('RIDER Data loaded successfully');
+                        riderstore.sort('qty','DESC')
                     },
                     failure: function(response) {
                         console.error('Failed to load data');
