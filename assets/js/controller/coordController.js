@@ -234,7 +234,11 @@ Ext.define('MyApp.controller.coordController', {
                     success: function(response) {
                         var json = Ext.decode(response.responseText);
                         var data = json.data || json; // if data is wrapped or not
+
+                         data.sort((a, b) => b.qty - a.qty); // Assuming qty is an integer
+            
                         console.log('rider array data', data)
+            
                         riderstore.loadData(data);
                          
                     },
