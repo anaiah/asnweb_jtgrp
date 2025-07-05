@@ -236,11 +236,7 @@ Ext.define('MyApp.controller.coordController', {
                         var data = json.data || json; // if data is wrapped or not
 
                         riderstore.loadData(data);
-                        
-                        setTimeout(() => {
-                            riderstore.sort('qty', 'DESC'); 
-                            ridergrid.getView().refresh(); // Refresh view to reflect changes
-                        }, 50); 
+                         
                     },
                     failure: function(response) {
                         console.error('Failed to load data');
