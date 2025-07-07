@@ -273,6 +273,16 @@ Ext.define('MyApp.controller.opmgrController', {
         },
         xaxis: {
                 categories: ['BCOL','SMR-LYTE','CVIS','CMNL','CMNVA','SMNL','BACLD','PANAY','***TOTAL***'],
+
+                label:{
+                    formatter:(val,index)=>{
+                        if(index=== this.ctx.chart.w.globals.labels.length -1){
+                            return '<b>'+val+'</b>'
+                        }
+                        return val;
+                    }
+                },
+
                 title: {
                     text: 'REGION',
                     style: {
@@ -285,7 +295,7 @@ Ext.define('MyApp.controller.opmgrController', {
         },
         yaxis: {
             title: {
-                text: 'STATUS',
+                text: '',
                 style: {
                     fontSize: '10px',
                     fontWeight: 'bold',
