@@ -277,14 +277,7 @@ Ext.define('MyApp.controller.opmgrController', {
                 labels:{
                     formatter:function(value,index){
                         // Get the total number of categories
-                        const totalCategories = this.w.config.xaxis.categories.length;
-
-                        // Check if the current index is the last category
-                        if (index === totalCategories - 1) {
-                            return '<span style="font-weight: bold;">' + value + '</span>';
-                        } else {
-                            return value;
-                        }
+                        //
                     }
                 },
 
