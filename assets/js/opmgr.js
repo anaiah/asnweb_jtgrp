@@ -990,6 +990,11 @@ const asn = {
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 
         document.getElementById('h5title').innerHTML= util.strDate() + ' (Daily Performance)'
+
+        document.getElementById('headerCollapse').addEventListener('click', function() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('d-none');
+        });
         
 	}//END init
 
