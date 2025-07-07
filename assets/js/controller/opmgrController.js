@@ -203,7 +203,7 @@ Ext.define('MyApp.controller.opmgrController', {
           chart: {
             type: 'bar',
             height: 350,
-            width: 500,
+            width: 530,
             redrawOnParentResize: false,
             redrawOnWindowResize: false,
                     
