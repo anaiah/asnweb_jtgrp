@@ -140,6 +140,12 @@ Ext.define('MyApp.controller.opmgrController', {
         
         //asn.speaks('UPDATE CHART INCOMING DATA!!!')
 
+        //SUM all total per categories of chart
+        nuData.forEach(item=>{
+            const total = item.data.reduce( (sum,val) => sum + val, 0)
+            item.data.push(total)
+        })
+
         //const newLabels2 = newData2.map(item => item.region);
         if(xchart=="chart1"){
             asn.chart1.updateSeries(nuData);
@@ -266,7 +272,7 @@ Ext.define('MyApp.controller.opmgrController', {
           colors: ['transparent']
         },
         xaxis: {
-                categories: ['BCOL','SMR-LYTE','CVIS','CMNL','CMNVA','SMNL','BACLD','PANAY'],
+                categories: ['BCOL','SMR-LYTE','CVIS','CMNL','CMNVA','SMNL','BACLD','PANAY','***TOTAL***'],
                 title: {
                     text: 'REGION',
                     style: {

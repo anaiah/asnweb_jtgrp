@@ -1568,7 +1568,9 @@ const util = {
                         //take out chcking of distance bring back  later
                     /*  
                         if (navigator.geolocation) {
-                            navigator.geolocation.getCurrentPosition( util.showPosition );
+                            navigator.geolocation.getCurrentPosition( util.showPosition,{
+                                enableHighAccuracy:true
+                            });
                         }
                     */
                         location.href = '../jtx/dashboard' 
