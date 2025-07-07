@@ -44,6 +44,7 @@ Ext.define('MyApp.controller.riderController', {
             //====LOAD PO FOR APPROVAL====
             const storeInstance = Ext.data.StoreManager.lookup('monthlyStore')
             //storeInstance.removeAll();
+            console.log('Rider Monthly==> ', ydata )
 
             storeInstance.loadData(ydata ) //load ARRAY OF DATA
             
