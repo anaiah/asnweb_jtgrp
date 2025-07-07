@@ -285,14 +285,6 @@ Ext.define('MyApp.controller.opmgrController', {
                         } else {
                             return value;
                         }
-                    },
-                    style:{
-                        fontWeight:(val,index)=>{
-                            if(index=== this.ctx.chart.w.globals.labels.length -1){
-                                return 'bold'
-                            }
-                            return 'normal'
-                        }        
                     }
                 },
 
