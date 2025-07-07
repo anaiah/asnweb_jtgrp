@@ -274,13 +274,6 @@ Ext.define('MyApp.controller.opmgrController', {
         xaxis: {
                 categories: ['BCOL','SMR-LYTE','CVIS','CMNL','CMNVA','SMNL','BACLD','PANAY','***TOTAL***'],
 
-                labels:{
-                    formatter:function(value,index){
-                        // Get the total number of categories
-                        //
-                    }
-                },
-
                 title: {
                     text: 'REGION',
                     style: {
