@@ -991,10 +991,10 @@ const asn = {
 
         document.getElementById('h5title').innerHTML= util.strDate() + ' (Daily Performance)'
 
-        document.getElementById('headerCollapse').addEventListener('click', function() {
-            var sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('d-none');
-        });
+        // document.getElementById('headerCollapse').addEventListener('click', function() {
+        //     var sidebar = document.getElementById('sidebar');
+        //     sidebar.classList.toggle('d-none');
+        // });
         
 	}//END init
 
