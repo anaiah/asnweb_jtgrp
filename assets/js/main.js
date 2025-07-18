@@ -814,11 +814,12 @@ const asn = {
         let authz = []
         authz.push(util.getCookie('grp_id') )
         authz.push(util.getCookie('fname'))
-        
-        console.log(authz[1])
+        authz.push(util.getCookie('f_id'))
+                
+        console.log('=== authz ',authz[1], authz[2])
 
         //==HANDSHAKE FIRST WITH SOCKET.IO
-        const userName = { token : authz[1] , emp_id:util.getCookie('f_id'), mode: 1}//full name token
+        const userName = { token : authz[1] , emp_id: authz[2], mode: 1}//full name token
 
         asn.socket = io.connect(`${myIp}`, {
             //withCredentials: true,
