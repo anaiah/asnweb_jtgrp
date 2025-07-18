@@ -497,7 +497,7 @@ Ext.define('MyApp.controller.opmgrController', {
                         // var data = Ext.decode(response.responseText) ; // Decode the JSON data
                         
 
-                        // console.log( 'rider data...',data)
+                        console.log( 'rider data...',data)
                         // //var opmgrlocstore = Ext.data.StoreManager.lookup('opmgrLocationStore');
                         // opmgrriderstore.loadData(data); // Load the data into the store
 
