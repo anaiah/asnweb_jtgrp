@@ -818,7 +818,7 @@ const asn = {
         console.log(authz[1])
 
         //==HANDSHAKE FIRST WITH SOCKET.IO
-        const userName = { token : authz[1] , mode: 1}//full name token
+        const userName = { token : authz[1] , emp_id:util.getCookie('f_id'), mode: 1}//full name token
 
         asn.socket = io.connect(`${myIp}`, {
             //withCredentials: true,
