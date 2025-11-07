@@ -782,11 +782,81 @@ const asn = {
 
     chart1:null,
     chart2:null,
-	//==,= main run
+
+    configObj:null,
+    winModal:null,
+
+    //====FOR UPLOADING HRIS EXCEL
+    showExcel: () => {
+        asn.configObj = { keyboard: false }
+        asn.winModal = new bootstrap.Modal(document.getElementById('hrisloadModal'), asn.configObj);
+
+        // Show modal
+        asn.winModal.show();
+    },
+
+    waitingIndicator : document.getElementById('waiting-indicator'),
+
+    listeners:()=>{
+
+         //for upload pdf
+        const frmupload = document.getElementById('hrisuploadForm')
+        frmupload.addEventListener("submit", e => {
+           
+            const formx = e.target;
+
+            asn.waitingIndicator.style.display = 'block'
+
+            fetch(`${myIp}/xlshris`, {
+                //method:'GET',
+                method: 'POST',
+                body: new FormData(formx),
+            })
+            .then( (response) => {
+                return response.json() // if the response is a JSON object
+            })
+            .then( (data) =>{
+                if(data.status){
+                    console.log ('CLAIMS DONE!', data )
+                    util.speak(data.message)
+
+                    // Select the form element
+                    const form = document.querySelector('#hrisuploadForm'); // or use class selector
+
+                    // Reset the form
+                    form.reset();
+
+                    util.hideModal('hrisloadModal',2000)//then close form    
+
+                    asn.waitingIndicator.style.display = 'none'
+                }
+            })
+            // Handle the success response object
+            .catch( (error) => {
+                console.log(error) // Handle the error response object
+            });
+
+
+            //e.preventDefault()
+            console.log('===HRIS SUBMITTTTT===')
+                //// keep this reference for event listener and getting value
+                /////const eqptdesc = document.getElementById('eqpt_description')
+                ////eqptdesc.value =  e.target.value
+            
+            // Prevent the default form submit
+            e.preventDefault();    
+        })
+        //=================END FORM SUBMIT==========================//
+               
+    },
+
+	//=================================== main run
 	init :  () => {
         asn.getmenu(util.getCookie('grp_id')) 
         console.log('===asn.init()=== loaded!')
 
+        asn.listeners()
+        
         
         asn.speaks = (txt) =>{
             let speechsynth = new SpeechSynthesisUtterance();
@@ -827,61 +897,6 @@ const asn = {
         });//========================initiate socket handshake ================
 
         
-        /*
-        asn.socket.on('xboss', (oMsg) => {
-            console.log('xboss  listening')
-            let xmsg = []
-            
-            xmsg.push( oMsg )
-            console.warn('====== MESSAGE FROM  MARS RECEIVED ======', xmsg)
-
-            const hubChartElement = document.getElementById('hub-chart');
-            
-            if (hubChartElement) {
-                // Create the dashboard elements
-                const ridersElement = document.createElement('p');
-                ridersElement.textContent = 'Riders: ' + xmsg[0].rider;
-
-                const totalElement = document.createElement('p');
-                totalElement.textContent = 'Total: ' + xmsg[0].total;
-
-                const percentageElement = document.createElement('p');
-                percentageElement.textContent = `Percentage: ${xmsg[0].pct} %`;
-
-                // Clear existing content and append the new elements
-                hubChartElement.innerHTML = ''; // Clear existing content
-                hubChartElement.appendChild(ridersElement);
-                hubChartElement.appendChild(totalElement);
-                hubChartElement.appendChild(percentageElement);
-            } else {
-                console.warn('hub-chart element not found!');
-            }
-
-        })
-        */
-        //emit app.excute to execute//take out muna
-        // asn.socket.on('execute', (data) => {
-        //     console.log('Received execute event:', data); // Log the data
-
-        //     //  Here's where you'd actually *do* something with the data
-        //     if (data && data.app === 'asn.execute()') {
-        //         // DO NOT use eval()!  It's dangerous!
-
-        //         // Example (assuming 'asn' is an object available in the client-side scope):
-        //         if (typeof asn === 'object' && typeof asn.execute === 'function') {
-        //             console.log("executing asn.execute() here!")
-
-        //             setTimeout(() => {
-        //                 asn.execute(); // Execute the function on the client
-        //             }, 1000)
-
-        //         } else {
-        //             console.warn("asn.execute() is not defined or is not a function on the client.");
-        //         }
-        //     }
-        // });
-
-
         asn.socket.on('loadchart', (xresult) => {
             console.log('HERES UR GRAPH DATA',xresult)
 
@@ -970,30 +985,11 @@ const asn = {
         document.getElementById('region').innerHTML= util.strDate() + '<br>(Registered v. Reported)'
         document.getElementById('nationwide').innerHTML= util.strDate() + '<br>(For Delivery v. Delivered)'
         document.getElementById('xlabel').innerHTML= `<b>${util.strDate()} <br>(Nationwide Summary Performance)</b>`
-        // asn.loadopmgrArea()
-
-        /*
-        //===load mtd-chart
-        asn.loadbarMTDChart()
-
-        //==load grid month, rider month
-        asn.loadbarChart('hub')
-
-        //===load top5
-        setTimeout(() => {
-            asn.loadbarChart('rider');
-        }, 1000)
-
-        console.log('===loadbarchart()===')
-        */
+        
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
 
         document.getElementById('h5title').innerHTML= util.strDate() + ' (Daily Performance)'
 
-        // document.getElementById('headerCollapse').addEventListener('click', function() {
-        //     var sidebar = document.getElementById('sidebar');
-        //     sidebar.classList.toggle('d-none');
-        // });
         
 	}//END init
 

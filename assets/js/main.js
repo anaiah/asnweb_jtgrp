@@ -789,6 +789,7 @@ const asn = {
     appExt:null,
     ctrlExt:null,
 
+    
 	//==,= main run
 	init :  () => {
 
@@ -872,6 +873,7 @@ const asn = {
         util.modalListeners('newempModal')
         util.modalListeners('dataEntryModal')
         util.modalListeners('remittanceModal')
+        util.modalListeners('atdstatusModal')
 
         //
         if(typeof util.getCookie('f_id') === 'undefined' || util.getCookie('f_id')===null || util.getCookie('f_id') === ""){

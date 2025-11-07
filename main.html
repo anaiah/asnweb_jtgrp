@@ -15,8 +15,9 @@
   <link rel="shortcut icon" href="/html/assets/images/logos/asiaoneico.png" type="image/x-icon" sizes="32x32">  
 
   <!-- bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  
   <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
   <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
 
@@ -1049,55 +1050,57 @@
 
 </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/js/tabler.min.js"></script>
 
-  <script src="/html/assets/libs/jquery/dist/jquery.min.js"></script> <!--//sidebarmenu dependent-->
-  <!-- <script src="/html/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/js/tabler.min.js"></script>
+
+<script src="/html/assets/libs/jquery/dist/jquery.min.js"></script> <!--//sidebarmenu dependent-->
+<!-- <script src="/html/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+
+<script src="/html/assets/js/sidebarmenu.js"></script>
+<script src="/html/assets/js/app.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>  
+
+<script src="/html/assets/libs/simplebar/dist/simplebar.js"></script>
+
+<!-- toastify -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<!-- offline version -->
+<!-- <script src="http://192.168.165.221:10000/socket.io/socket.io.js"></script> -->
+
+<!-- //online version//-->
+<!-- <script src="https://asn-jtgrp-api.onrender.com/socket.io/socket.io.js"></script> -->
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js?ver=12"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="/html/extjs422/ext-all.js"></script>
+<script src="/html/extjs422/ext-theme-neptune.js"></script>
+
+<script src="/html/assets/js/ipconfig.js?v=8"></script>
+
+<script src="/html/assets/app.js?v=8"></script>
+<script src="/html/assets/js/util.js?v=8"></script>
+<script src="/html/assets/js/main.js?v=8"></script>
+<script src="/html/assets/js/listen.js?v=8"></script>
+
+<!-- takeout muna gridtab palit extjs -->
+<!-- <script src="/html/assets/js/gridtab.js?v=8"></script> -->
+
+<script> 
+  document.addEventListener('DOMContentLoaded', ()=> {
+      console.log('===main.html complete==')
+      //asn.collapz()
+
+  //That's the key takeaway from this experience.
+  //  It's a powerful technique in JavaScript (and Node.js) called dependency injection
+  //const y = reqquire('xxxx')(obj)<==the 2ndfunc paramter
   
-  <script src="/html/assets/js/sidebarmenu.js"></script>
-  <script src="/html/assets/js/app.min.js"></script>
+  })
 
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>  
-
-  <script src="/html/assets/libs/simplebar/dist/simplebar.js"></script>
-
-  <!-- toastify -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-  <!-- offline version -->
-  <!-- <script src="http://192.168.165.221:10000/socket.io/socket.io.js"></script> -->
-  
-  <!-- //online version//-->
-  <!-- <script src="https://asn-jtgrp-api.onrender.com/socket.io/socket.io.js"></script> -->
-  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js?ver=12"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
-  <script src="/html/extjs422/ext-all.js"></script>
-  <script src="/html/extjs422/ext-theme-neptune.js"></script>
-  
-  <script src="/html/assets/js/ipconfig.js?v=8"></script>
-  
-  <script src="/html/assets/app.js?v=8"></script>
-  <script src="/html/assets/js/util.js?v=8"></script>
-  <script src="/html/assets/js/main.js?v=8"></script>
-  <script src="/html/assets/js/listen.js?v=8"></script>
-
-  <!-- takeout muna gridtab palit extjs -->
-  <!-- <script src="/html/assets/js/gridtab.js?v=8"></script> -->
-
-  <script> 
-    document.addEventListener('DOMContentLoaded', ()=> {
-        console.log('===main.html complete==')
-        //asn.collapz()
-
-    //That's the key takeaway from this experience.
-    //  It's a powerful technique in JavaScript (and Node.js) called dependency injection
-    //const y = reqquire('xxxx')(obj)<==the 2ndfunc paramter
-    
-    })
-
-  </script>
+</script>
 
 </body>
 

@@ -860,10 +860,10 @@ const util = {
             break
 
 
-            case "claimsModal":
+            case "atdstatusModal":
                 if(util.getCookie('grp_id')!=="2"){
-                    const claimsmodal =  new bootstrap.Modal(document.getElementById('claimsModal'),configObj);
-                    claimsmodal.show()  
+                    const atdstatusmodal =  new bootstrap.Modal(document.getElementById('atdstatusModal'),configObj);
+                    atdstatusmodal.show()  
    
                 }else{
                     util.speak('SORRY... YOU DO NOT HAVE ACCESS FOR THIS MENU!')
@@ -878,10 +878,11 @@ const util = {
             case "newempModal":
                 if(util.getCookie('grp_id')!=="2"){
                     //show the dialog modal
+                    console.log('uyyy mdalshow Nu emp')
                     const xnewsitemodal =  new bootstrap.Modal(document.getElementById('newempModal'),configObj);
                     xnewsitemodal.show()  
 
-                    document.getElementById('employeeId').value = `${util.generateRandomDigits(5)}`
+                    //document.getElementById('employeeId').value = `${util.generateRandomDigits(5)}`
                 }else{
                     util.speak('SORRY... YOU DO NOT HAVE ACCESS FOR THIS MENU!')
                 }

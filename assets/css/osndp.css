@@ -266,3 +266,20 @@ input:focus:is-invalid {
 .sidebar { grid-area: sidebar; }
 .body { grid-area: body; }
 
+.waiting-indicator {
+  position: fixed; /* Stay in the same place on the screen */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the indicator */
+  background-color: rgba(17, 17, 17, 0.8); /* Semi-transparent background */
+  padding: 20px;
+  border-radius: 5px;
+  color:#dbdddf;
+  z-index: 1100; /* Ensure it's on top of the map */
+  display: none; /* Initially hide the indicator */
+}
+
+.waiting-indicator i {
+  margin-right: 10px;
+}
+
