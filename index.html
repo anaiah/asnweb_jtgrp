@@ -343,14 +343,15 @@
         const hours = now.getHours(); // returns 0-23
         const wHrs = hours % 24; //modules to get 12am as 0
 
-        if (wHrs === 0) { // Check for 12 AM (0)
-          alert('CutOff system!')
-          window.location.replace("./jtx/help");
-        } else if (wHrs >= 0 && wHrs < 6) { //AM period
-          // Set your cutoff time logic here
-          alert('CutOff system!')
-          window.location.replace("./jtx/help");
-        }
+        //take off temporarily checkin of time
+        // if (wHrs === 0) { // Check for 12 AM (0)
+        //   alert('CutOff system!')
+        //   window.location.replace("./jtx/help");
+        // } else if (wHrs >= 0 && wHrs < 6) { //AM period
+        //   // Set your cutoff time logic here
+        //   alert('CutOff system!')
+        //   window.location.replace("./jtx/help");
+        // }
       },
 
       help:()=>{

@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+
+  <title>AsiaNow Enc. Inc.</title>
+  <!-- <link rel="shortcut icon" type="image/png" href="../html/assets/images/logos/favicon.png" /> -->
+  <link rel="shortcut icon" href="/html/assets/images/logos/asiaoneico.png" type="image/x-icon" sizes="32x32">  
+
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+  <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+
+  <!-- partial tabler css -->
+  <link rel="stylesheet" href="/html/assets/css/styles.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/css/tabler.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+
+  <!---//toastify cdn-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  
+  <!-- extjs -->
+  <link rel="stylesheet" href="/html/extjs422/resources/ext-theme-neptune/ext-theme-neptune-all.css">
+  
+  <link rel="stylesheet" href="/html/assets/css/osndp.css" />
+
+  <style>
+    
+span.xgrpheader{
+  /* background-color:#cfcfce; */
+  /* font-weight: bold; */
+  /* padding: 0px 0px 0px 15px; adjust the last number to move the header  name */
+  
+  color:#08304d;
+  /* padding-right:23px !important; */
+  /* box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important; */
+  
+}
+/* row backgnd color of group summary */
+.x-grid-row-summary {
+    color:#cc1524!important;
+    background-color: #edfbfb !important;
+    /* background-color: #E2EFF9 !important; */
+    /* background-color: #f0f0f0; Change background color */
+    font-weight: bold;         /* Make text bold */
+    /* color: #333;               Change text color */
+    /* color :rgb(192, 5, 5) !important; */
+  }
+
+  /* row background color of grouping summary header */
+.x-grid-group-hd { 
+  /* background-color: #6de73c !important; */
+  background-color: #edfbfb !important;
+  color: rgb(5, 33, 170) !important;
+
+  padding: 7px 0px 7px 10px; /*adjust the last number to move the header  name*/
+    /* font-weight: bold; */
+   box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important;
+ }
+
+/* for getrowclass to work */
+.x-grid-row.with-work td.x-grid-cell { /* Using the grid's ID */
+  background-color: #C5DFF2 !important;
+}
+.card-metrics {
+      border-radius: 10px;
+      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+      border: none;
+    }
+    .xcard-title {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-bottom: 0.25rem;
+    }
+    .card-value {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .card-percentage {
+      font-size: 1rem;
+      color: #28a745; /* Green for positive */
+      margin-right: 0.25rem;
+    }
+    .card-expenses .card-percentage {
+      color: #dc3545; /* Red for negative */
+    }
+    .card-footer {
+      background-color: transparent;
+      border-top: none;
+      padding: 0.5rem 1rem;
+    }
+    .card-footer-text {
+      font-size: 0.75rem;
+      color: #6c757d;
+      } 
+
+  </style>
+
+</head>
+
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+    
+        <!-- Sidebar Start -->
+        <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <div id="leftsidebar" >
+            <!--//LOGO//-->
+            <div class="brand-logo d-flex align-items-center justify-content-between">
+            <a href="/jtx" class="text-nowrap logo-img">
+                <img src="/html/assets/images/logos/asiaone_.png" width="180" alt="" />
+            </a>
+
+            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                <i class="ti ti-x fs-8"></i>
+            </div>
+            </div>
+
+            <!-- //============= Sidebar navigation ===============//-->
+            <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+            <ul id="sidebarnav"></ul>
+    
+            </nav>
+            <!-- End Sidebar navigation -->
+        
+        </div>
+        <!-- End Sidebar scroll-->
+        </aside>
+        <!--  Sidebar End -->
+        <!--  Main wrapper -->
+        <div class="body-wrapper">
+        <!--  Header Start -->
+        <header class="app-header boxshadoe">
+            <nav class="navbar navbar-expand-lg navbar-light">
+            <ul class="navbar-nav">
+
+                <li class="nav-item d-block d-xl-none">
+                <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                    <i class="ti ti-menu-2"></i>
+                </a>
+                </li>
+                
+                <li class="nav-item">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                    <i class="ti ti-bell-ringing"></i>
+                    <div class="notification bg-primary rounded-circle"></div>
+                </a>
+                </li>
+            </ul>
+            <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                
+                <!-- <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a>
+                -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+
+                    <!--//=== AVATAR ==== //-->
+                    <img id='img-profile' src="" alt="" width="35" height="35" class="rounded-circle">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                    <div class="message-body">
+                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                        <i class="ti ti-user fs-6"></i>
+                        <p class="mb-0 fs-3">My Profile</p>
+                        </a>
+                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                        <i class="ti ti-mail fs-6"></i>
+                        <p class="mb-0 fs-3">My Account</p>
+                        </a>
+                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                        <i class="ti ti-list-check fs-6"></i>
+                        <p class="mb-0 fs-3">My Task</p>
+                        </a>
+                        <a href="./" class="btn btn-danger mx-3 mt-2 d-block">Logout</a>
+                    </div>
+                    </div>
+                </li>
+                </ul>
+            </div>
+            </nav>
+        </header>
+        <!--  Header End -->
+    
+        
+        <!------------------//MAIN CONTAINER----------------------->
+       <div class="container-fluid mt-1">
+
+          <!-- Filter Group Card -->
+          <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                  <h5 class="mb-0 fw-semibold">Search Filters</h5>
+              </div>
+              <div class="card-body">
+                  <form id="searchForm" name="searchForm" class="row gy-3 gx-3 align-items-end"  novalidate>
+                      <!-- Filter by Name -->
+                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                          <label for="filter_name" class="form-label visually-hidden">Name</label>
+                          <input type="text" class="form-control" id="filter_name" name="filter_name" placeholder="Filter by Name">
+                      </div>
+                      <!-- Filter by ID -->
+                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                          <label for="filter_id" class="form-label visually-hidden">ID</label>
+                          <input type="text" class="form-control" id="filter_id" name="filter_id" placeholder="Filter by ID">
+                      </div>
+                      <!-- Filter by Region (dropdown) -->
+                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                          <label for="filter_region" class="form-label visually-hidden">Region</label>
+                          <select class="form-select" id="filter_region" name="filter_region" required>
+                              <option value="">Filter by Region</option>
+                              <option value="cmnl">NCR-CMNL</option>
+                              <option value="cmnva">NCR-CMNVA</option>
+                              <option value="smnl">NCR-SMNL</option>
+                              <!-- Add more options here as needed -->
+                          </select>
+                      </div>
+                      <!-- Filter by Position (dropdown) -->
+                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                          <label for="filter_position" class="form-label visually-hidden">Position</label>
+                          <select class="form-select" id="filter_position" name="filter_position">
+                              <option value="">Filter by Position</option>
+                              <option value="RIDER">RIDER</option>
+                              <option value="TRANSPORTER">TRANSPORTER</option>
+                              <option value="COORDINATOR">COORDINATOR</option>
+                              <!-- Add more options here as needed -->
+                          </select>
+                      </div>
+                      <!-- Search Button (simplified) -->
+                      <div class="col-12 col-sm-6 col-md-4 col-lg-auto d-grid ms-auto">
+                          <button 
+                            class="btn btn-primary" id="search-btn" type="button"
+                            onclick="javascript:hris.searchEmp();"
+                          >
+                              <i class="ti ti-search"></i>&nbsp;&nbsp; Search
+                          </button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+
+          <!-- Main Content Card (Search Result) -->
+          <div class="row gx-2">
+              <div class="col-lg-8 mb-3 mb-lg-0">
+                  <div class="card shadow w-100">
+                      <div class="card-body p-2">
+                          <div class="mt-0 mb-1">
+                              <h6 class="card-title fw-semibold" id="h6-txt">
+                                  Search Result
+                              </h6>
+                          </div>
+                          <!-- GRID inside -->
+                          <div class="table-responsive">
+                              <div id="hrisgrid">
+                                  <!-- Your grid will be initialized here -->
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+    <!-- </div> end page wrapper div -->
+    <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
+  
+  
+  <!-- //===== this is for excel HRIS upload ===// -->
+  <div class="modal fade" id="hrisloadModal" tabindex="-1" aria-labelledby="hrisloadModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-scrollable">
+        <div class="modal-content">
+            
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> HRIS Upload</h4>
+                <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!--//modal body-->
+            <div class="modal-body">
+                
+                <!--//=== ALERT CONTAINER!!!-->
+                <div id="hrisloadPlaceHolder"></div>
+                <!--//END ALERT-->
+                  
+                <div class="row">
+                  <div class="col-12">
+                    <!-- //form file upload onrender.com -->
+                    <form id="hrisuploadForm" name="hrisuploadForm" action="" enctype="multipart/form-data" method="post">
+                      <div class="form-outline">
+
+                        <!-- Add the select element here -->
+                        <div class="mb-2">
+                          <label class="form-label mb-0" for="hrisload_region">Select Region</label>
+                          <select class="form-select" id="hrisload_region" name="hrisload_region" required>
+                            <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
+                            <option value="CMNL" selected>CMNL</option>
+                            <option value="CMNVA">CMNVA</option>
+                            <option value="SMNL">SMNL</option>
+                          </select>
+                        </div>
+                        
+                        <div class="mb-2">
+                          <label class="form-label mb-0" for="hrisload_position">Select Position</label>
+                          <select class="form-select" id="hrisload_position" name="hrisload_position" required>
+                            <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
+                            <option value="08" selected>COORDINATOR</option>
+                            <option value="01">RIDER</option>
+                            <option value="02">TRANSPORTER</option>
+                          </select>
+                        </div>
+
+                        <label class="form-label mb-0" for="hris_upload_file">Upload Excel File</label>
+                        <input type="file" class="form-control uploadz mb-2" name="hris_upload_file" id="hris_upload_file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required />
+
+                        <button id="hris-upload-btn" name="hris-upload-btn" type="submit" class="btn btn-primary">
+                          <i class="ti ti-upload"></i> Upload
+                        </button>
+                      </div>
+                    </form>
+                    <!--//end form -->
+                  </div>
+                </div>
+                
+            </div><!--//end modalbody//-->
+            <!--//footer-->
+            <div class="modal-footer">
+                <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button>
+                <!-- <button class="btn btn-primary" id="mall-save-btn" onclick="" type="button">
+                <i id="i-save" class="fa fa-floppy-o"></i> Save
+                </button> -->
+            </div>
+        </div>
+    </div>
+  </div>			
+  
+  <div class="modal fade" id="newempModal" tabindex="-1" aria-labelledby="newsiteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+      <div class="modal-content">
+          
+          <div class="modal-header bg-primary">
+              <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> Create Account</h4>
+              <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+          </div>
+
+          <!--//modal body-->
+          <div class="modal-body">
+              
+              <!--//=== ALERT CONTAINER!!!-->
+              <div id="newsitePlaceHolder"></div>
+              <!--//END ALERT-->
+
+              <div class="container-fluid" >	
+                  <!--//form goes here -->
+                  <!--//FORM SIGNUP-->
+                  <form id="newempForm" class="needs-validation row gy-2 gx-2 align-items-center" method="GET" novalidate>
+                    <div class="container mt-5">
+                      <h2>HRIS 201 Form</h2>
+                      <form>
+                          <div class="mb-3">
+                              <label for="employeeId" class="form-label">Employee ID</label>
+                              <input type="text" class="form-control 201" id="employeeId" name="employeeId" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="fullName" class="form-label">Full Name</label>
+                              <input type="text" class="form-control 201" id="fullName" name="fullName" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="email" class="form-label">Email Address</label>
+                              <input type="email" class="form-control 201"  value="a@b.com" id="email" name="email" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="phone" class="form-label">Phone Number</label>
+                              <input type="tel" class="form-control 201" value="0917 283 1929" id="phone" name="phone" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="birthDate" class="form-label">Date of Birth</label>
+                              <input type="date" class="form-control" value="01/01/1970" id="birthDate" name="birthDate" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="hireDate" class="form-label">Hire Date</label>
+                              <input type="date" class="form-control 201" value="01/01/2025" id="hireDate" name="hireDate" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="jobTitle" class="form-label">Job Title</label>
+                              <input type="text" class="form-control 201" value="quality cntrol" id="jobTitle" name="jobTitle" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="department" class="form-label">Department</label>
+                              <input type="text" class="form-control 201" value="IT" id="department" name="department" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="employmentStatus" class="form-label">Employment Status</label>
+                              <select class="form-control 201" id="employmentStatus" name="employmentStatus" required>
+                                  <option value="" disabled>Select status</option>
+                                  <option value="Full-Time" selected>Full-Time</option>
+                                  <option value="Part-Time">Part-Time</option>
+                                  <option value="Contract">Contract</option>
+                              </select>
+                          </div>
+                          <div class="mb-3">
+                              <label for="address" class="form-label">Address</label>
+                              <textarea class="form-control 201" id="address" rows="3" name="address" required>Manila</textarea>
+                          </div>
+                          <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                      </form>
+                  </div>
+                         
+                  </form>
+                  <!--//end form -->
+                  
+                  <div class="row">
+                    <div class="col-lg-4 mb-0">
+                      <!-- //form file upload onrender.com -->
+                      <form id="uploadForm" name="uploadForm" action="" enctype="multipart/form-data" method="post">
+                        <div class="form-outline">
+                          <label class="form-label mb-0" for="uploaded_file">Upload Picture</label>
+                          <input onchange="javascript:main.checkFileSize()" class="form-control equipmentxx" type="file" name="uploaded_file" id="uploaded_file" accept='image/*' required />
+                          <input id="upload-btn" class="btn btn-warning lets-hide" type="submit" value="Upload">
+                          <p><span id="size"></span></p>
+                          <div id="blindspot"></div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  
+              </div><!--//end container-fluid//-->
+              
+          </div><!--//end modalbody//-->
+          <!--//footer-->
+          <div class="modal-footer">
+              <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button>
+              <button class="btn btn-primary" id="mall-save-btn" onclick="javascript:util.validateMe('newempModal','#newempForm','201')" type="button">
+              <i id="i-save" class="fa fa-floppy-o"></i> &nbsp;&nbsp; Save
+              </button>
+          </div>
+      </div>
+  </div>
+</div>			
+
+<!--//end hrisloadModal//-->
+  
+<script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/js/tabler.min.js"></script>
+
+<script src="/html/assets/libs/jquery/dist/jquery.min.js"></script> <!--//sidebarmenu dependent-->
+<!-- <script src="/html/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+
+<script src="/html/assets/js/sidebarmenu.js"></script>
+<script src="/html/assets/js/app.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>  
+
+<script src="/html/assets/libs/simplebar/dist/simplebar.js"></script>
+
+<!-- toastify -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<!-- offline version -->
+<!-- <script src="http://192.168.165.221:10000/socket.io/socket.io.js"></script> -->
+
+<!-- //online version//-->
+<!-- <script src="https://asn-jtgrp-api.onrender.com/socket.io/socket.io.js"></script> -->
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js?ver=12"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+<script src="/html/assets/js/ipconfig.js?v=8"></script>
+
+<script src="/html/assets/js/util.js?v=8"></script>
+<script src="/html/assets/js/hr.js?v=8"></script>
+  
+<!-- <script src="/html/assets/js/main.js?v=8"></script> -->
+<!-- <script src="/html/assets/js/listen.js?v=8"></script> -->
+
+<!-- takeout muna gridtab palit extjs -->
+<script src="/html/assets/js/gridtab.js?v=8"></script>
+
+<script> 
+  document.addEventListener('DOMContentLoaded', function() {
+      console.log('===OPERATIONS complete==')
+  })
+</script>
+
+</body>
+
+</html>

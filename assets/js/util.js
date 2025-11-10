@@ -912,15 +912,11 @@ const util = {
     modalListeners:(eModal)=>{
         switch (eModal){
 
-            case "remittanceModal":
-                
-
-            break
-
             case "claimsModal":
                 //util.speak('CLAIMS MODAL SHOW!')
                 //for upload pdf
                 const frmclaimsupload = document.getElementById('claimsuploadForm')
+
                 frmclaimsupload.addEventListener("submit", e => {
                     const formx = e.target;
 
@@ -1586,10 +1582,15 @@ const util = {
                     break
                 
                     case 5: // operations mgr
-                    case 8: //hr
+                    //case 8: //hr
                         console.log('poooknnatt')
                         location.href ='../jtx/operations'    
                     break
+
+                    case 8://hrmgr
+                        location.href ='../jtx/hris '    
+                    break
+
 
                 }//===== endswitch
                         

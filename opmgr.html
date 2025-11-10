@@ -354,75 +354,74 @@ span.xgrpheader{
       </div>
     <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
   
-
   
-<!-- //===== this is for excel HRIS upload ===// -->
-<div class="modal fade" id="hrisloadModal" tabindex="-1" aria-labelledby="hrisloadModalLabel" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-scrollable">
-      <div class="modal-content">
-          
-          <div class="modal-header bg-primary">
-              <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> HRIS Upload</h4>
-              <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
-          </div>
+  <!-- //===== this is for excel HRIS upload ===// -->
+  <div class="modal fade" id="hrisloadModal" tabindex="-1" aria-labelledby="hrisloadModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-scrollable">
+        <div class="modal-content">
+            
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> HRIS Upload</h4>
+                <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+            </div>
 
-          <!--//modal body-->
-          <div class="modal-body">
-              
-              <!--//=== ALERT CONTAINER!!!-->
-              <div id="hrisloadPlaceHolder"></div>
-              <!--//END ALERT-->
-                 
-              <div class="row">
-                <div class="col-12">
-                  <!-- //form file upload onrender.com -->
-                  <form id="hrisuploadForm" name="hrisuploadForm" action="" enctype="multipart/form-data" method="post">
-                    <div class="form-outline">
+            <!--//modal body-->
+            <div class="modal-body">
+                
+                <!--//=== ALERT CONTAINER!!!-->
+                <div id="hrisloadPlaceHolder"></div>
+                <!--//END ALERT-->
+                  
+                <div class="row">
+                  <div class="col-12">
+                    <!-- //form file upload onrender.com -->
+                    <form id="hrisuploadForm" name="hrisuploadForm" action="" enctype="multipart/form-data" method="post">
+                      <div class="form-outline">
 
-                      <!-- Add the select element here -->
-                      <div class="mb-2">
-                        <label class="form-label mb-0" for="hrisload_region">Select Region</label>
-                        <select class="form-select" id="hrisload_region" name="hrisload_region" required>
-                          <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
-                          <option value="CMNL" selected>CMNL</option>
-                          <option value="CMNVA">CMNVA</option>
-                          <option value="SMNL">SMNL</option>
-                        </select>
+                        <!-- Add the select element here -->
+                        <div class="mb-2">
+                          <label class="form-label mb-0" for="hrisload_region">Select Region</label>
+                          <select class="form-select" id="hrisload_region" name="hrisload_region" required>
+                            <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
+                            <option value="CMNL" selected>CMNL</option>
+                            <option value="CMNVA">CMNVA</option>
+                            <option value="SMNL">SMNL</option>
+                          </select>
+                        </div>
+                        
+                        <div class="mb-2">
+                          <label class="form-label mb-0" for="hrisload_position">Select Position</label>
+                          <select class="form-select" id="hrisload_position" name="hrisload_position" required>
+                            <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
+                            <option value="08" selected>COORDINATOR</option>
+                            <option value="01">RIDER</option>
+                            <option value="02">TRANSPORTER</option>
+                          </select>
+                        </div>
+
+                        <label class="form-label mb-0" for="hris_upload_file">Upload Excel File</label>
+                        <input type="file" class="form-control uploadz mb-2" name="hris_upload_file" id="hris_upload_file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required />
+
+                        <button id="hris-upload-btn" name="hris-upload-btn" type="submit" class="btn btn-primary">
+                          <i class="ti ti-upload"></i> Upload
+                        </button>
                       </div>
-                      
-                      <div class="mb-2">
-                        <label class="form-label mb-0" for="hrisload_position">Select Position</label>
-                        <select class="form-select" id="hrisload_position" name="hrisload_position" required>
-                          <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
-                          <option value="08" selected>COORDINATOR</option>
-                          <option value="01">RIDER</option>
-                          <option value="02">TRANSPORTER</option>
-                        </select>
-                      </div>
-
-                      <label class="form-label mb-0" for="hris_upload_file">Upload Excel File</label>
-                      <input type="file" class="form-control uploadz mb-2" name="hris_upload_file" id="hris_upload_file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required />
-
-                      <button id="hris-upload-btn" name="hris-upload-btn" type="submit" class="btn btn-primary">
-                        <i class="ti ti-upload"></i> Upload
-                      </button>
-                    </div>
-                  </form>
-                  <!--//end form -->
+                    </form>
+                    <!--//end form -->
+                  </div>
                 </div>
-              </div>
-              
-          </div><!--//end modalbody//-->
-          <!--//footer-->
-          <div class="modal-footer">
-              <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button>
-              <!-- <button class="btn btn-primary" id="mall-save-btn" onclick="" type="button">
-              <i id="i-save" class="fa fa-floppy-o"></i> Save
-              </button> -->
-          </div>
-      </div>
-  </div>
-</div>					
+                
+            </div><!--//end modalbody//-->
+            <!--//footer-->
+            <div class="modal-footer">
+                <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button>
+                <!-- <button class="btn btn-primary" id="mall-save-btn" onclick="" type="button">
+                <i id="i-save" class="fa fa-floppy-o"></i> Save
+                </button> -->
+            </div>
+        </div>
+    </div>
+  </div>					
 
 <!-- Waiting Indicator (Insert here, INSIDE card) -->
     <div id="waiting-indicator" class="waiting-indicator">
