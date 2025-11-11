@@ -270,54 +270,57 @@
         },
 
         hrlistener:()=>{
- //for upload pdf
-        const frmupload = document.getElementById('hrisuploadForm')
-        frmupload.addEventListener("submit", e => {
-           
-            const formx = e.target;
 
-            asn.waitingIndicator.style.display = 'block'
-
-            fetch(`${myIp}/xlshris`, {
-                //method:'GET',
-                method: 'POST',
-                body: new FormData(formx),
-            })
-            .then( (response) => {
-                return response.json() // if the response is a JSON object
-            })
-            .then( (data) =>{
-                if(data.status){
-                    console.log ('CLAIMS DONE!', data )
-                    util.speak(data.message)
-
-                    // Select the form element
-                    const form = document.querySelector('#hrisuploadForm'); // or use class selector
-
-                    // Reset the form
-                    form.reset();
-
-                    util.hideModal('hrisloadModal',2000)//then close form    
-
-                    asn.waitingIndicator.style.display = 'none'
-                }
-            })
-            // Handle the success response object
-            .catch( (error) => {
-                console.log(error) // Handle the error response object
-            });
-
-
-            //e.preventDefault()
-            console.log('===HRIS SUBMITTTTT===')
-                //// keep this reference for event listener and getting value
-                /////const eqptdesc = document.getElementById('eqpt_description')
-                ////eqptdesc.value =  e.target.value
+               util.Toasted('Uploading, please wait!!!',3000,false)
+                    util.speak('Uploading, please wait!!!')
+                 
+            //for upload pdf
+            const frmupload = document.getElementById('hrisuploadForm')
+            frmupload.addEventListener("submit", e => {
             
-            // Prevent the default form submit
-            e.preventDefault();    
-        })
-        //=================END FORM SUBMIT==========================//
+                const formx = e.target;
+
+                //hris.waitingIndicator.style.display = 'block'
+
+                fetch(`${myIp}/xlshris`, {
+                    //method:'GET',
+                    method: 'POST',
+                    body: new FormData(formx),
+                })
+                .then( (response) => {
+                    return response.json() // if the response is a JSON object
+                })
+                .then( (data) =>{
+                    if(data.status){
+                        console.log ('CLAIMS DONE!', data )
+                        util.speak(data.message)
+
+                        // Select the form element
+                        const form = document.querySelector('#hrisuploadForm'); // or use class selector
+
+                        // Reset the form
+                        form.reset();
+
+                        util.hideModal('hrisloadModal',2000)//then close form    
+
+                        //fhris.waitingIndicator.style.display = 'none'
+                    }
+                })
+                // Handle the success response object
+                .catch( (error) => {
+                    console.log(error) // Handle the error response object
+                });
+
+                //e.preventDefault()
+                console.log('===HRIS SUBMITTTTT===')
+                    //// keep this reference for event listener and getting value
+                    /////const eqptdesc = document.getElementById('eqpt_description')
+                    ////eqptdesc.value =  e.target.value
+                
+                // Prevent the default form submit
+                e.preventDefault();    
+            })
+            //=================END FORM SUBMIT==========================//
         
         },
 
