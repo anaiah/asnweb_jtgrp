@@ -271,8 +271,6 @@
 
         hrlistener:()=>{
 
-               util.Toasted('Uploading, please wait!!!',3000,false)
-                    util.speak('Uploading, please wait!!!')
                  
             //for upload pdf
             const frmupload = document.getElementById('hrisuploadForm')
@@ -280,6 +278,9 @@
             
                 const formx = e.target;
 
+                util.Toasted('Uploading, please wait!!!',3000,false)
+                    util.speak('Uploading, please wait!!!')
+               
                 //hris.waitingIndicator.style.display = 'block'
 
                 fetch(`${myIp}/xlshris`, {
