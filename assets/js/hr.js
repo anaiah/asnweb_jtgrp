@@ -272,12 +272,13 @@
         hrlistener:()=>{
 
                  
+            
+        },
+
+        xlshris:()=>{
             //for upload pdf
             const frmupload = document.getElementById('hrisuploadForm')
-            frmupload.addEventListener("submit", e => {
             
-                const formx = e.target;
-
                 util.Toasted('Uploading, please wait!!!',3000,false)
                     util.speak('Uploading, please wait!!!')
                
@@ -286,7 +287,7 @@
                 fetch(`${myIp}/xlshris`, {
                     //method:'GET',
                     method: 'POST',
-                    body: new FormData(formx),
+                    body: new FormData(frmupload),
                 })
                 .then( (response) => {
                     return response.json() // if the response is a JSON object
@@ -314,19 +315,9 @@
 
                 //e.preventDefault()
                 console.log('===HRIS SUBMITTTTT===')
-                    //// keep this reference for event listener and getting value
-                    /////const eqptdesc = document.getElementById('eqpt_description')
-                    ////eqptdesc.value =  e.target.value
                 
-                // Prevent the default form submit
-                e.preventDefault();    
-            })
             //=================END FORM SUBMIT==========================//
         
-        },
-
-        xlshris:()=>{
-                alert('yes')
         },
 
         //==================INIT 
