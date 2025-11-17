@@ -1317,6 +1317,8 @@ const util = {
         if(aValid.includes(false)){
             util.Toasted('Error, Please CHECK Your Entry, ERROR FIELDS MARKED IN RED!',3000,false)
             console.log('don\'t post')
+            main.gonow = false
+            
             return false
         }else{
             
@@ -1345,7 +1347,7 @@ const util = {
                     xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Searching Database please wait...</div>"
                     util.alertMsg( xmsg,'danger','loginPlaceHolder')
 
-                    util.url = `${myIp}/loginpost/${objfrm.uid}/${objfrm.pwd}`
+                    util.url = `${myIp}/loginpost/${objfrm.uid}/${objfrm.pwd}/${(document.getElementById('region') ? document.getElementById('region').value  : null )}`
                     
                     util.loginPost(frm ,frmModal,`${util.url}`)
 
@@ -1540,10 +1542,12 @@ const util = {
             //console.log(`login here data ${JSON.stringify(data)}`)
             
             //close ModalBox
-            if(data[0] .found){
+            if(data[0].found){
+                
                 //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data[0].voice)
                 util.alertMsg(data[0].message,'success','loginPlaceHolder')
                 //document.getElementById('loginBtn').classList.add('hide-me')
+                
                 //addtocookie
                 util.setGroupCookie(data[0].id,data[0].region, data[0].fname, data[0].grp_id, data[0].email, data[0].voice, data[0].pic)/*=== SET GROUP COOKIE */
             
@@ -1551,15 +1555,23 @@ const util = {
                 let obj ={}
 
                 obj.id = data[0].id
+                obj.besi_id = data[0].besi_id
+                obj.ocw_id = data[0].ocw_id
+                obj.jms_id = data[0].jms_id
+
                 obj.region = data[0].region
                 obj.fullname = data[0].fname
+                
                 obj.grp_id = data[0].grp_id
+                obj.position_code = data[0].position_code
+
                 obj.email = data[0].email
+
                 obj.pic = data[0].pic
 
                 db.setItem('profile',JSON.stringify(obj))//save to localdb
                                     
-                switch ( data[0].grp_id ){
+                switch ( obj.grp_id ) {
                     case 1:
                         //check distance before proceeding to login
                         //take out chcking of distance bring back  later
@@ -1574,7 +1586,10 @@ const util = {
                     break
                 
                     case 4: // coordinator
-                        location.href = '../jtx/coord'    
+                        location.href = '../jtx/coord'
+                    break
+                    case '08':
+                        location.href = '/besi/coord'    
                     break
 
                     case 3:  //head coord

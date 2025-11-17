@@ -9,9 +9,9 @@
   <meta http-equiv="Expires" content="0">
 
 
-  <title>AsiaNow Enc. Inc.</title>
-  <!-- <link rel="shortcut icon" type="image/png" href="./html/assets/images/logos/favicon.png" /> -->
-  <link rel="shortcut icon" href="/html/assets/images/logos/asiaoneico.png" type="image/x-icon" sizes="32x32">  
+  <title>BESI</title>
+  <!-- <link rel="shortcut icon" type="image/png" href="/html/assets/images/logos/favicon.png" /> -->
+  <link rel="shortcut icon" href="/html/assets/images/logos/besi_logo.jpg" type="image/x-icon" sizes="32x32">  
 
   <!-- <link rel="stylesheet" href="/html/assets/bootstrap/css/bootstrap.min.css?h=0516002ac6166f9bc5a60df257b0e1f8"> -->
   
@@ -41,11 +41,11 @@
              <div class="card mb-0 fade-in" id="myCard">
               <div class="card-body w-70">
                 <!--//company logo -->
-                <a href="/jtx" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="/html/assets/images/logos/asiaone_.png"  width="180" alt="" />
+                <a href="/besi" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <img src="/html/assets/images/logos/besi_main_logo.jpg"  width="180" alt="" />
                 </a>
 
-                <p class="text-center">Better Edge Inc., J&T Group v.1.3</p>
+                <p class="text-center">Beta v.1.4</p>
                 <!--//end company logo -->
                 <form id="loginForm" name="loginForm" class="needs-validation">
                   
@@ -53,6 +53,23 @@
                   <div id="loginPlaceHolder"></div>
                   <!--//END ALERT-->
 
+                  <div class="mb-3">
+                    <i class="ti ti-map" style="color:blue"></i>
+                    <label for="region" class="form-label">Region</label>
+                    <select class="form-select login" id="region" name="region" required>
+                        <option value="">Select Region</option>
+                        <option value="cmnl">NCR-CMNL</option>
+                        <option value="cmnva">NCR-CMNVA</option>
+                        <option value="smnl">NCR-SMNL</option>
+                        <!-- Add more options here as needed -->
+                    </select>
+                    <div class="invalid-feedback">
+                      Select Region
+                    </div>
+                    <div class="valid-feedback">
+                      Looking Good!
+                    </div>
+                  </div>
                   <div class="mb-3">
                     <i class="ti ti-user" style="color:blue"></i>
                     <label for="uid" class="form-label">Username</label>
@@ -243,17 +260,18 @@
   </style>
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
      -->
-  <!-- <script src="./html/assets/libs/jquery/dist/jquery.min.js"></script> -->
+  <!-- <script src="/html/assets/libs/jquery/dist/jquery.min.js"></script> -->
   <script src="/html/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- toastify -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   
-  <script src="../html/assets/js/ipconfig.js?v=8"></script>
+  <script src="/html/assets/js/ipconfig.js?v=8"></script>
   <script src="/html/assets/js/util.js?v=8"></script>
   <!-- <script src="/html/assets/js/login.js?v=8"></script> -->
 
   <script>
+    gonow:true,
     
     db = window.localStorage
 
@@ -382,36 +400,47 @@
 
       //loginbtn pressed -- check input first
       checkinput:() => {
-        let gonow = true
-
+        console.log('checkinput()')
+        
         try{
           if( db.getItem('profile')){
             const uid = JSON.parse( db.getItem('profile'))
+
             if(uid.email !== document.getElementById('uid').value){
               
-              gonow = false
+            main.gonow = false
 
               alert('PLEASE USE THE PHONE THAT YOU USED TO REGISTER YOUR EMAIL')
                 
                 
             }//eif
+          }else{
+            main.gonow=true
           }
+
+          util.validateMe('loginModal','#loginForm','login')
+              
 
         }catch(error){
 
         }finally{
           
-          if(gonow){
-              let button = document.getElementById('loginbtn')
-              button.disabled = true;
-              button.setAttribute('aria-disabled', 'true'); //Optional, but helps screen readers
+          if(!main.gonow){
+          //     let button = document.getElementById('loginbtn')
+          //     button.disabled = true;
+          //     button.setAttribute('aria-disabled', 'true'); //Optional, but helps screen readers
               
-              xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Searching Database please wait...</div>"
-              util.alertMsg( xmsg,'danger','loginPlaceHolder')
-        
-              util.validateMe('loginModal','#loginForm','login')
               
-          }else{
+          // }else{
+            let button = document.getElementById('loginbtn')
+            button.disabled = false;
+            button.setAttribute('aria-disabled', 'false'); //Optional, but helps screen readers
+            
+            xmsg = "<div>Error, Check your Entry!</div>"
+            util.alertMsg( xmsg,'danger','loginPlaceHolder')
+
+            main.gonow = true
+            
             return false
           }
           

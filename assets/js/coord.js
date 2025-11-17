@@ -324,7 +324,7 @@ const asn = {
         })  
         .catch((error) => {
             //zonked.notif('','p-notif',true)
-            //util.Toast(`Error:, ${error}`,1000)
+            //util.flog(`Error:, ${error}`,1000)
             console.error('Error:', error)
         })    
     },
@@ -737,9 +737,91 @@ const asn = {
     //==========END  GETMENU
    ctrl:null,
 
+   configObj:null,
+   winModal:null,
+
+   showLoginModal:()=>{
+        asn.configObj = { keyboard: false }
+        asn.winModal = new bootstrap.Modal(document.getElementById('universalMessageModal'), asn.configObj);
+
+        // Show modal
+        asn.winModal.show();
+   },
+
+   //===time in/  time out
+   logtime: async(param)=>{
+        console.log(param)
+        
+        const now = new Date(); console.log(now)
+        const todayDate = now.toISOString().split('T')[0]; // "YYYY-MM-DD"
+        const currentTimeFormatted = now.toTimeString().split(' ')[0]; // "HH:MM:SS" (24-hour format)
+        const timestampForBackend = now.toISOString(); // Full ISO timestamp for backend storage
+
+        const userId = asn.userProfile.id 
+
+        // 2. Prepare FormData for the backend request
+        // This FormData object is specifically for the timekeeping endpoint.
+        const formDataForTimekeep = new FormData();
+        formDataForTimekeep.append('user_id', userId);
+        formDataForTimekeep.append('region', asn.userProfile.region);
+        formDataForTimekeep.append('timestamp', timestampForBackend); // Send full timestamp to backend
+        formDataForTimekeep.append('action_type', param); // 'login' or 'logout'
+
+        // --- HOW TO CONSOLE.LOG FormData CONTENTS ---
+        console.log("--- Inspecting formDataForTimekeep ---");
+        for (let pair of formDataForTimekeep.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+        console.log("------------------------------------");
+
+        try{
+            const response = await fetch(`${myIp}/timekeep`, {
+                method: 'POST',
+                body: formDataForTimekeep
+
+                /* do this so no uplod.none() in multer
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ item: 'Apple', quantity: 5 })
+                */
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({ message: 'Server error' }));
+                throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);
+            }
+
+            const data = await response.json();
+
+            if(data.success){
+
+                util.Toasted(data.msg,2000,false)
+                asn.speak(data.msg)
+
+            }
+
+
+
+        }  catch (error) {
+            console.error('Timekeeping process failed:', error);
+            util.Toasted('Error!'+error,2000,false)
+
+            //showMessageModal('Error', `Failed to ${param} time: ${error.message || 'An unknown error occurred.'}`, [{text: 'OK', class: 'btn-danger', dismiss: true}]);
+        } finally {
+            // 5. Close the initial dialog (the one with "Time In / Time Out" buttons)
+            if (asn.winModal) {
+                asn.winModal.hide();
+            }
+        }
+    
+
+   },
+
+   userProfile: JSON.parse(localStorage.getItem('profile')),  //get profile,
+
 	//==,= main run
 	init :  () => {
 
+      
         /*
         voice first
         */
@@ -780,11 +862,13 @@ const asn = {
         asn.speaks('Welcome to ASN Apps')
 
         asn.getmenu(util.getCookie('grp_id')) 
+        
         console.log('===asn.init()=== loaded!')
+
 
         //asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
-        if(util.getCookie('f_pic')!==""){
+        if(util.getCookie('f_pic')!==""||util.getCookie('f_pic')== null){
             document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
         }else{
             document.getElementById('img-profile').src=`/html/assets/images/profile/engr.jpg`
@@ -829,7 +913,7 @@ const asn = {
 
         console.log('===loadbarchart()===')
 
-        console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
+        console.log('===asn.init() praise God! Loading JTX group ?v=6 ===', )
 
         document.getElementById('h5title').innerHTML= util.strDate() + ' (Daily Performance)'
         document.getElementById('h5tophubtitle').innerHTML= util.strDate() + ' (Daily Location Performance)'
@@ -852,8 +936,15 @@ Ext.onReady(function(){
     asn.ctrlExt.listencoordLocation('')
     asn.ctrlExt.listencoordRider()
         
-    
-        
     window.scrollTo(0,0);
     asn.init() //instantiate now
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Get a reference to your modal's HTML element
+    const universalMessageModalElement = document.getElementById('universalMessageModal');
+
+    universalMessageModalElement.addEventListener('shown.bs.modal',  (event) => {
+        console.log('show dialog')
+    })
 })

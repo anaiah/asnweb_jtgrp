@@ -325,7 +325,6 @@
         
             util.loadFormValidation('#searchForm')
 
-
             hris.getmenu(util.getCookie('grp_id')) 
 
             let db = localStorage  //get localstoreage
