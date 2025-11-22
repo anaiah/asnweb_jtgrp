@@ -1607,7 +1607,7 @@ const util = {
                     break
 
                     case 9://finance
-                        location.href ='../jtx/hris '    
+                        location.href ='../jtx/fin '    
                     break
 
 
