@@ -1606,6 +1606,10 @@ const util = {
                         location.href ='../jtx/hris '    
                     break
 
+                    case 9://finance
+                        location.href ='../jtx/hris '    
+                    break
+
 
                 }//===== endswitch
                         
