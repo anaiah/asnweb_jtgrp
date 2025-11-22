@@ -32,7 +32,9 @@ var hrisGrid = new Tabulator("#hrisgrid", {
             headerHozAlign:"center", 
             resizable:false,
             formatter:(cell)=>{
-                return `${cell.getData().full_name}<br> ${cell.getData().besi_id}`
+                return `${cell.getData().full_name}<br> 
+                ${cell.getData().email}<br>
+                ${cell.getData().besi_id}`
             }
         },
 
