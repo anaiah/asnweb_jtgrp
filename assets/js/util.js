@@ -1483,7 +1483,7 @@ const util = {
         //     db.setItem('logged', false)
         // }
         
-        location.href = '/jtx'
+        location.href = './'
     },
 
     //=====THIS IS FOR RIDERS========//
