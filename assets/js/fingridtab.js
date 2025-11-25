@@ -10,6 +10,20 @@ var financeGrid = new Tabulator("#finance-grid", {
         formatCells: true
     },
 
+    // *** THIS IS THE IMPORTANT PART ***
+    rowClick:function(e, row){ //e - the click event object, row - row component
+        console.log("Row clicked!");
+        //console.log("Clicked row data:", row.getData().login_details); // Get the data for the clicked row
+        //console.log("Clicked row ID:", row.getIndex()); // Get the ID (from 'id' field by default)
+        //console.log("Clicked row DOM element:", row.getElement()); // Get the DOM element for the row
+
+        // Example: Show an alert with some row data
+        alert("You clicked on row: " + row.getData().name + " (ID: " + row.getIndex() + ")");
+
+        // You can also access specific cell data from the row
+        // console.log("Value of 'age' in clicked row:", row.getData().age);
+    },
+
     placeholder: 'No Record Selected!',
     
     // rowFormatter:function(row){
@@ -32,24 +46,35 @@ var financeGrid = new Tabulator("#finance-grid", {
             headerHozAlign:"center", 
             resizable:false,
             formatter:(cell)=>{
-                return `${cell.getData().full_name}<br> 
-                ${cell.getData().email}<br>
-                ${cell.getData().besi_id}`
+                // Get the full row data
+                const rowData = cell.getData();
+                
+                const rowIdx = cell.getRow().getIndex(); // Get the RowComponent 
+
+                const besiId = rowData.besi_id; // Assuming besi_id is unique per row
+
+                return `${rowData.full_name}<br>
+                        ${rowData.email}<br>
+                        ${rowData.besi_id}<br>
+                        <button class='btn-primary btn-sm btn' onclick="finance.viewer('${besiId}','${rowIdx}')">View Details</button>`;
+                        // ^^^ Pass the unique ID as a string ^^^
             }
         },
 
-        { title: "OCW #", 
-            field: "ocw_id", 
+        { title: "TOTAL HRS", 
+            field: "total_worked_hours", 
             width:120,
             resizable:false,
             formatter:"html", 
+            hozAlign:'right',
             headerSort:false, 
             headerHozAlign:"center"
         },
-        { title: "JMS #", 
-            field: "jms_id", 
+        { title: "TOTAL OT",
+            field: "total_overtime_hours", 
             width:120,
             resizable:false,
+            hozAlign:'right',
             formatter:"html", 
             headerSort:false, 
             headerHozAlign:"center"

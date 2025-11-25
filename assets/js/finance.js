@@ -23,9 +23,9 @@
       
         //INCLUDE LISTENER
         listeners:()=>{
-            document.getElementById('menuBtn').onclick = finance.toggleSidebar;
+            //document.getElementById('menuBtn').onclick = finance.toggleSidebar;
 
-            document.getElementById('sidebar').onclick = finance.toggleSidebar;
+            document.getElementById('leftsidebar').onclick = finance.toggleSidebar;
 
             // Add event listeners to links
             document.querySelectorAll('.sidebar-link').forEach(link => {
@@ -237,7 +237,7 @@
         
 
         //==================search filter=======
-        searchEmp: async() => {
+        searchEmpTimeKeep: async() => {
             
             const searchForm = document.getElementById('searchForm');
             const formData = new FormData(searchForm);
@@ -251,7 +251,7 @@
             
             // --- END INSPECTION ---
         
-            const response = await fetch(`${myIp}/searchemp`, {
+            const response = await fetch(`${myIp}/searchempTimeKeep`, {
                 method: 'POST',
                 body: formData
             });
@@ -263,9 +263,19 @@
 
             const data = await response.json();
 
-            console.log( data.xdata)
+            console.log( data.xdata, data.xdata.length)
+            console.log( 'DETAILS', data.xdata[4].login_details)
             
             financeGrid.setData(data.xdata)
+
+            if(data.xdata.length>0){
+                document.getElementById('download-excel-btn').disabled = false
+            }else{
+                document.getElementById('download-excel-btn').disabled = true
+                
+            }
+
+
         },
 
         hrlistener:()=>{
@@ -318,6 +328,45 @@
             //=================END FORM SUBMIT==========================//
         
         },
+
+        viewer: (besiIdFromButton, tabulatorRowId) => { // Renamed parameters for clarity
+            console.log("Viewer called for besiId from button:", besiIdFromButton);
+            console.log("Tabulator's actual row ID:", tabulatorRowId); // This is the 'idx' you passed
+
+            // *** THIS IS THE CRUCIAL CORRECTION ***
+            // Use 'tabulatorRowId' (which is the value from cell.getRow().getIndex())
+            // to retrieve the RowComponent.
+            const rowComponent = financeGrid.getRow(tabulatorRowId);
+
+            if (rowComponent) {
+                const rowData = rowComponent.getData();
+                console.log("Full row data found:", rowData);
+                console.log("Login Details for this row:", rowData.login_details);
+
+                //set details to new grid tabulator
+                financedetailGrid.setData(  rowData.login_details )
+
+                // Now you have the login_details array, you can do whatever you need with it
+                if (rowData.login_details && rowData.login_details.length > 0) {
+                    let detailsHtml = "<ul>";
+                    rowData.login_details.forEach(detail => {
+                        detailsHtml += `<li>Date: ${detail.xdate}, Login: ${detail.login}, Logout: ${detail.logout}</li>`;
+                    });
+                    detailsHtml += "</ul>";
+
+                    // For demonstration, using alert. You'd typically update a DOM element here.
+                    //alert(`Login details for ${rowData.full_name}:\n` + detailsHtml.replace(/<[^>]*>?/gm, ''));
+
+                } else {
+                    //alert(`No login details found for ${rowData.full_name} for the selected period.`);
+                }
+
+            } else {
+                console.warn("Row component not found in Tabulator using its ID:", tabulatorRowId);
+                alert("Could not find employee details using internal table ID.");
+            }
+        },
+
 
         //==================INIT 
         init : () =>{
@@ -375,12 +424,12 @@
             util.modalListeners('newempModal')
             util.modalListeners('hrisloadModal')
 
-            finance.listeners()
+            //finance.listeners()
             finance.hrlistener()
         }    
     }//===end obj
 
-    finance.init();
+    //finance.init();
     
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();

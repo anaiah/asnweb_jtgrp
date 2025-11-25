@@ -392,7 +392,7 @@ const asn = {
 
     logout:()=>{
         asn.db.removeItem('myCart')//remove transaction localdb
-        location.href = '/jtx'
+        location.href = './'
                     
     },
 

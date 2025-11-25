@@ -381,7 +381,7 @@
         }    
     }//===end obj
 
-    hris.init();
+    //hris.init();
     
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();

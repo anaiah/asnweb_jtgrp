@@ -1,0 +1,50 @@
+<!-- Filter Group Card -->
+          <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                  <h5 class="mb-0 fw-semibold">Search Filters</h5>
+              </div>
+              <div class="card-body">
+                  <form id="searchForm" name="searchForm" class="row gy-3 gx-3 align-items-end"  novalidate>
+                      <!-- Filter by Name -->
+                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                          <label for="filter_name" class="form-label visually-hidden">Name</label>
+                          <input type="text" class="form-control" id="filter_name" name="filter_name" placeholder="Filter by Name">
+                      </div>
+                      <!-- Filter by ID -->
+                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                          <label for="filter_id" class="form-label visually-hidden">BESI ID</label>
+                          <input type="text" class="form-control" id="filter_id" name="filter_id" placeholder="Filter by ID">
+                      </div>
+                      <!-- Filter by Region (dropdown) -->
+                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                          <label for="filter_region" class="form-label visually-hidden">Region</label>
+                          <select class="form-select" id="filter_region" name="filter_region" required>
+                              <option value="">Filter by Region</option>
+                              <option value="cmnl">NCR-CMNL</option>
+                              <option value="cmnva">NCR-CMNVA</option>
+                              <option value="smnl">NCR-SMNL</option>
+                              <!-- Add more options here as needed -->
+                          </select>
+                      </div>
+                      <!-- Filter by Position (dropdown) -->
+                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                          <label for="filter_position" class="form-label visually-hidden">Position</label>
+                          <select class="form-select" id="filter_position" name="filter_position">
+                              <option value="">Filter by Position</option>
+                              <option value="01">RIDER</option>
+                              <option value="02">TRANSPORTER</option>
+                              <option value="08">COORDINATOR</option>
+                              <!-- Add more options here as needed -->
+                          </select>
+                      </div>
+                      <!-- Search Button (simplified) -->
+                      <div class="col-12 col-sm-6 col-md-4 col-lg-auto d-grid ms-auto">
+                          <button 
+                            class="btn btn-primary" id="search-btn" type="button"
+                            onclick="javascript:hris.searchEmp();">
+                              <i class="ti ti-search"></i>&nbsp;&nbsp; Search
+                          </button>
+                      </div>
+                  </form>
+              </div>
+          </div>
