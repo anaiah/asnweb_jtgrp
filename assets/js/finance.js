@@ -264,17 +264,38 @@
             const data = await response.json();
 
             console.log( data.xdata, data.xdata.length)
-            console.log( 'DETAILS', data.xdata[4].login_details)
             
-            financeGrid.setData(data.xdata)
+            if (data.xdata && data.xdata.length === 0) {
+                // Data is empty, perform a full reset
+                financeGrid.clearFilter();  // Clear any active filters
+                financeGrid.clearSort();    // Clear any active sorting
+               
+               // --- REVISED PAGINATION RESET ---
+                // Check if pagination is enabled before trying to reset the page
+                if (financeGrid.options.pagination) {
+                    financeGrid.setPage(1); // Set the page to the first page
+                    // If you need to also reset the total number of pages displayed (e.g., pageSize)
+                    // you might need to re-initialize pagination or adjust pageSize manually if it's dynamic.
+                    // For now, setPage(1) is the core fix.
+                }
+                // --- END REVISED PAGINATION RESET ---
 
-            if(data.xdata.length>0){
-                document.getElementById('download-excel-btn').disabled = false
-            }else{
+                financeGrid.deselectRow();  // Deselect any previously selected rows
+
+                // Finally, set the empty data. This will also trigger the "No Data" message.
+                financeGrid.setData([]);
+
                 document.getElementById('download-excel-btn').disabled = true
-                
-            }
 
+                console.log("Tabulator grid fully reset due to empty data.");
+            } else {
+                // Data is not empty, just update the grid
+                financeGrid.setData(data.xdata)
+
+                document.getElementById('download-excel-btn').disabled = false
+
+                console.log("Tabulator grid updated with new data.");
+            }
 
         },
 
