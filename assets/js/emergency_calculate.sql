@@ -10,4 +10,4 @@ SET
                ),
     updated_at = CURRENT_TIMESTAMP -- Update the updated_at timestamp
 WHERE
-    login_time IS NOT NULL AND logout_time IS NOT NULL;
+    login_time IS NOT NULL AND logout_time IS NOT NULL and total_hours = 0;

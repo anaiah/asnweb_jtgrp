@@ -232,6 +232,7 @@ span.xgrpheader{
                           <select class="form-select" id="filter_position" name="filter_position">
                               <option value="">Filter by Position</option>
                               <option value="01">RIDER</option>
+                              <option value="04">SORTER</option>
                               <option value="02">TRANSPORTER</option>
                               <option value="08">COORDINATOR</option>
                           </select>
@@ -267,7 +268,10 @@ span.xgrpheader{
                       <div class="card-body p-2">
                           <div class="mt-0 mb-1">
                               <h5 class="card-title fw-semibold" id="h6-txt">
-                                  <button id="download-excel-btn" disabled class="btn btn-success ms-2"><i class="ti ti-file-spreadsheet"></i>Download Result in Excel</button>
+                                    <button id="download-excel-btn" disabled class="btn btn-success ms-2">
+                                        <i class="ti ti-file-spreadsheet"></i>&nbsp;
+                                        Download Result in Excel
+                                    </button>
                               </h5>
                           </div>
                           <!-- GRID inside -->
@@ -284,9 +288,9 @@ span.xgrpheader{
                   <div class="card shadow w-100">
                       <div class="card-body p-2">
                           <div class="mt-0 mb-1">
-                              <h6 class="card-title fw-semibold" id="h6-txt">
+                              <h5 class="card-title fw-semibold" id="h6-txt">
                                   Details
-                              </h6>
+                              </h5>
                           </div>
                           <!-- GRID inside -->
                           <div class="table-responsive">
@@ -343,7 +347,7 @@ span.xgrpheader{
                           <select class="form-select" id="hrisload_position" name="hrisload_position" required>
                             <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
                             <option value="08" selected>COORDINATOR</option>
-                            <option value="01">RIDER</option>
+                            <option value="04">SORTER</option>
                             <option value="02">TRANSPORTER</option>
                           </select>
                         </div>

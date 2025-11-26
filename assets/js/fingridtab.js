@@ -70,6 +70,17 @@ var financeGrid = new Tabulator("#finance-grid", {
             headerSort:false, 
             headerHozAlign:"center"
         },
+        
+        { title: "TOTAL LATE",
+            field: "total_late_hours", 
+            width:120,
+            resizable:false,
+            hozAlign:'right',
+            formatter:"html", 
+            headerSort:false, 
+            headerHozAlign:"center"
+        },
+
         { title: "TOTAL OT",
             field: "total_overtime_hours", 
             width:120,

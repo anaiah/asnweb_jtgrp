@@ -278,18 +278,13 @@
 
         },
 
-        hrlistener:()=>{
-
-                 
-            
-        },
 
         xlshris:()=>{
             //for upload pdf
             const frmupload = document.getElementById('hrisuploadForm')
             
                 util.Toasted('Uploading, please wait!!!',3000,false)
-                    util.speak('Uploading, please wait!!!')
+                util.speak('Uploading, please wait!!!')
                
                 //finance.waitingIndicator.style.display = 'block'
 
@@ -367,6 +362,81 @@
             }
         },
 
+        //for downloading xls report
+        // --- In your 'your_script.js' or embedded <script> tag ---
+
+        downloadGridDataAsXls: async (event) => { // <--- Add 'event' parameter
+            event.preventDefault(); // <--- CRUCIAL: Prevent default button behavior (e.g., form submission)
+
+            // IMPORTANT: Replace with the actual route you'll create on your backend
+            const backendRoute = `${myIp}/download-grid-data-xls`;
+
+            const downloadBtn = event.target; // Get the button that was clicked
+            downloadBtn.disabled = true; // Disable button to prevent multiple clicks
+            const originalBtnText = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Downloading...'; // Visual feedback
+
+            //====GET DATA FROM FIRST GRID===//
+            const gridData = financeGrid.getData(); // This gets ALL data in the table, including any filters applied.
+
+            if (!gridData || gridData.length === 0) {
+                alert('No data available in the grid to download.');
+                downloadBtn.disabled = false;
+                downloadBtn.innerHTML = originalBtnText;
+                return;
+            }
+
+            try {
+                const response = await fetch(backendRoute, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // 'Authorization': 'Bearer YOUR_AUTH_TOKEN', // If needed
+                    },
+                    body: JSON.stringify(gridData),
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
+                }
+
+                const blob = await response.blob();
+
+                let filename = `timekeep_report_grid_${new Date().toISOString().slice(0,10)}.xlsx`;
+                const contentDisposition = response.headers.get('Content-Disposition');
+                if (contentDisposition) {
+                    const filenameMatch = contentDisposition.match(/filename\*?=['"]?([^"']+)['"]?$/i);
+                    if (filenameMatch && filenameMatch[1]) {
+                        filename = decodeURIComponent(filenameMatch[1].replace(/utf-8''/i, ''));
+                    }
+                }
+
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = filename;
+
+                document.body.appendChild(a);
+                a.click();
+
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+
+                console.log(`File "${filename}" downloaded successfully.`);
+                util.Toasted(`File "${filename}" downloaded successfully.`,3000,false)
+                // alert(`Report "${filename}" downloaded successfully!`); // Optional user feedback
+
+            } catch (error) {
+                console.error('Error downloading grid data:', error);
+                alert(`Failed to download report: ${error.message}. Please try again.`);
+            } finally {
+                downloadBtn.disabled = false; // Re-enable the button
+                downloadBtn.innerHTML = originalBtnText; // Restore original button text
+            }
+        },
+
 
         //==================INIT 
         init : () =>{
@@ -424,8 +494,7 @@
             util.modalListeners('newempModal')
             util.modalListeners('hrisloadModal')
 
-            //finance.listeners()
-            finance.hrlistener()
+            
         }    
     }//===end obj
 
@@ -440,6 +509,12 @@
         finance.init()
         //finance.listeners()
 
+        const downloadBtn = document.getElementById('download-excel-btn'); // Make sure this ID matches your button
+        
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', finance.downloadGridDataAsXls);
+        }
+        
         console.log('DOM CONTENT loaded')
         
     });
