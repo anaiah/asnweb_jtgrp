@@ -1614,7 +1614,7 @@ const util = {
                 }//===== endswitch
                         
             }else{
-                util.speak(data[0].voice)
+                //util.speak(data[0].voice)
                 util.alertMsg(data[0].message,'warning','loginPlaceHolder')
                 console.log('notfound',data[0].message)
                 return false
