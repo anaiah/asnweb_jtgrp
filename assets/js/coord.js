@@ -1051,74 +1051,114 @@ Ext.onReady(function(){
     asn.init() //instantiate now
 })
 
+
 document.addEventListener('DOMContentLoaded', () => {
     // Get a reference to your modal's HTML element
     const universalMessageModalElement = document.getElementById('universalMessageModal');
 
-    universalMessageModalElement.addEventListener('shown.bs.modal',  (event) => {
-        console.log('show dialog')
-    })
+    universalMessageModalElement.addEventListener('shown.bs.modal', (event) => {
+        console.log('show dialog');
+    });
 
-    document.getElementById('h5title').innerHTML= util.strDate() + ' (Daily Performance)'
-    document.getElementById('h5tophubtitle').innerHTML= util.strDate() + ' (Daily Location Performance)'
+    document.getElementById('h5title').innerHTML = util.strDate() + ' (Daily Performance)';
+    document.getElementById('h5tophubtitle').innerHTML = util.strDate() + ' (Daily Location Performance)';
 
-    asn.getTimeKeeping() //*********** RETRIVE TIMEKEEP  RECORD ********* */
+    asn.getTimeKeeping(); // *********** RETRIEVE TIMEKEEP RECORD *********
 
-    // --- Download Excel Button Logic (unchanged) ---
-  const submitMissingEntryBtn = document.getElementById('submitMissingEntryBtn');
+    // --- Submit Missing Entry Button Logic (REFACTORED) ---
+    const submitMissingEntryBtn = document.getElementById('submitMissingEntryBtn');
     if (submitMissingEntryBtn) {
-        submitMissingEntryBtn.addEventListener('click', async function() { // Added 'async'
-            const userId = asn.userProfile.id;
+        submitMissingEntryBtn.addEventListener('click', async function() {
+            const userId = asn.userProfile.id; // Assuming asn.userProfile.id is available
             const besiId = document.getElementById('modalBesiId').value;
-            const entryDate = document.getElementById('modalEntryDate').value; // 'MM-DD-YY'
-            const loginTime = document.getElementById('modalLoginTime').value; // 'HH:MM'
-            const logoutTime = document.getElementById('modalLogoutTime').value; // 'HH:MM'
+            const entryDate = document.getElementById('modalEntryDate').value; // 'MM-DD-YY' format from the modal
+            let loginTimeInput = document.getElementById('modalLoginTime').value; // 'HH:MM'
+            let logoutTimeInput = document.getElementById('modalLogoutTime').value; // 'HH:MM'
             const notes = document.getElementById('modalNotesSelect').value; // Get value from select
 
-            // Basic validation
+            // --- CRITICAL FRONTEND VALIDATION & NULL HANDLING ---
+
+            // 1. Convert empty input strings to null for consistency, and trim whitespace
+            const loginTime = loginTimeInput.trim() === '' ? null : loginTimeInput.trim();
+            const logoutTime = logoutTimeInput.trim() === '' ? null : logoutTimeInput.trim();
+
+            // 2. Basic validation: At least one time must be entered
             if (!loginTime && !logoutTime) {
-                alert("Please enter at least a Login Time or Logout Time.");
-                return;
-            }
-            if (!notes) { // Check if dropdown is blank (default option has value="")
-                alert("Please select a reason for the missing entry.");
+                util.Toasted("Please enter at least a Login Time or Logout Time.", 3000, true); // Assuming util.Toasted can show errors
                 return;
             }
 
-            // Construct full datetime strings for submission if needed by backend
-            // Backend expects YYYY-MM-DD for date, and YYYY-MM-DD HH:MM:SS for times
-            // You need to convert xdate (MM-DD-YY) to YYYY-MM-DD
+            // 3. Validation: Select a reason
+            if (!notes) {
+                util.Toasted("Please select a reason for the missing entry.", 3000, true);
+                return;
+            }
 
-            // Helper to convert MM-DD-YY to YYYY-MM-DD
-            const convertMMDDYYtoYYYYMMDD = (mmddyy) => {
-                if (!mmddyy) return null;
-                const parts = mmddyy.split('-'); // ["MM", "DD", "YY"]
-                const year = (parseInt(parts[2], 10) < 50 ? '20' : '19') + parts[2]; // Assumes 2-digit year
-                return `${year}-${parts[0]}-${parts[1]}`;
-            };
-            const entryDateYYYYMMDD = convertMMDDYYtoYYYYMMDD(entryDate);
+            // 4. Validation: Cannot have a Logout without a Login
+            if (!loginTime && logoutTime) {
+                util.Toasted("Cannot record a Logout Time without a Login Time.", 3000, true);
+                return;
+            }
 
-            // Construct full datetime strings for backend if it expects them
-            const submitLoginTime = loginTime ? `${entryDateYYYYMMDD} ${loginTime}:00` : null;
-            const submitLogoutTime = logoutTime ? `${entryDateYYYYMMDD} ${logoutTime}:00` : null;
-            
+            // 5. Validation: Login must be before Logout (if both are provided)
+            let submitLoginTimeFull = null;
+            let submitLogoutTimeFull = null;
+
+            if (loginTime && logoutTime) {
+                // Helper to convert MM-DD-YY to YYYY-MM-DD
+                const convertMMDDYYtoYYYYMMDD = (mmddyy) => {
+                    if (!mmddyy) return null;
+                    const parts = mmddyy.split('-'); // ["MM", "DD", "YY"]
+                    const year = (parseInt(parts[2], 10) < 50 ? '20' : '19') + parts[2]; // Assumes 2-digit year
+                    return `${year}-${parts[0]}-${parts[1]}`;
+                };
+                const entryDateYYYYMMDD = convertMMDDYYtoYYYYMMDD(entryDate);
+
+                // Construct full Date objects for comparison
+                const loginDateTime = new Date(`${entryDateYYYYMMDD}T${loginTime}:00`); // Using T for ISO format
+                const logoutDateTime = new Date(`${entryDateYYYYMMDD}T${logoutTime}:00`); // Using T for ISO format
+
+                // Check for invalid date parsing (e.g., malformed time input)
+                if (isNaN(loginDateTime.getTime()) || isNaN(logoutDateTime.getTime())) {
+                    util.Toasted("Invalid time format entered. Please use HH:MM.", 3000, true);
+                    return;
+                }
+
+                if (logoutDateTime <= loginDateTime) {
+                    util.Toasted("Logout Time must be after Login Time.", 3000, true);
+                    return;
+                }
+                
+                // If validation passes, set the full datetime strings for submission
+                submitLoginTimeFull = `${entryDateYYYYMMDD} ${loginTime}:00`;
+                submitLogoutTimeFull = `${entryDateYYYYMMDD} ${logoutTime}:00`;
+
+            } else {
+                // If only login is provided (and logout is null, due to previous validation)
+                const convertMMDDYYtoYYYYMMDD = (mmddyy) => { /* ... (same helper as above) ... */ }; // Redefine or move to global scope
+                const entryDateYYYYMMDD = convertMMDDYYtoYYYYMMDD(entryDate);
+                submitLoginTimeFull = loginTime ? `${entryDateYYYYMMDD} ${loginTime}:00` : null;
+                submitLogoutTimeFull = logoutTime ? `${entryDateYYYYMMDD} ${logoutTime}:00` : null;
+            }
+            // --- END CRITICAL FRONTEND VALIDATION & NULL HANDLING ---
+
             // The object to send to the backend
             const payload = {
-                user_id: userId,
-                besi_id: besiId,
-                entry_date: entryDateYYYYMMDD, // Send as YYYY-MM-DD
-                login_time: submitLoginTime,   // Send as YYYY-MM-DD HH:MM:SS or null
-                logout_time: submitLogoutTime, // Send as YYYY-MM-DD HH:MM:SS or null
+                user_id: userId, // Assuming this is the current user making the correction
+                besi_id: besiId, // The besi_id of the employee whose entry is being corrected
+                entry_date: convertMMDDYYtoYYYYMMDD(entryDate), // Send as YYYY-MM-DD
+                login_time: submitLoginTimeFull, // Already YYYY-MM-DD HH:MM:SS or null
+                logout_time: submitLogoutTimeFull, // Already YYYY-MM-DD HH:MM:SS or null
                 reason: notes // The selected reason
             };
 
             console.log("Submitting missing entry with payload:", payload);
 
             try {
-                const response = await fetch(`${myIp}/recordMissingTimeEntry`, { // <<-- Your new backend route here
+                const response = await fetch(`${myIp}/recordMissingTimeEntry`, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json', // Using JSON for payload
+                        'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(payload),
                 });
@@ -1126,30 +1166,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (data.success) {
-                    
-                    asn.getTimeKeeping() //reset grid
-
-                    util.Toasted("Missing entry recorded successfully!",3000,false);
-                    // Hide the modal
+                    asn.getTimeKeeping(); // Refresh grid
+                    util.Toasted("Missing entry recorded successfully!", 3000, false);
                     var missingEntryModal = bootstrap.Modal.getInstance(document.getElementById('missingEntryModal'));
                     if (missingEntryModal) missingEntryModal.hide();
-                    
-                    // IMPORTANT: Refresh the grid to show the updated entry
-                    // You'll need to re-fetch the data for the specific employee and date range
-                    // This often involves calling the fetchAndSetCoordDetailGridData function again
-                    // Example:
-                    // const currentEmployeeId = document.getElementById('someHiddenEmployeeIdOnPage').value;
-                    // const currentEmployeeRegion = document.getElementById('someHiddenEmployeeRegionOnPage').value;
-                    // fetchAndSetCoordDetailGridData(currentEmployeeId, currentEmployeeRegion);
 
                 } else {
-                    alert("Error recording entry: " + (data.message || "Unknown error"));
+                    util.Toasted("Error recording entry: " + (data.message || "Unknown error"), 3000, true);
                 }
             } catch (error) {
                 console.error("Error submitting missing entry:", error);
-                alert("An error occurred while submitting. Please try again.");
+                util.Toasted("An error occurred while submitting. Please try again.", 3000, true);
             }
         });
     }
-        
-})
+
+});
+
