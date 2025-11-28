@@ -180,6 +180,19 @@
         <div class="row" id="trans-month">
           <!-- First Column: Two stacked cards -->
           <div class="col-lg-6 mb-3 mb-lg-0">
+
+            <div class="card boxshadoe shadow mb-3">
+              <div class="card-body p-4">
+                <h5 class="fw-semibold mb-3">TimeKeeping Details</h5>
+
+                <div class="table-responsive mb-4">
+                  <div id="coord-detail-grid"></div>
+                </div>
+              </div>
+            </div>
+
+
+
             <!-- First Card: Month Transaction -->
             <div class="card boxshadoe shadow mb-3">
               <div class="card-body p-4">
@@ -240,39 +253,84 @@
         </div>
       </div>
 
-
-
       <!-- Small Centered Dialog Box (Bootstrap Modal) -->
       <div class="modal fade" id="universalMessageModal" tabindex="-1" aria-labelledby="universalMessageModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-sm"> <!-- 'modal-sm' for small, 'modal-dialog-centered' for centering -->
-              <div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="universalMessageModalLabel">Message</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body" id="universalMessageModalBody">
-        <!-- Message content will be injected here -->
-        
-        <!-- Centered Buttons: Use d-flex and justify-content-center -->
-        <div class="d-flex justify-content-center gap-3"> <!-- 'gap-3' adds spacing between buttons -->
-            <button type="button" name="timein-btn" id="timein-btn" class="btn btn-success" onclick='asn.logtime(1)'>
-                Time In
-            </button>
-            <button type="button"  name="timeout-btn" id="timeout-btn" class="btn btn-danger" onclick="asn.logtime(2)">
-                Time Out
-            </button>
-        </div>                 
-    </div>
-    <div class="modal-footer" id="universalMessageModalFooter">
-        <!-- Default button(s) or dynamically added buttons -->
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-    </div>
-</div>
+        <div class="modal-dialog modal-dialog-centered modal-sm"> <!-- 'modal-sm' for small, 'modal-dialog-centered' for centering -->
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="universalMessageModalLabel">Message</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" id="universalMessageModalBody">
+                  <!-- Message content will be injected here -->
+                  
+                  <!-- Centered Buttons: Use d-flex and justify-content-center -->
+                  <div class="d-flex justify-content-center gap-3"> <!-- 'gap-3' adds spacing between buttons -->
+                      <button type="button" name="timein-btn" id="timein-btn" class="btn btn-success" onclick='asn.logtime(1)'>
+                          Time In
+                      </button>
+                      <button type="button"  name="timeout-btn" id="timeout-btn" class="btn btn-danger" onclick="asn.logtime(2)">
+                          Time Out
+                      </button>
+                  </div>                 
+              </div>
+              <div class="modal-footer" id="universalMessageModalFooter">
+                  <!-- Default button(s) or dynamically added buttons -->
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+              </div>
+            </div>
 
-          </div>
+        </div>
       </div>
 
-      
+    <!-- Modal for Missing Entry Details -->
+<div class="modal fade" id="missingEntryModal" tabindex="-1" aria-labelledby="missingEntryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="missingEntryModalLabel">Record Missing Entry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Employee: <strong id="modalEmployeeName"></strong></p>
+        <p>Missing Date: <strong id="modalMissingDate"></strong></p>
+        <p>Please record what happened for this missing entry.</p>
+        
+        <div class="mb-3">
+          <label for="modalLoginTime" class="form-label">Login Time</label>
+          <input type="time" class="form-control" id="modalLoginTime">
+        </div>
+        <div class="mb-3">
+          <label for="modalLogoutTime" class="form-label">Logout Time</label>
+          <input type="time" class="form-control" id="modalLogoutTime">
+        </div>
+        
+        <!-- NEW: Dropdown for Notes -->
+        <div class="mb-3">
+          <label for="modalNotesSelect" class="form-label">Reason for Missing Entry</label>
+          <select class="form-select" id="modalNotesSelect">
+            <option value="">-- Select Reason --</option> <!-- Default blank option -->
+            <option value="LOW BATT">LOW BATT</option>
+            <option value="NO LOAD">NO LOAD</option>
+            <option value="NO SIGNAL">NO SIGNAL</option>
+            <option value="LOST PHONE">LOST PHONE</option>
+            <option value="BUSTED PHONE">BUSTED PHONE</option>
+            <option value="BUSTED LAPTOP">BUSTED LAPTOP</option>
+            <!-- Add more options if needed -->
+          </select>
+        </div>
+
+        <input type="hidden" id="modalBesiId">
+        <input type="hidden" id="modalEntryDate">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="submitMissingEntryBtn">Submit Entry</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
   
@@ -309,12 +367,8 @@
   <script src="/html/assets/js/util.js?v=8"></script>
   <script src="/html/assets/js/coord.js?v=8"></script>
 
-    
-  <!-- <script src="/html/assets/js/main.js?v=8"></script> -->
-  <!-- <script src="/html/assets/js/listen.js?v=8"></script> -->
-
   <!-- takeout muna gridtab palit extjs -->
-  <!-- <script src="/html/assets/js/gridtab.js?v=8"></script> -->
+  <script src="/html/assets/js/coordgriddettab.js?v=8"></script>
 
   <script> 
     document.addEventListener('DOMContentLoaded', function() {

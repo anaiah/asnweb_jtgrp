@@ -735,92 +735,210 @@ const asn = {
         })    
     },
     //==========END  GETMENU
-   ctrl:null,
+    ctrl:null,
 
-   configObj:null,
-   winModal:null,
+    configObj:null,
+    winModal:null,
 
-   showLoginModal:()=>{
-        asn.configObj = { keyboard: false }
-        asn.winModal = new bootstrap.Modal(document.getElementById('universalMessageModal'), asn.configObj);
+    showLoginModal:()=>{
+            asn.configObj = { keyboard: false }
+            asn.winModal = new bootstrap.Modal(document.getElementById('universalMessageModal'), asn.configObj);
 
-        // Show modal
-        asn.winModal.show();
-   },
+            // Show modal
+            asn.winModal.show();
+    },
 
-   //===time in/  time out
-   logtime: async(param)=>{
-        console.log(param)
+    getTimeKeeping: async( )=>{
+        console.log( asn.userProfile.id, asn.userProfile.besi_id, asn.userProfile.region )
+        const employeeBesiId = asn.userProfile.besi_id; // Get this from your page's context
+        const employeeRegion = asn.userProfile.region; // Get this from your page's context (VERY IMPORTANT!)
+
+        // Optional: If the new page has date pickers and wants a specific range
+        const pageDateFrom = '2025-10-15';
+        const pageDateTo = '2025-10-20';
+
+        const filtersToSend = {
+            filter_id: employeeBesiId,
+            filter_region: employeeRegion,
+            // filter_date_from: pageDateFrom, // Only include if user specifies
+            // filter_date_to: pageDateTo      // Only include if user specifies
+        };
+
+        fetch(`${myIp}/searchempTimeKeep`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(filtersToSend).toString(),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.xdata.length > 0) {
+                const employeeDetails = data.xdata[0]; // Assuming besi_id is unique, you get one employee
+                console.log("Employee Details for new page:", employeeDetails);
+
+                //map new obj
+                const enrichedLoginDetails = (employeeDetails.login_details || []).map(detail => ({
+                    ...detail, // Keep all existing properties (xdate, login, logout, etc.)
+                    besi_id: employeeDetails.besi_id,      // Add employee's besi_id
+                    full_name: employeeDetails.full_name   // Add employee's full_name
+                }));
+                // --- END NEW/UPDATED CODE BLOCK ---
+
+                 // Set the enriched data for your coorddetailGrid
+                coorddetailGrid.setData(enrichedLoginDetails);
         
-        const now = new Date(); console.log(now)
-        const todayDate = now.toISOString().split('T')[0]; // "YYYY-MM-DD"
-        const currentTimeFormatted = now.toTimeString().split(' ')[0]; // "HH:MM:SS" (24-hour format)
-        const timestampForBackend = now.toISOString(); // Full ISO timestamp for backend storage
+            } else {
 
-        const userId = asn.userProfile.id 
+                // Data is empty, perform a full reset
+                coorddetailGrid.clearFilter();  // Clear any active filters
+                coorddetailGrid.clearSort();    // Clear any active sorting
+               
+               // --- REVISED PAGINATION RESET ---
+                // Check if pagination is enabled before trying to reset the page
+                if (coorddetailGrid.options.pagination) {
+                    coorddetailGrid.setPage(1); // Set the page to the first page
+                    // If you need to also reset the total number of pages displayed (e.g., pageSize)
+                    // you might need to re-initialize pagination or adjust pageSize manually if it's dynamic.
+                    // For now, setPage(1) is the core fix.
+                }
+                // --- END REVISED PAGINATION RESET ---
 
-        // 2. Prepare FormData for the backend request
-        // This FormData object is specifically for the timekeeping endpoint.
-        const formDataForTimekeep = new FormData();
-        formDataForTimekeep.append('user_id', userId);
-        formDataForTimekeep.append('region', asn.userProfile.region);
-        formDataForTimekeep.append('timestamp', timestampForBackend); // Send full timestamp to backend
-        formDataForTimekeep.append('action_type', param); // 'login' or 'logout'
+                coorddetailGrid.deselectRow();  // Deselect any previously selected rows
 
-        // --- HOW TO CONSOLE.LOG FormData CONTENTS ---
-        console.log("--- Inspecting formDataForTimekeep ---");
-        for (let pair of formDataForTimekeep.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
+                // Finally, set the empty data. This will also trigger the "No Data" message.
+                coorddetailGrid.setData([]);
+
+                console.error("Could not fetch details for employee:", employeeBesiId, data.msg);
+                util.Toasted(`Could not fetch details for employee: ${employeeBesiId}`)
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching employee details:", error);
+        });
+    },
+
+    //===time in/  time out
+    logtime: async(param)=>{
+            console.log(param)
+            
+            const now = new Date(); console.log(now)
+            const todayDate = now.toISOString().split('T')[0]; // "YYYY-MM-DD"
+            const currentTimeFormatted = now.toTimeString().split(' ')[0]; // "HH:MM:SS" (24-hour format)
+            const timestampForBackend = now.toISOString(); // Full ISO timestamp for backend storage
+
+            const userId = asn.userProfile.id 
+
+            // 2. Prepare FormData for the backend request
+            // This FormData object is specifically for the timekeeping endpoint.
+            const formDataForTimekeep = new FormData();
+            formDataForTimekeep.append('user_id', userId);
+            formDataForTimekeep.append('region', asn.userProfile.region);
+            formDataForTimekeep.append('timestamp', timestampForBackend); // Send full timestamp to backend
+            formDataForTimekeep.append('action_type', param); // 'login' or 'logout'
+
+            // --- HOW TO CONSOLE.LOG FormData CONTENTS ---
+            console.log("--- Inspecting formDataForTimekeep ---");
+            for (let pair of formDataForTimekeep.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
+            console.log("------------------------------------");
+
+            try{
+                const response = await fetch(`${myIp}/timekeep`, {
+                    method: 'POST',
+                    body: formDataForTimekeep
+
+                    /* do this so no uplod.none() in multer
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ item: 'Apple', quantity: 5 })
+                    */
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ message: 'Server error' }));
+                    throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);
+                }
+
+                const data = await response.json();
+
+                if(data.success){
+
+                    util.Toasted(data.msg,2000,false)
+                    asn.speak(data.msg)
+
+                }
+
+            }  catch (error) {
+                console.error('Timekeeping process failed:', error);
+                util.Toasted('Error!'+error,2000,false)
+
+                //showMessageModal('Error', `Failed to ${param} time: ${error.message || 'An unknown error occurred.'}`, [{text: 'OK', class: 'btn-danger', dismiss: true}]);
+            } finally {
+                // 5. Close the initial dialog (the one with "Time In / Time Out" buttons)
+                if (asn.winModal) {
+                    asn.winModal.hide();
+                }
+            }
+    },
+
+    userProfile: JSON.parse(localStorage.getItem('profile')),  //get profile,
+
+    openMissingEntryModal : (
+        encodedBesiId,
+        encodedXdate,
+        encodedEmployeeName,
+        encodedLoginTime,
+        encodedLogoutTime
+    ) => {
+        const besiId = decodeURIComponent(encodedBesiId);
+        const xdate = decodeURIComponent(encodedXdate);
+        const employeeName = decodeURIComponent(encodedEmployeeName);
+        
+        // Decode and convert "null" string back to actual null
+        const loginTime = decodeURIComponent(encodedLoginTime) === 'null' ? null : decodeURIComponent(encodedLoginTime);
+        const logoutTime = decodeURIComponent(encodedLogoutTime) === 'null' ? null : decodeURIComponent(encodedLogoutTime);
+
+        // Get references to modal form elements
+        const modalLoginTimeInput = document.getElementById('modalLoginTime');
+        const modalLogoutTimeInput = document.getElementById('modalLogoutTime');
+        const modalNotesSelect = document.getElementById('modalNotesSelect'); // Get reference to the select dropdown
+
+        // Populate modal basic fields
+        document.getElementById('modalEmployeeName').innerText = employeeName;
+        document.getElementById('modalMissingDate').innerText = xdate;
+        document.getElementById('modalBesiId').value = besiId;
+        document.getElementById('modalEntryDate').value = xdate;
+
+        // Conditional Logic for Login/Logout Inputs (unchanged)
+        if (loginTime === null && logoutTime === null) {
+            modalLoginTimeInput.value = '';
+            modalLoginTimeInput.disabled = false;
+            modalLogoutTimeInput.value = '';
+            modalLogoutTimeInput.disabled = false;
+        } else if (loginTime !== null && logoutTime === null) {
+            modalLoginTimeInput.value = loginTime;
+            modalLoginTimeInput.disabled = true;
+            modalLogoutTimeInput.value = '';
+            modalLogoutTimeInput.disabled = false;
+        } else {
+            modalLoginTimeInput.value = loginTime || '';
+            modalLoginTimeInput.disabled = (loginTime !== null);
+            modalLogoutTimeInput.value = logoutTime || '';
+            modalLogoutTimeInput.disabled = (logoutTime !== null);
         }
-        console.log("------------------------------------");
 
-        try{
-            const response = await fetch(`${myIp}/timekeep`, {
-                method: 'POST',
-                body: formDataForTimekeep
+        // Reset the dropdown to its default blank option
+        modalNotesSelect.value = ''; 
 
-                /* do this so no uplod.none() in multer
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ item: 'Apple', quantity: 5 })
-                */
-            });
+        // Show the modal (assuming Bootstrap 5)
+        var missingEntryModal = new bootstrap.Modal(document.getElementById('missingEntryModal'));
+        missingEntryModal.show();
+    },
 
-            if (!response.ok) {
-                const errorData = await response.json().catch(() => ({ message: 'Server error' }));
-                throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);
-            }
-
-            const data = await response.json();
-
-            if(data.success){
-
-                util.Toasted(data.msg,2000,false)
-                asn.speak(data.msg)
-
-            }
-
-
-
-        }  catch (error) {
-            console.error('Timekeeping process failed:', error);
-            util.Toasted('Error!'+error,2000,false)
-
-            //showMessageModal('Error', `Failed to ${param} time: ${error.message || 'An unknown error occurred.'}`, [{text: 'OK', class: 'btn-danger', dismiss: true}]);
-        } finally {
-            // 5. Close the initial dialog (the one with "Time In / Time Out" buttons)
-            if (asn.winModal) {
-                asn.winModal.hide();
-            }
-        }
-    
-
-   },
-
-   userProfile: JSON.parse(localStorage.getItem('profile')),  //get profile,
 
 	//==,= main run
 	init :  () => {
-
       
         /*
         voice first
@@ -830,7 +948,7 @@ const asn = {
 
         let loadVoices = () => {
             availableVoices = speechSynthesis.getVoices();
-            console.log('Voices loaded:', availableVoices);
+            // console.log('Voices loaded:', availableVoices);
         }
 
         speechSynthesis.addEventListener('voiceschanged', loadVoices);
@@ -859,14 +977,11 @@ const asn = {
             speechSynthesis.speak(utter);
         }
 
-        asn.speaks('Welcome to ASN Apps')
+        asn.speaks('Welcome to Better Edge Apps')
 
         asn.getmenu(util.getCookie('grp_id')) 
         
         console.log('===asn.init()=== loaded!')
-
-
-        //asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
         if(util.getCookie('f_pic')!==""||util.getCookie('f_pic')== null){
             document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
@@ -910,13 +1025,9 @@ const asn = {
         setTimeout(() => {
             asn.loadbarChart('rider');
         }, 1000)
-
+    
         console.log('===loadbarchart()===')
-
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===', )
-
-        document.getElementById('h5title').innerHTML= util.strDate() + ' (Daily Performance)'
-        document.getElementById('h5tophubtitle').innerHTML= util.strDate() + ' (Daily Location Performance)'
         
 	}//END init
 
@@ -947,4 +1058,98 @@ document.addEventListener('DOMContentLoaded', () => {
     universalMessageModalElement.addEventListener('shown.bs.modal',  (event) => {
         console.log('show dialog')
     })
+
+    document.getElementById('h5title').innerHTML= util.strDate() + ' (Daily Performance)'
+    document.getElementById('h5tophubtitle').innerHTML= util.strDate() + ' (Daily Location Performance)'
+
+    asn.getTimeKeeping() //*********** RETRIVE TIMEKEEP  RECORD ********* */
+
+    // --- Download Excel Button Logic (unchanged) ---
+  const submitMissingEntryBtn = document.getElementById('submitMissingEntryBtn');
+    if (submitMissingEntryBtn) {
+        submitMissingEntryBtn.addEventListener('click', async function() { // Added 'async'
+            const userId = asn.userProfile.id;
+            const besiId = document.getElementById('modalBesiId').value;
+            const entryDate = document.getElementById('modalEntryDate').value; // 'MM-DD-YY'
+            const loginTime = document.getElementById('modalLoginTime').value; // 'HH:MM'
+            const logoutTime = document.getElementById('modalLogoutTime').value; // 'HH:MM'
+            const notes = document.getElementById('modalNotesSelect').value; // Get value from select
+
+            // Basic validation
+            if (!loginTime && !logoutTime) {
+                alert("Please enter at least a Login Time or Logout Time.");
+                return;
+            }
+            if (!notes) { // Check if dropdown is blank (default option has value="")
+                alert("Please select a reason for the missing entry.");
+                return;
+            }
+
+            // Construct full datetime strings for submission if needed by backend
+            // Backend expects YYYY-MM-DD for date, and YYYY-MM-DD HH:MM:SS for times
+            // You need to convert xdate (MM-DD-YY) to YYYY-MM-DD
+
+            // Helper to convert MM-DD-YY to YYYY-MM-DD
+            const convertMMDDYYtoYYYYMMDD = (mmddyy) => {
+                if (!mmddyy) return null;
+                const parts = mmddyy.split('-'); // ["MM", "DD", "YY"]
+                const year = (parseInt(parts[2], 10) < 50 ? '20' : '19') + parts[2]; // Assumes 2-digit year
+                return `${year}-${parts[0]}-${parts[1]}`;
+            };
+            const entryDateYYYYMMDD = convertMMDDYYtoYYYYMMDD(entryDate);
+
+            // Construct full datetime strings for backend if it expects them
+            const submitLoginTime = loginTime ? `${entryDateYYYYMMDD} ${loginTime}:00` : null;
+            const submitLogoutTime = logoutTime ? `${entryDateYYYYMMDD} ${logoutTime}:00` : null;
+            
+            // The object to send to the backend
+            const payload = {
+                user_id: userId,
+                besi_id: besiId,
+                entry_date: entryDateYYYYMMDD, // Send as YYYY-MM-DD
+                login_time: submitLoginTime,   // Send as YYYY-MM-DD HH:MM:SS or null
+                logout_time: submitLogoutTime, // Send as YYYY-MM-DD HH:MM:SS or null
+                reason: notes // The selected reason
+            };
+
+            console.log("Submitting missing entry with payload:", payload);
+
+            try {
+                const response = await fetch(`${myIp}/recordMissingTimeEntry`, { // <<-- Your new backend route here
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', // Using JSON for payload
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    
+                    asn.getTimeKeeping() //reset grid
+
+                    util.Toasted("Missing entry recorded successfully!",3000,false);
+                    // Hide the modal
+                    var missingEntryModal = bootstrap.Modal.getInstance(document.getElementById('missingEntryModal'));
+                    if (missingEntryModal) missingEntryModal.hide();
+                    
+                    // IMPORTANT: Refresh the grid to show the updated entry
+                    // You'll need to re-fetch the data for the specific employee and date range
+                    // This often involves calling the fetchAndSetCoordDetailGridData function again
+                    // Example:
+                    // const currentEmployeeId = document.getElementById('someHiddenEmployeeIdOnPage').value;
+                    // const currentEmployeeRegion = document.getElementById('someHiddenEmployeeRegionOnPage').value;
+                    // fetchAndSetCoordDetailGridData(currentEmployeeId, currentEmployeeRegion);
+
+                } else {
+                    alert("Error recording entry: " + (data.message || "Unknown error"));
+                }
+            } catch (error) {
+                console.error("Error submitting missing entry:", error);
+                alert("An error occurred while submitting. Please try again.");
+            }
+        });
+    }
+        
 })
