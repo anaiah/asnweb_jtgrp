@@ -876,37 +876,20 @@ const util = {
             break
 			
             case "newempModal":
-                if(util.getCookie('grp_id')!=="2"){
-                    //show the dialog modal
-                    console.log('uyyy mdalshow Nu emp')
-                    const xnewsitemodal =  new bootstrap.Modal(document.getElementById('newempModal'),configObj);
-                    xnewsitemodal.show()  
+            case "dataPrivacySignatureModal" :
 
-                    //document.getElementById('employeeId').value = `${util.generateRandomDigits(5)}`
+                if(util.getCookie('grp_id')==="8"){ // HR PEOPLE FOR NOW
+                    //show the dialog modal
+                    //console.log('uyyy mdalshow Nu emp')
+                    
+                    const xmymodal =  new bootstrap.Modal(document.getElementById(modalToShow),configObj);
+                    xmymodal.show()  
+
                 }else{
                     util.speak('SORRY... YOU DO NOT HAVE ACCESS FOR THIS MENU!')
                 }
             break;
-
-            case "newempModal2":
-                //alert('dire')
-                //show the dialog modal
-                const xnewsitemodal2 =  new bootstrap.Modal(document.getElementById('newempModal2'),configObj);
-                xnewsitemodal2.show()  
-
-                document.getElementById('employeeId2').value = `${util.generateRandomDigits(5)}`
-        
-                /*
-                 //==== load engineering
-                 osndp.populate(document.getElementById('proj_engr'),'engineer')
-
-                 //==== load archi
-                 osndp.populate(document.getElementById('proj_design'),'design')
-
-                */
-                
-            break
-        }
+        }/////===end switch
     },
     //========MODAL LISTENERS========//
     modalListeners:(eModal)=>{
@@ -961,190 +944,89 @@ const util = {
                 
             break
 
-            case "newempModal":
-                console.log('modallisteners()=== neweempModal')
-                //for upload pdf
-                const frmupload = document.getElementById('uploadForm')
-                frmupload.addEventListener("submit", e => {
-                    const formx = e.target;
+            case "dataPrivacySignatureModal":
 
-                    fetch(`${myIp}/postimage`, {
-                        method: 'POST',
-                        body: new FormData(formx),
-                        })
-                        .then( (response) => {
-                            return response.json() // if the response is a JSON object
-                        })
-                        .then( (data) =>{
-                            if(data.status){
-                                console.log ('uploadpdf() value=> ', data )
-                                console.log('*****TAPOS NA PO IMAGE POST*****')
-    
-                                //util.hideModal('newempModal',2000)//then close form    
-    
-                                document.getElementById('newsitePlaceHolder').innerHTML=""
-                            }
-            
-                        })
-                         // Handle the success response object
-                        .catch( (error) => {
-                            console.log(error) // Handle the error response object
+                util.signaturePad = null;
+
+                console.log('SIGNATURE PAD LAUNCHED!!!!')
+                    const canvas = document.getElementById('signatureCanvas');
+                    const privacyModalEl = document.getElementById('dataPrivacySignatureModal');
+
+                    // 2. Initialize SignaturePad GLOBALLY
+                    // We attach it to window.util so we can access it later
+                    if (canvas) {
+                        util.signaturePad = new SignaturePad(canvas, {
+                            //backgroundColor: 'rgb(255, 255, 255)',
+                            penColor: 'rgb(0, 0, 0)',
+                            throttle: 0, // Draw immediately, no lag
+                            minWidth: 2,
+                            maxWidth: 2
                         });
+                    }
 
+                // 3. FORCE Resize on Modal Show
+                if (privacyModalEl && canvas) {
+                    privacyModalEl.addEventListener('shown.bs.modal', function () {
+                        console.log("======Modal Shown. Fixing Canvas...");
+                        
+                        // Get the actual visual size of the canvas element
+                        const width = canvas.offsetWidth;
+                        const height = canvas.offsetHeight;
 
-                    //e.preventDefault()
-                    console.log('===ADMIN ATTACHMENT pdf FORM SUBMITTTTT===')
-                        //// keep this reference for event listener and getting value
-                        /////const eqptdesc = document.getElementById('eqpt_description')
-                        ////eqptdesc.value =  e.target.value
-                    
-                    // Prevent the default form submit
-                    e.preventDefault();    
-                })
-                //=================END FORM SUBMIT==========================//
+                        // Apply it to the internal resolution
+                        canvas.width = width;
+                        canvas.height = height;
+
+                        // CRITICAL: Clear the pad to reset the coordinate system
+                        util.signaturePad.clear();
+                        
+                        // Re-enable the pad just in case
+                        util.signaturePad.on();
+                    });
+                }
+
+                // Call your other init functions
+                if(util.toggleDriversLicenseValidation) {
+                    util.toggleDriversLicenseValidation();
+                }
+            break;
+
+            case "newempModal":
                 
-                const newsiteModalEl = document.getElementById(eModal)
+                console.log('modallisteners()=== neweempModal', eModal)
+                
+                const ModalEl = document.getElementById(eModal)
 
                 //============== when new site modal loads, get project serial number
-                newsiteModalEl.addEventListener('show.bs.modal', function (event) {
+                ModalEl.addEventListener('show.bs.modal', function (event) {
                     
                     //===turn off upload-btn
-                    const btnsave = document.getElementById('mall-save-btn')
-                    btnsave.disabled = true
+                    //const btnsave = document.getElementById('mall-save-btn')
+                    //btnsave.disabled = true
 
                     console.log('newempModal() listeners loaded')
  
                 },false)
 
-                newsiteModalEl.addEventListener('hide.bs.modal', function (event) {
-                    console.log('==hiding newsitemodal .on(hide)====')
-                    //osndp.removeOptions(document.getElementById('proj_engr'))
-                    //osndp.removeOptions(document.getElementById('proj_design'))
-                    document.getElementById('newsitePlaceHolder').innerHTML=""
+                ModalEl.addEventListener('hide.bs.modal', function (event) {
+                    
+                    console.log('==hiding newEmpModal .on(hide)====')
+                    document.getElementById('newempPlaceHolder').innerHTML=""
                    
                     //clear form
                     let xform = document.getElementById('newempForm')
                     xform.reset()
                     util.resetFormClass('#newempForm')
 
-                    let uform = document.getElementById('uploadForm')
-                    uform.reset()
-                    util.resetFormClass('#uploadForm')
-
-                    //after posting bring back btn
-                    const isave = document.getElementById('i-save')
-                    const btnsave = document.getElementById('mall-save-btn')
+                    // //after posting bring back btn
+                    // const isave = document.getElementById('i-next')
+                    // const btnsave = document.getElementById('newemp-next-btn')
                         
-                    btnsave.disabled = false
-                    isave.classList.remove('fa-spin')
-                    isave.classList.remove('fa-refresh')
-                    isave.classList.add('fa-floppy-o')
+                    // btnsave.disabled = false
+                    // isave.classList.remove('fa-spin')
+                    // isave.classList.remove('fa-refresh')
+                    // isave.classList.add('fa-arrow-right')
                     
-                    ////// take out muna admin.fetchBadgeData()
-
-                    //osndp.getAll(1,document.getElementById('filter_type').value) //first time load speak
-                    // do something...
-                    //console.log('LOGIN FORM EVENT -> ha?')
-                },false)           
-            
-            break
-
-            case "newempModal2":
-                //for upload pdf
-                const frmupload2 = document.getElementById('uploadForm2')
-                frmupload2.addEventListener("submit", e => {
-                    const formx = e.target;
-
-                    fetch(`${myIp}/postimage`, {
-                        method: 'POST',
-                        body: new FormData(formx),
-                        })
-                        .then( (response) => {
-                            return response.json() // if the response is a JSON object
-                        })
-                        .then( (data) =>{
-                            if(data.status){
-                                console.log ('uploadpdf() value=> ', data )
-                                console.log('*****TAPOS NA PO IMAGE POST*****')
-    
-                                //util.hideModal('newempModal',2000)//then close form    
-    
-                                document.getElementById('newsitePlaceHolder2').innerHTML=""
-                            }
-            
-                        })
-                         // Handle the success response object
-                        .catch( (error) => {
-                            console.log(error) // Handle the error response object
-                        });
-
-
-                    //e.preventDefault()
-                    console.log('===ADMIN ATTACHMENT pdf FORM SUBMITTTTT===')
-                        //// keep this reference for event listener and getting value
-                        /////const eqptdesc = document.getElementById('eqpt_description')
-                        ////eqptdesc.value =  e.target.value
-                    
-                    // Prevent the default form submit
-                    e.preventDefault();    
-                })
-                //=================END FORM SUBMIT==========================//
-                
-                const newsiteModalEl2 = document.getElementById(eModal)
-
-                //============== when new site modal loads, get project serial number
-                newsiteModalEl2.addEventListener('show.bs.modal', function (event) {
-                    //======get util.Codes()
-                   // document.getElementById('serial').value= util.Codes() 
-                    //document.getElementById('serial_pdf').value= document.getElementById('serial').value 
-                    
-                    //===turn off upload-btn
-                    const btnsave = document.getElementById('mall-save-btn2')
-                    btnsave.disabled = true
-
-                    //==== create cookie to retrieve in api
-                   // util.setCookie("serial_pdf",document.getElementById('serial').value+".pdf" ,1)
-                        
-                    //=====get   Malls()
-
-                    console.log('newempModal() listeners loaded')
-                    
-                    //===populate dropdown for malls
-                    //util.getAllMall(`https://localhost:10000/getallmall`)
-
-                    
- 
-                },false)
-
-                newsiteModalEl2.addEventListener('hide.bs.modal', function (event) {
-                    console.log('==hiding newsitemodal .on(hide)====')
-                    //osndp.removeOptions(document.getElementById('proj_engr'))
-                    //osndp.removeOptions(document.getElementById('proj_design'))
-                    document.getElementById('newsitePlaceHolder2').innerHTML=""
-                   
-                    //clear form
-                    let xform = document.getElementById('newempForm2')
-                    xform.reset()
-                    util.resetFormClass('#newempForm2')
-
-                    let uform = document.getElementById('uploadForm2')
-                    uform.reset()
-                    util.resetFormClass('#uploadForm2')
-
-                    //after posting bring back btn
-                    const isave = document.getElementById('i-save2')
-                    const btnsave = document.getElementById('mall-save-btn2')
-                        
-                    btnsave.disabled = false
-                    isave.classList.remove('fa-spin')
-                    isave.classList.remove('fa-refresh')
-                    isave.classList.add('fa-floppy-o')
-                    
-                    ////// take out muna admin.fetchBadgeData()
-
-                    //osndp.getAll(1,document.getElementById('filter_type').value) //first time load speak
-                    // do something...
-                    //console.log('LOGIN FORM EVENT -> ha?')
                 },false)           
             
             break
@@ -1290,168 +1172,434 @@ const util = {
     
     url:null,
 
+    //for use in image/signature upload
+    dataEmployeeId: null,
+    dataRegion:null,
+    dataEmployeeName:null,
+
+    //=================HANDLE POSITION  CHANGE========
+    checkPosition:()=>{
+        util.getLocation( document.getElementById('region').value)
+    },
+
+    handlePosChange:(elem)=>{
+        
+        util.toggleDriversLicenseValidation()
+        
+        //if(document.getElementById('locStore').value==""){
+        //util.getlocation( document.getElementById('region').value)
+        
+        //}
+        util.gethub( elem )
+        
+    },
+
+    getLocation : async (regionSelectElement) => {
+        const selectedRegion = regionSelectElement.value;
+        
+        const locContainer = document.getElementById('locContainer');
+        const locSelect = document.getElementById('locStore');
+
+        // // Define which positions require a hub/store selection
+        // const positionsRequiringHub = ['01', '15','17']; // Customize this
+
+        // if (positionsRequiringHub.includes(selectedPosition)) {
+
+        locContainer.classList.remove('d-none');
+        locContainer.classList.add('d-block');
+
+        locSelect.setAttribute('required', 'required');
+
+        try {
+            const response = await fetch(`${myIp}/getlocation/${document.getElementById('region').value}`); // Adjust this URL as needed
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const hubs = await response.json();
+            const hubsArray = hubs.data
+
+            console.log(hubs)
+
+            locSelect.innerHTML = '<option value="">Select Location</option>';
+
+            hubsArray.forEach(hub => {
+                console.log(hub)
+                const option = document.createElement('option');
+                
+                option.value = hub.location; //<-- value
+                option.textContent = hub.location; //<-- content display 
+                
+                locSelect.appendChild(option);
+            });
+
+        } catch (error) {
+            console.error('Error fetching hubs:', error);
+            alert('Failed to load hub/store options. Please try again.');
+        }
+
+        //   // Call the utility function to fetch and populate
+        
+    },
+
+
+
+    gethub : (locationSelectElement) => {
+        const selectedLocation = locationSelectElement.value;
+        
+        const hubStoreContainer = document.getElementById('hubStoreContainer');
+        const hubStoreSelect = document.getElementById('hubStore');
+
+        // Define which positions require a hub/store selection
+        const positionsRequiringHub = ['01', '15','17']; // Customize this
+
+        if (positionsRequiringHub.includes(selectedLocation)) {
+
+            hubStoreContainer.classList.remove('d-none');
+            hubStoreContainer.classList.add('d-block');
+
+            hubStoreSelect.setAttribute('required', 'required');
+
+            // Call the utility function to fetch and populate
+            util.fetchAndPopulateHubs();
+
+        } else {
+            hubStoreContainer.classList.remove('d-block');
+            hubStoreContainer.classList.add('d-none');
+
+            hubStoreSelect.innerHTML = '<option value="">Select Hub/Store</option>';
+            hubStoreSelect.value = ''; // Reset selected value
+            hubStoreSelect.removeAttribute('required');
+        }
+    },
+
+    fetchAndPopulateHubs : async () => {
+
+        const hubStoreSelect = document.getElementById('hubStore'); // Get it inside the function
+        const myUrl = `${myIp}/gethub/${document.getElementById('region').value}/${document.getElementById('locStore').value}`
+        console.log(myUrl)
+        try {
+            const response = await fetch(`${myIp}/gethub/${document.getElementById('region').value}/${document.getElementById('locStore').value}`); // Adjust this URL as needed
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const hubs = await response.json();
+            const hubsArray = hubs.data
+
+            console.log(hubs)
+
+            hubStoreSelect.innerHTML = '<option value="">Select Hub/Store</option>';
+
+            hubsArray.forEach(hub => {
+                const option = document.createElement('option');
+                
+                option.value = hub.hub; //<-- value
+                option.textContent = hub.hub; //<-- content display 
+                
+                hubStoreSelect.appendChild(option);
+            });
+
+        } catch (error) {
+            console.error('Error fetching hubs:', error);
+            alert('Failed to load hub/store options. Please try again.');
+        }
+    },
+    //============toggle driver's license =====//
+    toggleDriversLicenseValidation : () => {
+
+        const jobTitleSelect = document.getElementById('jobTitle');
+        const driversLicenseInput = document.getElementById('drivers_license');
+        const driversLicenseHelpText = document.getElementById('drivers_license_help');
+        const driversLicenseErrorDiv = document.getElementById('drivers_license-error');
+
+        if (!jobTitleSelect || !driversLicenseInput || !driversLicenseHelpText || !driversLicenseErrorDiv) {
+            console.warn("Missing elements for driver's license validation.");
+            return;
+        }
+
+        const selectedJobTitle = jobTitleSelect.value;
+
+        // Check if the job title is 'Rider' (01) or 'Transporter' (02)
+        const isDriversLicenseRequired = (selectedJobTitle === '01' || selectedJobTitle === '02');
+
+        driversLicenseInput.disabled = !isDriversLicenseRequired; // Enable if required, disable otherwise
+        driversLicenseInput.required = isDriversLicenseRequired; // Set required attribute
+
+        if (isDriversLicenseRequired) {
+            driversLicenseHelpText.textContent = "Driver's License is required.";
+            driversLicenseInput.classList.remove('is-valid'); // Clear previous state
+            // If it becomes required and is empty, it will be marked invalid by validateMe
+        } else {
+            driversLicenseHelpText.textContent = "Driver's License is not required for this position.";
+            driversLicenseInput.value = ''; // Clear selected file if it becomes optional
+            driversLicenseInput.classList.remove('is-invalid', 'is-valid'); // Clear validation state
+            driversLicenseErrorDiv.style.display = 'none'; // Hide error message
+        }
+    },
+
+    //====== AUTO VALIDATE FONE NUMBER ===//
+    
+    autoFormatPhone:(input) => {
+        let value = input.value;
+        const oldSelectionStart = input.selectionStart; // Store cursor position
+
+        // 1. Remove all non-digit characters
+        let cleanedValue = value.replace(/\D/g, '');
+
+        // 2. Limit to 11 digits (4 + 3 + 4)
+        cleanedValue = cleanedValue.substring(0, 11);
+
+        // 3. Apply the formatting (add spaces)
+        let formattedValue = '';
+        if (cleanedValue.length > 0) {
+            formattedValue = cleanedValue.substring(0, 4); // First 4 digits
+        }
+        if (cleanedValue.length > 4) {
+            formattedValue += ' ' + cleanedValue.substring(4, 7); // Space then next 3 digits
+        }
+        if (cleanedValue.length > 7) {
+            formattedValue += ' ' + cleanedValue.substring(7, 11); // Space then last 4 digits
+        }
+
+        // Update the input field
+        input.value = formattedValue;
+
+        // 4. Adjust cursor position
+        // This part is a bit tricky but essential for a good user experience
+        let newSelectionStart = oldSelectionStart;
+        const addedSpaces = (formattedValue.match(/ /g) || []).length - (value.match(/ /g) || []).length;
+        if (addedSpaces > 0 && formattedValue.length > value.length && oldSelectionStart === value.length) {
+            // If spaces were added at the end, move cursor with them
+            newSelectionStart = formattedValue.length;
+        } else if (addedSpaces > 0 && oldSelectionStart === 4) {
+            // If space was added at 4th digit mark
+            newSelectionStart = oldSelectionStart + 1;
+        } else if (addedSpaces > 0 && oldSelectionStart === 8) {
+            // If space was added at 8th digit mark
+            newSelectionStart = oldSelectionStart + 1;
+        } else if (addedSpaces < 0 && oldSelectionStart === 5 && value.charAt(4) === ' ' && formattedValue.charAt(4) !== ' ') {
+            // If a space was deleted
+            newSelectionStart = oldSelectionStart - 1;
+        } else if (addedSpaces < 0 && oldSelectionStart === 9 && value.charAt(8) === ' ' && formattedValue.charAt(8) !== ' ') {
+            // If a space was deleted
+            newSelectionStart = oldSelectionStart - 1;
+        }
+        
+        // Fallback: Ensure cursor is not out of bounds
+        input.setSelectionRange(Math.min(newSelectionStart, formattedValue.length), Math.min(newSelectionStart, formattedValue.length));
+    },
+
+    // Your existing util.validatePhone (make sure it's available)
+    validatePhone : (input)=> {
+        const phonePattern = /^\d{4} \d{3} \d{4}$/; // Regex for 0917 123 4567 format
+        const errorDiv = document.getElementById('phone-error');
+
+        if (!phonePattern.test(input.value)) {
+            input.classList.add('is-invalid');
+            input.classList.remove('is-valid');
+            if (errorDiv) errorDiv.style.display = 'block';
+            return false;
+        } else {
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+            if (errorDiv) errorDiv.style.display = 'none';
+            return true;
+        }
+    },
+ 
     //==========WHEN SUBMIT BUTTON CLICKED ==================
     validateMe: async (frmModal, frm, classX)=>{
         console.log('validateMe()===', frmModal, frm)
         
-        const forms = document.querySelectorAll(frm)
-        const form = forms[0]
-        let xmsg
+        const formElement = document.querySelector(frm) // Use querySelector for the form element
+        let allFormValid = true; // Renamed to avoid confusion with aValid array
 
-        let aValid=[]
-        
-        Array.from(form.elements).forEach((input) => {
+        // --- 1. Clear previous validation states and custom error messages ---
+        Array.from(formElement.elements).forEach((input) => {
+            input.classList.remove('is-invalid', 'is-valid');
             
-            if(input.classList.contains(classX)){
-                aValid.push(input.checkValidity())
-                if(input.checkValidity()===false){
-					console.log('invalid ',input)
-					
-                    input.classList.add('is-invalid')
-                }else{
-                   input.classList.add('is-valid')
+            // Hide phone error
+            if (input.id === 'phone' && document.getElementById('phone-error')) {
+                document.getElementById('phone-error').style.display = 'none';
+            }
+            // Hide file input errors (only for required files)
+            if (input.type === 'file' && input.hasAttribute('required')) {
+                const fileErrorDiv = document.getElementById(`${input.id}-error`);
+                if (fileErrorDiv) {
+                    fileErrorDiv.style.display = 'none';
                 }
             }
-        })
+        });
 
-        if(aValid.includes(false)){
-            util.Toasted('Error, Please CHECK Your Entry, ERROR FIELDS MARKED IN RED!',3000,false)
-            console.log('don\'t post')
-            main.gonow = false
-            
-            return false
-        }else{
-            
-            //getform data for posting
-            const mydata = document.getElementById(frm.replace('#',''))
-            let formdata = new FormData(mydata)
-            let objfrm = {}
-            
-            //// objfrm.grp_id="1" <-- if u want additional key value
-            
-            for (var key of formdata.keys()) {
-                if(key=="pw2"){
-                    //console.log('dont add',key)
-                }else{
-                   objfrm[key] = formdata.get(key);
-                   
+        // --- 2. Perform Validation for all relevant fields ---
+        Array.from(formElement.elements).forEach((input) => {
+            // Only validate inputs that are part of the form and are required or have the classX
+            const shouldValidate = input.classList.contains(classX) || input.hasAttribute('required');
+
+            if (shouldValidate) {
+                let inputIsValid = true; // Flag for current input's validity
+
+                if (input.type === 'file') {
+                    // Custom validation for required file inputs
+                    if (input.hasAttribute('required') && input.files.length === 0) {
+                        inputIsValid = false;
+                        const fileErrorDiv = document.getElementById(`${input.id}-error`);
+                        if (fileErrorDiv) {
+                            fileErrorDiv.style.display = 'block'; // Show specific file error
+                        }
+                    }
+                } else if (input.id === 'phone') {
+                    // Custom validation for phone number (assuming it sets visual feedback)
+                    inputIsValid = util.validatePhone(input); 
+                } else {
+                    // Standard HTML5 validation for other text/select inputs
+                    inputIsValid = input.checkValidity();
+                }
+
+                // Apply Bootstrap validation classes based on inputIsValid
+                if (!inputIsValid) {
+                    allFormValid = false; // Mark overall form as invalid
+                    input.classList.add('is-invalid');
+                } else {
+                    input.classList.add('is-valid');
                 }
             }
-            objfrm.date_reg = util.getDate()
+        });
 
-            //console.log('post this',frm,objfrm)
+        // --- 3. Check if overall form is valid ---
+        if (!allFormValid) {
 
-            //=== POST NA!!!
+            util.Toasted('Error, Please CHECK Your Entry, ERROR FIELDS MARKED IN RED!', 3000, false);
+            console.log('Form is invalid, preventing post.');
+            
+            if( window.main ) { window.main.gonow = false; }
+            if( window.asn ) { window.asn.gonow = false; }
+            if( window.hris ) { window.hris.gonow = false; }
+            
+            return false;
+
+        } else {
+            // --- 4. Form is valid, prepare data for posting ---
+            // For #newempForm, we use FormData directly (includes files)
+            // For other forms, your existing objfrm approach remains.
+
+            let xmsg; // Declared here for switch scope
+
             switch(frm){ 
                 case '#loginForm':
-                    xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Searching Database please wait...</div>"
-                    util.alertMsg( xmsg,'danger','loginPlaceHolder')
+                    // Your existing login form logic
+                    const loginFormData = new FormData(formElement);
+                    let loginObjfrm = {};
+                    for (var key of loginFormData.keys()) {
+                    loginObjfrm[key] = loginFormData.get(key);
+                    }
+                    xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Searching Database please wait...</div>";
+                    util.alertMsg( xmsg,'danger','loginPlaceHolder');
+                    util.url = `${myIp}/loginpost/${loginObjfrm.uid}/${loginObjfrm.pwd}/${(document.getElementById('region') ? document.getElementById('region').value  : null )}`;
+                    util.loginPost(frm ,frmModal,`${util.url}`);
+                    break;
+                
+                case "#newempForm":
+                    // --- THIS IS THE CRITICAL CHANGE FOR NEWEMPFORM ---
+                    const formData = new FormData(formElement); // Automatically collects all text fields and files
+                    formData.append('date_reg', util.getDate()); // Add date_reg to FormData
+                    
+                    xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i> Saving to Database and Uploading Files, please wait!.</div>";
+                    
+                    util.alertMsg( xmsg,'danger','footer-msg'); // Changed to 'info' as it's a progress message
+                    //util.Toasted( xmsg, 3000)
 
-                    util.url = `${myIp}/loginpost/${objfrm.uid}/${objfrm.pwd}/${(document.getElementById('region') ? document.getElementById('region').value  : null )}`
-                    
-                    util.loginPost(frm ,frmModal,`${util.url}`)
+                    const isave = document.getElementById('i-next');
 
-                break
-				
-				case "#newempForm":
-                    //console.log('newsiteform data ', objfrm)
-                    xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Saving to Database please wait...</div>"
-                    util.alertMsg( xmsg,'danger','newsitePlaceHolder')
-                    
-                    const isave = document.getElementById('i-save')
-                    const btnsave = document.getElementById('mall-save-btn')
-                    isave.classList.remove('fa-floppy-o')
-                    isave.classList.add('fa-refresh')
-                    isave.classList.add('fa-spin')
-                    btnsave.disabled = true
-                    
-                    util.newempPost(frm,frmModal,`${myIp}/newemppost`,objfrm )
-                    //util.newsitePost(frm,frmModal,`https://localhost:10000/newsitepost/${util.formatDate()}`,objfrm )
-                    
-                    console.log('==posting newSiteModal data ==',objfrm);
-				break;
+                    const btnsave = document.getElementById('newemp-next-btn');
 
-                case "#newempForm2":
-                    //console.log('newsiteform data ', objfrm)
-                    xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Saving to Database please wait...</div>"
-                    util.alertMsg( xmsg,'danger','newsitePlaceHolder2')
-                    
-                    const isave2 = document.getElementById('i-save2')
-                    const btnsave2 = document.getElementById('mall-save-btn2')
-                    isave2.classList.remove('fa-floppy-o')
-                    isave2.classList.add('fa-refresh')
-                    isave2.classList.add('fa-spin')
-                    btnsave2.disabled = true
-                    
-                    util.newempPost(frm,frmModal,`${myIp}/newemppost`,objfrm )
-                    //util.newsitePost(frm,frmModal,`https://localhost:10000/newsitepost/${util.formatDate()}`,objfrm )
-                    
-                    console.log('==posting newSiteModal data ==',objfrm);
-				break;
+                    if(isave && btnsave){ // Ensure elements exist
+                        isave.classList.remove('fa-arrow-right');
+                        isave.classList.add('fa-refresh', 'fa-spin');
 
+                        btnsave.disabled = true;
+                    }
+                    
+                    // Call newempPost with the FormData object
+                    util.newempPost(frm, frmModal, `${myIp}/newemppost/${document.getElementById('region').value}/${document.getElementById('hireDate').value}/${document.getElementById('jobTitle').value}`, formData);
+                    
+                    console.log('==posting newempForm data with files ==');
+                    break;
+
+            
                 case "#commentsForm":
-                    console.log('===POSTING ISSUES===')
-                break
+                    console.log('===POSTING ISSUES===');
+                    // Your existing comments form logic
+                    break;
 
                 case "#dataEntryForm":
+                    // Your existing data entry form logic
+                    const dataEntryFormData = new FormData(formElement);
+                    let dataEntryObjfrm = {};
+                    for (var key of dataEntryFormData.keys()) {
+                    dataEntryObjfrm[key] = dataEntryFormData.get(key);
+                    }
+                    dataEntryObjfrm.login_date = util.nugetDate(); 
+                    dataEntryObjfrm.transnumber = document.getElementById('f_transnumber').value;
 
-                    objfrm.login_date = util.nugetDate() 
-                    objfrm.transnumber = document.getElementById('f_transnumber').value
-
-                    util.toggleButton('start-btn',true)
+                    util.toggleButton('start-btn',true);
                     
-                    asn.saveobjfrm = objfrm
-                    asn.saveToLogin(`${myIp}/savetologin/${util.getCookie('f_id')}`,objfrm)
-
-                break
+                    window.asn.saveobjfrm = dataEntryObjfrm;
+                    window.asn.saveToLogin(`${myIp}/savetologin/${util.getCookie('f_id')}`, dataEntryObjfrm);
+                    break;
 
                 case "#remittanceForm":
+                    // Your existing remittance form logic
+                    const remittanceFormElement = document.getElementById('remittanceUploadForm'); // Assuming this is still a separate form
+                    let remittanceFormData = new FormData(remittanceFormElement); // Get files from here
+                    
+                    const remittanceTextFormData = new FormData(formElement); // Get text fields from the main form
+                    let remittanceObjfrm = {};
+                    for (var key of remittanceTextFormData.keys()) {
+                    remittanceObjfrm[key] = remittanceTextFormData.get(key);
+                    }
 
-                    //getform data for posting image
-                    const mydata = document.getElementById('remittanceUploadForm')
-                    let formdata = new FormData(mydata)
+                    const dbval = JSON.parse( db.getItem('myCart'));
+                    remittanceObjfrm.old_transnumber = dbval.f_transnumber;
+                    remittanceObjfrm.old_parcel = dbval.f_parcel;
                     
-                    const dbval = JSON.parse( db.getItem('myCart')) //get old value from localStorage
-                    objfrm.old_transnumber = dbval.f_transnumber
-                    objfrm.old_parcel = dbval.f_parcel
-                    ///objfrm.old_amount = dbval.f_amount
-                    
-                    const hubamt = parseInt( document.getElementById('f_amount').value) 
-                    const remitamt =parseInt( document.getElementById('ff_amount').value)
+                    const hubamt = parseInt( document.getElementById('f_amount').value); 
+                    const remitamt =parseInt( document.getElementById('ff_amount').value);
                     
                     if( remitamt > hubamt){
-                        util.Toasted('Error!!! Remitted Amount greater than Amount of Scanned Parcels!!!',3000,false)
-                        asn.speaks('Error!!! Remitted Amount  is greater than Amount of Scanned Parcels!!!')
-                        document.getElementById('f_amount').focus()
-                        break
+                        util.Toasted('Error!!! Remitted Amount greater than Amount of Scanned Parcels!!!',3000,false);
+                        window.asn.speaks('Error!!! Remitted Amount  is greater than Amount of Scanned Parcels!!!');
+                        document.getElementById('f_amount').focus();
+                        break;
                     }
 
-                    //// objfrm.grp_id="1" <-- if u want additional key value
-
-                    
-                    for (var key of formdata.keys()) {
-                        let xfile = formdata.get(key) ;
-
-                        if( xfile.name == "" ){
-                            util.Toasted('Please select a Picture of Receipt to Upload!!!',4000,false)
+                    // Check for file presence for remittanceUploadForm
+                    let filePresent = false;
+                    for (let [key, value] of remittanceFormData.entries()) {
+                        if (value instanceof File && value.name !== "") {
+                            filePresent = true;
                             break;
-                            
-                        }else{
-                            util.toggleButton('remittance-btn',true)
-                            asn.saveTransaction(`${myIp}/savetransaction/${util.getCookie('f_id')}`,objfrm)
-                            break;
-                        }//eif
+                        }
                     }
 
-                break
-            }//end switch
-
-            return
-
-        }//endif
+                    if (!filePresent) {
+                        util.Toasted('Please select a Picture of Receipt to Upload!!!',4000,false);
+                        break;
+                    } else {
+                        util.toggleButton('remittance-btn',true);
+                        // You'll need to combine remittanceObjfrm and remittanceFormData if they go to the same endpoint
+                        // or handle them in sequence. This case is still sending objfrm to savetransaction.
+                        // For files in remittanceFormData, you'd need a separate endpoint for those.
+                        // THIS PART IS STILL SENDING JUST OBJFRM - NEEDS CLARIFICATION FOR FILE UPLOAD HERE
+                        window.asn.saveTransaction(`${myIp}/savetransaction/${util.getCookie('f_id')}`, remittanceObjfrm);
+                    }
+                    break;
+            }
+            return; // Important: ensure no implicit return true/false in this block
+        }
     },
 
-    //disable enable buttons
     toggleButton:(element,lshow)=>{
         let button = document.getElementById(element) //turn off remittance save btn
         button.disabled = lshow;
@@ -1474,6 +1622,7 @@ const util = {
 
         return R * c; // Distance in kilometers
     },
+
 
     //logout
     logOut:()=>{
@@ -1648,8 +1797,9 @@ const util = {
     // Function('hey', () => { console.log('Running!'); });
     // func('my message', asn.other_func); // Calls with second param as a function
     isPlaying:false,
-///=========================PLAY GREETINGS===============
-  translate:async ({ xmsg, runwhat = () => {}, cRedirect } = {}) => {
+    
+    ///=========================PLAY GREETINGS===============
+    translate:async ({ xmsg, runwhat = () => {}, cRedirect } = {}) => {
 
         if (util.isPlaying) return; // prevent re-entry
   
@@ -1725,53 +1875,47 @@ const util = {
         }
 
     },    
-    //new site posting 
-    newempPost:async function(frm,modal,url="",xdata={}){
+
+    //================ new employee posting =========// 
+    newempPost:async function(frm,modal,url="",formData){
         fetch(url,{
             method:'POST',
             //cache:'no-cache',
-            headers: {
-                "Content-Type": "application/json",
-            },
+            // headers: {
+            //     "Content-Type": "application/json",
+            // },
             
-            body: JSON.stringify(xdata)
+            body: formData
         })
         .then((response) => {  //promise... then 
             return response.json();
         })
         .then((data) => {
             if(data.status){
-
-                //trigger pdf upload
-                //===trigger upload pdf
-                const uploadbtn = document.getElementById('upload-btn')
-                uploadbtn.click()
+                util.alertMsg( data.message,'success','footer-msg'); // Changed to 'info' as it's a progress message
+                       
+                //util.Toasted(data.message,3000,false)
                 
                 util.speak(data.voice);
-
-                xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Uploading file please wait...</div>"
-                util.alertMsg( xmsg,'danger','newsitePlaceHolder')
-                    
-                ///document.getElementById('ip').innerHTML = 'Uploading file , please Wait!!!'
-
-                //     //send message to super users
-                // const sendmsg = {
-                //     msg: data.approve_voice,
-                //     type:""    
-                // }
-
-                //remind super users
-                //osndp.socket.emit('admin', JSON.stringify(sendmsg))
-                
-                ////util.alertMsg(data.message,'success','equipmentPlaceHolder')
-                
+               
                 //hide modalbox
-                util.hideModal('newempModal',2000)    
-            
-                ///// THIS IS IMPORTANT.. TAKE OUT MUNA 03/09/2024 admin.filterBy() ///getAll() // update tables and speak
+                util.hideModal('newempModal',0) //hide dataentry
+                //document.getElementById('footer-msg').innerHTML=''//reset
 
-                //util.Toast('PLS. WAIT, UPLOADING FILE!',20000)
-                 
+
+                //=========SHOW DATA PRIVACY===========//
+                 //==get employee Id
+                util.dataEmployeeId = data.employeeId
+                util.dataRegion = data.regionId
+                util.dataEmployeeName = data.employeeName
+               
+                // --- NEW: Show the Data Privacy & Signature Modal ---
+                const dataPrivacyModalElement = document.getElementById('dataPrivacySignatureModal');
+                const dataPrivacyModal = new bootstrap.Modal(dataPrivacyModalElement);
+                dataPrivacyModal.show();
+                // Also ensure canvas is correctly sized when modal is shown
+                //dataPrivacyModalElement.addEventListener('shown.bs.modal', util.resizeSignatureCanvas, { once: true });
+                
             }else{
                 util.speak(data.voice)
                 //util.alertMsg(data.message,'warning','equipmentPlaceHolder')
@@ -1780,14 +1924,163 @@ const util = {
             
             
         })
-        .catch((error) => {
-        // util.Toast(`Error:, ${error.message}`,1000)
-        console.error('Error:', error)
-        //yes
+        
+        .catch( (error) => {
+            console.error('Error in newempPost:', error);
+            util.Toasted(`Network Error: ${error.message}`, 3000, false);
         })
-    
+        .finally ( ()=>{
+            const nextBtn = document.getElementById('newemp-next-btn');
+            const iNext = document.getElementById('i-next');
+            if(iNext && nextBtn){
+                iNext.classList.remove('fa-refresh', 'fa-spin');
+                iNext.classList.add('fa-arrow-right');
+                nextBtn.disabled = false;
+            }
+        })
+    },
+
+    //=================SAVE SIGNATTURE ==========//
+    saveSignature : async () =>  {
+
+        console.log('Attempting to save signature...');
+        const signatureCanvasErrorDiv = document.getElementById('signatureCanvas-error');
+        const submitBtn = document.getElementById('submit-signature-btn');
+        const iSave = document.getElementById('i-signature-save');
+
+        // Clear previous error message
+        if (signatureCanvasErrorDiv) signatureCanvasErrorDiv.style.display = 'none';
+
+        // 1. Validate signature pad: Ensure something was drawn
+        if (util.signaturePad && util.signaturePad.isEmpty()) {
+            if (signatureCanvasErrorDiv) signatureCanvasErrorDiv.style.display = 'block';
+            util.Toasted('Please provide your digital signature.', 3000, false);
+            return;
+        }
+
+        // 2. Get Employee ID: This should have been set when the first modal submitted
+        const employeeId = util.dataEmployeeId // Use the global variable
+
+        if (!employeeId) {
+            util.Toasted('Error: Employee ID not found. Cannot save signature.', 4000, false);
+            console.error('Employee ID missing for signature save. currentEmployeeId is null.');
+            return;
+        }
+
+        // Show loading indicator
+        if(iSave && submitBtn){
+            iSave.classList.remove('fa-check');
+            iSave.classList.add('fa-refresh', 'fa-spin');
+            submitBtn.disabled = true;
+        }
+
+        util.alertMsg("<div><i class='fa fa-spinner fa-pulse'></i> Uploading Signature, please wait...</div>", 'info', 'dataPrivacyPlaceHolder');
+
+        try {
+            // 3. Convert Signature from Canvas to Blob (PNG format)
+            const signatureDataURL = util.signaturePad.toDataURL('image/png');
+
+            const blob = await (await fetch(signatureDataURL)).blob();
+            
+            // 4. Create the desired filename: SIGN_EMP_ID.png
+            // Ensure employeeId is safe for filenames
+            const cleanEmployeeId = employeeId //String(employeeId).replace(/[^a-zA-Z0-9_]/g, ''); 
+            const signatureFilename = `SIGN_${cleanEmployeeId}.png`;
+            
+            // 5. Create FormData for the signature submission
+            const formData = new FormData();
+            formData.append('employeeId', employeeId); // Pass employeeId to server for linking
+            // Append the blob with the specific filename
+            formData.append('signature_image', blob, signatureFilename); 
+
+            // 6. ===================== Send to the new endpoint for signature upload
+            const response = await fetch(`${myIp}/uploadsignature/${util.dataEmployeeId}/${util.dataRegion}`, { 
+                method: 'POST',
+                body: formData 
+            });
+
+            const data = await response.json(); 
+
+            // 7. Handle the server's response
+            if (data.status) {
+                util.speak(data.voice);
+                util.Toasted('Digital signature and privacy consent saved successfully!', 3000, true);
+                util.hideModal('dataPrivacySignatureModal', 1000); 
+                util.clearSignature(); 
+
+                //====CCALL PRINT PDF
+                util.printPdf(util.dataEmployeeId, util.dataEmployeeName , util.dataRegion)
+
+
+            } else {
+                util.speak(data.voice);
+                util.Toasted(`Error: ${data.message || 'Failed to save signature.'}`, 4000, false);
+            }
+        } catch (error) {
+            console.error('Error in saveSignature:', error);
+            util.Toasted(`Network Error: ${error.message}`, 4000, false);
+        } finally {
+            if(iSave && submitBtn){
+                iSave.classList.remove('fa-refresh', 'fa-spin');
+                iSave.classList.add('fa-check');
+                submitBtn.disabled = false;
+            }
+        }
+    },
+
+    //==============CALL PRINT TO PDF
+    printPdf: async ( empid, empname, empregion )=> {
+
+        let xfile = `${empid}.pdf`
+         
+        fetch(`${myIp}/printpdf/${empid}/${ empname}/${ empregion}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                
+                //body: JSON.stringify({ myObjects: asn.pdfCart }), // Convert the array to JSON
+                //cache: 'reload' // Remove if you don't need to reload
+            })
+            .then(response => response.blob())
+            .then(blob => URL.createObjectURL(blob))
+            .then(url => {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download =  xfile ;//`${pdffile}`; // Set the file name for the download
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch((error) => {
+                //util.Toast(`Error:, ${error}`,1000)
+                alert(error)
+                console.error('Error:', error)
+            })
+    },
+
+    resizeSignatureCanvas : () => {
+        const canvas = document.getElementById('signatureCanvas');
+        if (canvas && util.signaturePad) {
+            const ratio = Math.max(window.devicePixelRatio || 1, 1);
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+            canvas.getContext("2d").scale(ratio, ratio);
+            util.signaturePad.clear(); // Clear previous drawing after resize
+        }
+    },
+
+    clearSignature : () => {
+        if (util.signaturePad) {
+            util.signaturePad.clear();
+            document.getElementById('signatureCanvas-error').style.display = 'none'; 
+        }
     },
     
+
+
+
     //utility toastify
     Toasted:async(msg,nDuration,lClose)=>{
         Toastify({
@@ -1806,5 +2099,65 @@ const util = {
         }).showToast();
         
     }, //===end toasted!
+
+    checkFileSize: (elem, fsize) => {
+        const input = elem;
+        if (!input || !input.files || input.files.length === 0) return true;
+
+        const MAX_KB = fsize; // 1000 KB ~= 1 MB
+        //const btnUpload = document.getElementById('mall-save-btn');
+
+        let recosize, sizesuffix
+
+        for (let i = 0; i < input.files.length; i++) {
+            const kb = Math.round(input.files[i].size / 1024);
+            if (kb >= MAX_KB) {
+                //if (btnUpload) btnUpload.disabled = true;
+                    util.alertMsg("File too Big, please select a file less than 800kb", "danger", "size");
+                    input.value = ''; // reset selection
+                    //util.scrollsTo('blindspot');
+                    return false;
+            }
+        }
+
+        //if (btnUpload) btnUpload.disabled = false;
+        return true;
+    }
+    // checkFileSize:(elem)=>{
+    //     //const fi = document.getElementById('uploaded_file');
+    //     // Check if any file is selected.
+
+    //     const fi = elem;
+
+    //     if (fi.files.length > 0) {
+    //         for (let i = 0; i <= fi.files.length - 1; i++) {
+
+    //             const fsize = fi.files.item(i).size;
+    //             const file = Math.round((fsize / 1024));
+    //             // The size of the file.
+    //             if (file >= 1000) {
+    //                 const btnupload = document.getElementById('mall-save-btn')
+    //                 btnupload.disabled = true
+
+    //                 util.alertMsg("File too Big, please select a file less than 1mb","danger","size");
+                    
+    //                 fi.value=null
+    //                 //go bottom page
+    //                 util.scrollsTo('blindspot')
+
+    //                 return false;
+
+    //             }else{
+                    
+    //                 //document.getElementById('size').innerHTML=""//reset
+    //                 const btnupload = document.getElementById('mall-save-btn')
+    //                 btnupload.disabled = false
+    //             }
+    //             /* turn off display of filesize */
+    //             ///document.getElementById('size').innerHTML ='<b>'+ file + '</b> KB';
+                
+    //         }
+    //     }
+    // }
     
 }//****** end obj */

@@ -105,112 +105,6 @@
 </div>
 
 
-<!--//Modal for adding New Site //-->
-<div class="modal fade" id="newempModal" tabindex="-1" aria-labelledby="newsiteModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
-      <div class="modal-content">
-          
-          <div class="modal-header bg-primary">
-              <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> Create Account</h4>
-              <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
-          </div>
-
-          <!--//modal body-->
-          <div class="modal-body">
-              
-              <!--//=== ALERT CONTAINER!!!-->
-              <div id="newsitePlaceHolder"></div>
-              <!--//END ALERT-->
-
-              <div class="container-fluid" >	
-                  <!--//form goes here -->
-                  <!--//FORM SIGNUP-->
-                  <form id="newempForm" class="needs-validation row gy-2 gx-2 align-items-center" method="GET" novalidate>
-                    <div class="container mt-5">
-                      <h2>HRIS 201 Form</h2>
-                      
-                          <div class="mb-3">
-                              <label for="employeeId"  class="form-label">Employee ID</label>
-                              <input type="text" class="form-control 201" id="employeeId" name="employeeId" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="fullName" class="form-label">Full Name</label>
-                              <input type="text" class="form-control 201" id="fullName" name="fullName" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="email" class="form-label">Email Address</label>
-                              <input type="email" class="form-control 201"  value="a@b.com" id="email" name="email" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="phone" class="form-label">Phone Number</label>
-                              <input type="tel" class="form-control 201" value="0917 283 1929" id="phone" name="phone" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="birthDate" class="form-label">Date of Birth</label>
-                              <input type="date" class="form-control" value="01/01/1970" id="birthDate" name="birthDate" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="hireDate" class="form-label">Hire Date</label>
-                              <input type="date" class="form-control 201" value="01/01/2025" id="hireDate" name="hireDate" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="jobTitle" class="form-label">Job Title</label>
-                              <input type="text" class="form-control 201" value="quality cntrol" id="jobTitle" name="jobTitle" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="department" class="form-label">Department</label>
-                              <input type="text" class="form-control 201" value="IT" id="department" name="department" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="employmentStatus" class="form-label">Employment Status</label>
-                              <select class="form-control 201" id="employmentStatus" name="employmentStatus" required>
-                                  <option value="" disabled>Select status</option>
-                                  <option value="Full-Time" selected>Full-Time</option>
-                                  <option value="Part-Time">Part-Time</option>
-                                  <option value="Contract">Contract</option>
-                              </select>
-                          </div>
-                          <div class="mb-3">
-                              <label for="address" class="form-label">Address</label>
-                              <textarea class="form-control 201" id="address" rows="3" name="address" required>Manila</textarea>
-                          </div>
-                          <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-                      
-                  </div>
-                         
-                  </form>
-                  <!--//end form -->
-                  
-                  <div class="row">
-                    <div class="col-lg-4 mb-0">
-                      <!-- //form file upload onrender.com -->
-                      <form id="uploadForm" name="uploadForm" action="" enctype="multipart/form-data" method="post">
-                        <div class="form-outline">
-                          <label class="form-label mb-0" for="uploaded_file">Upload Picture</label>
-                          <input onchange="javascript:main.checkFileSize()" class="form-control equipmentxx" type="file" name="uploaded_file" id="uploaded_file" accept='image/*' required />
-                          <input id="upload-btn" class="btn btn-warning lets-hide" type="submit" value="Upload">
-                          <p><span id="size"></span></p>
-                          <div id="blindspot"></div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  
-              </div><!--//end container-fluid//-->
-              
-          </div><!--//end modalbody//-->
-          <!--//footer-->
-          <div class="modal-footer">
-              <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button>
-              <button class="btn btn-primary" id="mall-save-btn" onclick="javascript:util.validateMe('newempModal','#newempForm','201')" type="button">
-              <i id="i-save" class="fa fa-floppy-o"></i> Save
-              </button>
-          </div>
-      </div>
-  </div>
-</div>					
-<!--//end newsiteModal//-->
-
   <style>
   /* @import url(//fonts.googleapis.com/css?family=Lato); */
 
@@ -257,55 +151,18 @@
     
     db = window.localStorage
 
-    document.addEventListener('DOMContentLoaded', function() {
-      
-      console.log('=======DOM CONTENT LOADED=====')
 
-      // if (!main.isChrome()) {  // Use ! to check if NOT Chrome
-      //   alert('PLEASE USE CHROME BROWSER!');
-      //   // Prevent login
-      //   let button = document.getElementById('loginbtn');
-      //   if (button) { // Check if button exists before disabling
-      //       button.disabled = true;
-      //       button.setAttribute('aria-disabled', 'true');
-      //       window.location.replace("./jtx/help");
-      //   }
-      // } else {
-      //   // Optional: Code to execute if the browser is Chrome
-      //   console.log("Chrome browser detected.");
-          
-      //   main.formValidate()          
-      //   main.checkTime()
-      //   main.checkGeoLocation()
-      //   main.checkDOMLoad()
-      
-      // }
-
-        main.formValidate()          
-        main.checkTime()
-        main.checkGeoLocation()
-        main.checkDOMLoad()
-      
-        // let button = document.getElementById('loginbtn')
-        //       button.disabled = true;
-        //       button.setAttribute('aria-disabled', 'true'); //Optional, but helps screen readers
-              
-        //       xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>SYSTEM UNDERGOING MAINTENANCE! WE APOLOGIZE FOR THE INCONVINIENCE!</div>"
-        //       util.alertMsg( xmsg,'danger','loginPlaceHolder')
-        
-      
-    });//=====END DOM CONTENT LOADED=====
-
-    //=============================// main object // ====================
+//=============================// main object // ====================
     const main = {
       
       formValidate:()=>{
         //change form action 
-        document.getElementById('uploadForm').action=`${myIp}/postimage`
+        //document.getElementById('uploadForm').action=`${myIp}/postimage`
 
         util.loadFormValidation('#loginForm')
-        util.loadFormValidation('#newempForm')
-        util.modalListeners('newempModal')
+        //util.loadFormValidation('#newempForm')
+        
+        //util.modalListeners('newempModal')
             
         console.log('loadformValidation() loaded==')
       },
@@ -358,6 +215,8 @@
         window.location.replace("./jtx/help");
       },
 
+      gonow: true,
+      
       checkGeoLocation:()=>{
         //CHECK GPS FIRST
         if (navigator.geolocation) {
@@ -455,41 +314,58 @@
         }
       },
 
-      checkFileSize:()=>{
-        const fi = document.getElementById('uploaded_file');
-        // Check if any file is selected.
-        if (fi.files.length > 0) {
-            for (let i = 0; i <= fi.files.length - 1; i++) {
-
-                const fsize = fi.files.item(i).size;
-                const file = Math.round((fsize / 1024));
-                // The size of the file.
-                if (file >= 1000) {
-                    const btnupload = document.getElementById('mall-save-btn')
-                    btnupload.disabled = true
-
-                    util.alertMsg("File too Big, please select a file less than 1mb","danger","size");
-                    
-                    fi.value=null
-                    //go bottom page
-                    util.scrollsTo('blindspot')
-
-                    return false;
-
-                }else{
-                    
-                    document.getElementById('size').innerHTML=""//reset
-                    const btnupload = document.getElementById('mall-save-btn')
-                    btnupload.disabled = false
-                }
-                /* turn off display of filesize */
-                ///document.getElementById('size').innerHTML ='<b>'+ file + '</b> KB';
-                
-            }
-        }
-    }
+     
     }
     
+
+
+    // const fileInput = document.getElementById('uploaded_file');
+    
+    //   if (fileInput) {
+    //       fileInput.addEventListener('change', main.checkFileSize);
+    //   }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      console.log('=======DOM CONTENT LOADED=====')
+
+
+      // if (!main.isChrome()) {  // Use ! to check if NOT Chrome
+      //   alert('PLEASE USE CHROME BROWSER!');
+      //   // Prevent login
+      //   let button = document.getElementById('loginbtn');
+      //   if (button) { // Check if button exists before disabling
+      //       button.disabled = true;
+      //       button.setAttribute('aria-disabled', 'true');
+      //       window.location.replace("./jtx/help");
+      //   }
+      // } else {
+      //   // Optional: Code to execute if the browser is Chrome
+      //   console.log("Chrome browser detected.");
+          
+      //   main.formValidate()          
+      //   main.checkTime()
+      //   main.checkGeoLocation()
+      //   main.checkDOMLoad()
+      
+      // }
+
+        main.formValidate()          
+        main.checkTime()
+        main.checkGeoLocation()
+        main.checkDOMLoad()
+      
+        // let button = document.getElementById('loginbtn')
+        //       button.disabled = true;
+        //       button.setAttribute('aria-disabled', 'true'); //Optional, but helps screen readers
+              
+        //       xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>SYSTEM UNDERGOING MAINTENANCE! WE APOLOGIZE FOR THE INCONVINIENCE!</div>"
+        //       util.alertMsg( xmsg,'danger','loginPlaceHolder')
+        
+      
+    
+    });//=====END DOM CONTENT LOADED=====
+
   </script>
   
 </body>

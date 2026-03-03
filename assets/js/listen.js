@@ -5,7 +5,7 @@ remitupload.addEventListener("submit", e => {
 
     util.speak('Uploading Image, please wait!!!')
 
-    fetch(`${myIp}/postimage/${document.getElementById('ff_transnumber').value}`, {
+    fetch(`${myIp}/postimage/${document.getElementById('ff_transnumber').value}/${util.getCookie("f_region")}`, {
         method: 'POST',
         body: new FormData(formx),
         })
@@ -43,3 +43,4 @@ remitupload.addEventListener("submit", e => {
     // Prevent the default form submit
     e.preventDefault();                   
 })
+

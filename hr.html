@@ -265,195 +265,360 @@ span.xgrpheader{
                               </h6>
                           </div>
                           <!-- GRID inside -->
-                          <div class="table-responsive">
-                              <div id="hrisgrid">
+                            <div class="table-responsive">
+                                <div id="hrisgrid">
                                   <!-- Your grid will be initialized here -->
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-    <!-- </div> end page wrapper div -->
-    <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
-  
-  
-  <!-- //===== this is for excel HRIS upload ===// -->
-  <div class="modal fade" id="hrisloadModal" tabindex="-1" aria-labelledby="hrisloadModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-scrollable">
-        <div class="modal-content">
-            
-            <div class="modal-header bg-primary">
-                <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> HRIS Upload</h4>
-                <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
-            </div>
-
-            <!--//modal body-->
-            <div class="modal-body">
-                
-                <!--//=== ALERT CONTAINER!!!-->
-                <div id="hrisloadPlaceHolder"></div>
-                <!--//END ALERT-->
-                  
-                <div class="row">
-                  <div class="col-12">
-                    <!-- //form file upload onrender.com -->
-                    <form id="hrisuploadForm" name="hrisuploadForm" action="" enctype="multipart/form-data" method="post">
-                      <div class="form-outline">
-
-                        <!-- Add the select element here -->
-                        <div class="mb-2">
-                          <label class="form-label mb-0" for="hrisload_region">Select Region</label>
-                          <select class="form-select" id="hrisload_region" name="hrisload_region" required>
-                            <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
-                            <option value="CMNL" selected>CMNL</option>
-                            <option value="CMNVA">CMNVA</option>
-                            <option value="SMNL">SMNL</option>
-                          </select>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="mb-2">
-                          <label class="form-label mb-0" for="hrisload_position">Select Position</label>
-                          <select class="form-select" id="hrisload_position" name="hrisload_position" required>
-                            <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
-                            <option value="08" selected>COORDINATOR</option>
-                            <option value="01">RIDER</option>
-                            <option value="02">TRANSPORTER</option>
-                          </select>
-                        </div>
-
-                        <label class="form-label mb-0" for="hris_upload_file">Upload Excel File</label>
-                        <input type="file" class="form-control uploadz mb-2" name="hris_upload_file" id="hris_upload_file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required />
-
-                        <button onclick="javascript:hris.xlshris()" id="hris-upload-btn" name="hris-upload-btn" type="button" class="btn btn-primary">
-                          <i class="ti ti-upload"></i> Upload
-                        </button>
-                      </div>
-                    </form>
-                    <!--//end form -->
-                  </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+
+    </div> <!--// end page wrapper div -->
+
+
+    <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
+    <!-- //===== this is for excel HRIS upload ===// -->
+    <div class="modal fade" id="hrisloadModal" tabindex="-1" aria-labelledby="hrisloadModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-scrollable">
+            <div class="modal-content">
                 
-            </div><!--//end modalbody//-->
-            <!--//footer-->
-            <div class="modal-footer">
-                <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button>
-                <!-- <button class="btn btn-primary" id="mall-save-btn" onclick="" type="button">
-                <i id="i-save" class="fa fa-floppy-o"></i> Save
-                </button> -->
+                <div class="modal-header bg-primary">
+                    <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> HRIS Upload</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!--//modal body-->
+                <div class="modal-body">
+                    
+                    <!--//=== ALERT CONTAINER!!!-->
+                    <div id="hrisloadPlaceHolder"></div>
+                    <!--//END ALERT-->
+                    
+                    <div class="row">
+                    <div class="col-12">
+                        <!-- //form file upload onrender.com -->
+                        <form id="hrisuploadForm" name="hrisuploadForm" action="" enctype="multipart/form-data" method="post">
+                        <div class="form-outline">
+
+                            <!-- Add the select element here -->
+                            <div class="mb-2">
+                            <label class="form-label mb-0" for="hrisload_region">Select Region</label>
+                            <select class="form-select" id="hrisload_region" name="hrisload_region" required>
+                                <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
+                                <option value="CMNL" selected>NCR-CENTRAL MANILA</option>
+                                <option value="CMNVA">NCR-CMNVA</option>
+                                <option value="SMNL">NCR-SOUTH MANILA</option>
+
+                            </select>
+                            </div>
+                            
+                            <div class="mb-2">
+                            <label class="form-label mb-0" for="hrisload_position">Select Position</label>
+                            <select class="form-select" id="hrisload_position" name="hrisload_position" required>
+                                <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
+                                <option value="08" selected>COORDINATOR</option>
+                                <option value="01">RIDER</option>
+                                <option value="02">TRANSPORTER</option>
+                            </select>
+                            </div>
+
+                            <label class="form-label mb-0" for="hris_upload_file">Upload Excel File</label>
+                            <input type="file" class="form-control uploadz mb-2" name="hris_upload_file" id="hris_upload_file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required />
+
+                            <button onclick="javascript:hris.xlshris()" id="hris-upload-btn" name="hris-upload-btn" type="button" class="btn btn-primary">
+                            <i class="ti ti-upload"></i> Upload
+                            </button>
+                        </div>
+                        </form>
+                        <!--//end form -->
+                    </div>
+                    </div>
+                    
+                </div><!--//end modalbody//-->
+                <!--//footer-->
+                <div class="modal-footer">
+                    <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button>
+                    <!-- <button class="btn btn-primary" id="mall-save-btn" onclick="" type="button">
+                    <i id="i-save" class="fa fa-floppy-o"></i> Save
+                    </button> -->
+                </div>
+            </div>
+        </div>
+    </div>			
+
+    <!-- NEW EMPLOYEE ADD MODAL -->
+    <div class="modal fade" id="newempModal" tabindex="-1" aria-labelledby="newsiteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> Create Account</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!--//modal body-->
+                <div class="modal-body">
+                    <!--//=== ALERT CONTAINER!!! --->
+                    <div id="newempPlaceHolder"></div>
+                    <!--//END ALERT-->
+
+                    <div class="container-fluid">
+                        <!--//form goes here -->
+                        <!--//FORM SIGNUP-->
+                        <!-- IMPORTANT: Changed method to POST and added enctype -->
+                        <form id="newempForm" class="needs-validation row gy-2 gx-2 align-items-center" method="POST" enctype="multipart/form-data" novalidate>
+                            <div class="container mt-5">
+                                <h2>HRIS 201 Form</h2>
+
+                                <div class="mb-3">
+                                    <label for="region" class="form-label">Region</label>
+                                    <select class="form-select 201" id="region" name="region" required
+                                        onchange="util.checkPosition()">
+                                        <option value="" disabled selected>Select Region</option>
+                                        <option value="SMNL" >NCR-SOUTH MANILA</option>
+                                        <option value="CMNVA">NCR-CAMANAVA</option>
+                                        <option value="CMNL">NCR-CENTRAL MANILA</option>
+                                        <option value="CVIS">CENTRAL VISAYAS</option>
+                                        <option value="BCOL">BSL-BICOL</option>
+                                        <option value="SMLYTE">BSL-SAMAR LEYTE</option>
+                                        <option value="BCLD">WVIS-BACOLOD</option>
+                                        <option value="PANAY">WVIS-PANAY</option>
+                                    </select>
+                                </div>
+
+                                  <!-- location (initially hidden) -->
+                                <div class="mb-3 d-none" id="locContainer">
+                                    <label for="locStore" class="form-label">Location</label>
+                                    <select class="form-select" id="locStore" name="loc_store" required
+                                     onchange="util.gethub(this)">
+                                        
+                                        <option value="">Select Location</option>
+                                        <!-- Options will be populated by JavaScript -->
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="jobTitle" class="form-label">Position</label>
+                                    <select class="form-select 201" id="jobTitle" name="jobTitle" required 
+                                        onchange="util.handlePosChange(this)">
+                                        <option value="" disabled selected>Select Position</option>
+                                        <option value="01" >Rider</option>
+                                        <option value="04">Sorter/BackRoom</option>
+                                        <option value="08">Coordinator</option>
+                                        <option value="02">Transporter</option>
+                                        <option value="06">Time Keeper</option>
+                                        <option value="03">Foot Delivery</option>
+                                        <option value="15">Biker</option>
+                                        <option value="17">4 Wheel</option>
+                                        
+                                    </select>
+                                </div>
+                                
+                               
+                                
+
+                                <!-- Hub/Store Dropdown (initially hidden) -->
+                                <div class="mb-3 d-none" id="hubStoreContainer">
+                                    <label for="hubStore" class="form-label">Hub / Store</label>
+                                    <select class="form-select" id="hubStore" name="hub_store">
+                                        <option value="">Select Hub/Store</option>
+                                        <!-- Options will be populated by JavaScript -->
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="fullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control 201 text-uppercase " id="fullName" name="fullName" required>
+                                </div>
+
+
+                                <!-- <div class="mb-3">
+                                    <label for="employeeId" class="form-label">Employee ID</label>
+                                    <input type="text" class="form-control 201" id="employeeId" name="employeeId" required>
+                                </div> -->
+                                <!-- Note: You had two 'fullName' inputs. I'm assuming the first one is correct. -->
+                                <!-- <div class="mb-3">
+                                    <label for="fullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control 201" id="fullName" name="fullName" required>
+                                </div> -->
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control 201" value="a@b.com" id="email" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Cellphone Number</label>
+                                    <input type="tel" class="form-control 201" placeholder="0917 283 1929" id="phone" name="phone" maxlength="13" oninput="util.autoFormatPhone(this)"  onchange="util.validatePhone(this)" required>
+                                    <div id="phone-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">
+                                        Invalid format! Please use: 0917 123 4567
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="birthDate" class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control" value="1970-01-01" id="birthDate" name="birthDate" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="hireDate" class="form-label">Hire Date</label>
+                                    <input type="date" class="form-control 201" value="2025-01-01" id="hireDate" name="hireDate" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="employmentStatus" class="form-label">Employment Status</label>
+                                    <select class="form-select 201" id="employmentStatus" name="employmentStatus" required>
+                                        <option value="" disabled>Select status</option>
+                                        <option value="Full-Time" selected>Full-Time</option>
+                                        <option value="Part-Time">Part-Time</option>
+                                        <option value="Contract">Contract</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <textarea class="form-control 201" id="address" rows="3" name="address" required>Manila</textarea>
+                                </div>
+
+                                <!-- ... (previous form elements) ... -->
+
+                                <!-- NEW: File Uploads -->
+                                <h3 class="mt-4">Document Uploads</h3>
+                                <div class="mb-3">
+                                    <label for="id_picture" class="form-label">Employee ID Picture</label>
+                                    <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="id_picture" id="id_picture" accept='image/*' required />
+                                    <div id="id_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bgy_clearance" class="form-label">Baranggay Clearance</label>
+                                    <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="bgy_clearance" id="bgy_clearance" accept='image/*' required />
+                                    <div id="bgy_clearance-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an NBI Clearance image.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="police_clearance" class="form-label">Police/NBI Clearance</label>
+                                    <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="police_clearance" id="police_clearance" accept='image/*' required />
+                                    <div id="police_clearance-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select a Police Clearance image.</div>
+                                </div>
+
+                                <!-- Driver's License Input -->
+                                <div class="mb-3">
+                                    <label for="drivers_license" class="form-label">Driver's License</label>
+                                    <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="drivers_license" id="drivers_license" accept='image/*' disabled />
+                                    <!-- Added a span to dynamically update the required message -->
+                                    <small id="drivers_license_help" class="form-text text-muted">Not required for this position.</small>
+                                    <!-- Optional: error div if required for some positions -->
+                                    <div id="drivers_license-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Driver's License is required for this position.</div>
+                                </div>
+                                
+                                <!-- ... (rest of your HTML) ... -->
+
+                            </div>
+                        </form>
+                        <!--//end form -->
+                    </div><!--//end container-fluid//-->
+                </div><!--//end modalbody//-->
+
+                <!--//footer-->
+                <div class="modal-footer">
+
+                    <!-- Message on the LEFT -->
+                    <span class="me-auto text-danger fw-bold" id="footer-msg">
+                        <!-- Put your message here, e.g.: -->
+                        
+                    </span>
+
+
+                    <!-- <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button> -->
+                    <button class="btn btn-primary" id="newemp-next-btn" onclick="javascript:util.validateMe('newempModal','#newempForm','201')" type="button">
+                        <i id="i-next" class="fa fa-arrow-right"></i> &nbsp;&nbsp; NEXT
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-  </div>			
-  
-  <div class="modal fade" id="newempModal" tabindex="-1" aria-labelledby="newsiteModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
-      <div class="modal-content">
-          
-          <div class="modal-header bg-primary">
-              <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> Create Account</h4>
-              <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
-          </div>
+    <!--//end hrisloadModal//-->    
 
-          <!--//modal body-->
-          <div class="modal-body">
-              
-              <!--//=== ALERT CONTAINER!!!-->
-              <div id="newsitePlaceHolder"></div>
-              <!--//END ALERT-->
+    <!-- ============================================== -->
+    <!-- 2. NEW DATA PRIVACY & SIGNATURE MODAL          -->
+    <!-- ============================================== -->
+    <div class="modal fade" id="dataPrivacySignatureModal" tabindex="-1" aria-labelledby="dataPrivacySignatureModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h4 class="modal-title"><i class="bi-file-earmark-lock"></i> Data Privacy & Digital Signature</h4>
+                    <!-- <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
 
-              <div class="container-fluid" >	
-                  <!--//form goes here -->
-                  <!--//FORM SIGNUP-->
-                  <form id="newempForm" class="needs-validation row gy-2 gx-2 align-items-center" method="GET" novalidate>
-                    <div class="container mt-5">
-                      <h2>HRIS 201 Form</h2>
-                      <form>
-                          <div class="mb-3">
-                              <label for="employeeId" class="form-label">Employee ID</label>
-                              <input type="text" class="form-control 201" id="employeeId" name="employeeId" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="fullName" class="form-label">Full Name</label>
-                              <input type="text" class="form-control 201" id="fullName" name="fullName" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="email" class="form-label">Email Address</label>
-                              <input type="email" class="form-control 201"  value="a@b.com" id="email" name="email" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="phone" class="form-label">Phone Number</label>
-                              <input type="tel" class="form-control 201" value="0917 283 1929" id="phone" name="phone" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="birthDate" class="form-label">Date of Birth</label>
-                              <input type="date" class="form-control" value="01/01/1970" id="birthDate" name="birthDate" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="hireDate" class="form-label">Hire Date</label>
-                              <input type="date" class="form-control 201" value="01/01/2025" id="hireDate" name="hireDate" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="jobTitle" class="form-label">Job Title</label>
-                              <input type="text" class="form-control 201" value="quality cntrol" id="jobTitle" name="jobTitle" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="department" class="form-label">Department</label>
-                              <input type="text" class="form-control 201" value="IT" id="department" name="department" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="employmentStatus" class="form-label">Employment Status</label>
-                              <select class="form-control 201" id="employmentStatus" name="employmentStatus" required>
-                                  <option value="" disabled>Select status</option>
-                                  <option value="Full-Time" selected>Full-Time</option>
-                                  <option value="Part-Time">Part-Time</option>
-                                  <option value="Contract">Contract</option>
-                              </select>
-                          </div>
-                          <div class="mb-3">
-                              <label for="address" class="form-label">Address</label>
-                              <textarea class="form-control 201" id="address" rows="3" name="address" required>Manila</textarea>
-                          </div>
-                          <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-                      </form>
-                  </div>
-                         
-                  </form>
-                  <!--//end form -->
-                  
-                  <div class="row">
-                    <div class="col-lg-4 mb-0">
-                      <!-- //form file upload onrender.com -->
-                      <form id="uploadForm" name="uploadForm" action="" enctype="multipart/form-data" method="post">
-                        <div class="form-outline">
-                          <label class="form-label mb-0" for="uploaded_file">Upload Picture</label>
-                          <input onchange="javascript:main.checkFileSize()" class="form-control equipmentxx" type="file" name="uploaded_file" id="uploaded_file" accept='image/*' required />
-                          <input id="upload-btn" class="btn btn-warning lets-hide" type="submit" value="Upload">
-                          <p><span id="size"></span></p>
-                          <div id="blindspot"></div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  
-              </div><!--//end container-fluid//-->
-              
-          </div><!--//end modalbody//-->
-          <!--//footer-->
-          <div class="modal-footer">
-              <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button>
-              <button class="btn btn-primary" id="mall-save-btn" onclick="javascript:util.validateMe('newempModal','#newempForm','201')" type="button">
-              <i id="i-save" class="fa fa-floppy-o"></i> &nbsp;&nbsp; Save
-              </button>
-          </div>
-      </div>
-  </div>
-</div>			
 
-<!--//end hrisloadModal//-->
-  
+                <!--//modal body-->
+                <div class="modal-body">
+                    <div id="dataPrivacyPlaceHolder"></div> <!-- ALERT CONTAINER -->
+
+
+                    <div class="container-fluid">
+                        <form id="dataPrivacyForm" class="needs-validation row gy-2 gx-2 align-items-center" novalidate>
+                            <div class="container mt-3">
+                                <h4>Privacy Notice (Philippines Data Privacy Act - R.A. 10173)</h4>
+                                <p style="font-size: 0.9em;">
+                                    By providing your personal data, you consent to its collection, processing, 
+                                    and storage by Better Edge Solutions Inc. in compliance with the Data Privacy Act of 2012 
+                                    (Republic Act No. 10173). Your data will be used solely for employment purposes, including but not 
+                                    limited to, recruitment, background checks, payroll, and benefits administration. We ensure the 
+                                    confidentiality and security of your information and will not share it with third parties without 
+                                    your explicit consent, unless required by law. You have the right to access, correct, and object 
+                                    to the processing of your data. For more information, please refer to our full privacy policy.<br><br>
+
+                                    Sa pamamagitan ng pagbibigay ng iyong personal na datos, pumapayag ka sa pagkolekta, pagproseso, 
+                                    at pag-iimbak nito ng Better Edge Solutions Inc., alinsunod sa Data Privacy Act of 2012 
+                                    (Republic Act No. 10173). Ang iyong datos ay gagamitin lamang para sa layunin ng empleyo, 
+                                    kabilang ngunit hindi limitado sa rekrutment, pagsasagawa ng background check, payroll, 
+                                    at pamamahala ng benepisyo. Tinitiyak namin ang pagiging-kompidensiyal at seguridad ng iyong 
+                                    impormasyon at hindi namin ito ibabahagi sa mga ikatlong partido nang wala ang iyong tahasang 
+                                    pahintulot, maliban kung ito ay hinihingi ng batas. May karapatan kang i-access, itama, at tutulan
+                                     ang pagproseso ng iyong datos. Para sa karagdagang impormasyon, mangyaring sumangguni sa aming 
+                                     buong patakaran sa privacy.
+                                </p>
+                            
+                                <label class="form-label mt-3">
+                                    I HAVE READ, UNDERSTOOD AND CONSENT to the collection and processing of my personal data as 
+                                    described above by affixing my digital signature below.<br><br>
+                                    BINASA KO, NAUNAWAAN AT SUMANG-AYON ako sa pagkolekta at pagproseso ng aking personal na datos na 
+                                    inilarawan sa itaas sa pamamagitan ng paglalagay ng aking digital na pirma sa ibaba
+                                </label>
+                            
+                                <div class="signature-pad-container border rounded mt-2" style="position: relative; height: 200px; width: 100%; background-color: #f8f8f8;">
+                                    <!-- HARDCODED width/height attributes for testing -->
+                                    <canvas id="signatureCanvas" width="500" height="200" 
+                                            style="width: 100%; height: 100%; touch-action: none; display: block; background-color: white; border: 1px solid #ccc;"></canvas>
+                                </div>
+
+                                
+                                <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="util.clearSignature()">Clear Signature</button>
+                                <div id="signatureCanvas-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please provide your signature.</div>
+                            
+                            
+                            </div>
+                        </form>
+                    </div><!--//end container-fluid//-->
+                </div><!--//end modalbody//-->
+
+
+                <!--//footer - Submit Signature -->
+                <div class="modal-footer">
+                    <!-- <button class="btn btn-light" type="button" data-bs-dismiss="modal">Cancel</button> -->
+                    <button class="btn btn-success" id="submit-signature-btn" onclick="javascript:util.saveSignature()" type="button">
+                        <i id="i-signature-save" class="fa fa-check"></i> &nbsp;&nbsp; Submit Signature
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/js/tabler.min.js"></script>
 
 <script src="/html/assets/libs/jquery/dist/jquery.min.js"></script> <!--//sidebarmenu dependent-->
@@ -480,6 +645,9 @@ span.xgrpheader{
 
 <script src="/html/assets/js/ipconfig.js?v=8"></script>
 
+<!-- Signature Pad Library (cdnjs.com) -->
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.0/dist/signature_pad.umd.min.js?v=8"></script>
+
 <script src="/html/assets/js/util.js?v=8"></script>
 <script src="/html/assets/js/hr.js?v=8"></script>
   
@@ -491,7 +659,9 @@ span.xgrpheader{
 
 <script> 
   document.addEventListener('DOMContentLoaded', function() {
-      console.log('===OPERATIONS complete==')
+      console.log('===HRIS OPERATIONS complete==')
+      util.modalListeners('newempModal')
+      util.modalListeners('dataPrivacySignatureModal')
   })
 </script>
 

@@ -264,6 +264,7 @@ const asn = {
         
     },
 
+    gonow:true,
     speaks:null,
 
     collapz: () => {
@@ -553,7 +554,7 @@ const asn = {
 
                 asn.getMonthlyTransaction(util.getCookie('f_id'))
 
-                //===== click submit button of Upload Form
+                //===== click submit button of Upload Form === listened in **listen.js***
                 const remuploadbtn = document.getElementById('remittance_upload_btn')
                 remuploadbtn.click()
 

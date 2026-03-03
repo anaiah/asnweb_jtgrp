@@ -92,6 +92,8 @@
             }, nTime  )
         },
 
+        gonow:true,
+
         collapz: () => {
             console.log('Setting up collapse...');
             const links = document.querySelectorAll('#sidebarnav a');
@@ -381,23 +383,9 @@
         }    
     }//===end obj
 
-    //hris.init();
+    hris.init();
     
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });    
-    
-    document.addEventListener('DOMContentLoaded', function() {
-
-        hris.init()
-        //hris.listeners()
-
-        console.log('DOM CONTENT loaded')
-        
-    });
-
-
-
-   
-    
     
