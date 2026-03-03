@@ -862,7 +862,7 @@ const asn = {
        
 
         //load the form to validate
-        util.loadFormValidation('#newempForm')
+        ///util.loadFormValidation('#newempForm')
         
         util.loadFormValidation('#dataEntryForm')
         util.loadFormValidation('#remittanceForm')
@@ -871,7 +871,7 @@ const asn = {
         
         //load listeners
         util.modalListeners('claimsModal')
-        util.modalListeners('newempModal')
+        //util.modalListeners('newempModal')
         util.modalListeners('dataEntryModal')
         util.modalListeners('remittanceModal')
         util.modalListeners('atdstatusModal')
