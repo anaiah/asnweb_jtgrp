@@ -9,8 +9,8 @@ const login = {
 		document.getElementById('uploadForm').action=`http://${myIp}/postimage`
 
 		util.loadFormValidation('#loginForm')
-		util.loadFormValidation('#newempForm')
-		util.modalListeners('newempModal')
+		//util.loadFormValidation('#newempForm')
+		//util.modalListeners('newempModal')
         
 		console.log('loadformValidation() loaded==')
 	}//END MAIN

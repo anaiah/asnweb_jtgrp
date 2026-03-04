@@ -9,14 +9,33 @@
 <div id="msg"></div>
     
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const db = window.localStorage
-        document.getElementById('msg').innerHTML = "Trying to Reset Your Profile..."
-        db.removeItem('profile')
-        document.getElementById('msg').innerHTML = "Your Profile have been Reset..."
-        alert('YOUR  FILE HAVE BEEN RESET, PLEASE  GO TO YOUR  HUB AND RE-LOGIN! THANK YOU!')
-        document.location.href = "/jtx"
-    })
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        const msgElement = document.getElementById('msg');
+        msgElement.innerHTML = "Trying to Reset Your Profile...";
+
+        // 1. Force clear EVERYTHING to test
+        window.localStorage.clear(); 
+        
+        // 2. Double check specific keys just in case
+        window.localStorage.removeItem('profile');
+        window.localStorage.removeItem('myCart');
+
+        // 3. Verify immediately in console
+        console.log('Cart after delete:', window.localStorage.getItem('myCart')); 
+        console.log('Profile after delete:', window.localStorage.getItem('profile'));
+
+        msgElement.innerHTML = "Your Profile has been Reset...Redirecting";
+
+        // 4. Use a small timeout to ensure the UI updates before the alert freezes the thread
+        setTimeout(function() {
+            //alert('YOUR FILE HAS BEEN RESET. PRESS OK TO CONTINUE.');
+            
+            // 5. Hard reload to the destination to ensure cache is cleared too
+            window.location.replace("/jtx"); 
+        }, 2000);
+    });
 </script>
+
 </body>
 </html>

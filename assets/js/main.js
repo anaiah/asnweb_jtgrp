@@ -938,6 +938,8 @@ const asn = {
 
 } //======================= end admin obj==========//
 
+window.asn = asn
+
 Ext.onReady(function(){
     console.log('ext on ready....')
     Ext.tip.QuickTipManager.init();
