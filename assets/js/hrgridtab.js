@@ -478,6 +478,14 @@ var timekeepdetailGrid = new Tabulator("#timekeepTable", {
             headerSort:false, 
             headerHozAlign:"center"
         },
+         {
+            title: "REASON",
+            field: "reason", 
+            width:150,
+            resizable:false,
+            hozAlign:'left',
+            formatter:"html",
+        },
         {
             title: "FOR APPROVAL",
             field: "for_approval", 
