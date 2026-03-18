@@ -1543,7 +1543,7 @@ const util = {
                     dataEntryObjfrm.login_date = util.nugetDate(); 
                     dataEntryObjfrm.transnumber = document.getElementById('f_transnumber').value;
 
-                    util.toggleButton('start-btn',true);
+                    asn.saveToLogin(`${myIp}/savetologin/${util.getCookie('f_id')}`, dataEntryObjfrm)
                     
                     
                     break;

@@ -423,6 +423,9 @@ const asn = {
 
     //===save to localstorage
     saveToLogin:async(url="",xdata={})=>{
+
+        util.toggleButtonLoading("start-btn", "Saving...", true);
+                    
         
         if (asn.currentAudio) {
             asn.currentAudio.pause();
@@ -457,8 +460,8 @@ const asn = {
                     asn.db.removeItem('myCart')
 
                     util.hideModal('dataEntryModal',2000)    
-                    toggleButtonLoading("start-btn", "Saving...", true);
-                    
+                    util.toggleButtonLoading("start-btn", null, false);
+
                     return false;
 
                 }else{
@@ -479,6 +482,8 @@ const asn = {
                 alert(`Error:, ${error}`)
                 //asn.speaks()
                 console.error('Error:', error)
+                util.toggleButtonLoading("start-btn", null, false);
+
             })    
         
         //2ND DATA ENTRY
@@ -501,6 +506,9 @@ const asn = {
         if(asn.db.getItem('myCart')){
             asn.speaks('Local Storage Successfully Saved!!!') //speak
             util.Toasted('Local Storage Successfully Saved!!!',3000,false)//alert
+            
+            util.toggleButtonLoading("start-btn", null, false);
+
             util.hideModal('dataEntryModal',2000)    
             setTimeout(() => {
                     asn.logout()
