@@ -492,7 +492,7 @@ const asn = {
             asn.db.setItem('myCart', JSON.stringify(finaldb))
 
             //util.toggleButton('start-btn',false)
-             util.toggleButtonLoading("start-btn", null, false);
+            util.toggleButtonLoading("start-btn", null, false);
         }
          
         // const badge = document.getElementById('bell-badge')
