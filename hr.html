@@ -38,7 +38,13 @@
   <link rel="stylesheet" href="/html/assets/css/osndp.css" />
 
   <style>
-    
+.tabulator .tabulator-cell.wrap {
+  white-space: normal;
+}
+.name-highlight {
+  font-weight: bold;
+  color: #198754; /* Bootstrap success green */
+}
 span.xgrpheader{
   /* background-color:#cfcfce; */
   /* font-weight: bold; */
@@ -105,8 +111,11 @@ span.xgrpheader{
     .card-footer-text {
       font-size: 0.75rem;
       color: #6c757d;
-      } 
+    }
 
+    #printTimekeepingBtn {
+        margin-bottom: 15px;
+    }
   </style>
 
 </head>
@@ -221,7 +230,7 @@ span.xgrpheader{
                       </div>
                       <!-- Filter by Region (dropdown) -->
                       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                          <label for="filter_region" class="form-label visually-hidden">Region</label>
+                          <label for="filter_region" class="form-label visually-hidden">* Region</label>
                           <select class="form-select" id="filter_region" name="filter_region" required>
                               <option value="">Filter by Region</option>
                               <option value="cmnl">NCR-CMNL</option>
@@ -232,44 +241,96 @@ span.xgrpheader{
                       </div>
                       <!-- Filter by Position (dropdown) -->
                       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                          <label for="filter_position" class="form-label visually-hidden">Position</label>
-                          <select class="form-select" id="filter_position" name="filter_position">
+                          <label for="filter_position" class="form-label visually-hidden">* Position</label>
+                          <select class="form-select" id="filter_position" name="filter_position" required>
                               <option value="">Filter by Position</option>
                               <option value="01">RIDER</option>
                               <option value="02">TRANSPORTER</option>
+                              <option value="04">SORTER/BACKROOM</option>
                               <option value="08">COORDINATOR</option>
+
                               <!-- Add more options here as needed -->
                           </select>
-                      </div>
-                      <!-- Search Button (simplified) -->
-                      <div class="col-12 col-sm-6 col-md-4 col-lg-auto d-grid ms-auto">
-                          <button 
-                            class="btn btn-primary" id="search-btn" type="button"
-                            onclick="javascript:hris.searchEmp();"
-                          >
-                              <i class="ti ti-search"></i>&nbsp;&nbsp; Search
-                          </button>
-                      </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label for="filter_date_from" class="form-label">Date From</label>
+                            <input type="date" class="form-control" id="filter_date_from" name="filter_date_from" disabled>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label for="filter_date_to" class="form-label">Date To</label>
+                            <input type="date" class="form-control" id="filter_date_to" name="filter_date_to" disabled>
+                        </div>     
+
+                        <!-- Search + Print buttons -->
+                         <!--
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-auto d-flex flex-column flex-sm-row ms-auto gap-2">
+    
+                            <button type="button" class="btn btn-primary" 
+                                    onclick="javascript:hris.printTimeKeep();" id="applyFilterBtn" disabled>
+                                <i class="ti ti-printer me-1"></i> Timekeeping
+                            </button>
+                            
+                            <button 
+                                class="btn btn-success flex-fill" id="print-masterfile-btn" type="button"
+                                onclick="javascript:hris.printMasterfile && hris.printMasterfile(this.form);"
+                            >
+                                <i class="ti ti-file-type-xls"></i>&nbsp;&nbsp;Download Masterfile
+                            </button>
+                            <button 
+                                class="btn btn-primary flex-fill" id="search-btn" type="button"
+                                onclick="javascript:hris.checkform(this.form);"
+                            >
+                                <i class="ti ti-search"></i>&nbsp;&nbsp;Search
+                            </button> -->
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-auto ms-auto">
+                                <select id="actionSelect" class="form-select">
+                                    <option value="">Select Action</option>
+                                    <option value="search">Search</option>
+                                    <option value="timekeeping" id="optTimekeeping">View Timekeeping</option>
+                                    <option value="masterfile">Download Masterfile</option>
+                                </select>
+                            </div>
+
                   </form>
               </div>
           </div>
 
           <!-- Main Content Card (Search Result) -->
-          <div class="row gx-2">
-              <div class="col-lg-8 mb-3 mb-lg-0">
+                   
+            <div class="row gx-2">
+              <div class="col-12 mb-3 mb-lg-0  d-none" id="search-result-grid"> <!-- Assuming you want full width on desktop as per previous discussion -->
                   <div class="card shadow w-100">
                       <div class="card-body p-2">
-                          <div class="mt-0 mb-1">
-                              <h6 class="card-title fw-semibold" id="h6-txt">
-                                  Search Result
-                              </h6>
-                          </div>
-                          <!-- GRID inside -->
-                            <div class="table-responsive">
+                            
+                            <!-- GRID inside -->
+                            <div class="table-responsive d-none" id="hrisdisplay">
                                 <div id="hrisgrid">
                                   <!-- Your grid will be initialized here -->
                                 </div>
                             </div>
+
+                            <!-- GRID inside -->
+                            <div class="table-responsive d-none" id="timekeepdisplay">
+                            
+
+                            <div class="card-header py-3">
+                                <h5 class="mb-0 fw-semibold">TimeKeeping</h5><br>
+                                
+                            </div>
+                            <div class=" mb-2">
+                                <button type="button"
+                                        class="btn btn-success btn-sm"
+                                        id="downloadTimekeepBtn"
+                                        onclick="hris.downloadTimekeepXls();">
+                                <i class="ti ti-file-type-xls me-1"></i>
+                                Download Timekeeping
+                                </button>
+                            </div>
+                            <div id="timekeepgrid">
+                                <!-- Your grid will be initialized here -->
+                            </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -410,7 +471,7 @@ span.xgrpheader{
                                         <option value="02">Transporter</option>
                                         <option value="06">Time Keeper</option>
                                         <option value="03">Foot Delivery</option>
-                                        <option value="15">Biker</option>
+                                        <option value="15">3 Wheel</option>
                                         <option value="17">4 Wheel</option>
                                         
                                     </select>
@@ -421,17 +482,47 @@ span.xgrpheader{
 
                                 <!-- Hub/Store Dropdown (initially hidden) -->
                                 <div class="mb-3 d-none" id="hubStoreContainer">
-                                    <label for="hubStore" class="form-label">Hub / Store</label>
+                                    <label for="hubStore" class="form-label">Hub</label>
                                     <select class="form-select" id="hubStore" name="hub_store">
                                         <option value="">Select Hub/Store</option>
                                         <!-- Options will be populated by JavaScript -->
                                     </select>
                                 </div>
-                                
+                                <!--// full name,middle, lastname,-->
+                                <div class="mb-3">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control text-uppercase" id="lastName" name="last_name" placeholder="Last Name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control  text-uppercase" id="firstName" name="first_name" placeholder="First Name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="middleName" class="form-label">Middle Name</label>
+                                    <input type="text" class="form-control  text-uppercase" id="middleName" name="middle_name" placeholder="Middle Name (Optional)">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nameSuffix" class="form-label">Suffix (Jr/Sr)</label>
+                                    <select class="form-select  text-uppercase" id="nameSuffix" name="name_suffix">
+                                        <option value="">None</option>
+                                        <option value="JR.">JR.</option>
+                                        <option value="SR.">SR.</option>
+                                        <option value="III">III</option>
+                                        <option value="IV">IV</option>
+                                        <!-- Add other suffixes if needed -->
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="fullName" class="form-label">Full Name (Auto-generated)</label>
+                                    <textarea class="form-control  text-uppercase" id="fullName" name="full_name" rows="2" readonly></textarea>
+                                </div>
+
+<!--                                 
                                 <div class="mb-3">
                                     <label for="fullName" class="form-label">Full Name</label>
                                     <input type="text" class="form-control 201 text-uppercase " id="fullName" name="fullName" required>
-                                </div>
+                                </div> -->
 
 
                                 <!-- <div class="mb-3">
@@ -469,12 +560,34 @@ span.xgrpheader{
                                         <option value="" disabled>Select status</option>
                                         <option value="Full-Time" selected>Full-Time</option>
                                         <option value="Part-Time">Part-Time</option>
-                                        <option value="Contract">Contract</option>
+                                        <option value="Contract">Seasonal</option>
+                                        <option value="OCW">OCW</option>
                                     </select>
                                 </div>
+
                                 <div class="mb-3">
-                                    <label for="address" class="form-label">Address</label>
-                                    <textarea class="form-control 201" id="address" rows="3" name="address" required>Manila</textarea>
+                                    <label for="addy1" class="form-label">Address 1 (Number, Building, Street)</label>
+                                    <input type="text" class="form-control 201" value="" id="addy1" name="addy1" required >
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="addy2" class="form-label">Address 2 (Street)</label>
+                                    <input type="text" class="form-control 201" value="" id="addy2" name="addy2" >
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="city" class="form-label">City / Municipality</label>
+                                    <input type="text" class="form-control 201" value="" id="city" name="city" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="bgy" class="form-label">Barangay</label>
+                                    <input type="text" class="form-control 201" value="" id="bgy" name="bgy" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Complete Address </label>
+                                    <textarea placeholder="Please fill-out address 1, adress 2, city and barangay" class="form-control 201" id="address" rows="3" name="address" readonly></textarea>
                                 </div>
 
                                 <!-- ... (previous form elements) ... -->
@@ -482,9 +595,14 @@ span.xgrpheader{
                                 <!-- NEW: File Uploads -->
                                 <h3 class="mt-4">Document Uploads</h3>
                                 <div class="mb-3">
-                                    <label for="id_picture" class="form-label">Employee ID Picture</label>
+                                    <label for="id_picture" class="form-label">Contractor ID Picture</label>
                                     <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="id_picture" id="id_picture" accept='image/*'  capture="environment" required />
                                     <div id="id_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_specimen_picture" class="form-label">Contractor ID Picture w/ 3 Specimen Signature</label>
+                                    <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="id_specimen_picture" id="id_specimen_picture" accept='image/*'  capture="environment" required />
+                                    <div id="id_specimen_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="bgy_clearance" class="form-label">Baranggay Clearance</label>
@@ -611,11 +729,96 @@ span.xgrpheader{
         </div>
     </div>
 
+    <!--/// DEACTIVATION MODAL -->
+    <!-- Deactivate Modal -->
+    <div class="modal fade" id="deactivateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Deactivate Employee</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="deactivateForm">
+            <div class="mb-3">
+                <label class="form-label">Employee ID</label>
+                <input type="text" id="deactEmpId" class="form-control" readonly>
+            </div>
+            
+            <div class="mb-3 d-none">
+                <label class="form-label">Email</label>
+                <input type="text" id="deactEmail" class="form-control" readonly>
+            </div>
 
+             <!-- NEW: Location / Code between first and second "-" -->
+            <div class="mb-3">
+                <label class="form-label">Code</label>
+                <input type="text" id="deactCode" class="form-control" readonly>
+            </div>
 
+            <div class="mb-3">
+                <label class="form-label" id="reasonLabel">Reason for deactivating</label>
+                <textarea id="deactReason" class="form-control" rows="3" required></textarea>
+            </div>
+            </form>
+            <div id="deactError" class="text-danger small d-none"></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" id="btnConfirmDeactivate" class="btn btn-danger btn-sm">
+            Deactivate
+            </button>
+        </div>
+        </div>
+    </div>
+    </div>
 
+    <!-- View passed Images of Requirements Modal -->
+    <div class="modal fade" id="viewReqModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">View Requirements</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div id="viewReqInfo" class="mb-2 small text-muted"></div>
+            <div id="viewReqError" class="text-danger small d-none"></div>
 
+            <!-- images container -->
+            <div id="viewReqImages" class="row g-3">
+            <!-- thumbnails will be injected here -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm"
+                    data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
 
+    <!-- Timekeeping Details Modal -->
+    <div class="modal fade" id="timekeepModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Timekeeping Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- Container for Tabulator -->
+            <div id="timekeepTable" class="table-responsive"></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm"
+                    data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
 
 
 
@@ -655,14 +858,263 @@ span.xgrpheader{
 <!-- <script src="/html/assets/js/listen.js?v=8"></script> -->
 
 <!-- takeout muna gridtab palit extjs -->
-<script src="/html/assets/js/gridtab.js?v=8"></script>
+<script src="/html/assets/js/hrgridtab.js?v=8"></script>
 
 <script> 
-  document.addEventListener('DOMContentLoaded', function() {
-      console.log('===HRIS OPERATIONS complete==')
-      util.modalListeners('newempModal')
-      util.modalListeners('dataPrivacySignatureModal')
-  })
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('===HRIS OPERATIONS complete==')
+        util.modalListeners('newempModal')
+        util.modalListeners('dataPrivacySignatureModal')
+        // Get references to all relevant DOM elements
+        const addy1Input = document.getElementById('addy1');
+        const addy2Input = document.getElementById('addy2');
+        const barangayInput = document.getElementById('bgy');
+        const cityInput = document.getElementById('city');
+        const fullAddressTextarea = document.getElementById('address');
+
+        // Function to update the full address textarea
+        function updateFullAddress() {
+            const addressParts = [];
+
+            // Add parts only if they have a non-empty value after trimming whitespace
+            if (addy1Input.value.trim()) {
+                addressParts.push(addy1Input.value.trim());
+            }
+            if (addy2Input.value.trim()) {
+                addressParts.push(addy2Input.value.trim());
+            }
+            if (barangayInput.value.trim()) {
+                addressParts.push(` Bgy. ${barangayInput.value.trim()}`);
+            }
+            if (cityInput.value.trim()) {
+                addressParts.push(cityInput.value.trim());
+            }
+
+            // Join the parts with a newline character for multi-line display
+            fullAddressTextarea.value = addressParts.join(', ').toUpperCase() //addressParts.join('\n');
+        }
+
+        // Attach the 'input' event listener to each address field
+        // The 'input' event fires whenever the value of an <input> or <textarea> element has been changed
+        addy1Input.addEventListener('input', updateFullAddress);
+        addy2Input.addEventListener('input', updateFullAddress);
+        barangayInput.addEventListener('input', updateFullAddress);
+        cityInput.addEventListener('input', updateFullAddress);
+
+        // Optional: Call the function once on page load
+        // This is useful if the form fields might be pre-filled when the page loads (e.g., for editing an existing record)
+        updateFullAddress();
+
+        // Get references to all relevant DOM elements
+        const lastNameInput = document.getElementById('lastName');
+        const firstNameInput = document.getElementById('firstName');
+        const middleNameInput = document.getElementById('middleName');
+        const nameSuffixSelect = document.getElementById('nameSuffix');
+        const fullNameTextarea = document.getElementById('fullName');
+
+        // Function to update the full name textarea
+        function updateFullName() {
+            // Get trimmed values from inputs and select
+            const lastName = lastNameInput.value.trim();
+            const firstName = firstNameInput.value.trim();
+            const middleName = middleNameInput.value.trim();
+            const suffix = nameSuffixSelect.value.trim();
+
+            let formattedName = '';
+
+            // 1. Start with Last Name
+            if (lastName) {
+                formattedName += lastName;
+            }
+
+            // 2. Add First Name
+            if (firstName) {
+                if (formattedName) { // Only add comma if last name exists
+                    formattedName += ', ';
+                }
+                formattedName += firstName;
+            }
+
+            // 3. Add Middle Initial (with a space before it)
+            if (middleName) {
+                const middleInitial = middleName.charAt(0).toUpperCase() + '.';
+                if (formattedName) { // Only add space if some name part already exists
+                    formattedName += ' ';
+                }
+                formattedName += middleInitial;
+            }
+
+            // 4. Add Suffix (with a comma and space before it)
+            if (suffix) {
+                if (formattedName) { // Only add comma and space if some name part already exists
+                    formattedName += ', '; // <-- CHANGED THIS LINE
+                }
+                formattedName += suffix;
+            }
+
+            // Update the textarea
+            fullNameTextarea.value = formattedName;
+        }
+
+        // Attach 'input' event listeners to text fields for real-time updates
+        lastNameInput.addEventListener('input', updateFullName);
+        firstNameInput.addEventListener('input', updateFullName);
+        middleNameInput.addEventListener('input', updateFullName);
+
+        // Attach 'change' event listener to the select dropdown
+        nameSuffixSelect.addEventListener('change', updateFullName);
+
+        // Optional: Call the function once on page load
+        updateFullName();
+
+        const btn = document.getElementById("btnConfirmDeactivate");
+        const errorDiv = document.getElementById("deactError");
+
+        function setButtonLoading(isLoading, labelWhenDone) {
+            if (isLoading) {
+                btn.disabled = true;
+                btn.innerHTML = `
+                <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                Saving...
+                `;
+            } else {
+                btn.disabled = false;
+                btn.textContent = labelWhenDone;
+            }
+        }
+
+        btn.addEventListener("click", async () => {
+            const empid  = document.getElementById("deactEmpId").value;
+            const email = document.getElementById("deactEmail").value;
+            const region = document.getElementById("deactCode").value;
+            const reason = document.getElementById("deactReason").value.trim();
+            const action = btn.dataset.action; // "deactivate" or "reactivate"
+
+            errorDiv.classList.add("d-none");
+            errorDiv.textContent = "";
+
+            // Require reason only for deactivate
+            if (action === "deactivate" && !reason) {
+                errorDiv.textContent = "Reason is required for deactivation.";
+                errorDiv.classList.remove("d-none");
+                return;
+            }
+
+            const originalLabel = action === "deactivate" ? "Deactivate" : "Reactivate";
+            setButtonLoading(true, originalLabel);
+
+            try {
+                const res = await fetch(`${myIp}/employee/status`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ empid, region, reason, action }),
+                });
+
+                if (!res.ok) {
+                const text = await res.text();
+                throw new Error(text || "Request failed");
+                }
+
+                setButtonLoading(false, originalLabel);
+
+                // close modal
+                const modalEl = document.getElementById("deactivateModal");
+                const modal = bootstrap.Modal.getInstance(modalEl);
+                modal.hide();
+
+                document.getElementById("search-btn").click();
+                
+                // refresh table
+                table.replaceData();
+            } catch (err) {
+                setButtonLoading(false, originalLabel);
+                errorDiv.textContent = err.message || "Error updating status";
+                errorDiv.classList.remove("d-none");
+            }
+        });
+
+        //=============position dropdown listener
+        document.getElementById("filter_position").addEventListener("change", function () {
+            const isCoordinator = this.value === "08";// IF CHOICE IS COORDINATOR
+
+            document.getElementById("filter_date_from").disabled = !isCoordinator;
+            document.getElementById("filter_date_to").disabled   = !isCoordinator;
+
+            //document.getElementById("applyFilterBtn").disabled   = !isCoordinator;
+
+            const actionSelect  = document.getElementById("actionSelect");
+            const optTimekeep   = document.getElementById("optTimekeeping");
+
+            // enable/disable option
+            optTimekeep.disabled = !isCoordinator;
+
+            // if currently selected and now invalid, reset select
+            if (!isCoordinator && actionSelect.value === "timekeeping") {
+                actionSelect.value = "";
+            }
+            if(!isCoordinator){
+
+                //bring backdisplay
+                document.getElementById('search-result-grid').classList.add('d-none');
+                document.getElementById('timekeepdisplay').classList.add('d-none');
+
+                 // Data is empty, perform a full reset
+                timekeepGrid.clearFilter();  // Clear any active filters
+                timekeepGrid.clearSort();    // Clear any active sorting
+               
+               // --- REVISED PAGINATION RESET ---
+                // Check if pagination is enabled before trying to reset the page
+                if (timekeepGrid.options.pagination) {
+                    timekeepGrid.setPage(1); // Set the page to the first page
+                    // If you need to also reset the total number of pages displayed (e.g., pageSize)
+                    // you might need to re-initialize pagination or adjust pageSize manually if it's dynamic.
+                    // For now, setPage(1) is the core fix.
+                }
+                // --- END REVISED PAGINATION RESET ---
+
+                timekeepGrid.deselectRow();  // Deselect any previously selected rows
+
+                // Finally, set the empty data. This will also trigger the "No Data" message.
+                timekeepGrid.setData([]);
+            }
+        });
+
+
+            //for select actions for filtering
+            document.getElementById("actionSelect").addEventListener("change", function () {
+                const action = this.value;
+                const form = document.getElementById("searchForm");
+
+                if (!action) return;
+
+                if (action === "search") {
+                hris.checkform && hris.checkform(form);
+                } else if (action === "timekeeping") {
+                hris.printTimeKeep && hris.printTimeKeep();
+                } else if (action === "masterfile") {
+                hris.printMasterfile && hris.printMasterfile(form);
+                }
+
+                // reset back to placeholder after firing
+                this.value = "";
+            });
+       
+    })//end dom onload
+    
+    function toCamelCase(str) {
+        // Handle null, undefined, or non-string inputs
+        if (typeof str !== 'string' || str === null || str === undefined) {
+            return '';
+        }
+
+        // Convert to lowercase first to ensure consistent capitalization
+        // Then use replace with a regex to find separators and capitalize the letter after them
+        return str.toLowerCase().replace(/(?:[_-]|\s)+(.)/g, (match, char) => {
+            return char.toUpperCase();
+        });
+    
+    }
+
 </script>
 
 </body>

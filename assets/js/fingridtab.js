@@ -65,10 +65,17 @@ var financeGrid = new Tabulator("#finance-grid", {
             field: "total_worked_hours", 
             width:120,
             resizable:false,
-            formatter:"html", 
             hozAlign:'right',
             headerSort:false, 
-            headerHozAlign:"center"
+            headerHozAlign:"center",
+            mutator: (value) => {
+                if (value == null || value === "") return value;
+                const num = Number(value);
+                if (Number.isNaN(num)) return value;
+                return Number(num.toFixed(2));  // 41.57 as a proper number
+            },
+            formatter: "number",
+            formatterParams: { precision: 2 },
         },
         
         { title: "TOTAL LATE",
@@ -76,7 +83,14 @@ var financeGrid = new Tabulator("#finance-grid", {
             width:120,
             resizable:false,
             hozAlign:'right',
-            formatter:"html", 
+            mutator: (value) => {
+                if (value == null || value === "") return value;
+                const num = Number(value);
+                if (Number.isNaN(num)) return value;
+                return Number(num.toFixed(2));  // 41.57 as a proper number
+            },
+            formatter: "number",
+            formatterParams: { precision: 2 },
             headerSort:false, 
             headerHozAlign:"center"
         },
@@ -86,7 +100,14 @@ var financeGrid = new Tabulator("#finance-grid", {
             width:120,
             resizable:false,
             hozAlign:'right',
-            formatter:"html", 
+            mutator: (value) => {
+                if (value == null || value === "") return value;
+                const num = Number(value);
+                if (Number.isNaN(num)) return value;
+                return Number(num.toFixed(2));  // 41.57 as a proper number
+            },
+            formatter: "number",
+            formatterParams: { precision: 2 },
             headerSort:false, 
             headerHozAlign:"center"
         },

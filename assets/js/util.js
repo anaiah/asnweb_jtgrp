@@ -1545,8 +1545,7 @@ const util = {
 
                     util.toggleButton('start-btn',true);
                     
-                    window.asn.saveobjfrm = dataEntryObjfrm;
-                    window.asn.saveToLogin(`${myIp}/savetologin/${util.getCookie('f_id')}`, dataEntryObjfrm);
+                    
                     break;
 
                 case "#remittanceForm":
@@ -2122,42 +2121,47 @@ const util = {
 
         //if (btnUpload) btnUpload.disabled = false;
         return true;
+    },
+    /**
+     * Toggle loading state on a button.
+     * @param {string} buttonId  - The element ID of the button.
+     * @param {string} [label]   - Optional new label while loading (e.g., "Saving...").
+     * @param {boolean} toggle   - true = show spinner, false = restore original.
+     * usage
+     * // Turn ON loading: spinner + label "Saving..."
+        toggleButtonLoading("btnConfirmDeactivate", "Saving...", true);
+
+        // Turn OFF loading: restore original icon + text
+        toggleButtonLoading("btnConfirmDeactivate", null, false);
+            * 
+     */
+    
+    toggleButtonLoading: (buttonId, label, toggle) => {
+        const btn = document.getElementById(buttonId);
+        if (!btn) return;
+
+        if (toggle) {
+            // Save original content only once
+            if (!btn.dataset.originalHtml) {
+            btn.dataset.originalHtml = btn.innerHTML;
+            }
+            btn.disabled = true;
+
+            const loadingLabel = label || btn.textContent.trim() || "Loading...";
+
+            // Bootstrap spinner example; change classes as needed
+            btn.innerHTML = `
+            <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+            ${loadingLabel}
+            `;
+        } else {
+            // Restore original content
+            if (btn.dataset.originalHtml) {
+            btn.innerHTML = btn.dataset.originalHtml;
+            }
+            btn.disabled = false;
+        }
     }
-    // checkFileSize:(elem)=>{
-    //     //const fi = document.getElementById('uploaded_file');
-    //     // Check if any file is selected.
 
-    //     const fi = elem;
-
-    //     if (fi.files.length > 0) {
-    //         for (let i = 0; i <= fi.files.length - 1; i++) {
-
-    //             const fsize = fi.files.item(i).size;
-    //             const file = Math.round((fsize / 1024));
-    //             // The size of the file.
-    //             if (file >= 1000) {
-    //                 const btnupload = document.getElementById('mall-save-btn')
-    //                 btnupload.disabled = true
-
-    //                 util.alertMsg("File too Big, please select a file less than 1mb","danger","size");
-                    
-    //                 fi.value=null
-    //                 //go bottom page
-    //                 util.scrollsTo('blindspot')
-
-    //                 return false;
-
-    //             }else{
-                    
-    //                 //document.getElementById('size').innerHTML=""//reset
-    //                 const btnupload = document.getElementById('mall-save-btn')
-    //                 btnupload.disabled = false
-    //             }
-    //             /* turn off display of filesize */
-    //             ///document.getElementById('size').innerHTML ='<b>'+ file + '</b> KB';
-                
-    //         }
-    //     }
-    // }
     
 }//****** end obj */

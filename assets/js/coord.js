@@ -748,6 +748,7 @@ const asn = {
             asn.winModal.show();
     },
 
+    //THIS FUNCTION IS AVAILABLE IF USER IS USING besi = betteredge.html new onesubmitMissingEntryBtn
     getTimeKeeping: async( )=>{
         console.log( asn.userProfile.id, asn.userProfile.besi_id, asn.userProfile.region )
         const employeeBesiId = asn.userProfile.besi_id; // Get this from your page's context
@@ -867,6 +868,8 @@ const asn = {
                     util.Toasted(data.msg,2000,false)
                     asn.speak(data.msg)
 
+                    //update also thhe grid after timein/out
+                    asn.getTimeKeeping()
                 }
 
             }  catch (error) {
@@ -1053,6 +1056,8 @@ Ext.onReady(function(){
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    console.log('====dom  loaded for coordinator====')
     // Get a reference to your modal's HTML element
     const universalMessageModalElement = document.getElementById('universalMessageModal');
 
@@ -1067,6 +1072,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Submit Missing Entry Button Logic (REFACTORED) ---
     const submitMissingEntryBtn = document.getElementById('submitMissingEntryBtn');
+    
     if (submitMissingEntryBtn) {
         submitMissingEntryBtn.addEventListener('click', async function() {
             const userId = asn.userProfile.id; // Assuming asn.userProfile.id is available
@@ -1166,7 +1172,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (data.success) {
+                    
                     asn.getTimeKeeping(); // Refresh grid
+
                     util.Toasted("Missing entry recorded successfully!", 3000, false);
                     var missingEntryModal = bootstrap.Modal.getInstance(document.getElementById('missingEntryModal'));
                     if (missingEntryModal) missingEntryModal.hide();

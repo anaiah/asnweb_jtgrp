@@ -237,9 +237,127 @@
         },
         //==========END  GETMENU
         
+        //checkform first
+        checkform:( whatForm ) =>{
+            let formIsValid = true;
+            
+            // Get all elements within the form that have the 'required' attribute
+            const requiredElements = whatForm.querySelectorAll('[required]');
+
+            requiredElements.forEach(function(element) {
+                // Clear previous validation classes
+                element.classList.remove('is-invalid');
+                element.classList.remove('is-valid');
+
+                // Check if the element is blank
+                if (element.value.trim() === '' || (element.tagName === 'SELECT' && element.value === '')) {
+                    element.classList.add('is-invalid');
+                    formIsValid = false;
+                } else {
+                    element.classList.add('is-valid');
+                }
+            });
+
+            if (formIsValid) {
+                // If the form is valid, you can now collect the data and do something with it.
+                // Using FormData is a convenient way to get all form values by their 'name' attribute.
+                const formData = new FormData(whatForm);
+                
+                hris.searchEmp()
+
+                // const selectedService = formData.get('service'); // Uses the 'name' attribute
+                // const selectedSegment = formData.get('segment'); // Uses the 'name' attribute
+                // const countValue = formData.get('count');       // Uses the 'name' attribute
+
+                // console.log('Data Submitted via check(whatForm):');
+                // console.log('Service:', selectedService);
+                // console.log('Segment:', selectedSegment);
+                // console.log('Count:', countValue);
+
+                //alert(`Data for Service: "${selectedService}", Segment: "${selectedSegment}" with Count: "${countValue}" submitted successfully!`);
+                
+                //dataInputModal.hide(); // Close modal after submission
+                //whatForm.reset();     // Clear form
+
+                return true; // Indicate success
+            } else {
+                // If validation fails, just alert or show a general message
+                util.Toasted('Please fill in all required fields.',3000,false);
+                return false; // Indicate failure
+            }
+
+        },
+        
+        //================== print masterfile ===========//
+        printMasterfile: async() =>{
+
+            console.log( '====Firing hris.printMasterfile()====')
+
+            const form = document.getElementById("searchForm");
+            const fd = new FormData(form);
+
+            // simple validation: need region at least
+            if (!fd.get("filter_region")) {
+                alert("Please select a Region first.");
+                return;
+            }
+
+            if (!fd.get("filter_position")) {
+                alert("Please select a Position.");
+                return;
+            }
+
+            try {
+
+                util.toggleButtonLoading("print-masterfile-btn", "Downloading...", true);
+        
+                const res = await fetch(`${myIp}/printmasterfile`, {
+                    method: "POST",
+                    body: fd, // FormData -> multipart/form-data
+                });
+
+                if (!res.ok) {
+                    const text = await res.text();
+                    throw new Error(text || "Failed to generate masterfile");
+                }
+
+                let filename = `MASTERFILE_${document.getElementById('filter_region').value.toUpperCase()}_${document.getElementById('filter_position').value}_${new Date().toISOString().slice(0,10)}.xlsx`;
+                
+                const contentDisposition = res.headers.get('Content-Disposition');
+                
+                if (contentDisposition) {
+                    const filenameMatch = contentDisposition.match(/filename\*?=['"]?([^"']+)['"]?$/i);
+                    if (filenameMatch && filenameMatch[1]) {
+                        filename = decodeURIComponent(filenameMatch[1].replace(/utf-8''/i, ''));
+                    }
+                }
+
+                const blob = await res.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+                //msg user
+                util.speak('Master file downloaded successfully!!!')
+
+                // Turn OFF loading: restore original icon + text
+                util.toggleButtonLoading("print-masterfile-btn", null, false);
+
+            } catch (err) {
+                alert(err.message || "Error downloading masterfile");
+            }
+
+
+        },
 
         //==================search filter=======
         searchEmp: async() => {
+
+            console.log('===FIRED  hris.searchEmp()====')
             
             const searchForm = document.getElementById('searchForm');
             const formData = new FormData(searchForm);
@@ -267,14 +385,279 @@
 
             console.log( data.xdata)
             
-            console.log( hrisGrid)
+            const dateDiv = document.getElementById('datediv');
+            
+             // New button reference
+            if(data.xdata.length>0){
+                //dateDiv.classList.remove('d-none')
+            //    printTimekeepingBtn.classList.remove('d-none')
+            }else{
+                //dateDiv.classList.add('d-none')
+              //  printTimekeepingBtn.classList.add('d-none')
+                
+            }
+
+            //console.log( hrisGrid)
+            //bring backdisplay
+            document.getElementById('search-result-grid').classList.remove('d-none');
+            document.getElementById('hrisdisplay').classList.remove('d-none');
+            document.getElementById('timekeepdisplay').classList.add('d-none');
+
+            util.scrollsTo( 'hrisdisplay')
+
             hrisGrid.setData(data.xdata)
         },
 
-        hrlistener:()=>{
+        //=============print timekeeping from Grid========//
+        printTimeKeep: async() => {
 
-                 
+            console.log('====FIRING hris.printTimeKeep()===')
+
+            // IMPORTANT: Replace with the actual route you'll create on your backend
+            util.scrollsTo( 'search-result-grid')
+
+            //bring backdisplay
+            document.getElementById('search-result-grid').classList.remove('d-none');
+            document.getElementById('timekeepdisplay').classList.remove('d-none');
+
+            //==if present divs, hide===
+            document.getElementById('search-result-grid').classList.remove('d-none');
+            document.getElementById('hrisdisplay').classList.add('d-none');
+
+            const searchForm = document.getElementById('searchForm');
+            const formData = new FormData(searchForm);
+
+            // simple validation: need region at least
+            if (!formData.get("filter_date_from")) {
+                alert("Please select a starting Date Range first.");
+                return;
+            }
+
+            if (!formData.get("filter_date_to")) {
+                alert("Please select an ending Date Range.");
+                return;
+            }
+
+            //====get region
+            hris.selectedRegion = document.getElementById('filter_region').value
+
+
+            // --- HOW TO INSPECT FormData CONTENTS ---
+            console.log("--- Inspecting FormData ---");
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
+            console.log("-------------------------");
             
+            // --- END INSPECTION ---
+        
+            const response = await fetch(`${myIp}/searchempTimeKeep`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({ message: 'Server error' }));
+                throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);
+            }
+
+            const data = await response.json();
+
+            console.log( data.xdata, data.xdata.length)
+            
+            if (data.xdata && data.xdata.length === 0) {
+                // Data is empty, perform a full reset
+                timekeepGrid.clearFilter();  // Clear any active filters
+                timekeepGrid.clearSort();    // Clear any active sorting
+               
+               // --- REVISED PAGINATION RESET ---
+                // Check if pagination is enabled before trying to reset the page
+                if (timekeepGrid.options.pagination) {
+                    timekeepGrid.setPage(1); // Set the page to the first page
+                    // If you need to also reset the total number of pages displayed (e.g., pageSize)
+                    // you might need to re-initialize pagination or adjust pageSize manually if it's dynamic.
+                    // For now, setPage(1) is the core fix.
+                }
+                // --- END REVISED PAGINATION RESET ---
+
+                timekeepGrid.deselectRow();  // Deselect any previously selected rows
+
+                // Finally, set the empty data. This will also trigger the "No Data" message.
+                timekeepGrid.setData([]);
+
+                //document.getElementById('download-excel-btn').disabled = true
+
+                console.log("Tabulator grid fully reset due to empty data.");
+            } else {
+                // Data is not empty, just update the grid
+                timekeepGrid.setData(data.xdata)
+                util.scrollsTo('timekeepgrid')
+
+                //document.getElementById('download-excel-btn').disabled = false
+
+                console.log("Tabulator grid updated with new data.");
+            }
+
+        },
+
+        //===============open timeekeeping detailed modal
+        openTimekeepModal: ( tabulatorRowId ) => {
+
+            const modalEl = document.getElementById("timekeepModal");
+            const bsModal = new bootstrap.Modal(modalEl);
+
+            bsModal.show();
+
+            // *** THIS IS THE CRUCIAL CORRECTION ***
+            // Use 'tabulatorRowId' (which is the value from cell.getRow().getIndex())
+            // to retrieve the RowComponent.
+            const rowComponent = timekeepGrid.getRow(tabulatorRowId);
+
+            if (rowComponent) {
+                const rowData = rowComponent.getData();
+                console.log("Full row data found:", rowData);
+                console.log("Login Details for this row:", rowData.login_details);
+
+                //set details to new grid tabulator
+                timekeepdetailGrid.setData(  rowData.login_details )
+
+                // Now you have the login_details array, you can do whatever you need with it
+                if (rowData.login_details && rowData.login_details.length > 0) {
+                    let detailsHtml = "<ul>";
+                    rowData.login_details.forEach(detail => {
+                        detailsHtml += `<li>Date: ${detail.xdate}, Login: ${detail.login}, Logout: ${detail.logout}</li>`;
+                    });
+                    detailsHtml += "</ul>";
+
+                    // For demonstration, using alert. You'd typically update a DOM element here.
+                    //alert(`Login details for ${rowData.full_name}:\n` + detailsHtml.replace(/<[^>]*>?/gm, ''));
+
+                } else {
+                    //alert(`No login details found for ${rowData.full_name} for the selected period.`);
+                }
+
+            } else {
+                console.warn("Row component not found in Tabulator using its ID:", tabulatorRowId);
+                alert("Could not find employee details using internal table ID.");
+            }
+
+        },
+        
+        selectedRegion: null,
+
+        //======== timekeepdetailGrid ======
+        timekeepApprove: async (selectId, value)=>{
+            // ignore placeholder //"select approval" text display in dropdown
+            if (value === "2") return;
+
+            const select = document.getElementById(selectId);
+
+            if (!select) return;
+
+            const recordId = select.dataset.id;  // from data-id
+
+            try {
+                const res = await fetch(`${myIp}/approveTimeCorrection/${encodeURIComponent(recordId)}/${hris.selectedRegion}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ decision: value }), // "1" approve, "0" reject
+                });
+
+                const data = await res.json();
+                if (!res.ok || !data.success) {
+                throw new Error(data.message || "Failed to update");
+                }
+
+                //close modal
+                util.hideModal('timekeepModal',100)//then close form
+                hris.printTimeKeep()    
+
+                // refresh grid
+                // if (timekeepdetailGrid) {
+                // timekeepdetailGrid.replaceData();   // or setData(...) depending on your config
+                // }
+            } catch (err) {
+                alert(err.message || "Error updating");
+                // reset select if needed
+                select.value = "2";
+            }
+        },
+
+        //================DOWNLOAD TIMEKEEPING XLS======//
+        //-- timekeeping
+        downloadTimekeepXls: async () => { // <--- Add 'event' parameter
+            
+            // IMPORTANT: Replace with the actual route you'll create on your backend
+            const backendRoute = `${myIp}/download-grid-data-xls`;
+
+            //====GET DATA FROM FIRST GRID===//
+            const gridData = timekeepGrid.getData(); // This gets ALL data in the table, including any filters applied.
+
+            if (!gridData || gridData.length === 0) {
+                alert('No data available in the grid to download.');
+                downloadBtn.disabled = false;
+                downloadBtn.innerHTML = originalBtnText;
+                return;
+            }
+
+            try {
+
+                util.toggleButtonLoading("downloadTimekeepBtn", "Downloading...", true);
+        
+                const response = await fetch(backendRoute, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // 'Authorization': 'Bearer YOUR_AUTH_TOKEN', // If needed
+                    },
+                    body: JSON.stringify(gridData ),
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
+                }
+
+                const blob = await response.blob();
+
+                let filename = `TIMEKEEPING_${document.getElementById('filter_region').value.toUpperCase()}_${document.getElementById('filter_position').value}_${new Date().toISOString().slice(0,10)}.xlsx`;
+                
+                const contentDisposition = response.headers.get('Content-Disposition');
+
+                if (contentDisposition) {
+                    const filenameMatch = contentDisposition.match(/filename\*?=['"]?([^"']+)['"]?$/i);
+                    if (filenameMatch && filenameMatch[1]) {
+                        filename = decodeURIComponent(filenameMatch[1].replace(/utf-8''/i, ''));
+                    }
+                }
+
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = filename;
+
+                document.body.appendChild(a);
+                a.click();
+
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+
+                console.log(`File "${filename}" downloaded successfully.`);
+                util.Toasted(`File downloaded successfully.`,3000,false)
+               
+                // alert(`Report "${filename}" downloaded successfully!`); // Optional user feedback
+
+            } catch (error) {
+                console.error('Error downloading grid data:', error);
+                alert(`Failed to download report: ${error.message}. Please try again.`);
+            } finally {
+                 util.toggleButtonLoading("downloadTimekeepBtn", null, false);
+
+            }
+        },
+
+        hrlistener:()=>{
         },
 
         xlshris:()=>{
@@ -320,6 +703,62 @@
                 
             //=================END FORM SUBMIT==========================//
         
+        },
+
+        openViewRequirementsModal: (empId, rowData, region) => {
+
+            let regionFile
+
+            switch( region ){
+                case "smnl":
+                case "cmnva":
+                case "cmnl":
+                    regionFile = `ncr_${region}_emp`
+                    break
+
+            }//endsw
+
+
+            const baseUrl   = `https://asianowapp.com/html/${regionFile}/`;
+            const infoDiv   = document.getElementById("viewReqInfo");
+            const imagesDiv = document.getElementById("viewReqImages");
+
+            infoDiv.textContent = `Employee: ${rowData.full_name} (${empId})`;
+            imagesDiv.innerHTML = "";
+
+            // List of requirements: label + prefix
+            const files = [
+                { label: "User Photo",          prefix: "USER_" },
+                { label: "Signature Specimen",  prefix: "SPECIMEN_" },
+                { label: "Barangay Clearance",  prefix: "BGY_" },
+                { label: "Police Clearance",    prefix: "POLICE_" },
+                { label: "Driver's License",    prefix: "DRIVER_" },
+            ];
+
+            files.forEach(file => {
+                const url = baseUrl + encodeURIComponent(`${file.prefix}${empId}.jpg`);
+                console.log( url)
+                const col = document.createElement("div");
+                col.className = "col-12 col-sm-6 col-md-4";
+
+                col.innerHTML = `
+                <div class="card h-100">
+                    <img src="${url}" class="card-img-top" alt="${file.label}"
+                        style="object-fit: contain; max-height: 220px;"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="card-body p-2" style="display:none;">
+                    <div class="small text-muted">No image found for<br>${file.label}</div>
+                    </div>
+                    <div class="card-body p-2">
+                    <div class="small fw-semibold">${file.label}</div>
+                    </div>
+                </div>
+                `;
+                imagesDiv.appendChild(col);
+            });
+
+            const modal = new bootstrap.Modal(document.getElementById("viewReqModal"));
+            modal.show();
         },
 
         //==================INIT 
@@ -380,11 +819,16 @@
 
             hris.listeners()
             hris.hrlistener()
+
+            console.log('boooogaaaahhhh')
         }    
     }//===end obj
 
-    hris.init();
+    window.hris = hris
     
+    hris.init()
+    //============== DONT PUT DOMCONTENTLOADED EVENT HERE, ITS ALREDDY IN HR.HTML
+
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });    

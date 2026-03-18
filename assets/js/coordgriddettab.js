@@ -87,11 +87,16 @@ function convertMMDDYYtoYYYYMMDD(mmddyy) {
                 }
             },
             {
-                title: "TOTAL",
+                title: "TOTAL HRS.",
                 field: "total_hours",
-                width: 75,
+                width: 85,
                 resizable: false,
-                formatter: "html",
+                mutator: (value) => {
+                    if (value == null || value === "") return value;
+                    const num = Number(value);
+                    if (Number.isNaN(num)) return value;
+                    return Number(num.toFixed(2));  // 41.57 as a proper number
+                },
                 hozAlign: 'right',
                 headerSort: false,
                 headerHozAlign: "center"
@@ -101,7 +106,12 @@ function convertMMDDYYtoYYYYMMDD(mmddyy) {
                 field: "late_hours", // If this field is always null, it will display as empty.
                 width: 55,
                 resizable: false,
-                formatter: "html",
+                mutator: (value) => {
+                    if (value == null || value === "") return value;
+                    const num = Number(value);
+                    if (Number.isNaN(num)) return value;
+                    return Number(num.toFixed(2));  // 41.57 as a proper number
+                },
                 hozAlign: 'right',
                 headerSort: false,
                 headerHozAlign: "center"
@@ -111,7 +121,12 @@ function convertMMDDYYtoYYYYMMDD(mmddyy) {
                 field: "ot_hours",
                 width: 55,
                 resizable: false,
-                formatter: "html",
+                mutator: (value) => {
+                    if (value == null || value === "") return value;
+                    const num = Number(value);
+                    if (Number.isNaN(num)) return value;
+                    return Number(num.toFixed(2));  // 41.57 as a proper number
+                },
                 hozAlign: 'right',
                 headerSort: false,
                 headerHozAlign: "center"

@@ -46,7 +46,12 @@ var financedetailGrid = new Tabulator("#finance-detail-grid", {
             field: "total_hours", 
             width:100,
             resizable:false,
-            formatter:"html", 
+             mutator: (value) => {
+                if (value == null || value === "") return value;
+                const num = Number(value);
+                if (Number.isNaN(num)) return value;
+                return Number(num.toFixed(2));  // 41.57 as a proper number
+            },
             hozAlign:'right',
             headerSort:false, 
             headerHozAlign:"center"
@@ -55,7 +60,12 @@ var financedetailGrid = new Tabulator("#finance-detail-grid", {
             field: "late_hours", 
             width:100,
             resizable:false,
-            formatter:"html", 
+             mutator: (value) => {
+                if (value == null || value === "") return value;
+                const num = Number(value);
+                if (Number.isNaN(num)) return value;
+                return Number(num.toFixed(2));  // 41.57 as a proper number
+            },
             hozAlign:'right',
             headerSort:false, 
             headerHozAlign:"center"
@@ -65,7 +75,12 @@ var financedetailGrid = new Tabulator("#finance-detail-grid", {
             width:100,
             resizable:false,
             hozAlign:'right',
-            formatter:"html", 
+             mutator: (value) => {
+                if (value == null || value === "") return value;
+                const num = Number(value);
+                if (Number.isNaN(num)) return value;
+                return Number(num.toFixed(2));  // 41.57 as a proper number
+            },
             headerSort:false, 
             headerHozAlign:"center"
         },
