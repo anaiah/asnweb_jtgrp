@@ -819,6 +819,8 @@ const util = {
                 const dataentrymodal =  new bootstrap.Modal(document.getElementById('dataEntryModal'),configObj);
 
                  dataentrymodal.show()  
+
+                 console.log('**showing data entry caloy ***')
                 
                 document.getElementById('f_transnumber').value = util.getCode()
 
@@ -1537,15 +1539,17 @@ const util = {
                     // Your existing data entry form logic
                     const dataEntryFormData = new FormData(formElement);
                     let dataEntryObjfrm = {};
+                    
                     for (var key of dataEntryFormData.keys()) {
-                    dataEntryObjfrm[key] = dataEntryFormData.get(key);
+                        dataEntryObjfrm[key] = dataEntryFormData.get(key);
                     }
+
                     dataEntryObjfrm.login_date = util.nugetDate(); 
                     dataEntryObjfrm.transnumber = document.getElementById('f_transnumber').value;
+                    
+                    asn.saveobjfrm = dataEntryObjfrm
 
-                    asn.saveToLogin(`${myIp}/savetologin/${util.getCookie('f_id')}`, dataEntryObjfrm)
-                    
-                    
+                    asn.saveToLogin(`${myIp}/savetologin/${util.getCookie('f_id')}`)
                     break;
 
                 case "#remittanceForm":

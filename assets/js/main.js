@@ -422,10 +422,13 @@ const asn = {
     saveobjfrm:null,
 
     //===save to localstorage
-    saveToLogin:async(url="",xdata={})=>{
+    saveToLogin:async(url="")=>{
+
+        console.log('firing asn.saveToLogin()=====', asn.saveobjfrm)
+        //return false;
 
         util.toggleButtonLoading("start-btn", "Saving...", true);
-                    
+               
         
         if (asn.currentAudio) {
             asn.currentAudio.pause();
@@ -446,14 +449,14 @@ const asn = {
                     "Content-Type": "application/json",
                 },
             
-                body: JSON.stringify(xdata)
+                body: JSON.stringify( asn.saveobjfrm )
             })
             .then((response) => {  //promise... then 
                 return response.json();
             })
             .then( (data) => {
                 
-                if(data.success == "fail"){
+                if(data.success !== "ok"){
         
                     asn.speaks(data.msg)
                     
@@ -462,21 +465,31 @@ const asn = {
                     util.hideModal('dataEntryModal',2000)    
                     util.toggleButtonLoading("start-btn", null, false);
 
-                    return false;
-
-                }else{
-                    //set mycart localstorage
-                    asn.db.setItem('myCart', JSON.stringify(asn.saveobjfrm))
-            
-                    const mydata = data.data
-                    console.log('***%%%%%%%%%% FROM NODEJS SAVELOGIN() TRIGGER SOCKET EMIT*****', mydata)
-
-                    util.toggleButtonLoading("start-btn", null, false);
-
-                    asn.socket.emit('sendtoOpMgr', mydata)
-
+                    return
                 }
                 
+                console.log('saving data...', asn.saveobjfrm)
+
+                //set mycart localstorage
+                asn.db.setItem('myCart', JSON.stringify(asn.saveobjfrm))
+        
+                const mydata = data.data
+                console.log('***%%%%%%%%%% FROM NODEJS SAVELOGIN() TRIGGER SOCKET EMIT*****', mydata)
+
+                util.toggleButtonLoading("start-btn", null, false);
+
+                asn.socket.emit('sendtoOpMgr', mydata)
+
+                asn.speaks('Local Storage Saved!!!') //speak
+                util.Toasted('Local Storage Saved!!!',3000,false)//alert
+                
+                util.toggleButtonLoading("start-btn", null, false);
+
+                util.hideModal('dataEntryModal',2000)    
+                
+                setTimeout(() => {
+                    asn.logout()
+                }, 2000);
             })    
             .catch((error) => {
                 alert(`Error:, ${error}`)
@@ -484,7 +497,13 @@ const asn = {
                 console.error('Error:', error)
                 util.toggleButtonLoading("start-btn", null, false);
 
-            })    
+            }) .finally(()=>{
+
+                if(asn.db.getItem('myCart')){
+                
+                }
+
+            })  
         
         //2ND DATA ENTRY
         }else{ //===if with prev record get prev rec and add
@@ -503,17 +522,7 @@ const asn = {
         // const badge = document.getElementById('bell-badge')
         // badge.innerHTML = 'With Entry'
 
-        if(asn.db.getItem('myCart')){
-            asn.speaks('Local Storage Successfully Saved!!!') //speak
-            util.Toasted('Local Storage Successfully Saved!!!',3000,false)//alert
-            
-            util.toggleButtonLoading("start-btn", null, false);
-
-            util.hideModal('dataEntryModal',2000)    
-            setTimeout(() => {
-                    asn.logout()
-                }, 2000);
-        }
+        
             
     },
 
@@ -521,7 +530,7 @@ const asn = {
     saveTransaction:async function(url="",xdata={}){
 
         asn.speaks('Saving Transaction to Database, Please Wait!!!')
-                            
+                                    
         await fetch(url,{
             method:'POST',
             cache:'reload',
@@ -559,7 +568,6 @@ const asn = {
                 //===update also chart and monthly performance card
                 asn.piedata.length = 0  //reset
 
-
                 asn.getMonthlyTransaction(util.getCookie('f_id'))
 
                 //===== click submit button of Upload Form === listened in **listen.js***
@@ -570,7 +578,8 @@ const asn = {
                 asn.speaks('DATABASE ERROR! PLEASE CHECK!')
             }
 
-            util.toggleButton('remittance-btn',false)
+            //util.toggleButton('remittance-btn',false)
+            util.toggleButtonLoading('remittance-btn',null,false)
            
         })  
         .catch((error) => {
