@@ -457,9 +457,8 @@ const asn = {
                     asn.db.removeItem('myCart')
 
                     util.hideModal('dataEntryModal',2000)    
-
-                    util.toggleButton('start-btn',false)
-        
+                    toggleButtonLoading("start-btn", "Saving...", true);
+                    
                     return false;
 
                 }else{
@@ -469,7 +468,7 @@ const asn = {
                     const mydata = data.data
                     console.log('***%%%%%%%%%% FROM NODEJS SAVELOGIN() TRIGGER SOCKET EMIT*****', mydata)
 
-                    util.toggleButton('start-btn',false)
+                    util.toggleButtonLoading("start-btn", null, false);
 
                     asn.socket.emit('sendtoOpMgr', mydata)
 
@@ -492,7 +491,8 @@ const asn = {
 
             asn.db.setItem('myCart', JSON.stringify(finaldb))
 
-            util.toggleButton('start-btn',false)
+            //util.toggleButton('start-btn',false)
+             util.toggleButtonLoading("start-btn", null, false);
         }
          
         // const badge = document.getElementById('bell-badge')
