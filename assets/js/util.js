@@ -1196,6 +1196,7 @@ const util = {
         
     },
 
+    //==HRIS
     getLocation : async (regionSelectElement) => {
         const selectedRegion = regionSelectElement.value;
         
@@ -1245,7 +1246,7 @@ const util = {
     },
 
 
-
+    //called from  hris 
     gethub : (locationSelectElement) => {
         const selectedLocation = locationSelectElement.value;
         
