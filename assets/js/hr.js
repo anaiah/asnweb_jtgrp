@@ -706,6 +706,93 @@
         },
 
         openViewRequirementsModal: (empId, rowData, region) => {
+            let regionFile;
+
+            switch (region) {
+                case "smnl":
+                case "cmnva":
+                case "cmnl":
+                case "nelu":
+                case "nwla":
+                regionFile = `ncr_${region}_emp`;
+                break;
+            }
+
+            const baseUrl   = `https://asianowapp.com/html/${regionFile}/`;
+            const infoDiv   = document.getElementById("viewReqInfo");
+            const imagesDiv = document.getElementById("viewReqImages");
+
+            infoDiv.textContent = `Employee: ${rowData.full_name} (${empId})`;
+            imagesDiv.innerHTML = "";
+
+            const files = [
+                { label: "User Photo",          prefix: "USER_" },
+                { label: "Signature Specimen",  prefix: "SPECIMEN_" },
+                { label: "GCash",               prefix: "GCASH_" },
+                { label: "Barangay Clearance",  prefix: "BGY_" },
+                { label: "Police Clearance",    prefix: "POLICE_" },
+                { label: "Driver's License",    prefix: "DRIVER_" },
+            ];
+
+            const exts = [".jpg", ".png", ".gif"];
+
+            files.forEach(file => {
+                const col = document.createElement("div");
+                col.className = "col-12 col-sm-6 col-md-4";
+
+                const imgId = `img_${file.prefix}${empId}_${Math.random().toString(36).slice(2)}`;
+
+                col.innerHTML = `
+                <div class="card h-100">
+                    <img id="${imgId}" class="card-img-top" alt="${file.label}"
+                        style="object-fit: contain; max-height: 220px;">
+                    <div class="card-body p-2 no-img-msg" style="display:none;">
+                    <div class="small text-muted">No image found for<br>${file.label}</div>
+                    </div>
+                    <div class="card-body p-2">
+                    <div class="small fw-semibold">${file.label}</div>
+                    </div>
+                </div>
+                `;
+
+                imagesDiv.appendChild(col);
+
+                const imgEl = col.querySelector(`#${CSS.escape(imgId)}`);
+                const noImgDiv = col.querySelector(".no-img-msg");
+
+                const baseName = `${file.prefix}${empId}`;
+                let idx = 0;
+
+                const tryNextExt = () => {
+                if (idx >= exts.length) {
+                    // All tried, show “no image”
+                    imgEl.style.display = "none";
+                    noImgDiv.style.display = "block";
+                    return;
+                }
+
+                const url = baseUrl + encodeURIComponent(baseName + exts[idx]);
+                idx++;
+
+                imgEl.onerror = tryNextExt;
+                imgEl.onload = () => {
+                    // Found one, make sure image is visible and message hidden
+                    imgEl.style.display = "block";
+                    noImgDiv.style.display = "none";
+                };
+                imgEl.src = url;
+                };
+
+                // start with .jpg, then .png, then .gif
+                tryNextExt();
+            });
+
+            const modal = new bootstrap.Modal(document.getElementById("viewReqModal"));
+            modal.show();
+            },
+
+        /**old copy 
+        openViewRequirementsModal: (empId, rowData, region) => {
 
             let regionFile
 
@@ -739,7 +826,7 @@
             ];
 
             files.forEach(file => {
-                const url = baseUrl + encodeURIComponent(`${file.prefix}${empId}.jpg`);
+                const url = baseUrl +( encodeURIComponent(`${file.prefix}${empId}.jpg` ||`${file.prefix}${empId}.png` || `${file.prefix}${empId}.gif`));
                 console.log( url)
                 const col = document.createElement("div");
                 col.className = "col-12 col-sm-6 col-md-4";
@@ -762,7 +849,7 @@
 
             const modal = new bootstrap.Modal(document.getElementById("viewReqModal"));
             modal.show();
-        },
+        },*/
 
         //==================INIT 
         init : () =>{
