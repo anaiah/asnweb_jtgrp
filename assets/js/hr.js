@@ -405,7 +405,8 @@
 
             util.scrollsTo( 'hrisdisplay')
 
-            hrisGrid.setData(data.xdata)
+            // set data to tabular grid
+            hrisGrid.setData(data.xdata) 
         },
 
         //=============print timekeeping from Grid========//

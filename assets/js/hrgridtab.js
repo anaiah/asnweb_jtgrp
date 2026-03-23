@@ -51,7 +51,8 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 }
 
                 return `
-                ${data.full_name}<br>
+                <b>${data.full_name}</b><br>
+                (${data.middle_name.toUpperCase()})<br>
                 ${data.phone}<br>
                 ${data.email}<br>
                 ${data.emp_id}<br>
