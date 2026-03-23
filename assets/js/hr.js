@@ -803,7 +803,7 @@
             `${d.getUTCDate()} ` +               // 23
             `${d.getUTCFullYear()}`;             // 2026
 
-            console.log(result); // "Mar 23 2026"
+            return result; // "Mar 23 2026"
         },
 
         /**old copy 
