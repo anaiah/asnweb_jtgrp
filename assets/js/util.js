@@ -1253,7 +1253,7 @@ const util = {
         const hubStoreContainer = document.getElementById('hubStoreContainer');
         const hubStoreSelect = document.getElementById('hubStore');
 
-        // Define which positions require a hub/store selection
+        // Define which positions require a hub/store selection //*** position for hubs */
         const positionsRequiringHub = ['01', '02','15','17']; // Customize this
 
         if (positionsRequiringHub.includes(selectedLocation)) {

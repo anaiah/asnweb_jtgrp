@@ -713,8 +713,10 @@
                 case "smnl":
                 case "cmnva":
                 case "cmnl":
+                case "nelu":
+                case "nwla":
                     regionFile = `ncr_${region}_emp`
-                    break
+                break
 
             }//endsw
 
@@ -730,6 +732,7 @@
             const files = [
                 { label: "User Photo",          prefix: "USER_" },
                 { label: "Signature Specimen",  prefix: "SPECIMEN_" },
+                { label: "GCash",               prefix: "GCASH_" },
                 { label: "Barangay Clearance",  prefix: "BGY_" },
                 { label: "Police Clearance",    prefix: "POLICE_" },
                 { label: "Driver's License",    prefix: "DRIVER_" },

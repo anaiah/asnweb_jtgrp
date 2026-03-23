@@ -610,6 +610,14 @@ span.xgrpheader{
                                     <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="id_specimen_picture" id="id_specimen_picture" accept='image/*'  capture="environment" required />
                                     <div id="id_specimen_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
                                 </div>
+
+                                <!-- gcash -->
+                                <div class="mb-3">
+                                    <label for="id_gcash" class="form-label">GCASH Profile</label>
+                                    <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="id_gcash" id="id_gcash" accept='image/*'  capture="environment" required />
+                                    <div id="id_gcash-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select GCash screenshot.</div>
+                                </div>
+                                
                                 <div class="mb-3">
                                     <label for="bgy_clearance" class="form-label">Baranggay Clearance</label>
                                     <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="bgy_clearance" id="bgy_clearance" accept='image/*'  capture="environment" required />
@@ -647,8 +655,6 @@ span.xgrpheader{
                         <!-- Put your message here, e.g.: -->
                         
                     </span>
-
-
                     <!-- <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button> -->
                     <button class="btn btn-primary" id="newemp-next-btn" onclick="javascript:util.validateMe('newempModal','#newempForm','201')" type="button">
                         <i id="i-next" class="fa fa-arrow-right"></i> &nbsp;&nbsp; NEXT
@@ -842,27 +848,21 @@ span.xgrpheader{
 
 <!-- toastify -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-<!-- offline version -->
-<!-- <script src="http://192.168.165.221:10000/socket.io/socket.io.js"></script> -->
-
-<!-- //online version//-->
-<!-- <script src="https://asn-jtgrp-api.onrender.com/socket.io/socket.io.js"></script> -->
+<!-- socket -->
 <script src="https://cdn.socket.io/4.5.4/socket.io.min.js?ver=12"></script>
-
+<!-- bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
-<script src="/html/assets/js/ipconfig.js?v=8"></script>
+<!-- ipconfig -->
+<!-- <script src="/html/assets/js/ipconfiglocal.js?v=9"></script> -->
+<script src="/html/assets/js/ipconfigonline.js?v=9"></script>
 
 <!-- Signature Pad Library (cdnjs.com) -->
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.0/dist/signature_pad.umd.min.js?v=8"></script>
-
+<!-- my utility -->
 <script src="/html/assets/js/util.js?v=8"></script>
+<!-- main js -->
 <script src="/html/assets/js/hr.js?v=8"></script>
-  
-<!-- <script src="/html/assets/js/main.js?v=8"></script> -->
-<!-- <script src="/html/assets/js/listen.js?v=8"></script> -->
-
 <!-- takeout muna gridtab palit extjs -->
 <script src="/html/assets/js/hrgridtab.js?v=8"></script>
 
@@ -1094,11 +1094,11 @@ span.xgrpheader{
                 if (!action) return;
 
                 if (action === "search") {
-                hris.checkform && hris.checkform(form);
+                    hris.checkform && hris.checkform(form);
                 } else if (action === "timekeeping") {
-                hris.printTimeKeep && hris.printTimeKeep();
+                    hris.printTimeKeep && hris.printTimeKeep();
                 } else if (action === "masterfile") {
-                hris.printMasterfile && hris.printMasterfile(form);
+                    hris.printMasterfile && hris.printMasterfile(form);
                 }
 
                 // reset back to placeholder after firing
