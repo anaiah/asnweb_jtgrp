@@ -705,6 +705,7 @@
         
         },
 
+        // open requirements/pictures
         openViewRequirementsModal: (empId, rowData, region) => {
             let regionFile;
 
@@ -789,7 +790,21 @@
 
             const modal = new bootstrap.Modal(document.getElementById("viewReqModal"));
             modal.show();
-            },
+        },
+
+        // convert utc to localtime
+        toLocalTime : ( iso ) =>{
+            const d = new Date(iso);
+
+            const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+            const result =
+            `${months[d.getUTCMonth()]} ` +      // Mar
+            `${d.getUTCDate()} ` +               // 23
+            `${d.getUTCFullYear()}`;             // 2026
+
+            console.log(result); // "Mar 23 2026"
+        },
 
         /**old copy 
         openViewRequirementsModal: (empId, rowData, region) => {

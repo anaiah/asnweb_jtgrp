@@ -137,7 +137,11 @@ var hrisGrid = new Tabulator("#hrisgrid", {
             formatter:"html", 
             headerSort:false, 
             headerHozAlign:"center",
-            
+            formatter: (cell) => {
+                const value = cell.getValue();
+                if (!value) return "";
+                return hris.toLocalTime(value);   // adjust object name as needed
+            },
         },
 
         { title: "Active", 
