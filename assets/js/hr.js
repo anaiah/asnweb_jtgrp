@@ -709,15 +709,18 @@
         // open requirements/pictures
         openViewRequirementsModal: (empId, rowData, region) => {
             let regionFile;
-
+            console.log('**region** ',region)
             switch (region) {
                 case "smnl":
                 case "cmnva":
                 case "cmnl":
+                    regionFile = `ncr_${region}_emp`;
+                    break;
+
                 case "nelu":
-                case "nwla":
-                regionFile = `ncr_${region}_emp`;
-                break;
+                case "nwlu":
+                    regionFile = `luz_${region}_emp`;
+                    break;
             }
 
             const baseUrl   = `https://asianowapp.com/html/${regionFile}/`;
@@ -811,7 +814,7 @@
         address:null,
         fullname:null,
         dateHired:null,
-        
+
         //==================INIT 
         init : () =>{
         
