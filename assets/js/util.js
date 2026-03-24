@@ -1187,7 +1187,9 @@ const util = {
     handlePosChange:(elem)=>{
         
         util.toggleDriversLicenseValidation()
-        
+
+        console.log('position select ', elem.value)
+        hris.position = elem.value
         //if(document.getElementById('locStore').value==""){
         //util.getlocation( document.getElementById('region').value)
         
@@ -1508,22 +1510,14 @@ const util = {
                     const formData = new FormData(formElement); // Automatically collects all text fields and files
                     formData.append('date_reg', util.getDate()); // Add date_reg to FormData
                     
-                    xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i> Saving to Database and Uploading Files, please wait!.</div>";
                     
-                    util.alertMsg( xmsg,'danger','footer-msg'); // Changed to 'info' as it's a progress message
-                    //util.Toasted( xmsg, 3000)
-
-                    const isave = document.getElementById('i-next');
-
+                    util.toggleButtonLoading('newemp-next-btn','Saving',true)
                     const btnsave = document.getElementById('newemp-next-btn');
-
-                    if(isave && btnsave){ // Ensure elements exist
-                        isave.classList.remove('fa-arrow-right');
-                        isave.classList.add('fa-refresh', 'fa-spin');
-
-                        btnsave.disabled = true;
-                    }
+                    btnsave.disabled = true;
                     
+                    //get hire date
+                    hris.dateHired = document.getElementById('hireDate').value
+
                     // Call newempPost with the FormData object
                     util.newempPost(frm, frmModal, `${myIp}/newemppost/${document.getElementById('region').value}/${document.getElementById('hireDate').value}/${document.getElementById('jobTitle').value}`, formData);
                     
@@ -1934,13 +1928,12 @@ const util = {
             util.Toasted(`Network Error: ${error.message}`, 3000, false);
         })
         .finally ( ()=>{
+            
+            util.toggleButtonLoading('newemp-next-btn',null,false)
+
             const nextBtn = document.getElementById('newemp-next-btn');
-            const iNext = document.getElementById('i-next');
-            if(iNext && nextBtn){
-                iNext.classList.remove('fa-refresh', 'fa-spin');
-                iNext.classList.add('fa-arrow-right');
-                nextBtn.disabled = false;
-            }
+            nextBtn.disabled = false;
+            
         })
     },
 
@@ -1978,7 +1971,7 @@ const util = {
             submitBtn.disabled = true;
         }
 
-        util.alertMsg("<div><i class='fa fa-spinner fa-pulse'></i> Uploading Signature, please wait...</div>", 'info', 'dataPrivacyPlaceHolder');
+        //util.alertMsg("<div><i class='fa fa-spinner fa-pulse'></i> Uploading Signature, please wait...</div>", 'info', 'dataPrivacyPlaceHolder');
 
         try {
             // 3. Convert Signature from Canvas to Blob (PNG format)
@@ -2037,7 +2030,7 @@ const util = {
 
         let xfile = `${empid}.pdf`
          
-        fetch(`${myIp}/printpdf/${empid}/${ empname}/${ empregion}`, {
+        fetch(`${myIp}/printpdf/${empid}/${ hris.fullname}/${ empregion}/${hris.position}/${ hris.address }/${hris.dateHired}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -2103,6 +2096,20 @@ const util = {
         }).showToast();
         
     }, //===end toasted!
+
+    toCamelCase: (str) => {
+        // Handle null, undefined, or non-string inputs
+        if (typeof str !== 'string' || str === null || str === undefined) {
+            return '';
+        }
+
+        // Convert to lowercase first to ensure consistent capitalization
+        // Then use replace with a regex to find separators and capitalize the letter after them
+        return str.toLowerCase().replace(/(?:[_-]|\s)+(.)/g, (match, char) => {
+            return char.toUpperCase();
+        });
+    
+    },
 
     checkFileSize: (elem, fsize) => {
         const input = elem;

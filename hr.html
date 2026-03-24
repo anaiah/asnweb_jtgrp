@@ -573,27 +573,27 @@ span.xgrpheader{
 
                                 <div class="mb-3">
                                     <label for="addy1" class="form-label">Address 1 (Number, Building, Street)</label>
-                                    <input type="text" class="form-control 201" value="" id="addy1" name="addy1" required >
+                                    <input type="text" class="form-control text-uppercase 201" value="" id="addy1" name="addy1" required >
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="addy2" class="form-label">Address 2 (Street)</label>
-                                    <input type="text" class="form-control 201" value="" id="addy2" name="addy2" >
+                                    <input type="text" class="form-control text-uppercase 201" value="" id="addy2" name="addy2" >
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="city" class="form-label">City / Municipality</label>
-                                    <input type="text" class="form-control 201" value="" id="city" name="city" required>
+                                    <input type="text" class="form-control text-uppercase 201" value="" id="city" name="city" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="bgy" class="form-label">Barangay</label>
-                                    <input type="text" class="form-control 201" value="" id="bgy" name="bgy" required>
+                                    <input type="text" class="form-control text-uppercase 201" value="" id="bgy" name="bgy" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Complete Address </label>
-                                    <textarea placeholder="Please fill-out address 1, adress 2, city and barangay" class="form-control 201" id="address" rows="3" name="address" readonly></textarea>
+                                    <textarea placeholder="Please fill-out address 1, adress 2, city and barangay" class="form-control text-uppercase 201" id="address" rows="3" name="address" readonly></textarea>
                                 </div>
 
                                 <!-- ... (previous form elements) ... -->
@@ -675,13 +675,9 @@ span.xgrpheader{
                     <h4 class="modal-title"><i class="bi-file-earmark-lock"></i> Data Privacy & Digital Signature</h4>
                     <!-- <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
-
-
                 <!--//modal body-->
                 <div class="modal-body">
                     <div id="dataPrivacyPlaceHolder"></div> <!-- ALERT CONTAINER -->
-
-
                     <div class="container-fluid">
                         <form id="dataPrivacyForm" class="needs-validation row gy-2 gx-2 align-items-center" novalidate>
                             <div class="container mt-3">
@@ -718,18 +714,13 @@ span.xgrpheader{
                                     <canvas id="signatureCanvas" width="500" height="200" 
                                             style="width: 100%; height: 100%; touch-action: none; display: block; background-color: white; border: 1px solid #ccc;"></canvas>
                                 </div>
-
-                                
                                 <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="util.clearSignature()">Clear Signature</button>
                                 <div id="signatureCanvas-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please provide your signature.</div>
-                            
                             
                             </div>
                         </form>
                     </div><!--//end container-fluid//-->
                 </div><!--//end modalbody//-->
-
-
                 <!--//footer - Submit Signature -->
                 <div class="modal-footer">
                     <!-- <button class="btn btn-light" type="button" data-bs-dismiss="modal">Cancel</button> -->
@@ -832,8 +823,6 @@ span.xgrpheader{
     </div>
     </div>
 
-
-
 <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/js/tabler.min.js"></script>
 
 <script src="/html/assets/libs/jquery/dist/jquery.min.js"></script> <!--//sidebarmenu dependent-->
@@ -869,8 +858,10 @@ span.xgrpheader{
 <script> 
     document.addEventListener('DOMContentLoaded', function() {
         console.log('===HRIS OPERATIONS complete==')
+        
         util.modalListeners('newempModal')
         util.modalListeners('dataPrivacySignatureModal')
+        
         // Get references to all relevant DOM elements
         const addy1Input = document.getElementById('addy1');
         const addy2Input = document.getElementById('addy2');
@@ -898,6 +889,8 @@ span.xgrpheader{
 
             // Join the parts with a newline character for multi-line display
             fullAddressTextarea.value = addressParts.join(', ').toUpperCase() //addressParts.join('\n');
+            hris.address = fullAddressTextarea.value
+
         }
 
         // Attach the 'input' event listener to each address field
@@ -960,6 +953,7 @@ span.xgrpheader{
 
             // Update the textarea
             fullNameTextarea.value = formattedName;
+            hris.fullname = firstName.toUpperCase() + ' ' + middleName.toUpperCase() + ' ' + lastName.toUpperCase() + ' ' + suffix.toUpperCase() 
         }
 
         // Attach 'input' event listeners to text fields for real-time updates
@@ -1041,6 +1035,7 @@ span.xgrpheader{
 
         //=============position dropdown listener
         document.getElementById("filter_position").addEventListener("change", function () {
+            
             const isCoordinator = this.value === "08";// IF CHOICE IS COORDINATOR
 
             document.getElementById("filter_date_from").disabled = !isCoordinator;
@@ -1086,24 +1081,24 @@ span.xgrpheader{
         });
 
 
-            //for select actions for filtering
-            document.getElementById("actionSelect").addEventListener("change", function () {
-                const action = this.value;
-                const form = document.getElementById("searchForm");
+        //for select actions for filtering
+        document.getElementById("actionSelect").addEventListener("change", function () {
+            const action = this.value;
+            const form = document.getElementById("searchForm");
 
-                if (!action) return;
+            if (!action) return;
 
-                if (action === "search") {
-                    hris.checkform && hris.checkform(form);
-                } else if (action === "timekeeping") {
-                    hris.printTimeKeep && hris.printTimeKeep();
-                } else if (action === "masterfile") {
-                    hris.printMasterfile && hris.printMasterfile(form);
-                }
+            if (action === "search") {
+                hris.checkform && hris.checkform(form);
+            } else if (action === "timekeeping") {
+                hris.printTimeKeep && hris.printTimeKeep();
+            } else if (action === "masterfile") {
+                hris.printMasterfile && hris.printMasterfile(form);
+            }
 
-                // reset back to placeholder after firing
-                this.value = "";
-            });
+            // reset back to placeholder after firing
+            this.value = "";
+        });
        
     })//end dom onload
     

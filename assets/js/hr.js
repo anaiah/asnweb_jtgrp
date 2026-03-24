@@ -793,7 +793,7 @@
             modal.show();
         },
 
-        // convert utc to localtime
+        // convert utc to localtime eg Mar 23 2026
         toLocalTime : ( iso ) =>{
             const d = new Date(iso);
 
@@ -807,66 +807,11 @@
             return result; // "Mar 23 2026"
         },
 
-        /**old copy 
-        openViewRequirementsModal: (empId, rowData, region) => {
-
-            let regionFile
-
-            switch( region ){
-                case "smnl":
-                case "cmnva":
-                case "cmnl":
-                case "nelu":
-                case "nwla":
-                    regionFile = `ncr_${region}_emp`
-                break
-
-            }//endsw
-
-
-            const baseUrl   = `https://asianowapp.com/html/${regionFile}/`;
-            const infoDiv   = document.getElementById("viewReqInfo");
-            const imagesDiv = document.getElementById("viewReqImages");
-
-            infoDiv.textContent = `Employee: ${rowData.full_name} (${empId})`;
-            imagesDiv.innerHTML = "";
-
-            // List of requirements: label + prefix
-            const files = [
-                { label: "User Photo",          prefix: "USER_" },
-                { label: "Signature Specimen",  prefix: "SPECIMEN_" },
-                { label: "GCash",               prefix: "GCASH_" },
-                { label: "Barangay Clearance",  prefix: "BGY_" },
-                { label: "Police Clearance",    prefix: "POLICE_" },
-                { label: "Driver's License",    prefix: "DRIVER_" },
-            ];
-
-            files.forEach(file => {
-                const url = baseUrl +( encodeURIComponent(`${file.prefix}${empId}.jpg` ||`${file.prefix}${empId}.png` || `${file.prefix}${empId}.gif`));
-                console.log( url)
-                const col = document.createElement("div");
-                col.className = "col-12 col-sm-6 col-md-4";
-
-                col.innerHTML = `
-                <div class="card h-100">
-                    <img src="${url}" class="card-img-top" alt="${file.label}"
-                        style="object-fit: contain; max-height: 220px;"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <div class="card-body p-2" style="display:none;">
-                    <div class="small text-muted">No image found for<br>${file.label}</div>
-                    </div>
-                    <div class="card-body p-2">
-                    <div class="small fw-semibold">${file.label}</div>
-                    </div>
-                </div>
-                `;
-                imagesDiv.appendChild(col);
-            });
-
-            const modal = new bootstrap.Modal(document.getElementById("viewReqModal"));
-            modal.show();
-        },*/
-
+        position:null,
+        address:null,
+        fullname:null,
+        dateHired:null,
+        
         //==================INIT 
         init : () =>{
         
