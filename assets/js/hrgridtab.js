@@ -95,7 +95,7 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                         hris.address = rowData.full_address;
                         hris.position = rowData.position;
                         hris.dateHired = hris.toLocalTime( rowData.hire_date)
-                        
+                        console.log( hris.fullname, hris.address, hris.position, hris.dateHired,region)
                         util.printPdf( empId, rowData.full_name , region )
                         return;
                     break;
