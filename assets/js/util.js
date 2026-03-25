@@ -1235,7 +1235,7 @@ const util = {
             const hubs = await response.json();
             const hubsArray = hubs.data
 
-            console.log(hubs)
+            console.log('***HUBS FOR***', selectedRegion, hubs)
 
             locSelect.innerHTML = '<option value="">Select Location</option>';
 
@@ -1259,7 +1259,7 @@ const util = {
     },
 
 
-    //called from  hris 
+    //***AFTER LOCATION A HUB SELECTION IS SHOWN ... called from  hris 
     gethub : (locationSelectElement) => {
         const selectedLocation = locationSelectElement.value;
         

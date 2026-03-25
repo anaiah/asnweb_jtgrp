@@ -30,7 +30,7 @@ var hrisGrid = new Tabulator("#hrisgrid", {
         {
             title: 'Name',
             field: 'full_name',
-            width: 250,
+            width: 350,
             headerHozAlign: "center",
             resizable: false,
             formatter: (cell) => {
@@ -66,6 +66,11 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                         data-action="view">
                     View Requirements
                 </button>
+                <button type="button"
+                        class="btn btn-success btn-sm btn-status-change"
+                        data-action="printcontract">
+                    Print Contract
+                </button>
                 `;
             },
 
@@ -78,12 +83,26 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 const email = rowData.email;
                 const region = document.getElementById('filter_region').value
 
-                if (action === "view") {
-                    // open view requirements modal
-                    hris.openViewRequirementsModal(empId, rowData, region.toLowerCase() );
-                    return;
-                }
+                switch( action ){
+                    case "view":
+                        hris.openViewRequirementsModal(empId, rowData, region.toLowerCase() );
+                        return;
+                    break;
+                        
+                    case "printcontract":
+                        console.log(rowData)
+                        hris.fullname = rowData.full_name;
+                        hris.address = rowData.full_address;
+                        hris.position = rowData.position;
+                        hris.dateHired = hris.toLocalTime( rowData.hire_date)
+                        
+                        util.printPdf( empId, rowData.full_name , region )
+                        return;
+                    break;
 
+                }//endsw
+
+                
                 // existing deactivate/reactivate logic below
                 const empIdInput   = document.getElementById("deactEmpId");
                 const emailInput   = document.getElementById("deactEmail");
