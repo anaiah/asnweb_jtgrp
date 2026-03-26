@@ -1512,6 +1512,7 @@ const util = {
                     }
                     xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Searching Database please wait...</div>";
                     util.alertMsg( xmsg,'danger','loginPlaceHolder');
+
                     util.url = `${myIp}/loginpost/${loginObjfrm.uid}/${loginObjfrm.pwd}/${(document.getElementById('region') ? document.getElementById('region').value  : null )}`;
                     util.loginPost(frm ,frmModal,`${util.url}`);
                     break;
@@ -1717,7 +1718,7 @@ const util = {
                 obj.ocw_id = data[0].ocw_id
                 obj.jms_id = data[0].jms_id
 
-                obj.region = data[0].region
+                obj.region = data[0].regionfv
                 obj.fullname = data[0].fname
                 
                 obj.grp_id = data[0].grp_id
@@ -1727,7 +1728,7 @@ const util = {
 
                 obj.pic = data[0].pic
 
-                db.setItem('profile',JSON.stringify(obj))//save to localdb
+                db.setItem('profile',JSON.stringify( data[0] ))//save to localdb
                                     
                 switch ( obj.grp_id ) {
                     case 1:
@@ -1746,7 +1747,11 @@ const util = {
                     case 4: // coordinator
                         location.href = '../jtx/coord'
                     break
+
+                    //coordinator/ sorter  / transporter
                     case '08':
+                    case '02':
+                    case '04':
                         location.href = '/besi/coord'    
                     break
 
@@ -2017,6 +2022,9 @@ const util = {
                 util.clearSignature(); 
 
                 //====CCALL PRINT PDF
+                
+                console.log('1. speak: Printing...');
+                util.speak('Printing...');
                 util.printPdf(util.dataEmployeeId, util.dataEmployeeName , util.dataRegion)
 
 
@@ -2039,34 +2047,94 @@ const util = {
     //==============CALL PRINT TO PDF
     printPdf: async ( empid, empname, empregion )=> {
 
-        let xfile = `${empid}.pdf`
-         
-        fetch(`${myIp}/printpdf/${empid}/${ hris.fullname}/${ empregion}/${hris.position}/${ hris.address }/${hris.dateHired}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                
-                //body: JSON.stringify({ myObjects: asn.pdfCart }), // Convert the array to JSON
-                //cache: 'reload' // Remove if you don't need to reload
-            })
-            .then(response => response.blob())
-            .then(blob => URL.createObjectURL(blob))
-            .then(url => {
-                const a = document.createElement('a');
-                a.href = url;
-                a.download =  xfile ;//`${pdffile}`; // Set the file name for the download
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-                window.URL.revokeObjectURL(url);
-            })
-            .catch((error) => {
-                //util.Toast(`Error:, ${error}`,1000)
-                alert(error)
-                console.error('Error:', error)
-            })
+        let xfile = `${empid}.pdf`;
+
+        // Ensure all URL parameters are encoded
+        const empidParam = encodeURIComponent(empid);
+        const fullnameParam = encodeURIComponent(hris.fullname);
+        const empregionParam = encodeURIComponent(empregion);
+        const positionParam = encodeURIComponent(hris.position);
+        const addressParam = encodeURIComponent(hris.address);
+        const dateHiredParam = encodeURIComponent(hris.dateHired);
+
+        const fullDownloadUrl = `${myIp}/printpdf/${empidParam}/${fullnameParam}/${empregionParam}/${positionParam}/${addressParam}/${dateHiredParam}`;
+            
+        fetch(fullDownloadUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => {
+            console.log('2. Fetch response received. Status:', response.status);
+            if (!response.ok) { // Crucial check for HTTP errors
+                throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            console.log('3. Blob received. Blob size:', blob.size);
+            return URL.createObjectURL(blob);
+        })
+        .then(url => {
+            console.log('4. Object URL created:', url);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = xfile;
+            document.body.appendChild(a);
+            console.log('5. Attempting to click download link.');
+            a.click(); // This is where the browser likely interrupts
+            console.log('6. Download link clicked.'); // This might not appear in console before the next log
+
+            // --- CRITICAL CHANGE: Defer cleanup and speech ---
+            setTimeout(() => {
+                a.remove(); // Clean up the temporary anchor element
+                window.URL.revokeObjectURL(url); // Release the object URL
+                console.log('7. speak: Downloaded! (after timeout)'); // This should now execute
+                util.speak('Downloaded!'); 
+            }, 100); // 100ms (0.1 second) is usually enough; you can adjust if needed
+        })
+        .catch((error) => {
+            console.error('8. Error in PDF download process:', error);
+            alert(`Error during PDF download: ${error.message || error}`);
+            // If speak should also happen on error, put it here:
+            // util.speak('Download failed!');
+        });
     },
+
+    // printPdf: async ( empid, empname, empregion )=> {
+
+    //     let xfile = `${empid}.pdf`
+
+    //     util.speak('Printing...')
+         
+    //     fetch(`${myIp}/printpdf/${empid}/${ hris.fullname}/${ empregion}/${hris.position}/${ hris.address }/${hris.dateHired}`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+                
+    //             //body: JSON.stringify({ myObjects: asn.pdfCart }), // Convert the array to JSON
+    //             //cache: 'reload' // Remove if you don't need to reload
+    //         })
+    //         .then(response => response.blob())
+    //         .then(blob => URL.createObjectURL(blob))
+    //         .then(url => {
+    //             const a = document.createElement('a');
+    //             a.href = url;
+    //             a.download =  xfile ;//`${pdffile}`; // Set the file name for the download
+    //             document.body.appendChild(a);
+    //             a.click();
+    //             a.remove();
+    //             window.URL.revokeObjectURL(url);
+    //             util.speak('Downloaded!')
+    //         })
+    //         .catch((error) => {
+    //             //util.Toast(`Error:, ${error}`,1000)
+    //             alert(error)
+    //             console.error('Error:', error)
+    //         })
+    // },
 
     resizeSignatureCanvas : () => {
         const canvas = document.getElementById('signatureCanvas');

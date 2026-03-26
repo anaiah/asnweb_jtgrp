@@ -750,7 +750,9 @@ const asn = {
 
     //THIS FUNCTION IS AVAILABLE IF USER IS USING besi = betteredge.html new onesubmitMissingEntryBtn
     getTimeKeeping: async( )=>{
-        console.log( asn.userProfile.id, asn.userProfile.besi_id, asn.userProfile.region )
+
+        console.log( 'hey getTimeKeeping() ', asn.userProfile.id, asn.userProfile.besi_id, asn.userProfile.region )
+
         const employeeBesiId = asn.userProfile.besi_id; // Get this from your page's context
         const employeeRegion = asn.userProfile.region; // Get this from your page's context (VERY IMPORTANT!)
 
@@ -940,9 +942,14 @@ const asn = {
     },
 
 
+    dbprofile: null,
+
 	//==,= main run
 	init :  () => {
-      
+        
+        asn.dbprofile = JSON.parse(localStorage.getItem('profile'));
+
+
         /*
         voice first
         */
@@ -982,7 +989,7 @@ const asn = {
 
         asn.speaks('Welcome to Better Edge Apps')
 
-        asn.getmenu(util.getCookie('grp_id')) 
+
         
         console.log('===asn.init()=== loaded!')
         
@@ -1018,23 +1025,43 @@ const asn = {
         asn.socket.on('disconnect', () => {
             console.log('Disconnected from Socket.IO server');
         });
-        //===load mtd-chart
-        asn.loadbarMTDChart()
 
-        //==load grid month, rider month
-        asn.loadbarChart('hub')
+        /*  FOR COORDS ONLY */
+        if(asn.dbprofile.grp_id==='08'){
 
-        //===load top5
-        setTimeout(() => {
-            asn.loadbarChart('rider');
-        }, 1000)
-    
-        console.log('===loadbarchart()===')
+            asn.getmenu(util.getCookie('grp_id')) 
+        
+            //===load mtd-chart
+            asn.loadbarMTDChart()
+
+            //==load grid month, rider month
+            asn.loadbarChart('hub')
+
+            //===load top5
+            setTimeout(() => {
+                asn.loadbarChart('rider');
+            }, 1000)
+        
+            console.log('===loadbarchart()===')
+        }else{
+            
+            asn.getmenu(asn.dbprofile.grp_id) 
+
+            //turn off cards in html
+            document.getElementById('locgridcard').classList.add('d-none')
+            document.getElementById('locmtdchart').classList.add('d-none')
+            document.getElementById('xchart').classList.add('d-none')
+            
+        }//iif
+
         console.log('===asn.init() praise God! Loading JTX group ?v=6 ===', )
         
 	}//END init
 
 } //======================= end admin obj==========//
+
+window.scrollTo(0,0);
+asn.init() //instantiate now
 
 Ext.onReady(function(){
     console.log('ext on ready....')
@@ -1042,16 +1069,17 @@ Ext.onReady(function(){
 
     asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
     
-    // Get the controller
-    asn.ctrlExt = asn.appExt.getController('coordController');
-    
-    asn.ctrlExt.listenviewReady()
-    
-    asn.ctrlExt.listencoordLocation('')
-    asn.ctrlExt.listencoordRider()
+    if(asn.dbprofile.grp_id==='08'){
+        // Get the controller
+        asn.ctrlExt = asn.appExt.getController('coordController');
         
-    window.scrollTo(0,0);
-    asn.init() //instantiate now
+        asn.ctrlExt.listenviewReady()
+        
+        asn.ctrlExt.listencoordLocation('')
+        asn.ctrlExt.listencoordRider()
+    
+    }//eif
+
 })
 
 
