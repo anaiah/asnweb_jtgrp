@@ -1027,7 +1027,7 @@ const asn = {
         });
 
         /*  FOR COORDS ONLY */
-        if(asn.dbprofile.grp_id==='08'){
+        if(asn.dbprofile.grp_id==='08' || util.getCookie('grp_id')=== 4 ){
 
             asn.getmenu(util.getCookie('grp_id')) 
         
@@ -1069,7 +1069,7 @@ Ext.onReady(function(){
 
     asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
     
-    if(asn.dbprofile.grp_id==='08'){
+    if(asn.dbprofile.grp_id==='08' || util.getCookie('grp_id') === 4){
         // Get the controller
         asn.ctrlExt = asn.appExt.getController('coordController');
         
