@@ -279,6 +279,13 @@
       
       console.log('=======DOM CONTENT LOADED=====')
 
+      const userprofile = JSON.parse(localStorage.getItem('profile'))
+      
+      if(userprofile){
+        console.log( 'firing...', userprofile)
+        document.getElementById('region').value = userprofile.region
+      }
+
       // if (!main.isChrome()) {  // Use ! to check if NOT Chrome
       //   alert('PLEASE USE CHROME BROWSER!');
       //   // Prevent login
