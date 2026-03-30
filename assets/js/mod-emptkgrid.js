@@ -6,15 +6,21 @@ function convertMMDDYYtoYYYYMMDD(mmddyy) {
     return `${year}-${parts[0]}-${parts[1]}`;
 }
 
-    // Define today's date in YYYY-MM-DD format for consistent comparison
-    const today = new Date();
-    const todayYYYYMMDD = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
+// Define today's date in YYYY-MM-DD format for consistent comparison
+const today = new Date();
+const todayYYYYMMDD = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
     
-    // ... (definition of financeGrid and loginDetailsGrid) ...
+let empdetailGrid; // Declare empdetailGrid in the outer scope so it can be accessed in the formatter
 
+export function initEmpDetailGrid() {
+    const el = document.getElementById('employee-detail-grid');
+    if (!el) {
+        console.error('#employee-detail-grid not found');
+        return null;
+    }
 
-    // Create Tabulator on DOM element with id "coord-detail-grid"
-    var coorddetailGrid = new Tabulator("#coord-detail-grid", {
+    // Create Tabulator on DOM element with id "employee-detail-grid"
+    empdetailGrid = new Tabulator("#employee-detail-grid", {
         height: "360px", // height of table
         layout: 'fitColumns',
         htmlOutputConfig: {
@@ -193,5 +199,11 @@ function convertMMDDYYtoYYYYMMDD(mmddyy) {
         paginationSize: 10,
     });
 
-    // ... (rest of your DOMContentLoaded code, e.g., fetchAndSetCoordDetailGridData) ...
-
+    return empdetailGrid; // Return the grid instance for later use (e.g., to set data)
+}
+    // optional: export an object with getters, if you like the "hrtimekeepGrid" name
+    export const emptkGrid = {
+      convertMMDDYYtoYYYYMMDD,
+      get empdetailGrid() { return empdetailGrid; }    
+    };
+    

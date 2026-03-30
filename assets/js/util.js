@@ -1834,10 +1834,15 @@ const util = {
                         location.href = '../jtx/coord'
                     break
 
-                    //coordinator/ sorter  / transporter
-                    case '08':
+                    //sorter/rider/transporter
+                    case '01':
                     case '02':
                     case '04':
+                        location.href = '/besi/main'    
+                    break;
+
+                    //coordinator/ 
+                    case '08':
                         location.href = '/besi/coord'    
                     break
 
