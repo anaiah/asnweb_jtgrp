@@ -815,6 +815,11 @@ const util = {
         
         switch( modalToShow ){
 
+            case 'timekeepModal':
+                const xmymodal =  new bootstrap.Modal(document.getElementById(modalToShow),configObj);
+                xmymodal.show()  
+            break;
+
             case "dataEntryModal":
                 const dataentrymodal =  new bootstrap.Modal(document.getElementById('dataEntryModal'),configObj);
 
@@ -999,49 +1004,44 @@ const util = {
                 
                 const ModalEl = document.getElementById(eModal)
 
-                //============== when new site modal loads, get project serial number
-                ModalEl.addEventListener('show.bs.modal', function (event) {
-                    
-                    //===turn off upload-btn
-                    //const btnsave = document.getElementById('mall-save-btn')
-                    //btnsave.disabled = true
+                if(ModalEl){
 
-                    console.log('newempModal() listeners loaded')
-
-                    function todayAsInputDate() {
-                        const d = new Date();
-                        const yyyy = d.getFullYear();
-                        const mm = String(d.getMonth() + 1).padStart(2, '0');
-                        const dd = String(d.getDate()).padStart(2, '0');
-                        return `${yyyy}-${mm}-${dd}`;
-                    }
-
-                    const today = todayAsInputDate();
-                    document.getElementById('hireDate').value = today;
- 
-                },false)
-
-                ModalEl.addEventListener('hide.bs.modal', function (event) {
-                    
-                    console.log('==hiding newEmpModal .on(hide)====')
-                    document.getElementById('newempPlaceHolder').innerHTML=""
-                   
-                    //clear form
-                    let xform = document.getElementById('newempForm')
-                    xform.reset()
-                    util.resetFormClass('#newempForm')
-
-                    // //after posting bring back btn
-                    // const isave = document.getElementById('i-next')
-                    // const btnsave = document.getElementById('newemp-next-btn')
+                    //============== when new site modal loads, get project serial number
+                    ModalEl.addEventListener('show.bs.modal', function (event) {
                         
-                    // btnsave.disabled = false
-                    // isave.classList.remove('fa-spin')
-                    // isave.classList.remove('fa-refresh')
-                    // isave.classList.add('fa-arrow-right')
+                        //===turn off upload-btn
+                        //const btnsave = document.getElementById('mall-save-btn')
+                        //btnsave.disabled = true
+
+                        console.log('newempModal() listeners loaded')
+
+                        function todayAsInputDate() {
+                            const d = new Date();
+                            const yyyy = d.getFullYear();
+                            const mm = String(d.getMonth() + 1).padStart(2, '0');
+                            const dd = String(d.getDate()).padStart(2, '0');
+                            return `${yyyy}-${mm}-${dd}`;
+                        }
+
+                        const today = todayAsInputDate();
+                        document.getElementById('hireDate').value = today;
+    
+                    },false)
+
+                    ModalEl.addEventListener('hide.bs.modal', function (event) {
+                        
+                        console.log('==hiding newEmpModal .on(hide)====')
+                        document.getElementById('newempPlaceHolder').innerHTML=""
                     
-                },false)           
-            
+                        //clear form
+                        let xform = document.getElementById('newempForm')
+                        xform.reset()
+                        util.resetFormClass('#newempForm')
+                        
+                    },false)           
+                
+                }//endif
+
             break
 
             case "commentsModal":
@@ -1195,59 +1195,127 @@ const util = {
         util.getLocation( document.getElementById('region').value)
     },
 
+    showPos:()=>{
+
+        let posContainer = document.getElementById('posContainer');
+        let posSelect = document.getElementById('jobTitle');
+
+        util.displayAreaLocationHub(true, posContainer, posSelect) //show area selection
+
+    },
+
+    //============== important function that will handle the change of position and will show/hide the appropriate select 
+    // options for area, location and hub/store
     handlePosChange:(elem)=>{
         
         util.toggleDriversLicenseValidation()
 
         console.log('position select ', elem.value)
         hris.position = elem.value
-        //if(document.getElementById('locStore').value==""){
-        //util.getlocation( document.getElementById('region').value)
-        
-        //}
-        util.gethub( elem )
-        
+
+        let areaContainer = document.getElementById('areaContainer');
+        let areaSelect = document.getElementById('loc_area');
+
+        //turn  off location and hub/store selection
+        let locContainer = document.getElementById('locContainer');
+        let locSelect = document.getElementById('locStore');
+
+        let hubStoreContainer = document.getElementById('hubStoreContainer');
+        let hubSelect = document.getElementById('hubStore');
+
+        //check position if it requires location and hub/store selection
+        switch(elem.value){
+            case '01': //rider
+            case '02': //transporter
+                //need location and hub/store selection
+                //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
+                util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
+                util.displayAreaLocationHub(true, hubStoreContainer, hubSelect) //hide location and hub/store selection
+               
+                //fill select options for location
+                util.getLocation( document.getElementById('region').value)
+                
+            break;
+
+            case '07': //lead coordinator
+                
+                //turn on area
+                
+                //util.displayAreaLocationHub(true, areaContainer, areaSelect) //show area selection
+                util.displayAreaLocationHub(false, locContainer, locSelect) //hide location and hub/store selection
+                util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
+                
+
+            break;
+
+            case '04': //sorter
+            case '08': //coordinator
+                //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
+                util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
+                util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
+                
+            break;     
+        }
+
+    },
+
+    displayAreaLocationHub: (ldisplay, container, select) => {
+        //console.log('displayAreaLocationHub()', ldisplay, container, select);
+
+        if (!container || !select) return;
+
+        if (ldisplay) {
+            container.classList.remove('d-none');
+            container.classList.add('d-block');
+            select.setAttribute('required', 'required');
+            select.classList.remove('is-invalid');
+
+        } else {
+            container.classList.remove('d-block');
+            container.classList.add('d-none');
+            select.innerHTML = '<option value="">Select Hub/Store</option>';
+            select.value = '';
+            select.removeAttribute('required');
+            select.classList.remove('is-invalid');
+            
+        }
     },
 
     //==HRIS
     getLocation : async (regionSelectElement) => {
+        util.toggleButtonLoading('footer-msg','Loading Location...',true)
         const selectedRegion = regionSelectElement.value;
         
         const locContainer = document.getElementById('locContainer');
         const locSelect = document.getElementById('locStore');
 
-        // // Define which positions require a hub/store selection
-        // const positionsRequiringHub = ['01', '15','17']; // Customize this
-
-        // if (positionsRequiringHub.includes(selectedPosition)) {
-
-        locContainer.classList.remove('d-none');
-        locContainer.classList.add('d-block');
-
-        locSelect.setAttribute('required', 'required');
-
+        
         try {
             const response = await fetch(`${myIp}/getlocation/${document.getElementById('region').value}`); // Adjust this URL as needed
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const hubs = await response.json();
-            const hubsArray = hubs.data
 
-            console.log('***HUBS FOR***', selectedRegion, hubs)
+        
+            const locs = await response.json();
+            const locsArray = locs.data
+
+            //console.log('***HUBS FOR***', selectedRegion, hubs)
 
             locSelect.innerHTML = '<option value="">Select Location</option>';
 
-            hubsArray.forEach(hub => {
-                console.log(hub)
+            locsArray.forEach( loc => {
+                console.log(loc)
                 const option = document.createElement('option');
                 
-                option.value = hub.location; //<-- value
-                option.textContent = hub.location; //<-- content display 
+                option.value = loc.location; //<-- value
+                option.textContent = loc.location; //<-- content display 
                 
                 locSelect.appendChild(option);
             });
+
+            
 
         } catch (error) {
             console.error('Error fetching hubs:', error);
@@ -1255,42 +1323,57 @@ const util = {
         }
 
         //   // Call the utility function to fetch and populate
-        
+        util.toggleButtonLoading('footer-msg',null,false)
     },
 
+    // getarea:async() =>{
+    //     const selectedRegion = document.getElementById('region').value;
+        
+    //     const areaContainer = document.getElementById('areaContainer');
+    //     const areaSelect = document.getElementById('loc_area');
+
+    //     try {
+    //         const response = await fetch(`${myIp}/getarea/${document.getElementById('region').value}`); // Adjust this URL as needed
+            
+    //         if (!response.ok) {
+    //             throw new Error(`HTTP error! status: ${response.status}`);
+    //         }
+    //         const locs = await response.json();
+    //         const locsArray = locs.data
+
+    //         //console.log('***HUBS FOR***', selectedRegion, hubs)
+
+    //         areaSelect.innerHTML = '<option value="">Select Area</option>';
+
+    //         locsArray.forEach( loc => {
+    //             console.log(loc)
+    //             const option = document.createElement('option');
+                
+    //             option.value = loc.location; //<-- value
+    //             option.textContent = loc.location; //<-- content display 
+                
+    //             areaSelect.appendChild(option);
+    //         });
+
+    //     } catch (error) {
+    //         console.error('Error fetching hubs:', error);
+    //         alert('Failed to load hub/store options. Please try again.');
+    //     }
+
+    //     //   // Call the utility function to fetch and populate
+        
+    // },
 
     //***AFTER LOCATION A HUB SELECTION IS SHOWN ... called from  hris 
+    
     gethub : (locationSelectElement) => {
-        const selectedLocation = locationSelectElement.value;
-        
-        const hubStoreContainer = document.getElementById('hubStoreContainer');
-        const hubStoreSelect = document.getElementById('hubStore');
+        util.fetchAndPopulateHubs();
 
-        // Define which positions require a hub/store selection //*** position for hubs */
-        const positionsRequiringHub = ['01', '02','15','17']; // Customize this
-
-        if (positionsRequiringHub.includes(selectedLocation)) {
-
-            hubStoreContainer.classList.remove('d-none');
-            hubStoreContainer.classList.add('d-block');
-
-            hubStoreSelect.setAttribute('required', 'required');
-
-            // Call the utility function to fetch and populate
-            util.fetchAndPopulateHubs();
-
-        } else {
-            hubStoreContainer.classList.remove('d-block');
-            hubStoreContainer.classList.add('d-none');
-
-            hubStoreSelect.innerHTML = '<option value="">Select Hub/Store</option>';
-            hubStoreSelect.value = ''; // Reset selected value
-            hubStoreSelect.removeAttribute('required');
-        }
     },
 
     fetchAndPopulateHubs : async () => {
-
+        util.toggleButtonLoading('footer-msg','Loading Hubs...',true)
+        
         const hubStoreSelect = document.getElementById('hubStore'); // Get it inside the function
         const myUrl = `${myIp}/gethub/${document.getElementById('region').value}/${document.getElementById('locStore').value}`
         console.log(myUrl)
@@ -1320,6 +1403,9 @@ const util = {
             console.error('Error fetching hubs:', error);
             alert('Failed to load hub/store options. Please try again.');
         }
+
+        util.toggleButtonLoading('footer-msg',null,false)
+
     },
     //============toggle driver's license =====//
     toggleDriversLicenseValidation : () => {

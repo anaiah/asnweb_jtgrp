@@ -34,7 +34,20 @@ var hrisGrid = new Tabulator("#hrisgrid", {
             headerHozAlign: "center",
             resizable: false,
             formatter: (cell) => {
+
+                const profile = JSON.parse(localStorage.getItem('profile'))  //get profileowner =  JSON.parse(db.getItem('profile'))  //get profile
+                console.log('==profile in name formatter===',profile)
                 const data = cell.getData();
+                let mname = ( data.middle_name ? data.middle_name.toUpperCase() : "N/A")
+                    
+                let xdisabled = ""; // default to disabled   
+
+                if (profile.grp_id === 8) {
+                    xdisabled = ""; // enable if grp_id is 8
+                } else {
+                    xdisabled = "disabled"; // disable for other grp_id values
+                }//eif
+                
                 let xlabel = "";
                 let action = "";
 
@@ -52,22 +65,25 @@ var hrisGrid = new Tabulator("#hrisgrid", {
 
                 return `
                 <b>${data.full_name}</b><br>
-                (${data.middle_name.toUpperCase()})<br>
+                ( ${mname} )<br>
                 ${data.phone}<br>
                 ${data.email}<br>
                 ${data.emp_id}<br>
                 <button type="button"
                         class="btn btn-warning btn-sm btn-status-change"
+                        ${ xdisabled }
                         data-action="${action}">
                     ${xlabel}
                 </button>
                 <button type="button"
                         class="btn btn-info btn-sm btn-status-change"
+                        ${ xdisabled }
                         data-action="view">
                     View Requirements
                 </button>
                 <button type="button"
                         class="btn btn-success btn-sm btn-status-change"
+                        ${ xdisabled }
                         data-action="printcontract">
                     Print Contract
                 </button>

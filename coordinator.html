@@ -253,181 +253,178 @@
         </div>
       </div>
 
-      <!-- Small Centered Dialog Box (Bootstrap Modal) -->
-      <div class="modal fade" id="universalMessageModal" tabindex="-1" aria-labelledby="universalMessageModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-sm"> <!-- 'modal-sm' for small, 'modal-dialog-centered' for centering -->
-            <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="universalMessageModalLabel">Message</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body" id="universalMessageModalBody">
-                  <!-- Message content will be injected here -->
-                  
-                  <!-- Centered Buttons: Use d-flex and justify-content-center -->
-                  <div class="d-flex justify-content-center gap-3"> <!-- 'gap-3' adds spacing between buttons -->
-                      <button type="button" name="timein-btn" id="timein-btn" class="btn btn-success" onclick='asn.logtime(1)'>
-                          Time In
-                      </button>
-                      <button type="button"  name="timeout-btn" id="timeout-btn" class="btn btn-danger" onclick="asn.logtime(2)">
-                          Time Out
-                      </button>
-                  </div>                 
-              </div>
-              <div class="modal-footer" id="universalMessageModalFooter">
-                  <!-- Default button(s) or dynamically added buttons -->
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-              </div>
-            </div>
-
-        </div>
-      </div>
-
-    <!-- Modal for Missing Entry Details -->
-  <div class="modal fade" id="missingEntryModal" tabindex="-1" aria-labelledby="missingEntryModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="missingEntryModalLabel">Record Missing Entry</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Employee: <strong id="modalEmployeeName"></strong></p>
-          <p>Missing Date: <strong id="modalMissingDate"></strong></p>
-          <p>Please record what happened for this missing entry.</p>
-          
-          <div class="mb-3">
-            <label for="modalLoginTime" class="form-label">Login Time</label>
-            <input type="time" class="form-control" id="modalLoginTime">
+  <!-- Small Centered Dialog Box FOR LOGIN AND LOGOUT-->
+  <div class="modal fade" id="universalMessageModal" tabindex="-1" aria-labelledby="universalMessageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm"> <!-- 'modal-sm' for small, 'modal-dialog-centered' for centering -->
+        <div class="modal-content">
+          <div class="modal-header custom-header">
+              <h5 class="modal-title" id="universalMessageModalLabel">Time In / Out</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="mb-3">
-            <label for="modalLogoutTime" class="form-label">Logout Time</label>
-            <input type="time" class="form-control" id="modalLogoutTime">
+          <div class="modal-body" id="universalMessageModalBody">
+              <!-- Message content will be injected here -->
+              
+              <!-- Centered Buttons: Use d-flex and justify-content-center -->
+              <div class="d-flex justify-content-center gap-3"> <!-- 'gap-3' adds spacing between buttons -->
+                  <button type="button" name="timein-btn" id="timein-btn" class="btn btn-success" onclick='asn.logtime(1)'>
+                      Time In
+                  </button>
+                  <button type="button"  name="timeout-btn" id="timeout-btn" class="btn btn-danger" onclick="asn.logtime(2)">
+                      Time Out
+                  </button>
+              </div>                 
           </div>
-          
-          <!-- NEW: Dropdown for Notes -->
-          <div class="mb-3">
-            <label for="modalNotesSelect" class="form-label">Reason for Missing Entry</label>
-            <select class="form-select" id="modalNotesSelect">
-              <option value="">-- Select Reason --</option> <!-- Default blank option -->
-              <option value="LOW BATT">LOW BATT</option>
-              <option value="NO LOAD">NO LOAD</option>
-              <option value="NO SIGNAL">NO SIGNAL</option>
-              <option value="LOST PHONE">LOST PHONE</option>
-              <option value="BUSTED PHONE">BUSTED PHONE</option>
-              <option value="BUSTED LAPTOP">BUSTED LAPTOP</option>
-              <!-- Add more options if needed -->
-            </select>
+          <div class="modal-footer" id="universalMessageModalFooter">
+              <!-- Default button(s) or dynamically added buttons -->
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
           </div>
+        </div>
 
-          <input type="hidden" id="modalBesiId">
-          <input type="hidden" id="modalEntryDate">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="submitMissingEntryBtn">Submit Entry</button>
-        </div>
-      </div>
     </div>
   </div>
 
+  <!-- Modal for Missing Entry Details -->
+  <div class="modal fade" id="missingEntryModal" tabindex="-1" aria-labelledby="missingEntryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="missingEntryModalLabel">Record Missing Entry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Employee: <strong id="modalEmployeeName"></strong></p>
+        <p>Missing Date: <strong id="modalMissingDate"></strong></p>
+        <p>Please record what happened for this missing entry.</p>
+        
+        <div class="mb-3">
+          <label for="modalLoginTime" class="form-label">Login Time</label>
+          <input type="time" class="form-control" id="modalLoginTime">
+        </div>
+        <div class="mb-3">
+          <label for="modalLogoutTime" class="form-label">Logout Time</label>
+          <input type="time" class="form-control" id="modalLogoutTime">
+        </div>
+        
+        <!-- NEW: Dropdown for Notes -->
+        <div class="mb-3">
+          <label for="modalNotesSelect" class="form-label">Reason for Missing Entry</label>
+          <select class="form-select" id="modalNotesSelect">
+            <option value="">-- Select Reason --</option> <!-- Default blank option -->
+            <option value="LOW BATT">LOW BATT</option>
+            <option value="NO LOAD">NO LOAD</option>
+            <option value="NO SIGNAL">NO SIGNAL</option>
+            <option value="LOST PHONE">LOST PHONE</option>
+            <option value="BUSTED PHONE">BUSTED PHONE</option>
+            <option value="BUSTED LAPTOP">BUSTED LAPTOP</option>
+            <!-- Add more options if needed -->
+          </select>
+        </div>
+
+        <input type="hidden" id="modalBesiId">
+        <input type="hidden" id="modalEntryDate">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="submitMissingEntryBtn">Submit Entry</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
   <!-- Search Filters Modal -->
-  <div class="modal fade" id="searchFiltersModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+  <!-- Full-Screen Modal -->
+  <div class="modal fade" id="timekeepModal" tabindex="-1"
+      aria-labelledby="timekeepModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Search Filters</h5>
+
+        <div class="modal-header custom-header">
+          <h5 class="modal-title" id="fullScreenModalLabel">Search & Timekeeping</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"
                   aria-label="Close"></button>
         </div>
 
-        <div class="modal-body">
-          <!-- Filter Group Card (unchanged content) -->
-          <div class="card shadow mb-0">
-            <div class="card-header py-3">
-              <h5 class="mb-0 fw-semibold">Search Filters</h5>
-            </div>
-            <div class="card-body">
-              <form id="searchForm" name="searchForm"
-                    class="row gy-3 gx-3 align-items-end" novalidate>
-                <!-- Filter by Name -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                  <label for="filter_name" class="form-label visually-hidden">Name</label>
-                  <input type="text" class="form-control" id="filter_name" name="filter_name"
-                        placeholder="Filter by Name">
-                </div>
-                <!-- Filter by ID -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                  <label for="filter_id" class="form-label visually-hidden">ID</label>
-                  <input type="text" class="form-control" id="filter_id" name="filter_id"
-                        placeholder="Filter by ID">
-                </div>
-                <!-- Filter by Region -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                  <label for="filter_region" class="form-label visually-hidden">* Region</label>
-                  <select class="form-select" id="filter_region" name="filter_region" required>
-                    <option value="">Filter by Region</option>
-                    <option value="cmnl">NCR-CMNL</option>
-                    <option value="cmnva">NCR-CMNVA</option>
-                    <option value="smnl">NCR-SMNL</option>
-                  </select>
-                </div>
-                <!-- Filter by Position -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                  <label for="filter_position" class="form-label visually-hidden">* Position</label>
-                  <select class="form-select" id="filter_position" name="filter_position" required>
-                    <option value="">Filter by Position</option>
-                    <option value="01">RIDER</option>
-                    <option value="02">TRANSPORTER</option>
-                    <option value="04">SORTER/BACKROOM</option>
-                    <option value="08">COORDINATOR</option>
-                  </select>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                  <label for="filter_date_from" class="form-label">Date From</label>
-                  <input type="date" class="form-control" id="filter_date_from"
-                        name="filter_date_from" disabled>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                  <label for="filter_date_to" class="form-label">Date To</label>
-                  <input type="date" class="form-control" id="filter_date_to"
-                        name="filter_date_to" disabled>
-                </div>
-
-                <!-- Buttons -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-auto d-flex flex-column flex-sm-row ms-auto gap-2">
-                  <button type="button" class="btn btn-primary"
-                          onclick="javascript:hris.printTimeKeep();" id="applyFilterBtn" disabled>
-                    <i class="ti ti-printer me-1"></i> Timekeeping
-                  </button>
-
-                  <button class="btn btn-success flex-fill" id="print-masterfile-btn" type="button"
-                          onclick="javascript:hris.printMasterfile && hris.printMasterfile(this.form);">
-                    <i class="ti ti-file-type-xls"></i>&nbsp;&nbsp;Download Masterfile
-                  </button>
-
-                  <button class="btn btn-primary flex-fill" id="search-btn" type="button"
-                          onclick="javascript:hris.checkform(this.form);">
-                    <i class="ti ti-search"></i>&nbsp;&nbsp;Search
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-          <!-- /Filter Group Card -->
-        </div>
+        <div class="modal-body p-2" id="timekeepbody">
+          <!------------------//MAIN CONTAINER INSERT HERE----------------------->
+          
+        </div> <!-- /modal-body -->
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-sm"
-                  data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary"
+                  data-bs-dismiss="modal">
+            Close
+          </button>
         </div>
+
       </div>
     </div>
   </div>
 
+  <!-- Timekeeping Details Modal -->
+  <div class="modal fade" id="timekeepdetailModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <div class="modal-content shadow-lg">
+      <div class="modal-header custom-headerteal">
+          <h5 class="modal-title">Timekeeping Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <!-- Container for Tabulator -->
+          <div id="timekeepTable" class="table-responsive"></div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm"
+                  data-bs-dismiss="modal">Close</button>
+      </div>
+      </div>
+  </div>
+  </div>
 
-    <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
+  <!-- Deactivate Modal -->
+  <div class="modal fade" id="deactivateModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content shadow-lg">
+      <div class="modal-header custom-header">
+          <h5 class="modal-title">Deactivate Employee</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form id="deactivateForm">
+          <div class="mb-3">
+              <label class="form-label">Employee ID</label>
+              <input type="text" id="deactEmpId" class="form-control" readonly>
+          </div>
+          
+          <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="text" id="deactEmail" class="form-control" readonly>
+          </div>
+
+            <!-- NEW: Location / Code between first and second "-" -->
+          <div class="mb-3">
+              <label class="form-label">Code</label>
+              <input type="text" id="deactCode" class="form-control" readonly>
+          </div>
+
+          <div class="mb-3">
+              <label class="form-label" id="reasonLabel">Reason for deactivating</label>
+              <textarea id="deactReason" class="form-control" rows="3" required></textarea>
+          </div>
+          </form>
+          <div id="deactError" class="text-danger small d-none"></div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" id="btnConfirmDeactivate" class="btn btn-danger btn-sm">
+          Deactivate
+          </button>
+      </div>
+      </div>
+  </div>
+  </div>
+
+  <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
   
   <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/js/tabler.min.js"></script>
 
@@ -460,25 +457,11 @@
   
   <script src="/html/assets/coordapp.js?v=8"></script>
   <script src="/html/assets/js/util.js?v=8"></script>
-  <script src="/html/assets/js/coord.js?v=8"></script>
+
+  <script type='module' src="/html/assets/js/coord.js?v=8"></script>
 
   <!-- takeout muna gridtab palit extjs -->
   <script src="/html/assets/js/coordgriddettab.js?v=8"></script>
-
-  <script> 
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('===coordinator complete==')
-
-/* FOR SHOWING MODAL WITH FILTER
-<button type="button" class="btn btn-outline-primary"
-        onclick="new bootstrap.Modal(document.getElementById('searchFiltersModal')).show();">
-  Open Search Filters
-</button>
-*/
-
-    })
-  </script>
-
 </body>
 
 </html>

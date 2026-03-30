@@ -283,3 +283,32 @@ input:focus:is-invalid {
   margin-right: 10px;
 }
 
+.modal-header.custom-header {
+  background: linear-gradient(90deg, #2c3e50, #3498db);
+  color: #fff;
+}
+/* Blue -> Cyan */
+.modal-header.custom-headerblue {
+  background: linear-gradient(90deg, #007bff, #17a2b8);
+  color: #fff;
+}
+
+/* Teal -> Green */
+.modal-header.custom-headerteal {
+  background: linear-gradient(90deg, #20c997, #28a745);
+  color: #fff;
+}
+
+/* Purple -> Pink */
+.modal-header.custom-headerpurple {
+  background: linear-gradient(90deg, #6f42c1, #e83e8c);
+  color: #fff;
+}
+
+/* Warm orange -> red */
+.modal-header.custom-headerorange {
+  background: linear-gradient(90deg, #fd7e14, #dc3545);
+  color: #fff;
+}
+
+

@@ -251,7 +251,8 @@ span.xgrpheader{
                               <option value="02">TRANSPORTER</option>
                               <option value="04">SORTER/BACKROOM</option>
                               <option value="08">COORDINATOR</option>
-
+                              <option value="07">LEAD COORDINATOR</option>
+                              
                               <!-- Add more options here as needed -->
                           </select>
                         </div>
@@ -419,7 +420,7 @@ span.xgrpheader{
     <div class="modal fade" id="newempModal" tabindex="-1" aria-labelledby="newsiteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header bg-primary">
+                <div class="modal-header custom-header">
                     <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> Create Account</h4>
                     <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
                 </div>
@@ -439,9 +440,10 @@ span.xgrpheader{
                                 <h2>HRIS 201 Form</h2>
 
                                 <div class="mb-3">
+                                    <!-- old onchange="util.checkPosition()" -->
                                     <label for="region" class="form-label">Region</label>
-                                    <select class="form-select 201" id="region" name="region" required
-                                        onchange="util.checkPosition()">
+                                    <select class="form-select 201" id="region" name="region" required 
+                                        onchange="util.showPos()">
                                         <option value="" disabled selected>Select Region</option>
                                         <option value="SMNL" >NCR-SOUTH MANILA</option>
                                         <option value="CMNVA">NCR-CAMANAVA</option>
@@ -456,6 +458,24 @@ span.xgrpheader{
                                     </select>
                                 </div>
 
+                                <div class="mb-3 d-none" id="posContainer">
+                                    <label for="jobTitle" class="form-label">Position</label>
+                                    <select class="form-select 201" id="jobTitle" name="jobTitle" required 
+                                        onchange="util.handlePosChange(this)">
+                                        <option value="" disabled selected>Select Position</option>
+                                        <option value="01" >Rider</option>
+                                        <option value="04">Sorter/BackRoom</option>
+                                        <option value="08">Coordinator</option>
+                                        <option value="07">Lead Coordinator</option>
+                                        <option value="02">Transporter</option>
+                                        <option value="06">Time Keeper</option>
+                                        <option value="03">Foot Delivery</option>
+                                        <option value="15">3 Wheel</option>
+                                        <option value="17">4 Wheel</option>
+                                        
+                                    </select>
+                                </div>
+                               
                                   <!-- location (initially hidden) -->
                                 <div class="mb-3 d-none" id="locContainer">
                                     <label for="locStore" class="form-label">Location</label>
@@ -467,23 +487,7 @@ span.xgrpheader{
                                     </select>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="jobTitle" class="form-label">Position</label>
-                                    <select class="form-select 201" id="jobTitle" name="jobTitle" required 
-                                        onchange="util.handlePosChange(this)">
-                                        <option value="" disabled selected>Select Position</option>
-                                        <option value="01" >Rider</option>
-                                        <option value="04">Sorter/BackRoom</option>
-                                        <option value="08">Coordinator</option>
-                                        <option value="02">Transporter</option>
-                                        <option value="06">Time Keeper</option>
-                                        <option value="03">Foot Delivery</option>
-                                        <option value="15">3 Wheel</option>
-                                        <option value="17">4 Wheel</option>
-                                        
-                                    </select>
-                                </div>
-                               
+                                
                                 <!-- Hub/Store Dropdown (initially hidden) -->
                                 <div class="mb-3 d-none" id="hubStoreContainer">
                                     <label for="hubStore" class="form-label">Hub</label>
@@ -492,6 +496,7 @@ span.xgrpheader{
                                         <!-- Options will be populated by JavaScript -->
                                     </select>
                                 </div>
+
                                 <!--// full name,middle, lastname,-->
                                 <div class="mb-3">
                                     <label for="lastName" class="form-label">Last Name</label>
@@ -652,7 +657,7 @@ span.xgrpheader{
                     <!-- Message on the LEFT -->
                     <span class="me-auto text-danger fw-bold" id="footer-msg">
                         <!-- Put your message here, e.g.: -->
-                        
+                        &nbsp;
                     </span>
                     <!-- <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button> -->
                     <button class="btn btn-primary" id="newemp-next-btn" onclick="javascript:util.validateMe('newempModal','#newempForm','201')" type="button">
@@ -736,7 +741,7 @@ span.xgrpheader{
     <div class="modal fade" id="deactivateModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header custom-header">
             <h5 class="modal-title">Deactivate Employee</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -779,7 +784,7 @@ span.xgrpheader{
     <div class="modal fade" id="viewReqModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header custom-header">
             <h5 class="modal-title">View Requirements</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"
                     aria-label="Close"></button>
@@ -805,7 +810,7 @@ span.xgrpheader{
     <div class="modal fade" id="timekeepModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header custom-header">
             <h5 class="modal-title">Timekeeping Details</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"
                     aria-label="Close"></button>
@@ -855,251 +860,6 @@ span.xgrpheader{
 <script src="/html/assets/js/hrgridtab.js?v=8"></script>
 
 <script> 
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('===HRIS OPERATIONS complete==')
-        
-        util.modalListeners('newempModal')
-        util.modalListeners('dataPrivacySignatureModal')
-        
-        // Get references to all relevant DOM elements
-        const addy1Input = document.getElementById('addy1');
-        const addy2Input = document.getElementById('addy2');
-        const barangayInput = document.getElementById('bgy');
-        const cityInput = document.getElementById('city');
-        const fullAddressTextarea = document.getElementById('address');
-
-        // Function to update the full address textarea
-        function updateFullAddress() {
-            const addressParts = [];
-
-            // Add parts only if they have a non-empty value after trimming whitespace
-            if (addy1Input.value.trim()) {
-                addressParts.push(addy1Input.value.trim());
-            }
-            if (addy2Input.value.trim()) {
-                addressParts.push(addy2Input.value.trim());
-            }
-            if (barangayInput.value.trim()) {
-                addressParts.push(` Bgy. ${barangayInput.value.trim()}`);
-            }
-            if (cityInput.value.trim()) {
-                addressParts.push(cityInput.value.trim());
-            }
-
-            // Join the parts with a newline character for multi-line display
-            fullAddressTextarea.value = addressParts.join(', ').toUpperCase() //addressParts.join('\n');
-            hris.address = fullAddressTextarea.value
-
-        }
-
-        // Attach the 'input' event listener to each address field
-        // The 'input' event fires whenever the value of an <input> or <textarea> element has been changed
-        addy1Input.addEventListener('input', updateFullAddress);
-        addy2Input.addEventListener('input', updateFullAddress);
-        barangayInput.addEventListener('input', updateFullAddress);
-        cityInput.addEventListener('input', updateFullAddress);
-
-        // Optional: Call the function once on page load
-        // This is useful if the form fields might be pre-filled when the page loads (e.g., for editing an existing record)
-        updateFullAddress();
-
-        // Get references to all relevant DOM elements
-        const lastNameInput = document.getElementById('lastName');
-        const firstNameInput = document.getElementById('firstName');
-        const middleNameInput = document.getElementById('middleName');
-        const nameSuffixSelect = document.getElementById('nameSuffix');
-        const fullNameTextarea = document.getElementById('fullName');
-
-        // Function to update the full name textarea
-        function updateFullName() {
-            // Get trimmed values from inputs and select
-            const lastName = lastNameInput.value.trim();
-            const firstName = firstNameInput.value.trim();
-            const middleName = middleNameInput.value.trim();
-            const suffix = nameSuffixSelect.value.trim();
-
-            let formattedName = '';
-
-            // 1. Start with Last Name
-            if (lastName) {
-                formattedName += lastName;
-            }
-
-            // 2. Add First Name
-            if (firstName) {
-                if (formattedName) { // Only add comma if last name exists
-                    formattedName += ', ';
-                }
-                formattedName += firstName;
-            }
-
-            // 3. Add Middle Initial (with a space before it)
-            if (middleName) {
-                const middleInitial = middleName.charAt(0).toUpperCase() + '.';
-                if (formattedName) { // Only add space if some name part already exists
-                    formattedName += ' ';
-                }
-                formattedName += middleInitial;
-            }
-
-            // 4. Add Suffix (with a comma and space before it)
-            if (suffix) {
-                if (formattedName) { // Only add comma and space if some name part already exists
-                    formattedName += ', '; // <-- CHANGED THIS LINE
-                }
-                formattedName += suffix;
-            }
-
-            // Update the textarea
-            fullNameTextarea.value = formattedName;
-            hris.fullname = firstName.toUpperCase() + ' ' + middleName.toUpperCase() + ' ' + lastName.toUpperCase() + ' ' + suffix.toUpperCase() 
-        }
-
-        // Attach 'input' event listeners to text fields for real-time updates
-        lastNameInput.addEventListener('input', updateFullName);
-        firstNameInput.addEventListener('input', updateFullName);
-        middleNameInput.addEventListener('input', updateFullName);
-
-        // Attach 'change' event listener to the select dropdown
-        nameSuffixSelect.addEventListener('change', updateFullName);
-
-        // Optional: Call the function once on page load
-        updateFullName();
-
-        const btn = document.getElementById("btnConfirmDeactivate");
-        const errorDiv = document.getElementById("deactError");
-
-        function setButtonLoading(isLoading, labelWhenDone) {
-            if (isLoading) {
-                btn.disabled = true;
-                btn.innerHTML = `
-                <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
-                Saving...
-                `;
-            } else {
-                btn.disabled = false;
-                btn.textContent = labelWhenDone;
-            }
-        }
-
-        btn.addEventListener("click", async () => {
-            const empid  = document.getElementById("deactEmpId").value;
-            const email = document.getElementById("deactEmail").value;
-            const region = document.getElementById("deactCode").value;
-            const reason = document.getElementById("deactReason").value.trim();
-            const action = btn.dataset.action; // "deactivate" or "reactivate"
-
-            errorDiv.classList.add("d-none");
-            errorDiv.textContent = "";
-
-            // Require reason only for deactivate
-            if (action === "deactivate" && !reason) {
-                errorDiv.textContent = "Reason is required for deactivation.";
-                errorDiv.classList.remove("d-none");
-                return;
-            }
-
-            const originalLabel = action === "deactivate" ? "Deactivate" : "Reactivate";
-            setButtonLoading(true, originalLabel);
-
-            try {
-                const res = await fetch(`${myIp}/employee/status`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ empid, region, reason, action }),
-                });
-
-                if (!res.ok) {
-                const text = await res.text();
-                throw new Error(text || "Request failed");
-                }
-
-                setButtonLoading(false, originalLabel);
-
-                // close modal
-                const modalEl = document.getElementById("deactivateModal");
-                const modal = bootstrap.Modal.getInstance(modalEl);
-                modal.hide();
-
-                document.getElementById("search-btn").click();
-                
-                // refresh table
-                table.replaceData();
-            } catch (err) {
-                setButtonLoading(false, originalLabel);
-                errorDiv.textContent = err.message || "Error updating status";
-                errorDiv.classList.remove("d-none");
-            }
-        });
-
-        //=============position dropdown listener
-        document.getElementById("filter_position").addEventListener("change", function () {
-            
-            const isCoordinator = this.value === "08";// IF CHOICE IS COORDINATOR
-
-            document.getElementById("filter_date_from").disabled = !isCoordinator;
-            document.getElementById("filter_date_to").disabled   = !isCoordinator;
-
-            //document.getElementById("applyFilterBtn").disabled   = !isCoordinator;
-
-            const actionSelect  = document.getElementById("actionSelect");
-            const optTimekeep   = document.getElementById("optTimekeeping");
-
-            // enable/disable option
-            optTimekeep.disabled = !isCoordinator;
-
-            // if currently selected and now invalid, reset select
-            if (!isCoordinator && actionSelect.value === "timekeeping") {
-                actionSelect.value = "";
-            }
-            if(!isCoordinator){
-
-                //bring backdisplay
-                document.getElementById('search-result-grid').classList.add('d-none');
-                document.getElementById('timekeepdisplay').classList.add('d-none');
-
-                 // Data is empty, perform a full reset
-                timekeepGrid.clearFilter();  // Clear any active filters
-                timekeepGrid.clearSort();    // Clear any active sorting
-               
-               // --- REVISED PAGINATION RESET ---
-                // Check if pagination is enabled before trying to reset the page
-                if (timekeepGrid.options.pagination) {
-                    timekeepGrid.setPage(1); // Set the page to the first page
-                    // If you need to also reset the total number of pages displayed (e.g., pageSize)
-                    // you might need to re-initialize pagination or adjust pageSize manually if it's dynamic.
-                    // For now, setPage(1) is the core fix.
-                }
-                // --- END REVISED PAGINATION RESET ---
-
-                timekeepGrid.deselectRow();  // Deselect any previously selected rows
-
-                // Finally, set the empty data. This will also trigger the "No Data" message.
-                timekeepGrid.setData([]);
-            }
-        });
-
-
-        //for select actions for filtering
-        document.getElementById("actionSelect").addEventListener("change", function () {
-            const action = this.value;
-            const form = document.getElementById("searchForm");
-
-            if (!action) return;
-
-            if (action === "search") {
-                hris.checkform && hris.checkform(form);
-            } else if (action === "timekeeping") {
-                hris.printTimeKeep && hris.printTimeKeep();
-            } else if (action === "masterfile") {
-                hris.printMasterfile && hris.printMasterfile(form);
-            }
-
-            // reset back to placeholder after firing
-            this.value = "";
-        });
-       
-    })//end dom onload
     
     function toCamelCase(str) {
         // Handle null, undefined, or non-string inputs

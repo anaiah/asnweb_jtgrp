@@ -1,11 +1,12 @@
-/*
+/*author : Carlo O. Dominguez*/
 
-author : Carlo O. Dominguez
-
-*/
-
-//
-//speech synthesis
+import { timekeep } from './mod-timekeep.js';
+// import {
+//   initHrisGrid,
+//   initTimekeepGrid,
+//   initTimekeepDetailGrid,
+//   hrtimekeepGrid //the obj
+// } from './mod-hrgrid.js';
 
 const asn = {
 	
@@ -13,9 +14,6 @@ const asn = {
 
     shopCart: [],
     
-    //online version socket.io
-    //socket:io.connect("https://osndp.onrender.com"),
-
     socket:null,
 
     //=========================START VOICE SYNTHESIS ===============
@@ -60,8 +58,6 @@ const asn = {
 
         // Checking which voices has been chosen from the selection
         // and setting the voice to the chosen voice
-        
-        
         voices.forEach(voice => {
             if(voice.name.indexOf("English")>-1){	
                 ///// take out bring back later, 
@@ -197,6 +193,7 @@ const asn = {
           */  
         
     },
+
     notif:(msg,xclear)=>{
         if(!xclear){
             document.getElementById('p-notif').innerHTML = `<i id='i-notif' class='fa fa-spinner fa-pulse' ></i>
@@ -216,7 +213,6 @@ const asn = {
         
         console.log('Window width:', window.innerWidth);
                 
-
         links.forEach(function(link) {
           link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -941,18 +937,16 @@ const asn = {
         missingEntryModal.show();
     },
 
-
     dbprofile: null,
+
 
 	//==,= main run
 	init :  () => {
         
         asn.dbprofile = JSON.parse(localStorage.getItem('profile'));
 
+        /* voice first*/
 
-        /*
-        voice first
-        */
         // define variable to store voices globally
         let availableVoices = [];
 
@@ -989,8 +983,6 @@ const asn = {
 
         asn.speaks('Welcome to Better Edge Apps')
 
-
-        
         console.log('===asn.init()=== loaded!')
         
         if(util.getCookie('f_pic')!==""||util.getCookie('f_pic')== null){
@@ -1043,11 +1035,12 @@ const asn = {
             }, 1000)
         
             console.log('===loadbarchart()===')
-        }else{
+
+        }else{  //************FOR SORTERS, TRANSPORTERS */
             
             asn.getmenu(asn.dbprofile.grp_id) 
 
-            //turn off cards in html
+            //turn off cards in html FOR NON-COORINATORS
             document.getElementById('locgridcard').classList.add('d-none')
             document.getElementById('locmtdchart').classList.add('d-none')
             document.getElementById('xchart').classList.add('d-none')
@@ -1062,6 +1055,7 @@ const asn = {
 
 window.scrollTo(0,0);
 asn.init() //instantiate now
+window.asn =asn
 
 Ext.onReady(function(){
     console.log('ext on ready....')
@@ -1082,10 +1076,13 @@ Ext.onReady(function(){
 
 })
 
-
+/******************** DOMCONTENT LOADED LISTENER  */
 document.addEventListener('DOMContentLoaded', () => {
 
-    console.log('====dom  loaded for coordinator====')
+    console.log('====DOMContentLoaded for coordinator====')
+
+    timekeep.fetchtimekeep() //===fire! insert html fragment even before show-bs modal of timekeepmodal
+    
     // Get a reference to your modal's HTML element
     const universalMessageModalElement = document.getElementById('universalMessageModal');
 
