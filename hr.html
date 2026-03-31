@@ -490,9 +490,9 @@ span.xgrpheader{
                                 
                                 <!-- Hub/Store Dropdown (initially hidden) -->
                                 <div class="mb-3 d-none" id="hubStoreContainer">
-                                    <label for="hubStore" class="form-label">Hub</label>
+                                    <label for="hubStore" class="form-label">Hub / DC</label>
                                     <select class="form-select" id="hubStore" name="hub_store">
-                                        <option value="">Select Hub/Store</option>
+                                        <option value="">Select Hub/DC</option>
                                         <!-- Options will be populated by JavaScript -->
                                     </select>
                                 </div>
@@ -585,16 +585,17 @@ span.xgrpheader{
                                     <input type="text" class="form-control text-uppercase" value="" id="addy2" name="addy2" >
                                 </div>
 
+                                 <div class="mb-3">
+                                    <label for="bgy" class="form-label">Barangay</label>
+                                    <input type="text" class="form-control text-uppercase 201" value="" id="bgy" name="bgy" required>
+                                </div>
+
                                 <div class="mb-3">
                                     <label for="city" class="form-label">City / Municipality</label>
                                     <input type="text" class="form-control text-uppercase 201" value="" id="city" name="city" required>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="bgy" class="form-label">Barangay</label>
-                                    <input type="text" class="form-control text-uppercase 201" value="" id="bgy" name="bgy" required>
-                                </div>
-
+                               
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Complete Address </label>
                                     <textarea placeholder="Please fill-out address 1, adress 2, city and barangay" class="form-control text-uppercase 201" 

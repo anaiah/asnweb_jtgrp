@@ -6,7 +6,7 @@ import {
 } from './mod-hrgrid.js';
 
 let lastSearchData = null;
-
+let dbprofile = null;
      //===============open timeekeeping detailed modal
     const openTimekeepModal = ( tabulatorRowId ) => {
 
@@ -69,8 +69,8 @@ let lastSearchData = null;
                 opt.textContent = text;
                 
                 if(value === region){
-                    asn.myregion = text
-                    console.log('ur region is ',asn.myregion)
+                    //asn.myregion = text
+                    //console.log('ur region is ',asn.myregion)
                     select.appendChild(opt);
                 }
             
@@ -83,7 +83,10 @@ let lastSearchData = null;
     }//end func
 
     //======================FIRED ONE TIME DURING LOADING OF coordinator page and modal show.bs.modal listener===========================//
-    const fetchtimekeep = () =>{
+    const fetchtimekeep = ( db ) =>{
+
+        dbprofile = db; // assign to outer variable for use in other functions
+
         const target = document.getElementById('timekeepbody');
 
         fetch('/html/temp-timekeep.html')
@@ -101,7 +104,7 @@ let lastSearchData = null;
             document.getElementById("filter_date_to").disabled   = false;
 
             //make sure filter region auto select the region of the logged in user
-            document.getElementById('filter_region').value = asn.dbprofile.region;
+            document.getElementById('filter_region').value = db.region;
             
             //==========hris filter action
             //for select actions for filtering
@@ -244,7 +247,8 @@ let lastSearchData = null;
             });
 
             //===========FIND REGION  AND GETHUB===============
-            timekeep.findRegion(asn.dbprofile.region)
+            timekeep.findRegion(dbprofile.region);
+            
             timekeep.getHub()
 
              // now init Tabulator grids
@@ -373,8 +377,9 @@ let lastSearchData = null;
 
     //================get hub for this coordinator
     const getHub = async()=>{
-        const response = await fetch(`${myIp}/gethubcoord/${asn.dbprofile.region}/${asn.dbprofile.email}`);
-
+           
+        const response = await fetch(`${myIp}/gethubcoord/${ dbprofile.region}/${ dbprofile.email}`);
+        
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({ message: 'Server error' }));
             throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);

@@ -1096,13 +1096,14 @@
             document.getElementById('img-profile').src = `../html/assets/images/profile/${owner.pic}`
 
             let authz = []
-            authz.push( owner.grp_id )
-            authz.push( owner.fullname)
+            authz.push( owner.id )
+            authz.push( owner.fname)
+            authz.push(owner.grp_id )
             
             //console.log(authz[1])
 
             //==HANDSHAKE FIRST WITH SOCKET.IO
-            const userName = { token : authz[1] , mode: owner.grp_id}//full name token
+            const userName = { token : authz[1] , emp_id: authz[0], mode: authz[2]}//full name token
 
             hris.socket = io.connect(`${myIp}`, {
                 //withCredentials: true,
@@ -1116,11 +1117,11 @@
             });//========================initiate socket handshake ================
 
             hris.socket.on('connect', () => {
-                console.log('Connected to AEDC Socket.IO server using:', hris.socket.io.engine.transport.name); // Check the transport
+                console.log('Connected to BETTER EDGE Socket.IO server using:', hris.socket.io.engine.transport.name); // Check the transport
             });
 
             hris.socket.on('disconnect', () => {
-                console.log('Disconnected from AEDC Socket.IO server');
+                console.log('Disconnected from BETTER EDGE Socket.IO server');
             });
            //==============================================END  SOCKET ==========================//
            

@@ -235,7 +235,148 @@
         </div>
       </div>
     <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
-  
+   <!-- Modal for Missing Entry Details -->
+  <div class="modal fade" id="missingEntryModal" tabindex="-1" aria-labelledby="missingEntryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="missingEntryModalLabel">Record Missing Entry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Employee: <strong id="modalEmployeeName"></strong></p>
+        <p>Missing Date: <strong id="modalMissingDate"></strong></p>
+        <p>Please record what happened for this missing entry.</p>
+        
+        <div class="mb-3">
+          <label for="modalLoginTime" class="form-label">Login Time</label>
+          <input type="time" class="form-control" id="modalLoginTime">
+        </div>
+        <div class="mb-3">
+          <label for="modalLogoutTime" class="form-label">Logout Time</label>
+          <input type="time" class="form-control" id="modalLogoutTime">
+        </div>
+        
+        <!-- NEW: Dropdown for Notes -->
+        <div class="mb-3">
+          <label for="modalNotesSelect" class="form-label">Reason for Missing Entry</label>
+          <select class="form-select" id="modalNotesSelect">
+            <option value="">-- Select Reason --</option> <!-- Default blank option -->
+            <option value="LOW BATT">LOW BATT</option>
+            <option value="NO LOAD">NO LOAD</option>
+            <option value="NO SIGNAL">NO SIGNAL</option>
+            <option value="LOST PHONE">LOST PHONE</option>
+            <option value="BUSTED PHONE">BUSTED PHONE</option>
+            <option value="BUSTED LAPTOP">BUSTED LAPTOP</option>
+            <!-- Add more options if needed -->
+          </select>
+        </div>
+
+        <input type="hidden" id="modalBesiId">
+        <input type="hidden" id="modalEntryDate">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="submitMissingEntryBtn">Submit Entry</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Search Filters Modal -->
+  <!-- Full-Screen Modal -->
+  <div class="modal fade" id="timekeepModal" tabindex="-1"
+      aria-labelledby="timekeepModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+
+        <div class="modal-header custom-header">
+          <h5 class="modal-title" id="fullScreenModalLabel">Search & Timekeeping</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body p-2" id="timekeepbody">
+          <!------------------//MAIN CONTAINER INSERT HERE----------------------->
+          
+        </div> <!-- /modal-body -->
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"
+                  data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Timekeeping Details Modal -->
+  <div class="modal fade" id="timekeepdetailModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <div class="modal-content shadow-lg">
+      <div class="modal-header custom-headerteal">
+          <h5 class="modal-title">Timekeeping Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <!-- Container for Tabulator -->
+          <div id="timekeepTable" class="table-responsive"></div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm"
+                  data-bs-dismiss="modal">Close</button>
+      </div>
+      </div>
+  </div>
+  </div>
+
+  <!-- Deactivate Modal -->
+  <div class="modal fade" id="deactivateModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content shadow-lg">
+      <div class="modal-header custom-header">
+          <h5 class="modal-title">Deactivate Employee</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form id="deactivateForm">
+          <div class="mb-3">
+              <label class="form-label">Employee ID</label>
+              <input type="text" id="deactEmpId" class="form-control" readonly>
+          </div>
+          
+          <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="text" id="deactEmail" class="form-control" readonly>
+          </div>
+
+            <!-- NEW: Location / Code between first and second "-" -->
+          <div class="mb-3">
+              <label class="form-label">Code</label>
+              <input type="text" id="deactCode" class="form-control" readonly>
+          </div>
+
+          <div class="mb-3">
+              <label class="form-label" id="reasonLabel">Reason for deactivating</label>
+              <textarea id="deactReason" class="form-control" rows="3" required></textarea>
+          </div>
+          </form>
+          <div id="deactError" class="text-danger small d-none"></div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" id="btnConfirmDeactivate" class="btn btn-danger btn-sm">
+          Deactivate
+          </button>
+      </div>
+      </div>
+  </div>
+  </div>
+
+
   <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/js/tabler.min.js"></script>
 
   <script src="/html/assets/libs/jquery/dist/jquery.min.js"></script> <!--//sidebarmenu dependent-->
@@ -267,7 +408,9 @@
   
   <script src="/html/assets/headcoordapp.js?v=8"></script>
   <script src="/html/assets/js/util.js?v=8"></script>
-  <script src="/html/assets/js/headcoord.js?v=8"></script>
+
+  <script type='module' src="/html/assets/js/headcoord.js?v=8"></script>
+
 
     
   <!-- <script src="/html/assets/js/main.js?v=8"></script> -->
@@ -275,12 +418,6 @@
 
   <!-- takeout muna gridtab palit extjs -->
   <!-- <script src="/html/assets/js/gridtab.js?v=8"></script> -->
-
-  <script> 
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('===HEAD coordinator complete==')
-    })
-  </script>
 
 </body>
 

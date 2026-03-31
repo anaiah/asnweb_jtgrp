@@ -1,21 +1,10 @@
-/*
+/* Author : Carlo O. Dominguez*/
 
-author : Carlo O. Dominguez
+import { timekeep } from './mod-timekeep.js';
 
-*/
-
-//
-//speech synthesis
-
-const asn = {
+const headcoord = {
 	
     offset: 0,
-
-    shopCart: [],
-    
-    //online version socket.io
-    //socket:io.connect("https://osndp.onrender.com"),
-
     socket:null,
 
     //=========================START VOICE SYNTHESIS ===============
@@ -279,15 +268,15 @@ const asn = {
 
             console.log('mydata ',results )
 
-            asn.allData = results //get  data
+            headcoord.allData = results //get  data
 
             //replace with 
            // gridMonth.setData( results )
-            ////// take ot muna  asn.ctrlExt.loadData(results)
-            //asn.ctrlExt.loadPage( asn.currentPage ) //load first page
+            ////// take ot muna  headcoord.ctrlExt.loadData(results)
+            //headcoord.ctrlExt.loadPage( headcoord.currentPage ) //load first page
                     
             //get chart
-            ///asn.getPieChart(util.getCookie('f_dbId'))
+            ///headcoord.getPieChart(util.getCookie('f_dbId'))
 
         })	
         .catch((error) => {
@@ -313,10 +302,10 @@ const asn = {
                 console.log('==NO DATA FOR PIECHART==')
                 
             }else{
-                asn.piedata.push( parseInt( data.data[0].delivered_pct) )
-                asn.piedata.push( parseInt( data.data[0].undelivered_pct) )
-                asn.pieChart() //render piechart
-                asn.speaks("Loading Chart...")
+                headcoord.piedata.push( parseInt( data.data[0].delivered_pct) )
+                headcoord.piedata.push( parseInt( data.data[0].undelivered_pct) )
+                headcoord.pieChart() //render piechart
+                headcoord.speaks("Loading Chart...")
                 
             }
 
@@ -353,7 +342,7 @@ const asn = {
             fill: {
               opacity: 1,
             },*/
-            series: asn.piedata ,
+            series: headcoord.piedata ,
             labels: ["Delivered %", "Undelivered %"],
             tooltip: {
               theme: 'dark'
@@ -391,7 +380,7 @@ const asn = {
     db: window.localStorage, //instantiate localstorage
 
     logout:()=>{
-        asn.db.removeItem('myCart')//remove transaction localdb
+        headcoord.db.removeItem('myCart')//remove transaction localdb
         location.href = './'
                     
     },
@@ -536,7 +525,7 @@ const asn = {
             //console.log('merge',xdata.length)
 
             //const mergedData = ''dash.mergeFinalData(xdata.xdata, cTrans );
-            //const mergedData = asn.mergeFinalData(xdata.xdata, cTrans );
+            //const mergedData = headcoord.mergeFinalData(xdata.xdata, cTrans );
             
             //let colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF5'];
             let colors = ['#0277bd', '#00838f   ', '#00695c', '#2e7d32','#558b2f','#9e9d24','#ff8f00','#d84315'];
@@ -720,7 +709,7 @@ const asn = {
     
             })//end foreach
 
-            asn.collapz()//invoke one time
+            headcoord.collapz()//invoke one time
             
             return true;
             
@@ -732,12 +721,16 @@ const asn = {
     },
     //==========END  GETMENU
    
+    dbprofile:null,
+
 	//==,= main run
 	init :  () => {
-        asn.getmenu(util.getCookie('grp_id')) 
-        console.log('===asn.init()=== loaded!')
 
-        asn.speaks = (txt) =>{
+        headcoord.dbprofile = JSON.parse(localStorage.getItem('profile'));
+
+        console.log('===headcoord.init()=== loaded!')
+
+        headcoord.speaks = (txt) =>{
             let speechsynth = new SpeechSynthesisUtterance();
             speechsynth.text = txt
             speechsynth.lang = "en-US"
@@ -745,7 +738,7 @@ const asn = {
         };    
 
         console.log('main.js SPEAK()')
-        asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
+        headcoord.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
         if(util.getCookie('f_pic')!==""){
             document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
@@ -761,7 +754,7 @@ const asn = {
 
         //==HANDSHAKE FIRST WITH SOCKET.IO
         const userName = { token : authz[1] , mode: 1}//full name token
-        asn.socket = io.connect(`${myIp}`, {
+        headcoord.socket = io.connect(`${myIp}`, {
             //withCredentials: true,
             transports: ['websocket', 'polling'], // Same as server
             upgrade: true, // Ensure WebSocket upgrade is attempted
@@ -772,54 +765,63 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
 
-        asn.socket.on('connect', () => {
-            console.log('Connected to Socket.IO server using:', asn.socket.io.engine.transport.name); // Check the transport
+        headcoord.socket.on('connect', () => {
+            console.log('Connected to Socket.IO server using:', headcoord.socket.io.engine.transport.name); // Check the transport
         });
 
-        asn.socket.on('disconnect', () => {
+        headcoord.socket.on('disconnect', () => {
             console.log('Disconnected from Socket.IO server');
         }); 
-        //===load mtd-chart
-        asn.loadbarMTDChart()
 
-        //==load grid month, rider month
-        asn.loadbarChart('hub')
 
-        //===load top5
-        setTimeout(() => {
-            asn.loadbarChart('rider');
-        }, 1000)
+        console.log('===headcoord.init() praise God! Loading JTX group ?v=6 ===')
 
-        console.log('===loadbarchart()===')
-
-        console.log('===asn.init() praise God! Loading JTX group ?v=6 ===')
-
-        document.getElementById('h5title').innerHTML= util.strDate() + ' (Daily Performance)'
-        
 	}//END init
 
 } //======================= end admin obj==========//
+
+window.scrollTo(0,0);
+headcoord.init() //instantiate now
+window.headcoord =headcoord
 
 Ext.onReady(function(){
     console.log('ext on ready....')
     Ext.tip.QuickTipManager.init();
 
-    asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
+    headcoord.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
     
     // Get the controller
-    asn.ctrlExt = asn.appExt.getController('coordController');
+    headcoord.ctrlExt = headcoord.appExt.getController('coordController');
 
-    asn.ctrlExt.listenviewreadyArea()  //load Area
-    asn.ctrlExt.listencoordLocation()//loadLoc
-    asn.ctrlExt.listencoordRider()//rider to load calendar
-    
-    //osndp.Bubbl
-    window.scrollTo(0,0);
-    asn.init() //instantiate now
-
+    headcoord.ctrlExt.listenviewreadyArea()  //load Area
+    headcoord.ctrlExt.listencoordLocation()//loadLoc
+    headcoord.ctrlExt.listencoordRider()//rider to load calendar
+       
 })
 
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('===HEAD coordinator DOM LOADED complete==')
+    
+    headcoord.getmenu(util.getCookie('grp_id')) 
 
+    timekeep.fetchtimekeep( headcoord.dbprofile) //===fire! insert html fragment even before show-bs modal of timekeepmodal
+            
+    //===load mtd-chart
+    headcoord.loadbarMTDChart()
+
+    //==load grid month, rider month
+    headcoord.loadbarChart('hub')
+
+    //===load top5
+    setTimeout(() => {
+        headcoord.loadbarChart('rider');
+    }, 1000)
+
+    console.log('===loadbarchart()===')
+    
+    document.getElementById('h5title').innerHTML= util.strDate() + ' (Daily Performance)'
+        
+})
 
 
   

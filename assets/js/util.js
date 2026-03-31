@@ -1223,17 +1223,21 @@ const util = {
         let hubStoreContainer = document.getElementById('hubStoreContainer');
         let hubSelect = document.getElementById('hubStore');
 
+        //fill select options for location
+        util.getLocation( document.getElementById('region').value)
+          
+
         //check position if it requires location and hub/store selection
         switch(elem.value){
             case '01': //rider
             case '02': //transporter
-                //need location and hub/store selection
+            case '04': //sorter
+            
+            //need location and hub/store selection
                 //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
                 util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
                 util.displayAreaLocationHub(true, hubStoreContainer, hubSelect) //hide location and hub/store selection
                
-                //fill select options for location
-                util.getLocation( document.getElementById('region').value)
                 
             break;
 
@@ -1248,7 +1252,6 @@ const util = {
 
             break;
 
-            case '04': //sorter
             case '08': //coordinator
                 //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
                 util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
@@ -1273,7 +1276,7 @@ const util = {
         } else {
             container.classList.remove('d-block');
             container.classList.add('d-none');
-            select.innerHTML = '<option value="">Select Hub/Store</option>';
+            select.innerHTML = '<option value="">Select Hub / DC</option>';
             select.value = '';
             select.removeAttribute('required');
             select.classList.remove('is-invalid');
@@ -1388,7 +1391,7 @@ const util = {
 
             console.log(hubs)
 
-            hubStoreSelect.innerHTML = '<option value="">Select Hub/Store</option>';
+            hubStoreSelect.innerHTML = '<option value="">Select Hub / DC</option>';
 
             hubsArray.forEach(hub => {
                 const option = document.createElement('option');
@@ -1844,6 +1847,11 @@ const util = {
                     //coordinator/ 
                     case '08':
                         location.href = '/besi/coord'    
+                    break
+
+                    ///head coordinator
+                    case '07':
+                        location.href = '/besi/headcoord'    
                     break
 
                     case 3:  //head coord
