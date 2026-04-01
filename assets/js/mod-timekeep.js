@@ -52,7 +52,7 @@ let dbprofile = null;
 
 
     const findRegion = ( xregion ) =>{
-        const aRegion = ['NCR-CMNL','NCR-CMNVA','NCR-SMNL','LUZ-NEL','LUZ-NWL'];
+        const aRegion = ['NCR-CMNL','NCR-CMNVA','NCR-SMNL','LUZ-NEL','LUZ-NWL','MIN'];
         const aValue  = ['cmnl','cmnva','smnl','nelu','nwlu'];
 
         const region = xregion

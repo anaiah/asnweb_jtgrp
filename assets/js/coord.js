@@ -1036,6 +1036,11 @@ const asn = {
         
             console.log('===loadbarchart()===')
 
+                //=====FOR ADDING NEW EMPLOYEE
+    util.modalListeners('newempModal')
+    //util.modalListeners('dataPrivacySignatureModal')
+
+
         }else{  //************FOR SORTERS, TRANSPORTERS */
             
             asn.getmenu(asn.dbprofile.grp_id) 
@@ -1083,6 +1088,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     timekeep.fetchtimekeep( asn.dbprofile ) //===fire! insert html fragment even before show-bs modal of timekeepmodal
     
+
     // Get a reference to your modal's HTML element
     const universalMessageModalElement = document.getElementById('universalMessageModal');
 
@@ -1213,6 +1219,182 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+                            
+    // Get references to all relevant DOM elements
+    const addy1Input = document.getElementById('addy1');
+    const addy2Input = document.getElementById('addy2');
+    const barangayInput = document.getElementById('bgy');
+    const cityInput = document.getElementById('city');
+    const fullAddressTextarea = document.getElementById('address');
+
+    // Function to update the full address textarea
+    function updateFullAddress() {
+        const addressParts = [];
+
+        // Add parts only if they have a non-empty value after trimming whitespace
+        if (addy1Input.value.trim()) {
+            addressParts.push(addy1Input.value.trim());
+        }
+        if (addy2Input.value.trim()) {
+            addressParts.push(addy2Input.value.trim());
+        }
+        if (barangayInput.value.trim()) {
+            addressParts.push(` Bgy. ${barangayInput.value.trim()}`);
+        }
+        if (cityInput.value.trim()) {
+            addressParts.push(cityInput.value.trim());
+        }
+
+        // Join the parts with a newline character for multi-line display
+        fullAddressTextarea.value = addressParts.join(', ').toUpperCase() //addressParts.join('\n');
+        if(hris.address)
+            hris.address = fullAddressTextarea.value
+    
+    }
+
+    // Attach the 'input' event listener to each address field
+    // The 'input' event fires whenever the value of an <input> or <textarea> element has been changed
+    addy1Input.addEventListener('input', updateFullAddress);
+    addy2Input.addEventListener('input', updateFullAddress);
+    barangayInput.addEventListener('input', updateFullAddress);
+    cityInput.addEventListener('input', updateFullAddress);
+
+    // Optional: Call the function once on page load
+    // This is useful if the form fields might be pre-filled when the page loads (e.g., for editing an existing record)
+    updateFullAddress();
+
+    // Get references to all relevant DOM elements
+    const lastNameInput = document.getElementById('lastName');
+    const firstNameInput = document.getElementById('firstName');
+    const middleNameInput = document.getElementById('middleName');
+    const nameSuffixSelect = document.getElementById('nameSuffix');
+    const fullNameTextarea = document.getElementById('fullName');
+
+    // Function to update the full name textarea
+    function updateFullName() {
+        // Get trimmed values from inputs and select
+        const lastName = lastNameInput.value.trim();
+        const firstName = firstNameInput.value.trim();
+        const middleName = middleNameInput.value.trim();
+        const suffix = nameSuffixSelect.value.trim();
+
+        let formattedName = '';
+
+        // 1. Start with Last Name
+        if (lastName) {
+            formattedName += lastName;
+        }
+
+        // 2. Add First Name
+        if (firstName) {
+            if (formattedName) { // Only add comma if last name exists
+                formattedName += ', ';
+            }
+            formattedName += firstName;
+        }
+
+        // 3. Add Middle Initial (with a space before it)
+        if (middleName) {
+            const middleInitial = middleName.charAt(0).toUpperCase() + '.';
+            if (formattedName) { // Only add space if some name part already exists
+                formattedName += ' ';
+            }
+            formattedName += middleInitial;
+        }
+
+        // 4. Add Suffix (with a comma and space before it)
+        if (suffix) {
+            if (formattedName) { // Only add comma and space if some name part already exists
+                formattedName += ', '; // <-- CHANGED THIS LINE
+            }
+            formattedName += suffix;
+        }
+
+        // Update the textarea
+        fullNameTextarea.value = formattedName;
+        hris.fullname = firstName.toUpperCase() + ' ' + middleName.toUpperCase() + ' ' + lastName.toUpperCase() + ' ' + suffix.toUpperCase() 
+    }
+
+    // Attach 'input' event listeners to text fields for real-time updates
+    lastNameInput.addEventListener('input', updateFullName);
+    firstNameInput.addEventListener('input', updateFullName);
+    middleNameInput.addEventListener('input', updateFullName);
+
+    // Attach 'change' event listener to the select dropdown
+    nameSuffixSelect.addEventListener('change', updateFullName);
+
+    // Optional: Call the function once on page load
+    updateFullName();
+
+    //===============FOR DEACTIVATION ===================//
+    const btn = document.getElementById("btnConfirmDeactivate");
+    const errorDiv = document.getElementById("deactError");
+
+    function setButtonLoading(isLoading, labelWhenDone) {
+        if (isLoading) {
+            btn.disabled = true;
+            btn.innerHTML = `
+            <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+            Saving...
+            `;
+        } else {
+            btn.disabled = false;
+            btn.textContent = labelWhenDone;
+        }
+    }
+
+    btn.addEventListener("click", async () => {
+        const empid  = document.getElementById("deactEmpId").value;
+        const email = document.getElementById("deactEmail").value;
+        const region = document.getElementById("deactCode").value;
+        const reason = document.getElementById("deactReason").value.trim();
+        const action = btn.dataset.action; // "deactivate" or "reactivate"
+
+        errorDiv.classList.add("d-none");
+        errorDiv.textContent = "";
+
+        // Require reason only for deactivate
+        if (action === "deactivate" && !reason) {
+            errorDiv.textContent = "Reason is required for deactivation.";
+            errorDiv.classList.remove("d-none");
+            return;
+        }
+
+        const originalLabel = action === "deactivate" ? "Deactivate" : "Reactivate";
+        setButtonLoading(true, originalLabel);
+
+        try {
+            const res = await fetch(`${myIp}/employee/status`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ empid, region, reason, action }),
+            });
+
+            if (!res.ok) {
+            const text = await res.text();
+            throw new Error(text || "Request failed");
+            }
+
+            setButtonLoading(false, originalLabel);
+
+            // close modal
+            const modalEl = document.getElementById("deactivateModal");
+            const modal = bootstrap.Modal.getInstance(modalEl);
+            modal.hide();
+
+            document.getElementById("search-btn").click();
+            
+            // refresh table
+            table.replaceData();
+        } catch (err) {
+            setButtonLoading(false, originalLabel);
+            errorDiv.textContent = err.message || "Error updating status";
+            errorDiv.classList.remove("d-none");
+        }
+    });
+
+
 
 });
 

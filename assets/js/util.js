@@ -885,7 +885,7 @@ const util = {
             case "newempModal":
             case "dataPrivacySignatureModal" :
 
-                if(util.getCookie('grp_id')==="8"){ // HR PEOPLE FOR NOW
+                if(util.getCookie('grp_id')==="8" || util.getCookie('grp_id')==="08"){ // HR PEOPLE or coordinator FOR NOW
                     //show the dialog modal
                     //console.log('uyyy mdalshow Nu emp')
                     
@@ -1580,7 +1580,7 @@ const util = {
             
             if( window.main ) { window.main.gonow = false; }
             if( window.asn ) { window.asn.gonow = false; }
-            if( window.hris ) { window.hris.gonow = false; }
+            if( window.hris ) { window.hris.gonow = false; } 
             
             return false;
 
