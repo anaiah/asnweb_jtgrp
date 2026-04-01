@@ -1185,11 +1185,7 @@ const util = {
     
     url:null,
 
-    //for use in image/signature upload
-    dataEmployeeId: null,
-    dataRegion:null,
-    dataEmployeeName:null,
-
+    
     //=================HANDLE POSITION  CHANGE========
     checkPosition:()=>{
         util.getLocation( document.getElementById('region').value)
@@ -1211,7 +1207,7 @@ const util = {
         util.toggleDriversLicenseValidation()
 
         console.log('position select ', elem.value)
-        hris.position = elem.value
+        //hris.position = elem.value
 
         let areaContainer = document.getElementById('areaContainer');
         let areaSelect = document.getElementById('loc_area');
@@ -1617,7 +1613,7 @@ const util = {
                     btnsave.disabled = true;
                     
                     //get hire date
-                    hris.dateHired = document.getElementById('hireDate').value
+                   // hris.dateHired = document.getElementById('hireDate').value
 
                     // Call newempPost with the FormData object
                     util.newempPost(frm, frmModal, `${myIp}/newemppost/${document.getElementById('region').value}/${document.getElementById('hireDate').value}/${document.getElementById('jobTitle').value}`, formData);
@@ -1807,7 +1803,7 @@ const util = {
                 obj.ocw_id = data[0].ocw_id
                 obj.jms_id = data[0].jms_id
 
-                obj.region = data[0].regionfv
+                obj.region = data[0].region
                 obj.fullname = data[0].fname
                 
                 obj.grp_id = data[0].grp_id
@@ -1912,82 +1908,82 @@ const util = {
     isPlaying:false,
     
     ///=========================PLAY GREETINGS===============
-    translate:async ({ xmsg, runwhat = () => {}, cRedirect } = {}) => {
+    // translate:async ({ xmsg, runwhat = () => {}, cRedirect } = {}) => {
 
-        if (util.isPlaying) return; // prevent re-entry
+    //     if (util.isPlaying) return; // prevent re-entry
   
-        util.isPlaying = true;
+    //     util.isPlaying = true;
 
-        const aActs = [
-            " Ingat po sa Byahe!", 
-            " Galingan naten today ha?",
-            " Kayang-kaya mo yan!!!!",
-            " Wag pabayaan ang sarili!!!",
-            " Magdasal lagi sa Panginoon!",
-            " Gawin mong  sandigan ng lakas ang iyong Pamilya!"]
+    //     const aActs = [
+    //         " Ingat po sa Byahe!", 
+    //         " Galingan naten today ha?",
+    //         " Kayang-kaya mo yan!!!!",
+    //         " Wag pabayaan ang sarili!!!",
+    //         " Magdasal lagi sa Panginoon!",
+    //         " Gawin mong  sandigan ng lakas ang iyong Pamilya!"]
         
-        const now = new Date();
-        const hours = now.getHours(); // returns 0-23
-        const wHrs = hours % 24;
-        let xvoice
+    //     const now = new Date();
+    //     const hours = now.getHours(); // returns 0-23
+    //     const wHrs = hours % 24;
+    //     let xvoice
 
-        if (wHrs >= 0 && wHrs < 12) { // Check for 12 AM (0)
-            xvoice = `MAGANDANG UMAGA!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`  
-        } else if (wHrs >= 12 && wHrs <= 17) { //AM period
-            xvoice =`MAGANDANG HAPON!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`
-        } else if (wHrs > 17 && wHrs <= 23) { //AM period
-            xvoice = `MAGANDANG GABI!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`
+    //     if (wHrs >= 0 && wHrs < 12) { // Check for 12 AM (0)
+    //         xvoice = `MAGANDANG UMAGA!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`  
+    //     } else if (wHrs >= 12 && wHrs <= 17) { //AM period
+    //         xvoice =`MAGANDANG HAPON!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`
+    //     } else if (wHrs > 17 && wHrs <= 23) { //AM period
+    //         xvoice = `MAGANDANG GABI!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`
          
-        }
+    //     }
 
-        const apiKey = 'sk_71ec2e7034a4e78f766acbbfd418beb2d6e7c8febfc94507'; // your API key
-        const voiceId = 'NEqPvTuKWuvwUMAEPBPR'; // your voice ID
+    //     const apiKey = 'sk_71ec2e7034a4e78f766acbbfd418beb2d6e7c8febfc94507'; // your API key
+    //     const voiceId = 'NEqPvTuKWuvwUMAEPBPR'; // your voice ID
 
-        try {
-            const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                'xi-api-key': apiKey,
-                },
-                body: JSON.stringify({
-                text: xvoice ,
-                model_id: 'eleven_multilingual_v2',
-                output_format: 'mp3',
-                }),
-            });
+    //     try {
+    //         const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+    //             method: 'POST',
+    //             headers: {
+    //             'Content-Type': 'application/json',
+    //             'xi-api-key': apiKey,
+    //             },
+    //             body: JSON.stringify({
+    //             text: xvoice ,
+    //             model_id: 'eleven_multilingual_v2',
+    //             output_format: 'mp3',
+    //             }),
+    //         });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
+    //         if (!response.ok) {
+    //             throw new Error('Network response was not ok ' + response.statusText);
+    //         }
 
-            const audioBlob = await response.blob();
-            const url = URL.createObjectURL(audioBlob);
-            const audio = new Audio(url);
+    //         const audioBlob = await response.blob();
+    //         const url = URL.createObjectURL(audioBlob);
+    //         const audio = new Audio(url);
 
-            //carlo
-            audio.onended = null; // Remove previous handle
+    //         //carlo
+    //         audio.onended = null; // Remove previous handle
 
-            // use onended instead of addEventListener
-            audio.onended = () => {
-                util.isPlaying = false; // reset flag
+    //         // use onended instead of addEventListener
+    //         audio.onended = () => {
+    //             util.isPlaying = false; // reset flag
             
-                if (cRedirect !== undefined && cRedirect !== null) {
-                    window.location.href = cRedirect;
-                }
-                if (typeof runwhat === 'function') {
-                    runwhat();
+    //             if (cRedirect !== undefined && cRedirect !== null) {
+    //                 window.location.href = cRedirect;
+    //             }
+    //             if (typeof runwhat === 'function') {
+    //                 runwhat();
                    
-                }
-            }//ended onended
+    //             }
+    //         }//ended onended
             
-            audio.play();
-        } catch (error) {
-        console.error('Error:', error);
-            util.isPlaying = false; // Reset flag on error
-        }
+    //         audio.play();
+    //     } catch (error) {
+    //     console.error('Error:', error);
+    //         util.isPlaying = false; // Reset flag on error
+    //     }
 
-    },    
+    // },    
 
     //================ new employee posting =========// 
     newempPost:async function(frm,modal,url="",formData){
@@ -2015,13 +2011,16 @@ const util = {
                 util.hideModal('newempModal',0) //hide dataentry
                 //document.getElementById('footer-msg').innerHTML=''//reset
 
-
                 //=========SHOW DATA PRIVACY===========//
-                 //==get employee Id
+                //== SAVE IMORTANT DATA TO GLOBAL VARS FOR LATER USE IN SIGNATURE UPLOAD AND PDF GENERATION ==
+
                 util.dataEmployeeId = data.employeeId
                 util.dataRegion = data.regionId
                 util.dataEmployeeName = data.employeeName
-               
+                util.dataPosition = data.positionId
+                util.dataAddress = data.address;
+                util.dataDateHired = data.dateHired;
+
                 // --- NEW: Show the Data Privacy & Signature Modal ---
                 const dataPrivacyModalElement = document.getElementById('dataPrivacySignatureModal');
                 const dataPrivacyModal = new bootstrap.Modal(dataPrivacyModalElement);
@@ -2052,6 +2051,13 @@ const util = {
         })
     },
 
+    //for use in image/signature upload
+    dataEmployeeId: null,
+    dataRegion:null,
+    dataEmployeeName:null,
+    dataAddress:null,
+    dataPosition:null,
+    
     //=================SAVE SIGNATTURE ==========//
     saveSignature : async () =>  {
 
@@ -2124,8 +2130,17 @@ const util = {
                 
                 console.log('1. speak: Printing...');
                 util.speak('Printing...');
-                util.printPdf(util.dataEmployeeId, util.dataEmployeeName , util.dataRegion)
 
+                //  util.dataEmployeeId = data.employeeId
+                // util.dataRegion = data.regionId
+                // util.dataEmployeeName = data.employeeName
+                // util.dataPosition = data.positionId
+                // util.dataAddress = data.address;
+                // util.dataDateHired = data.dateHired;
+
+                //=========PRINT PDF AND DOWNLOAD========//
+                util.printPdf(  util.dataEmployeeId, util.dataEmployeeName , util.dataRegion, util.dataPosition, util.dataAddress, util.dataDateHired);
+                //========= PRINT PDF AND DOWNLOAD========//
 
             } else {
                 util.speak(data.voice);
@@ -2143,18 +2158,26 @@ const util = {
         }
     },
 
-    //==============CALL PRINT TO PDF
-    printPdf: async ( empid, empname, empregion )=> {
+    //==============CALL PRINT TO PDF, after util.saveSignature() =============//
+    printPdf: async ( empid, empname, empregion, empposition, empaddress, empdateHired )=> {
 
         let xfile = `${empid}.pdf`;
 
         // Ensure all URL parameters are encoded
         const empidParam = encodeURIComponent(empid);
-        const fullnameParam = encodeURIComponent(hris.fullname);
+        const fullnameParam = encodeURIComponent( empname);
         const empregionParam = encodeURIComponent(empregion);
-        const positionParam = encodeURIComponent(hris.position);
-        const addressParam = encodeURIComponent(hris.address);
-        const dateHiredParam = encodeURIComponent(hris.dateHired);
+        const positionParam = encodeURIComponent( empposition);
+        const addressParam = encodeURIComponent(empaddress);
+        const dateHiredParam = encodeURIComponent(empdateHired);
+
+        // // Ensure all URL parameters are encoded
+        // const empidParam = encodeURIComponent(empid);
+        // const fullnameParam = encodeURIComponent(hris.fullname);
+        // const empregionParam = encodeURIComponent(empregion);
+        // const positionParam = encodeURIComponent(hris.position);
+        // const addressParam = encodeURIComponent(hris.address);
+        // const dateHiredParam = encodeURIComponent(hris.dateHired);
 
         const fullDownloadUrl = `${myIp}/printpdf/${empidParam}/${fullnameParam}/${empregionParam}/${positionParam}/${addressParam}/${dateHiredParam}`;
             
@@ -2201,40 +2224,6 @@ const util = {
         });
     },
 
-    // printPdf: async ( empid, empname, empregion )=> {
-
-    //     let xfile = `${empid}.pdf`
-
-    //     util.speak('Printing...')
-         
-    //     fetch(`${myIp}/printpdf/${empid}/${ hris.fullname}/${ empregion}/${hris.position}/${ hris.address }/${hris.dateHired}`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-                
-    //             //body: JSON.stringify({ myObjects: asn.pdfCart }), // Convert the array to JSON
-    //             //cache: 'reload' // Remove if you don't need to reload
-    //         })
-    //         .then(response => response.blob())
-    //         .then(blob => URL.createObjectURL(blob))
-    //         .then(url => {
-    //             const a = document.createElement('a');
-    //             a.href = url;
-    //             a.download =  xfile ;//`${pdffile}`; // Set the file name for the download
-    //             document.body.appendChild(a);
-    //             a.click();
-    //             a.remove();
-    //             window.URL.revokeObjectURL(url);
-    //             util.speak('Downloaded!')
-    //         })
-    //         .catch((error) => {
-    //             //util.Toast(`Error:, ${error}`,1000)
-    //             alert(error)
-    //             console.error('Error:', error)
-    //         })
-    // },
-
     resizeSignatureCanvas : () => {
         const canvas = document.getElementById('signatureCanvas');
         if (canvas && util.signaturePad) {
@@ -2252,8 +2241,6 @@ const util = {
             document.getElementById('signatureCanvas-error').style.display = 'none'; 
         }
     },
-    
-
 
 
     //utility toastify
@@ -2355,3 +2342,5 @@ const util = {
 
     
 }//****** end obj */
+
+window.util = util; // Make util globally accessible

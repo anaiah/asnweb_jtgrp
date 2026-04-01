@@ -82,7 +82,8 @@ let dbprofile = null;
         
     }//end func
 
-    //======================FIRED ONE TIME DURING LOADING OF coordinator page and modal show.bs.modal listener===========================//
+    //======================FIRED ONE TIME DURING LOADING OF coordinator page and 
+    // DOM CONTENT LOADED modal show.bs.modal listener===========================//
     const fetchtimekeep = ( db ) =>{
 
         dbprofile = db; // assign to outer variable for use in other functions
@@ -105,6 +106,11 @@ let dbprofile = null;
 
             //make sure filter region auto select the region of the logged in user
             document.getElementById('filter_region').value = db.region;
+
+            //newempmodal region
+            document.getElementById('region').value = db.region.toUpperCase();
+            util.showPos() // show position in newempmodal based on region
+
             
             //==========hris filter action
             //for select actions for filtering

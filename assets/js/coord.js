@@ -1036,10 +1036,6 @@ const asn = {
         
             console.log('===loadbarchart()===')
 
-                //=====FOR ADDING NEW EMPLOYEE
-    util.modalListeners('newempModal')
-    //util.modalListeners('dataPrivacySignatureModal')
-
 
         }else{  //************FOR SORTERS, TRANSPORTERS */
             
@@ -1088,6 +1084,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     timekeep.fetchtimekeep( asn.dbprofile ) //===fire! insert html fragment even before show-bs modal of timekeepmodal
     
+                //=====FOR ADDING NEW EMPLOYEE
+                util.modalListeners('newempModal')
+                util.modalListeners('dataPrivacySignatureModal')
 
     // Get a reference to your modal's HTML element
     const universalMessageModalElement = document.getElementById('universalMessageModal');
@@ -1248,8 +1247,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Join the parts with a newline character for multi-line display
         fullAddressTextarea.value = addressParts.join(', ').toUpperCase() //addressParts.join('\n');
-        if(hris.address)
-            hris.address = fullAddressTextarea.value
+    
+        //hris.address = fullAddressTextarea.value
     
     }
 
@@ -1313,7 +1312,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update the textarea
         fullNameTextarea.value = formattedName;
-        hris.fullname = firstName.toUpperCase() + ' ' + middleName.toUpperCase() + ' ' + lastName.toUpperCase() + ' ' + suffix.toUpperCase() 
+        //hris.fullname = firstName.toUpperCase() + ' ' + middleName.toUpperCase() + ' ' + lastName.toUpperCase() + ' ' + suffix.toUpperCase() 
     }
 
     // Attach 'input' event listeners to text fields for real-time updates
