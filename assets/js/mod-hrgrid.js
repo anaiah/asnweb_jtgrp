@@ -337,32 +337,14 @@ export function initTimekeepGrid() {
 
                     const besiId = rowData.besi_id; // Assuming besi_id is unique per row
 
-                    // return `<b>${rowData.full_name}</b><br>
-                    //         ${rowData.emp_status}<br>
-                    //         ${rowData.email}<br>
-                    //         ${rowData.besi_id}<br>
-                    //         <button class='btn-primary btn-sm btn' onclick="timekeep.openTimekeepModal('${rowIdx}')">View Timekeeping Details</button>
-                    //         ( ${rowData.timekeep_approved} ==1 ? 'Approved' : 'Pending')
-                    //         `;
-                            return `
-    <div class="p-1">
-        <b>${rowData.full_name}</b><br>
-        <small class="text-muted">${rowData.emp_status} | ${rowData.besi_id}</small><br>
-        <small class="d-block mb-2">${rowData.email}</small>
-        
-        <div class="d-flex align-items-center gap-2">
-            <button class='btn btn-primary btn-sm flex-grow-1' 
-                    style="border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
-                    onclick="timekeep.openTimekeepModal('${rowIdx}')">
-                View Details
-            </button>
-            <span class="badge rounded-pill ${rowData.timekeep_approved == 1 ? 'bg-success' : 'bg-warning text-dark'}" 
-                  style="height: fit-content; padding: 6px 10px;">
-                ${rowData.timekeep_approved == 1 ? '✔' : '●'}
-            </span>
-        </div>
-    </div>
-`;
+                    return `<b>${rowData.full_name}</b><br>
+                            ${rowData.emp_status}<br>
+                            ${rowData.email}<br>
+                            ${rowData.besi_id}<br>
+                            <button class='btn-primary btn-sm btn' onclick="timekeep.openTimekeepModal('${rowIdx}')">View Timekeeping Details</button>
+                            `;
+//                             return `
+
 
 
                             // ^^^ Pass the unique ID as a string ^^^
