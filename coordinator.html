@@ -297,16 +297,17 @@
                                     </select>
                                 </div>
 
-                                <div class="mb-3 d-none" id="posContainer">
+                                 <div class="mb-3 d-none" id="posContainer">
                                     <label for="jobTitle" class="form-label">Position</label>
                                     <select class="form-select 201" id="jobTitle" name="jobTitle" required 
                                         onchange="util.handlePosChange(this)">
                                         <option value="" disabled selected>Select Position</option>
                                         <option value="01" >Rider</option>
                                         <option value="04">Sorter/BackRoom</option>
+                                        <option value="02">Transporter</option>
+                                        <option value="10">Team Leader</option>
                                         <option value="08">Coordinator</option>
                                         <option value="07">Lead Coordinator</option>
-                                        <option value="02">Transporter</option>
                                         <option value="06">Time Keeper</option>
                                         <option value="03">Foot Delivery</option>
                                         <option value="15">3 Wheel</option>
@@ -314,7 +315,7 @@
                                         
                                     </select>
                                 </div>
-                               
+                                
                                   <!-- location (initially hidden) -->
                                 <div class="mb-3 d-none" id="locContainer">
                                     <label for="locStore" class="form-label">Location</label>
