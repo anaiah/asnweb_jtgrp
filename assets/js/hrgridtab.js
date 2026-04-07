@@ -98,6 +98,7 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 const empId   = rowData.emp_id;
                 const email = rowData.email;
                 const region = document.getElementById('filter_region').value
+                
 
                 switch( action ){
                     case "view":
@@ -116,7 +117,7 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                         console.log('1. speak: Printing...');
                         util.speak('Printing...');
                         
-                        util.printPdf( empId, rowData.full_name , region )
+                        util.printPdf( empId, rowData.full_name , region, hris.position, hris.address, hris.dateHired )
                         return;
                     break;
 

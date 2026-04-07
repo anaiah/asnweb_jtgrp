@@ -1084,11 +1084,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     timekeep.fetchtimekeep( asn.dbprofile ) //===fire! insert html fragment even before show-bs modal of timekeepmodal
     
-                //=====FOR ADDING NEW EMPLOYEE
-                util.modalListeners('newempModal')
-                util.modalListeners('dataPrivacySignatureModal')
+    //=====FOR ADDING NEW EMPLOYEE
+    util.modalListeners('newempModal')
+
+    //===== DATA PRIVACY / SIGNATURE MODAL
+    util.modalListeners('dataPrivacySignatureModal')
 
     // Get a reference to your modal's HTML element
+    //THIS IS FOR THE TIMEIN/OUT MODAL, NOT THE MISSING ENTRY MODAL
     const universalMessageModalElement = document.getElementById('universalMessageModal');
 
     universalMessageModalElement.addEventListener('shown.bs.modal', (event) => {
@@ -1221,6 +1224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             
     // Get references to all relevant DOM elements
+    // FOR ADDING  NEW RECORD
     const addy1Input = document.getElementById('addy1');
     const addy2Input = document.getElementById('addy2');
     const barangayInput = document.getElementById('bgy');
