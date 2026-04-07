@@ -1228,13 +1228,12 @@ const util = {
             case '01': //rider
             case '02': //transporter
             case '04': //sorter
-            
+            case '10': //team leader
             //need location and hub/store selection
                 //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
                 util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
                 util.displayAreaLocationHub(true, hubStoreContainer, hubSelect) //hide location and hub/store selection
                
-                
             break;
 
             case '07': //lead coordinator
@@ -1833,10 +1832,11 @@ const util = {
                         location.href = '../jtx/coord'
                     break
 
-                    //sorter/rider/transporter
+                    //sorter/rider/transporter/team leader
                     case '01':
                     case '02':
                     case '04':
+                    case '10':
                         location.href = '/besi/main'    
                     break;
 
