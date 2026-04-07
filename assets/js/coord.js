@@ -939,6 +939,46 @@ const asn = {
 
     dbprofile: null,
 
+    approveTimeKeep: async ()=>{
+        console.log( '===approve this ===', document.getElementById('filter_region').value,timekeep.getLoginDetails().id, timekeep.getLoginDetails().login_details )
+        
+        const data = timekeep.getLoginDetails().login_details;
+
+        // 1. Extract first and last dates
+        const from = data[0].xdate;
+        const to = data[data.length - 1].xdate;
+        const id = timekeep.getLoginDetails().id
+        const region = document.getElementById('filter_region').value
+
+        try {
+            // 2. Send the POST request
+            const response = await fetch(`${myIp}/approveTimeKeep`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    region: region,
+                    id: id,
+                    fromDate: from, 
+                    toDate: to 
+                })
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Server Error: ${errorText}`);
+            }
+
+            const result = await response.json();
+            console.log("Success Result:", result.message);        
+            alert( result.message )
+
+        } catch (error) {
+            console.error('Network error:', error);
+        }
+
+    },
 
 	//==,= main run
 	init :  () => {

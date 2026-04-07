@@ -7,6 +7,8 @@ import {
 
 let lastSearchData = null;
 let dbprofile = null;
+let loginDetails = null;
+
      //===============open timeekeeping detailed modal
     const openTimekeepModal = ( tabulatorRowId ) => {
 
@@ -23,6 +25,9 @@ let dbprofile = null;
         if (rowComponent) {
             const rowData = rowComponent.getData();
             console.log("Full row data found:", rowData);
+            loginDetails = rowData;
+
+            //IIMPORTANT
             console.log("Login Details for this row:", rowData.login_details);
 
             //set details to new grid tabulator
@@ -457,6 +462,8 @@ let dbprofile = null;
             body: formData
         });
 
+        console.log('==FIRING SEARCHEMPTIMEKEEP() mod-timekeep.js===')
+
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({ message: 'Server error' }));
             throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);
@@ -501,7 +508,7 @@ let dbprofile = null;
 
     }
 
-   
+    const getLoginDetails = () => loginDetails;
 
     /*********EXPORT FUNC */
     export const timekeep = {
@@ -511,9 +518,9 @@ let dbprofile = null;
         searchEmp,
         getHub,
         printTimeKeep,
-        openTimekeepModal
+        openTimekeepModal,
+        getLoginDetails
     };
-
     
     //MAKE IT GLOBAL
     window.timekeep = timekeep;
