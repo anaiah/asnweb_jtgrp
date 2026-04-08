@@ -338,11 +338,16 @@ export function initTimekeepGrid() {
                     const besiId = rowData.besi_id; // Assuming besi_id is unique per row
 
                     return `<b>${rowData.full_name}</b><br>
-                            ${rowData.emp_status}<br>
-                            ${rowData.email}<br>
-                            ${rowData.besi_id}<br>
-                            <button class='btn-primary btn-sm btn' onclick="timekeep.openTimekeepModal('${rowIdx}')">View Timekeeping Details</button>
-                            `;
+                        ${rowData.emp_status}<br>
+                        ${rowData.email}<br>
+                        ${rowData.besi_id}<br>
+                        <button class='btn-primary btn-sm btn' onclick="hris.openTimekeepModal('${rowIdx}')">View Timekeeping Details</button>
+                        <span style="background: #f1f5f9; color: #64748b; padding: 4px 10px; border-radius: 12px; font-size: 0.85em; font-weight: bold; border: 1px solid #e2e8f0;">
+                        ${rowData.timekeep_approved == 1 ? ' ✔ Approved' : ' ● Pending'}
+                        </span> `;}
+        
+
+
 //                             return `
 
 

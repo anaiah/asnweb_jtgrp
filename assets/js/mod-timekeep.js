@@ -505,8 +505,7 @@ let loginDetails = null;
 
             console.log("Tabulator grid updated with new data.");
         }
-
-    }
+    }//printtimekep
 
     const getLoginDetails = () => loginDetails;
 

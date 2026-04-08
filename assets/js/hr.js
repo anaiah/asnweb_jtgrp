@@ -505,6 +505,8 @@
 
         },
 
+        loginDetails:null,
+
         //===============open timeekeeping detailed modal
         openTimekeepModal: ( tabulatorRowId ) => {
 
@@ -520,6 +522,9 @@
 
             if (rowComponent) {
                 const rowData = rowComponent.getData();
+
+                hris.loginDetails = rowData // pass the rowdata retrieeved timekeeping
+
                 console.log("Full row data found:", rowData);
                 console.log("Login Details for this row:", rowData.login_details);
 
@@ -588,6 +593,48 @@
             }
         },
 
+        //hr apprpove coords timekeep
+        approveTimeKeep: async ()=>{
+
+            console.log( '=== hr approve this ===', document.getElementById('filter_region').value, hris.loginDetails.id, hris.loginDetails.login_details  )
+            
+            const data = hris.loginDetails.login_details;
+    
+            // 1. Extract first and last dates
+            const from = data[0].xdate;
+            const to = data[data.length - 1].xdate;
+            const id = hris.loginDetails.id
+            const region = document.getElementById('filter_region').value
+    
+            try {
+                // 2. Send the POST request
+                const response = await fetch(`${myIp}/approveTimeKeep`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        region: region,
+                        id: id,
+                        fromDate: from, 
+                        toDate: to 
+                    })
+                });
+    
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Server Error: ${errorText}`);
+                }
+    
+                const result = await response.json();
+                console.log("Success Result:", result.message);        
+                alert( result.message )
+    
+            } catch (error) {
+                console.error('Network error:', error);
+            }
+        },
+        
         //================DOWNLOAD TIMEKEEPING XLS======//
         //-- timekeeping
         downloadTimekeepXls: async () => { // <--- Add 'event' parameter
