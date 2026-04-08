@@ -1,58 +1,10 @@
-import { timekeep } from './mod-timekeep.js';
+//import { timekeep } from './mod-timekeep.js';
 
 
 // mod-hrgrid.js
 let hrisGrid = null;
 let timekeepGrid = null;
 let timekeepdetailGrid = null;
-
-//===============open timeekeeping detailed modal
-const openTimekeepModal =  ( tabulatorRowId ) => {
-
-            const modalEl = document.getElementById("timekeepdetailModal");
-            const bsModal = new bootstrap.Modal(modalEl);
-
-            bsModal.show();
-
-            // *** THIS IS THE CRUCIAL CORRECTION ***
-            // Use 'tabulatorRowId' (which is the value from cell.getRow().getIndex())
-            // to retrieve the RowComponent.
-            const rowComponent = timekeepGrid.getRow(tabulatorRowId);
-            
-            let loginDetails = null;
-
-            if (rowComponent) {
-                const rowData = rowComponent.getData();
-
-                loginDetails = rowData // pass the rowdata retrieeved timekeeping
-
-                console.log("Full row data found:", rowData);
-                console.log("Login Details for this row:", rowData.login_details);
-
-                //set details to new grid tabulator
-                timekeepdetailGrid.setData(  rowData.login_details )
-
-                // Now you have the login_details array, you can do whatever you need with it
-                if (rowData.login_details && rowData.login_details.length > 0) {
-                    let detailsHtml = "<ul>";
-                    rowData.login_details.forEach(detail => {
-                        detailsHtml += `<li>Date: ${detail.xdate}, Login: ${detail.login}, Logout: ${detail.logout}</li>`;
-                    });
-                    detailsHtml += "</ul>";
-
-                    // For demonstration, using alert. You'd typically update a DOM element here.
-                    //alert(`Login details for ${rowData.full_name}:\n` + detailsHtml.replace(/<[^>]*>?/gm, ''));
-
-                } else {
-                    //alert(`No login details found for ${rowData.full_name} for the selected period.`);
-                }
-
-            } else {
-                console.warn("Row component not found in Tabulator using its ID:", tabulatorRowId);
-                alert("Could not find employee details using internal table ID.");
-            }
-
-        }
 
 // init functions – call these AFTER the divs exist in the DOM        
 export function initHrisGrid() {
@@ -388,12 +340,11 @@ export function initTimekeepGrid() {
                             ${rowData.emp_status}<br>
                             ${rowData.email}<br>
                             ${rowData.besi_id}<br>
-                            <button class='btn-primary btn-sm btn view-btn' data-idx='${rowIdx}' >View Timekeeping Details</button>
+                            <button class='btn-primary btn-sm btn view-btn' data-idx='${rowIdx}'>View Timekeeping Details</button>
                             <span style="background: #f1f5f9; color: #64748b; padding: 4px 10px; border-radius: 12px; font-size: 0.85em; font-weight: bold; border: 1px solid #e2e8f0;">
                             ${rowData.timekeep_approved == 1 ? ' ✔ Approved' : ' ● Pending'}
                             </span> `;
                             
-
                 }
             },
 
@@ -718,21 +669,14 @@ const toLocalTime = ( iso ) =>{
     return result; // "Mar 23 2026"
 }
 
-
 // optional: export an object with getters, if you like the "hrtimekeepGrid" name
 export const hrtimekeepGrid = {
-  toLocalTime,
-  get hrisGrid() { return hrisGrid; },
-  get timekeepGrid() { return timekeepGrid; },
-  get timekeepdetailGrid() { return timekeepdetailGrid; },
-  openTimekeepModal
+    toLocalTime,
+    get hrisGrid() { return hrisGrid; },
+    get timekeepGrid() { return timekeepGrid; },
+    get timekeepdetailGrid() { return timekeepdetailGrid; }
+
 };
 
-document.addEventListener('click', (e) => {
-    if (e.target.matches('.view-btn')) {
-        const idx = e.target.getAttribute('data-idx');
-        hrtimekeepGrid.openTimekeepModal(idx);
-    }
-});
 
 

@@ -139,6 +139,46 @@ let loginDetails = null;
 
     }
 
+    //approvetimekeeping 
+    const approveTimeKeep = async ()=>{
+    
+        const data = timekeep.getLoginDetails().login_details;
+
+        // 1. Extract first and last dates
+        const from = data[0].xdate;
+        const to = data[data.length - 1].xdate;
+        const id = timekeep.getLoginDetails().id
+        const region = document.getElementById('filter_region').value
+
+        try {
+            // 2. Send the POST request
+            const response = await fetch(`${myIp}/approveTimeKeep`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    region: region,
+                    id: id,
+                    fromDate: from, 
+                    toDate: to 
+                })
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Server Error: ${errorText}`);
+            }
+
+            const result = await response.json();
+            console.log("Success Result:", result.message);        
+            alert( result.message )
+
+        } catch (error) {
+            console.error('Network error:', error);
+        }
+
+    }
 
     const findRegion = ( xregion ) =>{
         const aRegion = ['NCR-CMNL','NCR-CMNVA','NCR-SMNL','LUZ-NEL','LUZ-NWL','MIN'];
@@ -670,11 +710,28 @@ let loginDetails = null;
         getHubCoord,
         printTimeKeep,
         openTimekeepModal,
+        approveTimeKeep,
         getLoginDetails,
         getLocation,
         getHubs
     };
     
+    document.addEventListener('click', (e) => {
+        if (e.target.matches('.view-btn')) {
+            const idx = e.target.getAttribute('data-idx');
+            timekeep.openTimekeepModal(idx);
+        }
+    });
+
+    
+    //==approve button
+    document.addEventListener('click', (e) => {
+        if (e.target.matches('.approve-btn')) {
+            timekeep.approveTimeKeep();
+        }
+    });
+
+
     //MAKE IT GLOBAL
     window.timekeep = timekeep;
 
