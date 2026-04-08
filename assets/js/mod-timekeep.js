@@ -179,8 +179,9 @@ let loginDetails = null;
 
         const target = document.getElementById('timekeepbody');
 
+        const url = ( db.grp_id=='08' ? 'temp-timekeep.html' : 'temp-hcoordtimekeep.html')
 
-        fetch(`/html/${db.grp_id=='08'? 'temp-timekeep.html' : 'temp-hcoordtimekeep.html'}`)
+        fetch(`/html/${url}`)
         .then(resp => {
             if (!resp.ok) throw new Error('Network error');
             return resp.text();
@@ -203,15 +204,16 @@ let loginDetails = null;
                 
                 //newempmodal region
                 document.getElementById('region').value = db.region.toUpperCase();
-                
+                    
                 util.showPos() // show position in newempmodal based on region
 
                 //===========FIND REGION  AND GETHUB===============
                 timekeep.findRegion(dbprofile.region);
                 
                 timekeep.getHubCoord()
+            }//endif
 
-            }else{ //for LEAAD COORDS
+//            //for LEAAD COORDS
                 
                 //filtering modal
                 const region = db.region; 
@@ -237,7 +239,7 @@ let loginDetails = null;
                 
 
                 const el = document.getElementById('filter_region');
-                const valToSet = 'smnl';
+                const valToSet = region.toLowerCase();
 
                 // Check if the option exists
                 let optionExists = [...el.options].some(opt => opt.value === valToSet);
@@ -255,7 +257,7 @@ let loginDetails = null;
 
                 timekeep.getLocation( el.value.toUpperCase() )
                         
-            }//eif 
+            //}//eif 
                         
             
             //==========hris filter action
