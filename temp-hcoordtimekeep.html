@@ -28,7 +28,6 @@
                   class="form-label visually-hidden">* Region</label>
             <select class="form-select" id="filter_region"
                     name="filter_region" required>
-              <option value="">Filter by Region</option>
               
             </select>
           </div>
@@ -37,10 +36,20 @@
             <label for="filter_location" class="form-label  visually-hidden">Location</label>
             <select class="form-select" id="filter_location" name="filter_location" >
                 
-                <option value="" selected>Select Location </option>
+                <option id='filtloc'  value="" selected>Select Location </option>
                 <!-- Options will be populated by JavaScript -->
             </select>
           </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <label for="filter_hub" class="form-label  visually-hidden">Hub</label>
+            <select class="form-select" id="filter_hub" name="filter_hub" >
+                
+                <option id='filthub'  value="" selected>Select Hub / DC</option>
+                <!-- Options will be populated by JavaScript -->
+            </select>
+          </div>
+
 
           <!-- Filter by Position (dropdown) -->
           <div class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -48,7 +57,11 @@
                   class="form-label visually-hidden">* Position</label>
             <select class="form-select" id="filter_position"
                     name="filter_position" required>
-              <option value="08">COORDINATOR</option>
+                    <option value="01">RIDER</option>
+              <option value="02">TRANSPORTER</option>
+              <option value="04">SORTER/BACKROOM</option>
+              <option value="10">TEAM LEADER</option>
+              
               <!-- <option value="08">COORDINATOR</option> -->
             </select>
           </div>
@@ -56,12 +69,12 @@
           <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <label for="filter_date_from" class="form-label">Date From</label>
             <input type="date" class="form-control" id="filter_date_from"
-                  name="filter_date_from" disabled>
+                  name="filter_date_from">
           </div>
           <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <label for="filter_date_to" class="form-label">Date To</label>
             <input type="date" class="form-control" id="filter_date_to"
-                  name="filter_date_to" disabled>
+                  name="filter_date_to">
           </div>
 
           <!-- Action select -->
@@ -72,7 +85,7 @@
               <option value="timekeeping" id="optTimekeeping">
                 View Timekeeping
               </option>
-              <option value="masterfile">Download Masterfile</option>
+              <!-- <option value="masterfile">Download Masterfile</option> -->
             </select>
           </div>
         </form>

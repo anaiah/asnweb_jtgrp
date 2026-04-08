@@ -9,9 +9,93 @@ let lastSearchData = null;
 let dbprofile = null;
 let loginDetails = null;
 
+
+//helper
+//HELPER
+
+    const getHubs =  async (loc) => {
+        
+        util.toggleButtonLoading('filthub','Loading Hubs...',true)
+        
+        const hubStoreSelect = document.getElementById('filter_hub'); // Get it inside the function
+        const myUrl = `${myIp}/gethub/${document.getElementById('filter_region').value.toUpperCase()}/${loc}`
+        console.log(myUrl)
+        try {
+            const response = await fetch( myUrl )
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const hubs = await response.json();
+            const hubsArray = hubs.data
+
+            console.log(hubs)
+
+            //hubStoreSelect.innerHTML = '<option value="">Select Hub / DC</option>';
+
+            hubsArray.forEach(hub => {
+                const option = document.createElement('option');
+                
+                option.value = hub.hub; //<-- value
+                option.textContent = hub.hub; //<-- content display 
+                
+                hubStoreSelect.appendChild(option);
+            });
+
+        } catch (error) {
+            console.error('Error fetching hubs:', error);
+            alert('Failed to load hub/store options. Please try again.');
+        }
+
+        util.toggleButtonLoading('filthub',"Select Hub",false)
+
+    }
+
+    const getLocation = async (regionSelectElement) => {
+        util.toggleButtonLoading('filtloc','Loading Location Pls Wait...',true)
+        
+        const selectedRegion = regionSelectElement;
+        
+        //const locContainer = document.getElementById('locContainer');
+        const locSelect = document.getElementById('filter_location');
+        
+        try {
+            const response = await fetch(`${myIp}/getlocation/${selectedRegion}`); // Adjust this URL as needed
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+        
+            const locs = await response.json();
+            const locsArray = locs.data
+
+            //console.log('***HUBS FOR***', selectedRegion, hubs)
+
+            locSelect.innerHTML = '<option value="">Select Location</option>';
+
+            locsArray.forEach( loc => {
+                console.log(loc)
+                const option = document.createElement('option');
+                
+                option.value = loc.location; //<-- value
+                option.textContent = loc.location; //<-- content display 
+                
+                locSelect.appendChild(option);
+            });
+
+        } catch (error) {
+            console.error('Error fetching hubs:', error);
+            alert('Failed to load hub/store options. Please try again.');
+        }
+
+        //   // Call the utility function to fetch and populate
+        util.toggleButtonLoading('filtloc','Select Location',false)
+    }
+
      //===============open timeekeeping detailed modal
     const openTimekeepModal = ( tabulatorRowId ) => {
 
+        console.log('firing opentimekeepmodal() of mod-timekeepjs for detailed timekeep==')
         const modalEl = document.getElementById("timekeepdetailModal");
         const bsModal = new bootstrap.Modal(modalEl);
 
@@ -90,12 +174,13 @@ let loginDetails = null;
     //======================FIRED ONE TIME DURING LOADING OF coordinator page and 
     // DOM CONTENT LOADED modal show.bs.modal listener===========================//
     const fetchtimekeep = ( db ) =>{
-
+        console.log('**firing fetchtimekeep() from mod-timekeep')
         dbprofile = db; // assign to outer variable for use in other functions
 
         const target = document.getElementById('timekeepbody');
 
-        fetch('/html/temp-timekeep.html')
+
+        fetch(`/html/${db.grp_id=='08'? 'temp-timekeep.html' : 'temp-hcoordtimekeep.html'}`)
         .then(resp => {
             if (!resp.ok) throw new Error('Network error');
             return resp.text();
@@ -112,10 +197,66 @@ let loginDetails = null;
             //make sure filter region auto select the region of the logged in user
             document.getElementById('filter_region').value = db.region;
 
-            //newempmodal region
-            document.getElementById('region').value = db.region.toUpperCase();
-            util.showPos() // show position in newempmodal based on region
+            console.log('fetchtimekeep() grp_id', db.region)
 
+            if(db.grp_id=='08'){ //thsi line coords only
+                
+                //newempmodal region
+                document.getElementById('region').value = db.region.toUpperCase();
+                
+                util.showPos() // show position in newempmodal based on region
+
+                //===========FIND REGION  AND GETHUB===============
+                timekeep.findRegion(dbprofile.region);
+                
+                timekeep.getHubCoord()
+
+            }else{ //for LEAAD COORDS
+                
+                //filtering modal
+                const region = db.region; 
+                console.log('my region', region)
+
+                let regionFile = null;
+
+                switch (region) {
+                case "smnl":
+                case "cmnva":
+                case "cmnl":
+                    regionFile = `NCR-${region}`;
+                    break;
+
+                case "nelu":
+                case "nwlu":
+                    regionFile = `LUZ-${region}`;
+                    break;
+                case "min": 
+                    regionFile = `${region}`;
+                    break;  
+                 }  
+                
+
+                const el = document.getElementById('filter_region');
+                const valToSet = 'smnl';
+
+                // Check if the option exists
+                let optionExists = [...el.options].some(opt => opt.value === valToSet);
+
+                if (!optionExists) {
+                    // Add the missing option
+                    const newOpt = new Option(regionFile.toUpperCase(), valToSet);
+                    el.add(newOpt);
+                }
+
+                // Now set it
+                el.value = valToSet;
+
+                console.log('getcloation ',el.value)
+
+                timekeep.getLocation( el.value.toUpperCase() )
+                        
+            }//eif 
+                        
             
             //==========hris filter action
             //for select actions for filtering
@@ -140,11 +281,21 @@ let loginDetails = null;
             //===== ADD ANOTHER EVENT LISTENER WHEN POSITION IS CHANGED TO SHOW/HIDE HUB SELECT
             const posSelect  = document.getElementById('filter_position');
             const hubSelect  = document.getElementById('filter_hub');
+            const locSelect = document.getElementById('filter_location');
 
             if (!posSelect || !hubSelect) return;
 
+            locSelect.addEventListener('change', () => {
+                timekeep.getHubs( locSelect.value.toUpperCase() )
+
+                console.log('location change detectd')
+            
+            });
+
+
             posSelect.addEventListener('change', () => {
-                if (posSelect.value === '02'|| posSelect.value === '01') { // TRANSPORTER and RIDER SHOW HUB SELECT
+
+                if (posSelect.value === '02'|| posSelect.value === '01' || posSelect.value==='10' || posSelect.value==='04') { // TRANSPORTER and teamleader and RIDER SHOW HUB SELECT
                     hubSelect.setAttribute('required', 'required');
                 } else {
                     hubSelect.removeAttribute('required');
@@ -153,8 +304,10 @@ let loginDetails = null;
             });
 
             hubSelect.addEventListener('change', () => {
-                if ((posSelect.value !== '02' && posSelect.value !== '01') && posSelect.value !== '' ) { // TRANSPORTER and RIDER
-                    hubSelect.value = ''
+                if (posSelect.value === '02'|| posSelect.value === '01' || posSelect.value==='10' || posSelect.value==='04') { // TRANSPORTER and teamleader and RIDER SHOW HUB SELECT
+                }else{
+
+                 hubSelect.value = ''
                     return;
                 }
             });
@@ -257,10 +410,7 @@ let loginDetails = null;
 
             });
 
-            //===========FIND REGION  AND GETHUB===============
-            timekeep.findRegion(dbprofile.region);
-            
-            timekeep.getHub()
+           
 
              // now init Tabulator grids
             initHrisGrid();
@@ -387,7 +537,7 @@ let loginDetails = null;
     }
 
     //================get hub for this coordinator
-    const getHub = async()=>{
+    const getHubCoord = async()=>{
            
         const response = await fetch(`${myIp}/gethubcoord/${ dbprofile.region}/${ dbprofile.email}`);
         
@@ -515,10 +665,12 @@ let loginDetails = null;
         fetchtimekeep,   // same as bye: bye
         checkform,
         searchEmp,
-        getHub,
+        getHubCoord,
         printTimeKeep,
         openTimekeepModal,
-        getLoginDetails
+        getLoginDetails,
+        getLocation,
+        getHubs
     };
     
     //MAKE IT GLOBAL

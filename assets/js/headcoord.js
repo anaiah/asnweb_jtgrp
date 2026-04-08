@@ -804,7 +804,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     headcoord.getmenu(util.getCookie('grp_id')) 
 
-    timekeep.fetchtimekeep( headcoord.dbprofile) //===fire! insert html fragment even before show-bs modal of timekeepmodal
+    const timekeepModalEl = document.getElementById('timekeepModal');
+                timekeepModalEl.addEventListener('show.bs.modal', () => {
+                    console.log('show timekeep', headcoord.dbprofile)
+                    
+                    timekeep.fetchtimekeep( headcoord.dbprofile) //===fire! insert html fragment even before show-bs modal of timekeepmodal
+      
+                });
+    
+
+    //timekeep.fetchtimekeep( headcoord.dbprofile) //===fire! insert html fragment even before show-bs modal of timekeepmodal
             
     //===load mtd-chart
     headcoord.loadbarMTDChart()
