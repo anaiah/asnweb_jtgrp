@@ -1225,17 +1225,7 @@ const util = {
 
         //check position if it requires location and hub/store selection
         switch(elem.value){
-            case '01': //rider
-            case '02': //transporter
-            case '04': //sorter
-            case '10': //team leader
-            //need location and hub/store selection
-                //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
-                util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
-                util.displayAreaLocationHub(true, hubStoreContainer, hubSelect) //hide location and hub/store selection
-               
-            break;
-
+           
             case '07': //lead coordinator
                 
                 //turn on area
@@ -1252,7 +1242,20 @@ const util = {
                 util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
                 util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
                 
-            break;     
+            break;
+            
+            default:
+            // case '01': //rider
+            // case '02': //transporter
+            // case '04': //sorter
+            // case '10': //team leader
+            //need location and hub/store selection
+                //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
+                util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
+                util.displayAreaLocationHub(true, hubStoreContainer, hubSelect) //hide location and hub/store selection
+               
+            //break;
+
         }
 
     },
@@ -1828,14 +1831,16 @@ const util = {
                         location.href = '../jtx/dashboard' 
                     break
                 
-                    case 4: // coordinator
+                    case 4: //old coordinator
                         location.href = '../jtx/coord'
                     break
 
                     //sorter/rider/transporter/team leader
                     case '01':
                     case '02':
+                    case '03':
                     case '04':
+                    case '06':
                     case '10':
                         location.href = '/besi/main'    
                     break;
