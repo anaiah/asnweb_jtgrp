@@ -1831,7 +1831,7 @@ const util = {
                         location.href = '../jtx/dashboard' 
                     break
                 
-                    case 4: //old coordinator
+                    case 4: //old  coordinator
                         location.href = '../jtx/coord'
                     break
 
