@@ -172,21 +172,31 @@ function convertMMDDYYtoYYYYMMDD(mmddyy) {
         ],
 
         locale: "en-us",
-        langs: {
-            "en-us": {
-                "pagination": {
-                    "page_size": "Page Size",
-                    "first": "<i class='ti ti-player-skip-back-filled'></i>",
-                    "first_title": "First Page",
-                    "last": "<i class='ti ti-player-skip-forward-filled'></i>",
-                    "last_title": "Last Page",
-                    "prev": "Prev",
-                    "prev_title": "Prev Page",
-                    "next": "Next",
-                    "next_title": "Next Page",
-                },
-            }
+        langs:{
+        "en-us":{
+            "pagination":{
+                "first":"&laquo;", // Use « instead of broken icon
+                "last":"&raquo;",  // Use » instead of broken icon
+                "prev":"Prev",
+                "next":"Next",
+            },
+        }
         },
+        // langs: {
+        //     "en-us": {
+        //         "pagination": {
+        //             "page_size": "Page Size",
+        //             "first": "<i class='ti ti-player-skip-back-filled'></i>",
+        //             "first_title": "First Page",
+        //             "last": "<i class='ti ti-player-skip-forward-filled'></i>",
+        //             "last_title": "Last Page",
+        //             "prev": "Prev",
+        //             "prev_title": "Prev Page",
+        //             "next": "Next",
+        //             "next_title": "Next Page",
+        //         },
+        //     }
+        // },
 
         pagination: true,
         paginationMode: "local",

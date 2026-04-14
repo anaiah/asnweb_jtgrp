@@ -247,20 +247,30 @@ export function initHrisGrid() {
 
         locale:"en-us",
         langs:{
-            "en-us":{
-                "pagination":{
-                    "page_size":"Page Size", //label for the page size select element
-                    "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
-                    "first_title":"First Page", //tooltip text for the first page button
-                    "last":"<i class='ti ti-player-skip-forward-filled'></i>",
-                    "last_title":"Last Page",
-                    "prev":"Prev",
-                    "prev_title":"Prev Page",
-                    "next":"Next",
-                    "next_title":"Next Page",
-                },
-            }
+        "en-us":{
+            "pagination":{
+                "first":"&laquo;", // Use « instead of broken icon
+                "last":"&raquo;",  // Use » instead of broken icon
+                "prev":"Prev",
+                "next":"Next",
+            },
+        }
         },
+        // langs:{
+        //     "en-us":{
+        //         "pagination":{
+        //             "page_size":"Page Size", //label for the page size select element
+        //             "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
+        //             "first_title":"First Page", //tooltip text for the first page button
+        //             "last":"<i class='ti ti-player-skip-forward-filled'></i>",
+        //             "last_title":"Last Page",
+        //             "prev":"Prev",
+        //             "prev_title":"Prev Page",
+        //             "next":"Next",
+        //             "next_title":"Next Page",
+        //         },
+        //     }
+        // },
         
         pagination:true, //enable pagination
         //paginationElement: document.getElementById('grid_pagination'),
@@ -421,20 +431,30 @@ export function initTimekeepGrid() {
 
         locale:"en-us",
         langs:{
-            "en-us":{
-                "pagination":{
-                    "page_size":"Page Size", //label for the page size select element
-                    "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
-                    "first_title":"First Page", //tooltip text for the first page button
-                    "last":"<i class='ti ti-player-skip-forward-filled'></i>",
-                    "last_title":"Last Page",
-                    "prev":"Prev",
-                    "prev_title":"Prev Page",
-                    "next":"Next",
-                    "next_title":"Next Page",
-                },
-            }
+        "en-us":{
+            "pagination":{
+                "first":"&laquo;", // Use « instead of broken icon
+                "last":"&raquo;",  // Use » instead of broken icon
+                "prev":"Prev",
+                "next":"Next",
+            },
+        }
         },
+        // langs:{
+        //     "en-us":{
+        //         "pagination":{
+        //             "page_size":"Page Size", //label for the page size select element
+        //             "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
+        //             "first_title":"First Page", //tooltip text for the first page button
+        //             "last":"<i class='ti ti-player-skip-forward-filled'></i>",
+        //             "last_title":"Last Page",
+        //             "prev":"Prev",
+        //             "prev_title":"Prev Page",
+        //             "next":"Next",
+        //             "next_title":"Next Page",
+        //         },
+        //     }
+        // },
         
         pagination:true, //enable pagination
         //paginationElement: document.getElementById('grid_pagination'),
@@ -628,20 +648,30 @@ export function initTimekeepDetailGrid() {
 
         locale:"en-us",
         langs:{
-            "en-us":{
-                "pagination":{
-                    "page_size":"Page Size", //label for the page size select element
-                    "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
-                    "first_title":"First Page", //tooltip text for the first page button
-                    "last":"<i class='ti ti-player-skip-forward-filled'></i>",
-                    "last_title":"Last Page",
-                    "prev":"Prev",
-                    "prev_title":"Prev Page",
-                    "next":"Next",
-                    "next_title":"Next Page",
-                },
-            }
+        "en-us":{
+            "pagination":{
+                "first":"&laquo;", // Use « instead of broken icon
+                "last":"&raquo;",  // Use » instead of broken icon
+                "prev":"Prev",
+                "next":"Next",
+            },
+        }
         },
+        // langs:{
+        //     "en-us":{
+        //         "pagination":{
+        //             "page_size":"Page Size", //label for the page size select element
+        //             "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
+        //             "first_title":"First Page", //tooltip text for the first page button
+        //             "last":"<i class='ti ti-player-skip-forward-filled'></i>",
+        //             "last_title":"Last Page",
+        //             "prev":"Prev",
+        //             "prev_title":"Prev Page",
+        //             "next":"Next",
+        //             "next_title":"Next Page",
+        //         },
+        //     }
+        // },
         
         pagination:true, //enable pagination
         //paginationElement: document.getElementById('grid_pagination'),

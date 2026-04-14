@@ -25,14 +25,12 @@ var hrisGrid = new Tabulator("#hrisgrid", {
          {
             title:'ID',
             field:"id",
-            width:'50',
-            headerSort:false,
+            width:'50'
         },
         {
             title: 'Name',
             field: 'full_name',
             width: 350,
-            headerSort:false,
             headerHozAlign: "center",
             resizable: false,
             formatter: (cell) => {
@@ -233,30 +231,20 @@ var hrisGrid = new Tabulator("#hrisgrid", {
 
     locale:"en-us",
     langs:{
-    "en-us":{
-        "pagination":{
-            "first":"&laquo;", // Use « instead of broken icon
-            "last":"&raquo;",  // Use » instead of broken icon
-            "prev":"Prev",
-            "next":"Next",
-        },
-    }
+        "en-us":{
+            "pagination":{
+                "page_size":"Page Size", //label for the page size select element
+                "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
+                "first_title":"First Page", //tooltip text for the first page button
+                "last":"<i class='ti ti-player-skip-forward-filled'></i>",
+                "last_title":"Last Page",
+                "prev":"Prev",
+                "prev_title":"Prev Page",
+                "next":"Next",
+                "next_title":"Next Page",
+            },
+        }
     },
-    // langs:{
-    //     "en-us":{
-    //         "pagination":{
-    //             "page_size":"Page Size", //label for the page size select element
-    //             "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
-    //             "first_title":"First Page", //tooltip text for the first page button
-    //             "last":"<i class='ti ti-player-skip-forward-filled'></i>",
-    //             "last_title":"Last Page",
-    //             "prev":"Prev",
-    //             "prev_title":"Prev Page",
-    //             "next":"Next",
-    //             "next_title":"Next Page",
-    //         },
-    //     }
-    // },
     
     pagination:true, //enable pagination
     //paginationElement: document.getElementById('grid_pagination'),
@@ -306,15 +294,13 @@ var timekeepGrid = new Tabulator("#timekeepgrid", {
          {
             title:'ID',
             field:"id",
-            width:'50',
-            headerSort:false,
+            width:'50'
         },
         {
             title:'Name',
             field:'full_name',
             width:250,
             formatter:"html", 
-            headerSort:false,
             headerHozAlign:"center", 
             resizable:false,
             formatter:(cell)=>{
@@ -408,30 +394,20 @@ var timekeepGrid = new Tabulator("#timekeepgrid", {
 
     locale:"en-us",
     langs:{
-    "en-us":{
-        "pagination":{
-            "first":"&laquo;", // Use « instead of broken icon
-            "last":"&raquo;",  // Use » instead of broken icon
-            "prev":"Prev",
-            "next":"Next",
-        },
-    }
+        "en-us":{
+            "pagination":{
+                "page_size":"Page Size", //label for the page size select element
+                "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
+                "first_title":"First Page", //tooltip text for the first page button
+                "last":"<i class='ti ti-player-skip-forward-filled'></i>",
+                "last_title":"Last Page",
+                "prev":"Prev",
+                "prev_title":"Prev Page",
+                "next":"Next",
+                "next_title":"Next Page",
+            },
+        }
     },
-    // langs:{
-    //     "en-us":{
-    //         "pagination":{
-    //             "page_size":"Page Size", //label for the page size select element
-    //             "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
-    //             "first_title":"First Page", //tooltip text for the first page button
-    //             "last":"<i class='ti ti-player-skip-forward-filled'></i>",
-    //             "last_title":"Last Page",
-    //             "prev":"Prev",
-    //             "prev_title":"Prev Page",
-    //             "next":"Next",
-    //             "next_title":"Next Page",
-    //         },
-    //     }
-    // },
     
     pagination:true, //enable pagination
     //paginationElement: document.getElementById('grid_pagination'),
@@ -473,15 +449,13 @@ var timekeepdetailGrid = new Tabulator("#timekeepTable", {
          {
             title:'DATE',
             field:"xdate",
-            width:'100',
-            headerSort:false,
+            width:'100'
         },
         {
             title:'IN',
             field:'login',
             width:120,
             formatter:"html", 
-            headerSort:false,
             headerHozAlign:"center", 
             resizable:false,
             formatter: (cell) => {
@@ -499,7 +473,6 @@ var timekeepdetailGrid = new Tabulator("#timekeepTable", {
             width:120,
             formatter:"html", 
             headerHozAlign:"center", 
-            headerSort:false,
             resizable:false,
             formatter: (cell) => {
                 const v = cell.getValue();
@@ -558,53 +531,37 @@ var timekeepdetailGrid = new Tabulator("#timekeepTable", {
             width:150,
             resizable:false,
             hozAlign:'left',
-            headerSort:false,
             formatter:"html",
         },
-
         {
             title: "FOR APPROVAL",
             field: "for_approval", 
-            width: 150,
-            headerSort:false,
-            formatter: (cell) => {
-                const val = cell.getData().for_approval;
-                if (val === 1) return '<span class="status-pill pending">Pending</span>';
-                if (val === 3) return '<span class="status-pill rejected">Rejected</span>';
-                if (val === 0) return '<span class="status-pill approved">Approved</span>';
-                return "";
-            }
-        },
-        // {
-        //     title: "FOR APPROVAL",
-        //     field: "for_approval", 
-        //     width:150,
-        //     resizable:false,
-        //     hozAlign:'left',
-        //     formatter:"html",
-        //     formatter:(cell)=>{
-        //         switch(cell.getData().for_approval ){
-        //             case 1:
-        //                 return "Yes"
-        //                 break
-        //             case 3:
-        //                 return "Rejected"
-        //                 break
-        //             case 0:
-        //                 return 'No'
-        //                 break
+            width:150,
+            resizable:false,
+            hozAlign:'left',
+            formatter:"html",
+            formatter:(cell)=>{
+                switch(cell.getData().for_approval ){
+                    case 1:
+                        return "Yes"
+                        break
+                    case 3:
+                        return "Rejected"
+                        break
+                    case 0:
+                        return 'No'
+                        break
                     
-        //         }//
+                }//
                 
-        //     }
+            }
 
-        // },
+        },
         {
             title: "ACTIONS",
             field: "for_approval",
             headerHozAlign:"center",
             width:140,
-            headerSort:false,
             hozAlign: "center",
             formatter: (cell) => {
                 const value = cell.getValue();   // for_approval
@@ -636,31 +593,20 @@ var timekeepdetailGrid = new Tabulator("#timekeepTable", {
 
     locale:"en-us",
     langs:{
-    "en-us":{
-        "pagination":{
-            "first":"&laquo;", // Use « instead of broken icon
-            "last":"&raquo;",  // Use » instead of broken icon
-            "prev":"Prev",
-            "next":"Next",
-        },
-    }
+        "en-us":{
+            "pagination":{
+                "page_size":"Page Size", //label for the page size select element
+                "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
+                "first_title":"First Page", //tooltip text for the first page button
+                "last":"<i class='ti ti-player-skip-forward-filled'></i>",
+                "last_title":"Last Page",
+                "prev":"Prev",
+                "prev_title":"Prev Page",
+                "next":"Next",
+                "next_title":"Next Page",
+            },
+        }
     },
-
-    // langs:{
-    //     "en-us":{
-    //         "pagination":{
-    //             "page_size":"Page Size", //label for the page size select element
-    //             "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
-    //             "first_title":"First Page", //tooltip text for the first page button
-    //             "last":"<i class='ti ti-player-skip-forward-filled'></i>",
-    //             "last_title":"Last Page",
-    //             "prev":"Prev",
-    //             "prev_title":"Prev Page",
-    //             "next":"Next",
-    //             "next_title":"Next Page",
-    //         },
-    //     }
-    // },
     
     pagination:true, //enable pagination
     //paginationElement: document.getElementById('grid_pagination'),
