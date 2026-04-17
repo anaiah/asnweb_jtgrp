@@ -46,7 +46,7 @@ let loginDetails = null;
             alert('Failed to load hub/store options. Please try again.');
         }
 
-        util.toggleButtonLoading('filthub',"Select Hub",false)
+        util.toggleButtonLoading('filthub',"Select Hub / DC",false)
 
     }
 
@@ -595,7 +595,7 @@ let loginDetails = null;
         if (!select) return;
 
         // clear old options
-        select.innerHTML = '<option value="">Select Hub</option>';
+        select.innerHTML = '<option value="">Select Hub / DC</option>';
         //console.log(data)
         // populate
         hubs.forEach(hub => {
