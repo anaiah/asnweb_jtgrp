@@ -132,6 +132,7 @@ var hrisGrid = new Tabulator("#hrisgrid", {
 
                     case "jms":
                         console.log(rowData, 'JMS')
+                        return;
                     break;
 
                 }//endsw
