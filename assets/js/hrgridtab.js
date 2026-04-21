@@ -90,7 +90,7 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                     Print Contract
                 </button>
                 <button type="button"
-                        class="btn btn-success btn-sm btn-status-change"
+                        class="btn btn-purple btn-sm btn-status-change"
                         ${ xdisabled }
                         data-action="jms">
                     JMS No.

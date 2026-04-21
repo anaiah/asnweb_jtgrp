@@ -14,6 +14,30 @@ nt-size: 13px;
 /*
 this is also used for groupheadertpl
 */
+/* button purple */
+/* Custom Purple Button */
+.btn-purple {
+    background-color: #6f42c1 !important; /* Standard Bootstrap Purple */
+    border-color: #6f42c1 !important;
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+/* Hover Effect: Darkens the purple slightly when mouse is over it */
+.btn-purple:hover {
+    background-color: #59359a !important;
+    border-color: #59359a !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Active State: When the button is actually clicked */
+.btn-purple:active {
+    background-color: #4e2e8a !important;
+    transform: translateY(1px);
+}
+
+
 .navbar {
     z-index: 1050 !important; /* Bootstrap's default for fixed navbars is 1030-1050 */
 }
