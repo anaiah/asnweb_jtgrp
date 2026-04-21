@@ -311,4 +311,69 @@ input:focus:is-invalid {
   color: #fff;
 }
 
+/* enrollment regional css */
+#summaryTable {
+    font-size: 0.82rem !important;
+    letter-spacing: 0.01rem;
+    border-collapse: separate; 
+    border-spacing: 0;
+    /* Soften the outer table border */
+    border: 1px solid #dee2e6 !important;
+}
 
+/* 1. Header Styling: Thin, Gray Borders */
+#summaryTable th {
+    text-align: center !important;
+    padding: 8px !important;
+    background-color: #f8f9fa; 
+    /* Softened borders for the header */
+    border: 1px solid #dee2e6 !important;
+    font-weight: 600;
+    color: #495057;
+}
+
+/* 
+   2. Sticky First Column: Left Aligned & Frozen
+   Modified borders to be thin and gray 
+*/
+#summaryTable td:first-child,
+#summaryTable th:first-child {
+    text-align: left !important;
+    padding-left: 15px !important;
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    background-color: #ffffff !important;
+    /* Subtle 1px right border to separate the frozen column */
+    border-right: 1px solid #dee2e6 !important;
+    border-left: 1px solid #dee2e6 !important;
+}
+
+#summaryTable th:first-child {
+    z-index: 11;
+    background-color: #f8f9fa !important;
+}
+
+/* 3. Number Columns: Right Aligned */
+#summaryTable td {
+    font-size: 0.68rem;
+    text-align: right !important;
+    padding-right: 5px !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    /* Ensure all internal cell borders are thin gray */
+    border: 1px solid #dee2e6 !important;
+}
+
+/* 4. Total Column: Subtle background highlight */
+#summaryTable td:last-child {
+    padding-right: 20px !important;
+    background-color: rgba(0,0,0,0.015) !important;
+    font-weight: bold;
+    border-right: 1px solid #dee2e6 !important;
+}
+
+/* 5. Professional Touch: Soft Shadow on Scroll */
+#summaryTable td:first-child {
+    box-shadow: 2px 0 5px rgba(0,0,0,0.03);
+}

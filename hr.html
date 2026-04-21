@@ -215,108 +215,126 @@ span.xgrpheader{
         <!------------------//MAIN CONTAINER----------------------->
        <div class="container-fluid mt-1">
 
-          <!-- Filter Group Card -->
-          <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                  <h5 class="mb-0 fw-semibold">Search Filters</h5>
-              </div>
-              <div class="card-body">
-                  <form id="searchForm" name="searchForm" class="row gy-3 gx-3 align-items-end"  novalidate>
-                      <!-- Filter by Name -->
-                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                          <label for="filter_name" class="form-label visually-hidden">Name</label>
-                          <input type="text" class="form-control" id="filter_name" name="filter_name" placeholder="Filter by Name">
-                      </div>
-                      <!-- Filter by ID -->
-                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                          <label for="filter_id" class="form-label visually-hidden">ID</label>
-                          <input type="text" class="form-control" id="filter_id" name="filter_id" placeholder="Filter by ID">
-                      </div>
-                      <!-- Filter by Region (dropdown) -->
-                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                          <label for="filter_region" class="form-label visually-hidden">* Region</label>
-                          <select class="form-select" id="filter_region" name="filter_region" required>
-                                <option value="">Filter by Region</option>
-                                <option value="cmnl">NCR-CMNLA</option>
-                                <option value="cmnva">NCR-CMNVA</option>
-                                <option value="smnl">NCR-SMNL</option>
-                                <option value="nelu">LUZ-NEL</option>
-                                <option value="nwlu">LUZ-NWL</option>
-                                <option value="min">MIN</option>
-                                <option value="bicol">BSL-BICOL</option>
-                                <option value="smarleyte">BSL-SAMAR LEYTE</option>
-                                <option value="bacolod">WVIS-BACOLOD</option>
-                                <option value="panay">WVIS-PANAY</option>
-                                <option value="central">WVIS-CENTRAL</option>
-                                       
-                              <!-- Add more options here as needed -->
-                          </select>
-                      </div>
-                      <!-- Filter by Position (dropdown) -->
-                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                          <label for="filter_position" class="form-label visually-hidden">* Position</label>
-                          <select class="form-select" id="filter_position" name="filter_position" required>
-                              <option value="" disabled selected>Select Position</option>
-                                <option value="01" >Rider</option>
-                                <option value="04">Sorter/BackRoom</option>
-                                <option value="02">Transporter</option>
-                                <option value="10">Team Leader</option>
-                                <option value="08">Coordinator</option>
-                                <option value="07">Lead Coordinator</option>
-                                <option value="06">Time Keeper</option>
-                                <option value="03">Foot Delivery</option>
-                                <option value="15">3 Wheel</option>
-                                <option value="17">4 Wheel</option>
+            <!-- ENROLLMENT TABLE -->
+            <div class="container mt-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Regional Enrollment Summary</h5>
+                    </div>
+                    <div class="table-responsive">
+                        <!-- Added Bootstrap classes: table, table-hover, table-striped, table-bordered -->
+                        <table class="table tble-sm table-hover table-striped table-bordered mb-0" id="summaryTable">
+                            <thead class="table-dark">
+                                <tr id="tableHeader"></tr>
+                            </thead>
+                            <tbody id="tableBody" class="align-middle"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Group Card -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h5 class="mb-0 fw-semibold">Search Filters</h5>
+                </div>
+                <div class="card-body">
+                    <form id="searchForm" name="searchForm" class="row gy-3 gx-3 align-items-end"  novalidate>
+                        <!-- Filter by Name -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label for="filter_name" class="form-label visually-hidden">Name</label>
+                            <input type="text" class="form-control" id="filter_name" name="filter_name" placeholder="Filter by Name">
+                        </div>
+                        <!-- Filter by ID -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label for="filter_id" class="form-label visually-hidden">ID</label>
+                            <input type="text" class="form-control" id="filter_id" name="filter_id" placeholder="Filter by ID">
+                        </div>
+                        <!-- Filter by Region (dropdown) -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label for="filter_region" class="form-label visually-hidden">* Region</label>
+                            <select class="form-select" id="filter_region" name="filter_region" required>
+                                    <option value="">Filter by Region</option>
+                                    <option value="cmnl">NCR-CMNLA</option>
+                                    <option value="cmnva">NCR-CMNVA</option>
+                                    <option value="smnl">NCR-SMNL</option>
+                                    <option value="nelu">LUZ-NEL</option>
+                                    <option value="nwlu">LUZ-NWL</option>
+                                    <option value="min">MIN</option>
+                                    <option value="bicol">BSL-BICOL</option>
+                                    <option value="smarleyte">BSL-SAMAR LEYTE</option>
+                                    <option value="bacolod">WVIS-BACOLOD</option>
+                                    <option value="panay">WVIS-PANAY</option>
+                                    <option value="central">WVIS-CENTRAL</option>
+                                        
+                                <!-- Add more options here as needed -->
+                            </select>
+                        </div>
+                        <!-- Filter by Position (dropdown) -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label for="filter_position" class="form-label visually-hidden">* Position</label>
+                            <select class="form-select" id="filter_position" name="filter_position" required>
+                                <option value="" disabled selected>Select Position</option>
+                                    <option value="01" >Rider</option>
+                                    <option value="04">Sorter/BackRoom</option>
+                                    <option value="02">Transporter</option>
+                                    <option value="10">Team Leader</option>
+                                    <option value="08">Coordinator</option>
+                                    <option value="07">Lead Coordinator</option>
+                                    <option value="06">Time Keeper</option>
+                                    <option value="03">Foot Delivery</option>
+                                    <option value="15">3 Wheel</option>
+                                    <option value="17">4 Wheel</option>
+                                    
                                 
-                              
-                              <!-- Add more options here as needed -->
-                          </select>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <label for="filter_date_from" class="form-label">Date From</label>
-                            <input type="date" class="form-control" id="filter_date_from" name="filter_date_from" disabled>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <label for="filter_date_to" class="form-label">Date To</label>
-                            <input type="date" class="form-control" id="filter_date_to" name="filter_date_to" disabled>
-                        </div>     
-
-                        <!-- Search + Print buttons -->
-                         <!--
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-auto d-flex flex-column flex-sm-row ms-auto gap-2">
-    
-                            <button type="button" class="btn btn-primary" 
-                                    onclick="javascript:hris.printTimeKeep();" id="applyFilterBtn" disabled>
-                                <i class="ti ti-printer me-1"></i> Timekeeping
-                            </button>
-                            
-                            <button 
-                                class="btn btn-success flex-fill" id="print-masterfile-btn" type="button"
-                                onclick="javascript:hris.printMasterfile && hris.printMasterfile(this.form);"
-                            >
-                                <i class="ti ti-file-type-xls"></i>&nbsp;&nbsp;Download Masterfile
-                            </button>
-                            <button 
-                                class="btn btn-primary flex-fill" id="search-btn" type="button"
-                                onclick="javascript:hris.checkform(this.form);"
-                            >
-                                <i class="ti ti-search"></i>&nbsp;&nbsp;Search
-                            </button> -->
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-auto ms-auto">
-                                <select id="actionSelect" class="form-select">
-                                    <option value="">Select Action</option>
-                                    <option value="search">Search</option>
-                                    <option value="timekeeping" id="optTimekeeping">View Timekeeping</option>
-                                    <option value="masterfile">Download Masterfile</option>
-                                </select>
+                                <!-- Add more options here as needed -->
+                            </select>
                             </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <label for="filter_date_from" class="form-label">Date From</label>
+                                <input type="date" class="form-control" id="filter_date_from" name="filter_date_from" disabled>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <label for="filter_date_to" class="form-label">Date To</label>
+                                <input type="date" class="form-control" id="filter_date_to" name="filter_date_to" disabled>
+                            </div>     
 
-                  </form>
-              </div>
-          </div>
+                            <!-- Search + Print buttons -->
+                            <!--
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-auto d-flex flex-column flex-sm-row ms-auto gap-2">
+        
+                                <button type="button" class="btn btn-primary" 
+                                        onclick="javascript:hris.printTimeKeep();" id="applyFilterBtn" disabled>
+                                    <i class="ti ti-printer me-1"></i> Timekeeping
+                                </button>
+                                
+                                <button 
+                                    class="btn btn-success flex-fill" id="print-masterfile-btn" type="button"
+                                    onclick="javascript:hris.printMasterfile && hris.printMasterfile(this.form);"
+                                >
+                                    <i class="ti ti-file-type-xls"></i>&nbsp;&nbsp;Download Masterfile
+                                </button>
+                                <button 
+                                    class="btn btn-primary flex-fill" id="search-btn" type="button"
+                                    onclick="javascript:hris.checkform(this.form);"
+                                >
+                                    <i class="ti ti-search"></i>&nbsp;&nbsp;Search
+                                </button> -->
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-auto ms-auto">
+                                    <select id="actionSelect" class="form-select">
+                                        <option value="">Select Action</option>
+                                        <option value="search">Search</option>
+                                        <option value="timekeeping" id="optTimekeeping">View Timekeeping</option>
+                                        <option value="masterfile">Download Masterfile</option>
+                                    </select>
+                                </div>
 
-          <!-- Main Content Card (Search Result) -->
-                   
+                    </form>
+                </div>
+            </div>
+
+            <!-- Main Content Card (Search Result) -->
+                    
             <div class="row gx-2">
               <div class="col-12 mb-3 mb-lg-0  d-none" id="search-result-grid"> <!-- Assuming you want full width on desktop as per previous discussion -->
                   <div class="card shadow w-100">

@@ -863,6 +863,47 @@
             return result; // "Mar 23 2026"
         },
 
+        //=======ENROLLMENT REGIONAL OUTPUT===========//
+        loadSummaryReport: async () => {
+            console.log('====FIRING hris.loadSummaryReport()====')
+            try {
+                const response = await fetch(`${myIp}/region-summary`);
+                const data = await response.json();
+
+                if (data.length === 0) return;
+
+                const headerRow = document.getElementById('tableHeader');
+                const bodyRows = document.getElementById('tableBody');
+
+                const columns = Object.keys(data[0]);
+                
+                // 1. Headers: Make them Uppercase and bold
+                headerRow.innerHTML = columns.map(col => `<th class="text-nowrap">${col.toUpperCase()}</th>`).join('');
+
+                // 2. Data Rows
+                bodyRows.innerHTML = data.map(row => {
+                    return `<tr>
+                        ${columns.map((col, index) => {
+                            const value = row[col];
+                            
+                            const isFirstCol = index === 0 ? 'class="fw-bold text-primary text-nowrap"' : '';
+                            const isTotalCol = col === 'Total' ? 'class="fw-bold table-active"' : '';
+                            const isZero = value === 0 ? 'class="text-muted opacity-50"' : '';
+
+                            // Combine them into one class string
+                            const finalClass = `${isFirstCol} ${isTotalCol} ${isZero}`;
+
+                            return `<td class="${finalClass}">${value}</td>`;
+
+                        }).join('')}
+                    </tr>`;
+                }).join('');
+
+            } catch (error) {
+                console.error("Error loading report:", error);
+            }
+        },
+
         position:null,
         address:null,
         fullname:null,
@@ -1184,8 +1225,13 @@
                         // reset back to placeholder after firing
                         this.value = "";
                     });
+
+                    //====load regional summary report
+                    hris.loadSummaryReport()
+
+
                 
-                })//end dom onload
+                })//======================end dom onload
 
                 document.addEventListener('contextmenu', function(e) {
                     e.preventDefault();
@@ -1246,7 +1292,6 @@
 
             util.modalListeners('newempModal')
             util.modalListeners('hrisloadModal')
-
             
         }    
     }//===end obj
