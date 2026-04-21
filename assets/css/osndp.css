@@ -14,6 +14,10 @@ nt-size: 13px;
 /*
 this is also used for groupheadertpl
 */
+.navbar {
+    z-index: 1050 !important; /* Bootstrap's default for fixed navbars is 1030-1050 */
+}
+
 .my-row-class{
   background-color: #d16b6b !important;
 }
@@ -350,7 +354,8 @@ input:focus:is-invalid {
 }
 
 #summaryTable th:first-child {
-    z-index: 11;
+      z-index: 2 !important; /* Lowered from 11, but still higher than the td */
+
     background-color: #f8f9fa !important;
 }
 
@@ -376,4 +381,6 @@ input:focus:is-invalid {
 /* 5. Professional Touch: Soft Shadow on Scroll */
 #summaryTable td:first-child {
     box-shadow: 2px 0 5px rgba(0,0,0,0.03);
+     z-index: 1 !important; /* Lowered from 10 */
+
 }
