@@ -89,6 +89,13 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                         data-action="printcontract">
                     Print Contract
                 </button>
+                <button type="button"
+                        class="btn btn-success btn-sm btn-status-change"
+                        ${ xdisabled }
+                        data-action="jms">
+                    JMS No.
+                </button>
+                
                 `;
             },
 
@@ -121,6 +128,10 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                         
                         util.printPdf( empId, rowData.full_name , region, hris.position, hris.address, hris.dateHired )
                         return;
+                    break;
+
+                    case "jms":
+                        console.log(rowData, 'JMS')
                     break;
 
                 }//endsw
