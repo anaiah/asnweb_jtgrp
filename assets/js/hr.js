@@ -917,7 +917,7 @@
             const jms_id = document.getElementById('jms_id').value;
             
             // Define the region (you can get this from a global variable or another input)
-            const region = "your_region_here"; 
+            const region = document.getElementById('filter_region').value;
 
             try {
                 const response = await fetch(`${myIp}/savejms/${region}`, {
@@ -936,7 +936,7 @@
                 if (response.ok) {
                     alert('Updated successfully!');
                     // Hide the bootstrap modal
-                    const modalElement = document.getElementById('jmssModal');
+                    const modalElement = document.getElementById('jmsModal');
                     const modal = bootstrap.Modal.getInstance(modalElement);
                     modal.hide();
                 } else {

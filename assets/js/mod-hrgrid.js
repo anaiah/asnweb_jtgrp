@@ -77,6 +77,8 @@ export function initHrisGrid() {
                     ${data.phone}<br>
                     ${data.email}<br>
                     ${data.emp_id}<br>
+                    ${data.jms_id || ""}<br>
+                
                     <button type="button"
                             class="btn btn-warning btn-sm btn-status-change"
                             data-action="${action}">

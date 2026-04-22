@@ -72,6 +72,8 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 ${data.phone}<br>
                 ${data.email}<br>
                 ${data.emp_id}<br>
+                ${data.jms_id || ""}<br>
+                
                 <button type="button"
                         class="btn btn-warning btn-sm btn-status-change"
                         ${ xdisabled }
@@ -135,6 +137,8 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                         console.log(rowData, 'JMS')
                         const modal = new bootstrap.Modal(document.getElementById("jmsModal"));
                         modal.show();
+
+                        document.getElementById('besi_id').value = rowData.emp_id || "";
                         
                         return;
                     break;
