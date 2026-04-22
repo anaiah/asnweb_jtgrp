@@ -409,3 +409,34 @@ input:focus:is-invalid {
 
 }
 
+/* dropdown */
+/* Target the container holding your button (like the card-body) */
+.card-body, .card {
+    overflow: visible !important;
+}
+
+/* Ensure the dropdown has a high z-index to stay above the card footer */
+.dropdown-menu {
+    z-index: 2000 !important;
+}
+.card-body, .card-footer {
+    overflow: visible !important;
+}/* 1. Force the parent container to show its children */
+.dropdown, .dropup {
+    position: relative !important;
+}
+
+/* 2. Force the menu to the absolute top of the stack */
+.dropdown-menu {
+    z-index: 9999 !important;
+    /* This ensures it isn't clipped by the card or table */
+    position: absolute !important; 
+    margin: 0 !important;
+}
+
+/* 3. If it's a dropup, ensure it sits above the button */
+.dropup .dropdown-menu {
+    bottom: 100% !important;
+    top: auto !important;
+    margin-bottom: 5px !important;
+}

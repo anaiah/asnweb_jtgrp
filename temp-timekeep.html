@@ -47,7 +47,7 @@
                   class="form-label visually-hidden">* Position</label>
             <select class="form-select" id="filter_position"
                     name="filter_position" required>
-              <option value="">Filter by Position</option>
+              <option value="" disabled selected>Filter by Position</option>
               <option value="01">RIDER</option>
               <option value="02">TRANSPORTER</option>
               <option value="04">SORTER/BACKROOM</option>
@@ -60,7 +60,7 @@
             <label for="filter_hub" class="form-label  visually-hidden">Hub</label>
             <select class="form-select" id="filter_hub" name="filter_hub" >
                 
-                <option id='filthub' value="" selected>Select Hub / DC </option>
+                <option id='filthub' value="" disabled selected>Select Hub / DC </option>
                 <!-- Options will be populated by JavaScript -->
             </select>
           </div>
@@ -78,16 +78,20 @@
           </div>
 
           <!-- Action select -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-auto ms-auto">
-            <select id="actionSelect" class="form-select">
-              <option value="">Select Action</option>
-              <option value="search">Search</option>
-              <option value="timekeeping" id="optTimekeeping">
-                View Timekeeping
-              </option>
-              <!-- <option value="masterfile">Download Masterfile</option> -->
-            </select>
+          
+
+           <div class="col-12 col-sm-6 col-md-4 col-lg-auto ms-auto">
+              <div class="action-wrapper">
+                  <select id="actionSelect" class="form-select modern-action-select">
+                      <option value="" disabled selected>⚡ Quick Actions</option>
+                      <option value="search">🔍 Search Record</option>
+                      <option value="timekeeping" id="optTimekeeping">📅 View Timekeeping</option>
+                  </select>
+                  <!-- Custom arrow for better look -->
+                  <i class="bi bi-chevron-down select-icon"></i>
+              </div>
           </div>
+
         </form>
       </div>
     </div>

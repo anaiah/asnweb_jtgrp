@@ -404,7 +404,9 @@
             //console.log( hrisGrid)
             //bring backdisplay
             document.getElementById('search-result-grid').classList.remove('d-none');
+            
             document.getElementById('hrisdisplay').classList.remove('d-none');
+
             document.getElementById('timekeepdisplay').classList.add('d-none');
 
             util.scrollsTo( 'hrisdisplay')
@@ -426,7 +428,7 @@
             document.getElementById('timekeepdisplay').classList.remove('d-none');
 
             //==if present divs, hide===
-            document.getElementById('search-result-grid').classList.remove('d-none');
+            //document.getElementById('search-result-grid').classList.remove('d-none');
             document.getElementById('hrisdisplay').classList.add('d-none');
 
             const searchForm = document.getElementById('searchForm');
@@ -468,7 +470,7 @@
 
             const data = await response.json();
 
-            console.log( data.xdata, data.xdata.length)
+            console.log( 'timekeepGrid data:', data.xdata, data.xdata.length)
             
             if (data.xdata && data.xdata.length === 0) {
                 // Data is empty, perform a full reset
@@ -476,7 +478,7 @@
                 timekeepGrid.clearSort();    // Clear any active sorting
                
                // --- REVISED PAGINATION RESET ---
-                // Check if pagination is enabled before trying to reset the page
+                // Check if pagination is enabled before tryfing to reset the page
                 if (timekeepGrid.options.pagination) {
                     timekeepGrid.setPage(1); // Set the page to the first page
                     // If you need to also reset the total number of pages displayed (e.g., pageSize)
@@ -495,6 +497,8 @@
                 console.log("Tabulator grid fully reset due to empty data.");
             } else {
                 // Data is not empty, just update the grid
+                timekeepGrid.setData([]);
+
                 timekeepGrid.setData(data.xdata)
                 util.scrollsTo('timekeepgrid')
 
@@ -904,6 +908,47 @@
             }
         },
 
+        //== new save jms id
+        saveJmsData: async () => {
+            console.log('====FIRING hris.saveJmsData()====')
+
+            // Get values from the inputs
+            const besi_id = document.getElementById('besi_id').value;
+            const jms_id = document.getElementById('jms_id').value;
+            
+            // Define the region (you can get this from a global variable or another input)
+            const region = "your_region_here"; 
+
+            try {
+                const response = await fetch(`${myIp}/savejms/${region}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        besi_id: besi_id,
+                        jms_id: jms_id
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Updated successfully!');
+                    // Hide the bootstrap modal
+                    const modalElement = document.getElementById('jmssModal');
+                    const modal = bootstrap.Modal.getInstance(modalElement);
+                    modal.hide();
+                } else {
+                    alert('Update failed: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while saving.');
+            }
+
+        },    
+
         position:null,
         address:null,
         fullname:null,
@@ -1161,8 +1206,9 @@
 
                     //=============position dropdown listener
                     document.getElementById("filter_position").addEventListener("change", function () {
-                        
-                        const isCoordinator = this.value === "08";// IF CHOICE IS COORDINATOR
+                        console.log(' position changed ', this.value)
+
+                        const isCoordinator = this.value === "08" ;// IF CHOICE IS COORDINATOR
 
                         document.getElementById("filter_date_from").disabled = !isCoordinator;
                         document.getElementById("filter_date_to").disabled   = !isCoordinator;
