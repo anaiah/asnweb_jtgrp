@@ -1030,6 +1030,19 @@
 
         },
 
+        //disble back in mobile and desktop
+        // Function to enable the warning
+        enableExitWarning : () => {
+            window.onbeforeunload = function() {
+                return "Are you sure you want to leave? Any unsaved changes will be lost.";
+            };
+        },
+
+        // Function to disable the warning (Call this when the program closes the dialog)
+        disableExitWarning : () => {
+            window.onbeforeunload = null;
+        },
+
         position:null,
         address:null,
         fullname:null,
@@ -1333,7 +1346,6 @@
                         }
                     });
 
-
                     //for select actions for filtering
                     document.getElementById("actionSelect").addEventListener("change", function () {
                         const action = this.value;
@@ -1353,10 +1365,21 @@
                         this.value = "";
                     });
 
-                    //====load regional summary report
+                    // Also ensure canvas is correctly sized when modal is shown
+                    const dataPrivacyModalElement = document.getElementById('dataPrivacySignatureModal');
+
+                    //when data privacy is shown, enable exit warning to prevent accidental navigation away while signing
+                    dataPrivacyModalElement.addEventListener('shown.bs.modal', () => { 
+                        hris.enableExitWarning();
+                    });
+
+                    // When data privacy is hidden/closed, disable the warning
+                    dataPrivacyModalElement.addEventListener('hidden.bs.modal', () => { 
+                        hris.disableExitWarning();
+                    });
+
+                    //========load regional summary report
                     hris.loadSummaryReport()
-
-
                 
                 })//======================end dom onload
 

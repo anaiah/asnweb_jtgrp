@@ -937,8 +937,20 @@ const asn = {
         missingEntryModal.show();
     },
 
-    dbprofile: null,
+    //disble back in mobile and desktop
+    // Function to enable the warning
+    enableExitWarning : () => {
+        window.onbeforeunload = function() {
+            return "Are you sure you want to leave? Any unsaved changes will be lost.";
+        };
+    },
 
+    // Function to disable the warning (Call this when the program closes the dialog)
+    disableExitWarning : () => {
+        window.onbeforeunload = null;
+    },
+
+    dbprofile: null,
     
 	//==,= main run
 	init :  () => {
@@ -1221,7 +1233,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
                             
     // Get references to all relevant DOM elements
     // FOR ADDING  NEW RECORD
@@ -1397,7 +1408,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
     //=======================FOR EMAIL ON BLUR CHECKING
     const inputfld = document.getElementById('email');
     const btnsave = document.getElementById('newemp-next-btn');
@@ -1455,7 +1465,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     });
 
+    // Also ensure canvas is correctly sized when modal is shown
+    const dataPrivacyModalElement = document.getElementById('dataPrivacySignatureModal');
 
+    //when data privacy is shown, enable exit warning to prevent accidental navigation away while signing
+    dataPrivacyModalElement.addEventListener('shown.bs.modal', () => { 
+        asn.enableExitWarning();
+    });
+
+    // When data privacy is hidden/closed, disable the warning
+    dataPrivacyModalElement.addEventListener('hidden.bs.modal', () => { 
+        asn.disableExitWarning();
+    });
 
 });
 

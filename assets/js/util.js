@@ -1605,25 +1605,38 @@ const util = {
                     break;
                 
                 case "#newempForm":
-                    // --- THIS IS THE CRITICAL CHANGE FOR NEWEMPFORM ---
-                    const formData = new FormData(formElement); // Automatically collects all text fields and files
-                    formData.append('date_reg', util.getDate()); // Add date_reg to FormData
-                    
-                    
-                    util.toggleButtonLoading('newemp-next-btn','Saving',true)
-                    const btnsave = document.getElementById('newemp-next-btn');
-                    btnsave.disabled = true;
-                    
-                    //get hire date
-                   // hris.dateHired = document.getElementById('hireDate').value
 
-                    // Call newempPost with the FormData object
-                    util.newempPost(frm, frmModal, `${myIp}/newemppost/${document.getElementById('region').value}/${document.getElementById('hireDate').value}/${document.getElementById('jobTitle').value}`, formData);
-                    
-                    console.log('==posting newempForm data with files ==');
-                    break;
+                    //ask first for consent before saving and signing data privacy agreement
+                    const userConsent = confirm("You are about to save this User data. All Correct and Do you want to proceed?");
+    
+                    if (userConsent) {
+                        // Run your save logic here
+                        console.log("Saving...");
+                        // After success, remember to unlock the exit warning!
+                        hris.disableExitWarning(); 
+                        
+                        // --- THIS IS THE CRITICAL CHANGE FOR NEWEMPFORM ---
+                        const formData = new FormData(formElement); // Automatically collects all text fields and files
+                        formData.append('date_reg', util.getDate()); // Add date_reg to FormData
+                        
+                        util.toggleButtonLoading('newemp-next-btn','Saving',true)
+                        const btnsave = document.getElementById('newemp-next-btn');
+                        btnsave.disabled = true;
+                        
+                        //get hire date
+                        // hris.dateHired = document.getElementById('hireDate').value
 
-            
+                        // Call newempPost with the FormData object
+                        util.newempPost(frm, frmModal, `${myIp}/newemppost/${document.getElementById('region').value}/${document.getElementById('hireDate').value}/${document.getElementById('jobTitle').value}`, formData);
+                        
+                        console.log('==posting newempForm data with files ==');
+                        break;
+
+                    } else {
+                        // User clicked 'Cancel'
+                        console.log("Save cancelled.");
+                    }
+           
                 case "#commentsForm":
                     console.log('===POSTING ISSUES===');
                     // Your existing comments form logic
@@ -2030,8 +2043,6 @@ const util = {
                 const dataPrivacyModalElement = document.getElementById('dataPrivacySignatureModal');
                 const dataPrivacyModal = new bootstrap.Modal(dataPrivacyModalElement);
                 dataPrivacyModal.show();
-                // Also ensure canvas is correctly sized when modal is shown
-                //dataPrivacyModalElement.addEventListener('shown.bs.modal', util.resizeSignatureCanvas, { once: true });
                 
             }else{
                 util.speak(data.voice)

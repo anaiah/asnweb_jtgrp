@@ -12,6 +12,11 @@
     -webkit-overflow-scrolling: touch;
     width: 100%;
 }
+.xcard {
+    display: inline-block !important; /* This is the magic fix */
+    min-width: 100%;
+    border: 1px solid #eef2f6 !important;
+}
 
 /* 2. HEADER STYLING */
 .tabulator-header {

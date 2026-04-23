@@ -583,7 +583,7 @@ span.xgrpheader{
                                 </div> -->
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email Address</label>
-                                    <input type="email" class="form-control 201" value="" id="email" name="email" required>
+                                    <input type="email" class="form-control 201 text-lowercase" value="" id="email" name="email" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">Cellphone Number</label>
@@ -712,7 +712,8 @@ span.xgrpheader{
     <!-- ============================================== -->
     <!-- 2. NEW DATA PRIVACY & SIGNATURE MODAL          -->
     <!-- ============================================== -->
-    <div class="modal fade" id="dataPrivacySignatureModal" tabindex="-1" aria-labelledby="dataPrivacySignatureModalLabel" aria-hidden="true">
+    <div class="modal fade" id="dataPrivacySignatureModal" tabindex="-1" 
+        data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="dataPrivacySignatureModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header bg-success text-white">
