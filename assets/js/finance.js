@@ -381,6 +381,12 @@
                     // For demonstration, using alert. You'd typically update a DOM element here.
                     //alert(`Login details for ${rowData.full_name}:\n` + detailsHtml.replace(/<[^>]*>?/gm, ''));
 
+                    //NEW OPEN TIMEKEEP WINDOW
+                    const modalEl = document.getElementById("timekeepModal");
+                    const bsModal = new bootstrap.Modal(modalEl);
+
+                    bsModal.show();
+
                 } else {
                     //alert(`No login details found for ${rowData.full_name} for the selected period.`);
                 }
@@ -398,12 +404,15 @@
             console.log('Download button clicked, preparing to download grid data as XLS...');
         },
 
+        //======DOWNLOAD TIMEKEEPING REPORT XLS===========
         downloadGridDataAsXls: async (event) => { // <--- Add 'event' parameter
 
             console.log('Download button clicked, preparing to download grid data as XLS...');
 
             event.preventDefault(); // <--- CRUCIAL: Prevent default button behavior (e.g., form submission)
 
+            util.speak('DOWNLOADING.. PLEASE WAIT!!!')
+            
             // IMPORTANT: Replace with the actual route you'll create on your backend
             const backendRoute = `${myIp}/download-grid-data-xls`;
 
@@ -473,13 +482,20 @@
             }
         },
 
+        //OPEN TIMEKEEP DETAILS
+        openTimekeepModal: () => {
+
+            const modalEl = document.getElementById("timekeepModal");
+            const bsModal = new bootstrap.Modal(modalEl);
+
+            bsModal.show();
+        },
 
         //==================INIT 
         init : () =>{
         
             util.loadFormValidation('#searchForm')
 
-            
             let db = localStorage  //get localstoreage
 
             owner =  JSON.parse(db.getItem('profile'))  //get profile
@@ -550,7 +566,7 @@
         const downloadBtn = document.getElementById('download-excel-btn'); // Make sure this ID matches your button
         
         if (downloadBtn) {
-            util.speak('DOWNLOADING.. PLEASE WAIT!!!')
+            //util.speak('DOWNLOADING.. PLEASE WAIT!!!')
             downloadBtn.addEventListener('click', finance.downloadGridDataAsXls);
             //downloadBtn.addEventListener('click', finance.dl);
         }

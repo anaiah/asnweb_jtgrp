@@ -299,29 +299,51 @@ span.xgrpheader{
                   </div>
               </div>
 
-              <div class="col-lg-8 mb-3 mb-lg-0" >
-                  <div class="card shadow w-100 d-none" id="finance_det_grid">
-                      <div class="card-body p-2">
-                          <div class="mt-0 mb-1">
-                              <h5 class="card-title fw-semibold" id="h6-txt">
-                                  Details
-                              </h5>
-                          </div>
-                          <!-- GRID inside -->
-                          <div class="table-responsive">
-                              <div id="finance-detail-grid">
-                                  <!-- Your grid will be initialized here -->
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
           </div>
       </div>
 
     <!-- </div> end page wrapper div -->
     <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
-  
+    <!-- Timekeeping Details Modal -->
+    <div class="modal fade" id="timekeepModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header custom-header">
+            <h5 class="modal-title">Timekeeping Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- Container for Tabulator -->
+            <div class="col-lg-8 mb-3 mb-lg-0" >
+                <div class="card shadow w-100 d-none" id="finance_det_grid">
+                    <div class="card-body p-2">
+                        <div class="mt-0 mb-1">
+                            <h5 class="card-title fw-semibold" id="h6-txt">
+                                Details
+                            </h5>
+                        </div>
+                        <!-- GRID inside -->
+                        <div class="table-responsive">
+                            <div id="finance-detail-grid">
+                                <!-- Your grid will be initialized here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!-- <button type="button" onclick="hris.approveTimeKeep()" class="btn btn-primary btn-sm"
+                  data-bs-dismiss="modal">Approve</button> -->
+
+            <button type="button" class="btn btn-secondary btn-sm"
+                    data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
  
 <!--//end hrisloadModal//-->
   

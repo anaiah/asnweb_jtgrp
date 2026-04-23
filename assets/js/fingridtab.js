@@ -36,7 +36,8 @@ var financeGrid = new Tabulator("#finance-grid", {
          {
             title:'ID',
             field:"id",
-            width:'70'
+            width:'70',
+            headerSort:false, 
         },
         {
             title:'Name',
@@ -44,6 +45,7 @@ var financeGrid = new Tabulator("#finance-grid", {
             width:270,
             formatter:"html", 
             headerHozAlign:"center", 
+            headerSort:false, 
             resizable:false,
             formatter:(cell)=>{
                 // Get the full row data
@@ -56,7 +58,11 @@ var financeGrid = new Tabulator("#finance-grid", {
                 return `${rowData.full_name}<br>
                         ${rowData.email}<br>
                         ${rowData.besi_id}<br>
-                        <button class='btn-primary btn-sm btn' onclick="finance.viewer('${besiId}','${rowIdx}')">View Details</button>`;
+                        <button class='btn-primary btn-sm btn' onclick="finance.viewer('${besiId}','${rowIdx}')">View Details</button>
+                            <span style="background: #f1f5f9; color: #64748b; padding: 4px 10px; border-radius: 12px; font-size: 0.85em; font-weight: bold; border: 1px solid #e2e8f0;">
+                            ${rowData.timekeep_approved == 1 ? ' ✔ Approved' : ' ● Pending'}
+                            </span> `;
+                        
                         // ^^^ Pass the unique ID as a string ^^^
             }
         },
@@ -126,21 +132,7 @@ var financeGrid = new Tabulator("#finance-grid", {
         },
     }
     },
-    // langs:{
-    //     "en-us":{
-    //         "pagination":{
-    //             "page_size":"Page Size", //label for the page size select element
-    //             "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
-    //             "first_title":"First Page", //tooltip text for the first page button
-    //             "last":"<i class='ti ti-player-skip-forward-filled'></i>",
-    //             "last_title":"Last Page",
-    //             "prev":"Prev",
-    //             "prev_title":"Prev Page",
-    //             "next":"Next",
-    //             "next_title":"Next Page",
-    //         },
-    //     }
-    // },
+    
     
     pagination:true, //enable pagination
     //paginationElement: document.getElementById('grid_pagination'),

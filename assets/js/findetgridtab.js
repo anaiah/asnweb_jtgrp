@@ -31,6 +31,13 @@ var financedetailGrid = new Tabulator("#finance-detail-grid", {
             formatter:"html", 
             headerHozAlign:"center", 
             resizable:false,
+            formatter: (cell) => {
+                const v = cell.getValue();
+                if (v === null || v === undefined || v === "" || cell.getData().total_hours === 0) {
+                return "<span class='text-muted'>**No work**</span>";
+                }
+                return v; // or escape/format as needed
+            },
         },
         {
             title:'OUT',
@@ -39,6 +46,13 @@ var financedetailGrid = new Tabulator("#finance-detail-grid", {
             formatter:"html", 
             headerHozAlign:"center", 
             resizable:false,
+            formatter: (cell) => {
+                const v = cell.getValue();
+                if (v === null || v === undefined || v === "" || cell.getData().total_hours === 0) {
+                return "<span class='text-muted'>**No work**</span>";
+                }
+                return v; // or escape/format as needed
+            },
         },
 
 
