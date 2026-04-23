@@ -278,8 +278,8 @@ span.xgrpheader{
 
           <!-- Main Content Card (Search Result) -->
           <div class="row gx-2">
-              <div class="col-lg-8 mb-3 mb-lg-0">
-                  <div class="card shadow w-100">
+              <div class="col-lg-8 mb-3 mb-lg-0" >
+                  <div class="card shadow w-100 d-none" id="finance_main_grid">
                       <div class="card-body p-2">
                           <div class="mt-0 mb-1">
                               <h5 class="card-title fw-semibold" id="h6-txt">
@@ -299,8 +299,8 @@ span.xgrpheader{
                   </div>
               </div>
 
-              <div class="col-lg-8 mb-3 mb-lg-0">
-                  <div class="card shadow w-100">
+              <div class="col-lg-8 mb-3 mb-lg-0" >
+                  <div class="card shadow w-100 d-none" id="finance_det_grid">
                       <div class="card-body p-2">
                           <div class="mt-0 mb-1">
                               <h5 class="card-title fw-semibold" id="h6-txt">
@@ -322,179 +322,7 @@ span.xgrpheader{
     <!-- </div> end page wrapper div -->
     <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
   
-  
-  <!-- //===== this is for excel HRIS upload ===// -->
-  <div class="modal fade" id="hrisloadModal" tabindex="-1" aria-labelledby="hrisloadModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-scrollable">
-        <div class="modal-content">
-            
-            <div class="modal-header bg-primary">
-                <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> HRIS Upload</h4>
-                <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
-            </div>
-
-            <!--//modal body-->
-            <div class="modal-body">
-                
-                <!--//=== ALERT CONTAINER!!!-->
-                <div id="hrisloadPlaceHolder"></div>
-                <!--//END ALERT-->
-                  
-                <div class="row">
-                  <div class="col-12">
-                    <!-- //form file upload onrender.com -->
-                    <form id="hrisuploadForm" name="hrisuploadForm" action="" enctype="multipart/form-data" method="post">
-                      <div class="form-outline">
-
-                        <!-- Add the select element here -->
-                        <div class="mb-2">
-                          <label class="form-label mb-0" for="hrisload_region">Select Region</label>
-                          <select class="form-select" id="hrisload_region" name="hrisload_region" required>
-                            <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
-                            <option value="CMNL" selected>CMNL</option>
-                            <option value="CMNVA">CMNVA</option>
-                            <option value="SMNL">SMNL</option>
-                          </select>
-                        </div>
-                        
-                        <div class="mb-2">
-                          <label class="form-label mb-0" for="hrisload_position">Select Position</label>
-                          <select class="form-select" id="hrisload_position" name="hrisload_position" required>
-                            <!-- <option value="" disabled selected>Select an option</option>  Placeholder option -->
-                            <option value="08" selected>COORDINATOR</option>
-                            <option value="04">SORTER</option>
-                            <option value="02">TRANSPORTER</option>
-                          </select>
-                        </div>
-
-                        <label class="form-label mb-0" for="hris_upload_file">Upload Excel File</label>
-                        <input type="file" class="form-control uploadz mb-2" name="hris_upload_file" id="hris_upload_file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required />
-
-                        <button onclick="javascript:hris.xlshris()" id="hris-upload-btn" name="hris-upload-btn" type="button" class="btn btn-primary">
-                          <i class="ti ti-upload"></i> Upload
-                        </button>
-                      </div>
-                    </form>
-                    <!--//end form -->
-                  </div>
-                </div>
-                
-            </div><!--//end modalbody//-->
-            <!--//footer-->
-            <div class="modal-footer">
-                <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button>
-                <!-- <button class="btn btn-primary" id="mall-save-btn" onclick="" type="button">
-                <i id="i-save" class="fa fa-floppy-o"></i> Save
-                </button> -->
-            </div>
-        </div>
-    </div>
-  </div>			
-  
-  <div class="modal fade" id="newempModal" tabindex="-1" aria-labelledby="newsiteModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
-      <div class="modal-content">
-          
-          <div class="modal-header bg-primary">
-              <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> Create Account</h4>
-              <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
-          </div>
-
-          <!--//modal body-->
-          <div class="modal-body">
-              
-              <!--//=== ALERT CONTAINER!!!-->
-              <div id="newsitePlaceHolder"></div>
-              <!--//END ALERT-->
-
-              <div class="container-fluid" >	
-                  <!--//form goes here -->
-                  <!--//FORM SIGNUP-->
-                  <form id="newempForm" class="needs-validation row gy-2 gx-2 align-items-center" method="GET" novalidate>
-                    <div class="container mt-5">
-                      <h2>HRIS 201 Form</h2>
-                      <form>
-                          <div class="mb-3">
-                              <label for="employeeId" class="form-label">Employee ID</label>
-                              <input type="text" class="form-control 201" id="employeeId" name="employeeId" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="fullName" class="form-label">Full Name</label>
-                              <input type="text" class="form-control 201" id="fullName" name="fullName" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="email" class="form-label">Email Address</label>
-                              <input type="email" class="form-control 201"  value="a@b.com" id="email" name="email" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="phone" class="form-label">Phone Number</label>
-                              <input type="tel" class="form-control 201" value="0917 283 1929" id="phone" name="phone" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="birthDate" class="form-label">Date of Birth</label>
-                              <input type="date" class="form-control" value="01/01/1970" id="birthDate" name="birthDate" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="hireDate" class="form-label">Hire Date</label>
-                              <input type="date" class="form-control 201" value="01/01/2025" id="hireDate" name="hireDate" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="jobTitle" class="form-label">Job Title</label>
-                              <input type="text" class="form-control 201" value="quality cntrol" id="jobTitle" name="jobTitle" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="department" class="form-label">Department</label>
-                              <input type="text" class="form-control 201" value="IT" id="department" name="department" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="employmentStatus" class="form-label">Employment Status</label>
-                              <select class="form-control 201" id="employmentStatus" name="employmentStatus" required>
-                                  <option value="" disabled>Select status</option>
-                                  <option value="Full-Time" selected>Full-Time</option>
-                                  <option value="Part-Time">Part-Time</option>
-                                  <option value="Contract">Contract</option>
-                              </select>
-                          </div>
-                          <div class="mb-3">
-                              <label for="address" class="form-label">Address</label>
-                              <textarea class="form-control 201" id="address" rows="3" name="address" required>Manila</textarea>
-                          </div>
-                          <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-                      </form>
-                  </div>
-                         
-                  </form>
-                  <!--//end form -->
-                  
-                  <div class="row">
-                    <div class="col-lg-4 mb-0">
-                      <!-- //form file upload onrender.com -->
-                      <form id="uploadForm" name="uploadForm" action="" enctype="multipart/form-data" method="post">
-                        <div class="form-outline">
-                          <label class="form-label mb-0" for="uploaded_file">Upload Picture</label>
-                          <input onchange="javascript:main.checkFileSize()" class="form-control equipmentxx" type="file" name="uploaded_file" id="uploaded_file" accept='image/*' required />
-                          <input id="upload-btn" class="btn btn-warning lets-hide" type="submit" value="Upload">
-                          <p><span id="size"></span></p>
-                          <div id="blindspot"></div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  
-              </div><!--//end container-fluid//-->
-              
-          </div><!--//end modalbody//-->
-          <!--//footer-->
-          <div class="modal-footer">
-              <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button>
-              <button class="btn btn-primary" id="mall-save-btn" onclick="javascript:util.validateMe('newempModal','#newempForm','201')" type="button">
-              <i id="i-save" class="fa fa-floppy-o"></i> &nbsp;&nbsp; Save
-              </button>
-          </div>
-      </div>
-  </div>
-</div>			
-
+ 
 <!--//end hrisloadModal//-->
   
 <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/js/tabler.min.js"></script>
@@ -524,6 +352,7 @@ span.xgrpheader{
 <script src="/html/assets/js/ipconfig.js?v=8"></script>
 
 <script src="/html/assets/js/util.js?v=8"></script>
+
 <script src="/html/assets/js/finance.js?v=8"></script>
   
 <!-- <script src="/html/assets/js/main.js?v=8"></script> -->

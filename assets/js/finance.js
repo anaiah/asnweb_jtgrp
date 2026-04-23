@@ -284,7 +284,10 @@
 
                 // Finally, set the empty data. This will also trigger the "No Data" message.
                 financeGrid.setData([]);
-
+                
+                document.getElementById('finance_main_grid').classList.remove('d-none') //show grid if hidden
+                document.getElementById('finance_det_grid').classList.add('d-none') //show grid if hidden
+                
                 document.getElementById('download-excel-btn').disabled = true
 
                 console.log("Tabulator grid fully reset due to empty data.");
@@ -292,6 +295,9 @@
                 // Data is not empty, just update the grid
                 financeGrid.setData(data.xdata)
 
+                document.getElementById('finance_main_grid').classList.remove('d-none') //show grid if hidden
+                document.getElementById('finance_det_grid').classList.add('d-none') //show grid if hidden
+                
                 document.getElementById('download-excel-btn').disabled = false
 
                 console.log("Tabulator grid updated with new data.");
@@ -362,6 +368,8 @@
                 //set details to new grid tabulator
                 financedetailGrid.setData(  rowData.login_details )
 
+                document.getElementById('finance_det_grid').classList.remove('d-none') //show detail grid if hidden
+
                 // Now you have the login_details array, you can do whatever you need with it
                 if (rowData.login_details && rowData.login_details.length > 0) {
                     let detailsHtml = "<ul>";
@@ -386,7 +394,14 @@
         //for downloading xls report
         // --- In your 'your_script.js' or embedded <script> tag ---
         //-- timekeeping
+        dl:()=>{
+            console.log('Download button clicked, preparing to download grid data as XLS...');
+        },
+
         downloadGridDataAsXls: async (event) => { // <--- Add 'event' parameter
+
+            console.log('Download button clicked, preparing to download grid data as XLS...');
+
             event.preventDefault(); // <--- CRUCIAL: Prevent default button behavior (e.g., form submission)
 
             // IMPORTANT: Replace with the actual route you'll create on your backend
@@ -464,8 +479,7 @@
         
             util.loadFormValidation('#searchForm')
 
-            finance.getmenu(util.getCookie('grp_id')) 
-
+            
             let db = localStorage  //get localstoreage
 
             owner =  JSON.parse(db.getItem('profile'))  //get profile
@@ -478,7 +492,7 @@
 
             let authz = []
             authz.push( owner.grp_id )
-            authz.push( owner.fullname)
+            authz.push( owner.fname)
             
             //console.log(authz[1])
 
@@ -505,15 +519,15 @@
             });
            //==============================================END  SOCKET ==========================//
            
-            util.loadFormValidation('#newempForm')
-            util.loadFormValidation('#hrisuploadForm')
+            //util.loadFormValidation('#newempForm')
+            //util.loadFormValidation('#hrisuploadForm')
             
             //document.getElementById('search-btn').disabled =  true
            
             finance.scrollToTop()
 
-            util.modalListeners('newempModal')
-            util.modalListeners('hrisloadModal')
+           // util.modalListeners('newempModal')
+            //util.modalListeners('hrisloadModal')
 
             
         }    
@@ -530,10 +544,15 @@
         finance.init()
         //finance.listeners()
 
+        finance.getmenu(util.getCookie('grp_id')) 
+
+
         const downloadBtn = document.getElementById('download-excel-btn'); // Make sure this ID matches your button
         
         if (downloadBtn) {
+            util.speak('DOWNLOADING.. PLEASE WAIT!!!')
             downloadBtn.addEventListener('click', finance.downloadGridDataAsXls);
+            //downloadBtn.addEventListener('click', finance.dl);
         }
         
         console.log('DOM CONTENT loaded')

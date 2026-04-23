@@ -36,12 +36,12 @@ var financeGrid = new Tabulator("#finance-grid", {
          {
             title:'ID',
             field:"id",
-            width:'50'
+            width:'70'
         },
         {
             title:'Name',
             field:'full_name',
-            width:250,
+            width:270,
             formatter:"html", 
             headerHozAlign:"center", 
             resizable:false,
