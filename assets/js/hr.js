@@ -422,15 +422,7 @@
 
             // IMPORTANT: Replace with the actual route you'll create on your backend
             util.scrollsTo( 'search-result-grid')
-
-            //bring backdisplay
-            document.getElementById('search-result-grid').classList.remove('d-none');
-            document.getElementById('timekeepdisplay').classList.remove('d-none');
-
-            //==if present divs, hide===
-            //document.getElementById('search-result-grid').classList.remove('d-none');
-            document.getElementById('hrisdisplay').classList.add('d-none');
-
+           
             const searchForm = document.getElementById('searchForm');
             const formData = new FormData(searchForm);
 
@@ -445,9 +437,16 @@
                 return false;
             }
 
+             //bring backdisplay
+            document.getElementById('search-result-grid').classList.remove('d-none');
+            document.getElementById('timekeepdisplay').classList.remove('d-none');
+
+            //==if present divs, hide===
+            //document.getElementById('search-result-grid').classList.remove('d-none');
+            document.getElementById('hrisdisplay').classList.add('d-none');
+
             //====get region
             hris.selectedRegion = document.getElementById('filter_region').value
-
 
             // --- HOW TO INSPECT FormData CONTENTS ---
             console.log("--- Inspecting FormData ---");
@@ -879,29 +878,80 @@
                 const headerRow = document.getElementById('tableHeader');
                 const bodyRows = document.getElementById('tableBody');
 
-                const columns = Object.keys(data[0]);
-                
-                // 1. Headers: Make them Uppercase and bold
-                headerRow.innerHTML = columns.map(col => `<th class="text-nowrap">${col.toUpperCase()}</th>`).join('');
+                console.log('summary data==', data)
 
-                // 2. Data Rows
+                const columns = Object.keys(data[0]);
+
+                // 1. Headers
+                //headerRow.innerHTML = columns.map(col => `<th class="text-nowrap">${col.toUpperCase()}</th>`).join('');
+                // Add inline bold style to the HTML before exporting
+                headerRow.innerHTML = columns.map(col => 
+                    `<th style="font-weight: bold; background-color: #E2E8F0;">${col.toUpperCase()}</th>`
+                ).join('');
+
+
+                // 2. Data Rows (Your existing code)
                 bodyRows.innerHTML = data.map(row => {
                     return `<tr>
                         ${columns.map((col, index) => {
                             const value = row[col];
-                            
                             const isFirstCol = index === 0 ? 'class="fw-bold text-primary text-nowrap"' : '';
                             const isTotalCol = col === 'Total' ? 'class="fw-bold table-active"' : '';
                             const isZero = value === 0 ? 'class="text-muted opacity-50"' : '';
-
-                            // Combine them into one class string
-                            const finalClass = `${isFirstCol} ${isTotalCol} ${isZero}`;
-
-                            return `<td class="${finalClass}">${value}</td>`;
-
+                            return `<td class="${isFirstCol} ${isTotalCol} ${isZero}">${value}</td>`;
                         }).join('')}
                     </tr>`;
                 }).join('');
+
+                // 3. CALCULATE GRAND TOTAL
+                const footerRow = document.getElementById('tableFooter');
+                const grandTotals = {};
+
+                // Initialize totals for each column
+                columns.forEach((col, index) => {
+                    if (index === 0) {
+                        grandTotals[col] = "GRAND TOTAL"; // Label for first column
+                    } else {
+                        // Sum values across all rows for this specific column
+                        grandTotals[col] = data.reduce((sum, row) => sum + (Number(row[col]) || 0), 0);
+                    }
+                });
+
+                // Render the footer row
+                footerRow.innerHTML = `
+                    <tr>
+                        ${columns.map((col, index) => {
+                            const value = grandTotals[col];
+                            // Style the first column differently
+                            const cellClass = index === 0 ? 'text-start' : 'text-center';
+                            return `<td class="${cellClass}">${value}</td>`;
+                        }).join('')}
+                    </tr>
+                `;
+
+                // const columns = Object.keys(data[0]);
+                
+                // // 1. Headers: Make them Uppercase and bold
+                // headerRow.innerHTML = columns.map(col => `<th class="text-nowrap">${col.toUpperCase()}</th>`).join('');
+
+                // // 2. Data Rows
+                // bodyRows.innerHTML = data.map(row => {
+                //     return `<tr>
+                //         ${columns.map((col, index) => {
+                //             const value = row[col];
+                            
+                //             const isFirstCol = index === 0 ? 'class="fw-bold text-primary text-nowrap"' : '';
+                //             const isTotalCol = col === 'Total' ? 'class="fw-bold table-active"' : '';
+                //             const isZero = value === 0 ? 'class="text-muted opacity-50"' : '';
+
+                //             // Combine them into one class string
+                //             const finalClass = `${isFirstCol} ${isTotalCol} ${isZero}`;
+
+                //             return `<td class="${finalClass}">${value}</td>`;
+
+                //         }).join('')}
+                //     </tr>`;
+                // }).join('');
 
             } catch (error) {
                 console.error("Error loading report:", error);
@@ -948,6 +998,37 @@
             }
 
         },    
+
+        //======EXPORT TO EXCEL J&T MANPOWER========//
+        exportToExcel: () => {
+            
+            // 1. Create a blank worksheet
+            const ws = XLSX.utils.aoa_to_sheet([
+                ["BETTTER EDGE SOLUTIONS, INC."], // Row 1: Company Name
+                ["Textron Building"],
+                ["Luna Mencia Street, "], // Row 2: Blank spacer row
+                ["San Juan City, Philippines"],
+                [],
+                ["J&T OVERALL ACTIVE MANPOWER REPORT"], // Row 3: Your Title
+                [] // Row 4: Blank spacer row
+            ]);
+
+            // 2. Get your HTML table
+            const table = document.getElementById("summaryTable");
+
+            // 3. Inject the table into the existing worksheet starting at row 3 (A3)
+            // { origin: 2 } means start at the 3rd row (index 2)
+            XLSX.utils.sheet_add_dom(ws, table, { origin: 7 });
+
+            // 4. Create a workbook and add the sheet
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Active Manpower");
+
+            // 5. Generate filename with date
+            const date = new Date().toISOString().split('T')[0];
+            XLSX.writeFile(wb, `JT_Manpower_Report_${date}.xlsx`);
+
+        },
 
         position:null,
         address:null,
