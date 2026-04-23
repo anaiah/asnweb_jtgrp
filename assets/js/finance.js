@@ -288,7 +288,7 @@
                 document.getElementById('finance_main_grid').classList.remove('d-none') //show grid if hidden
                 document.getElementById('finance_det_grid').classList.add('d-none') //show grid if hidden
                 
-                document.getElementById('download-excel-btn').disabled = true
+                //document.getElementById('download-excel-btn').disabled = true
 
                 console.log("Tabulator grid fully reset due to empty data.");
             } else {
@@ -298,7 +298,7 @@
                 document.getElementById('finance_main_grid').classList.remove('d-none') //show grid if hidden
                 document.getElementById('finance_det_grid').classList.add('d-none') //show grid if hidden
                 
-                document.getElementById('download-excel-btn').disabled = false
+                //document.getElementById('download-excel-btn').disabled = false
 
                 console.log("Tabulator grid updated with new data.");
             }
@@ -412,7 +412,7 @@
             event.preventDefault(); // <--- CRUCIAL: Prevent default button behavior (e.g., form submission)
 
             util.speak('DOWNLOADING.. PLEASE WAIT!!!')
-            
+
             // IMPORTANT: Replace with the actual route you'll create on your backend
             const backendRoute = `${myIp}/download-grid-data-xls`;
 
@@ -558,18 +558,55 @@
     document.addEventListener('DOMContentLoaded', function() {
 
         finance.init()
-        //finance.listeners()
-
+        //get menu first before anything else
         finance.getmenu(util.getCookie('grp_id')) 
 
+        // 1. Get Elements
+        const dateFrom = document.getElementById('filter_date_from');
+        const dateTo = document.getElementById('filter_date_to');
+        const downloadBtn = document.getElementById('download-excel-btn');
 
-        const downloadBtn = document.getElementById('download-excel-btn'); // Make sure this ID matches your button
-        
+        // 2. Define the Validation Logic
+        const validateDates = () => {
+            const fromVal = dateFrom.value;
+            const toVal = dateTo.value;
+
+            // Condition 1: Both fields must have a value
+            const bothFilled = fromVal && toVal;
+            
+            // Condition 2: "To" date must not be before "From" date
+            const isValidRange = new Date(toVal) >= new Date(fromVal);
+
+            if (bothFilled && isValidRange) {
+                downloadBtn.disabled = false;
+                dateTo.classList.remove('is-invalid'); // Remove Bootstrap error red border
+            } else {
+                downloadBtn.disabled = true;
+
+                // If both are filled but range is wrong, show red border
+                if (bothFilled && !isValidRange) {
+                    dateTo.classList.add('is-invalid');
+                } else {
+                    dateTo.classList.remove('is-invalid');
+                }
+            }
+        };
+
+        // 3. Initialize
         if (downloadBtn) {
-            //util.speak('DOWNLOADING.. PLEASE WAIT!!!')
+            // Add Click Listener
             downloadBtn.addEventListener('click', finance.downloadGridDataAsXls);
-            //downloadBtn.addEventListener('click', finance.dl);
+            
+            // Listen for changes on both inputs (input and change for mobile/safari support)
+            ['input', 'change'].forEach(evt => {
+                dateFrom.addEventListener(evt, validateDates);
+                dateTo.addEventListener(evt, validateDates);
+            });
+
+            // Run once immediately to set initial state
+            validateDates();
         }
+
         
         console.log('DOM CONTENT loaded')
         
