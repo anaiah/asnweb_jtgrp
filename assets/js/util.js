@@ -1510,6 +1510,19 @@ const util = {
             return true;
         }
     },
+
+    //disble back in mobile and desktop
+        // Function to enable the warning
+        enableExitWarning : () => {
+            window.onbeforeunload = function() {
+                return "Are you sure you want to leave? Any unsaved changes will be lost.";
+            };
+        },
+
+        // Function to disable the warning (Call this when the program closes the dialog)
+        disableExitWarning : () => {
+            window.onbeforeunload = null;
+        },
  
     //==========WHEN SUBMIT BUTTON CLICKED ==================
     validateMe: async (frmModal, frm, classX)=>{
@@ -1613,7 +1626,7 @@ const util = {
                         // Run your save logic here
                         console.log("Saving...");
                         // After success, remember to unlock the exit warning!
-                        hris.disableExitWarning(); 
+                        util.disableExitWarning(); 
                         
                         // --- THIS IS THE CRITICAL CHANGE FOR NEWEMPFORM ---
                         const formData = new FormData(formElement); // Automatically collects all text fields and files
