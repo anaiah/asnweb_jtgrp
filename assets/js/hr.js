@@ -1,3 +1,5 @@
+    
+    
     const mainContainer = document.getElementById('main');
     const sidebar = document.getElementById('sidebar');
     
@@ -242,178 +244,163 @@
         //==========END  GETMENU
         
         //checkform first
-        checkform:( whatForm ) =>{
-            let formIsValid = true;
+        // checkform:( whatForm ) =>{
+        //     let formIsValid = true;
             
-            // Get all elements within the form that have the 'required' attribute
-            const requiredElements = whatForm.querySelectorAll('[required]');
+        //     // Get all elements within the form that have the 'required' attribute
+        //     const requiredElements = whatForm.querySelectorAll('[required]');
 
-            requiredElements.forEach(function(element) {
-                // Clear previous validation classes
-                element.classList.remove('is-invalid');
-                element.classList.remove('is-valid');
+        //     requiredElements.forEach(function(element) {
+        //         // Clear previous validation classes
+        //         element.classList.remove('is-invalid');
+        //         element.classList.remove('is-valid');
 
-                // Check if the element is blank
-                if (element.value.trim() === '' || (element.tagName === 'SELECT' && element.value === '')) {
-                    element.classList.add('is-invalid');
-                    formIsValid = false;
-                } else {
-                    element.classList.add('is-valid');
-                }
-            });
+        //         // Check if the element is blank
+        //         if (element.value.trim() === '' || (element.tagName === 'SELECT' && element.value === '')) {
+        //             element.classList.add('is-invalid');
+        //             formIsValid = false;
+        //         } else {
+        //             element.classList.add('is-valid');
+        //         }
+        //     });
 
-            if (formIsValid) {
-                // If the form is valid, you can now collect the data and do something with it.
-                // Using FormData is a convenient way to get all form values by their 'name' attribute.
-                const formData = new FormData(whatForm);
+        //     if (formIsValid) {
+        //         // If the form is valid, you can now collect the data and do something with it.
+        //         // Using FormData is a convenient way to get all form values by their 'name' attribute.
+        //         const formData = new FormData(whatForm);
                 
-                hris.searchEmp()
+        //         hris.searchEmp()
+        //         return true; // Indicate success
+            
+        //     } else {
+        //         // If validation fails, just alert or show a general message
+        //         util.Toasted('Please fill in all required fields.',3000,false);
+        //         return false; // Indicate failure
+        //     }
 
-                // const selectedService = formData.get('service'); // Uses the 'name' attribute
-                // const selectedSegment = formData.get('segment'); // Uses the 'name' attribute
-                // const countValue = formData.get('count');       // Uses the 'name' attribute
-
-                // console.log('Data Submitted via check(whatForm):');
-                // console.log('Service:', selectedService);
-                // console.log('Segment:', selectedSegment);
-                // console.log('Count:', countValue);
-
-                //alert(`Data for Service: "${selectedService}", Segment: "${selectedSegment}" with Count: "${countValue}" submitted successfully!`);
-                
-                //dataInputModal.hide(); // Close modal after submission
-                //whatForm.reset();     // Clear form
-
-                return true; // Indicate success
-            } else {
-                // If validation fails, just alert or show a general message
-                util.Toasted('Please fill in all required fields.',3000,false);
-                return false; // Indicate failure
-            }
-
-        },
+        // },
         
         //================== print masterfile ===========//
-        printMasterfile: async() =>{
+        // printMasterfile: async() =>{
 
-            console.log( '====Firing hris.printMasterfile()====')
+        //     console.log( '====Firing hris.printMasterfile()====')
 
-            const form = document.getElementById("searchForm");
-            const fd = new FormData(form);
+        //     const form = document.getElementById("searchForm");
+        //     const fd = new FormData(form);
 
-            // simple validation: need region at least
-            if (!fd.get("filter_region")) {
-                alert("Please select a Region first.");
-                return;
-            }
+        //     // simple validation: need region at least
+        //     if (!fd.get("filter_region")) {
+        //         alert("Please select a Region first.");
+        //         return;
+        //     }
 
-            if (!fd.get("filter_position")) {
-                alert("Please select a Position.");
-                return;
-            }
+        //     if (!fd.get("filter_position")) {
+        //         alert("Please select a Position.");
+        //         return;
+        //     }
 
-            try {
+        //     try {
 
-                util.toggleButtonLoading("print-masterfile-btn", "Downloading...", true);
+        //         util.toggleButtonLoading("print-masterfile-btn", "Downloading...", true);
         
-                const res = await fetch(`${myIp}/printmasterfile`, {
-                    method: "POST",
-                    body: fd, // FormData -> multipart/form-data
-                });
+        //         const res = await fetch(`${myIp}/printmasterfile`, {
+        //             method: "POST",
+        //             body: fd, // FormData -> multipart/form-data
+        //         });
 
-                if (!res.ok) {
-                    const text = await res.text();
-                    throw new Error(text || "Failed to generate masterfile");
-                }
+        //         if (!res.ok) {
+        //             const text = await res.text();
+        //             throw new Error(text || "Failed to generate masterfile");
+        //         }
 
-                let filename = `MASTERFILE_${document.getElementById('filter_region').value.toUpperCase()}_${document.getElementById('filter_position').value}_${new Date().toISOString().slice(0,10)}.xlsx`;
+        //         let filename = `MASTERFILE_${document.getElementById('filter_region').value.toUpperCase()}_${document.getElementById('filter_position').value}_${new Date().toISOString().slice(0,10)}.xlsx`;
                 
-                const contentDisposition = res.headers.get('Content-Disposition');
+        //         const contentDisposition = res.headers.get('Content-Disposition');
                 
-                if (contentDisposition) {
-                    const filenameMatch = contentDisposition.match(/filename\*?=['"]?([^"']+)['"]?$/i);
-                    if (filenameMatch && filenameMatch[1]) {
-                        filename = decodeURIComponent(filenameMatch[1].replace(/utf-8''/i, ''));
-                    }
-                }
+        //         if (contentDisposition) {
+        //             const filenameMatch = contentDisposition.match(/filename\*?=['"]?([^"']+)['"]?$/i);
+        //             if (filenameMatch && filenameMatch[1]) {
+        //                 filename = decodeURIComponent(filenameMatch[1].replace(/utf-8''/i, ''));
+        //             }
+        //         }
 
-                const blob = await res.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-                window.URL.revokeObjectURL(url);
-                //msg user
-                util.speak('Master file downloaded successfully!!!')
+        //         const blob = await res.blob();
+        //         const url = window.URL.createObjectURL(blob);
+        //         const a = document.createElement("a");
+        //         a.href = url;
+        //         a.download = filename;
+        //         document.body.appendChild(a);
+        //         a.click();
+        //         a.remove();
+        //         window.URL.revokeObjectURL(url);
+        //         //msg user
+        //         util.speak('Master file downloaded successfully!!!')
 
-                // Turn OFF loading: restore original icon + text
-                util.toggleButtonLoading("print-masterfile-btn", null, false);
+        //         // Turn OFF loading: restore original icon + text
+        //         util.toggleButtonLoading("print-masterfile-btn", null, false);
 
-            } catch (err) {
-                alert(err.message || "Error downloading masterfile");
-            }
+        //     } catch (err) {
+        //         alert(err.message || "Error downloading masterfile");
+        //     }
 
 
-        },
+        // },
 
         //==================search filter=======
-        searchEmp: async() => {
+        // searchEmp: async() => {
 
-            console.log('===FIRED  hris.searchEmp()====')
+        //     console.log('===FIRED  hris.searchEmp()====')
             
-            const searchForm = document.getElementById('searchForm');
-            const formData = new FormData(searchForm);
+        //     const searchForm = document.getElementById('searchForm');
+        //     const formData = new FormData(searchForm);
 
-            // --- HOW TO INSPECT FormData CONTENTS ---
-            console.log("--- Inspecting FormData ---");
-            for (let pair of formData.entries()) {
-                console.log(pair[0] + ': ' + pair[1]);
-            }
-            console.log("-------------------------");
+        //     // --- HOW TO INSPECT FormData CONTENTS ---
+        //     console.log("--- Inspecting FormData ---");
+        //     for (let pair of formData.entries()) {
+        //         console.log(pair[0] + ': ' + pair[1]);
+        //     }
+        //     console.log("-------------------------");
             
-            // --- END INSPECTION ---
+        //     // --- END INSPECTION ---
         
-            const response = await fetch(`${myIp}/searchemp`, {
-                method: 'POST',
-                body: formData
-            });
+        //     const response = await fetch(`${myIp}/searchemp`, {
+        //         method: 'POST',
+        //         body: formData
+        //     });
 
-            if (!response.ok) {
-                const errorData = await response.json().catch(() => ({ message: 'Server error' }));
-                throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);
-            }
+        //     if (!response.ok) {
+        //         const errorData = await response.json().catch(() => ({ message: 'Server error' }));
+        //         throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);
+        //     }
 
-            const data = await response.json();
+        //     const data = await response.json();
 
-            console.log( data.xdata)
+        //     console.log( data.xdata)
             
-            const dateDiv = document.getElementById('datediv');
+        //     const dateDiv = document.getElementById('datediv');
             
-             // New button reference
-            if(data.xdata.length>0){
-                //dateDiv.classList.remove('d-none')
-            //    printTimekeepingBtn.classList.remove('d-none')
-            }else{
-                //dateDiv.classList.add('d-none')
-              //  printTimekeepingBtn.classList.add('d-none')
+        //      // New button reference
+        //     if(data.xdata.length>0){
+        //         //dateDiv.classList.remove('d-none')
+        //     //    printTimekeepingBtn.classList.remove('d-none')
+        //     }else{
+        //         //dateDiv.classList.add('d-none')
+        //       //  printTimekeepingBtn.classList.add('d-none')
                 
-            }
+        //     }
 
-            //console.log( hrisGrid)
-            //bring backdisplay
-            document.getElementById('search-result-grid').classList.remove('d-none');
+        //     //bring backdisplay
+        //     document.getElementById('search-result-grid').classList.remove('d-none');
             
-            document.getElementById('hrisdisplay').classList.remove('d-none');
+        //     document.getElementById('hrisdisplay').classList.remove('d-none');
 
-            document.getElementById('timekeepdisplay').classList.add('d-none');
+        //     document.getElementById('timekeepdisplay').classList.add('d-none');
 
-            util.scrollsTo( 'hrisdisplay')
+        //     util.scrollsTo( 'hrisdisplay')
 
-            // set data to tabular grid
-            hrisGrid.setData(data.xdata) 
-        },
+        //     // set data to tabular grid
+        //     hrisGrid.setData(data.xdata) 
+        // },
 
         //=============print timekeeping from Grid========//
         printTimeKeep: async() => {
@@ -841,6 +828,8 @@
                     imgEl.style.display = "block";
                     noImgDiv.style.display = "none";
                 };
+
+                
                 imgEl.src = url;
                 };
 
@@ -1043,6 +1032,203 @@
             window.onbeforeunload = null;
         },
 
+        editMode: false, // global flag to indicate if we're in edit mode or not
+
+        //===========edit employee records===================
+        openEditForm : (rowData) => {
+        
+            hris.editMode = true; // Set edit mode to true when opening the form
+           
+            const btn = document.querySelector('#newemp-next-btn');
+
+            // Using dataset (Recommended)
+            btn.dataset.mode = 'edit';
+            btn.innerHTML = '💾 Save Edit'; // If you want the text to change too
+            const form = document.getElementById('newempForm');
+            const empId = rowData.emp_id;
+            const region = ( document.getElementById('filter_region').value || "");
+
+            // if(hris.editMode){
+            //     hris.loc = rowData.location || "";
+            
+            // }
+
+            // 1. CLEANUP: Remove any previous injections (ID or Thumbnails)
+            document.querySelectorAll('.injected-edit-ui').forEach(el => el.remove());
+
+            // 2. INJECT READONLY ID at the top
+            const idHtml = `
+                <div class="mb-3 injected-edit-ui">
+                    <label class="form-label fw-bold text-primary">RECORD EDITING (READ-ONLY ID)</label>
+                    <input type="text" class="form-control bg-light" id="edit-emp-id" name="edit-emp-id" value="${empId}" readonly>
+                </div>`;
+
+            form.insertAdjacentHTML('afterbegin', idHtml);
+
+            // 3. POPULATE TEXT FIELDS (With Date Cleaning)
+            const cleanDate = (d) => (d && d.includes('T')) ? d.split('T')[0] : (d || "");
+
+            form.querySelector('#region').value = region.toUpperCase() || "";
+            // This manually triggers the 'change' event so util.getLocation runs
+            const regionEl = form.querySelector('#region');
+            //// KILL THE REGION regionEl.dispatchEvent(new Event('change', { bubbles: true })); /// fire event listener
+            
+            form.querySelector('#firstName').value = rowData.first_name || "";
+            form.querySelector('#lastName').value = rowData.last_name || "";
+            
+            form.querySelector('#jobTitle').value = rowData.position || "";
+
+            const jobTitleEl = form.querySelector('#jobTitle');
+            jobTitleEl.dispatchEvent(new Event('change',{ bubbles: true } )); ///fire event listener
+                        
+           
+            form.querySelector('#fullName').value = rowData.full_name || "";
+            form.querySelector('#email').value = rowData.email || "";
+            form.querySelector('#email').dataset.original = rowData.email || "";
+
+            // Using dataset (Recommended)
+            btn.dataset.mode = 'edit';
+            
+            form.querySelector('#phone').value = rowData.phone || "";
+            form.querySelector('#birthDate').value = cleanDate(rowData.birth_date);
+            form.querySelector('#hireDate').value = cleanDate(rowData.hire_date);
+            form.querySelector('#employmentStatus').value = rowData.employment_status || "";
+            form.querySelector('#addy1').value = rowData.street_1 || "";
+            form.querySelector('#addy2').value = rowData.street_2 || "";
+            form.querySelector('#bgy').value = rowData.bgy || "";
+            form.querySelector('#city').value = rowData.city || "";
+            form.querySelector('#address').value = rowData.full_address || "";
+            form.querySelector('#nameSuffix').value = rowData.suffix || "";
+            form.querySelector('#middleName').value = rowData.middle_name || "";
+
+            // 4. INJECT THUMBNAILS below File Inputs
+            // Note: 'name' must match your <input name="..."> exactly
+            const fileConfigs = [
+                { name: "id_picture",          prefix: "USER_",     label: "ID Picture" },
+                { name: "id_specimen_picture", prefix: "SPECIMEN_", label: "Specimen Sig" },
+                { name: "id_gcash",            prefix: "GCASH_",    label: "GCash" },
+                { name: "bgy_clearance",       prefix: "BGY_",      label: "Bgy Clearance" },
+                { name: "police_clearance",    prefix: "POLICE_",   label: "Police/NBI" },
+                { name: "drivers_license",     prefix: "DRIVER_",   label: "License" },
+            ];
+
+            const exts = [".jpg", ".png", ".gif"];
+
+            // Determine Folder Path (Your Switch Logic)
+            let regionFolder = "";
+            const xregion = region.toLowerCase(); // Normalize to lowercase for consistent matching
+
+            switch (xregion) {
+                case "smnl": 
+                case "cmnva": 
+                case "cmnl":
+                    regionFolder = `ncr_${xregion}_emp`;
+                    break;
+                case "nelu": 
+                case "nwlu":
+                    regionFolder = `luz_${region}_emp`;
+                    break;
+                case "min": 
+                    regionFolder = `min_emp`;
+                    break; 
+                case "bicol": 
+                case "smarleyte":
+                    regionFolder = `bsl_${xregion}_emp`;    
+                    break;
+                default:
+                    regionFolder = `wvis_${xregion}_emp`; // For bacolod, panay, etc.
+            }
+
+            const baseUrl = `https://asianowapp.com/html/${regionFolder}/`;
+
+            fileConfigs.forEach(cfg => {
+    
+                // This looks for the <input name="id_picture"> etc.
+                const inputEl = form.querySelector(`input[name="${cfg.name}"]`);
+                
+                if (inputEl) {
+                    // Create container
+                    const thumbContainer = document.createElement('div');
+                    thumbContainer.className = "injected-edit-ui mt-2 p-1 border rounded bg-light";
+                    thumbContainer.style = "width: fit-content; min-width: 100px; text-align: center;";
+                    thumbContainer.innerHTML = `<small class="d-block text-muted">Checking...</small>`;
+                    
+                    inputEl.after(thumbContainer);
+
+                    let idx = 0;
+                    const tryExt = () => {
+                        if (idx >= exts.length) {
+                            thumbContainer.innerHTML = `<small class="text-muted">No file on server</small>`;
+                            return;
+                        }
+                        
+                        // CONSTRUCT FILENAME: e.g., USER_123.jpg
+                        const fileName = `${cfg.prefix}${empId}${exts[idx]}`;
+                        const fullUrl = baseUrl + fileName; // Remove encodeURIComponent if filenames don't have spaces
+
+                        // FOR CHECKING: Open your console (F12) to see these!
+                        console.log(`Trying ${cfg.label}:`, fullUrl);
+
+                        const img = new Image();
+                        img.style = "max-height: 80px; display: block; margin: auto;";
+                        img.onload = () => {
+                            thumbContainer.innerHTML = ""; 
+                            thumbContainer.appendChild(img);
+                        };
+                        img.onerror = () => { 
+                            idx++; 
+                            tryExt(); 
+                        };
+                        img.src = fullUrl;
+                    };
+                    tryExt();
+                } else {
+                    console.warn(`Could not find input with name: ${cfg.name}`);
+                }
+            });
+    
+            // 6.. SHOW MODAL
+            const modalEl = document.getElementById("newempModal");
+            const bsModal = new bootstrap.Modal(modalEl);
+            bsModal.show();
+
+            const locStoreEl = form.querySelector('#locStore');
+            //reset first
+            locStoreEl.innerHTML = '';
+
+            if( rowData.location){    
+                let opt = document.createElement('option');
+                opt.value = rowData.location;
+                opt.innerHTML = rowData.location;
+                opt.selected = true;
+                locStoreEl.appendChild(opt);
+            }    
+            
+            // let's put hub_store last
+            //form.querySelector('#hubStore').value = rowData.hub || "";
+            const hubField = document.getElementById('hubStore');
+            //reset first
+            hubField.innerHTML = '';
+
+            if(rowData.hub){
+                let opt = document.createElement('option');
+                opt.value = rowData.hub;
+                opt.innerHTML = rowData.hub;
+                opt.selected = true;
+                hubField.appendChild(opt);
+            }else{
+                let opt = document.createElement('option');
+                opt.value = "";
+                opt.innerHTML = "No Hub Assigned";
+                opt.selected = true;
+                hubField.appendChild(opt);
+                
+            }//EIF
+            
+           // 6. TURN OFF ALL 'REQUIRED' ATTRIBUTES IN THE FORM (Since this is an edit, not a new record) SUCH AS PICTURES
+              //form.querySelectorAll('input, select, textarea').forEach(el => el.removeAttribute('required'));
+        },
+
         position:null,
         address:null,
         fullname:null,
@@ -1058,6 +1244,24 @@
                 
                 document.addEventListener('DOMContentLoaded', function() {
 
+                    // 1. Create the "Anchor" state immediately on load
+                    // This adds a 'fake' page in the history so the 'Back' gesture has something to hit
+                    window.history.pushState({ page: "hr_landing" }, null, window.location.href);
+
+                    // 2. Listen for the "Back" movement (Swipe or Back Button)
+                    window.onpopstate = function(event) {
+                        // When they swipe back, they hit our anchor.
+                        // We push the anchor right back in to keep them here.
+                        window.history.pushState({ page: "hr_landing" }, null, window.location.href);
+                        
+                        // Optional: Show a small toast or message
+                        console.log("Swipe back prevented.");
+                    };
+
+                    // 3. Keep your refresh/tab-close warning active
+                    window.onbeforeunload = function() {
+                        return "Are you sure you want to leave the HR Dashboard?";
+                    };
                     console.log('===HRIS OPERATIONS DOMCONTENTLOADED ==')
                     
                     util.modalListeners('newempModal')
@@ -1190,61 +1394,66 @@
                     }
 
                     //=======================FOR EMAIL ON BLUR CHECKING
-                    const inputfld = document.getElementById('email');
-                    const btnsave = document.getElementById('newemp-next-btn');
-                   
-                    inputfld.addEventListener('blur', function() {
-                        console.log("Checking unique value for: " + this.value);
-                        const email = this.value;
+                        // const emailFld = document.getElementById('email');
+                        // const btnsave = document.getElementById('newemp-next-btn');
+                       
+                        // emailFld.addEventListener('blur', function() {
+                            
+                        //     console.log("Checking unique value for: " + hris.editMode, this.value);
 
-                        const region = document.getElementById('region').value
+                        //     if(!hris.editMode){ //ONLY CHECK IF NOT IN EDIT MODE. IN EDIT MODE, WE ASSUME EMAIL IS THE SAME AS BEFORE AND SKIP CHECKING 
+                        //         const email = this.value;
 
-                        //off button
-                        document.getElementById('i-next').disabled = true
-                        //util.toggleButtonLoading('i-next', 'CHECKING EMAIL', true)
+                        //         const region = document.getElementById('region').value
 
-                        if (!email) return; // Don't check if empty
+                        //         //off button
+                        //         document.getElementById('i-next').disabled = true
+                        //         //util.toggleButtonLoading('i-next', 'CHECKING EMAIL', true)
 
-                            // 1. Start the Fetch call
-                            const url = `${myIp}/checkinputemail/${encodeURIComponent(email)}/${encodeURIComponent(region.toLowerCase())}` 
-                            console.log('endpoint ', url)
-                            fetch(url)
-                            .then(response => {
-                                if (!response.ok) throw new Error('Network error');
-                                return response.json(); // 2. Parse JSON response
-                            })
-                            .then(data => {
-                                // 3. Handle the logic back from server
-                                if (data.exists) {
-                                    console.log("Error: Email already exists in besi_employee_nelu");
-                                    //emailInput.style.borderColor = "red";
-                                    
-                                    this.classList.add('is-invalid')
+                        //         if (!email) return; // Don't check if empty
 
-                                    alert("This email is already registered!");
-                                    this.value = ''
+                        //         // 1. Start the Fetch call
+                        //         const url = `${myIp}/checkinputemail/${encodeURIComponent(email)}/${encodeURIComponent(region.toLowerCase())}` 
+                        //         console.log('endpoint ', url)
+                        //         fetch(url)
+                        //         .then(response => {
+                        //             if (!response.ok) throw new Error('Network error');
+                        //             return response.json(); // 2. Parse JSON response
+                        //         })
+                        //         .then(data => {
+                        //             // 3. Handle the logic back from server
+                        //             if (data.exists) {
+                        //                 console.log("Error: Email already exists in besi_employee_nelu");
+                        //                 //emailInput.style.borderColor = "red";
+                                        
+                        //                 this.classList.add('is-invalid')
 
-                                    btnsave.disabled = true;
-                                    return;
-                   
-                                    //util.toggleButtonLoading('i-next', null,false)
+                        //                 alert("This email is already registered!");
+                        //                 this.value = ''
 
-                                } else {
-                                    console.log("Email is unique!");
-                                    
-                                    this.classList.remove('is-invalid')
+                        //                 btnsave.disabled = true;
+                        //                 return;
+                    
+                        //                 //util.toggleButtonLoading('i-next', null,false)
 
-                                    //emailInput.style.borderColor = "green";
-                                    btnsave.disabled = false;
-                   
-                                    //util.toggleButtonLoading('i-next', null,false)
-                                }
-                            })
-                            .catch(error => {
-                                // 4. Catch any errors (server down, etc.)
-                                console.error('Fetch error:', error);
-                            });
-                    });
+                        //             } else {
+                        //                 console.log("Email is unique!");
+                                        
+                        //                 this.classList.remove('is-invalid')
+
+                        //                 //emailInput.style.borderColor = "green";
+                        //                 btnsave.disabled = false;
+                    
+                        //                 //util.toggleButtonLoading('i-next', null,false)
+                        //             }
+                        //         })
+                        //         .catch(error => {
+                        //             // 4. Catch any errors (server down, etc.)
+                        //             console.error('Fetch error:', error);
+                        //         });
+                        //     }//eif not in edit mode    
+                        // });
+                    
 
                     //==========================THIS IS DIFFERENT
 
@@ -1344,25 +1553,6 @@
                             // Finally, set the empty data. This will also trigger the "No Data" message.
                             timekeepGrid.setData([]);
                         }
-                    });
-
-                    //for select actions for filtering
-                    document.getElementById("actionSelect").addEventListener("change", function () {
-                        const action = this.value;
-                        const form = document.getElementById("searchForm");
-
-                        if (!action) return;
-
-                        if (action === "search") {
-                            hris.checkform && hris.checkform(form);
-                        } else if (action === "timekeeping") {
-                            hris.printTimeKeep && hris.printTimeKeep();
-                        } else if (action === "masterfile") {
-                            hris.printMasterfile && hris.printMasterfile(form);
-                        }
-
-                        // reset back to placeholder after firing
-                        this.value = "";
                     });
 
                     // Also ensure canvas is correctly sized when modal is shown

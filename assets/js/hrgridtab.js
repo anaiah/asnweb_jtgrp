@@ -39,13 +39,14 @@ var hrisGrid = new Tabulator("#hrisgrid", {
             formatter: (cell) => {
 
                 const profile = JSON.parse(localStorage.getItem('profile'))  //get profileowner =  JSON.parse(db.getItem('profile'))  //get profile
-                console.log('==profile in name formatter===',profile)
+                //console.log('==profile in name formatter===',profile)
+                
                 const data = cell.getData();
                 let mname = ( data.middle_name ? data.middle_name.toUpperCase() : "N/A")
                     
                 let xdisabled = ""; // default to disabled   
 
-                if (profile.grp_id === 8) {
+                if (profile.grp_id === 8) {  //8 hold hr
                     xdisabled = ""; // enable if grp_id is 8
                 } else {
                     xdisabled = "disabled"; // disable for other grp_id values
@@ -73,7 +74,12 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 ${data.email}<br>
                 ${data.emp_id}<br>
                 ${data.jms_id || ""}<br>
-                
+                <button type="button"
+                        class="btn btn-warning btn-sm btn-status-change"
+                        ${ xdisabled }
+                        data-action="edit">
+                    Edit
+                </button>
                 <button type="button"
                         class="btn btn-warning btn-sm btn-status-change"
                         ${ xdisabled }
@@ -113,6 +119,31 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 
 
                 switch( action ){
+                    case "edit":
+                        console.log('opening hris.openEditForm with rowData:', rowData);
+
+            // setTimeout(() => {
+            // // 1. Target inputs directly by type so we don't care about the form class
+            // const form = document.getElementById('newempForm'); // Assuming this is the form ID  
+            // const fileInputs = document.querySelectorAll('input[type="file"]');
+                
+            //     fileInputs.forEach(el => {
+            //         el.removeAttribute('required'); // Physically strip it
+            //         el.required = false;           // Set property
+            //         el.classList.remove('is-invalid', 'is-valid'); // Clear colors
+            //         el.setCustomValidity("");      // Clear browser memory
+            //     });
+
+            //     // 2. Also clear the validation state from the form itself
+            //     if (form) {
+            //         form.classList.remove('was-validated');
+            //     }
+            //  },1000); // 100ms delay to ensure all inputs are processed
+
+                        hris.openEditForm(rowData);
+                        return;
+                    break;  
+
                     case "view":
                         hris.openViewRequirementsModal(empId, rowData, region.toLowerCase() );
                         return;
@@ -331,7 +362,7 @@ var timekeepGrid = new Tabulator("#timekeepgrid", {
 
                 const besiId = rowData.besi_id; // Assuming besi_id is unique per row
                 
-                return `<b>${rowData.full_name}</b><br>
+                return `<b>${rowData.full_name.toUpperCase()}</b><br>
                         ${rowData.emp_status}<br>
                         ${rowData.email}<br>
                         ${rowData.besi_id}<br>

@@ -1025,21 +1025,11 @@ const util = {
 
                         const today = todayAsInputDate();
                         document.getElementById('hireDate').value = today;
-    
+
+                        
                     },false)
 
-                    ModalEl.addEventListener('hide.bs.modal', function (event) {
-                        
-                        console.log('==hiding newEmpModal .on(hide)====')
-                        document.getElementById('newempPlaceHolder').innerHTML=""
                     
-                        //clear form
-                        let xform = document.getElementById('newempForm')
-                        xform.reset()
-                        util.resetFormClass('#newempForm')
-                        
-                    },false)           
-                
                 }//endif
 
             break
@@ -1192,6 +1182,7 @@ const util = {
     },
 
     showPos:()=>{
+        console.log('firing showpos()')
 
         let posContainer = document.getElementById('posContainer');
         let posSelect = document.getElementById('jobTitle');
@@ -1274,7 +1265,7 @@ const util = {
         } else {
             container.classList.remove('d-block');
             container.classList.add('d-none');
-            select.innerHTML = '<option value="">Select Hub / DC</option>';
+            select.innerHTML = '<option value="" disabled selected>Select Hub / DC</option>';
             select.value = '';
             select.removeAttribute('required');
             select.classList.remove('is-invalid');
@@ -1284,10 +1275,13 @@ const util = {
 
     //==HRIS
     getLocation : async (regionSelectElement) => {
+        
+        console.log('***getLocation() fired***')
+
         util.toggleButtonLoading('footer-msg','Loading Location...',true)
         const selectedRegion = regionSelectElement.value;
         
-        const locContainer = document.getElementById('locContainer');
+        const locContainer = document.getElementById('locContainer'); 
         const locSelect = document.getElementById('locStore');
 
         
@@ -1297,7 +1291,6 @@ const util = {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
         
             const locs = await response.json();
             const locsArray = locs.data
@@ -1316,7 +1309,11 @@ const util = {
                 locSelect.appendChild(option);
             });
 
-            
+            if(hris.editMode && hris.loc){
+                locSelect.value = hris.loc //set location if already selected before
+
+            }
+               
 
         } catch (error) {
             console.error('Error fetching hubs:', error);
@@ -1375,11 +1372,18 @@ const util = {
     fetchAndPopulateHubs : async () => {
         util.toggleButtonLoading('footer-msg','Loading Hubs...',true)
         
+        let location = document.getElementById('locStore').value
+
+        if(hris.editMode && hris.loc ){
+            location = hris.loc //set location if already selected before
+        }
+
         const hubStoreSelect = document.getElementById('hubStore'); // Get it inside the function
-        const myUrl = `${myIp}/gethub/${document.getElementById('region').value}/${document.getElementById('locStore').value}`
+        const myUrl = `${myIp}/gethub/${document.getElementById('region').value}/${location}`
         console.log(myUrl)
+        
         try {
-            const response = await fetch(`${myIp}/gethub/${document.getElementById('region').value}/${document.getElementById('locStore').value}`); // Adjust this URL as needed
+            const response = await fetch(myUrl); // Adjust this URL as needed
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -1620,7 +1624,7 @@ const util = {
                 case "#newempForm":
 
                     //ask first for consent before saving and signing data privacy agreement
-                    const userConsent = confirm("You are about to save this User data. All Correct and Do you want to proceed?");
+                    const userConsent = confirm("You are about to SAVE this User data. All Correct and Continue?");
     
                     if (userConsent) {
                         // Run your save logic here
@@ -1640,8 +1644,22 @@ const util = {
                         // hris.dateHired = document.getElementById('hireDate').value
 
                         // Call newempPost with the FormData object
-                        util.newempPost(frm, frmModal, `${myIp}/newemppost/${document.getElementById('region').value}/${document.getElementById('hireDate').value}/${document.getElementById('jobTitle').value}`, formData);
+                        //check the mode  of the button save
+                        const btn = document.querySelector('#newemp-next-btn');
+
+                        // Using dataset (Recommended)
+                        const mode = btn.dataset.mode; 
                         
+                        // formData.append('mode', mode); // Add mode to FormData
+                        console.log('**************Button mode:', mode, ); // Debugging log
+                        //return false;  
+                        if(mode === 'edit'){
+                            const empid = formData.get('edit-emp-id'); // Assuming you have an input field with name="edit-emp-id" in your form
+                            util.newempPost(frm, frmModal, `${myIp}/newemppost/${document.getElementById('region').value}/${document.getElementById('hireDate').value}/${document.getElementById('jobTitle').value}/${mode}/${empid}`, formData);
+                        }else{
+                            const empid = null; // No empid for new entries
+                            util.newempPost(frm, frmModal, `${myIp}/newemppost/${document.getElementById('region').value}/${document.getElementById('hireDate').value}/${document.getElementById('jobTitle').value}/${mode}/${empid}`, formData);
+                        }
                         console.log('==posting newempForm data with files ==');
                         break;
 
@@ -1819,6 +1837,7 @@ const util = {
                 //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data[0].voice)
                 util.alertMsg(data[0].message,'success','loginPlaceHolder')
                 //document.getElementById('loginBtn').classList.add('hide-me')
+                
                 
                 //addtocookie
                 util.setGroupCookie(data[0].id,data[0].region, data[0].fname, data[0].grp_id, data[0].email, data[0].voice, data[0].pic)/*=== SET GROUP COOKIE */
@@ -2038,6 +2057,10 @@ const util = {
                 
                 util.speak(data.voice);
                
+                //before hiding the modalbox save the important data to global vars for use in signature upload and pdf generation
+                const btn = document.getElementById('newemp-next-btn');
+                const mode = btn.dataset.mode;
+                
                 //hide modalbox
                 util.hideModal('newempModal',0) //hide dataentry
                 //document.getElementById('footer-msg').innerHTML=''//reset
@@ -2052,11 +2075,16 @@ const util = {
                 util.dataAddress = data.address;
                 util.dataDateHired = data.dateHired;
 
-                // --- NEW: Show the Data Privacy & Signature Modal ---
-                const dataPrivacyModalElement = document.getElementById('dataPrivacySignatureModal');
-                const dataPrivacyModal = new bootstrap.Modal(dataPrivacyModalElement);
-                dataPrivacyModal.show();
-                
+                /************* show privaacy  only on Add Mode not onn Edit Mode  */
+                if(mode === 'add'){
+                    // --- NEW: Show the Data Privacy & Signature Modal ---
+                    const dataPrivacyModalElement = document.getElementById('dataPrivacySignatureModal');
+                    const dataPrivacyModal = new bootstrap.Modal(dataPrivacyModalElement);
+                    dataPrivacyModal.show();
+                }else{
+                    //if edit mode, refresh grid
+                    hris.searchEmp()
+                }   
             }else{
                 util.speak(data.voice)
                 //util.alertMsg(data.message,'warning','equipmentPlaceHolder')
