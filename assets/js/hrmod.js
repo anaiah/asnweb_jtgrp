@@ -126,6 +126,8 @@ myModal.addEventListener('hide.bs.modal', function (event) {
     console.log('==hiding newEmpModal .on(hide) from util.js ====')
     document.getElementById('newempPlaceHolder').innerHTML=""
 
+    util.toggleButtonLoading('footer-msg',null,false)
+
     const btn = document.getElementById('newemp-next-btn');
     const mode = btn.dataset.mode;
 
