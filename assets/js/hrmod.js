@@ -70,6 +70,18 @@ document.addEventListener('change', (e) => {
 
     //const idx = e.target.getAttribute('data-idx'); -- attribute data-dix get the index of the current row being edited
     switch (e.target.id) {
+        case 'filter_region':
+            console.log('yo filterregion fired... ')
+            hrisutil.getLocation( document.getElementById('filter_region').value.toLowerCase() );
+                
+            break;
+
+        case 'filter_location':
+            hrisutil.fetchAndPopulateHubs(e.target.value);
+            //timekeep.getHubCoord()
+            break;
+
+        
         case 'region':
             hrisutil.showPosition();
             console.log('***** hrisutil.showPosition() fired');

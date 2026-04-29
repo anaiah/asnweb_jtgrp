@@ -107,8 +107,8 @@ const handlePositionChange=(elem)=>{
         break;
         
         default:
-            console.log('goes here the usual groups that require loc/hub')
-            hrisutil.getLocation(document.getElementById('region'));
+            console.log('goes here the usual groups that require loc/hub getlocation',document.getElementById('region').value)
+            hrisutil.getLocation(document.getElementById('region').value);
 
         // case '01': //rider
         // case '02': //transporter
@@ -156,10 +156,17 @@ const getLocation = async (regionSelectElement) => {
                 locSelect.appendChild(option);
             }
         });
-
+// Select the first non-empty option
+const firstNonEmpty = Array.from(locSelect.options).find(opt => opt.value && opt.value !== "");
+if (firstNonEmpty) {
+  locSelect.value = firstNonEmpty.value;
+  locSelect.dispatchEvent(new Event('change')); // optional: trigger change handlers
+}
         // Call the utility function to fetch and populate
         util.toggleButtonLoading('footer-msg',null,false)
 
+        //hrisutil.fetchAndPopulateHubs(e.target.value);
+            
         // //=========fire change event for hub loading
         if (locSelect) {
             const changeEvent = new Event('change', {
