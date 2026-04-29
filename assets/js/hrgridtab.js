@@ -1,4 +1,6 @@
 
+global_disabled = false;
+
 // Create Tabulator on DOM element with id "table"
 var hrisGrid = new Tabulator("#hrisgrid", {
     //ajaxURL: "http://192.168.38.221:10000/gridmonthlytransaction/1", // URL of your API endpoint
@@ -366,6 +368,17 @@ var timekeepGrid = new Tabulator("#timekeepgrid", {
             headerHozAlign:"center", 
             resizable:false,
             formatter:(cell)=>{
+                const profile = JSON.parse(localStorage.getItem('profile'))  //get profileowner =  JSON.parse(db.getItem('profile'))  //get profile
+                
+                switch(profile.grp_id){
+                    case 8://corp hr
+                    global_disabled = "";
+                    break;
+
+                    default:
+                    global_disabled = "disabled";
+                
+                }
                 // Get the full row data
                 const rowData = cell.getData();
                 
@@ -377,7 +390,7 @@ var timekeepGrid = new Tabulator("#timekeepgrid", {
                         ${rowData.emp_status}<br>
                         ${rowData.email}<br>
                         ${rowData.besi_id}<br>
-                        <button class='btn-primary btn-sm btn' onclick="hris.openTimekeepModal('${rowIdx}')">View Timekeeping Details</button>
+                        <button ${global_disabled} class='btn-primary btn-sm btn' onclick="hris.openTimekeepModal('${rowIdx}')">View Timekeeping Details</button>
                         <span style="background: #f1f5f9; color: #64748b; padding: 4px 10px; border-radius: 12px; font-size: 0.85em; font-weight: bold; border: 1px solid #e2e8f0;">
                         ${rowData.timekeep_approved == 1 ? ' ✔ Approved' : ' ● Pending'}
                         </span> `;}
