@@ -46,11 +46,22 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                     
                 let xdisabled = ""; // default to disabled   
 
-                if (profile.grp_id === 8) {  //8 hold hr
-                    xdisabled = ""; // enable if grp_id is 8
-                } else {
-                    xdisabled = "disabled"; // disable for other grp_id values
-                }//eif
+                switch(profile.grp_id){
+                    case 1: //admin
+                    case 88: //test hr
+                         xdisabled = "disabled"; // enable if grp_id is 1 or 88
+                    break;
+
+                    case 8://corp hr
+                         xdisabled = "";
+                         break;
+
+                }    
+                // if (profile.grp_id === 8) {  //8 hold hr
+                //     xdisabled = ""; // enable if grp_id is 8
+                // } else {
+                //     xdisabled = "disabled"; // disable for other grp_id values
+                // }//eif
                 
                 let xlabel = "";
                 let action = "";

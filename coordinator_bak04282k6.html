@@ -256,15 +256,12 @@
         </div>
       </div>
   <!-- ALL THE MODALS HERE     -->
-
-
-    <!-- NEW EMPLOYEE ADD MODAL -->
     <!-- NEW EMPLOYEE ADD MODAL -->
     <div class="modal fade" id="newempModal" tabindex="-1" aria-labelledby="newsiteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header custom-header">
-                    <h4 id='h4Text' class="modal-title"><i class="ti ti-pencil-square" style="font-size:17px"></i> Create Account</h4>
+                    <h4 class="modal-title"><i class="bi-pencil-square" style="font-size:17px"></i> Create Account</h4>
                     <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
                 </div>
 
@@ -282,40 +279,32 @@
                             <div class="container mt-5">
                                 <h2>HRIS 201 Form</h2>
 
-                                <!-- <div class="mb-3">
-                                    <label for="region" class="form-label">Test ONly`</label>
-                                    <select class="form-select 201 xelTester" id="selTester" name="selTester" required >
-                                        <option value="" disabled selected>Select TESTER</option>
-                                        <option value="TESTER1" >TESTER 1</option>
-                                        <option value="TESTER2">TESTER 2</option>
-                                        <option value="TESTER3">TESTER 3</option>
-                                        
-                                    </select>
-                                </div> -->
-
                                 <div class="mb-3">
-                                    <!-- old onchange="util.checkPosition()" --> 
+                                    <!-- old onchange="util.checkPosition()" -->
                                     <label for="region" class="form-label">Region</label>
-                                    <select class="form-select 201" id="region" name="region" required >
+                                    <select class="form-select 201" id="region" name="region" required 
+                                        onchange="util.showPos()">
                                         <option value="" disabled selected>Select Region</option>
                                         <option value="SMNL" >NCR-SOUTH MANILA</option>
                                         <option value="CMNVA">NCR-CAMANAVA</option>
                                          <option value="CMNL">NCR-CENTRAL MANILA</option>
                                         <option value="NELU">LUZ-NEL</option>
                                         <option value="NWLU">LUZ-NWL</option>
+                                        <option value="CVIS">CENTRAL VISAYAS</option>
                                         <option value="BICOL">BSL-BICOL</option>
                                         <option value="SMARLEYTE">BSL-SAMAR LEYTE</option>
+                                        <option value="MIN">MIN</option>
                                         <option value="BACOLOD">WVIS-BACOLOD</option>
                                         <option value="PANAY">WVIS-PANAY</option>
                                         <option value="CENTRAL">WVIS-CENTRAL</option>
-                                        <option value="MIN">MIN</option>
-                                        
+                                       
                                     </select>
                                 </div>
 
-                                <div class="mb-3 d-none" id="posContainer">
+                                 <div class="mb-3 d-none" id="posContainer">
                                     <label for="jobTitle" class="form-label">Position</label>
-                                    <select class="form-select 201" id="jobTitle" name="jobTitle" required>
+                                    <select class="form-select 201" id="jobTitle" name="jobTitle" required 
+                                        onchange="util.handlePosChange(this)">
                                         <option value="" disabled selected>Select Position</option>
                                         <option value="01" >Rider</option>
                                         <option value="04">Sorter/BackRoom</option>
@@ -330,11 +319,12 @@
                                         
                                     </select>
                                 </div>
-                               
+
                                   <!-- location (initially hidden) -->
                                 <div class="mb-3 d-none" id="locContainer">
                                     <label for="locStore" class="form-label">Location</label>
-                                    <select class="form-select" id="locStore" name="loc_store" required>
+                                    <select class="form-select" id="locStore" name="loc_store" required
+                                     onchange="util.gethub(this)">
                                         
                                         <option value="">Select Location</option>
                                         <!-- Options will be populated by JavaScript -->
@@ -346,7 +336,7 @@
                                 <div class="mb-3 d-none" id="hubStoreContainer">
                                     <label for="hubStore" class="form-label">Hub / DC</label>
                                     <select class="form-select" id="hubStore" name="hub_store">
-                                        
+                                        <option value="">Select Hub/DC</option>
                                         <!-- Options will be populated by JavaScript -->
                                     </select>
                                 </div>
@@ -381,9 +371,25 @@
                                     <textarea class="form-control  text-uppercase" id="fullName" name="full_name" rows="2" readonly></textarea>
                                 </div>
 
+<!--                                 
+                                <div class="mb-3">
+                                    <label for="fullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control 201 text-uppercase " id="fullName" name="fullName" required>
+                                </div> -->
+
+
+                                <!-- <div class="mb-3">
+                                    <label for="employeeId" class="form-label">Employee ID</label>
+                                    <input type="text" class="form-control 201" id="employeeId" name="employeeId" required>
+                                </div> -->
+                                <!-- Note: You had two 'fullName' inputs. I'm assuming the first one is correct. -->
+                                <!-- <div class="mb-3">
+                                    <label for="fullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control 201" id="fullName" name="fullName" required>
+                                </div> -->
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email Address</label>
-                                    <input type="email" data-original="" class="form-control 201 text-lowercase" value="" id="email" name="email" required>
+                                    <input type="email" class="form-control 201 text-lowercase" value="" id="email" name="email" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">Cellphone Number</label>
@@ -394,11 +400,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="birthDate" class="form-label">Date of Birth</label>
-                                    <input type="date" class="form-control" value="" id="birthDate" name="birthDate" required>
+                                    <input type="date" class="form-control" value="1970-01-01" id="birthDate" name="birthDate" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="hireDate" class="form-label">Hire Date</label>
-                                    <input type="date" class="form-control 201" value="" id="hireDate" name="hireDate" required>
+                                    <input type="date" class="form-control 201" value="2026-03-01" id="hireDate" name="hireDate" required>
                                 </div>
 
                                 <div class="mb-3">
@@ -500,14 +506,14 @@
                         &nbsp;
                     </span>
                     <!-- <button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button> -->
-                    <button class="btn btn-primary" data-mode="add" id="newemp-next-btn" onclick="javascript:util.validateMe('newempModal','#newempForm','201')" type="button">
+                    <button class="btn btn-primary" id="newemp-next-btn" onclick="javascript:util.validateMe('newempModal','#newempForm','201')" type="button">
                         <i id="i-next" class="fa fa-arrow-right"></i> &nbsp;&nbsp; NEXT
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    
+    <!--//end hrisloadModal//-->    
 
     <!-- ============================================== -->
     <!-- 2. NEW DATA PRIVACY & SIGNATURE MODAL          -->
@@ -788,9 +794,7 @@
   
   <script src="/html/assets/js/util.js?v=8"></script>
 
-  <script  type="module" src="/html/assets/js/hrmod.js?v=8"></script>
-
-  <script  src="/html/assets/js/coord.js?v=8"></script> 
+  <script type='module' src="/html/assets/js/coord.js?v=8"></script>
 
   <!-- takeout muna gridtab palit extjs -->
   <script src="/html/assets/js/coordgriddettab.js?v=8"></script>

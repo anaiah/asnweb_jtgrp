@@ -1,6 +1,6 @@
 import { hrisutil } from './mod-hrisutil.js';
 
-hrisutil.tester()
+//hrisutil.tester()
 
 
 //************************* LISTENERS **************************** */
@@ -21,6 +21,19 @@ hrisutil.tester()
 //         // timekeep.openTimekeepModal(selectedValue);
 //     }
 // });
+
+document.addEventListener('click', (e) => {
+    switch (e.target.id) {
+        case 'downloadTimekeepBtn':
+            console.log('hrisutil.downloadTimekeepXls() called');
+            hrisutil.downloadTimekeepXls();
+            break;
+
+    }
+}, true); // Use capture to ensure it catches the event
+
+
+
 // This runs once when the app starts
 document.addEventListener('blur', (e) => {
     switch (e.target.id) {

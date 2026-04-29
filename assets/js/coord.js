@@ -1,6 +1,6 @@
 /*author : Carlo O. Dominguez*/
 
-import { timekeep } from './mod-timekeep.js';
+/////// takeout muna import { timekeep } from './mod-timekeep.js';
 // import {
 //   initHrisGrid,
 //   initTimekeepGrid,
@@ -1094,7 +1094,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('====DOMContentLoaded for coordinator====')
 
-    timekeep.fetchtimekeep( asn.dbprofile ) //===fire! insert html fragment even before show-bs modal of timekeepmodal
+    //timekeep.fetchtimekeep( asn.dbprofile ) //===fire! insert html fragment even before show-bs modal of timekeepmodal
     
     //=====FOR ADDING NEW EMPLOYEE
     util.modalListeners('newempModal')
@@ -1409,61 +1409,61 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //=======================FOR EMAIL ON BLUR CHECKING
-    const inputfld = document.getElementById('email');
-    const btnsave = document.getElementById('newemp-next-btn');
+    // const inputfld = document.getElementById('email');
+    // const btnsave = document.getElementById('newemp-next-btn');
     
-    inputfld.addEventListener('blur', function() {
-        console.log("Checking unique value for: " + this.value);
-        const email = this.value;
+    // inputfld.addEventListener('blur', function() {
+    //     console.log("Checking unique value for: " + this.value);
+    //     const email = this.value;
 
-        const region = document.getElementById('region').value
+    //     const region = document.getElementById('region').value
 
-        //off button
-        document.getElementById('i-next').disabled = true
-        //util.toggleButtonLoading('i-next', 'CHECKING EMAIL', true)
+    //     //off button
+    //     document.getElementById('i-next').disabled = true
+    //     //util.toggleButtonLoading('i-next', 'CHECKING EMAIL', true)
 
-        if (!email) return; // Don't check if empty
+    //     if (!email) return; // Don't check if empty
 
-            // 1. Start the Fetch call
-            const url = `${myIp}/checkinputemail/${encodeURIComponent(email)}/${encodeURIComponent(region.toLowerCase())}` 
-            console.log('endpoint ', url)
-            fetch(url)
-            .then(response => {
-                if (!response.ok) throw new Error('Network error');
-                return response.json(); // 2. Parse JSON response
-            })
-            .then(data => {
-                // 3. Handle the logic back from server
-                if (data.exists) {
-                    console.log("Error: Email already exists in besi_employee_nelu");
-                    //emailInput.style.borderColor = "red";
+    //         // 1. Start the Fetch call
+    //         const url = `${myIp}/checkinputemail/${encodeURIComponent(email)}/${encodeURIComponent(region.toLowerCase())}` 
+    //         console.log('endpoint ', url)
+    //         fetch(url)
+    //         .then(response => {
+    //             if (!response.ok) throw new Error('Network error');
+    //             return response.json(); // 2. Parse JSON response
+    //         })
+    //         .then(data => {
+    //             // 3. Handle the logic back from server
+    //             if (data.exists) {
+    //                 console.log("Error: Email already exists in besi_employee_nelu");
+    //                 //emailInput.style.borderColor = "red";
                     
-                    this.classList.add('is-invalid')
+    //                 this.classList.add('is-invalid')
 
-                    alert("This email is already registered!");
-                    this.value = ''
+    //                 alert("This email is already registered!");
+    //                 this.value = ''
 
-                    btnsave.disabled = true;
-                    return;
+    //                 btnsave.disabled = true;
+    //                 return;
     
-                    //util.toggleButtonLoading('i-next', null,false)
+    //                 //util.toggleButtonLoading('i-next', null,false)
 
-                } else {
-                    console.log("Email is unique!");
+    //             } else {
+    //                 console.log("Email is unique!");
                     
-                    this.classList.remove('is-invalid')
+    //                 this.classList.remove('is-invalid')
 
-                    //emailInput.style.borderColor = "green";
-                    btnsave.disabled = false;
+    //                 //emailInput.style.borderColor = "green";
+    //                 btnsave.disabled = false;
     
-                    //util.toggleButtonLoading('i-next', null,false)
-                }
-            })
-            .catch(error => {
-                // 4. Catch any errors (server down, etc.)
-                console.error('Fetch error:', error);
-            });
-    });
+    //                 //util.toggleButtonLoading('i-next', null,false)
+    //             }
+    //         })
+    //         .catch(error => {
+    //             // 4. Catch any errors (server down, etc.)
+    //             console.error('Fetch error:', error);
+    //         });
+    // });
 
     // Also ensure canvas is correctly sized when modal is shown
     const dataPrivacyModalElement = document.getElementById('dataPrivacySignatureModal');

@@ -403,97 +403,97 @@
         // },
 
         //=============print timekeeping from Grid========//
-        printTimeKeep: async() => {
+        // printTimeKeep: async() => {
 
-            console.log('====FIRING hris.printTimeKeep()===')
+        //     console.log('====FIRING hris.printTimeKeep()===')
 
-            // IMPORTANT: Replace with the actual route you'll create on your backend
-            util.scrollsTo( 'search-result-grid')
+        //     // IMPORTANT: Replace with the actual route you'll create on your backend
+        //     util.scrollsTo( 'search-result-grid')
            
-            const searchForm = document.getElementById('searchForm');
-            const formData = new FormData(searchForm);
+        //     const searchForm = document.getElementById('searchForm');
+        //     const formData = new FormData(searchForm);
 
-            // simple validation: need region at least
-            if (!formData.get("filter_date_from")) {
-                alert("Please select a starting Date Range first.");
-                return false
-            }
+        //     // simple validation: need region at least
+        //     if (!formData.get("filter_date_from")) {
+        //         alert("Please select a starting Date Range first.");
+        //         return false
+        //     }
 
-            if (!formData.get("filter_date_to")) {
-                alert("Please select an ending Date Range.");
-                return false;
-            }
+        //     if (!formData.get("filter_date_to")) {
+        //         alert("Please select an ending Date Range.");
+        //         return false;
+        //     }
 
-             //bring backdisplay
-            document.getElementById('search-result-grid').classList.remove('d-none');
-            document.getElementById('timekeepdisplay').classList.remove('d-none');
+        //      //bring backdisplay
+        //     document.getElementById('search-result-grid').classList.remove('d-none');
+        //     document.getElementById('timekeepdisplay').classList.remove('d-none');
 
-            //==if present divs, hide===
-            //document.getElementById('search-result-grid').classList.remove('d-none');
-            document.getElementById('hrisdisplay').classList.add('d-none');
+        //     //==if present divs, hide===
+        //     //document.getElementById('search-result-grid').classList.remove('d-none');
+        //     document.getElementById('hrisdisplay').classList.add('d-none');
 
-            //====get region
-            hris.selectedRegion = document.getElementById('filter_region').value
+        //     //====get region
+        //     hris.selectedRegion = document.getElementById('filter_region').value
 
-            // --- HOW TO INSPECT FormData CONTENTS ---
-            console.log("--- Inspecting FormData ---");
-            for (let pair of formData.entries()) {
-                console.log(pair[0] + ': ' + pair[1]);
-            }
-            console.log("-------------------------");
+        //     // --- HOW TO INSPECT FormData CONTENTS ---
+        //     console.log("--- Inspecting FormData ---");
+        //     for (let pair of formData.entries()) {
+        //         console.log(pair[0] + ': ' + pair[1]);
+        //     }
+        //     console.log("-------------------------");
             
-            // --- END INSPECTION ---
+        //     // --- END INSPECTION ---
         
-            const response = await fetch(`${myIp}/searchempTimeKeep`, {
-                method: 'POST',
-                body: formData
-            });
+        //     const response = await fetch(`${myIp}/searchempTimeKeep`, {
+        //         method: 'POST',
+        //         body: formData
+        //     });
 
-            if (!response.ok) {
-                const errorData = await response.json().catch(() => ({ message: 'Server error' }));
-                throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);
-            }
+        //     if (!response.ok) {
+        //         const errorData = await response.json().catch(() => ({ message: 'Server error' }));
+        //         throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);
+        //     }
 
-            const data = await response.json();
+        //     const data = await response.json();
 
-            console.log( 'timekeepGrid data:', data.xdata, data.xdata.length)
+        //     console.log( 'timekeepGrid data:', data.xdata, data.xdata.length)
             
-            if (data.xdata && data.xdata.length === 0) {
-                // Data is empty, perform a full reset
-                timekeepGrid.clearFilter();  // Clear any active filters
-                timekeepGrid.clearSort();    // Clear any active sorting
+        //     if (data.xdata && data.xdata.length === 0) {
+        //         // Data is empty, perform a full reset
+        //         timekeepGrid.clearFilter();  // Clear any active filters
+        //         timekeepGrid.clearSort();    // Clear any active sorting
                
-               // --- REVISED PAGINATION RESET ---
-                // Check if pagination is enabled before tryfing to reset the page
-                if (timekeepGrid.options.pagination) {
-                    timekeepGrid.setPage(1); // Set the page to the first page
-                    // If you need to also reset the total number of pages displayed (e.g., pageSize)
-                    // you might need to re-initialize pagination or adjust pageSize manually if it's dynamic.
-                    // For now, setPage(1) is the core fix.
-                }
-                // --- END REVISED PAGINATION RESET ---
+        //        // --- REVISED PAGINATION RESET ---
+        //         // Check if pagination is enabled before tryfing to reset the page
+        //         if (timekeepGrid.options.pagination) {
+        //             timekeepGrid.setPage(1); // Set the page to the first page
+        //             // If you need to also reset the total number of pages displayed (e.g., pageSize)
+        //             // you might need to re-initialize pagination or adjust pageSize manually if it's dynamic.
+        //             // For now, setPage(1) is the core fix.
+        //         }
+        //         // --- END REVISED PAGINATION RESET ---
 
-                timekeepGrid.deselectRow();  // Deselect any previously selected rows
+        //         timekeepGrid.deselectRow();  // Deselect any previously selected rows
 
-                // Finally, set the empty data. This will also trigger the "No Data" message.
-                timekeepGrid.setData([]);
+        //         // Finally, set the empty data. This will also trigger the "No Data" message.
+        //         timekeepGrid.setData([]);
 
-                //document.getElementById('download-excel-btn').disabled = true
+        //         //document.getElementById('download-excel-btn').disabled = true
 
-                console.log("Tabulator grid fully reset due to empty data.");
-            } else {
-                // Data is not empty, just update the grid
-                timekeepGrid.setData([]);
+        //         console.log("Tabulator grid fully reset due to empty data.");
+        //     } else {
+        //         // Data is not empty, just update the grid
+        //         timekeepGrid.setData([]);
 
-                timekeepGrid.setData(data.xdata)
-                util.scrollsTo('timekeepgrid')
+        //         timekeepGrid.setData(data.xdata)
+        //         util.scrollsTo('timekeepgrid')
 
-                //document.getElementById('download-excel-btn').disabled = false
+        //         //document.getElementById('download-excel-btn').disabled = false
 
-                console.log("Tabulator grid updated with new data.");
-            }
+        //         console.log("Tabulator grid updated with new data.");
+        //     }
 
-        },
+        // },
 
         loginDetails:null,
 
@@ -628,6 +628,7 @@
         //================DOWNLOAD TIMEKEEPING XLS======//
         //-- timekeeping
         downloadTimekeepXls: async () => { // <--- Add 'event' parameter
+            console.log('===FIRING hris.downloadTimekeepXls()===')
             
             // IMPORTANT: Replace with the actual route you'll create on your backend
             const backendRoute = `${myIp}/download-grid-data-xls`;

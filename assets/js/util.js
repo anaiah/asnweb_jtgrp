@@ -1309,11 +1309,7 @@ const util = {
                 locSelect.appendChild(option);
             });
 
-            if(hris.editMode && hris.loc){
-                locSelect.value = hris.loc //set location if already selected before
-
-            }
-               
+              
 
         } catch (error) {
             console.error('Error fetching hubs:', error);
@@ -1374,10 +1370,6 @@ const util = {
         
         let location = document.getElementById('locStore').value
 
-        if(hris.editMode && hris.loc ){
-            location = hris.loc //set location if already selected before
-        }
-
         const hubStoreSelect = document.getElementById('hubStore'); // Get it inside the function
         const myUrl = `${myIp}/gethub/${document.getElementById('region').value}/${location}`
         console.log(myUrl)
@@ -1393,7 +1385,7 @@ const util = {
 
             console.log(hubs)
 
-            hubStoreSelect.innerHTML = '<option value="">Select Hub / DC</option>';
+            hubStoreSelect.innerHTML = '<option value="" disabled>Select Hub / DC</option>';
 
             hubsArray.forEach(hub => {
                 const option = document.createElement('option');
@@ -1911,6 +1903,7 @@ const util = {
                     break
 
                     case 8://hrmgr
+                    case 88://test hr
                         location.href ='../jtx/hris '    
                     break
 

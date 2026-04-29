@@ -494,11 +494,83 @@ const printTimeKeep = async() => {
 
 }
 
+//================DOWNLOAD TIMEKEEPING XLS======//
+        //-- timekeeping
+const downloadTimekeepXls = async () => { // <--- Add 'event' parameter
+    console.log('===FIRING hrisutil.downloadTimekeepXls()===')
 
+    // IMPORTANT: Replace with the actual route you'll create on your backend
+    const backendRoute = `${myIp}/download-grid-data-xls`;
+
+    //====GET DATA FROM FIRST GRID===//
+    const gridData = timekeepGrid.getData(); // This gets ALL data in the table, including any filters applied.
+
+    if (!gridData || gridData.length === 0) {
+        alert('No data available in the grid to download.');
+        downloadBtn.disabled = false;
+        downloadBtn.innerHTML = originalBtnText;
+        return;
+    }
+
+    try {
+
+        util.toggleButtonLoading("downloadTimekeepBtn", "Downloading...", true);
+
+        const response = await fetch(backendRoute, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': 'Bearer YOUR_AUTH_TOKEN', // If needed
+            },
+            body: JSON.stringify(gridData ),
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
+        }
+
+        const blob = await response.blob();
+
+        let filename = `TIMEKEEPING_${document.getElementById('filter_region').value.toUpperCase()}_${document.getElementById('filter_position').value}_${new Date().toISOString().slice(0,10)}.xlsx`;
+        
+        const contentDisposition = response.headers.get('Content-Disposition');
+
+        if (contentDisposition) {
+            const filenameMatch = contentDisposition.match(/filename\*?=['"]?([^"']+)['"]?$/i);
+            if (filenameMatch && filenameMatch[1]) {
+                filename = decodeURIComponent(filenameMatch[1].replace(/utf-8''/i, ''));
+            }
+        }
+
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = filename;
+
+        document.body.appendChild(a);
+        a.click();
+
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+
+        console.log(`File "${filename}" downloaded successfully.`);
+        util.Toasted(`File downloaded successfully.`,3000,false)
+        
+        // alert(`Report "${filename}" downloaded successfully!`); // Optional user feedback
+
+    } catch (error) {
+        console.error('Error downloading grid data:', error);
+        alert(`Failed to download report: ${error.message}. Please try again.`);
+    } finally {
+        util.toggleButtonLoading("downloadTimekeepBtn", null, false);
+
+    }
+}
 
 //======================== STTART EXPORT ========================//
 export const hrisutil = {
-    tester,
     showPosition,
     displayAreaLocationHub,
     handlePositionChange,
@@ -508,6 +580,7 @@ export const hrisutil = {
     checkform,
     printMasterfile,
     printTimeKeep,
-    searchEmp
+    searchEmp,
+    downloadTimekeepXls
 };
 

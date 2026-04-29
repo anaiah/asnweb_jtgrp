@@ -50,49 +50,7 @@ let loginDetails = null;
 
     }
 
-    const getLocation = async (regionSelectElement) => {
-        util.toggleButtonLoading('filtloc','Loading Location Pls Wait...',true)
-        
-        const selectedRegion = regionSelectElement;
-        
-        //const locContainer = document.getElementById('locContainer');
-        const locSelect = document.getElementById('filter_location');
-        
-        try {
-            const response = await fetch(`${myIp}/getlocation/${selectedRegion}`); // Adjust this URL as needed
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-        
-            const locs = await response.json();
-            const locsArray = locs.data
-
-            //console.log('***HUBS FOR***', selectedRegion, hubs)
-
-            locSelect.innerHTML = '<option value="">Select Location</option>';
-
-            locsArray.forEach( loc => {
-                console.log(loc)
-                const option = document.createElement('option');
-                
-                option.value = loc.location; //<-- value
-                option.textContent = loc.location; //<-- content display 
-                
-                locSelect.appendChild(option);
-            });
-
-        } catch (error) {
-            console.error('Error fetching hubs:', error);
-            alert('Failed to load hub/store options. Please try again.');
-        }
-
-        //   // Call the utility function to fetch and populate
-        util.toggleButtonLoading('filtloc','Select Location',false)
-    }
-
-     //===============open timeekeeping detailed modal
+    //===============open timeekeeping detailed modal
     const openTimekeepModal = ( tabulatorRowId ) => {
 
         console.log('firing opentimekeepmodal() of mod-timekeepjs for detailed timekeep==')
@@ -245,12 +203,12 @@ let loginDetails = null;
                 //newempmodal region
                 document.getElementById('region').value = db.region.toUpperCase();
                     
-                util.showPos() // show position in newempmodal based on region
+                //util.showPos() // show position in newempmodal based on region
 
                 //===========FIND REGION  AND GETHUB===============
-                timekeep.findRegion(dbprofile.region);
+                //timekeep.findRegion(dbprofile.region);
                 
-                timekeep.getHubCoord()
+                //timekeep.getHubCoord()
             }//endif
 
 //            //for LEAAD COORDS
@@ -701,6 +659,248 @@ let loginDetails = null;
 
     const getLoginDetails = () => loginDetails;
 
+    const  showPosition = () => {
+        console.log("******** ShowPosition() called from mod-hrisutil.js");
+        
+        let posContainer = document.getElementById('posContainer');
+        let posSelect = document.getElementById('jobTitle');
+    
+        timekeep.displayAreaLocationHub(true, posContainer, posSelect) //show area selection
+    
+    };
+    
+    //to display/not loccation / hub
+    const displayAreaLocationHub= (ldisplay, container, select) => {
+        //console.log('displayAreaLocationHub()', ldisplay, container, select);
+
+        if (!container || !select) return;
+
+        if (ldisplay) {
+            container.classList.remove('d-none');
+            container.classList.add('d-block');
+            select.setAttribute('required', 'required');
+            select.classList.remove('is-invalid');
+
+        } else {
+            container.classList.remove('d-block');
+            container.classList.add('d-none');
+            select.innerHTML = '<option value="" disabled selected>Select Hub / DC</option>';
+            select.value = '';
+            select.removeAttribute('required');
+            select.classList.remove('is-invalid');
+            
+        }
+    }
+
+    //event fired when position changed
+    const handlePositionChange=(elem)=>{
+        
+        util.toggleDriversLicenseValidation()
+    
+        console.log(' === mod-hrisutil.js position select ', elem.value)
+        //hris.position = elem.value
+    
+        let areaContainer = document.getElementById('areaContainer');
+        let areaSelect = document.getElementById('loc_area');
+    
+        //turn  off location and hub/store selection
+        let locContainer = document.getElementById('locContainer');
+        let locSelect = document.getElementById('locStore');
+    
+        let hubStoreContainer = document.getElementById('hubStoreContainer');
+        let hubSelect = document.getElementById('hubStore'); 
+    
+        //fill select options for location
+        timekeep.getLocation( document.getElementById('region').value)
+            
+        //check position if it requires location and hub/store selection
+        switch(elem.value){
+            
+            case '07': //lead coordinator
+                
+                //turn on area
+                
+                //util.displayAreaLocationHub(true, areaContainer, areaSelect) //show area selection
+                util.displayAreaLocationHub(false, locContainer, locSelect) //hide location and hub/store selection
+                util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
+            break;
+    
+            case '08': //coordinator
+                //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
+                util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
+                util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
+                
+            break;
+            
+            default:
+            // case '01': //rider
+            // case '02': //transporter
+            // case '04': //sorter
+            // case '10': //team leader
+            //need location and hub/store selection
+                //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
+                util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
+                util.displayAreaLocationHub(true, hubStoreContainer, hubSelect) //hide location and hub/store selection
+                
+            //break;
+    
+        }
+    
+    }
+
+    //=========get location based on region selection ==================//
+    const getLocation = async (regionSelectElement) => {
+        
+        console.log('***getLocation() fired***')
+
+        util.toggleButtonLoading('footer-msg','Loading Location...',true)
+        const selectedRegion = regionSelectElement.value;
+        
+        const locContainer = document.getElementById('locContainer'); 
+        const locSelect = document.getElementById('locStore');
+        
+        try {
+            const response = await fetch(`${myIp}/getlocation/${document.getElementById('region').value}`); // Adjust this URL as needed
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        
+            const locs = await response.json();
+            const locsArray = locs.data
+            
+            locsArray.forEach(loc => {
+                // Check all existing options values
+                const isDuplicate = Array.from(locSelect.options).some(opt => opt.value === loc.location);
+
+                if (!isDuplicate) {
+                    const option = document.createElement('option');
+                    option.value = loc.location;
+                    option.textContent = loc.location;
+                    locSelect.appendChild(option);
+                }
+            });
+
+            // Call the utility function to fetch and populate
+            util.toggleButtonLoading('footer-msg',null,false)
+
+            //=========fire change event for hub loading
+            if (locSelect) {
+                const changeEvent = new Event('change', {
+                    bubbles: true,      // Allows it to reach document.addEventListener
+                    cancelable: true    // Standard practice
+                });
+                
+                locSelect.dispatchEvent(changeEvent);
+            }
+
+            return true;
+
+        } catch (error) {
+            console.error('Error fetching hubs:', error);
+            alert('Failed to load hub/store options. Please try again.');
+        }
+        
+    }
+
+    //to populate select with hubs
+    const fetchAndPopulateHubs = async ( val) => {
+        
+        util.toggleButtonLoading('footer-msg','Loading Hubs...',true)
+        
+        let location = val|| document.getElementById('locStore').value
+
+        const hubStoreSelect = document.getElementById('hubStore'); // Get it inside the function
+        const myUrl = `${myIp}/gethub/${document.getElementById('region').value}/${location}`
+        
+        //console.log(myUrl)
+        
+        try {
+            const response = await fetch(myUrl); // Adjust this URL as needed
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const hubs = await response.json();
+            const hubsArray = hubs.data;
+
+            // Get the current value before clearing
+            const currentSelectedValue = hubStoreSelect.value;
+
+            // Clear all except placeholder
+            hubStoreSelect.options.length = 0;
+
+            hubsArray.forEach(hub => {
+                const option = document.createElement('option');
+                option.value = hub.hub;
+                option.textContent = hub.hub;
+                
+                // If this hub matches the one that was previously selected, mark it as selected
+                if (hub.hub === currentSelectedValue) {
+                    option.selected = true;
+                }
+                
+                hubStoreSelect.appendChild(option);
+            });
+
+            //hubStoreSelect.value = ''; // Reset selection after populating
+            util.toggleButtonLoading('footer-msg',null,false)
+            
+            return true; //signal that's done
+
+        } catch (error) {
+            console.error('Error fetching hubs:', error);
+            alert('Failed to load hub/store options. Please try again.');
+        }
+    }
+
+    //=========check emal duplicate ==================//
+    const checkEmailDuplicate = (email) => {
+        // 1. Start the Fetch call
+        const region = document.getElementById('region').value || "";
+        const emailInput = document.getElementById('email');
+
+        const url = `${myIp}/checkinputemail/${encodeURIComponent(email)}/${encodeURIComponent(region.toLowerCase())}`
+        console.log('endpoint ', url)
+        fetch(url)
+        .then(response => {
+            if (!response.ok) throw new Error('Network error');
+            return response.json(); // 2. Parse JSON response
+        })
+        .then(data => {
+            // 3. Handle the logic back from server
+            if (data.exists) {
+                console.log(`Error: Email already exists in besi_employee_${region.toLowerCase()}`);
+                //emailInput.style.borderColor = "red";
+
+                emailInput.classList.add('is-invalid')
+                
+                alert("This email is already registered!");
+                //this.value = ''  //DONT RESET THE VALUE, LET USER DECIDE, ALSO THEY MIGHT WANT TO COPY THE EMAIL FOR REFERENCE
+
+                //btnsave.disabled = true;
+                return false;
+
+                //util.toggleButtonLoading('i-next', null,false)
+
+            } else {
+                console.log("Email is unique!");
+                
+                emailInput.classList.remove('is-invalid')
+
+                //emailInput.style.borderColor = "green";
+                //btnsave.disabled = false;
+
+                //util.toggleButtonLoading('i-next', null,false)
+            }
+        })
+        .catch(error => {
+            // 4. Catch any errors (server down, etc.)
+            console.error('Fetch error:', error);
+        });
+    }
+
     /*********EXPORT FUNC */
     export const timekeep = {
         findRegion,   // same as hi: hi
@@ -713,9 +913,56 @@ let loginDetails = null;
         approveTimeKeep,
         getLoginDetails,
         getLocation,
-        getHubs
+        getHubs,
+        showPosition,
+        displayAreaLocationHub,
+        handlePositionChange,
+        fetchAndPopulateHubs,
+        checkEmailDuplicate
     };
     
+
+    ///liisteners
+    document.addEventListener('blur', (e) => {
+        switch (e.target.id) {
+            case 'email':
+                const currentEmail = e.target.value.trim();
+                const originalEmail = e.target.dataset.original; // Stored when modal opens 
+    
+                if (!currentEmail || currentEmail === originalEmail) return;// if after blur it is thesame return false, dont do anythhing
+    
+                // else Run your AJAX
+                timekeep.checkEmailDuplicate(currentEmail);
+                
+                break;
+        }
+        
+    }, true); // Use capture to ensure it catches the event
+    
+    document.addEventListener('change', (e) => {
+        //const idx = e.target.getAttribute('data-idx'); -- attribute data-dix get the index of the current row being edited
+        switch (e.target.id) {
+            case 'region':
+                timekeep.showPosition();
+                console.log('Region logic fired');
+                break;
+    
+            case 'jobTitle':
+                // e.target is the #jobTitle element
+                timekeep.handlePositionChange(e.target);
+                console.log('Position logic fired');
+                break;
+    
+            case 'locStore':
+                timekeep.fetchAndPopulateHubs(e.target.value);
+                console.log('=========== firing hrisutil.fetchAndPopHub() in  hrmmod.js  Location and HUB logic fired', e.target.value);
+                break;
+        }
+    }, true); // Use capture to ensure it catches the event
+    //MAKE IT GLOBAL
+
+    ///==================GLOBAL EVENT LISTENER FOR DYNAMICALLY 
+    // GENERATED VIEW BUTTON IN TIMEKEEP GRID ===============//
     document.addEventListener('click', (e) => {
         if (e.target.matches('.view-btn')) {
             const idx = e.target.getAttribute('data-idx');
@@ -731,9 +978,6 @@ let loginDetails = null;
         }
     });
 
-
-    //MAKE IT GLOBAL
-    window.timekeep = timekeep;
-
+   
     
         
