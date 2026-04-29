@@ -1115,7 +1115,10 @@
 
             // 4. INJECT THUMBNAILS below File Inputs
             // Note: 'name' must match your <input name="..."> exactly
+             // 4. INJECT THUMBNAILS below File Inputs
+            // Note: 'name' must match your <input name="..."> exactly
             const fileConfigs = [
+                { name: "jms_picture",         prefix: "JMS_",      label: "JMS ID Picture" },
                 { name: "id_picture",          prefix: "USER_",     label: "ID Picture" },
                 { name: "id_specimen_picture", prefix: "SPECIMEN_", label: "Specimen Sig" },
                 { name: "id_gcash",            prefix: "GCASH_",    label: "GCash" },
