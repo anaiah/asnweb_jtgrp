@@ -1,6 +1,6 @@
 /*author : Carlo O. Dominguez*/
 
-/////// takeout muna import { timekeep } from './mod-timekeep.js';
+import { timekeep } from './mod-timekeep.js';
 // import {
 //   initHrisGrid,
 //   initTimekeepGrid,
@@ -952,6 +952,201 @@ const asn = {
 
     dbprofile: null,
     
+    openEditForm : (rowData) => {
+        
+        
+        const btn = document.querySelector('#newemp-next-btn');
+
+        // Using dataset (Recommended)
+        btn.dataset.mode = 'edit';
+        btn.innerHTML = '💾 Save Edit'; // If you want the text to change too
+
+        const form = document.getElementById('newempForm');
+        const empId = rowData.emp_id;
+        const region = ( document.getElementById('filter_region').value || "");
+
+        // if(hris.editMode){
+        //     hris.loc = rowData.location || "";
+        
+        // }
+
+        // 1. CLEANUP: Remove any previous injections (ID or Thumbnails)
+        document.querySelectorAll('.injected-edit-ui').forEach(el => el.remove());
+
+        // 2. INJECT READONLY ID at the top
+        const idHtml = `
+            <div class="mb-3 injected-edit-ui">
+                <label class="form-label fw-bold text-primary">RECORD EDITING (READ-ONLY ID)</label>
+                <input type="text" class="form-control bg-light" id="edit-emp-id" name="edit-emp-id" value="${empId}" readonly>
+            </div>`;
+
+        form.insertAdjacentHTML('afterbegin', idHtml);
+
+        // 3. POPULATE TEXT FIELDS (With Date Cleaning)
+        const cleanDate = (d) => (d && d.includes('T')) ? d.split('T')[0] : (d || "");
+
+        form.querySelector('#region').value = region.toUpperCase() || "";
+        // This manually triggers the 'change' event so util.getLocation runs
+        const regionEl = form.querySelector('#region');
+        //// KILL THE REGION regionEl.dispatchEvent(new Event('change', { bubbles: true })); /// fire event listener
+        
+        form.querySelector('#firstName').value = rowData.first_name || "";
+        form.querySelector('#lastName').value = rowData.last_name || "";
+        
+        form.querySelector('#jobTitle').value = rowData.position || "";
+
+        const jobTitleEl = form.querySelector('#jobTitle');
+        jobTitleEl.dispatchEvent(new Event('change',{ bubbles: true } )); ///fire event listener
+                    
+        
+        form.querySelector('#fullName').value = rowData.full_name || "";
+        form.querySelector('#email').value = rowData.email || "";
+        form.querySelector('#email').dataset.original = rowData.email || "";
+
+        // Using dataset (Recommended)
+        btn.dataset.mode = 'edit';
+        
+        form.querySelector('#phone').value = rowData.phone || "";
+        form.querySelector('#birthDate').value = cleanDate(rowData.birth_date);
+        form.querySelector('#hireDate').value = cleanDate(rowData.hire_date);
+        form.querySelector('#employmentStatus').value = rowData.employment_status || "";
+        form.querySelector('#addy1').value = rowData.street_1 || "";
+        form.querySelector('#addy2').value = rowData.street_2 || "";
+        form.querySelector('#bgy').value = rowData.bgy || "";
+        form.querySelector('#city').value = rowData.city || "";
+        form.querySelector('#address').value = rowData.full_address || "";
+        form.querySelector('#nameSuffix').value = rowData.suffix || "";
+        form.querySelector('#middleName').value = rowData.middle_name || "";
+
+        // 4. INJECT THUMBNAILS below File Inputs
+        // Note: 'name' must match your <input name="..."> exactly
+        const fileConfigs = [
+            { name: "id_picture",          prefix: "USER_",     label: "ID Picture" },
+            { name: "id_specimen_picture", prefix: "SPECIMEN_", label: "Specimen Sig" },
+            { name: "id_gcash",            prefix: "GCASH_",    label: "GCash" },
+            { name: "bgy_clearance",       prefix: "BGY_",      label: "Bgy Clearance" },
+            { name: "police_clearance",    prefix: "POLICE_",   label: "Police/NBI" },
+            { name: "drivers_license",     prefix: "DRIVER_",   label: "License" },
+        ];
+
+        const exts = [".jpg", ".png", ".gif"];
+
+        // Determine Folder Path (Your Switch Logic)
+        let regionFolder = "";
+        const xregion = region.toLowerCase(); // Normalize to lowercase for consistent matching
+
+        switch (xregion) {
+            case "smnl": 
+            case "cmnva": 
+            case "cmnl":
+                regionFolder = `ncr_${xregion}_emp`;
+                break;
+            case "nelu": 
+            case "nwlu":
+                regionFolder = `luz_${region}_emp`;
+                break;
+            case "min": 
+                regionFolder = `min_emp`;
+                break; 
+            case "bicol": 
+            case "smarleyte":
+                regionFolder = `bsl_${xregion}_emp`;    
+                break;
+            default:
+                regionFolder = `wvis_${xregion}_emp`; // For bacolod, panay, etc.
+        }
+
+        const baseUrl = `https://asianowapp.com/html/${regionFolder}/`;
+
+        fileConfigs.forEach(cfg => {
+
+            // This looks for the <input name="id_picture"> etc.
+            const inputEl = form.querySelector(`input[name="${cfg.name}"]`);
+            
+            if (inputEl) {
+                // Create container
+                const thumbContainer = document.createElement('div');
+                thumbContainer.className = "injected-edit-ui mt-2 p-1 border rounded bg-light";
+                thumbContainer.style = "width: fit-content; min-width: 100px; text-align: center;";
+                thumbContainer.innerHTML = `<small class="d-block text-muted">Checking...</small>`;
+                
+                inputEl.after(thumbContainer);
+
+                let idx = 0;
+                const tryExt = () => {
+                    if (idx >= exts.length) {
+                        thumbContainer.innerHTML = `<small class="text-muted">No file on server</small>`;
+                        return;
+                    }
+                    
+                    // CONSTRUCT FILENAME: e.g., USER_123.jpg
+                    const fileName = `${cfg.prefix}${empId}${exts[idx]}`;
+                    const fullUrl = baseUrl + fileName; // Remove encodeURIComponent if filenames don't have spaces
+
+                    // FOR CHECKING: Open your console (F12) to see these!
+                    console.log(`Trying ${cfg.label}:`, fullUrl);
+
+                    const img = new Image();
+                    img.style = "max-height: 80px; display: block; margin: auto;";
+                    img.onload = () => {
+                        thumbContainer.innerHTML = ""; 
+                        thumbContainer.appendChild(img);
+                    };
+                    img.onerror = () => { 
+                        idx++; 
+                        tryExt(); 
+                    };
+                    img.src = fullUrl;
+                };
+                tryExt();
+            } else {
+                console.warn(`Could not find input with name: ${cfg.name}`);
+            }
+        });
+
+        // 6.. SHOW MODAL
+        
+        const modalEl = document.getElementById("newempModal");
+        modalEl.style.zIndex = 1060;
+        
+        const bsModal = new bootstrap.Modal(modalEl);
+        bsModal.show();
+
+        const locStoreEl = form.querySelector('#locStore');
+        //reset first
+        locStoreEl.innerHTML = '';
+
+        if( rowData.location){    
+            let opt = document.createElement('option');
+            opt.value = rowData.location;
+            opt.innerHTML = rowData.location;
+            opt.selected = true;
+            locStoreEl.appendChild(opt);
+        }    
+        
+        // let's put hub_store last
+        //form.querySelector('#hubStore').value = rowData.hub || "";
+        const hubField = document.getElementById('hubStore');
+        //reset first
+        hubField.innerHTML = '';
+
+        if(rowData.hub){
+            let opt = document.createElement('option');
+            opt.value = rowData.hub;
+            opt.innerHTML = rowData.hub;
+            opt.selected = true;
+            hubField.appendChild(opt);
+        }else{
+            let opt = document.createElement('option');
+            opt.value = "";
+            opt.innerHTML = "No Hub Assigned";
+            opt.selected = true;
+            hubField.appendChild(opt);
+            
+        }//EIF
+        
+    },
+
 	//==,= main run
 	init :  () => {
         
@@ -1094,8 +1289,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('====DOMContentLoaded for coordinator====')
 
-    //timekeep.fetchtimekeep( asn.dbprofile ) //===fire! insert html fragment even before show-bs modal of timekeepmodal
+
+    timekeep.fetchtimekeep( asn.dbprofile ) //===fire! insert html fragment even before show-bs modal of timekeepmodal
     
+    // ==================ready region for add employee
+    const coord =  JSON.parse(db.getItem('profile'))  //get profile
+    console.log('coords domcontenntloaded' , coord.region.toLowerCase())
+    
+    
+    const sel = document.getElementById('region');
+    const selectedValue = coord.region.toUpperCase();
+    sel.dispatchEvent(new Event('change', { bubbles: true })); ///++++++++ fire event listener
+
+    // set selection (will select existing option if present)
+    sel.value = selectedValue;
+
+    // disable all options that don't match, enable the matching one
+    for (const opt of sel.options) {
+        opt.disabled = opt.value !== selectedValue;
+    }
+
+    // optionally ensure the selected option is actually focused/selected
+    if (sel.value !== selectedValue) {
+        // fallback: create and select the option if it didn't exist
+        const newOpt = new Option(selectedValue, selectedValue, true, true);
+        sel.add(newOpt);
+        for (const opt of sel.options) opt.disabled = opt.value !== selectedValue;
+    }
+   //============= END REGION SETTING ============//
+
     //=====FOR ADDING NEW EMPLOYEE
     util.modalListeners('newempModal')
 

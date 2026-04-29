@@ -1271,8 +1271,6 @@
                     const optMf = document.getElementById('optMasterfile')
                     const optXls = document.getElementById('exportxlsbtn')
 
-
-
                     switch(profile.grp_id){
                         case 88 ://test user deactivate actionselect
                             optTk.disabled = true;        //  //admin

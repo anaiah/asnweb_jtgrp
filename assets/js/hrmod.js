@@ -32,8 +32,6 @@ document.addEventListener('click', (e) => {
     }
 }, true); // Use capture to ensure it catches the event
 
-
-
 // This runs once when the app starts
 document.addEventListener('blur', (e) => {
     switch (e.target.id) {
@@ -114,7 +112,7 @@ myModal.addEventListener('show.bs.modal', function () {
         document.getElementById('h4Text').innerHTML = '<i class="ti ti-pencil-square" style="font-size:17px"></i> Edit Account';
 
     }else{ 
-
+        console.log('=========================NewempModal Add mode Opened!',mode)
         document.getElementById('h4Text').innerHTML = '<i class="ti ti-pencil-square" style="font-size:17px"></i> Create Account';
 
     }

@@ -6,7 +6,7 @@
         <h5 class="mb-0 fw-semibold">Search Filters</h5>
       </div>
       <div class="card-body">
-        <form id="searchForm" name="searchForm"
+        <form id="filter-searchForm" name="filter-searchForm"
               class="row gy-3 gx-3 align-items-end" novalidate>
           <!-- Filter by Name -->
           <div class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -28,7 +28,18 @@
                   class="form-label visually-hidden">* Region</label>
             <select class="form-select" id="filter_region"
                     name="filter_region" required>
-              <option value="">Filter by Region</option>
+              <option value="" disabled selected>Filter by Region</option>
+              <option value="cmnl">NCR-CMNLA</option>
+              <option value="cmnva">NCR-CMNVA</option>
+              <option value="smnl">NCR-SMNL</option>
+              <option value="nelu">LUZ-NEL</option>
+              <option value="nwlu">LUZ-NWL</option>
+              <option value="min">MIN</option>
+              <option value="bicol">BSL-BICOL</option>
+              <option value="smarleyte">BSL-SAMAR LEYTE</option>
+              <option value="bacolod">WVIS-BACOLOD</option>
+              <option value="panay">WVIS-PANAY</option>
+              <option value="central">WVIS-CENTRAL</option>
               
             </select>
           </div>
@@ -48,10 +59,15 @@
             <select class="form-select" id="filter_position"
                     name="filter_position" required>
               <option value="" disabled selected>Filter by Position</option>
-              <option value="01">RIDER</option>
-              <option value="02">TRANSPORTER</option>
-              <option value="04">SORTER/BACKROOM</option>
-              <!-- <option value="08">COORDINATOR</option> -->
+              <option value="01" >Rider</option>
+              <option value="04">Sorter/BackRoom</option>
+              <option value="02">Transporter</option>
+              <option value="10">Team Leader</option>
+              <option value="06">Time Keeper</option>
+              <option value="03">Foot Delivery</option>
+              <option value="15">3 Wheel</option>
+              <option value="17">4 Wheel</option>
+              
             </select>
           </div>
 
@@ -80,17 +96,18 @@
           <!-- Action select -->
           
 
-           <div class="col-12 col-sm-6 col-md-4 col-lg-auto ms-auto">
-              <div class="action-wrapper">
-                  <select id="actionSelect" class="form-select modern-action-select">
-                      <option value="" disabled selected>⚡ Quick Actions</option>
-                      <option value="search">🔍 Search Record</option>
-                      <option value="timekeeping" id="optTimekeeping">📅 View Timekeeping</option>
-                  </select>
-                  <!-- Custom arrow for better look -->
-                  <i class="bi bi-chevron-down select-icon"></i>
-              </div>
-          </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-auto ms-auto">
+                <div class="action-wrapper">
+                    <select id="filter-actionSelect" class="form-select modern-action-select">
+                        <option value="" disabled selected>⚡ Quick Actions</option>
+                        <option value="search">🔍 Search Record</option>
+                        <option value="timekeeping" id="optTimekeeping">📅 View Timekeeping</option>
+                        <option value="masterfile" id="optMasterfile">💾 Download Masterfile</option>
+                    </select>
+                    <!-- Custom arrow for better look -->
+                    <i class="bi bi-chevron-down select-icon"></i>
+                </div>
+            </div>
 
         </form>
       </div>
@@ -104,7 +121,7 @@
 
             <!-- GRID inside -->
             <div class="table-responsive d-none" id="hrisdisplay">
-              <div id="hrisgrid">
+              <div id="hrisgrid">hrisgrid
                 <!-- Your grid will be initialized here -->
               </div>
             </div>

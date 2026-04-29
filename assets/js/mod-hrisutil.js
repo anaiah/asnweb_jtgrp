@@ -38,7 +38,7 @@ const fetchAndPopulateHubs = async ( val) => {
         const currentSelectedValue = hubStoreSelect.value;
 
         // Clear all except placeholder
-        hubStoreSelect.options.length = 0;
+        //hubStoreSelect.options.length = 0;
 
         hubsArray.forEach(hub => {
             const option = document.createElement('option');
@@ -161,14 +161,14 @@ const getLocation = async (regionSelectElement) => {
         util.toggleButtonLoading('footer-msg',null,false)
 
         // //=========fire change event for hub loading
-        // if (locSelect) {
-        //     const changeEvent = new Event('change', {
-        //         bubbles: true,      // Allows it to reach document.addEventListener
-        //         cancelable: true    // Standard practice
-        //     });
+        if (locSelect) {
+            const changeEvent = new Event('change', {
+                bubbles: true,      // Allows it to reach document.addEventListener
+                cancelable: true    // Standard practice
+            });
             
-        //     locSelect.dispatchEvent(changeEvent);
-        // }
+            locSelect.dispatchEvent(changeEvent);
+        }
 
         return true;
 
@@ -256,8 +256,6 @@ const checkEmailDuplicate = (email) => {
         console.error('Fetch error:', error);
     });
 }
-
-
 
 //checkform first
 const checkform = (whatForm) => {

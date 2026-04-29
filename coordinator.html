@@ -40,7 +40,9 @@
   <link rel="stylesheet" href="/html/assets/css/tabgrid.css" />
 
   <style>
-    
+    .my-btn { background-color: #47cc3b; color: #fff; border: none; }
+    .my-btn:hover { background: #6a4df0; color:#fff; }
+    .my-btn:focus { box-shadow: 0 0 0 .2rem rgba(123,97,255,.25); }
     .hide-me{
       display:none;
     }
@@ -194,8 +196,6 @@
               </div>
             </div>
 
-
-
             <!-- First Card: Month Transaction -->
             <div class="card boxshadoe shadow mb-3" id="locgridcard">
               <div class="card-body p-4">
@@ -260,7 +260,7 @@
 
     <!-- NEW EMPLOYEE ADD MODAL -->
     <!-- NEW EMPLOYEE ADD MODAL -->
-    <div class="modal fade" id="newempModal" tabindex="-1" aria-labelledby="newsiteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="newempModal" tabindex="-1"   aria-labelledby="newsiteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header custom-header">
@@ -321,8 +321,6 @@
                                         <option value="04">Sorter/BackRoom</option>
                                         <option value="02">Transporter</option>
                                         <option value="10">Team Leader</option>
-                                        <option value="08">Coordinator</option>
-                                        <option value="07">Lead Coordinator</option>
                                         <option value="06">Time Keeper</option>
                                         <option value="03">Foot Delivery</option>
                                         <option value="15">3 Wheel</option>
@@ -336,7 +334,7 @@
                                     <label for="locStore" class="form-label">Location</label>
                                     <select class="form-select" id="locStore" name="loc_store" required>
                                         
-                                        <option value="">Select Location</option>
+                                        <option value="" selected disabled>Select Location</option>
                                         <!-- Options will be populated by JavaScript -->
                                     </select>
                                 </div>
@@ -354,11 +352,11 @@
                                 <!--// full name,middle, lastname,-->
                                 <div class="mb-3">
                                     <label for="lastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control text-uppercase" id="lastName" name="last_name" placeholder="Last Name">
+                                    <input type="text" class="form-control text-uppercase" id="lastName" name="last_name" placeholder="Last Name" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="firstName" class="form-label">First Name</label>
-                                    <input type="text" class="form-control  text-uppercase" id="firstName" name="first_name" placeholder="First Name">
+                                    <input type="text" class="form-control  text-uppercase" id="firstName" name="first_name" placeholder="First Name" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="middleName" class="form-label">Middle Name</label>
@@ -790,9 +788,11 @@
 
   <script  type="module" src="/html/assets/js/hrmod.js?v=8"></script>
 
-  <script  src="/html/assets/js/coord.js?v=8"></script> 
+  <script  type='module' src="/html/assets/js/coord.js?v=8"></script> 
 
   <!-- takeout muna gridtab palit extjs -->
+   <script src="/html/assets/js/hrgridtab.js?v=8"></script>
+
   <script src="/html/assets/js/coordgriddettab.js?v=8"></script>
 </body>
 

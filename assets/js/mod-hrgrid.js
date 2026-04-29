@@ -77,8 +77,12 @@ export function initHrisGrid() {
                     ${data.phone}<br>
                     ${data.email}<br>
                     ${data.emp_id}<br>
-                    ${data.jms_id || ""}<br>
-                
+                    ${data.jms_id || "(No JMS)"}<br>
+                    <button type="button"
+                            class="btn my-btn  btn-sm btn-status-change"
+                            data-action="edit">
+                        Edit
+                    </button>
                     <button type="button"
                             class="btn btn-warning btn-sm btn-status-change"
                             data-action="${action}">
@@ -109,6 +113,11 @@ export function initHrisGrid() {
                     const region = document.getElementById('filter_region').value
 
                     switch( action ){
+                        case "edit":
+                            asn.openEditForm( rowData ) //coord.js
+                            return;
+                        break;
+
                         case "view":
                             hris.openViewRequirementsModal(empId, rowData, region.toLowerCase() );
                             return;

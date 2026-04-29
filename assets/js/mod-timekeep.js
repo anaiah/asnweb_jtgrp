@@ -194,19 +194,36 @@ let loginDetails = null;
             document.getElementById("filter_date_to").disabled   = false;
 
             //make sure filter region auto select the region of the logged in user
-            document.getElementById('filter_region').value = db.region;
+            document.getElementById('filter_region').value = db.region.toLowerCase();
 
             console.log('fetchtimekeep() grp_id', db.region)
 
             if(db.grp_id=='08'){ //thsi line coords only
-                
-                //newempmodal region
-                document.getElementById('region').value = db.region.toUpperCase();
-                    
+                    //======================== WE SET FILTER REGION HERE ===========
+                    const sel = document.getElementById('filter_region');
+                    const selectedValue = db.region.toLowerCase();
+                    //sel.dispatchEvent(new Event('change', { bubbles: true })); ///++++++++ fire event listener
+
+                    // set selection (will select existing option if present)
+                    sel.value = selectedValue;
+
+                    // disable all options that don't match, enable the matching one
+                    for (const opt of sel.options) {
+                        opt.disabled = opt.value !== selectedValue;
+                    }
+
+                    // optionally ensure the selected option is actually focused/selected
+                    if (sel.value !== selectedValue) {
+                        // fallback: create and select the option if it didn't exist
+                        const newOpt = new Option(selectedValue, selectedValue, true, true);
+                        sel.add(newOpt);
+                        for (const opt of sel.options) opt.disabled = opt.value !== selectedValue;
+                    }    
+                                  
                 //util.showPos() // show position in newempmodal based on region
 
                 //===========FIND REGION  AND GETHUB===============
-                //timekeep.findRegion(dbprofile.region);
+                timekeep.getFilterLocation(db.region.toLowerCase());
                 
                 //timekeep.getHubCoord()
             }//endif
@@ -220,63 +237,72 @@ let loginDetails = null;
                 let regionFile = null;
 
                 switch (region) {
-                case "smnl":
-                case "cmnva":
-                case "cmnl":
-                    regionFile = `NCR-${region}`;
-                    break;
+                    case "smnl":
+                    case "cmnva":
+                    case "cmnl":
+                        regionFile = `NCR-${region}`;
+                        break;
 
-                case "nelu":
-                case "nwlu":
-                    regionFile = `LUZ-${region}`;
-                    break;
-                case "min": 
-                    regionFile = `${region}`;
-                    break;  
+                    case "nelu":
+                    case "nwlu":
+                        regionFile = `LUZ-${region}`;
+                        break;
+                    case "min": 
+                        regionFile = `${region}`;
+                        break;
+                    case "bicol":
+                    case "smarleyte":
+                        regionFile = `BSL-${region}`
+                        break;
+                    case "central":
+                    case "bacolod":
+                    case "panay":
+                        regionFile =`WVIS-${region}`
+                        break;       
                  }  
                 
 
-                const el = document.getElementById('filter_region');
-                const valToSet = region.toLowerCase();
+                // const el = document.getElementById('filter_region');
+                // const valToSet = region.toLowerCase();
 
-                // Check if the option exists
-                let optionExists = [...el.options].some(opt => opt.value === valToSet);
+                // // Check if the option exists
+                // let optionExists = [...el.options].some(opt => opt.value === valToSet);
 
-                if (!optionExists) {
-                    // Add the missing option
-                    const newOpt = new Option(regionFile.toUpperCase(), valToSet);
-                    el.add(newOpt);
-                }
+                // if (!optionExists) {
+                //     // Add the missing option
+                //     const newOpt = new Option(regionFile.toUpperCase(), valToSet);
+                //     el.add(newOpt);
+                // }
 
-                // Now set it
-                el.value = valToSet;
+                // // Now set it
+                // el.value = valToSet;
 
-                console.log('getcloation ',el.value)
+                // console.log('getcloation ',el.value)
 
-                timekeep.getLocation( el.value.toUpperCase() )
+                // timekeep.getLocation( el.value.toUpperCase() )
                         
             //}//eif 
                         
             
             //==========hris filter action
-            //for select actions for filtering
-            document.getElementById("actionSelect").addEventListener("change", function () {
-                const action = this.value;
-                const form = document.getElementById("searchForm");
+            // //for select actions for filtering
+            // document.getElementById("actionSelect").addEventListener("change", function () {
+            //     const action = this.value;
+            //     const form = document.getElementById("searchForm");
 
-                if (!action) return;
+            //     if (!action) return;
 
-                if (action === "search") {
-                    timekeep.checkform && timekeep.checkform(form);
-                } else if (action === "timekeeping") {
-                    timekeep.printTimeKeep && timekeep.printTimeKeep();
-                } else if (action === "masterfile") {
-                    timekeep.printMasterfile && timekeep.printMasterfile(form);
-                }
+            //     if (action === "search") {
+            //         timekeep.checkform && timekeep.checkform(form);
+            //     } else if (action === "timekeeping") {
+            //         timekeep.printTimeKeep && timekeep.printTimeKeep();
+            //     } else if (action === "masterfile") {
+            //         timekeep.printMasterfile && timekeep.printMasterfile(form);
+            //     }
 
-                // reset back to placeholder after firing
-                this.value = "";
-            });
+            //     // reset back to placeholder after firing
+            //     this.value = "";
+            // });
 
             //===== ADD ANOTHER EVENT LISTENER WHEN POSITION IS CHANGED TO SHOW/HIDE HUB SELECT
             const posSelect  = document.getElementById('filter_position');
@@ -285,32 +311,32 @@ let loginDetails = null;
 
             if (!posSelect || !hubSelect) return;
 
-            locSelect.addEventListener('change', () => {
-                timekeep.getHubs( locSelect.value.toUpperCase() )
+            // locSelect.addEventListener('change', () => {
+            //     timekeep.getHubs( locSelect.value.toUpperCase() )
 
-                console.log('location change detectd')
+            //     console.log('location change detectd')
             
-            });
+            // });
 
 
-            posSelect.addEventListener('change', () => {
+            // posSelect.addEventListener('change', () => {
 
-                if (posSelect.value === '02'|| posSelect.value === '01' || posSelect.value==='10' || posSelect.value==='04') { // TRANSPORTER and teamleader and RIDER SHOW HUB SELECT
-                    hubSelect.setAttribute('required', 'required');
-                } else {
-                    hubSelect.removeAttribute('required');
-                    hubSelect.value = ''
-                }
-            });
+            //     if (posSelect.value === '02'|| posSelect.value === '01' || posSelect.value==='10' || posSelect.value==='04') { // TRANSPORTER and teamleader and RIDER SHOW HUB SELECT
+            //         hubSelect.setAttribute('required', 'required');
+            //     } else {
+            //         hubSelect.removeAttribute('required');
+            //         hubSelect.value = ''
+            //     }
+            // });
 
-            hubSelect.addEventListener('change', () => {
-                if (posSelect.value === '02'|| posSelect.value === '01' || posSelect.value==='10' || posSelect.value==='04') { // TRANSPORTER and teamleader and RIDER SHOW HUB SELECT
-                }else{
+            // hubSelect.addEventListener('change', () => {
+            //     if (posSelect.value === '02'|| posSelect.value === '01' || posSelect.value==='10' || posSelect.value==='04') { // TRANSPORTER and teamleader and RIDER SHOW HUB SELECT
+            //     }else{
 
-                 hubSelect.value = ''
-                    return;
-                }
-            });
+            //      hubSelect.value = ''
+            //         return;
+            //     }
+            // });
 
             //============== FOR DEACTIVATION LISTENER ============//
             const btn = document.getElementById("btnConfirmDeactivate");
@@ -389,29 +415,7 @@ let loginDetails = null;
             });
             //============end of deactivation listener ===========//
 
-            //============= EVENT LISTENER WHEN TIMEKEEP MODAL  HIDE==================//
-            const timekeepModalEl = document.getElementById('timekeepModal');
-            timekeepModalEl.addEventListener('hidden.bs.modal', () => {
-                // clear data in the detail grid when modal is closed   
-                if (hrtimekeepGrid.hrisGrid
-        
-                ) {
-                    hrtimekeepGrid.hrisGrid.setData([]);
-                }
-
-                //reset form, rest div innerhtml
-                let xform = document.getElementById('searchForm')
-                xform.reset()
-                util.resetFormClass('#searchForm')
-
-                document.getElementById('search-result-grid').classList.add('d-none');
-                document.getElementById('hrisdisplay').classList.add('d-none');
-                document.getElementById('timekeepdisplay').classList.add('d-none');
-
-            });
-
-           
-
+            
              // now init Tabulator grids
             initHrisGrid();
             initTimekeepGrid();
@@ -482,7 +486,7 @@ let loginDetails = null;
 
         console.log('===FIRED  hris.searchEmp()====')
         
-        const searchForm = document.getElementById('searchForm');
+        const searchForm = document.getElementById('filter-searchForm');
         const formData = new FormData(searchForm);
 
         // --- HOW TO INSPECT FormData CONTENTS ---
@@ -539,7 +543,9 @@ let loginDetails = null;
     //================get hub for this coordinator
     const getHubCoord = async()=>{
            
-        const response = await fetch(`${myIp}/gethubcoord/${ dbprofile.region}/${ dbprofile.email}`);
+        const region = document.getElementById('filter_region').value
+
+        const response = await fetch(`${myIp}/gethubcoord/${ region }/${ dbprofile.email}`);
         
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({ message: 'Server error' }));
@@ -569,9 +575,9 @@ let loginDetails = null;
     //=============print timekeeping from Grid========//
     const printTimeKeep = async() => {
 
-        console.log('====FIRING hris.printTimeKeep()===')
+        console.log('====FIRING timekeep.printTimeKeep()===')
 
-        const searchForm = document.getElementById('searchForm');
+        const searchForm = document.getElementById('filter-searchForm');
         const formData = new FormData(searchForm);
 
         // simple validation: need region at least
@@ -749,15 +755,14 @@ let loginDetails = null;
     }
 
     //=========get location based on region selection ==================//
-    const getLocation = async (regionSelectElement) => {
+    const getFilterLocation = async (regionSelectElement) => {
         
-        console.log('***getLocation() fired***')
+        console.log('***getFilterLocation() fired***', regionSelectElement)
 
         util.toggleButtonLoading('footer-msg','Loading Location...',true)
         const selectedRegion = regionSelectElement.value;
         
-        const locContainer = document.getElementById('locContainer'); 
-        const locSelect = document.getElementById('locStore');
+        const locSelect = document.getElementById('filter_location');
         
         try {
             const response = await fetch(`${myIp}/getlocation/${document.getElementById('region').value}`); // Adjust this URL as needed
@@ -791,7 +796,9 @@ let loginDetails = null;
                     cancelable: true    // Standard practice
                 });
                 
-                locSelect.dispatchEvent(changeEvent);
+                //locSelect.dispatchEvent(changeEvent);
+                locSelect.dispatchEvent(new Event('change',{ bubbles: true } )); ///fire event listener
+
             }
 
             return true;
@@ -901,6 +908,199 @@ let loginDetails = null;
         });
     }
 
+    //===========EDIT FORM ==================//
+    // const openEditForm = (rowData) => {
+        
+    //     const btn = document.querySelector('#newemp-next-btn');
+
+    //     // Using dataset (Recommended)
+    //     btn.dataset.mode = 'edit';
+    //     btn.innerHTML = '💾 Save Edit'; // If you want the text to change too
+    //     const form = document.getElementById('newempForm');
+    //     const empId = rowData.emp_id;
+    //     const region = ( document.getElementById('filter_region').value || "");
+
+    //     // if(hris.editMode){
+    //     //     hris.loc = rowData.location || "";
+        
+    //     // }
+
+    //     // 1. CLEANUP: Remove any previous injections (ID or Thumbnails)
+    //     document.querySelectorAll('.injected-edit-ui').forEach(el => el.remove());
+
+    //     // 2. INJECT READONLY ID at the top
+    //     const idHtml = `
+    //         <div class="mb-3 injected-edit-ui">
+    //             <label class="form-label fw-bold text-primary">RECORD EDITING (READ-ONLY ID)</label>
+    //             <input type="text" class="form-control bg-light" id="edit-emp-id" name="edit-emp-id" value="${empId}" readonly>
+    //         </div>`;
+
+    //     form.insertAdjacentHTML('afterbegin', idHtml);
+
+    //     // 3. POPULATE TEXT FIELDS (With Date Cleaning)
+    //     const cleanDate = (d) => (d && d.includes('T')) ? d.split('T')[0] : (d || "");
+
+    //     form.querySelector('#region').value = region.toUpperCase() || "";
+    //     // This manually triggers the 'change' event so util.getLocation runs
+    //     const regionEl = form.querySelector('#region');
+    //     //// KILL THE REGION regionEl.dispatchEvent(new Event('change', { bubbles: true })); /// fire event listener
+        
+    //     form.querySelector('#firstName').value = rowData.first_name || "";
+    //     form.querySelector('#lastName').value = rowData.last_name || "";
+        
+    //     form.querySelector('#jobTitle').value = rowData.position || "";
+
+    //     const jobTitleEl = form.querySelector('#jobTitle');
+    //     jobTitleEl.dispatchEvent(new Event('change',{ bubbles: true } )); ///fire event listener
+                    
+        
+    //     form.querySelector('#fullName').value = rowData.full_name || "";
+    //     form.querySelector('#email').value = rowData.email || "";
+    //     form.querySelector('#email').dataset.original = rowData.email || "";
+
+    //     // Using dataset (Recommended)
+    //     btn.dataset.mode = 'edit';
+        
+    //     form.querySelector('#phone').value = rowData.phone || "";
+    //     form.querySelector('#birthDate').value = cleanDate(rowData.birth_date);
+    //     form.querySelector('#hireDate').value = cleanDate(rowData.hire_date);
+    //     form.querySelector('#employmentStatus').value = rowData.employment_status || "";
+    //     form.querySelector('#addy1').value = rowData.street_1 || "";
+    //     form.querySelector('#addy2').value = rowData.street_2 || "";
+    //     form.querySelector('#bgy').value = rowData.bgy || "";
+    //     form.querySelector('#city').value = rowData.city || "";
+    //     form.querySelector('#address').value = rowData.full_address || "";
+    //     form.querySelector('#nameSuffix').value = rowData.suffix || "";
+    //     form.querySelector('#middleName').value = rowData.middle_name || "";
+
+    //     // 4. INJECT THUMBNAILS below File Inputs
+    //     // Note: 'name' must match your <input name="..."> exactly
+    //     const fileConfigs = [
+    //         { name: "id_picture",          prefix: "USER_",     label: "ID Picture" },
+    //         { name: "id_specimen_picture", prefix: "SPECIMEN_", label: "Specimen Sig" },
+    //         { name: "id_gcash",            prefix: "GCASH_",    label: "GCash" },
+    //         { name: "bgy_clearance",       prefix: "BGY_",      label: "Bgy Clearance" },
+    //         { name: "police_clearance",    prefix: "POLICE_",   label: "Police/NBI" },
+    //         { name: "drivers_license",     prefix: "DRIVER_",   label: "License" },
+    //     ];
+
+    //     const exts = [".jpg", ".png", ".gif"];
+
+    //     // Determine Folder Path (Your Switch Logic)
+    //     let regionFolder = "";
+    //     const xregion = region.toLowerCase(); // Normalize to lowercase for consistent matching
+
+    //     switch (xregion) {
+    //         case "smnl": 
+    //         case "cmnva": 
+    //         case "cmnl":
+    //             regionFolder = `ncr_${xregion}_emp`;
+    //             break;
+    //         case "nelu": 
+    //         case "nwlu":
+    //             regionFolder = `luz_${region}_emp`;
+    //             break;
+    //         case "min": 
+    //             regionFolder = `min_emp`;
+    //             break; 
+    //         case "bicol": 
+    //         case "smarleyte":
+    //             regionFolder = `bsl_${xregion}_emp`;    
+    //             break;
+    //         default:
+    //             regionFolder = `wvis_${xregion}_emp`; // For bacolod, panay, etc.
+    //     }
+
+    //     const baseUrl = `https://asianowapp.com/html/${regionFolder}/`;
+
+    //     fileConfigs.forEach(cfg => {
+
+    //         // This looks for the <input name="id_picture"> etc.
+    //         const inputEl = form.querySelector(`input[name="${cfg.name}"]`);
+            
+    //         if (inputEl) {
+    //             // Create container
+    //             const thumbContainer = document.createElement('div');
+    //             thumbContainer.className = "injected-edit-ui mt-2 p-1 border rounded bg-light";
+    //             thumbContainer.style = "width: fit-content; min-width: 100px; text-align: center;";
+    //             thumbContainer.innerHTML = `<small class="d-block text-muted">Checking...</small>`;
+                
+    //             inputEl.after(thumbContainer);
+
+    //             let idx = 0;
+    //             const tryExt = () => {
+    //                 if (idx >= exts.length) {
+    //                     thumbContainer.innerHTML = `<small class="text-muted">No file on server</small>`;
+    //                     return;
+    //                 }
+                    
+    //                 // CONSTRUCT FILENAME: e.g., USER_123.jpg
+    //                 const fileName = `${cfg.prefix}${empId}${exts[idx]}`;
+    //                 const fullUrl = baseUrl + fileName; // Remove encodeURIComponent if filenames don't have spaces
+
+    //                 // FOR CHECKING: Open your console (F12) to see these!
+    //                 console.log(`Trying ${cfg.label}:`, fullUrl);
+
+    //                 const img = new Image();
+    //                 img.style = "max-height: 80px; display: block; margin: auto;";
+    //                 img.onload = () => {
+    //                     thumbContainer.innerHTML = ""; 
+    //                     thumbContainer.appendChild(img);
+    //                 };
+    //                 img.onerror = () => { 
+    //                     idx++; 
+    //                     tryExt(); 
+    //                 };
+    //                 img.src = fullUrl;
+    //             };
+    //             tryExt();
+    //         } else {
+    //             console.warn(`Could not find input with name: ${cfg.name}`);
+    //         }
+    //     });
+
+    //     // 6.. SHOW MODAL
+    //     const modalEl = document.getElementById("newempModal");
+    //     const bsModal = new bootstrap.Modal(modalEl);
+    //     bsModal.show();
+
+    //     const locStoreEl = form.querySelector('#locStore');
+    //     //reset first
+    //     locStoreEl.innerHTML = '';
+
+    //     if( rowData.location){    
+    //         let opt = document.createElement('option');
+    //         opt.value = rowData.location;
+    //         opt.innerHTML = rowData.location;
+    //         opt.selected = true;
+    //         locStoreEl.appendChild(opt);
+    //     }    
+        
+    //     // let's put hub_store last
+    //     //form.querySelector('#hubStore').value = rowData.hub || "";
+    //     const hubField = document.getElementById('hubStore');
+    //     //reset first
+    //     hubField.innerHTML = '';
+
+    //     if(rowData.hub){
+    //         let opt = document.createElement('option');
+    //         opt.value = rowData.hub;
+    //         opt.innerHTML = rowData.hub;
+    //         opt.selected = true;
+    //         hubField.appendChild(opt);
+    //     }else{
+    //         let opt = document.createElement('option');
+    //         opt.value = "";
+    //         opt.innerHTML = "No Hub Assigned";
+    //         opt.selected = true;
+    //         hubField.appendChild(opt);
+            
+    //     }//EIF
+        
+    //     // 6. TURN OFF ALL 'REQUIRED' ATTRIBUTES IN THE FORM (Since this is an edit, not a new record) SUCH AS PICTURES
+    //         //form.querySelectorAll('input, select, textarea').forEach(el => el.removeAttribute('required'));
+    // }
+
     /*********EXPORT FUNC */
     export const timekeep = {
         findRegion,   // same as hi: hi
@@ -912,54 +1112,9 @@ let loginDetails = null;
         openTimekeepModal,
         approveTimeKeep,
         getLoginDetails,
-        getLocation,
-        getHubs,
-        showPosition,
-        displayAreaLocationHub,
-        handlePositionChange,
-        fetchAndPopulateHubs,
-        checkEmailDuplicate
+        getFilterLocation
     };
     
-
-    ///liisteners
-    document.addEventListener('blur', (e) => {
-        switch (e.target.id) {
-            case 'email':
-                const currentEmail = e.target.value.trim();
-                const originalEmail = e.target.dataset.original; // Stored when modal opens 
-    
-                if (!currentEmail || currentEmail === originalEmail) return;// if after blur it is thesame return false, dont do anythhing
-    
-                // else Run your AJAX
-                timekeep.checkEmailDuplicate(currentEmail);
-                
-                break;
-        }
-        
-    }, true); // Use capture to ensure it catches the event
-    
-    document.addEventListener('change', (e) => {
-        //const idx = e.target.getAttribute('data-idx'); -- attribute data-dix get the index of the current row being edited
-        switch (e.target.id) {
-            case 'region':
-                timekeep.showPosition();
-                console.log('Region logic fired');
-                break;
-    
-            case 'jobTitle':
-                // e.target is the #jobTitle element
-                timekeep.handlePositionChange(e.target);
-                console.log('Position logic fired');
-                break;
-    
-            case 'locStore':
-                timekeep.fetchAndPopulateHubs(e.target.value);
-                console.log('=========== firing hrisutil.fetchAndPopHub() in  hrmmod.js  Location and HUB logic fired', e.target.value);
-                break;
-        }
-    }, true); // Use capture to ensure it catches the event
-    //MAKE IT GLOBAL
 
     ///==================GLOBAL EVENT LISTENER FOR DYNAMICALLY 
     // GENERATED VIEW BUTTON IN TIMEKEEP GRID ===============//
@@ -976,6 +1131,68 @@ let loginDetails = null;
         if (e.target.matches('.approve-btn')) {
             timekeep.approveTimeKeep();
         }
+    });
+
+    document.addEventListener('change', (e) => {
+
+    //const idx = e.target.getAttribute('data-idx'); -- attribute data-dix get the index of the current row being edited
+    switch (e.target.id) {
+        case 'filter_region':
+            console.log('yo filterregion fired... ')
+            timekeep.getFilterLocation( document.getElementById('filter_region').value.toLowerCase() );
+                
+            break;
+
+        case 'filter_location':
+            timekeep.getHubCoord()
+            break;
+
+        case 'filter-actionSelect':
+            const action = e.target.value;
+            const form = document.getElementById("filter-searchForm");
+
+            if (!action) return;
+
+            if (action === "search") {
+                timekeep.checkform && timekeep.checkform(form); //same as validateForm()
+            } else if (action === "timekeeping") {
+                timekeep.printTimeKeep && timekeep.printTimeKeep();
+            } else if (action === "masterfile") {
+                timekeep.printMasterfile && timekeep.printMasterfile(form);
+            }///eif
+
+            // reset back to placeholder after firing
+            e.target.value = "";
+            break;
+
+        }
+    })
+
+    //============= EVENT LISTENER WHEN TIMEKEEP MODAL  HIDE==================//
+    const timekeepModalEl = document.getElementById('timekeepModal');
+    timekeepModalEl.addEventListener('show.bs.modal',  () => {
+        document.getElementById('filter_region').value = dbprofile.region.toLowerCase()
+
+    })
+
+
+    timekeepModalEl.addEventListener('hidden.bs.modal', () => {
+        // clear data in the detail grid when modal is closed   
+        if (hrtimekeepGrid.hrisGrid
+
+        ) {
+            hrtimekeepGrid.hrisGrid.setData([]);
+        }
+
+        //reset form, rest div innerhtml
+        let xform = document.getElementById('filter-searchForm')
+        xform.reset()
+        util.resetFormClass('#filter-searchForm')
+
+        document.getElementById('search-result-grid').classList.add('d-none');
+        document.getElementById('hrisdisplay').classList.add('d-none');
+        document.getElementById('timekeepdisplay').classList.add('d-none');
+
     });
 
    

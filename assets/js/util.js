@@ -1545,49 +1545,63 @@ const util = {
         });
 
         // --- 2. Perform Validation for all relevant fields ---
-        Array.from(formElement.elements).forEach((input) => {
-            // Only validate inputs that are part of the form and are required or have the classX
+        const invalidControls = [];
+
+            Array.from(formElement.elements).forEach((input) => {
             const shouldValidate = input.classList.contains(classX) || input.hasAttribute('required');
+            if (!shouldValidate) return;
 
-            if (shouldValidate) {
-                let inputIsValid = true; // Flag for current input's validity
+            let inputIsValid = true;
 
-                if (input.type === 'file') {
-                    // Custom validation for required file inputs
-                    if (input.hasAttribute('required') && input.files.length === 0) {
-                        inputIsValid = false;
-                        const fileErrorDiv = document.getElementById(`${input.id}-error`);
-                        if (fileErrorDiv) {
-                            fileErrorDiv.style.display = 'block'; // Show specific file error
-                        }
-                    }
-                } else if (input.id === 'phone') {
-                    // Custom validation for phone number (assuming it sets visual feedback)
-                    inputIsValid = util.validatePhone(input); 
-                } else {
-                    // Standard HTML5 validation for other text/select inputs
-                    inputIsValid = input.checkValidity();
+            if (input.type === 'file') {
+                if (input.hasAttribute('required') && input.files.length === 0) {
+                inputIsValid = false;
+                const fileErrorDiv = document.getElementById(`${input.id}-error`);
+                if (fileErrorDiv) fileErrorDiv.style.display = 'block';
                 }
-
-                // Apply Bootstrap validation classes based on inputIsValid
-                if (!inputIsValid) {
-                    allFormValid = false; // Mark overall form as invalid
-                    input.classList.add('is-invalid');
-                } else {
-                    input.classList.add('is-valid');
-                }
+            } else if (input.id === 'phone') {
+                inputIsValid = util.validatePhone(input);
+            } else {
+                inputIsValid = input.checkValidity();
             }
-        });
 
-        // --- 3. Check if overall form is valid ---
-        if (!allFormValid) {
+            if (!inputIsValid) {
+                allFormValid = false;
+                input.classList.add('is-invalid');
+                invalidControls.push(input);
+            } else {
+                input.classList.add('is-valid');
+            }
+            });
+
+                    // --- 3. Check if overall form is valid ---
+            if (!allFormValid) {
+            // Detailed log for debugging
+            console.group('Form validation failed — invalid controls:');
+            invalidControls.forEach((el, idx) => {
+                console.log(`#${idx+1}`, {
+                id: el.id || '(no id)',
+                name: el.name || '(no name)',
+                type: el.type,
+                value: el.value,
+                files: el.files?.length ?? undefined,
+                isConnected: el.isConnected,
+                validationMessage: (el.willValidate ? el.validationMessage : '(no willValidate)'),
+                });
+            });
+            console.groupEnd();
+
+            // Focus first invalid control and show native message if applicable
+            const first = invalidControls[0];
+            if (first) {
+                first.focus();
+                if (typeof first.reportValidity === 'function') first.reportValidity(); // shows browser bubble
+            }
 
             util.Toasted('Error, Please CHECK Your Entry, ERROR FIELDS MARKED IN RED!', 3000, false);
-            console.log('Form is invalid, preventing post.');
-            
-            if( window.main ) { window.main.gonow = false; }
-            if( window.asn ) { window.asn.gonow = false; }
-            if( window.hris ) { window.hris.gonow = false; } 
+            if (window.main) main.gonow = false;
+            if (window.asn) asn.gonow = false;
+            if (window.hris) hris.gonow = false;
             
             return false;
 
@@ -2069,6 +2083,8 @@ const util = {
                 util.dataDateHired = data.dateHired;
 
                 /************* show privaacy  only on Add Mode not onn Edit Mode  */
+                const dbval = JSON.parse( db.getItem('profile'));
+                    
                 if(mode === 'add'){
                     // --- NEW: Show the Data Privacy & Signature Modal ---
                     const dataPrivacyModalElement = document.getElementById('dataPrivacySignatureModal');
@@ -2076,8 +2092,13 @@ const util = {
                     dataPrivacyModal.show();
                 }else{
                     //if edit mode, refresh grid
-                    hris.searchEmp()
-                }   
+                    if(dbval.grp_id=='08'){
+                        timekeep.searchEmp()
+                    }else{
+                        hris.searchEmp()
+
+                    }
+                                    }   
             }else{
                 util.speak(data.voice)
                 //util.alertMsg(data.message,'warning','equipmentPlaceHolder')
