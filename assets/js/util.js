@@ -885,7 +885,7 @@ const util = {
             case "newempModal":
             case "dataPrivacySignatureModal" :
 
-                if(util.getCookie('grp_id')==="8" || util.getCookie('grp_id')==="08"){ // HR PEOPLE or coordinator FOR NOW
+                if(util.getCookie('grp_id')==="8" || util.getCookie('grp_id')==="08" || util.getCookie('grp_id')==="88"){ // HR PEOPLE or coordinator FOR NOW
                     //show the dialog modal
                     //console.log('uyyy mdalshow Nu emp')
                     
