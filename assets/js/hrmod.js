@@ -175,9 +175,9 @@ myModal.addEventListener('hide.bs.modal', function (event) {
         jms.disabled = true;
 
         //reset jms pic
-        //document.getElementById('jms-pic-div').classList.add('d-none');
+        document.getElementById('jms-pic-div').classList.add('d-none');
         const jmspic = document.getElementById('jms_picture');
-       // jmspic.disabled= true;
+        jmspic.disabled= true;
 
         jmspic.removeAttribute('required');
 

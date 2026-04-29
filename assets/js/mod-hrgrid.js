@@ -77,7 +77,7 @@ export function initHrisGrid() {
                     ${data.phone}<br>
                     ${data.email}<br>
                     ${data.emp_id}<br>
-                    ${data.jms_id || "(No JMS)"}<br>
+                    JMS # ${data.jms_id || "(No JMS)"}<br>
                     <button type="button"
                             class="btn my-btn  btn-sm btn-status-change"
                             data-action="edit">

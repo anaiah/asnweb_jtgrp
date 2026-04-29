@@ -86,7 +86,7 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 ${data.phone}<br>
                 ${data.email}<br>
                 ${data.emp_id}<br>
-                ${data.jms_id || ""}<br>
+                JMS # ${data.jms_id || "(No JMS)"}<br>
                 <button type="button"
                         class="btn btn-warning btn-sm btn-status-change"
                         ${ xdisabled }
@@ -110,12 +110,6 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                         ${ xdisabled }
                         data-action="printcontract">
                     Print Contract
-                </button>
-                <button type="button"
-                        class="btn btn-purple btn-sm btn-status-change"
-                        ${ xdisabled }
-                        data-action="jms">
-                    JMS No.
                 </button>
                 
                 `;
@@ -177,15 +171,15 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                         return;
                     break;
 
-                    case "jms":
-                        console.log(rowData, 'JMS')
-                        const modal = new bootstrap.Modal(document.getElementById("jmsModal"));
-                        modal.show();
+                    // case "jms":
+                    //     console.log(rowData, 'JMS')
+                    //     const modal = new bootstrap.Modal(document.getElementById("jmsModal"));
+                    //     modal.show();
 
-                        document.getElementById('besi_id').value = rowData.emp_id || "";
+                    //     document.getElementById('besi_id').value = rowData.emp_id || "";
                         
-                        return;
-                    break;
+                    //     return;
+                    // break;
 
                 }//endsw
 

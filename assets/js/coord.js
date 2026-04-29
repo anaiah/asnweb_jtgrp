@@ -984,6 +984,11 @@ const asn = {
         document.getElementById('jms-div').classList.remove('d-none');
         const jms = document.getElementById('jms_id');
         jms.disabled = false;
+
+        document.getElementById('jms-pic-div').classList.remove('d-none');
+        const jmspic = document.getElementById('jms_picture');
+        jmspic.disabled = false;
+
         form.querySelector('#jms_id').value = rowData.jms_id || "";
         
 
