@@ -1264,6 +1264,20 @@
                         return "Are you sure you want to leave the HR Dashboard?";
                     };
                     console.log('===HRIS OPERATIONS DOMCONTENTLOADED ==')
+
+
+                    const profile = JSON.parse(localStorage.getItem('profile'))  //get profileowner =  JSON.parse(db.getItem('profile'))  //get profile
+                    const optTk = document.getElementById('optTimekeeping')
+                    const optMf = document.getElementById('optMasterfile')
+
+
+                    switch(profile.grp_id){
+                        case 88 ://test user deactivate actionselect
+                            optTk.disabled = true;        //  //admin
+                            optMf.disabled = true;        //  //admin
+                            break;
+                    }
+
                     
                     util.modalListeners('newempModal')
                     util.modalListeners('dataPrivacySignatureModal')
