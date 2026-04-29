@@ -1195,6 +1195,18 @@ let loginDetails = null;
 
     });
 
-   
+    const myModal = document.getElementById('newempModal')
+    myModal.addEventListener('hide.bs.modal', function (event) {
+         const btn = document.getElementById('newemp-next-btn');
+        const mode = btn.dataset.mode;
+        if(mode==='edit'){
+            const ctx = myModal.dataset.context;
+            if (ctx === 'coords') {
+                timekeep.searchEmp();
+            }
+            // clear context if you like
+            delete myModal.dataset.context;
+        }
+    })
     
         

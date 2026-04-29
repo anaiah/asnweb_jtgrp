@@ -292,7 +292,11 @@
                                         
                                     </select>
                                 </div> -->
-
+                                <div class="mb-3 d-none" id="jms-div">
+                                    <label for="city" class="form-label">JMS ID No.</label>
+                                    <input type="text" class="form-control 201" value="" id="jms_id" name="jms_id" disabled >
+                                </div>
+                               
                                 <div class="mb-3">
                                     <!-- old onchange="util.checkPosition()" --> 
                                     <label for="region" class="form-label">Region</label>
@@ -430,7 +434,6 @@
                                     <label for="city" class="form-label">City / Municipality</label>
                                     <input type="text" class="form-control text-uppercase 201" value="" id="city" name="city" required>
                                 </div>
-
                                
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Complete Address </label>
@@ -442,6 +445,12 @@
 
                                 <!-- NEW: File Uploads -->
                                 <h3 class="mt-4">Document Uploads</h3>
+                                <div class="mb-3" id='jms-pic-div'>
+                                    <label for="jms_picture" class="form-label">JMS ID Picture</label>
+                                    <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="jms_picture" id="jms_picture" accept='image/*'  capture="environment"  />
+                                    <div id="jms_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
+                                </div>
+
                                 <div class="mb-3">
                                     <label for="id_picture" class="form-label">Contractor ID Picture</label>
                                     <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="id_picture" id="id_picture" accept='image/*'  capture="environment" required />

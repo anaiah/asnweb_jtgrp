@@ -2092,12 +2092,12 @@ const util = {
                     dataPrivacyModal.show();
                 }else{
                     //if edit mode, refresh grid
-                    if(dbval.grp_id=='08'){
-                        timekeep.searchEmp()
-                    }else{
-                        hris.searchEmp()
+                    // if(dbval.grp_id=='08'){
+                    //     timekeep.searchEmp()
+                    // }else{
+                    //     hris.searchEmp()
 
-                    }
+                    // }
                                     }   
             }else{
                 util.speak(data.voice)

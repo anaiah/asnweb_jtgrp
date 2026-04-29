@@ -1,5 +1,5 @@
 import { hrisutil } from './mod-hrisutil.js';
-
+import { timekeep } from './mod-timekeep.js'
 //hrisutil.tester()
 
 
@@ -44,6 +44,22 @@ document.addEventListener('blur', (e) => {
             // else Run your AJAX
             hrisutil.checkEmailDuplicate(currentEmail);
             
+            break;
+        case 'jms_id': 
+            const val = e.target.value.trim();
+            const picDiv = document.getElementById('jms-pic-div');
+            // const picInput = document.getElementById('jms_picture');
+
+            // if (val) {
+            //     picDiv?.classList.remove('d-none');   // show container
+            //     if (picInput) picInput.disabled = false; // enable input
+            // } else {
+            //     picDiv?.classList.add('d-none');      // hide container
+            //     if (picInput) {
+            //     picInput.disabled = true;           // disable input so it won't submit
+            //     picInput.value = '';                // optionally clear value
+            //     }
+            // }
             break;
     }
     
@@ -153,6 +169,30 @@ myModal.addEventListener('hide.bs.modal', function (event) {
         //emaildata.value = '';
         emaildata.dataset.original = '';
 
+        //reset jms
+        document.getElementById('jms-div').classList.add('d-none');
+        const jms = document.getElementById('jms_id');
+        jms.disabled = true;
+
+        //reset jms pic
+        //document.getElementById('jms-pic-div').classList.add('d-none');
+        const jmspic = document.getElementById('jms_picture');
+       // jmspic.disabled= true;
+
+        jmspic.removeAttribute('required');
+
+        //clear data value
+        jms.value = '';
+        jmspic.value = '';
+
+          const ctx = myModal.dataset.context;
+            if (ctx === 'hr') {
+                hris.searchEmp();
+            }else if (ctx === 'coords') {
+                timekeep.searchEmp();
+            }
+            // clear context if you like
+            delete myModal.dataset.context;
 
     }//EIF
 

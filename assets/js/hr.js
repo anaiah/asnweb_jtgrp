@@ -1069,6 +1069,12 @@
             // 3. POPULATE TEXT FIELDS (With Date Cleaning)
             const cleanDate = (d) => (d && d.includes('T')) ? d.split('T')[0] : (d || "");
 
+             //make jms_id visible now
+            document.getElementById('jms-div').classList.remove('d-none');
+            const jms = document.getElementById('jms_id');
+            jms.disabled = false;
+            form.querySelector('#jms_id').value = rowData.jms_id || "";
+
             form.querySelector('#region').value = region.toUpperCase() || "";
             // This manually triggers the 'change' event so util.getLocation runs
             const regionEl = form.querySelector('#region');
@@ -1190,6 +1196,8 @@
     
             // 6.. SHOW MODAL
             const modalEl = document.getElementById("newempModal");
+            modalEl.dataset.context = 'hr'
+            
             const bsModal = new bootstrap.Modal(modalEl);
             bsModal.show();
 

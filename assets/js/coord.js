@@ -952,8 +952,8 @@ const asn = {
 
     dbprofile: null,
     
+    //================FOR EDITING RECORDS============//
     openEditForm : (rowData) => {
-        
         
         const btn = document.querySelector('#newemp-next-btn');
 
@@ -964,12 +964,7 @@ const asn = {
         const form = document.getElementById('newempForm');
         const empId = rowData.emp_id;
         const region = ( document.getElementById('filter_region').value || "");
-
-        // if(hris.editMode){
-        //     hris.loc = rowData.location || "";
         
-        // }
-
         // 1. CLEANUP: Remove any previous injections (ID or Thumbnails)
         document.querySelectorAll('.injected-edit-ui').forEach(el => el.remove());
 
@@ -977,13 +972,20 @@ const asn = {
         const idHtml = `
             <div class="mb-3 injected-edit-ui">
                 <label class="form-label fw-bold text-primary">RECORD EDITING (READ-ONLY ID)</label>
-                <input type="text" class="form-control bg-light" id="edit-emp-id" name="edit-emp-id" value="${empId}" readonly>
+                <input type="text" class="form-control bg-light mb-2" id="edit-emp-id" name="edit-emp-id" value="${empId}" readonly>
             </div>`;
 
         form.insertAdjacentHTML('afterbegin', idHtml);
 
         // 3. POPULATE TEXT FIELDS (With Date Cleaning)
         const cleanDate = (d) => (d && d.includes('T')) ? d.split('T')[0] : (d || "");
+
+        //make jms_id visible now
+        document.getElementById('jms-div').classList.remove('d-none');
+        const jms = document.getElementById('jms_id');
+        jms.disabled = false;
+        form.querySelector('#jms_id').value = rowData.jms_id || "";
+        
 
         form.querySelector('#region').value = region.toUpperCase() || "";
         // This manually triggers the 'change' event so util.getLocation runs
@@ -1021,6 +1023,7 @@ const asn = {
         // 4. INJECT THUMBNAILS below File Inputs
         // Note: 'name' must match your <input name="..."> exactly
         const fileConfigs = [
+            { name: "jms_picture",         prefix: "JMS_",      label: "JMS ID Picture" },
             { name: "id_picture",          prefix: "USER_",     label: "ID Picture" },
             { name: "id_specimen_picture", prefix: "SPECIMEN_", label: "Specimen Sig" },
             { name: "id_gcash",            prefix: "GCASH_",    label: "GCash" },
@@ -1107,6 +1110,8 @@ const asn = {
         // 6.. SHOW MODAL
         
         const modalEl = document.getElementById("newempModal");
+        modalEl.dataset.context = 'coords' //coords opened the newempmodal
+
         modalEl.style.zIndex = 1060;
         
         const bsModal = new bootstrap.Modal(modalEl);
