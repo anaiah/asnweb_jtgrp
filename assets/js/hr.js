@@ -1269,16 +1269,19 @@
                     const profile = JSON.parse(localStorage.getItem('profile'))  //get profileowner =  JSON.parse(db.getItem('profile'))  //get profile
                     const optTk = document.getElementById('optTimekeeping')
                     const optMf = document.getElementById('optMasterfile')
+                    const optXls = document.getElementById('exportxlsbtn')
+
 
 
                     switch(profile.grp_id){
                         case 88 ://test user deactivate actionselect
                             optTk.disabled = true;        //  //admin
                             optMf.disabled = true;        //  //admin
+                            optXls.disabled = true;       //  //admin
                             break;
                     }
 
-                    
+
                     util.modalListeners('newempModal')
                     util.modalListeners('dataPrivacySignatureModal')
 
