@@ -82,8 +82,6 @@ const handlePositionChange=(elem)=>{
     let hubStoreContainer = document.getElementById('hubStoreContainer');
     let hubSelect = document.getElementById('hubStore'); 
 
-    //fill select options for location
-    hrisutil.getLocation( document.getElementById('region').value)
         
     //check position if it requires location and hub/store selection
     switch(elem.value){
@@ -93,25 +91,31 @@ const handlePositionChange=(elem)=>{
             //turn on area
             
             //util.displayAreaLocationHub(true, areaContainer, areaSelect) //show area selection
+            locSelect.value = '' //reset location and hub/store selection
+            hubSelect.value = '' //reset location and hub/store selection
             util.displayAreaLocationHub(false, locContainer, locSelect) //hide location and hub/store selection
             util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
         break;
 
         case '08': //coordinator
             //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
+             
+            hubSelect.value = '' //reset location and hub/store selection
             util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
             util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
             
         break;
         
         default:
+            console.log('goes here the usual groups that require loc/hub')
+            hrisutil.getLocation(document.getElementById('region'));
+
         // case '01': //rider
         // case '02': //transporter
         // case '04': //sorter
         // case '10': //team leader
-        //need location and hub/store selection
-            //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
-            util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
+        
+            util.displayAreaLocationHub(true,  locContainer, locSelect) //hide location and hub/store selection
             util.displayAreaLocationHub(true, hubStoreContainer, hubSelect) //hide location and hub/store selection
             
         //break;
@@ -120,11 +124,73 @@ const handlePositionChange=(elem)=>{
 
 }
 
+//=========get location based on region selection ==================//
+const getLocation = async (regionSelectElement) => {
+    
+    console.log('***getLocation() fired***')
+
+    util.toggleButtonLoading('footer-msg','Loading Location...',true)
+    const selectedRegion = regionSelectElement.value;
+    
+    const locContainer = document.getElementById('locContainer'); 
+    const locSelect = document.getElementById('locStore');
+    
+    try {
+        const response = await fetch(`${myIp}/getlocation/${document.getElementById('region').value}`); // Adjust this URL as needed
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    
+        const locs = await response.json();
+        const locsArray = locs.data
+        
+        locsArray.forEach(loc => {
+            // Check all existing options values
+            const isDuplicate = Array.from(locSelect.options).some(opt => opt.value === loc.location);
+
+            if (!isDuplicate) {
+                const option = document.createElement('option');
+                option.value = loc.location;
+                option.textContent = loc.location;
+                locSelect.appendChild(option);
+            }
+        });
+
+        // Call the utility function to fetch and populate
+        util.toggleButtonLoading('footer-msg',null,false)
+
+        // //=========fire change event for hub loading
+        // if (locSelect) {
+        //     const changeEvent = new Event('change', {
+        //         bubbles: true,      // Allows it to reach document.addEventListener
+        //         cancelable: true    // Standard practice
+        //     });
+            
+        //     locSelect.dispatchEvent(changeEvent);
+        // }
+
+        return true;
+
+    } catch (error) {
+        console.error('Error fetching hubs:', error);
+        alert('Failed to load hub/store options. Please try again.');
+    }
+
+    
+}
 //to display/not loccation / hub
 const displayAreaLocationHub= (ldisplay, container, select) => {
-    //console.log('displayAreaLocationHub()', ldisplay, container, select);
+    console.log('displayAreaLocationHub()', ldisplay, container, select, select.id);
 
     if (!container || !select) return;
+
+    // if(select.id === 'locStore' && ldisplay){
+    //     hrisutil.getLocation(document.getElementById('region'));
+    //     console.log( 'fired getlocation() ')
+    // }else{
+    //     console.log('yeh wetn here ', select.id)
+    // }
 
     if (ldisplay) {
         container.classList.remove('d-none');
@@ -141,6 +207,8 @@ const displayAreaLocationHub= (ldisplay, container, select) => {
         select.classList.remove('is-invalid');
         
     }
+
+    
 }
 
 //=========check emal duplicate ==================//
@@ -189,61 +257,7 @@ const checkEmailDuplicate = (email) => {
     });
 }
 
-//=========get location based on region selection ==================//
-const getLocation = async (regionSelectElement) => {
-    
-    console.log('***getLocation() fired***')
 
-    util.toggleButtonLoading('footer-msg','Loading Location...',true)
-    const selectedRegion = regionSelectElement.value;
-    
-    const locContainer = document.getElementById('locContainer'); 
-    const locSelect = document.getElementById('locStore');
-    
-    try {
-        const response = await fetch(`${myIp}/getlocation/${document.getElementById('region').value}`); // Adjust this URL as needed
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-    
-        const locs = await response.json();
-        const locsArray = locs.data
-        
-        locsArray.forEach(loc => {
-            // Check all existing options values
-            const isDuplicate = Array.from(locSelect.options).some(opt => opt.value === loc.location);
-
-            if (!isDuplicate) {
-                const option = document.createElement('option');
-                option.value = loc.location;
-                option.textContent = loc.location;
-                locSelect.appendChild(option);
-            }
-        });
-
-        // Call the utility function to fetch and populate
-        util.toggleButtonLoading('footer-msg',null,false)
-
-        //=========fire change event for hub loading
-        if (locSelect) {
-            const changeEvent = new Event('change', {
-                bubbles: true,      // Allows it to reach document.addEventListener
-                cancelable: true    // Standard practice
-            });
-            
-            locSelect.dispatchEvent(changeEvent);
-        }
-
-        return true;
-
-    } catch (error) {
-        console.error('Error fetching hubs:', error);
-        alert('Failed to load hub/store options. Please try again.');
-    }
-
-    
-}
 
 //checkform first
 const checkform = (whatForm) => {

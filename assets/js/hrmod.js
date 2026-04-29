@@ -58,13 +58,13 @@ document.addEventListener('change', (e) => {
     switch (e.target.id) {
         case 'region':
             hrisutil.showPosition();
-            console.log('Region logic fired');
+            console.log('***** hrisutil.showPosition() fired');
             break;
 
         case 'jobTitle':
             // e.target is the #jobTitle element
             hrisutil.handlePositionChange(e.target);
-            console.log('Position logic fired');
+            console.log('***** hrisutil.handlePositionChange() fired');
             break;
 
         case 'locStore':
