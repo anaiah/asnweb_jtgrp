@@ -197,5 +197,15 @@ myModal.addEventListener('hide.bs.modal', function (event) {
 
     }//EIF
 
+    myModal.querySelectorAll('select').forEach(sel => {
+        // reset to first option (or set to empty string)
+        sel.selectedIndex = 0;
+        // or: sel.value = '';
+        // optionally remove dynamically added options (keep placeholder at index 0)
+        // Array.from(sel.options).slice(1).forEach(o => o.remove());
+        // clear validation classes
+        sel.classList.remove('is-valid','is-invalid');
+    });
+
 });           
                 

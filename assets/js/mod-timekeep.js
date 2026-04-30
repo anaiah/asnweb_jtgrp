@@ -1193,6 +1193,19 @@ let loginDetails = null;
         document.getElementById('hrisdisplay').classList.add('d-none');
         document.getElementById('timekeepdisplay').classList.add('d-none');
 
+
+        timekeepModalEl.querySelectorAll('select').forEach(sel => {
+            // reset to first option (or set to empty string)
+            sel.selectedIndex = 0;
+            // or: sel.value = '';
+            // optionally remove dynamically added options (keep placeholder at index 0)
+            // Array.from(sel.options).slice(1).forEach(o => o.remove());
+            // clear validation classes
+            sel.classList.remove('is-valid','is-invalid');
+        });
+
+
+
     });
 
     const myModal = document.getElementById('newempModal')
@@ -1207,6 +1220,19 @@ let loginDetails = null;
             // clear context if you like
             delete myModal.dataset.context;
         }
+
+
+        myModal.querySelectorAll('select').forEach(sel => {
+            // reset to first option (or set to empty string)
+            sel.selectedIndex = 0;
+            // or: sel.value = '';
+            // optionally remove dynamically added options (keep placeholder at index 0)
+            // Array.from(sel.options).slice(1).forEach(o => o.remove());
+            // clear validation classes
+            sel.classList.remove('is-valid','is-invalid');
+    });
+
+
     })
     
         

@@ -135,7 +135,7 @@ const getLocation = async (regionSelectElement) => {
     const locContainer = document.getElementById('locContainer'); 
     const locSelect = document.getElementById('locStore');
     
-    try {
+    try { //help loc
         const response = await fetch(`${myIp}/getlocation/${document.getElementById('region').value}`); // Adjust this URL as needed
         
         if (!response.ok) {
@@ -156,12 +156,14 @@ const getLocation = async (regionSelectElement) => {
                 locSelect.appendChild(option);
             }
         });
-// Select the first non-empty option
-const firstNonEmpty = Array.from(locSelect.options).find(opt => opt.value && opt.value !== "");
-if (firstNonEmpty) {
-  locSelect.value = firstNonEmpty.value;
-  locSelect.dispatchEvent(new Event('change')); // optional: trigger change handlers
-}
+
+        // Select the first non-empty option
+        const firstNonEmpty = Array.from(locSelect.options).find(opt => opt.value && opt.value !== "");
+        if (firstNonEmpty) {
+            locSelect.value = firstNonEmpty.value;
+            locSelect.dispatchEvent(new Event('change')); // optional: trigger change handlers
+        }
+
         // Call the utility function to fetch and populate
         util.toggleButtonLoading('footer-msg',null,false)
 
