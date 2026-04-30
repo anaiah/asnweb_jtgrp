@@ -916,6 +916,8 @@ let loginDetails = null;
         const form = document.getElementById("filter-searchForm");
         const fd = new FormData(form);
 
+        console.log(fd.get('xfilter_region'))
+        
         // simple validation: need region at least
         if (!fd.get("xfilter_region")) {
             alert("Please select a Region first.");
