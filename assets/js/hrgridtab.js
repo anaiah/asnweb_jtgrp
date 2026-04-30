@@ -88,7 +88,7 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 ${data.emp_id}<br>
                 JMS # ${data.jms_id || "(No JMS)"}<br>
                 <button type="button"
-                        class="btn btn-warning btn-sm btn-status-change"
+                        class="btn my-btn btn-sm btn-status-change"
                         ${ xdisabled }
                         data-action="edit">
                     Edit
