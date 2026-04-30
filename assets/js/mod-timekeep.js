@@ -907,199 +907,72 @@ let loginDetails = null;
             console.error('Fetch error:', error);
         });
     }
+    
+    //=======download masterfile========//
+    const printMasterfile = async() =>{
 
-    //===========EDIT FORM ==================//
-    // const openEditForm = (rowData) => {
-        
-    //     const btn = document.querySelector('#newemp-next-btn');
+        console.log( '====Firing hrisutil.printMasterfile()====')
 
-    //     // Using dataset (Recommended)
-    //     btn.dataset.mode = 'edit';
-    //     btn.innerHTML = '💾 Save Edit'; // If you want the text to change too
-    //     const form = document.getElementById('newempForm');
-    //     const empId = rowData.emp_id;
-    //     const region = ( document.getElementById('filter_region').value || "");
+        const form = document.getElementById("filter-searchForm");
+        const fd = new FormData(form);
 
-    //     // if(hris.editMode){
-    //     //     hris.loc = rowData.location || "";
-        
-    //     // }
+        // simple validation: need region at least
+        if (!fd.get("xfilter_region")) {
+            alert("Please select a Region first.");
+            return;
+        }
 
-    //     // 1. CLEANUP: Remove any previous injections (ID or Thumbnails)
-    //     document.querySelectorAll('.injected-edit-ui').forEach(el => el.remove());
+        if (!fd.get("xfilter_position")) {
+            alert("Please select a Position.");
+            return;
+        }
 
-    //     // 2. INJECT READONLY ID at the top
-    //     const idHtml = `
-    //         <div class="mb-3 injected-edit-ui">
-    //             <label class="form-label fw-bold text-primary">RECORD EDITING (READ-ONLY ID)</label>
-    //             <input type="text" class="form-control bg-light" id="edit-emp-id" name="edit-emp-id" value="${empId}" readonly>
-    //         </div>`;
+        try {
 
-    //     form.insertAdjacentHTML('afterbegin', idHtml);
+            util.toggleButtonLoading("print-masterfile-btn", "Downloading...", true);
 
-    //     // 3. POPULATE TEXT FIELDS (With Date Cleaning)
-    //     const cleanDate = (d) => (d && d.includes('T')) ? d.split('T')[0] : (d || "");
+            const res = await fetch(`${myIp}/printmasterfile`, {
+                method: "POST",
+                body: fd, // FormData -> multipart/form-data
+            });
 
-    //     form.querySelector('#region').value = region.toUpperCase() || "";
-    //     // This manually triggers the 'change' event so util.getLocation runs
-    //     const regionEl = form.querySelector('#region');
-    //     //// KILL THE REGION regionEl.dispatchEvent(new Event('change', { bubbles: true })); /// fire event listener
-        
-    //     form.querySelector('#firstName').value = rowData.first_name || "";
-    //     form.querySelector('#lastName').value = rowData.last_name || "";
-        
-    //     form.querySelector('#jobTitle').value = rowData.position || "";
+            if (!res.ok) {
+                const text = await res.text();
+                throw new Error(text || "Failed to generate masterfile");
+            }
 
-    //     const jobTitleEl = form.querySelector('#jobTitle');
-    //     jobTitleEl.dispatchEvent(new Event('change',{ bubbles: true } )); ///fire event listener
-                    
-        
-    //     form.querySelector('#fullName').value = rowData.full_name || "";
-    //     form.querySelector('#email').value = rowData.email || "";
-    //     form.querySelector('#email').dataset.original = rowData.email || "";
-
-    //     // Using dataset (Recommended)
-    //     btn.dataset.mode = 'edit';
-        
-    //     form.querySelector('#phone').value = rowData.phone || "";
-    //     form.querySelector('#birthDate').value = cleanDate(rowData.birth_date);
-    //     form.querySelector('#hireDate').value = cleanDate(rowData.hire_date);
-    //     form.querySelector('#employmentStatus').value = rowData.employment_status || "";
-    //     form.querySelector('#addy1').value = rowData.street_1 || "";
-    //     form.querySelector('#addy2').value = rowData.street_2 || "";
-    //     form.querySelector('#bgy').value = rowData.bgy || "";
-    //     form.querySelector('#city').value = rowData.city || "";
-    //     form.querySelector('#address').value = rowData.full_address || "";
-    //     form.querySelector('#nameSuffix').value = rowData.suffix || "";
-    //     form.querySelector('#middleName').value = rowData.middle_name || "";
-
-    //     // 4. INJECT THUMBNAILS below File Inputs
-    //     // Note: 'name' must match your <input name="..."> exactly
-    //     const fileConfigs = [
-    //         { name: "id_picture",          prefix: "USER_",     label: "ID Picture" },
-    //         { name: "id_specimen_picture", prefix: "SPECIMEN_", label: "Specimen Sig" },
-    //         { name: "id_gcash",            prefix: "GCASH_",    label: "GCash" },
-    //         { name: "bgy_clearance",       prefix: "BGY_",      label: "Bgy Clearance" },
-    //         { name: "police_clearance",    prefix: "POLICE_",   label: "Police/NBI" },
-    //         { name: "drivers_license",     prefix: "DRIVER_",   label: "License" },
-    //     ];
-
-    //     const exts = [".jpg", ".png", ".gif"];
-
-    //     // Determine Folder Path (Your Switch Logic)
-    //     let regionFolder = "";
-    //     const xregion = region.toLowerCase(); // Normalize to lowercase for consistent matching
-
-    //     switch (xregion) {
-    //         case "smnl": 
-    //         case "cmnva": 
-    //         case "cmnl":
-    //             regionFolder = `ncr_${xregion}_emp`;
-    //             break;
-    //         case "nelu": 
-    //         case "nwlu":
-    //             regionFolder = `luz_${region}_emp`;
-    //             break;
-    //         case "min": 
-    //             regionFolder = `min_emp`;
-    //             break; 
-    //         case "bicol": 
-    //         case "smarleyte":
-    //             regionFolder = `bsl_${xregion}_emp`;    
-    //             break;
-    //         default:
-    //             regionFolder = `wvis_${xregion}_emp`; // For bacolod, panay, etc.
-    //     }
-
-    //     const baseUrl = `https://asianowapp.com/html/${regionFolder}/`;
-
-    //     fileConfigs.forEach(cfg => {
-
-    //         // This looks for the <input name="id_picture"> etc.
-    //         const inputEl = form.querySelector(`input[name="${cfg.name}"]`);
+            let filename = `MASTERFILE_${document.getElementById('xfilter_region').value.toUpperCase()}_${document.getElementById('xfilter_position').value}_${new Date().toISOString().slice(0,10)}.xlsx`;
             
-    //         if (inputEl) {
-    //             // Create container
-    //             const thumbContainer = document.createElement('div');
-    //             thumbContainer.className = "injected-edit-ui mt-2 p-1 border rounded bg-light";
-    //             thumbContainer.style = "width: fit-content; min-width: 100px; text-align: center;";
-    //             thumbContainer.innerHTML = `<small class="d-block text-muted">Checking...</small>`;
-                
-    //             inputEl.after(thumbContainer);
-
-    //             let idx = 0;
-    //             const tryExt = () => {
-    //                 if (idx >= exts.length) {
-    //                     thumbContainer.innerHTML = `<small class="text-muted">No file on server</small>`;
-    //                     return;
-    //                 }
-                    
-    //                 // CONSTRUCT FILENAME: e.g., USER_123.jpg
-    //                 const fileName = `${cfg.prefix}${empId}${exts[idx]}`;
-    //                 const fullUrl = baseUrl + fileName; // Remove encodeURIComponent if filenames don't have spaces
-
-    //                 // FOR CHECKING: Open your console (F12) to see these!
-    //                 console.log(`Trying ${cfg.label}:`, fullUrl);
-
-    //                 const img = new Image();
-    //                 img.style = "max-height: 80px; display: block; margin: auto;";
-    //                 img.onload = () => {
-    //                     thumbContainer.innerHTML = ""; 
-    //                     thumbContainer.appendChild(img);
-    //                 };
-    //                 img.onerror = () => { 
-    //                     idx++; 
-    //                     tryExt(); 
-    //                 };
-    //                 img.src = fullUrl;
-    //             };
-    //             tryExt();
-    //         } else {
-    //             console.warn(`Could not find input with name: ${cfg.name}`);
-    //         }
-    //     });
-
-    //     // 6.. SHOW MODAL
-    //     const modalEl = document.getElementById("newempModal");
-    //     const bsModal = new bootstrap.Modal(modalEl);
-    //     bsModal.show();
-
-    //     const locStoreEl = form.querySelector('#locStore');
-    //     //reset first
-    //     locStoreEl.innerHTML = '';
-
-    //     if( rowData.location){    
-    //         let opt = document.createElement('option');
-    //         opt.value = rowData.location;
-    //         opt.innerHTML = rowData.location;
-    //         opt.selected = true;
-    //         locStoreEl.appendChild(opt);
-    //     }    
-        
-    //     // let's put hub_store last
-    //     //form.querySelector('#hubStore').value = rowData.hub || "";
-    //     const hubField = document.getElementById('hubStore');
-    //     //reset first
-    //     hubField.innerHTML = '';
-
-    //     if(rowData.hub){
-    //         let opt = document.createElement('option');
-    //         opt.value = rowData.hub;
-    //         opt.innerHTML = rowData.hub;
-    //         opt.selected = true;
-    //         hubField.appendChild(opt);
-    //     }else{
-    //         let opt = document.createElement('option');
-    //         opt.value = "";
-    //         opt.innerHTML = "No Hub Assigned";
-    //         opt.selected = true;
-    //         hubField.appendChild(opt);
+            const contentDisposition = res.headers.get('Content-Disposition');
             
-    //     }//EIF
-        
-    //     // 6. TURN OFF ALL 'REQUIRED' ATTRIBUTES IN THE FORM (Since this is an edit, not a new record) SUCH AS PICTURES
-    //         //form.querySelectorAll('input, select, textarea').forEach(el => el.removeAttribute('required'));
-    // }
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename\*?=['"]?([^"']+)['"]?$/i);
+                if (filenameMatch && filenameMatch[1]) {
+                    filename = decodeURIComponent(filenameMatch[1].replace(/utf-8''/i, ''));
+                }
+            }
+
+            const blob = await res.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+            //msg user
+            util.speak('Master file downloaded successfully!!!')
+
+            // Turn OFF loading: restore original icon + text
+            util.toggleButtonLoading("print-masterfile-btn", null, false);
+
+        } catch (err) {
+            alert(err.message || "Error downloading masterfile");
+        }
+
+    }
+
 
     /*********EXPORT FUNC */
     export const timekeep = {
@@ -1109,6 +982,7 @@ let loginDetails = null;
         searchEmp,
         getHubCoord,
         printTimeKeep,
+        printMasterfile,
         openTimekeepModal,
         approveTimeKeep,
         getLoginDetails,
@@ -1158,7 +1032,7 @@ let loginDetails = null;
             } else if (action === "timekeeping") {
                 timekeep.printTimeKeep && timekeep.printTimeKeep();
             } else if (action === "masterfile") {
-                timekeep.printMasterfile && timekeep.printMasterfile(form);
+                timekeep.printMasterfile && timekeep.printMasterfile();
             }///eif
 
             // reset back to placeholder after firing
