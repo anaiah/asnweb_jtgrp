@@ -963,7 +963,7 @@ const asn = {
 
         const form = document.getElementById('newempForm');
         const empId = rowData.emp_id;
-        const region = ( document.getElementById('filter_region').value || "");
+        const region = ( document.getElementById('xfilter_region').value || "");
         
         // 1. CLEANUP: Remove any previous injections (ID or Thumbnails)
         document.querySelectorAll('.injected-edit-ui').forEach(el => el.remove());

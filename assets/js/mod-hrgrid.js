@@ -110,7 +110,7 @@ export function initHrisGrid() {
                     const action  = e.target.getAttribute("data-action"); // deactivate / reactivate / view
                     const empId   = rowData.emp_id;
                     const email = rowData.email;
-                    const region = document.getElementById('filter_region').value
+                    const region = document.getElementById('xfilter_region').value
 
                     switch( action ){
                         case "edit":

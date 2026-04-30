@@ -17,8 +17,8 @@ let loginDetails = null;
         
         util.toggleButtonLoading('filthub','Loading Hubs...',true)
         
-        const hubStoreSelect = document.getElementById('filter_hub'); // Get it inside the function
-        const myUrl = `${myIp}/gethub/${document.getElementById('filter_region').value.toUpperCase()}/${loc}`
+        const hubStoreSelect = document.getElementById('xfilter_hub'); // Get it inside the function
+        const myUrl = `${myIp}/gethub/${document.getElementById('xfilter_region').value.toUpperCase()}/${loc}`
         console.log(myUrl)
         try {
             const response = await fetch( myUrl )
@@ -106,7 +106,7 @@ let loginDetails = null;
         const from = data[0].xdate;
         const to = data[data.length - 1].xdate;
         const id = timekeep.getLoginDetails().id
-        const region = document.getElementById('filter_region').value
+        const region = document.getElementById('xfilter_region').value
 
         try {
             // 2. Send the POST request
@@ -143,7 +143,7 @@ let loginDetails = null;
         const aValue  = ['cmnl','cmnva','smnl','nelu','nwlu'];
 
         const region = xregion
-        const select = document.getElementById('filter_region');
+        const select = document.getElementById('xfilter_region');
 
         if(!select) return;
 
@@ -190,17 +190,17 @@ let loginDetails = null;
 
             //const isCoordinator = this.value === "08";// IF CHOICE IS COORDINATOR
 
-            document.getElementById("filter_date_from").disabled = false;
-            document.getElementById("filter_date_to").disabled   = false;
+            document.getElementById("xfilter_date_from").disabled = false;
+            document.getElementById("xfilter_date_to").disabled   = false;
 
             //make sure filter region auto select the region of the logged in user
-            document.getElementById('filter_region').value = db.region.toLowerCase();
+            document.getElementById('xfilter_region').value = db.region.toLowerCase();
 
             console.log('fetchtimekeep() grp_id', db.region)
 
             if(db.grp_id=='08'){ //thsi line coords only
                     //======================== WE SET FILTER REGION HERE ===========
-                    const sel = document.getElementById('filter_region');
+                    const sel = document.getElementById('xfilter_region');
                     const selectedValue = db.region.toLowerCase();
                     //sel.dispatchEvent(new Event('change', { bubbles: true })); ///++++++++ fire event listener
 
@@ -305,9 +305,9 @@ let loginDetails = null;
             // });
 
             //===== ADD ANOTHER EVENT LISTENER WHEN POSITION IS CHANGED TO SHOW/HIDE HUB SELECT
-            const posSelect  = document.getElementById('filter_position');
-            const hubSelect  = document.getElementById('filter_hub');
-            const locSelect = document.getElementById('filter_location');
+            const posSelect  = document.getElementById('xfilter_position');
+            const hubSelect  = document.getElementById('xfilter_hub');
+            const locSelect = document.getElementById('xfilter_location');
 
             if (!posSelect || !hubSelect) return;
 
@@ -543,7 +543,7 @@ let loginDetails = null;
     //================get hub for this coordinator
     const getHubCoord = async()=>{
            
-        const region = document.getElementById('filter_region').value
+        const region = document.getElementById('xfilter_region').value
 
         const response = await fetch(`${myIp}/gethubcoord/${ region }/${ dbprofile.email}`);
         
@@ -555,7 +555,7 @@ let loginDetails = null;
         const json = await response.json();
         const hubs = json.data
 
-        const select = document.getElementById('filter_hub')
+        const select = document.getElementById('xfilter_hub')
         if (!select) return;
 
         // clear old options
@@ -581,12 +581,12 @@ let loginDetails = null;
         const formData = new FormData(searchForm);
 
         // simple validation: need region at least
-        if (!formData.get("filter_date_from")) {
+        if (!formData.get("xfilter_date_from")) {
             alert("Please select a starting Date Range first.");
             return false
         }
 
-        if (!formData.get("filter_date_to")) {
+        if (!formData.get("xfilter_date_to")) {
             alert("Please select an ending Date Range.");
             return false;
         }
@@ -602,7 +602,7 @@ let loginDetails = null;
         document.getElementById('hrisdisplay').classList.add('d-none');
 
         //====get region
-        const selectedRegion = document.getElementById('filter_region').value
+        const selectedRegion = document.getElementById('xfilter_region').value
 
         // --- HOW TO INSPECT FormData CONTENTS ---
         console.log("--- Inspecting FormData ---");
@@ -762,7 +762,7 @@ let loginDetails = null;
         util.toggleButtonLoading('footer-msg','Loading Location...',true)
         const selectedRegion = regionSelectElement.value;
         
-        const locSelect = document.getElementById('filter_location');
+        const locSelect = document.getElementById('xfilter_location');
         
         try {
             const response = await fetch(`${myIp}/getlocation/${document.getElementById('region').value}`); // Adjust this URL as needed
@@ -1137,13 +1137,13 @@ let loginDetails = null;
 
     //const idx = e.target.getAttribute('data-idx'); -- attribute data-dix get the index of the current row being edited
     switch (e.target.id) {
-        case 'filter_region':
+        case 'xfilter_region':
             console.log('yo filterregion fired... ')
-            timekeep.getFilterLocation( document.getElementById('filter_region').value.toLowerCase() );
+            timekeep.getFilterLocation( document.getElementById('xfilter_region').value.toLowerCase() );
                 
             break;
 
-        case 'filter_location':
+        case 'xfilter_location':
             timekeep.getHubCoord()
             break;
 
@@ -1171,7 +1171,7 @@ let loginDetails = null;
     //============= EVENT LISTENER WHEN TIMEKEEP MODAL  HIDE==================//
     const timekeepModalEl = document.getElementById('timekeepModal');
     timekeepModalEl.addEventListener('show.bs.modal',  () => {
-        document.getElementById('filter_region').value = dbprofile.region.toLowerCase()
+        document.getElementById('xfilter_region').value = dbprofile.region.toLowerCase()
 
     })
 
