@@ -74,6 +74,19 @@ document.addEventListener('change', (e) => {
         case 'region':
             hrisutil.showPosition();
             console.log('***** hrisutil.showPosition() fired');
+
+            //refresh location /hub
+            const sel = document.getElementById('locStore');
+
+            // clear except first placeholder
+            while (sel.options.length > 1) sel.remove(1);
+
+            // now append new options
+            locsArray.forEach(loc => {
+            const option = new Option(loc.location, loc.location);
+            sel.add(option);
+            });
+
             break;
 
         case 'jobTitle':
