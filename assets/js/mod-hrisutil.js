@@ -38,7 +38,7 @@ const fetchAndPopulateHubs = async ( val) => {
         const currentSelectedValue = hubStoreSelect.value;
 
         // Clear all except placeholder
-        //hubStoreSelect.options.length = 0;
+        hubStoreSelect.options.length = 0;
 
         hubsArray.forEach(hub => {
             const option = document.createElement('option');
