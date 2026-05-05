@@ -15,8 +15,10 @@ const  showPosition = () => {
     let hubSelect = document.getElementById('hubStore'); 
 
     // clear except first placeholder
-    while ( locSelect.options.length > 1) locSelect.remove(1);
-    while ( hubSelect.options.length > 1) hubSelect.remove(1);
+    //while ( locSelect.options.length > 1) locSelect.remove(1);
+    //while ( hubSelect.options.length > 1) hubSelect.remove(1);
+    locSelect.options.length = 0;
+    hubSelect.options.length = 0;
     
 
 };
