@@ -148,7 +148,7 @@ const getLocation = async (regionSelectElement) => {
         const locsArray = locs.data
         
         // clear except first placeholder
-        while ( locSelect.options.length > 1) sel.remove(1);
+        while ( locSelect.options.length > 1) locSelect.remove(1);
         
         locsArray.forEach(loc => {
             // Check all existing options values
