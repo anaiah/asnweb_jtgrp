@@ -103,7 +103,9 @@ const handlePositionChange=(elem)=>{
             hubSelect.value = '' //reset location and hub/store selection
             util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
             util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
-            
+            console.log('goes here the usual groups that require loc/hub getlocation',document.getElementById('region').value)
+            hrisutil.getLocation(document.getElementById('region').value);
+
         break;
         
         default:
