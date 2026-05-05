@@ -10,6 +10,15 @@ const  showPosition = () => {
 
     hrisutil.displayAreaLocationHub(true, posContainer, posSelect) //show area selection
 
+    ///reset location/hub
+    let locSelect = document.getElementById('locStore');
+    let hubSelect = document.getElementById('hubStore'); 
+
+    // clear except first placeholder
+    while ( locSelect.options.length > 1) locSelect.remove(1);
+    while ( hubSelect.options.length > 1) hubSelect.remove(1);
+    
+
 };
 
 //to populate select with hubs
