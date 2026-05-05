@@ -147,6 +147,9 @@ const getLocation = async (regionSelectElement) => {
         const locs = await response.json();
         const locsArray = locs.data
         
+        // clear except first placeholder
+        while ( locSelect.options.length > 1) sel.remove(1);
+        
         locsArray.forEach(loc => {
             // Check all existing options values
             const isDuplicate = Array.from(locSelect.options).some(opt => opt.value === loc.location);
@@ -158,6 +161,14 @@ const getLocation = async (regionSelectElement) => {
                 locSelect.appendChild(option);
             }
         });
+        // //refresh location /hub
+        //     const sel = document.getElementById('locStore');
+
+        //     // now append new options
+        //     locsArray.forEach(loc => {
+        //     const option = new Option(loc.location, loc.location);
+        //     sel.add(option);
+        //     });
 
         // Select the first non-empty option
         const firstNonEmpty = Array.from(locSelect.options).find(opt => opt.value && opt.value !== "");
