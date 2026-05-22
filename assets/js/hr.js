@@ -243,258 +243,6 @@
         },
         //==========END  GETMENU
         
-        //checkform first
-        // checkform:( whatForm ) =>{
-        //     let formIsValid = true;
-            
-        //     // Get all elements within the form that have the 'required' attribute
-        //     const requiredElements = whatForm.querySelectorAll('[required]');
-
-        //     requiredElements.forEach(function(element) {
-        //         // Clear previous validation classes
-        //         element.classList.remove('is-invalid');
-        //         element.classList.remove('is-valid');
-
-        //         // Check if the element is blank
-        //         if (element.value.trim() === '' || (element.tagName === 'SELECT' && element.value === '')) {
-        //             element.classList.add('is-invalid');
-        //             formIsValid = false;
-        //         } else {
-        //             element.classList.add('is-valid');
-        //         }
-        //     });
-
-        //     if (formIsValid) {
-        //         // If the form is valid, you can now collect the data and do something with it.
-        //         // Using FormData is a convenient way to get all form values by their 'name' attribute.
-        //         const formData = new FormData(whatForm);
-                
-        //         hris.searchEmp()
-        //         return true; // Indicate success
-            
-        //     } else {
-        //         // If validation fails, just alert or show a general message
-        //         util.Toasted('Please fill in all required fields.',3000,false);
-        //         return false; // Indicate failure
-        //     }
-
-        // },
-        
-        //================== print masterfile ===========//
-        // printMasterfile: async() =>{
-
-        //     console.log( '====Firing hris.printMasterfile()====')
-
-        //     const form = document.getElementById("searchForm");
-        //     const fd = new FormData(form);
-
-        //     // simple validation: need region at least
-        //     if (!fd.get("filter_region")) {
-        //         alert("Please select a Region first.");
-        //         return;
-        //     }
-
-        //     if (!fd.get("filter_position")) {
-        //         alert("Please select a Position.");
-        //         return;
-        //     }
-
-        //     try {
-
-        //         util.toggleButtonLoading("print-masterfile-btn", "Downloading...", true);
-        
-        //         const res = await fetch(`${myIp}/printmasterfile`, {
-        //             method: "POST",
-        //             body: fd, // FormData -> multipart/form-data
-        //         });
-
-        //         if (!res.ok) {
-        //             const text = await res.text();
-        //             throw new Error(text || "Failed to generate masterfile");
-        //         }
-
-        //         let filename = `MASTERFILE_${document.getElementById('filter_region').value.toUpperCase()}_${document.getElementById('filter_position').value}_${new Date().toISOString().slice(0,10)}.xlsx`;
-                
-        //         const contentDisposition = res.headers.get('Content-Disposition');
-                
-        //         if (contentDisposition) {
-        //             const filenameMatch = contentDisposition.match(/filename\*?=['"]?([^"']+)['"]?$/i);
-        //             if (filenameMatch && filenameMatch[1]) {
-        //                 filename = decodeURIComponent(filenameMatch[1].replace(/utf-8''/i, ''));
-        //             }
-        //         }
-
-        //         const blob = await res.blob();
-        //         const url = window.URL.createObjectURL(blob);
-        //         const a = document.createElement("a");
-        //         a.href = url;
-        //         a.download = filename;
-        //         document.body.appendChild(a);
-        //         a.click();
-        //         a.remove();
-        //         window.URL.revokeObjectURL(url);
-        //         //msg user
-        //         util.speak('Master file downloaded successfully!!!')
-
-        //         // Turn OFF loading: restore original icon + text
-        //         util.toggleButtonLoading("print-masterfile-btn", null, false);
-
-        //     } catch (err) {
-        //         alert(err.message || "Error downloading masterfile");
-        //     }
-
-
-        // },
-
-        //==================search filter=======
-        // searchEmp: async() => {
-
-        //     console.log('===FIRED  hris.searchEmp()====')
-            
-        //     const searchForm = document.getElementById('searchForm');
-        //     const formData = new FormData(searchForm);
-
-        //     // --- HOW TO INSPECT FormData CONTENTS ---
-        //     console.log("--- Inspecting FormData ---");
-        //     for (let pair of formData.entries()) {
-        //         console.log(pair[0] + ': ' + pair[1]);
-        //     }
-        //     console.log("-------------------------");
-            
-        //     // --- END INSPECTION ---
-        
-        //     const response = await fetch(`${myIp}/searchemp`, {
-        //         method: 'POST',
-        //         body: formData
-        //     });
-
-        //     if (!response.ok) {
-        //         const errorData = await response.json().catch(() => ({ message: 'Server error' }));
-        //         throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);
-        //     }
-
-        //     const data = await response.json();
-
-        //     console.log( data.xdata)
-            
-        //     const dateDiv = document.getElementById('datediv');
-            
-        //      // New button reference
-        //     if(data.xdata.length>0){
-        //         //dateDiv.classList.remove('d-none')
-        //     //    printTimekeepingBtn.classList.remove('d-none')
-        //     }else{
-        //         //dateDiv.classList.add('d-none')
-        //       //  printTimekeepingBtn.classList.add('d-none')
-                
-        //     }
-
-        //     //bring backdisplay
-        //     document.getElementById('search-result-grid').classList.remove('d-none');
-            
-        //     document.getElementById('hrisdisplay').classList.remove('d-none');
-
-        //     document.getElementById('timekeepdisplay').classList.add('d-none');
-
-        //     util.scrollsTo( 'hrisdisplay')
-
-        //     // set data to tabular grid
-        //     hrisGrid.setData(data.xdata) 
-        // },
-
-        //=============print timekeeping from Grid========//
-        // printTimeKeep: async() => {
-
-        //     console.log('====FIRING hris.printTimeKeep()===')
-
-        //     // IMPORTANT: Replace with the actual route you'll create on your backend
-        //     util.scrollsTo( 'search-result-grid')
-           
-        //     const searchForm = document.getElementById('searchForm');
-        //     const formData = new FormData(searchForm);
-
-        //     // simple validation: need region at least
-        //     if (!formData.get("filter_date_from")) {
-        //         alert("Please select a starting Date Range first.");
-        //         return false
-        //     }
-
-        //     if (!formData.get("filter_date_to")) {
-        //         alert("Please select an ending Date Range.");
-        //         return false;
-        //     }
-
-        //      //bring backdisplay
-        //     document.getElementById('search-result-grid').classList.remove('d-none');
-        //     document.getElementById('timekeepdisplay').classList.remove('d-none');
-
-        //     //==if present divs, hide===
-        //     //document.getElementById('search-result-grid').classList.remove('d-none');
-        //     document.getElementById('hrisdisplay').classList.add('d-none');
-
-        //     //====get region
-        //     hris.selectedRegion = document.getElementById('filter_region').value
-
-        //     // --- HOW TO INSPECT FormData CONTENTS ---
-        //     console.log("--- Inspecting FormData ---");
-        //     for (let pair of formData.entries()) {
-        //         console.log(pair[0] + ': ' + pair[1]);
-        //     }
-        //     console.log("-------------------------");
-            
-        //     // --- END INSPECTION ---
-        
-        //     const response = await fetch(`${myIp}/searchempTimeKeep`, {
-        //         method: 'POST',
-        //         body: formData
-        //     });
-
-        //     if (!response.ok) {
-        //         const errorData = await response.json().catch(() => ({ message: 'Server error' }));
-        //         throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);
-        //     }
-
-        //     const data = await response.json();
-
-        //     console.log( 'timekeepGrid data:', data.xdata, data.xdata.length)
-            
-        //     if (data.xdata && data.xdata.length === 0) {
-        //         // Data is empty, perform a full reset
-        //         timekeepGrid.clearFilter();  // Clear any active filters
-        //         timekeepGrid.clearSort();    // Clear any active sorting
-               
-        //        // --- REVISED PAGINATION RESET ---
-        //         // Check if pagination is enabled before tryfing to reset the page
-        //         if (timekeepGrid.options.pagination) {
-        //             timekeepGrid.setPage(1); // Set the page to the first page
-        //             // If you need to also reset the total number of pages displayed (e.g., pageSize)
-        //             // you might need to re-initialize pagination or adjust pageSize manually if it's dynamic.
-        //             // For now, setPage(1) is the core fix.
-        //         }
-        //         // --- END REVISED PAGINATION RESET ---
-
-        //         timekeepGrid.deselectRow();  // Deselect any previously selected rows
-
-        //         // Finally, set the empty data. This will also trigger the "No Data" message.
-        //         timekeepGrid.setData([]);
-
-        //         //document.getElementById('download-excel-btn').disabled = true
-
-        //         console.log("Tabulator grid fully reset due to empty data.");
-        //     } else {
-        //         // Data is not empty, just update the grid
-        //         timekeepGrid.setData([]);
-
-        //         timekeepGrid.setData(data.xdata)
-        //         util.scrollsTo('timekeepgrid')
-
-        //         //document.getElementById('download-excel-btn').disabled = false
-
-        //         console.log("Tabulator grid updated with new data.");
-        //     }
-
-        // },
-
         loginDetails:null,
 
         //===============open timeekeeping detailed modal
@@ -1245,6 +993,68 @@
            // 6. TURN OFF ALL 'REQUIRED' ATTRIBUTES IN THE FORM (Since this is an edit, not a new record) SUCH AS PICTURES
               //form.querySelectorAll('input, select, textarea').forEach(el => el.removeAttribute('required'));
         },
+
+        //============= delete emp records ==============
+        deleteEmployee: async (empId,region) => {
+            console.log('===FIRING hris.deleteEmployee() with empId:', empId,region)
+
+            // 1. Show confirmation dialog. If user clicks "Cancel", exit the function immediately.
+            if (!confirm("Are you sure you want to delete this employee?")) {
+                return false; 
+            }
+            try {
+                // 1. Send the DELETE request using backticks for the template literal
+                
+                const safeId = encodeURIComponent(empId);
+                const safeRegion = encodeURIComponent(region);
+
+                const response = await fetch(`${myIp}/deleteEmployee/${safeId}/${safeRegion}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                // 2. Parse the JSON response from the Express endpoint
+                const data = await response.json();
+
+                // 3. Handle the response based on success status
+                if (response.ok && data.success) {
+                    // Captures and uses the success message from the server
+                    console.log('Delete Success:', data.message);
+                    
+                    alert(data.message); 
+
+
+                    // 1. Target your select dropdown element
+                    const selectElement = document.querySelector('.modern-action-select'); // or use getElementById
+
+                    if (selectElement && selectElement.options.length > 0) {
+                        // 2. Force the selection to the very first option (index 0)
+                        selectElement.selectedIndex = 1;
+
+                        // 3. Create a brand new native 'change' event
+                        const changeEvent = new Event('change', { bubbles: true });
+
+                        // 4. Dispatch the event directly on the select dropdown
+                        selectElement.dispatchEvent(changeEvent);
+}
+                    return true;
+                } else {
+                    // Captures error message sent by server (e.g., "Employee not found.")
+                    console.error('Server Error:', data.message);
+                    alert(`Failed: ${data.message}`);
+                    return false;
+                }
+
+            } catch (error) {
+                // Catches network errors or crashes
+                console.error('Network/Client Error:', error);
+                alert('A network error occurred. Please try again.');
+                return false;
+            }
+        },
+    
 
         position:null,
         address:null,

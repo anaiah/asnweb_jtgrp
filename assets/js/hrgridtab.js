@@ -88,10 +88,16 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 ${data.emp_id}<br>
                 JMS # ${data.jms_id || "(No JMS)"}<br>
                 <button type="button"
-                        class="btn my-btn btn-sm btn-status-change"
+                        class="btn my-btn-purple btn-sm btn-status-change"
                         ${ xdisabled }
                         data-action="edit">
                     Edit
+                </button>
+                <button type="button"
+                        class="btn my-btn2 btn-sm btn-status-change"
+                        ${ xdisabled }
+                        data-action="delete">
+                    Delete
                 </button>
                 <button type="button"
                         class="btn btn-warning btn-sm btn-status-change"
@@ -129,27 +135,14 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                     case "edit":
                         console.log('opening hris.openEditForm with rowData:', rowData);
 
-            // setTimeout(() => {
-            // // 1. Target inputs directly by type so we don't care about the form class
-            // const form = document.getElementById('newempForm'); // Assuming this is the form ID  
-            // const fileInputs = document.querySelectorAll('input[type="file"]');
-                
-            //     fileInputs.forEach(el => {
-            //         el.removeAttribute('required'); // Physically strip it
-            //         el.required = false;           // Set property
-            //         el.classList.remove('is-invalid', 'is-valid'); // Clear colors
-            //         el.setCustomValidity("");      // Clear browser memory
-            //     });
-
-            //     // 2. Also clear the validation state from the form itself
-            //     if (form) {
-            //         form.classList.remove('was-validated');
-            //     }
-            //  },1000); // 100ms delay to ensure all inputs are processed
-
                         hris.openEditForm(rowData);
                         return;
                     break;  
+
+                    case "delete":
+                        hris.deleteEmployee(empId,region);
+                        return;
+                    break;
 
                     case "view":
                         hris.openViewRequirementsModal(empId, rowData, region.toLowerCase() );
