@@ -196,56 +196,34 @@
       </div>
 
   <!-- Small Centered Dialog Box FOR LOGIN AND LOGOUT-->
-<div class="modal fade" id="universalMessageModal" tabindex="-1" aria-labelledby="universalMessageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
+  <div class="modal fade" id="universalMessageModal" tabindex="-1" aria-labelledby="universalMessageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm"> <!-- 'modal-sm' for small, 'modal-dialog-centered' for centering -->
         <div class="modal-content">
-            <div class="modal-header custom-header">
-                <h5 class="modal-title" id="universalMessageModalLabel">Time In / Out</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="universalMessageModalBody">
-                
-                <!-- Shift Selection Dropdown -->
-                <div class="mb-3">
-                    <label for="shiftDropdown" class="form-label small fw-bold">Select Your Shift:</label>
-                    <select id="shiftDropdown" class="form-select form-select-sm">
-                        <option value="">-- Choose Shift --</option>
-                        <!-- Day Shifts -->
-                        <option value="07:00:00">7 AM - 4 PM</option>
-                        <option value="08:00:00">8 AM - 5 PM</option>
-                        <option value="09:00:00">9 AM - 6 PM</option>
-                        <option value="10:00:00">10 AM - 7 PM</option>
-                        <option value="11:00:00">11 AM - 8 PM</option>
-                        <option value="12:00:00">12 PM - 9 PM</option>
-                        <!-- Afternoon/Night Shifts -->
-                        <option value="15:00:00">3 PM - 12 AM</option>
-                        <option value="16:00:00">4 PM - 1 AM</option>
-                        <option value="17:00:00">5 PM - 2 AM</option>
-                        <option value="18:00:00">6 PM - 3 AM</option>
-                        <option value="19:00:00">7 PM - 4 AM</option>
-                        <option value="20:00:00">8 PM - 5 AM</option>
-                        <option value="21:00:00">9 PM - 6 AM</option>
-                        <option value="22:00:00">10 PM - 7 AM</option>
-                        <option value="23:00:00">11 PM - 8 AM</option>
-                    </select>
-                </div>
-
-                <!-- Centered Buttons -->
-                <div class="d-flex justify-content-center gap-3">
-                    <button type="button" name="timein-btn" id="timein-btn" class="btn btn-success" onclick='emp.logtime(1)'>
-                        Time In
-                    </button>
-                    <button type="button" name="timeout-btn" id="timeout-btn" class="btn btn-danger" onclick="emp.logtime(2)">
-                        Time Out
-                    </button>
-                </div>                 
-            </div>
-            <div class="modal-footer" id="universalMessageModalFooter">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-            </div>
+          <div class="modal-header custom-header">
+              <h5 class="modal-title" id="universalMessageModalLabel">Time In / Out</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="universalMessageModalBody">
+              <!-- Message content will be injected here -->
+              
+              <!-- Centered Buttons: Use d-flex and justify-content-center -->
+              <div class="d-flex justify-content-center gap-3"> <!-- 'gap-3' adds spacing between buttons -->
+                  <button type="button" name="timein-btn" id="timein-btn" class="btn btn-success" onclick='emp.logtime(1)'>
+                      Time In
+                  </button>
+                  <button type="button"  name="timeout-btn" id="timeout-btn" class="btn btn-danger" onclick="emp.logtime(2)">
+                      Time Out
+                  </button>
+              </div>                 
+          </div>
+          <div class="modal-footer" id="universalMessageModalFooter">
+              <!-- Default button(s) or dynamically added buttons -->
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+          </div>
         </div>
+
     </div>
-</div>
+  </div>
 
   <!-- Modal for Missing Entry Details -->
   <div class="modal fade" id="missingEntryModal" tabindex="-1" aria-labelledby="missingEntryModalLabel" aria-hidden="true">

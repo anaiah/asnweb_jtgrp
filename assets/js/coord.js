@@ -818,69 +818,75 @@ const asn = {
     },
 
     //===time in/  time out
-    logtime: async(param)=>{
-            console.log(param)
-            
-            const now = new Date(); console.log(now)
-            const todayDate = now.toISOString().split('T')[0]; // "YYYY-MM-DD"
-            const currentTimeFormatted = now.toTimeString().split(' ')[0]; // "HH:MM:SS" (24-hour format)
-            const timestampForBackend = now.toISOString(); // Full ISO timestamp for backend storage
+    logtime: async (param) => {
+        // 1. Get the shift value from the dropdown
+        const shiftDropdown = document.getElementById('shiftDropdown');
+        const shiftValue = shiftDropdown ? shiftDropdown.value : '';
 
-            const userId = asn.userProfile.id 
+        // 2. Validation: Require shift selection ONLY for "Time In" (param 1)
+        if ((param === 1 || param === '1') && !shiftValue) {
+            util.Toasted('Please select your shift before Timing In!', 3000, false);
+            return; 
+        }
 
-            // 2. Prepare FormData for the backend request
-            // This FormData object is specifically for the timekeeping endpoint.
-            const formDataForTimekeep = new FormData();
-            formDataForTimekeep.append('user_id', userId);
-            formDataForTimekeep.append('region', asn.userProfile.region);
-            formDataForTimekeep.append('timestamp', timestampForBackend); // Send full timestamp to backend
-            formDataForTimekeep.append('action_type', param); // 'login' or 'logout'
+        const now = new Date();
+        const timestampForBackend = now.toISOString(); // Full ISO for DB accuracy
+        const userId = asn.userProfile.id;
 
-            // --- HOW TO CONSOLE.LOG FormData CONTENTS ---
-            console.log("--- Inspecting formDataForTimekeep ---");
-            for (let pair of formDataForTimekeep.entries()) {
-                console.log(pair[0] + ': ' + pair[1]);
+        // 3. Prepare FormData for the backend
+        const formDataForTimekeep = new FormData();
+        formDataForTimekeep.append('user_id', userId);
+        formDataForTimekeep.append('region', asn.userProfile.region);
+        formDataForTimekeep.append('timestamp', timestampForBackend); 
+        formDataForTimekeep.append('action_type', param); // '1' for login, '2' for logout
+        formDataForTimekeep.append('shift_start', shiftValue); // Send the selected shift time
+
+        console.log(`--- Timekeeping Action: ${param} ---`);
+        // Debug: log formData
+        for (let pair of formDataForTimekeep.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+
+        try {
+            const response = await fetch(`${myIp}/timekeep`, {
+                method: 'POST',
+                body: formDataForTimekeep
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({ message: 'Server error' }));
+                throw new Error(errorData.message || `Status: ${response.status}`);
             }
-            console.log("------------------------------------");
 
-            try{
-                const response = await fetch(`${myIp}/timekeep`, {
-                    method: 'POST',
-                    body: formDataForTimekeep
+            const data = await response.json();
 
-                    /* do this so no uplod.none() in multer
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ item: 'Apple', quantity: 5 })
-                    */
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json().catch(() => ({ message: 'Server error' }));
-                    throw new Error(`HTTP error! Status: ${response.status} - ${errorData.message || response.statusText}`);
+            if (data.success) {
+                // Success Feedback
+                util.Toasted(data.msg, 2000, false);
+                
+                // Speak the message (if asn.speak is the correct method)
+                if (typeof asn.speak === 'function') {
+                    asn.speak(data.msg);
                 }
 
-                const data = await response.json();
-
-                if(data.success){
-
-                    util.Toasted(data.msg,2000,false)
-                    asn.speak(data.msg)
-
-                    //update also thhe grid after timein/out
-                    asn.getTimeKeeping()
+                // Update the UI/Grid to show the new record
+                if (typeof asn.getTimeKeeping === 'function') {
+                    asn.getTimeKeeping();
                 }
-
-            }  catch (error) {
-                console.error('Timekeeping process failed:', error);
-                util.Toasted('Error!'+error,2000,false)
-
-                //showMessageModal('Error', `Failed to ${param} time: ${error.message || 'An unknown error occurred.'}`, [{text: 'OK', class: 'btn-danger', dismiss: true}]);
-            } finally {
-                // 5. Close the initial dialog (the one with "Time In / Time Out" buttons)
-                if (asn.winModal) {
-                    asn.winModal.hide();
-                }
+            } else {
+                // Handle logical errors (like "Already logged in")
+                util.Toasted(data.msg, 3000, false);
             }
+
+        } catch (error) {
+            console.error('Timekeeping process failed:', error);
+            util.Toasted('Error: ' + error.message, 3000, false);
+        } finally {
+            // 4. Close the modal automatically
+            if (asn.winModal) {
+                asn.winModal.hide();
+            }
+        }
     },
 
     userProfile: JSON.parse(localStorage.getItem('profile')),  //get profile,

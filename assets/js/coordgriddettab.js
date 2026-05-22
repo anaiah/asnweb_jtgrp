@@ -34,6 +34,15 @@ function convertMMDDYYtoYYYYMMDD(mmddyy) {
                 field: "xdate",
                 width: '100'
             },
+               {
+                title: 'SHIFT',
+                field: 'shift',
+                width: 120,
+                formatter: "html",
+                headerHozAlign: "center",
+                resizable: false,
+                hozAlign:'center',
+            },
             {
                 title: 'IN',
                 field: 'login',

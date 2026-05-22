@@ -1844,7 +1844,6 @@ const util = {
                 util.alertMsg(data[0].message,'success','loginPlaceHolder')
                 //document.getElementById('loginBtn').classList.add('hide-me')
                 
-                
                 //addtocookie
                 util.setGroupCookie(data[0].id,data[0].region, data[0].fname, data[0].grp_id, data[0].email, data[0].voice, data[0].pic)/*=== SET GROUP COOKIE */
             
@@ -1893,7 +1892,8 @@ const util = {
                     case '04':
                     case '06':
                     case '10':
-                        location.href = '/besi/main'    
+                        location.href = '/besi/main' 
+                        //to emp.html
                     break;
 
                     //coordinator/ 
