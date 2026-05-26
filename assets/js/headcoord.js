@@ -742,6 +742,425 @@ const headcoord = {
         headcoord.winModal.show();
     },
 
+        //THIS FUNCTION IS AVAILABLE IF USER IS USING besi = betteredge.html new onesubmitMissingEntryBtn
+    getTimeKeeping: async( )=>{
+
+        console.log( 'hey getTimeKeeping() ', asn.userProfile.id, asn.userProfile.besi_id, asn.userProfile.region )
+
+        const employeeBesiId = asn.userProfile.besi_id; // Get this from your page's context
+        const employeeRegion = asn.userProfile.region; // Get this from your page's context (VERY IMPORTANT!)
+
+        // Optional: If the new page has date pickers and wants a specific range
+        const pageDateFrom = '2025-10-15';
+        const pageDateTo = '2025-10-20';
+
+        const filtersToSend = {
+            filter_id: employeeBesiId,
+            filter_region: employeeRegion,
+            // filter_date_from: pageDateFrom, // Only include if user specifies
+            // filter_date_to: pageDateTo      // Only include if user specifies
+        };
+
+        fetch(`${myIp}/searchempTimeKeep`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(filtersToSend).toString(),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.xdata.length > 0) {
+                const employeeDetails = data.xdata[0]; // Assuming besi_id is unique, you get one employee
+                console.log("Employee Details for new page:", employeeDetails);
+
+                //map new obj
+                const enrichedLoginDetails = (employeeDetails.login_details || []).map(detail => ({
+                    ...detail, // Keep all existing properties (xdate, login, logout, etc.)
+                    besi_id: employeeDetails.besi_id,      // Add employee's besi_id
+                    full_name: employeeDetails.full_name   // Add employee's full_name
+                }));
+                // --- END NEW/UPDATED CODE BLOCK ---
+
+                 // Set the enriched data for your coorddetailGrid
+                coorddetailGrid.setData(enrichedLoginDetails);
+        
+            } else {
+
+                // Data is empty, perform a full reset
+                coorddetailGrid.clearFilter();  // Clear any active filters
+                coorddetailGrid.clearSort();    // Clear any active sorting
+               
+               // --- REVISED PAGINATION RESET ---
+                // Check if pagination is enabled before trying to reset the page
+                if (coorddetailGrid.options.pagination) {
+                    coorddetailGrid.setPage(1); // Set the page to the first page
+                    // If you need to also reset the total number of pages displayed (e.g., pageSize)
+                    // you might need to re-initialize pagination or adjust pageSize manually if it's dynamic.
+                    // For now, setPage(1) is the core fix.
+                }
+                // --- END REVISED PAGINATION RESET ---
+
+                coorddetailGrid.deselectRow();  // Deselect any previously selected rows
+
+                // Finally, set the empty data. This will also trigger the "No Data" message.
+                coorddetailGrid.setData([]);
+
+                console.error("Could not fetch details for employee:", employeeBesiId, data.msg);
+                util.Toasted(`Could not fetch details for employee: ${employeeBesiId}`)
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching employee details:", error);
+        });
+    },
+
+    //===time in/  time out
+    logtime: async (param) => {
+        // 1. Get the shift value from the dropdown
+        const shiftDropdown = document.getElementById('shiftDropdown');
+        const shiftValue = shiftDropdown ? shiftDropdown.value : '';
+
+        // 2. Validation: Require shift selection ONLY for "Time In" (param 1)
+        if ((param === 1 || param === '1') && !shiftValue) {
+            util.Toasted('Please select your shift before Timing In!', 3000, false);
+            return; 
+        }
+
+        const now = new Date();
+        const timestampForBackend = now.toISOString(); // Full ISO for DB accuracy
+        const userId = asn.userProfile.id;
+
+        // 3. Prepare FormData for the backend
+        const formDataForTimekeep = new FormData();
+        formDataForTimekeep.append('user_id', userId);
+        formDataForTimekeep.append('region', asn.userProfile.region);
+        formDataForTimekeep.append('timestamp', timestampForBackend); 
+        formDataForTimekeep.append('action_type', param); // '1' for login, '2' for logout
+        formDataForTimekeep.append('shift_start', shiftValue); // Send the selected shift time
+
+        console.log(`--- Timekeeping Action: ${param} ---`);
+        // Debug: log formData
+        for (let pair of formDataForTimekeep.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+
+        try {
+            const response = await fetch(`${myIp}/timekeep`, {
+                method: 'POST',
+                body: formDataForTimekeep
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({ message: 'Server error' }));
+                throw new Error(errorData.message || `Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Success Feedback
+                util.Toasted(data.msg, 2000, false);
+                
+                // Speak the message (if asn.speak is the correct method)
+                if (typeof asn.speak === 'function') {
+                    asn.speak(data.msg);
+                }
+
+                // Update the UI/Grid to show the new record
+                if (typeof asn.getTimeKeeping === 'function') {
+                    asn.getTimeKeeping();
+                }
+            } else {
+                // Handle logical errors (like "Already logged in")
+                util.Toasted(data.msg, 3000, false);
+            }
+
+        } catch (error) {
+            console.error('Timekeeping process failed:', error);
+            util.Toasted('Error: ' + error.message, 3000, false);
+        } finally {
+            // 4. Close the modal automatically
+            if (asn.winModal) {
+                asn.winModal.hide();
+            }
+        }
+    },
+
+    userProfile: JSON.parse(localStorage.getItem('profile')),  //get profile,
+
+    openMissingEntryModal : (
+        encodedBesiId,
+        encodedXdate,
+        encodedEmployeeName,
+        encodedLoginTime,
+        encodedLogoutTime
+    ) => {
+        const besiId = decodeURIComponent(encodedBesiId);
+        const xdate = decodeURIComponent(encodedXdate);
+        const employeeName = decodeURIComponent(encodedEmployeeName);
+        
+        // Decode and convert "null" string back to actual null
+        const loginTime = decodeURIComponent(encodedLoginTime) === 'null' ? null : decodeURIComponent(encodedLoginTime);
+        const logoutTime = decodeURIComponent(encodedLogoutTime) === 'null' ? null : decodeURIComponent(encodedLogoutTime);
+
+        // Get references to modal form elements
+        const modalLoginTimeInput = document.getElementById('modalLoginTime');
+        const modalLogoutTimeInput = document.getElementById('modalLogoutTime');
+        const modalNotesSelect = document.getElementById('modalNotesSelect'); // Get reference to the select dropdown
+
+        // Populate modal basic fields
+        document.getElementById('modalEmployeeName').innerText = employeeName;
+        document.getElementById('modalMissingDate').innerText = xdate;
+        document.getElementById('modalBesiId').value = besiId;
+        document.getElementById('modalEntryDate').value = xdate;
+
+        // Conditional Logic for Login/Logout Inputs (unchanged)
+        if (loginTime === null && logoutTime === null) {
+            modalLoginTimeInput.value = '';
+            modalLoginTimeInput.disabled = false;
+            modalLogoutTimeInput.value = '';
+            modalLogoutTimeInput.disabled = false;
+        } else if (loginTime !== null && logoutTime === null) {
+            modalLoginTimeInput.value = loginTime;
+            modalLoginTimeInput.disabled = true;
+            modalLogoutTimeInput.value = '';
+            modalLogoutTimeInput.disabled = false;
+        } else {
+            modalLoginTimeInput.value = loginTime || '';
+            modalLoginTimeInput.disabled = (loginTime !== null);
+            modalLogoutTimeInput.value = logoutTime || '';
+            modalLogoutTimeInput.disabled = (logoutTime !== null);
+        }
+
+        // Reset the dropdown to its default blank option
+        modalNotesSelect.value = ''; 
+
+        // Show the modal (assuming Bootstrap 5)
+        var missingEntryModal = new bootstrap.Modal(document.getElementById('missingEntryModal'));
+        missingEntryModal.show();
+    },
+
+    //disble back in mobile and desktop
+    // Function to enable the warning
+    enableExitWarning : () => {
+        window.onbeforeunload = function() {
+            return "Are you sure you want to leave? Any unsaved changes will be lost.";
+        };
+    },
+
+    // Function to disable the warning (Call this when the program closes the dialog)
+    disableExitWarning : () => {
+        window.onbeforeunload = null;
+    },
+
+    dbprofile: null,
+    
+    //================FOR EDITING RECORDS============//
+    openEditForm : (rowData) => {
+        
+        const btn = document.querySelector('#newemp-next-btn');
+
+        // Using dataset (Recommended)
+        btn.dataset.mode = 'edit';
+        btn.innerHTML = '💾 Save Edit'; // If you want the text to change too
+
+        const form = document.getElementById('newempForm');
+        const empId = rowData.emp_id;
+        const region = ( document.getElementById('xfilter_region').value || "");
+        
+        // 1. CLEANUP: Remove any previous injections (ID or Thumbnails)
+        document.querySelectorAll('.injected-edit-ui').forEach(el => el.remove());
+
+        // 2. INJECT READONLY ID at the top
+        const idHtml = `
+            <div class="mb-3 injected-edit-ui">
+                <label class="form-label fw-bold text-primary">RECORD EDITING (READ-ONLY ID)</label>
+                <input type="text" class="form-control bg-light mb-2" id="edit-emp-id" name="edit-emp-id" value="${empId}" readonly>
+            </div>`;
+
+        form.insertAdjacentHTML('afterbegin', idHtml);
+
+        // 3. POPULATE TEXT FIELDS (With Date Cleaning)
+        const cleanDate = (d) => (d && d.includes('T')) ? d.split('T')[0] : (d || "");
+
+        //make jms_id visible now
+        document.getElementById('jms-div').classList.remove('d-none');
+        const jms = document.getElementById('jms_id');
+        jms.disabled = false;
+
+        document.getElementById('jms-pic-div').classList.remove('d-none');
+        const jmspic = document.getElementById('jms_picture');
+        jmspic.disabled = false;
+
+        form.querySelector('#jms_id').value = rowData.jms_id || "";
+        
+
+        form.querySelector('#region').value = region.toUpperCase() || "";
+        // This manually triggers the 'change' event so util.getLocation runs
+        const regionEl = form.querySelector('#region');
+        //// KILL THE REGION regionEl.dispatchEvent(new Event('change', { bubbles: true })); /// fire event listener
+        
+        form.querySelector('#firstName').value = rowData.first_name || "";
+        form.querySelector('#lastName').value = rowData.last_name || "";
+        
+        form.querySelector('#jobTitle').value = rowData.position || "";
+
+        const jobTitleEl = form.querySelector('#jobTitle');
+        jobTitleEl.dispatchEvent(new Event('change',{ bubbles: true } )); ///fire event listener
+                    
+        
+        form.querySelector('#fullName').value = rowData.full_name || "";
+        form.querySelector('#email').value = rowData.email || "";
+        form.querySelector('#email').dataset.original = rowData.email || "";
+
+        // Using dataset (Recommended)
+        btn.dataset.mode = 'edit';
+        
+        form.querySelector('#phone').value = rowData.phone || "";
+        form.querySelector('#birthDate').value = cleanDate(rowData.birth_date);
+        form.querySelector('#hireDate').value = cleanDate(rowData.hire_date);
+        form.querySelector('#employmentStatus').value = rowData.employment_status || "";
+        form.querySelector('#addy1').value = rowData.street_1 || "";
+        form.querySelector('#addy2').value = rowData.street_2 || "";
+        form.querySelector('#bgy').value = rowData.bgy || "";
+        form.querySelector('#city').value = rowData.city || "";
+        form.querySelector('#address').value = rowData.full_address || "";
+        form.querySelector('#nameSuffix').value = rowData.suffix || "";
+        form.querySelector('#middleName').value = rowData.middle_name || "";
+
+        // 4. INJECT THUMBNAILS below File Inputs
+        // Note: 'name' must match your <input name="..."> exactly
+        const fileConfigs = [
+            { name: "jms_picture",         prefix: "JMS_",      label: "JMS ID Picture" },
+            { name: "id_picture",          prefix: "USER_",     label: "ID Picture" },
+            { name: "id_specimen_picture", prefix: "SPECIMEN_", label: "Specimen Sig" },
+            { name: "id_gcash",            prefix: "GCASH_",    label: "GCash" },
+            { name: "bgy_clearance",       prefix: "BGY_",      label: "Bgy Clearance" },
+            { name: "police_clearance",    prefix: "POLICE_",   label: "Police/NBI" },
+            { name: "drivers_license",     prefix: "DRIVER_",   label: "License" },
+        ];
+
+        const exts = [".jpg", ".png", ".gif"];
+
+        // Determine Folder Path (Your Switch Logic)
+        let regionFolder = "";
+        const xregion = region.toLowerCase(); // Normalize to lowercase for consistent matching
+
+        switch (xregion) {
+            case "smnl": 
+            case "cmnva": 
+            case "cmnl":
+                regionFolder = `ncr_${xregion}_emp`;
+                break;
+            case "nelu": 
+            case "nwlu":
+                regionFolder = `luz_${region}_emp`;
+                break;
+            case "min": 
+                regionFolder = `min_emp`;
+                break; 
+            case "bicol": 
+            case "smarleyte":
+                regionFolder = `bsl_${xregion}_emp`;    
+                break;
+            default:
+                regionFolder = `wvis_${xregion}_emp`; // For bacolod, panay, etc.
+        }
+
+        const baseUrl = `https://asianowapp.com/html/${regionFolder}/`;
+
+        fileConfigs.forEach(cfg => {
+
+            // This looks for the <input name="id_picture"> etc.
+            const inputEl = form.querySelector(`input[name="${cfg.name}"]`);
+            
+            if (inputEl) {
+                // Create container
+                const thumbContainer = document.createElement('div');
+                thumbContainer.className = "injected-edit-ui mt-2 p-1 border rounded bg-light";
+                thumbContainer.style = "width: fit-content; min-width: 100px; text-align: center;";
+                thumbContainer.innerHTML = `<small class="d-block text-muted">Checking...</small>`;
+                
+                inputEl.after(thumbContainer);
+
+                let idx = 0;
+                const tryExt = () => {
+                    if (idx >= exts.length) {
+                        thumbContainer.innerHTML = `<small class="text-muted">No file on server</small>`;
+                        return;
+                    }
+                    
+                    // CONSTRUCT FILENAME: e.g., USER_123.jpg
+                    const fileName = `${cfg.prefix}${empId}${exts[idx]}`;
+                    const fullUrl = baseUrl + fileName; // Remove encodeURIComponent if filenames don't have spaces
+
+                    // FOR CHECKING: Open your console (F12) to see these!
+                    console.log(`Trying ${cfg.label}:`, fullUrl);
+
+                    const img = new Image();
+                    img.style = "max-height: 80px; display: block; margin: auto;";
+                    img.onload = () => {
+                        thumbContainer.innerHTML = ""; 
+                        thumbContainer.appendChild(img);
+                    };
+                    img.onerror = () => { 
+                        idx++; 
+                        tryExt(); 
+                    };
+                    img.src = fullUrl;
+                };
+                tryExt();
+            } else {
+                console.warn(`Could not find input with name: ${cfg.name}`);
+            }
+        });
+
+        // 6.. SHOW MODAL
+        
+        const modalEl = document.getElementById("newempModal");
+        modalEl.dataset.context = 'coords' //coords opened the newempmodal
+
+        modalEl.style.zIndex = 1060;
+        
+        const bsModal = new bootstrap.Modal(modalEl);
+        bsModal.show();
+
+        const locStoreEl = form.querySelector('#locStore');
+        //reset first
+        locStoreEl.innerHTML = '';
+
+        if( rowData.location){    
+            let opt = document.createElement('option');
+            opt.value = rowData.location;
+            opt.innerHTML = rowData.location;
+            opt.selected = true;
+            locStoreEl.appendChild(opt);
+        }    
+        
+        // let's put hub_store last
+        //form.querySelector('#hubStore').value = rowData.hub || "";
+        const hubField = document.getElementById('hubStore');
+        //reset first
+        hubField.innerHTML = '';
+
+        if(rowData.hub){
+            let opt = document.createElement('option');
+            opt.value = rowData.hub;
+            opt.innerHTML = rowData.hub;
+            opt.selected = true;
+            hubField.appendChild(opt);
+        }else{
+            let opt = document.createElement('option');
+            opt.value = "";
+            opt.innerHTML = "No Hub Assigned";
+            opt.selected = true;
+            hubField.appendChild(opt);
+            
+        }//EIF
+        
+    },
+
 	//==,= main run
 	init :  () => {
 
