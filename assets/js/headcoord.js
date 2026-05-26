@@ -754,7 +754,7 @@ const headcoord = {
 
         //==HANDSHAKE FIRST WITH SOCKET.IO
         const userName = { token : authz[1] , mode: 1}//full name token
-        headcoord.socket = io.connect(`${myIp}`, {
+        headcoord.socket =  io.connect(`${myIp}`, {
             //withCredentials: true,
             transports: ['websocket', 'polling'], // Same as server
             upgrade: true, // Ensure WebSocket upgrade is attempted
@@ -805,14 +805,13 @@ document.addEventListener('DOMContentLoaded', function() {
     headcoord.getmenu(util.getCookie('grp_id')) 
 
     const timekeepModalEl = document.getElementById('timekeepModal');
-                timekeepModalEl.addEventListener('show.bs.modal', () => {
-                    console.log('show timekeep', headcoord.dbprofile)
-                    
-                    timekeep.fetchtimekeep( headcoord.dbprofile) //===fire! insert html fragment even before show-bs modal of timekeepmodal
-      
-                });
-    
+    timekeepModalEl.addEventListener('show.bs.modal', () => {
+        console.log('show timekeep', headcoord.dbprofile)
+        
+            timekeep.fetchtimekeep( headcoord.dbprofile) //===fire! insert html fragment even before show-bs modal of timekeepmodal
 
+    });
+    
     //timekeep.fetchtimekeep( headcoord.dbprofile) //===fire! insert html fragment even before show-bs modal of timekeepmodal
             
     //===load mtd-chart

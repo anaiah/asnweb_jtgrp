@@ -97,17 +97,18 @@ const handlePositionChange=(elem)=>{
     //check position if it requires location and hub/store selection
     switch(elem.value){
         
-        case '07': //lead coordinator
+        // case '07': //lead coordinator
             
-            //turn on area
+        //     //turn on area
             
-            //util.displayAreaLocationHub(true, areaContainer, areaSelect) //show area selection
-            locSelect.value = '' //reset location and hub/store selection
-            hubSelect.value = '' //reset location and hub/store selection
-            util.displayAreaLocationHub(false, locContainer, locSelect) //hide location and hub/store selection
-            util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
-        break;
+        //     //util.displayAreaLocationHub(true, areaContainer, areaSelect) //show area selection
+        //     locSelect.value = '' //reset location and hub/store selection
+        //     hubSelect.value = '' //reset location and hub/store selection
+        //     util.displayAreaLocationHub(false, locContainer, locSelect) //hide location and hub/store selection
+        //     util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
+        // break;
 
+        case '07': //lead coordinator
         case '08': //coordinator
             //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
              

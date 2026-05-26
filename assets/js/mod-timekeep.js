@@ -198,7 +198,7 @@ let loginDetails = null;
 
             console.log('fetchtimekeep() grp_id', db.region)
 
-            if(db.grp_id=='08'){ //thsi line coords only
+            if(db.grp_id=='08' || db.grp_id=='07'){ //thsi line coords only
                     //======================== WE SET FILTER REGION HERE ===========
                     const sel = document.getElementById('xfilter_region');
                     const selectedValue = db.region.toLowerCase();
@@ -541,11 +541,11 @@ let loginDetails = null;
     }
 
     //================get hub for this coordinator
-    const getHubCoord = async()=>{
+    const getHubCoord = async(db)=>{
            
         const region = document.getElementById('xfilter_region').value
 
-        const response = await fetch(`${myIp}/gethubcoord/${ region }/${ dbprofile.email}`);
+        const response = await fetch(`${myIp}/gethubcoord/${ region }/${ dbprofile.email}/${ dbprofile.grp_id }`);
         
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({ message: 'Server error' }));
@@ -760,12 +760,14 @@ let loginDetails = null;
         console.log('***getFilterLocation() fired***', regionSelectElement)
 
         util.toggleButtonLoading('footer-msg','Loading Location...',true)
-        const selectedRegion = regionSelectElement.value;
+        const selectedRegion = regionSelectElement;
         
         const locSelect = document.getElementById('xfilter_location');
         
         try {
-            const response = await fetch(`${myIp}/getlocation/${document.getElementById('region').value}`); // Adjust this URL as needed
+
+            console.log('fetching location for region ', selectedRegion)
+            const response = await fetch(`${myIp}/getlocation/${regionSelectElement}`); // Adjust this URL as needed
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -804,8 +806,8 @@ let loginDetails = null;
             return true;
 
         } catch (error) {
-            console.error('Error fetching hubs:', error);
-            alert('Failed to load hub/store options. Please try again.');
+            console.error('Error fetching location:', error);
+            alert('Failed to load location options. Please try again.');
         }
         
     }
@@ -1020,7 +1022,8 @@ let loginDetails = null;
             break;
 
         case 'xfilter_location':
-            timekeep.getHubCoord()
+            console.log('firing gethubcoord()...')
+            timekeep.getHubCoord(dbprofile.grp_id) //get hub for this coordinator/headcoord
             break;
 
         case 'filter-actionSelect':
@@ -1046,69 +1049,69 @@ let loginDetails = null;
 
     //============= EVENT LISTENER WHEN TIMEKEEP MODAL  HIDE==================//
     const timekeepModalEl = document.getElementById('timekeepModal');
-    timekeepModalEl.addEventListener('show.bs.modal',  () => {
-        document.getElementById('xfilter_region').value = dbprofile.region.toLowerCase()
+    if (timekeepModalEl) {
+        timekeepModalEl.addEventListener('show.bs.modal',  () => {
+            document.getElementById('xfilter_region').value = dbprofile.region.toLowerCase()
 
-    })
+        })
 
+        timekeepModalEl.addEventListener('hidden.bs.modal', () => {
+            // clear data in the detail grid when modal is closed   
+            if (hrtimekeepGrid.hrisGrid
 
-    timekeepModalEl.addEventListener('hidden.bs.modal', () => {
-        // clear data in the detail grid when modal is closed   
-        if (hrtimekeepGrid.hrisGrid
+            ) {
+                hrtimekeepGrid.hrisGrid.setData([]);
+            }
 
-        ) {
-            hrtimekeepGrid.hrisGrid.setData([]);
-        }
+            //reset form, rest div innerhtml
+            let xform = document.getElementById('filter-searchForm')
+            xform.reset()
+            util.resetFormClass('#filter-searchForm')
 
-        //reset form, rest div innerhtml
-        let xform = document.getElementById('filter-searchForm')
-        xform.reset()
-        util.resetFormClass('#filter-searchForm')
+            document.getElementById('search-result-grid').classList.add('d-none');
+            document.getElementById('hrisdisplay').classList.add('d-none');
+            document.getElementById('timekeepdisplay').classList.add('d-none');
 
-        document.getElementById('search-result-grid').classList.add('d-none');
-        document.getElementById('hrisdisplay').classList.add('d-none');
-        document.getElementById('timekeepdisplay').classList.add('d-none');
+            timekeepModalEl.querySelectorAll('select').forEach(sel => {
+                // reset to first option (or set to empty string)
+                sel.selectedIndex = 0;
+                // or: sel.value = '';
+                // optionally remove dynamically added options (keep placeholder at index 0)
+                // Array.from(sel.options).slice(1).forEach(o => o.remove());
+                // clear validation classes
+                sel.classList.remove('is-valid','is-invalid');
+            });
 
-
-        timekeepModalEl.querySelectorAll('select').forEach(sel => {
-            // reset to first option (or set to empty string)
-            sel.selectedIndex = 0;
-            // or: sel.value = '';
-            // optionally remove dynamically added options (keep placeholder at index 0)
-            // Array.from(sel.options).slice(1).forEach(o => o.remove());
-            // clear validation classes
-            sel.classList.remove('is-valid','is-invalid');
         });
-
-
-
-    });
+    }
 
     const myModal = document.getElementById('newempModal')
-    myModal.addEventListener('hide.bs.modal', function (event) {
-         const btn = document.getElementById('newemp-next-btn');
-        const mode = btn.dataset.mode;
-        if(mode==='edit'){
-            const ctx = myModal.dataset.context;
-            if (ctx === 'coords') {
-                timekeep.searchEmp();
+    if (myModal) {
+
+        myModal.addEventListener('hide.bs.modal', function (event) {
+            const btn = document.getElementById('newemp-next-btn');
+            const mode = btn.dataset.mode;
+            if(mode==='edit'){
+                const ctx = myModal.dataset.context;
+                if (ctx === 'coords') {
+                    timekeep.searchEmp();
+                }
+                // clear context if you like
+                delete myModal.dataset.context;
             }
-            // clear context if you like
-            delete myModal.dataset.context;
-        }
 
 
-        myModal.querySelectorAll('select').forEach(sel => {
-            // reset to first option (or set to empty string)
-            sel.selectedIndex = 0;
-            // or: sel.value = '';
-            // optionally remove dynamically added options (keep placeholder at index 0)
-            // Array.from(sel.options).slice(1).forEach(o => o.remove());
-            // clear validation classes
-            sel.classList.remove('is-valid','is-invalid');
-    });
+            myModal.querySelectorAll('select').forEach(sel => {
+                // reset to first option (or set to empty string)
+                sel.selectedIndex = 0;
+                // or: sel.value = '';
+                // optionally remove dynamically added options (keep placeholder at index 0)
+                // Array.from(sel.options).slice(1).forEach(o => o.remove());
+                // clear validation classes
+                sel.classList.remove('is-valid','is-invalid');
+            });
 
 
-    })
-    
+        })
+    }
         

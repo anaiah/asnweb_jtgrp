@@ -866,7 +866,6 @@ const util = {
                 //asn.collapz();
             break
 
-
             case "atdstatusModal":
                 if(util.getCookie('grp_id')!=="2"){
                     const atdstatusmodal =  new bootstrap.Modal(document.getElementById('atdstatusModal'),configObj);
@@ -885,7 +884,8 @@ const util = {
             case "newempModal":
             case "dataPrivacySignatureModal" :
 
-                if(util.getCookie('grp_id')==="8" || util.getCookie('grp_id')==="08" || util.getCookie('grp_id')==="88"){ // HR PEOPLE or coordinator FOR NOW
+                if(util.getCookie('grp_id')==="8" || util.getCookie('grp_id')==="08" || 
+                    util.getCookie('grp_id')==="88" || util.getCookie('grp_id')==="07"){ // HR PEOPLE or coordinator FOR NOW
                     //show the dialog modal
                     //console.log('uyyy mdalshow Nu emp')
                     
@@ -1217,17 +1217,17 @@ const util = {
         //check position if it requires location and hub/store selection
         switch(elem.value){
            
+            // case '07': //lead coordinator
+                
+            //     //turn on area
+                
+            //     //util.displayAreaLocationHub(true, areaContainer, areaSelect) //show area selection
+            //     util.displayAreaLocationHub(false, locContainer, locSelect) //hide location and hub/store selection
+            //     util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
+                
+
+            // break;
             case '07': //lead coordinator
-                
-                //turn on area
-                
-                //util.displayAreaLocationHub(true, areaContainer, areaSelect) //show area selection
-                util.displayAreaLocationHub(false, locContainer, locSelect) //hide location and hub/store selection
-                util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
-                
-
-            break;
-
             case '08': //coordinator
                 //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
                 util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
