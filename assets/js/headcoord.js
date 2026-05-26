@@ -723,6 +723,25 @@ const headcoord = {
    
     dbprofile:null,
 
+    configObj:null,
+    winModal:null,
+
+   showLoginModal: () => {
+        console.log('showLoginModal()');
+
+        const modalElement = document.getElementById('universalMessageModal');
+        
+        // Safety check: If the element doesn't exist, stop here
+        if (!modalElement) {
+            console.error("Error: #universalMessageModal was not found in the HTML of this page!");
+            return; 
+        }
+
+        headcoord.configObj = { keyboard: false };
+        headcoord.winModal = new bootstrap.Modal(modalElement, headcoord.configObj);
+        headcoord.winModal.show();
+    },
+
 	//==,= main run
 	init :  () => {
 
