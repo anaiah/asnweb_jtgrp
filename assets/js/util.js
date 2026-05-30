@@ -2231,6 +2231,9 @@ const util = {
     //==============CALL PRINT TO PDF, after util.saveSignature() =============//
     printPdf: async ( empid, empname, empregion, empposition, empaddress, empdateHired )=> {
 
+        console.log('----- FIRING printPdf() with params:', { empid, empname, empregion, empposition, empaddress, empdateHired });
+        
+
         let xfile = `${empid}.pdf`;
 
         // Ensure all URL parameters are encoded

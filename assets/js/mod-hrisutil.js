@@ -332,7 +332,7 @@ const checkform = (whatForm) => {
 //=======download masterfile========//
 const printMasterfile = async() =>{
 
-    console.log( '====Firing hris.printMasterfile()====')
+    console.log( '====Firing hrisutil.printMasterfile()====')
 
     const form = document.getElementById("searchForm");
     const fd = new FormData(form);
