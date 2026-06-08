@@ -150,7 +150,9 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                     break;
                         
                     case "printcontract":
+
                         console.log(rowData)
+                        
                         hris.fullname = rowData.full_name;
                         hris.address = rowData.full_address;
                         hris.position = rowData.position;

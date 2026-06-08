@@ -632,29 +632,44 @@
             <div class="modal-body" id="universalMessageModalBody">
                 
                 <!-- Shift Selection Dropdown -->
-                <div class="mb-3">
-                    <label for="shiftDropdown" class="form-label small fw-bold">Select Your Shift:</label>
-                    <select id="shiftDropdown" class="form-select form-select-sm">
-                        <option value="">-- Choose Shift --</option>
-                        <!-- Day Shifts -->
-                        <option value="07:00:00">7 AM - 4 PM</option>
-                        <option value="08:00:00">8 AM - 5 PM</option>
-                        <option value="09:00:00">9 AM - 6 PM</option>
-                        <option value="10:00:00">10 AM - 7 PM</option>
-                        <option value="11:00:00">11 AM - 8 PM</option>
-                        <option value="12:00:00">12 PM - 9 PM</option>
-                        <!-- Afternoon/Night Shifts -->
-                        <option value="15:00:00">3 PM - 12 AM</option>
-                        <option value="16:00:00">4 PM - 1 AM</option>
-                        <option value="17:00:00">5 PM - 2 AM</option>
-                        <option value="18:00:00">6 PM - 3 AM</option>
-                        <option value="19:00:00">7 PM - 4 AM</option>
-                        <option value="20:00:00">8 PM - 5 AM</option>
-                        <option value="21:00:00">9 PM - 6 AM</option>
-                        <option value="22:00:00">10 PM - 7 AM</option>
-                        <option value="23:00:00">11 PM - 8 AM</option>
-                    </select>
-                </div>
+<div class="mb-3">
+    <label for="shiftDropdown" class="form-label small fw-bold">Select Your Shift:</label>
+    <select id="shiftDropdown" class="form-select form-select-sm">
+        <option value="">-- Choose Shift --</option>
+        
+        <!-- Early Morning Shifts -->
+        <option value="01:00:00">1 AM - 10 AM</option>
+        <option value="02:00:00">2 AM - 11 AM</option>
+        <option value="03:00:00">3 AM - 12 NN</option>
+        <option value="04:00:00">4 AM - 1 PM</option>
+        <option value="05:00:00">5 AM - 2 PM</option>
+        <option value="06:00:00">6 AM - 3 PM</option>
+        
+        <!-- Standard Day Shifts -->
+        <option value="07:00:00">7 AM - 4 PM</option>
+        <option value="08:00:00">8 AM - 5 PM</option>
+        <option value="09:00:00">9 AM - 6 PM</option>
+        <option value="10:00:00">10 AM - 7 PM</option>
+        <option value="11:00:00">11 AM - 8 PM</option>
+        <option value="12:00:00">12 PM - 9 PM</option>
+        
+        <!-- Afternoon Shifts -->
+        <option value="13:00:00">1 PM - 10 PM</option>
+        <option value="14:00:00">2 PM - 11 PM</option>
+        <option value="15:00:00">3 PM - 12 AM</option>
+        <option value="16:00:00">4 PM - 1 AM</option>
+        <option value="17:00:00">5 PM - 2 AM</option>
+        
+        <!-- Night / Swing Shifts -->
+        <option value="18:00:00">6 PM - 3 AM</option>
+        <option value="19:00:00">7 PM - 4 AM</option>
+        <option value="20:00:00">8 PM - 5 AM</option>
+        <option value="21:00:00">9 PM - 6 AM</option>
+        <option value="22:00:00">10 PM - 7 AM</option>
+        <option value="23:00:00">11 PM - 8 AM</option>
+    </select>
+</div>
+
 
                 <!-- Centered Buttons -->
                 <div class="d-flex justify-content-center gap-3">
