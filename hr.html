@@ -631,23 +631,7 @@ span.xgrpheader{
                                     <label for="birthDate" class="form-label">Date of Birth</label>
                                     <input type="date" class="form-control" value="" id="birthDate" name="birthDate" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="hireDate" class="form-label">Hire Date</label>
-                                    <input type="date" class="form-control 201" value="" id="hireDate" name="hireDate" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="employmentStatus" class="form-label">Employment Status</label>
-                                    <select class="form-select 201" id="employmentStatus" name="employmentStatus" required>
-                                        <option value="" disabled>Select status</option>
-                                        <option value="Full-Time" selected>Full-Time</option>
-                                        <option value="Reserved" selected>Reserved</option>
-                                        <option value="Part-Time">Part-Time</option>
-                                        <option value="Contract">Seasonal</option>
-                                        <option value="OCW">OCW</option>
-                                    </select>
-                                </div>
-
+                               
                                 <div class="mb-3">
                                     <label for="addy1" class="form-label">Address 1 (Number, Building, Street)</label>
                                     <input type="text" class="form-control text-uppercase 201" value="" id="addy1" name="addy1" required >
@@ -667,7 +651,6 @@ span.xgrpheader{
                                     <label for="city" class="form-label">City / Municipality</label>
                                     <input type="text" class="form-control text-uppercase 201" value="" id="city" name="city" required>
                                 </div>
-
                                
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Complete Address </label>
@@ -676,6 +659,46 @@ span.xgrpheader{
                                 </div>
 
                                 <!-- ... (previous form elements) ... -->
+                                <!-- employment details -->
+                                <div class="mb-3">
+                                    <label for="daily_rate">Daily Rate:</label>
+                                    <input 
+                                    type="number" 
+                                    id="daily_rate" 
+                                    name="daily_rate" 
+                                    min="0" 
+                                    step="0.01" 
+                                    placeholder="0.00" 
+                                    required
+                                    >
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="education_level">Education Level</label>
+                                    <select id="education_level" name="education_level" required>
+                                    <option value="" disabled selected>Choose an option</option>
+                                    <option value="elementary">Elementary</option>
+                                    <option value="high-school">High School</option>
+                                    <option value="college">College</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="hireDate" class="form-label">Hire Date</label>
+                                    <input type="date" class="form-control 201" value="" id="hireDate" name="hireDate" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="employmentStatus" class="form-label">Employment Status</label>
+                                    <select class="form-select 201" id="employmentStatus" name="employmentStatus" required>
+                                        <option value="" disabled>Select status</option>
+                                        <option value="Full-Time" selected>Full-Time</option>
+                                        <option value="Reserved" selected>Reserved</option>
+                                        <option value="Part-Time">Part-Time</option>
+                                        <option value="Contract">Seasonal</option>
+                                        <option value="OCW">OCW</option>
+                                    </select>
+                                </div>
 
                                 <!-- NEW: File Uploads -->
                                 <h3 class="mt-4">Document Uploads</h3>
