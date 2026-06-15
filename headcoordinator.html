@@ -12,7 +12,7 @@
 
   <title>AsiaNow Enc. Inc.</title>
   <!-- <link rel="shortcut icon" type="image/png" href="../html/assets/images/logos/favicon.png" /> -->
-  <link rel="shortcut icon" href="/html/assets/images/logos/asiaoneico.png" type="image/x-icon" sizes="32x32">  
+  <link rel="shortcut icon" href="/html/assets/images/logos/besi_logo.png" type="image/x-icon" sizes="32x32">  
 
   <!-- bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -36,10 +36,49 @@
   
   <link rel="stylesheet" href="/html/assets/css/osndp.css" />
 
-    <!-- the new tabulator grid  css -->
+  <!-- the new tabulator grid  css -->
   <link rel="stylesheet" href="/html/assets/css/tabgrid.css" />
 
   <style>
+   .my-btn { background-color: #47cc3b; color: #fff; border: none; }
+    .my-btn:hover { background: #6a4df0; color:#fff; }
+    .my-btn:focus { box-shadow: 0 0 0 .2rem rgba(123,97,255,.25); }
+    /* Base state: Solid black with white text */
+.my-btn2 { 
+    background-color: #000000; 
+    color: #ffffff; 
+    border: none; 
+}
+
+/* Hover state: Dark gray for a smooth visual cue */
+.my-btn2:hover { 
+    background-color: #23272b; 
+    color: #ffffff; 
+}
+
+/* Focus state: Subtle dark gray glow instead of purple */
+.my-btn2:focus { 
+    outline: none;
+    box-shadow: 0 0 0 .2rem rgba(0, 0, 0, .25); 
+}
+/* Base state: Solid purple with white text */
+.my-btn-purple { 
+    background-color: #6a4df0; 
+    color: #ffffff; 
+    border: none; 
+}
+
+/* Hover state: Darker purple for a smooth visual cue */
+.my-btn-purple:hover { 
+    background-color: #5136d6; 
+    color: #ffffff; 
+}
+
+/* Focus state: Subtle purple glow */
+.my-btn-purple:focus { 
+    outline: none;
+    box-shadow: 0 0 0 .2rem rgba(106, 77, 240, .25); 
+}
     .hide-me{
       display:none;
     }
@@ -82,6 +121,10 @@
   background-color: #C5DFF2 !important;
 
 }
+
+  /* .apexcharts-tooltip {
+  display: none !important;
+} */
   </style>
 </head>
 
@@ -96,8 +139,9 @@
       <div id="leftsidebar" >
         <!--//LOGO//-->
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="/jtx" class="text-nowrap logo-img">
-            <img src="/html/assets/images/logos/asiaone_.png" width="180" alt="" />
+          <a href="/besi" class="text-nowrap logo-img">
+            <img src="/html/assets/images/logos/besi_main_logo.jpg"  width="180" alt="" />
+
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -126,12 +170,14 @@
                 <i class="ti ti-menu-2"></i>
               </a>
             </li>
+            <!--//
             <li class="nav-item">
               <a class="nav-link nav-icon-hover" href="javascript:void(0)">
                 <i class="ti ti-bell-ringing"></i>
                 <div class="notification bg-primary rounded-circle"></div>
               </a>
             </li>
+            //-->
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
@@ -175,34 +221,41 @@
         <div class="row" id="trans-month">
           <!-- First Column: Two stacked cards -->
           <div class="col-lg-6 mb-3 mb-lg-0">
-            <!-- First Card: Month Transaction -->
+
             <div class="card boxshadoe shadow mb-3">
               <div class="card-body p-4">
-                <h5 class="card-title fw-semibold" id="h5title"></h5>
-                
+                <h5 class="fw-semibold mb-3">TimeKeeping Details</h5>
+
                 <div class="table-responsive mb-4">
-                  <div id="area-grid"></div>
+                  <div id="coord-detail-grid"></div>
                 </div>
-                
+              </div>
+            </div>
+
+            <!-- First Card: Month Transaction -->
+            <div class="card boxshadoe shadow mb-3" id="locgridcard">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold" id="h5title"></h5>
+
                 <div class="table-responsive mb-4">
                   <div id="location-grid"></div>
                 </div>
-              
+
                 <div class="table-responsive mb-4">
                   <div id="rider-grid"></div>
                 </div>
-              
+
                 <div class="table-responsive mb-4">
                   <div id="calendar-grid"></div>
                 </div>
-              
+
               </div>
             </div>
       
             <!-- Second Card: New Card below the first -->
-            <div class="card boxshadoe shadow">
+            <div class="card boxshadoe shadow" id="locmtdchart">
               <div class="card-body p-4">
-                <h5 class="fw-semibold">Month-To-Date Location</h5>
+                <h5 class="fw-semibold" id="h5tophubtitle"></h5>
                 <!-- Your content here -->
                 <div class="table-responsive">
                   <div id="mtd-chart"></div>
@@ -229,15 +282,19 @@
                 <div class="card-body p-4">
                   <h5 class="fw-semibold mb-3">Top 5 Rider</h5>
                   <div class="table-responsive">
-                  <div id="rider-chart"></div>
+                    <div id="rider-chart"></div>
                   </div>
+                  
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
+  <!-- ALL THE MODALS HERE     -->
+
+
+    <!-- NEW EMPLOYEE ADD MODAL -->
     <!-- NEW EMPLOYEE ADD MODAL -->
     <div class="modal fade" id="newempModal" tabindex="-1"   aria-labelledby="newsiteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
@@ -378,8 +435,50 @@
                                     <input type="date" class="form-control" value="" id="birthDate" name="birthDate" required>
                                 </div>
                                
+                                <!-- employment details -->
                                 <div class="mb-3">
-                                    <label for="addy1" class="form-label">Address 1 (Number, Building, Street)</label>
+                                    <label class="form-label" for="daily_rate">Daily Rate:</label>
+                                    <input 
+                                    type="number" 
+                                    id="daily_rate" 
+                                    name="daily_rate" 
+                                    class="form-control 201"
+                                    min="0" 
+                                    step="0.01" 
+                                    placeholder="0.00" 
+                                    required
+                                    >
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label" for="education_level">Education Level</label>
+                                    <select id="education_level" class="form-select 201" name="education_level" required>
+                                    <option value="" disabled selected>Choose an option</option>
+                                    <option value="elementary">Elementary</option>
+                                    <option value="high-school">High School</option>
+                                    <option value="college">College</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="hireDate">Hire Date</label>
+                                    <input type="date" class="form-control 201" value="" id="hireDate" name="hireDate" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="employmentStatus">Employment Status</label>
+                                    <select class="form-select 201" id="employmentStatus" name="employmentStatus" required>
+                                        <option value="" disabled>Select status</option>
+                                        <option value="Full-Time" selected>Full-Time</option>
+                                        <option value="Reserved" selected>Reserved</option>
+                                        <option value="Part-Time">Part-Time</option>
+                                        <option value="Contract">Seasonal</option>
+                                        <option value="OCW">OCW</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="addy1">Address 1 (Number, Building, Street)</label>
                                     <input type="text" class="form-control text-uppercase 201" value="" id="addy1" name="addy1" required >
                                 </div>
 
@@ -405,46 +504,6 @@
                                 </div>
 
                                 <!-- ... (previous form elements) ... -->
-                                   <!-- employment details -->
-                                <div class="mb-3">
-                                    <label for="daily_rate">Daily Rate:</label>
-                                    <input 
-                                    type="number" 
-                                    id="daily_rate" 
-                                    name="daily_rate" 
-                                    min="0" 
-                                    step="0.01" 
-                                    placeholder="0.00" 
-                                    required
-                                    >
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="education_level">Education Level</label>
-                                    <select id="education_level" name="education_level" required>
-                                    <option value="" disabled selected>Choose an option</option>
-                                    <option value="elementary">Elementary</option>
-                                    <option value="high-school">High School</option>
-                                    <option value="college">College</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="hireDate" class="form-label">Hire Date</label>
-                                    <input type="date" class="form-control 201" value="" id="hireDate" name="hireDate" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="employmentStatus" class="form-label">Employment Status</label>
-                                    <select class="form-select 201" id="employmentStatus" name="employmentStatus" required>
-                                        <option value="" disabled>Select status</option>
-                                        <option value="Full-Time" selected>Full-Time</option>
-                                        <option value="Reserved" selected>Reserved</option>
-                                        <option value="Part-Time">Part-Time</option>
-                                        <option value="Contract">Seasonal</option>
-                                        <option value="OCW">OCW</option>
-                                    </select>
-                                </div>
 
                                 <!-- NEW: File Uploads -->
                                 <h3 class="mt-4">Document Uploads</h3>
@@ -603,17 +662,31 @@
                     <label for="shiftDropdown" class="form-label small fw-bold">Select Your Shift:</label>
                     <select id="shiftDropdown" class="form-select form-select-sm">
                         <option value="">-- Choose Shift --</option>
-                        <!-- Day Shifts -->
+                        
+                        <!-- Early Morning Shifts -->
+                        <option value="01:00:00">1 AM - 10 AM</option>
+                        <option value="02:00:00">2 AM - 11 AM</option>
+                        <option value="03:00:00">3 AM - 12 NN</option>
+                        <option value="04:00:00">4 AM - 1 PM</option>
+                        <option value="05:00:00">5 AM - 2 PM</option>
+                        <option value="06:00:00">6 AM - 3 PM</option>
+                        
+                        <!-- Standard Day Shifts -->
                         <option value="07:00:00">7 AM - 4 PM</option>
                         <option value="08:00:00">8 AM - 5 PM</option>
                         <option value="09:00:00">9 AM - 6 PM</option>
                         <option value="10:00:00">10 AM - 7 PM</option>
                         <option value="11:00:00">11 AM - 8 PM</option>
                         <option value="12:00:00">12 PM - 9 PM</option>
-                        <!-- Afternoon/Night Shifts -->
+                        
+                        <!-- Afternoon Shifts -->
+                        <option value="13:00:00">1 PM - 10 PM</option>
+                        <option value="14:00:00">2 PM - 11 PM</option>
                         <option value="15:00:00">3 PM - 12 AM</option>
                         <option value="16:00:00">4 PM - 1 AM</option>
                         <option value="17:00:00">5 PM - 2 AM</option>
+                        
+                        <!-- Night / Swing Shifts -->
                         <option value="18:00:00">6 PM - 3 AM</option>
                         <option value="19:00:00">7 PM - 4 AM</option>
                         <option value="20:00:00">8 PM - 5 AM</option>
@@ -623,12 +696,13 @@
                     </select>
                 </div>
 
+
                 <!-- Centered Buttons -->
                 <div class="d-flex justify-content-center gap-3">
-                    <button type="button" name="timein-btn" id="timein-btn" class="btn btn-success" onclick='headcoord.logtime(1)'>
+                    <button type="button" name="timein-btn" id="timein-btn" class="btn btn-success" onclick='asn.logtime(1)'>
                         Time In
                     </button>
-                    <button type="button" name="timeout-btn" id="timeout-btn" class="btn btn-danger" onclick="headcoord.logtime(2)">
+                    <button type="button" name="timeout-btn" id="timeout-btn" class="btn btn-danger" onclick="asn.logtime(2)">
                         Time Out
                     </button>
                 </div>                 
@@ -786,8 +860,6 @@
 
   <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
   
-
-
   <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/js/tabler.min.js"></script>
 
   <script src="/html/assets/libs/jquery/dist/jquery.min.js"></script> <!--//sidebarmenu dependent-->
@@ -809,25 +881,29 @@
   <!-- //online version//-->
   <!-- <script src="https://asn-jtgrp-api.onrender.com/socket.io/socket.io.js"></script> -->
   <script src="https://cdn.socket.io/4.5.4/socket.io.min.js?ver=12"></script>
-
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
   <script src="/html/extjs422/ext-all.js"></script>
   <script src="/html/extjs422/ext-theme-neptune.js"></script>
 
-  <script src="/html/assets/js/ipconfig.js?v=9"></script>
-   
-  <script src="/html/assets/headcoordapp.js?v=9"></script>
-  <script src="/html/assets/js/util.js?v=9"></script>
+  <!-- Signature Pad Library (cdnjs.com) -->
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.0/dist/signature_pad.umd.min.js?v=8"></script>
+
+  <script src="/html/assets/js/ipconfig.js?v=8"></script>
+  
+  <script src="/html/assets/coordapp.js?v=8"></script>
+  
+  <script src="/html/assets/js/util.js?v=8"></script>
 
   <script  type="module" src="/html/assets/js/hrmod.js?v=8"></script>
-  <script type="module" src="/html/assets/js/headcoord.js?v=9"></script>
-  
- <!-- takeout muna gridtab palit extjs -->
+
+  <script  type='module' src="/html/assets/js/coord.js?v=8"></script> 
+
+  <!-- takeout muna gridtab palit extjs -->
    <script src="/html/assets/js/hrgridtab.js?v=8"></script>
 
   <script src="/html/assets/js/coordgriddettab.js?v=8"></script>
-
 </body>
 
 </html>

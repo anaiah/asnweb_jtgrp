@@ -1,19 +1,10 @@
-/*author : Carlo O. Dominguez*/
+/* Author : Carlo O. Dominguez*/
 
 import { timekeep } from './mod-timekeep.js';
-// import {
-//   initHrisGrid,
-//   initTimekeepGrid,
-//   initTimekeepDetailGrid,
-//   hrtimekeepGrid //the obj
-// } from './mod-hrgrid.js';
 
-const asn = {
-    
+const headcoord = {
+	
     offset: 0,
-
-    shopCart: [],
-    
     socket:null,
 
     //=========================START VOICE SYNTHESIS ===============
@@ -58,6 +49,8 @@ const asn = {
 
         // Checking which voices has been chosen from the selection
         // and setting the voice to the chosen voice
+        
+        
         voices.forEach(voice => {
             if(voice.name.indexOf("English")>-1){	
                 ///// take out bring back later, 
@@ -193,7 +186,6 @@ const asn = {
           */  
         
     },
-
     notif:(msg,xclear)=>{
         if(!xclear){
             document.getElementById('p-notif').innerHTML = `<i id='i-notif' class='fa fa-spinner fa-pulse' ></i>
@@ -213,6 +205,7 @@ const asn = {
         
         console.log('Window width:', window.innerWidth);
                 
+
         links.forEach(function(link) {
           link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -275,15 +268,15 @@ const asn = {
 
             console.log('mydata ',results )
 
-            asn.allData = results //get  data
+            headcoord.allData = results //get  data
 
             //replace with 
            // gridMonth.setData( results )
-            ////// take ot muna  asn.ctrlExt.loadData(results)
-            //asn.ctrlExt.loadPage( asn.currentPage ) //load first page
+            ////// take ot muna  headcoord.ctrlExt.loadData(results)
+            //headcoord.ctrlExt.loadPage( headcoord.currentPage ) //load first page
                     
             //get chart
-            ///asn.getPieChart(util.getCookie('f_dbId'))
+            ///headcoord.getPieChart(util.getCookie('f_dbId'))
 
         })	
         .catch((error) => {
@@ -309,10 +302,11 @@ const asn = {
                 console.log('==NO DATA FOR PIECHART==')
                 
             }else{
-                asn.piedata.push( parseInt( data.data[0].delivered_pct) )
-                asn.piedata.push( parseInt( data.data[0].undelivered_pct) )
-                asn.pieChart() //render piechart
-                asn.speaks("Loading Chart...")
+                headcoord.piedata.push( parseInt( data.data[0].delivered_pct) )
+                headcoord.piedata.push( parseInt( data.data[0].undelivered_pct) )
+                headcoord.pieChart() //render piechart
+                headcoord.speaks("Loading Chart...")
+                
             }
 
             return
@@ -320,7 +314,7 @@ const asn = {
         })  
         .catch((error) => {
             //zonked.notif('','p-notif',true)
-            //util.flog(`Error:, ${error}`,1000)
+            //util.Toast(`Error:, ${error}`,1000)
             console.error('Error:', error)
         })    
     },
@@ -348,7 +342,7 @@ const asn = {
             fill: {
               opacity: 1,
             },*/
-            series: asn.piedata ,
+            series: headcoord.piedata ,
             labels: ["Delivered %", "Undelivered %"],
             tooltip: {
               theme: 'dark'
@@ -386,8 +380,8 @@ const asn = {
     db: window.localStorage, //instantiate localstorage
 
     logout:()=>{
-        asn.db.removeItem('myCart')//remove transaction localdb
-        location.href = './' 
+        headcoord.db.removeItem('myCart')//remove transaction localdb
+        location.href = './'
                     
     },
 
@@ -395,7 +389,7 @@ const asn = {
     loadbarMTDChart: async()=>{
         console.log('loading... loadbarMTDchart()')
 
-        await fetch(`${myIp}/coor/mtdlocation/${util.getCookie('f_email')}`,{
+        await fetch(`${myIp}/headcoor/mtdlocation/${util.getCookie('f_email')}`,{
             cache: 'reload'
         })
         .then((res) => {  //promise... then 
@@ -404,16 +398,15 @@ const asn = {
         .then((xdata) => {
 
             console.log('mtd data==',  xdata)
-           
-            // // Replace null qty with 0
+            // Replace null qty with 0
             // xdata.forEach(item => {
             //     if (item.parcel_delivered === null) {
             //         item.parcel_delivered  = 0;
             //     }
             // });
             
-            // Sort the array in descending order (change to < for ascending)
-            //xdata.sort((a, b) => b.parcel_delivered - a.parcel_delivered);
+            // // Sort the array in descending order (change to < for ascending)
+            // xdata.sort((a, b) => b.parcel_delivered - a.parcel_delivered);
 
             //asc order sample
             //xdata.sort((a, b) => a.qty - b.qty);
@@ -519,22 +512,20 @@ const asn = {
 
     //===for top 5 chart
     loadbarChart: async( ctrans )=>{
-        console.log('loading loadbarchart()')
+        console.log('loading... loadbarchart()')
 
-        await fetch(`${myIp}/coor/topfivehub/${util.getCookie('f_email')}/${ctrans}`,{
+        await fetch(`${myIp}/headcoor/topfivehub/${util.getCookie('f_email')}/${ctrans}`,{
             cache: 'reload'
         })
         .then((res) => {  //promise... then 
             return res.json();
         })
-        .then((data) => {
+        .then((xdata) => {
 
-            const xdata = data
-
-            //console.log(`TOP   ${JSON.stringify(xdata)})`)
+            //console.log('merge',xdata.length)
 
             //const mergedData = ''dash.mergeFinalData(xdata.xdata, cTrans );
-            //const mergedData = asn.mergeFinalData(xdata.xdata, cTrans );
+            //const mergedData = headcoord.mergeFinalData(xdata.xdata, cTrans );
             
             //let colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF5'];
             let colors = ['#0277bd', '#00838f   ', '#00695c', '#2e7d32','#558b2f','#9e9d24','#ff8f00','#d84315'];
@@ -625,11 +616,9 @@ const asn = {
                 }//EIF    
             });
 
-            //console.log('category data chart ', category_data)
             options.series[0].data = series_data
-
             options.xaxis.categories = category_data
-            
+
             chart = new ApexCharts(document.querySelector((ctrans=="hub"?"#hub-chart":"#rider-chart")), options);
             chart.render();
      
@@ -720,7 +709,7 @@ const asn = {
     
             })//end foreach
 
-            asn.collapz()//invoke one time
+            headcoord.collapz()//invoke one time
             
             return true;
             
@@ -731,20 +720,29 @@ const asn = {
         })    
     },
     //==========END  GETMENU
-    ctrl:null,
+   
+    dbprofile:null,
 
     configObj:null,
     winModal:null,
 
-    showLoginModal:()=>{
-            asn.configObj = { keyboard: false }
-            asn.winModal = new bootstrap.Modal(document.getElementById('universalMessageModal'), asn.configObj);
+   showLoginModal: () => {
+        console.log('showLoginModal()');
 
-            // Show modal
-            asn.winModal.show();
+        const modalElement = document.getElementById('universalMessageModal');
+        
+        // Safety check: If the element doesn't exist, stop here
+        if (!modalElement) {
+            console.error("Error: #universalMessageModal was not found in the HTML of this page!");
+            return; 
+        }
+
+        headcoord.configObj = { keyboard: false };
+        headcoord.winModal = new bootstrap.Modal(modalElement, headcoord.configObj);
+        headcoord.winModal.show();
     },
 
-    //THIS FUNCTION IS AVAILABLE IF USER IS USING besi = betteredge.html new onesubmitMissingEntryBtn
+        //THIS FUNCTION IS AVAILABLE IF USER IS USING besi = betteredge.html new onesubmitMissingEntryBtn
     getTimeKeeping: async( )=>{
 
         console.log( 'hey getTimeKeeping() ', asn.userProfile.id, asn.userProfile.besi_id, asn.userProfile.region )
@@ -871,7 +869,7 @@ const asn = {
 
                 // Update the UI/Grid to show the new record
                 if (typeof asn.getTimeKeeping === 'function') {
-                    asn.getTimeKeeping();
+                   /// asn.getTimeKeeping();
                 }
             } else {
                 // Handle logical errors (like "Already logged in")
@@ -1163,52 +1161,24 @@ const asn = {
         
     },
 
-    //==,= main run
-    init :  () => {
+	//==,= main run
+	init :  () => {
+
+        headcoord.dbprofile = JSON.parse(localStorage.getItem('profile'));
+
+        console.log('===headcoord.init()=== loaded!')
+
+        headcoord.speaks = (txt) =>{
+            let speechsynth = new SpeechSynthesisUtterance();
+            speechsynth.text = txt
+            speechsynth.lang = "en-US"
+            speechSynthesis.speak( speechsynth )
+        };    
+
+        console.log('main.js SPEAK()')
+        headcoord.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
-        asn.dbprofile = JSON.parse(localStorage.getItem('profile'));
-
-        /* voice first*/
-
-        // define variable to store voices globally
-        let availableVoices = [];
-
-        let loadVoices = () => {
-            availableVoices = speechSynthesis.getVoices();
-            // console.log('Voices loaded:', availableVoices);
-        }
-
-        speechSynthesis.addEventListener('voiceschanged', loadVoices);
-
-        loadVoices()
-
-        asn.speaks= (txt) => {
-            console.log('Attempting to speak:', txt);
-            
-            // Cancel any ongoing speech
-            speechSynthesis.cancel();
-
-            let utter = new SpeechSynthesisUtterance(txt);
-            utter.lang = 'en-GB';
-
-            // Choose voice or default
-            const voice = availableVoices.find(v => v.lang === 'en-GB' && v.name.toLowerCase().includes('english male'));
-            
-             if (voice) {
-                console.log('voice is ',voice)
-                utter.voice = voice;
-            } else {
-                console.log('Preferred voice not found');
-            }
-            
-            speechSynthesis.speak(utter);
-        }
-
-        asn.speaks('Welcome to Better Edge Apps')
-
-        console.log('===asn.init()=== loaded!')
-        
-        if(util.getCookie('f_pic')!==""||util.getCookie('f_pic')== null){
+        if(util.getCookie('f_pic')!==""){
             document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
         }else{
             document.getElementById('img-profile').src=`/html/assets/images/profile/engr.jpg`
@@ -1222,8 +1192,7 @@ const asn = {
 
         //==HANDSHAKE FIRST WITH SOCKET.IO
         const userName = { token : authz[1] , mode: 1}//full name token
-
-        asn.socket = io.connect(`${myIp}`, {
+        headcoord.socket =  io.connect(`${myIp}`, {
             //withCredentials: true,
             transports: ['websocket', 'polling'], // Same as server
             upgrade: true, // Ensure WebSocket upgrade is attempted
@@ -1233,488 +1202,470 @@ const asn = {
             //   "osndp-header": "osndp"
             // }
         });//========================initiate socket handshake ================
-        asn.socket.on('connect', () => {
-            console.log('Connected to Socket.IO server using:', asn.socket.io.engine.transport.name); // Check the transport
+
+        headcoord.socket.on('connect', () => {
+            console.log('Connected to Socket.IO server using:', headcoord.socket.io.engine.transport.name); // Check the transport
         });
 
-        asn.socket.on('disconnect', () => {
+        headcoord.socket.on('disconnect', () => {
             console.log('Disconnected from Socket.IO server');
-        });
-
-        /*  FOR COORDS ONLY */
-        if(asn.dbprofile.grp_id==='08' || util.getCookie('grp_id')=== 4 ){
-
-            asn.getmenu(util.getCookie('grp_id')) 
-        
-            //===load mtd-chart
-            asn.loadbarMTDChart()
-
-            //==load grid month, rider month
-            asn.loadbarChart('hub')
-
-            //===load top5
-            setTimeout(() => {
-                asn.loadbarChart('rider');
-            }, 1000)
-        
-            console.log('===loadbarchart()===')
+        }); 
 
 
-        }else{  //************FOR SORTERS, TRANSPORTERS */
-            
-            asn.getmenu(asn.dbprofile.grp_id) 
+        console.log('===headcoord.init() praise God! Loading JTX group ?v=6 ===')
 
-            //turn off cards in html FOR NON-COORINATORS
-            document.getElementById('locgridcard').classList.add('d-none')
-            document.getElementById('locmtdchart').classList.add('d-none')
-            document.getElementById('xchart').classList.add('d-none')
-            
-        }//iif
-
-        console.log('===asn.init() praise God! Loading JTX group ?v=6 ===', )
-        
-    }//END init
+	}//END init
 
 } //======================= end admin obj==========//
 
 window.scrollTo(0,0);
-asn.init() //instantiate now
-window.asn =asn
+headcoord.init() //instantiate now
+window.headcoord = headcoord
 
 Ext.onReady(function(){
     console.log('ext on ready....')
     Ext.tip.QuickTipManager.init();
 
-    asn.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
+    headcoord.appExt = MyApp.app ; //get instance of Ext.application MyApp.app
     
-    if(asn.dbprofile.grp_id==='08' || util.getCookie('grp_id') === 4){
-        // Get the controller
-        asn.ctrlExt = asn.appExt.getController('coordController');
-        
-        asn.ctrlExt.listenviewReady()
-        
-        asn.ctrlExt.listencoordLocation('')
-        asn.ctrlExt.listencoordRider()
-    
-    }//eif
+    // Get the controller
+    headcoord.ctrlExt = headcoord.appExt.getController('coordController');
 
+    headcoord.ctrlExt.listenviewreadyArea()  //load Area
+    headcoord.ctrlExt.listencoordLocation()//loadLoc
+    headcoord.ctrlExt.listencoordRider()//rider to load calendar
+       
 })
 
-/******************** DOMCONTENT LOADED LISTENER  */
-document.addEventListener('DOMContentLoaded', () => {
-
-    console.log('====DOMContentLoaded for coordinator====')
-
-
-    timekeep.fetchtimekeep( asn.dbprofile ) //===fire! insert html fragment even before show-bs modal of timekeepmodal
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('===HEAD coordinator DOM LOADED complete==')
     
-    // ==================ready region for add employee
-    const coord =  JSON.parse(db.getItem('profile'))  //get profile
-    console.log('coords domcontenntloaded' , coord.region.toLowerCase())
+    headcoord.getmenu(util.getCookie('grp_id')) 
+
+    const timekeepModalEl = document.getElementById('timekeepModal');
+    timekeepModalEl.addEventListener('show.bs.modal', () => {
+        console.log('show timekeep', headcoord.dbprofile)
+        
+            timekeep.fetchtimekeep( headcoord.dbprofile) //===fire! insert html fragment even before show-bs modal of timekeepmodal
+
+    });
+    
+    //timekeep.fetchtimekeep( headcoord.dbprofile) //===fire! insert html fragment even before show-bs modal of timekeepmodal
+            
+    //===load mtd-chart
+    headcoord.loadbarMTDChart()
+
+    //==load grid month, rider month
+    headcoord.loadbarChart('hub')
+
+    //===load top5
+    setTimeout(() => {
+        headcoord.loadbarChart('rider');
+    }, 1000)
+
+    console.log('===loadbarchart()===')
+    
+    document.getElementById('h5title').innerHTML= util.strDate() + ' (Daily Performance)'
+     console.log('====DOMContentLoaded for head coordinator JUNE 15 2K26====')
     
     
-    const sel = document.getElementById('region');
-    const selectedValue = coord.region.toUpperCase();
-    sel.dispatchEvent(new Event('change', { bubbles: true })); ///++++++++ fire event listener
+        //timekeep.fetchtimekeep( asn.dbprofile ) //===fire! insert html fragment even before show-bs modal of timekeepmodal
+        
+        // ==================ready region for add employee
+        const coord =  JSON.parse(db.getItem('profile'))  //get profile
+        console.log('coords domcontenntloaded' , coord.region.toLowerCase())
+        
+        
+        const sel = document.getElementById('region');
+        const selectedValue = coord.region.toUpperCase();
+        sel.dispatchEvent(new Event('change', { bubbles: true })); ///++++++++ fire event listener
+    
+        // set selection (will select existing option if present)
+        sel.value = selectedValue;
+    
+        // disable all options that don't match, enable the matching one
+        for (const opt of sel.options) {
+            opt.disabled = opt.value !== selectedValue;
+        }
+    
+        // optionally ensure the selected option is actually focused/selected
+        if (sel.value !== selectedValue) {
+            // fallback: create and select the option if it didn't exist
+            const newOpt = new Option(selectedValue, selectedValue, true, true);
+            sel.add(newOpt);
+            for (const opt of sel.options) opt.disabled = opt.value !== selectedValue;
+        }
+       //============= END REGION SETTING ============//
+    
+        //=====FOR ADDING NEW EMPLOYEE
+        util.modalListeners('newempModal')
+    
+        //===== DATA PRIVACY / SIGNATURE MODAL
+        util.modalListeners('dataPrivacySignatureModal')
+    
+        // Get a reference to your modal's HTML element
+        //THIS IS FOR THE TIMEIN/OUT MODAL, NOT THE MISSING ENTRY MODAL
+        const universalMessageModalElement = document.getElementById('universalMessageModal');
+    
+        universalMessageModalElement.addEventListener('shown.bs.modal', (event) => {
+            console.log('show dialog');
+        });
+    
+        document.getElementById('h5title').innerHTML = util.strDate() + ' (Daily Performance)';
+        document.getElementById('h5tophubtitle').innerHTML = util.strDate() + ' (Daily Location Performance)';
+    
+        ////asn.getTimeKeeping(); // *********** RETRIEVE TIMEKEEP RECORD *********
+    
+        // --- Submit Missing Entry Button Logic (REFACTORED) ---
+        const submitMissingEntryBtn = document.getElementById('submitMissingEntryBtn');
+        
+        if (submitMissingEntryBtn) {
+            submitMissingEntryBtn.addEventListener('click', async function() {
+                const userId = asn.userProfile.id; // Assuming asn.userProfile.id is available
+                const besiId = document.getElementById('modalBesiId').value;
+                const entryDate = document.getElementById('modalEntryDate').value; // 'MM-DD-YY' format from the modal
+                let loginTimeInput = document.getElementById('modalLoginTime').value; // 'HH:MM'
+                let logoutTimeInput = document.getElementById('modalLogoutTime').value; // 'HH:MM'
+                const notes = document.getElementById('modalNotesSelect').value; // Get value from select
+    
+                // --- CRITICAL FRONTEND VALIDATION & NULL HANDLING ---
+    
+                // 1. Convert empty input strings to null for consistency, and trim whitespace
+                const loginTime = loginTimeInput.trim() === '' ? null : loginTimeInput.trim();
+                const logoutTime = logoutTimeInput.trim() === '' ? null : logoutTimeInput.trim();
+    
+                // 2. Basic validation: At least one time must be entered
+                if (!loginTime && !logoutTime) {
+                    util.Toasted("Please enter at least a Login Time or Logout Time.", 3000, true); // Assuming util.Toasted can show errors
+                    return;
+                }
+    
+                // 3. Validation: Select a reason
+                if (!notes) {
+                    util.Toasted("Please select a reason for the missing entry.", 3000, true);
+                    return;
+                }
+    
+                // 4. Validation: Cannot have a Logout without a Login
+                if (!loginTime && logoutTime) {
+                    util.Toasted("Cannot record a Logout Time without a Login Time.", 3000, true);
+                    return;
+                }
+    
+                // 5. Validation: Login must be before Logout (if both are provided)
+                let submitLoginTimeFull = null;
+                let submitLogoutTimeFull = null;
+    
+                if (loginTime && logoutTime) {
+                    // Helper to convert MM-DD-YY to YYYY-MM-DD
+                    const convertMMDDYYtoYYYYMMDD = (mmddyy) => {
+                        if (!mmddyy) return null;
+                        const parts = mmddyy.split('-'); // ["MM", "DD", "YY"]
+                        const year = (parseInt(parts[2], 10) < 50 ? '20' : '19') + parts[2]; // Assumes 2-digit year
+                        return `${year}-${parts[0]}-${parts[1]}`;
+                    };
+                    const entryDateYYYYMMDD = convertMMDDYYtoYYYYMMDD(entryDate);
+    
+                    // Construct full Date objects for comparison
+                    const loginDateTime = new Date(`${entryDateYYYYMMDD}T${loginTime}:00`); // Using T for ISO format
+                    const logoutDateTime = new Date(`${entryDateYYYYMMDD}T${logoutTime}:00`); // Using T for ISO format
+    
+                    // Check for invalid date parsing (e.g., malformed time input)
+                    if (isNaN(loginDateTime.getTime()) || isNaN(logoutDateTime.getTime())) {
+                        util.Toasted("Invalid time format entered. Please use HH:MM.", 3000, true);
+                        return;
+                    }
+    
+                    if (logoutDateTime <= loginDateTime) {
+                        util.Toasted("Logout Time must be after Login Time.", 3000, true);
+                        return;
+                    }
+                    
+                    // If validation passes, set the full datetime strings for submission
+                    submitLoginTimeFull = `${entryDateYYYYMMDD} ${loginTime}:00`;
+                    submitLogoutTimeFull = `${entryDateYYYYMMDD} ${logoutTime}:00`;
+    
+                } else {
+                    // If only login is provided (and logout is null, due to previous validation)
+                    const convertMMDDYYtoYYYYMMDD = (mmddyy) => { /* ... (same helper as above) ... */ }; // Redefine or move to global scope
+                    const entryDateYYYYMMDD = convertMMDDYYtoYYYYMMDD(entryDate);
+                    submitLoginTimeFull = loginTime ? `${entryDateYYYYMMDD} ${loginTime}:00` : null;
+                    submitLogoutTimeFull = logoutTime ? `${entryDateYYYYMMDD} ${logoutTime}:00` : null;
+                }
+                // --- END CRITICAL FRONTEND VALIDATION & NULL HANDLING ---
+    
+                // The object to send to the backend
+                const payload = {
+                    user_id: userId, // Assuming this is the current user making the correction
+                    besi_id: besiId, // The besi_id of the employee whose entry is being corrected
+                    entry_date: convertMMDDYYtoYYYYMMDD(entryDate), // Send as YYYY-MM-DD
+                    login_time: submitLoginTimeFull, // Already YYYY-MM-DD HH:MM:SS or null
+                    logout_time: submitLogoutTimeFull, // Already YYYY-MM-DD HH:MM:SS or null
+                    reason: notes // The selected reason
+                };
+    
+                console.log("Submitting missing entry with payload:", payload);
+    
+                try {
+                    const response = await fetch(`${myIp}/recordMissingTimeEntry`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payload),
+                    });
+    
+                    const data = await response.json();
+    
+                    if (data.success) {
+                        
+                        //// asn.getTimeKeeping(); // Refresh grid
+    
+                        util.Toasted("Missing entry recorded successfully!", 3000, false);
+                        var missingEntryModal = bootstrap.Modal.getInstance(document.getElementById('missingEntryModal'));
+                        if (missingEntryModal) missingEntryModal.hide();
+    
+                    } else {
+                        util.Toasted("Error recording entry: " + (data.message || "Unknown error"), 3000, true);
+                    }
+                } catch (error) {
+                    console.error("Error submitting missing entry:", error);
+                    util.Toasted("An error occurred while submitting. Please try again.", 3000, true);
+                }
+            });
+        }
+                                
+        // Get references to all relevant DOM elements
+        // FOR ADDING  NEW RECORD
+        const addy1Input = document.getElementById('addy1');
+        const addy2Input = document.getElementById('addy2');
+        const barangayInput = document.getElementById('bgy');
+        const cityInput = document.getElementById('city');
+        const fullAddressTextarea = document.getElementById('address');
+    
+        // Function to update the full address textarea
+        function updateFullAddress() {
+            const addressParts = [];
+    
+            // Add parts only if they have a non-empty value after trimming whitespace
+            if (addy1Input.value.trim()) {
+                addressParts.push(addy1Input.value.trim());
+            }
+            if (addy2Input.value.trim()) {
+                addressParts.push(addy2Input.value.trim());
+            }
+            if (barangayInput.value.trim()) {
+                addressParts.push(` Bgy. ${barangayInput.value.trim()}`);
+            }
+            if (cityInput.value.trim()) {
+                addressParts.push(cityInput.value.trim());
+            }
+    
+            // Join the parts with a newline character for multi-line display
+            fullAddressTextarea.value = addressParts.join(', ').toUpperCase() //addressParts.join('\n');
+        
+            //hris.address = fullAddressTextarea.value
+        
+        }
+    
+        // Attach the 'input' event listener to each address field
+        // The 'input' event fires whenever the value of an <input> or <textarea> element has been changed
+        addy1Input.addEventListener('input', updateFullAddress);
+        addy2Input.addEventListener('input', updateFullAddress);
+        barangayInput.addEventListener('input', updateFullAddress);
+        cityInput.addEventListener('input', updateFullAddress);
+    
+        // Optional: Call the function once on page load
+        // This is useful if the form fields might be pre-filled when the page loads (e.g., for editing an existing record)
+        updateFullAddress();
+    
+            // Hard target by IDs
+    const elements = {
+        lastName: document.getElementById('lastName'),
+        firstName: document.getElementById('firstName'),
+        middleName: document.getElementById('middleName'),
+        nameSuffix: document.getElementById('nameSuffix'),
+        fullName: document.getElementById('fullName')
+    };
 
-    // set selection (will select existing option if present)
-    sel.value = selectedValue;
+    // Check if anything is missing
+    console.log("2. Element Scan Results:", elements);
 
-    // disable all options that don't match, enable the matching one
-    for (const opt of sel.options) {
-        opt.disabled = opt.value !== selectedValue;
-    }
-
-    // optionally ensure the selected option is actually focused/selected
-    if (sel.value !== selectedValue) {
-        // fallback: create and select the option if it didn't exist
-        const newOpt = new Option(selectedValue, selectedValue, true, true);
-        sel.add(newOpt);
-        for (const opt of sel.options) opt.disabled = opt.value !== selectedValue;
-    }
-   //============= END REGION SETTING ============//
-
-    //=====FOR ADDING NEW EMPLOYEE
-    util.modalListeners('newempModal')
-
-    //===== DATA PRIVACY / SIGNATURE MODAL
-    util.modalListeners('dataPrivacySignatureModal')
-
-    // Get a reference to your modal's HTML element
-    //THIS IS FOR THE TIMEIN/OUT MODAL, NOT THE MISSING ENTRY MODAL
-    const universalMessageModalElement = document.getElementById('universalMessageModal');
-
-    universalMessageModalElement.addEventListener('shown.bs.modal', (event) => {
-        console.log('show dialog');
+    // Dynamic global listener to bypass missing element errors
+    document.addEventListener('input', (e) => {
+        console.log(`3. Input detected on element with ID: "${e.target.id}"`);
+        
+        // If it matches any of our fields, run a forced fallback update
+        if (['lastName', 'firstName', 'middleName', 'nameSuffix'].includes(e.target.id)) {
+            forceUpdate();
+        }
     });
 
-    document.getElementById('h5title').innerHTML = util.strDate() + ' (Daily Performance)';
-    document.getElementById('h5tophubtitle').innerHTML = util.strDate() + ' (Daily Location Performance)';
+    document.addEventListener('change', (e) => {
+        if (e.target.id === 'nameSuffix') forceUpdate();
+    });
 
-    asn.getTimeKeeping(); // *********** RETRIEVE TIMEKEEP RECORD *********
+    function forceUpdate() {
+        const ln = document.getElementById('lastName')?.value?.trim() || '';
+        const fn = document.getElementById('firstName')?.value?.trim() || '';
+        const mn = document.getElementById('middleName')?.value?.trim() || '';
+        const sfx = document.getElementById('nameSuffix')?.value?.trim() || '';
+        
+        let out = ln;
+        if (fn) out += (out ? ', ' : '') + fn;
+        if (mn) out += (out ? ' ' : '') + mn.charAt(0).toUpperCase() + '.';
+        if (sfx) out += (out ? ', ' : '') + sfx;
 
-    // --- Submit Missing Entry Button Logic (REFACTORED) ---
-    const submitMissingEntryBtn = document.getElementById('submitMissingEntryBtn');
+        const target = document.getElementById('fullName');
+        if (target) {
+            target.value = out;
+            console.log(`4. Successfully updated fullName to: "${out}"`);
+        } else {
+            console.error("4. ERROR: Could not find any element with id='fullName' to output text to!");
+        }
+    }
     
-    if (submitMissingEntryBtn) {
-        submitMissingEntryBtn.addEventListener('click', async function() {
-            const userId = asn.userProfile.id; // Assuming asn.userProfile.id is available
-            const besiId = document.getElementById('modalBesiId').value;
-            const entryDate = document.getElementById('modalEntryDate').value; // 'MM-DD-YY' format from the modal
-            let loginTimeInput = document.getElementById('modalLoginTime').value; // 'HH:MM'
-            let logoutTimeInput = document.getElementById('modalLogoutTime').value; // 'HH:MM'
-            const notes = document.getElementById('modalNotesSelect').value; // Get value from select
-
-            // --- CRITICAL FRONTEND VALIDATION & NULL HANDLING ---
-
-            // 1. Convert empty input strings to null for consistency, and trim whitespace
-            const loginTime = loginTimeInput.trim() === '' ? null : loginTimeInput.trim();
-            const logoutTime = logoutTimeInput.trim() === '' ? null : logoutTimeInput.trim();
-
-            // 2. Basic validation: At least one time must be entered
-            if (!loginTime && !logoutTime) {
-                util.Toasted("Please enter at least a Login Time or Logout Time.", 3000, true); // Assuming util.Toasted can show errors
-                return;
-            }
-
-            // 3. Validation: Select a reason
-            if (!notes) {
-                util.Toasted("Please select a reason for the missing entry.", 3000, true);
-                return;
-            }
-
-            // 4. Validation: Cannot have a Logout without a Login
-            if (!loginTime && logoutTime) {
-                util.Toasted("Cannot record a Logout Time without a Login Time.", 3000, true);
-                return;
-            }
-
-            // 5. Validation: Login must be before Logout (if both are provided)
-            let submitLoginTimeFull = null;
-            let submitLogoutTimeFull = null;
-
-            if (loginTime && logoutTime) {
-                // Helper to convert MM-DD-YY to YYYY-MM-DD
-                const convertMMDDYYtoYYYYMMDD = (mmddyy) => {
-                    if (!mmddyy) return null;
-                    const parts = mmddyy.split('-'); // ["MM", "DD", "YY"]
-                    const year = (parseInt(parts[2], 10) < 50 ? '20' : '19') + parts[2]; // Assumes 2-digit year
-                    return `${year}-${parts[0]}-${parts[1]}`;
-                };
-                const entryDateYYYYMMDD = convertMMDDYYtoYYYYMMDD(entryDate);
-
-                // Construct full Date objects for comparison
-                const loginDateTime = new Date(`${entryDateYYYYMMDD}T${loginTime}:00`); // Using T for ISO format
-                const logoutDateTime = new Date(`${entryDateYYYYMMDD}T${logoutTime}:00`); // Using T for ISO format
-
-                // Check for invalid date parsing (e.g., malformed time input)
-                if (isNaN(loginDateTime.getTime()) || isNaN(logoutDateTime.getTime())) {
-                    util.Toasted("Invalid time format entered. Please use HH:MM.", 3000, true);
-                    return;
-                }
-
-                if (logoutDateTime <= loginDateTime) {
-                    util.Toasted("Logout Time must be after Login Time.", 3000, true);
-                    return;
-                }
-                
-                // If validation passes, set the full datetime strings for submission
-                submitLoginTimeFull = `${entryDateYYYYMMDD} ${loginTime}:00`;
-                submitLogoutTimeFull = `${entryDateYYYYMMDD} ${logoutTime}:00`;
-
+        // Optional: Call the function once on page load
+        //updateFullName();
+    
+        //===============FOR DEACTIVATION ===================//
+        const btn = document.getElementById("btnConfirmDeactivate");
+        const errorDiv = document.getElementById("deactError");
+    
+        function setButtonLoading(isLoading, labelWhenDone) {
+            if (isLoading) {
+                btn.disabled = true;
+                btn.innerHTML = `
+                <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                Saving...
+                `;
             } else {
-                // If only login is provided (and logout is null, due to previous validation)
-                const convertMMDDYYtoYYYYMMDD = (mmddyy) => { /* ... (same helper as above) ... */ }; // Redefine or move to global scope
-                const entryDateYYYYMMDD = convertMMDDYYtoYYYYMMDD(entryDate);
-                submitLoginTimeFull = loginTime ? `${entryDateYYYYMMDD} ${loginTime}:00` : null;
-                submitLogoutTimeFull = logoutTime ? `${entryDateYYYYMMDD} ${logoutTime}:00` : null;
+                btn.disabled = false;
+                btn.textContent = labelWhenDone;
             }
-            // --- END CRITICAL FRONTEND VALIDATION & NULL HANDLING ---
-
-            // The object to send to the backend
-            const payload = {
-                user_id: userId, // Assuming this is the current user making the correction
-                besi_id: besiId, // The besi_id of the employee whose entry is being corrected
-                entry_date: convertMMDDYYtoYYYYMMDD(entryDate), // Send as YYYY-MM-DD
-                login_time: submitLoginTimeFull, // Already YYYY-MM-DD HH:MM:SS or null
-                logout_time: submitLogoutTimeFull, // Already YYYY-MM-DD HH:MM:SS or null
-                reason: notes // The selected reason
-            };
-
-            console.log("Submitting missing entry with payload:", payload);
-
+        }
+    
+        btn.addEventListener("click", async () => {
+            const empid  = document.getElementById("deactEmpId").value;
+            const email = document.getElementById("deactEmail").value;
+            const region = document.getElementById("deactCode").value;
+            const reason = document.getElementById("deactReason").value.trim();
+            const action = btn.dataset.action; // "deactivate" or "reactivate"
+    
+            errorDiv.classList.add("d-none");
+            errorDiv.textContent = "";
+    
+            // Require reason only for deactivate
+            if (action === "deactivate" && !reason) {
+                errorDiv.textContent = "Reason is required for deactivation.";
+                errorDiv.classList.remove("d-none");
+                return;
+            }
+    
+            const originalLabel = action === "deactivate" ? "Deactivate" : "Reactivate";
+            setButtonLoading(true, originalLabel);
+    
             try {
-                const response = await fetch(`${myIp}/recordMissingTimeEntry`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(payload),
+                const res = await fetch(`${myIp}/employee/status`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ empid, region, reason, action }),
                 });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    
-                    asn.getTimeKeeping(); // Refresh grid
-
-                    util.Toasted("Missing entry recorded successfully!", 3000, false);
-                    var missingEntryModal = bootstrap.Modal.getInstance(document.getElementById('missingEntryModal'));
-                    if (missingEntryModal) missingEntryModal.hide();
-
-                } else {
-                    util.Toasted("Error recording entry: " + (data.message || "Unknown error"), 3000, true);
+    
+                if (!res.ok) {
+                const text = await res.text();
+                throw new Error(text || "Request failed");
                 }
-            } catch (error) {
-                console.error("Error submitting missing entry:", error);
-                util.Toasted("An error occurred while submitting. Please try again.", 3000, true);
+    
+                setButtonLoading(false, originalLabel);
+    
+                // close modal
+                const modalEl = document.getElementById("deactivateModal");
+                const modal = bootstrap.Modal.getInstance(modalEl);
+                modal.hide();
+    
+                document.getElementById("search-btn").click();
+                
+                // refresh table
+                table.replaceData();
+            } catch (err) {
+                setButtonLoading(false, originalLabel);
+                errorDiv.textContent = err.message || "Error updating status";
+                errorDiv.classList.remove("d-none");
             }
         });
-    }
-                            
-    // Get references to all relevant DOM elements
-    // FOR ADDING  NEW RECORD
-    const addy1Input = document.getElementById('addy1');
-    const addy2Input = document.getElementById('addy2');
-    const barangayInput = document.getElementById('bgy');
-    const cityInput = document.getElementById('city');
-    const fullAddressTextarea = document.getElementById('address');
-
-    // Function to update the full address textarea
-    function updateFullAddress() {
-        const addressParts = [];
-
-        // Add parts only if they have a non-empty value after trimming whitespace
-        if (addy1Input.value.trim()) {
-            addressParts.push(addy1Input.value.trim());
-        }
-        if (addy2Input.value.trim()) {
-            addressParts.push(addy2Input.value.trim());
-        }
-        if (barangayInput.value.trim()) {
-            addressParts.push(` Bgy. ${barangayInput.value.trim()}`);
-        }
-        if (cityInput.value.trim()) {
-            addressParts.push(cityInput.value.trim());
-        }
-
-        // Join the parts with a newline character for multi-line display
-        fullAddressTextarea.value = addressParts.join(', ').toUpperCase() //addressParts.join('\n');
     
-        //hris.address = fullAddressTextarea.value
+        //=======================FOR EMAIL ON BLUR CHECKING
+        // const inputfld = document.getElementById('email');
+        // const btnsave = document.getElementById('newemp-next-btn');
+        
+        // inputfld.addEventListener('blur', function() {
+        //     console.log("Checking unique value for: " + this.value);
+        //     const email = this.value;
     
-    }
-
-    // Attach the 'input' event listener to each address field
-    // The 'input' event fires whenever the value of an <input> or <textarea> element has been changed
-    addy1Input.addEventListener('input', updateFullAddress);
-    addy2Input.addEventListener('input', updateFullAddress);
-    barangayInput.addEventListener('input', updateFullAddress);
-    cityInput.addEventListener('input', updateFullAddress);
-
-    // Optional: Call the function once on page load
-    // This is useful if the form fields might be pre-filled when the page loads (e.g., for editing an existing record)
-    updateFullAddress();
-
-    // Get references to all relevant DOM elements
-    const lastNameInput = document.getElementById('lastName');
-    const firstNameInput = document.getElementById('firstName');
-    const middleNameInput = document.getElementById('middleName');
-    const nameSuffixSelect = document.getElementById('nameSuffix');
-    const fullNameTextarea = document.getElementById('fullName');
-
-    // Function to update the full name textarea
-    function updateFullName() {
-        // Get trimmed values from inputs and select
-        const lastName = lastNameInput.value.trim();
-        const firstName = firstNameInput.value.trim();
-        const middleName = middleNameInput.value.trim();
-        const suffix = nameSuffixSelect.value.trim();
-
-        let formattedName = '';
-
-        // 1. Start with Last Name
-        if (lastName) {
-            formattedName += lastName;
-        }
-
-        // 2. Add First Name
-        if (firstName) {
-            if (formattedName) { // Only add comma if last name exists
-                formattedName += ', ';
-            }
-            formattedName += firstName;
-        }
-
-        // 3. Add Middle Initial (with a space before it)
-        if (middleName) {
-            const middleInitial = middleName.charAt(0).toUpperCase() + '.';
-            if (formattedName) { // Only add space if some name part already exists
-                formattedName += ' ';
-            }
-            formattedName += middleInitial;
-        }
-
-        // 4. Add Suffix (with a comma and space before it)
-        if (suffix) {
-            if (formattedName) { // Only add comma and space if some name part already exists
-                formattedName += ', '; // <-- CHANGED THIS LINE
-            }
-            formattedName += suffix;
-        }
-
-        // Update the textarea
-        fullNameTextarea.value = formattedName;
-        //hris.fullname = firstName.toUpperCase() + ' ' + middleName.toUpperCase() + ' ' + lastName.toUpperCase() + ' ' + suffix.toUpperCase() 
-    }
-
-    // Attach 'input' event listeners to text fields for real-time updates
-    lastNameInput.addEventListener('input', updateFullName);
-    firstNameInput.addEventListener('input', updateFullName);
-    middleNameInput.addEventListener('input', updateFullName);
-
-    // Attach 'change' event listener to the select dropdown
-    nameSuffixSelect.addEventListener('change', updateFullName);
-
-    // Optional: Call the function once on page load
-    updateFullName();
-
-    //===============FOR DEACTIVATION ===================//
-    const btn = document.getElementById("btnConfirmDeactivate");
-    const errorDiv = document.getElementById("deactError");
-
-    function setButtonLoading(isLoading, labelWhenDone) {
-        if (isLoading) {
-            btn.disabled = true;
-            btn.innerHTML = `
-            <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
-            Saving...
-            `;
-        } else {
-            btn.disabled = false;
-            btn.textContent = labelWhenDone;
-        }
-    }
-
-    btn.addEventListener("click", async () => {
-        const empid  = document.getElementById("deactEmpId").value;
-        const email = document.getElementById("deactEmail").value;
-        const region = document.getElementById("deactCode").value;
-        const reason = document.getElementById("deactReason").value.trim();
-        const action = btn.dataset.action; // "deactivate" or "reactivate"
-
-        errorDiv.classList.add("d-none");
-        errorDiv.textContent = "";
-
-        // Require reason only for deactivate
-        if (action === "deactivate" && !reason) {
-            errorDiv.textContent = "Reason is required for deactivation.";
-            errorDiv.classList.remove("d-none");
-            return;
-        }
-
-        const originalLabel = action === "deactivate" ? "Deactivate" : "Reactivate";
-        setButtonLoading(true, originalLabel);
-
-        try {
-            const res = await fetch(`${myIp}/employee/status`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ empid, region, reason, action }),
-            });
-
-            if (!res.ok) {
-            const text = await res.text();
-            throw new Error(text || "Request failed");
-            }
-
-            setButtonLoading(false, originalLabel);
-
-            // close modal
-            const modalEl = document.getElementById("deactivateModal");
-            const modal = bootstrap.Modal.getInstance(modalEl);
-            modal.hide();
-
-            document.getElementById("search-btn").click();
-            
-            // refresh table
-            table.replaceData();
-        } catch (err) {
-            setButtonLoading(false, originalLabel);
-            errorDiv.textContent = err.message || "Error updating status";
-            errorDiv.classList.remove("d-none");
-        }
-    });
-
-    //=======================FOR EMAIL ON BLUR CHECKING
-    // const inputfld = document.getElementById('email');
-    // const btnsave = document.getElementById('newemp-next-btn');
+        //     const region = document.getElementById('region').value
     
-    // inputfld.addEventListener('blur', function() {
-    //     console.log("Checking unique value for: " + this.value);
-    //     const email = this.value;
-
-    //     const region = document.getElementById('region').value
-
-    //     //off button
-    //     document.getElementById('i-next').disabled = true
-    //     //util.toggleButtonLoading('i-next', 'CHECKING EMAIL', true)
-
-    //     if (!email) return; // Don't check if empty
-
-    //         // 1. Start the Fetch call
-    //         const url = `${myIp}/checkinputemail/${encodeURIComponent(email)}/${encodeURIComponent(region.toLowerCase())}` 
-    //         console.log('endpoint ', url)
-    //         fetch(url)
-    //         .then(response => {
-    //             if (!response.ok) throw new Error('Network error');
-    //             return response.json(); // 2. Parse JSON response
-    //         })
-    //         .then(data => {
-    //             // 3. Handle the logic back from server
-    //             if (data.exists) {
-    //                 console.log("Error: Email already exists in besi_employee_nelu");
-    //                 //emailInput.style.borderColor = "red";
-                    
-    //                 this.classList.add('is-invalid')
-
-    //                 alert("This email is already registered!");
-    //                 this.value = ''
-
-    //                 btnsave.disabled = true;
-    //                 return;
+        //     //off button
+        //     document.getElementById('i-next').disabled = true
+        //     //util.toggleButtonLoading('i-next', 'CHECKING EMAIL', true)
     
-    //                 //util.toggleButtonLoading('i-next', null,false)
-
-    //             } else {
-    //                 console.log("Email is unique!");
-                    
-    //                 this.classList.remove('is-invalid')
-
-    //                 //emailInput.style.borderColor = "green";
-    //                 btnsave.disabled = false;
+        //     if (!email) return; // Don't check if empty
     
-    //                 //util.toggleButtonLoading('i-next', null,false)
-    //             }
-    //         })
-    //         .catch(error => {
-    //             // 4. Catch any errors (server down, etc.)
-    //             console.error('Fetch error:', error);
-    //         });
-    // });
+        //         // 1. Start the Fetch call
+        //         const url = `${myIp}/checkinputemail/${encodeURIComponent(email)}/${encodeURIComponent(region.toLowerCase())}` 
+        //         console.log('endpoint ', url)
+        //         fetch(url)
+        //         .then(response => {
+        //             if (!response.ok) throw new Error('Network error');
+        //             return response.json(); // 2. Parse JSON response
+        //         })
+        //         .then(data => {
+        //             // 3. Handle the logic back from server
+        //             if (data.exists) {
+        //                 console.log("Error: Email already exists in besi_employee_nelu");
+        //                 //emailInput.style.borderColor = "red";
+                        
+        //                 this.classList.add('is-invalid')
+    
+        //                 alert("This email is already registered!");
+        //                 this.value = ''
+    
+        //                 btnsave.disabled = true;
+        //                 return;
+        
+        //                 //util.toggleButtonLoading('i-next', null,false)
+    
+        //             } else {
+        //                 console.log("Email is unique!");
+                        
+        //                 this.classList.remove('is-invalid')
+    
+        //                 //emailInput.style.borderColor = "green";
+        //                 btnsave.disabled = false;
+        
+        //                 //util.toggleButtonLoading('i-next', null,false)
+        //             }
+        //         })
+        //         .catch(error => {
+        //             // 4. Catch any errors (server down, etc.)
+        //             console.error('Fetch error:', error);
+        //         });
+        // });
+    
+        // Also ensure canvas is correctly sized when modal is shown
+        const dataPrivacyModalElement = document.getElementById('dataPrivacySignatureModal');
+    
+        //when data privacy is shown, enable exit warning to prevent accidental navigation away while signing
+        dataPrivacyModalElement.addEventListener('shown.bs.modal', () => { 
+            asn.enableExitWarning();
+        });
+    
+        // When data privacy is hidden/closed, disable the warning
+        dataPrivacyModalElement.addEventListener('hidden.bs.modal', () => { 
+            asn.disableExitWarning();
+        });
+    
+})
 
-    // Also ensure canvas is correctly sized when modal is shown
-    const dataPrivacyModalElement = document.getElementById('dataPrivacySignatureModal');
 
-    //when data privacy is shown, enable exit warning to prevent accidental navigation away while signing
-    dataPrivacyModalElement.addEventListener('shown.bs.modal', () => { 
-        asn.enableExitWarning();
-    });
-
-    // When data privacy is hidden/closed, disable the warning
-    dataPrivacyModalElement.addEventListener('hidden.bs.modal', () => { 
-        asn.disableExitWarning();
-    });
-
-});
-
+  

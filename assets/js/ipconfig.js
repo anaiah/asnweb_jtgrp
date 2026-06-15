@@ -1,4 +1,3 @@
 //const myIp = "http://192.168.1.48:10000" 
-//const myIp  = "https://esndp-gis-jku4q.ondigitalocean.app"
-//const myIp  = "https://asianowapp-jtx-lqum6.ondigitalocean.app"
+//const myIp = "http://10.143.216.180:10000" 
 const myIp= "https://asn-jtgrp-api.onrender.com"
