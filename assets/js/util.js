@@ -1917,6 +1917,7 @@ const util = {
                     break
 
                     case 8://hrmgr
+                    case 30:// finance head miss jenelle 
                     case 88://test hr
                         location.href ='../jtx/hris '    
                     break

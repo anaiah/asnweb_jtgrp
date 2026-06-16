@@ -46,11 +46,13 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 const data = cell.getData();
                 let mname = ( data.middle_name ? data.middle_name.toUpperCase() : "N/A")
                     
-                let xdisabled = ""; // default to disabled   
+                let xdisabled = "", findisabled = ""; // default to disabled   
 
                 switch(profile.grp_id){
                     case 1: //admin
                     case 88: //test hr
+                    case 30:
+                    //case 30: //finance head miss jenelle
                          xdisabled = "disabled"; // enable if grp_id is 1 or 88
                     break;
 
