@@ -1919,13 +1919,16 @@ const util = {
                     case 8://hrmgr
                     case 30:// finance head miss jenelle 
                     case 88://test hr
+                    case 9://finance michelle maralit team
                         location.href ='../jtx/hris '    
                     break
 
+                    /*
+                    iparehas ang finance s hris
                     case 9://finance
                         location.href ='../jtx/fin '    
                     break
-
+                    */
 
                 }//===== endswitch
                         

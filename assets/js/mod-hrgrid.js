@@ -342,11 +342,25 @@ export function initTimekeepGrid() {
 
                     const besiId = rowData.besi_id; // Assuming besi_id is unique per row
 
+                    const profile = JSON.parse(localStorage.getItem('profile'))  //get profileowner =  JSON.parse(db.getItem('profile'))  //get profile
+                
+                    switch(profile.grp_id){
+                        //case 8://corp hr
+                        case 9://finance
+                        case 8://hr
+                            global_disabled = "";
+                        break;
+
+                        default:
+                            global_disabled = "disabled";
+                    
+                    }
+
                     return `<b>${rowData.full_name}</b><br>
                             ${rowData.emp_status}<br>
                             ${rowData.email}<br>
                             ${rowData.besi_id}<br>
-                            <button class='btn-primary btn-sm btn view-btn' data-idx='${rowIdx}'>View Timekeeping Details</button>
+                            <button  ${global_disabled} class='btn-primary btn-sm btn view-btn' data-idx='${rowIdx}'>View Timekeeping Details</button>
                             <span style="background: #f1f5f9; color: #64748b; padding: 4px 10px; border-radius: 12px; font-size: 0.85em; font-weight: bold; border: 1px solid #e2e8f0;">
                             ${rowData.timekeep_approved == 1 ? ' ✔ Approved' : ' ● Pending'}
                             </span> `;
@@ -594,7 +608,7 @@ export function initTimekeepDetailGrid() {
                 formatter:"html",
             },
             {
-                title: "FOR APPROVAL",
+                title: "APPROVED",
                 field: "for_approval", 
                 width:150,
                 resizable:false,

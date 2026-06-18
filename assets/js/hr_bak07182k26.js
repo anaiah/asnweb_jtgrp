@@ -1299,68 +1299,49 @@
                     document.getElementById("filter_position").addEventListener("change", function () {
                         console.log(' position changed ', this.value)
 
-                        //if payroll is logged show dat_from and date to, else hide
+                        const isCoordinator = this.value === "08" ;// IF CHOICE IS COORDINATOR
 
-                    
-                            const isCoordinator = this.value === "08" ;// IF CHOICE IS COORDINATOR
+                        document.getElementById("filter_date_from").disabled = !isCoordinator;
+                        document.getElementById("filter_date_to").disabled   = !isCoordinator;
 
-                            console.log('accessing now is ',profile.grp_id)
+                        //document.getElementById("applyFilterBtn").disabled   = !isCoordinator;
 
-                            const actionSelect  = document.getElementById("actionSelect");
-                            const optTimekeep   = document.getElementById("optTimekeeping");
+                        const actionSelect  = document.getElementById("actionSelect");
+                        const optTimekeep   = document.getElementById("optTimekeeping");
 
-                            //if finance  poeple accessing, bring date_rom/to
-                            if(profile.grp_id==9){
-                                document.getElementById("filter_date_from").disabled = false;
-                                document.getElementById("filter_date_to").disabled   = false;
-                                
-                                // enable/disable option
-                                optTimekeep.disabled = false;
+                        // enable/disable option
+                        optTimekeep.disabled = !isCoordinator;
 
-                            }else{
-                                document.getElementById("filter_date_from").disabled = !isCoordinator;
-                                document.getElementById("filter_date_to").disabled   = !isCoordinator;
-                                
-                                // enable/disable option
-                                optTimekeep.disabled = !isCoordinator;
-
-                            }
-                            
-                            //document.getElementById("applyFilterBtn").disabled   = !isCoordinator;
-
-                           
-                            // if currently selected and now invalid, reset select
-                            if (!isCoordinator && actionSelect.value === "timekeeping") {
-                                actionSelect.value = "";
-                            }
-                            
-                            if(!isCoordinator){
-
-                                //bring backdisplay
-                                document.getElementById('search-result-grid').classList.add('d-none');
-                                document.getElementById('timekeepdisplay').classList.add('d-none');
-
-                                // Data is empty, perform a full reset
-                                timekeepGrid.clearFilter();  // Clear any active filters
-                                timekeepGrid.clearSort();    // Clear any active sorting
-                            
-                            // --- REVISED PAGINATION RESET ---
-                                // Check if pagination is enabled before trying to reset the page
-                                if (timekeepGrid.options.pagination) {
-                                    timekeepGrid.setPage(1); // Set the page to the first page
-                                    // If you need to also reset the total number of pages displayed (e.g., pageSize)
-                                    // you might need to re-initialize pagination or adjust pageSize manually if it's dynamic.
-                                    // For now, setPage(1) is the core fix.
-                                }
-                                // --- END REVISED PAGINATION RESET ---
-
-                                timekeepGrid.deselectRow();  // Deselect any previously selected rows
-
-                                // Finally, set the empty data. This will also trigger the "No Data" message.
-                                timekeepGrid.setData([]);
-                            }
+                        // if currently selected and now invalid, reset select
+                        if (!isCoordinator && actionSelect.value === "timekeeping") {
+                            actionSelect.value = "";
+                        }
                         
+                        if(!isCoordinator){
+
+                            //bring backdisplay
+                            document.getElementById('search-result-grid').classList.add('d-none');
+                            document.getElementById('timekeepdisplay').classList.add('d-none');
+
+                            // Data is empty, perform a full reset
+                            timekeepGrid.clearFilter();  // Clear any active filters
+                            timekeepGrid.clearSort();    // Clear any active sorting
                         
+                        // --- REVISED PAGINATION RESET ---
+                            // Check if pagination is enabled before trying to reset the page
+                            if (timekeepGrid.options.pagination) {
+                                timekeepGrid.setPage(1); // Set the page to the first page
+                                // If you need to also reset the total number of pages displayed (e.g., pageSize)
+                                // you might need to re-initialize pagination or adjust pageSize manually if it's dynamic.
+                                // For now, setPage(1) is the core fix.
+                            }
+                            // --- END REVISED PAGINATION RESET ---
+
+                            timekeepGrid.deselectRow();  // Deselect any previously selected rows
+
+                            // Finally, set the empty data. This will also trigger the "No Data" message.
+                            timekeepGrid.setData([]);
+                        }
                     });
 
                     // Also ensure canvas is correctly sized when modal is shown

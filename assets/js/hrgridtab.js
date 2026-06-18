@@ -363,11 +363,12 @@ var timekeepGrid = new Tabulator("#timekeepgrid", {
                 
                 switch(profile.grp_id){
                     case 8://corp hr
-                    global_disabled = "";
+                    case 9://finance
+                        global_disabled = "";
                     break;
 
                     default:
-                    global_disabled = "disabled";
+                        global_disabled = "disabled";
                 
                 }
                 // Get the full row data
@@ -602,9 +603,9 @@ var timekeepdetailGrid = new Tabulator("#timekeepTable", {
             headerSort:false,
             formatter: (cell) => {
                 const val = cell.getData().for_approval;
-                if (val === 1) return '<span class="status-pill pending">Pending</span>';
+                if (val === 1) return '<span class="status-pill pending">Approved</span>';
                 if (val === 3) return '<span class="status-pill rejected">Rejected</span>';
-                if (val === 0) return '<span class="status-pill approved">Approved</span>';
+                if (val === 0) return '<span class="status-pill approved">Pending</span>';
                 return "";
             }
         },

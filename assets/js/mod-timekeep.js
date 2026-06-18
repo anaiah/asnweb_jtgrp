@@ -1049,69 +1049,76 @@ let loginDetails = null;
 
     //============= EVENT LISTENER WHEN TIMEKEEP MODAL  HIDE==================//
     const timekeepModalEl = document.getElementById('timekeepModal');
-    if (timekeepModalEl) {
-        timekeepModalEl.addEventListener('show.bs.modal',  () => {
-            document.getElementById('xfilter_region').value = dbprofile.region.toLowerCase()
 
-        })
+        const user = JSON.parse(localStorage.getItem('profile'))
 
-        timekeepModalEl.addEventListener('hidden.bs.modal', () => {
-            // clear data in the detail grid when modal is closed   
-            if (hrtimekeepGrid.hrisGrid
+        if (timekeepModalEl) {
+            timekeepModalEl.addEventListener('show.bs.modal',  () => {
+                console.log('who accessed ', user)
+                
+                if(user.grp_id!==9){//not finance
+                    document.getElementById('xfilter_region').value = user.region.toLowerCase()
+                }    
+            })
 
-            ) {
-                hrtimekeepGrid.hrisGrid.setData([]);
-            }
+            timekeepModalEl.addEventListener('hidden.bs.modal', () => {
+                // clear data in the detail grid when modal is closed   
+                if (hrtimekeepGrid.hrisGrid
 
-            //reset form, rest div innerhtml
-            let xform = document.getElementById('filter-searchForm')
-            xform.reset()
-            util.resetFormClass('#filter-searchForm')
-
-            document.getElementById('search-result-grid').classList.add('d-none');
-            document.getElementById('hrisdisplay').classList.add('d-none');
-            document.getElementById('timekeepdisplay').classList.add('d-none');
-
-            timekeepModalEl.querySelectorAll('select').forEach(sel => {
-                // reset to first option (or set to empty string)
-                sel.selectedIndex = 0;
-                // or: sel.value = '';
-                // optionally remove dynamically added options (keep placeholder at index 0)
-                // Array.from(sel.options).slice(1).forEach(o => o.remove());
-                // clear validation classes
-                sel.classList.remove('is-valid','is-invalid');
-            });
-
-        });
-    }
-
-    const myModal = document.getElementById('newempModal')
-    if (myModal) {
-
-        myModal.addEventListener('hide.bs.modal', function (event) {
-            const btn = document.getElementById('newemp-next-btn');
-            const mode = btn.dataset.mode;
-            if(mode==='edit'){
-                const ctx = myModal.dataset.context;
-                if (ctx === 'coords') {
-                    timekeep.searchEmp();
+                ) {
+                    hrtimekeepGrid.hrisGrid.setData([]);
                 }
-                // clear context if you like
-                delete myModal.dataset.context;
-            }
 
+                //reset form, rest div innerhtml
+                if( user.grp_id!==9){ //not finance
+                    let xform = document.getElementById('filter-searchForm')
+                    xform.reset()
 
-            myModal.querySelectorAll('select').forEach(sel => {
-                // reset to first option (or set to empty string)
-                sel.selectedIndex = 0;
-                // or: sel.value = '';
-                // optionally remove dynamically added options (keep placeholder at index 0)
-                // Array.from(sel.options).slice(1).forEach(o => o.remove());
-                // clear validation classes
-                sel.classList.remove('is-valid','is-invalid');
+                    util.resetFormClass('#filter-searchForm')
+
+                }
+                
+                document.getElementById('search-result-grid').classList.add('d-none');
+                document.getElementById('hrisdisplay').classList.add('d-none');
+                document.getElementById('timekeepdisplay').classList.add('d-none');
+
+                timekeepModalEl.querySelectorAll('select').forEach(sel => {
+                    // reset to first option (or set to empty string)
+                    sel.selectedIndex = 0;
+                    // or: sel.value = '';
+                    // optionally remove dynamically added options (keep placeholder at index 0)
+                    // Array.from(sel.options).slice(1).forEach(o => o.remove());
+                    // clear validation classes
+                    sel.classList.remove('is-valid','is-invalid');
+                });
+
             });
+        }
 
+        const myModal = document.getElementById('newempModal')
+        if (myModal) {
 
-        })
-    }
+            myModal.addEventListener('hide.bs.modal', function (event) {
+                const btn = document.getElementById('newemp-next-btn');
+                const mode = btn.dataset.mode;
+                if(mode==='edit'){
+                    const ctx = myModal.dataset.context;
+                    if (ctx === 'coords') {
+                        timekeep.searchEmp();
+                    }
+                    // clear context if you like
+                    delete myModal.dataset.context;
+                }
+
+                myModal.querySelectorAll('select').forEach(sel => {
+                    // reset to first option (or set to empty string)
+                    sel.selectedIndex = 0;
+                    // or: sel.value = '';
+                    // optionally remove dynamically added options (keep placeholder at index 0)
+                    // Array.from(sel.options).slice(1).forEach(o => o.remove());
+                    // clear validation classes
+                    sel.classList.remove('is-valid','is-invalid');
+                });
+            })
+        }
         
