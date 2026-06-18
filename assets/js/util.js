@@ -2451,19 +2451,17 @@ const util = {
     },
 
 
-handleIDUpload: async (inputElement) => {
-    
+handleIDUpload: async  (inputElement) => {
     const statusDiv = document.getElementById('face-verification-status');
     if (!inputElement.files || inputElement.files.length === 0) return;
 
-    const file = inputElement.files[0];
+    const file = inputElement.files[0]; // Isolate target file pointer
 
     // 1. Run your Anti-Gallery Time Check
     const now = new Date().getTime();
-    const timeDifferenceInSeconds = Math.abs(now - file.lastModified) / 1000;
-    if (timeDifferenceInSeconds > 60) {
+    if (Math.abs(now - file.lastModified) / 1000 > 60) {
         statusDiv.style.color = "red";
-        statusDiv.innerText = "❌ Saved gallery photos are not allowed. Take a live photo.";
+        statusDiv.innerText = "❌ Security Block: Saved gallery photos are not allowed.";
         inputElement.value = "";
         return;
     }
@@ -2472,36 +2470,49 @@ handleIDUpload: async (inputElement) => {
     statusDiv.innerText = "Processing live document layout...";
 
     try {
-        // 2. Convert to Image Object
-        const img = await faceapi.bufferToImage(file);
-
-        // 3. FORCE the phone browser to wait until the image data is completely ready
+        // 2. Read the raw image file blob
+        const rawImg = await faceapi.bufferToImage(file);
+        
         await new Promise((resolve) => {
-            if (img.complete && img.naturalWidth !== 0) resolve();
-            else img.onload = () => resolve();
+            if (rawImg.complete && rawImg.naturalWidth !== 0) resolve();
+            else rawImg.onload = () => resolve();
         });
+
+        statusDiv.innerText = "Compressing frame architecture...";
+
+        // 3. THE FIXED LAYER: Downscale the giant image down to standard ID card width (800px)
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        const MAX_WIDTH = 800; // Standard layout size for document scanning matrixes
+        const scaleSize = MAX_WIDTH / rawImg.naturalWidth;
+        canvas.width = MAX_WIDTH;
+        canvas.height = rawImg.naturalHeight * scaleSize;
+
+        // Flatten and draw the huge image down into our optimized canvas
+        ctx.drawImage(rawImg, 0, 0, canvas.width, canvas.height);
 
         statusDiv.innerText = "Running biometric face scan...";
 
-        // 4. CRITICAL MOBILE FIX: Downscale the input size to 224 or 320 
-        // This stops the phone from freezing and processes massive photos in under 1 second!
+        // 4. Pass the small CANVAS instead of the giant image file!
+        // This executes instantly on any Android or iPhone model.
         const detections = await faceapi.detectAllFaces(
-            img, 
+            canvas, 
             new faceapi.TinyFaceDetectorOptions({ 
-                inputSize: 224,       // Lowering this makes mobile processing blazing fast
-                scoreThreshold: 0.4   // Keeps detection accurate for laptop/phone screen shots
+                inputSize: 224,      // Optimized for low-profile mobile processing loops
+                scoreThreshold: 0.4  
             })
         );
         
         const totalFacesFound = detections.length;
-        console.log("Mobile scan count:", totalFacesFound);
+        console.log("Optimized Mobile Scan Count:", totalFacesFound);
 
-        // 5. Enforce your strict value inequality logic
+        // 5. Run your strict inequality check
         if (totalFacesFound !== 1) {
             statusDiv.style.color = "red";
             statusDiv.innerText = totalFacesFound === 0 
                 ? "❌ Verification Failed: No face detected on document." 
-                : `❌ Verification Failed: Multiple faces (${totalFacesFound}) detected.`;
+                : `❌ Verification Failed: Detected ${totalFacesFound} individuals.`;
             inputElement.value = ""; 
         } else {
             statusDiv.style.color = "green";
@@ -2509,7 +2520,7 @@ handleIDUpload: async (inputElement) => {
         }
 
     } catch (e) {
-        console.error("Mobile scanning pipeline error:", e);
+        console.error("Mobile scanning memory fault:", e);
         statusDiv.style.color = "red";
         statusDiv.innerText = "Error scanning image processing layer.";
     }
