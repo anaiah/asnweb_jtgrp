@@ -514,10 +514,26 @@
                                     <div id="jms_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
                                 </div>
 
-                                <div class="mb-3">
+                                <!-- <div class="mb-3">
                                     <label for="id_picture" class="form-label">Contractor ID Picture</label>
                                     <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="id_picture" id="id_picture" accept='image/*'  capture="environment" required />
                                     <div id="id_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
+                                </div> -->
+
+                                <div class="mb-3">
+                                    <label for="id_picture" class="form-label">Contractor ID Picture</label>
+                                    <input onchange="util.faceRecognition(event)" 
+                                      type="file" 
+                                      class="form-control" 
+                                      name="id_picture" 
+                                      id="id_picture" 
+                                      accept='image/*'  
+                                      capture="user" required />
+
+                                    <div id="id_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
+                                    
+                                    <div id="statusMessage" class="status"></div>
+
                                 </div>
 
                                 <div class="mb-3">

@@ -2420,127 +2420,154 @@ const util = {
     //const cdnModelsUrl = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
 
     //for camera
+    // loadModels:async () => {
+
+    //     const imageInput = document.getElementById('id_picture');
+    //     const statusMessage = document.getElementById('statusMessage');
+
+    //     // CDN URLs pointing directly to the required pre-trained model files
+    //     const MODEL_URL = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
+    //     try {
+    //         await faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL);
+    //         await faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL);
+            
+    //         statusMessage.textContent = "Models loaded successfully! Ready for input.";
+    //         imageInput.disabled = false; // Enable input only after models load
+    //     } catch (err) {
+    //         statusMessage.textContent = "Failed to load models. Please refresh.";
+    //         console.error(err);
+    //     }
+    // },
+   
+    // faceRecognition:async()=>{
+    //     const fileList = event.target.files;
     
-    // Flag to ensure the model isn't queried prematurely
-    isModelLoaded: false,
-
-    loadFaceModels: function() { 
-        const statusDiv = document.getElementById('face-verification-status');
+    //     // Safety check: Exit if the user canceled the file picker
+    //     if (!fileList || fileList.length === 0) return; 
         
-        if (statusDiv) {
-            statusDiv.innerText = "Initializing graphics engine...";
-            statusDiv.style.color = "orange";
+    //     const file = fileList[0];
+
+    //     try {
+    //         console.log("Analyzing file from util.recognize()...");
+    //         await util.loadModels()
+            
+
+    //         // 1. Convert the raw file into an HTML Image Element in memory
+    //         const img = await faceapi.bufferToImage(file);
+
+    //         // 2. Execute the face detection and screening chain
+    //         const detection = await faceapi.detectSingleFace(img).withAgeAndGender();
+
+    //         // 3. Handle results
+    //         if (!detection) {
+    //             alert("Verification Failed: No face detected. Try again.");
+    //             event.target.value = ''; // Reset input element
+    //             return;
+    //         }
+
+    //         if (detection.gender === 'male') {
+    //             const confidence = (detection.genderProbability * 100).toFixed(1);
+    //             console.log(`Success: Man verified with ${confidence}% confidence.`);
+                
+    //             // Put your success logic here (e.g., enable a submit button)
+    //         } else {
+    //             alert("Verification Failed: Uploaded image is not a profile match.");
+    //             event.target.value = ''; // Reset input element
+    //         }
+
+    //     } catch (error) {
+    //         console.error("Error analyzing input image:", error);
+    //         alert("An error occurred during screening.");
+    //         event.target.value = ''; 
+    //     }
+  
+    // },
+    
+    // 1. Structural fix: Track loading state to prevent infinite loops
+    modelsLoaded: false,
+
+    loadModels: async () => {
+        // If models are already loaded, exit immediately to save memory and time
+        if (util.modelsLoaded) return;
+
+        const imageInput = document.getElementById('id_picture');
+        const statusMessage = document.getElementById('statusMessage');
+
+        // FIXED CDN: Direct NPM mirror pointing to the correct binary weight files
+        const MODEL_URL = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
         
-            try {
-                // Initialize high-speed WebGL backend configuration contexts
-                if (typeof faceapi !== 'undefined' && faceapi.tf) {
-                    faceapi.tf.setBackend('webgl').then(() => {
-                        console.log("WebGL active. Syncing face-biometric engines...");
-                        util.initModelDownload(statusDiv);
-                    }).catch(err => {
-                        console.warn("WebGL blocked, utilizing standard CPU matrix structures.", err);
-                        util.initModelDownload(statusDiv);
-                    });
-                } else {
-                    util.initModelDownload(statusDiv);
-                }
-
-            } catch (err) {
-                console.error("Failed to execute initialization framework:", err);
-            }
-        } 
-    },
-
-    initModelDownload: function(statusDiv) {
-        // Official, fully accessible jsDelivr NPM architecture endpoint 
-        //const cdnModelsUrl = 'https://jsdelivr.net';
-        const cdnModelsUrl = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
-
-        // SWITCHED TO SSD MOBILENET V1: Most accurate, stable model bundle over live networks
-        faceapi.nets.ssdMobilenetv1.loadFromUri(cdnModelsUrl)
-            .then(() => {
-                util.isModelLoaded = true; // 🔓 THE GATEKEEPER UNLOCKS!
-                statusDiv.innerText = "Ready for ID upload.";
-                statusDiv.style.color = "green";
-                console.log("🟢 Production AI brain assets synchronized perfectly!");
-            })
-            .catch((err) => {
-                console.error("Failed to down-stream weights via CDN:", err);
-                statusDiv.innerText = "Verification engine offline. Network error.";
-                statusDiv.style.color = "red";
-            });
-    },
-
-    handleIDUpload: async (inputElement) => {
-        const statusDiv = document.getElementById('face-verification-status');
-        
-        if (!inputElement.files || inputElement.files.length === 0) return;
-
-        // Verify the background network handshake completes before reading inputs
-        if (!util.isModelLoaded) {
-            statusDiv.style.color = "red";
-            statusDiv.innerText = "❌ System Warning: Please wait for the AI models to finish loading.";
-            inputElement.value = "";
-            return;
+        try {
+            if (statusMessage) statusMessage.textContent = "Loading AI Models... Please wait.";
+            
+            // FIXED MODEL: Swapped to tinyFaceDetector for robust mobile/high-res support
+            await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+            await faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL);
+            
+            util.modelsLoaded = true; // Mark as done
+            
+            if (statusMessage) statusMessage.textContent = "Models loaded successfully! Ready for input.";
+            if (imageInput) imageInput.disabled = false; 
+        } catch (err) {
+            if (statusMessage) statusMessage.textContent = "Failed to load models. Please refresh.";
+            console.error("Model Loading Error: Check CDN path or network.", err);
         }
-
-        statusDiv.style.color = "blue";
-        statusDiv.innerText = "Processing canvas matrix...";
+    },
+   
+    // FIXED PARAMETER: Added 'event' explicitly into the arguments list
+    // FIX: Accept the explicit event block here
+    faceRecognition: async (event) => {
+        // Fallback: If inline HTML parameter mapping breaks, locate the DOM node by ID manually
+        const currentEvent = event || window.event;
+        const inputElement = currentEvent ? currentEvent.target : document.getElementById('id_picture');
+    
+        if (!inputElement || !inputElement.files || inputElement.files.length === 0) return; 
+        
+        const file = inputElement.files[0];
+        const statusMessage = document.getElementById('statusMessage');
 
         try {
-            // Target the clean single file array element pointer matching modern specifications
-            const targetFile = inputElement.files[0];
-            const rawImg = await faceapi.bufferToImage(targetFile);
-
-            statusDiv.innerText = "Optimizing image scales...";
-
-            // Flatten and downscale giant photos to an optimized 400px monitor tracking canvas
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            const MAX_WIDTH = 400; 
-            const scaleSize = MAX_WIDTH / rawImg.naturalWidth;
-            canvas.width = MAX_WIDTH;
-            canvas.height = rawImg.naturalHeight * scaleSize;
+            if (statusMessage) statusMessage.textContent = "Analyzing image content...";
+            console.log("Analyzing file via util.faceRecognition()...");
             
-            ctx.drawImage(rawImg, 0, 0, canvas.width, canvas.height);
+            await util.loadModels();
 
-            statusDiv.innerText = "Analyzing live biometrics...";
+            const img = await faceapi.bufferToImage(file);
 
-            // 🚀 EXECUTING HIGH-ACCURACY FACE DETECTION PASS
-            // ssdMobilenetv1 provides extreme protection against false laptop screen errors out-of-the-box!
-            const detections = await faceapi.detectAllFaces(
-                canvas, 
-                new faceapi.SsdMobilenetv1Options({ minConfidence: 0.60 }) // 60% confidence baseline
-            );
-            
-            const totalFacesFound = (detections && typeof detections.length !== 'undefined') ? detections.length : 0;
-            console.log("Live Production Verification Count:", totalFacesFound);
+            const detection = await faceapi.detectSingleFace(
+                img, 
+                new faceapi.TinyFaceDetectorOptions({ inputSize: 320, scoreThreshold: 0.3 })
+            ).withAgeAndGender();
 
-            // Conditional execution routes evaluating output constraints
-            if (totalFacesFound !== 1) {
-                statusDiv.style.color = "red";
-                inputElement.value = ""; // Empty out form selector array data array so Busboy ignores it
-                
-                if (totalFacesFound === 0) {
-                    statusDiv.innerText = "❌ Verification Failed: No human face detected in the photo.";
-                } else {
-                    statusDiv.innerText = `❌ Verification Failed: Multiple people (${totalFacesFound}) detected.`;
-                }
-            } else {
-                // SUCCESS
-                statusDiv.style.color = "green";
-                statusDiv.innerText = "✅ Live Face verified on document.";
+            // 1. Verify a face exists at all
+            if (!detection) {
+                alert("Verification Failed: No human face detected. Please ensure your face is upright and clear.");
+                if (statusMessage) statusMessage.textContent = "Verification failed.";
+                if (inputElement) inputElement.value = ''; 
+                return;
             }
 
-        } catch (e) {
-            console.error("Live Production Server Critical Exception:", e);
-            statusDiv.style.color = "red";
-            statusDiv.innerText = "Error executing live biometric tracking layer.";
+            // 2. Read the biological estimations
+            const gender = detection.gender; // Returns 'male' or 'female'
+            const confidence = (detection.genderProbability * 100).toFixed(1);
+
+            // CHANGED LOGIC: Accept both male and female properties unconditionally
+            if (gender === 'male' || gender === 'female') {
+                console.log(`Success: Human face verified. Detected profile: ${gender} (${confidence}% confidence).`);
+                if (statusMessage) statusMessage.textContent = `Passed! Verified profile: ${gender} (${confidence}%).`;
+                alert("Verification Passed!");
+                
+                // --- Insert your form submit action or file payload continuation here ---
+            }
+
+        } catch (error) {
+            console.error("Error analyzing input image:", error);
+            if (statusMessage) statusMessage.textContent = "An error occurred during scanning.";
+            alert("An error occurred during screening.");
+            if (inputElement) inputElement.value = ''; 
         }
     }
 
 
-    
 }//****** end obj */
 
 window.util = util; // Make util globally accessible
