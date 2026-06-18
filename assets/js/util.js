@@ -2458,7 +2458,11 @@ handleIDUpload: async (inputElement) => {
     statusDiv.style.color = "blue";
     statusDiv.innerText = "Processing live document capture...";
 
+    // Declare a placeholder to clean up memory later
+    let tensorFrame = null;
+
     try {
+        // 1. Load the file stream safely into an image element object
         const rawImg = await faceapi.bufferToImage(inputElement.files);
         
         await new Promise((resolve) => {
@@ -2466,46 +2470,42 @@ handleIDUpload: async (inputElement) => {
             else rawImg.onload = () => resolve();
         });
 
-        // 1. Downscale the giant phone photo to an optimized width (800px)
+        statusDiv.innerText = "Downsampling image frame...";
+
+        // 2. Render downscaled image to canvas (Width: 800px)
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         const MAX_WIDTH = 800; 
         const scaleSize = MAX_WIDTH / rawImg.naturalWidth;
         canvas.width = MAX_WIDTH;
         canvas.height = rawImg.naturalHeight * scaleSize;
+        
+        // Paint the image pixels down explicitly onto our canvas surface
         ctx.drawImage(rawImg, 0, 0, canvas.width, canvas.height);
-
-        statusDiv.innerText = "Optimizing image data layer...";
-
-        // 2. THE TYPE-SAFE FIX FOR VLADMANDIC: 
-        // Convert the canvas data into a lightweight compressed image element wrapper
-        const optimizedImg = new Image();
-        optimizedImg.src = canvas.toDataURL('image/jpeg', 0.8); // 80% compression maximizes speed
-
-        // Wait a split millisecond for the compressed data link to register in memory
-        await new Promise((resolve) => {
-            optimizedImg.onload = () => resolve();
-        });
 
         statusDiv.innerText = "Analyzing live biometrics...";
 
-        // 3. Pass the fully rendered, optimized HTMLImageElement to the detector
+        // 3. THE LIVE SERVER PRODUCTION FIX:
+        // Convert canvas pixels directly to a secure TensorFlow GPU Tensor array
+        tensorFrame = faceapi.tf.browser.fromPixels(canvas);
+
+        // 4. Run the detector directly using our compiled Tensor frame
         const detections = await faceapi.detectAllFaces(
-            optimizedImg, 
+            tensorFrame, 
             new faceapi.TinyFaceDetectorOptions({ 
-                inputSize: 320,       // Clears device camera moiré/screen lines
-                scoreThreshold: 0.65   // Raised to 0.65 to ensure it ignores ghost glares entirely
+                inputSize: 320,       // Clears device camera screen moiré lines
+                scoreThreshold: 0.65   // Ignores background glare anomalies entirely
             })
         );
         
-        // 4. Force a mathematical fallback to 0 if data array is fluctuating
+        // Determine total face count or fallback to 0
         const totalFacesFound = (detections && typeof detections.length !== 'undefined') ? detections.length : 0;
-        console.log("Live Production Face Count:", totalFacesFound);
+        console.log("Live Server Face Count:", totalFacesFound);
 
-        // 5. Run your strict inequality checks
+        // 5. Execute your strict conditional validation matching
         if (totalFacesFound !== 1) {
             statusDiv.style.color = "red";
-            inputElement.value = ""; // Clear file selector data array completely
+            inputElement.value = ""; // Empty out form array data so Busboy ignores it
             
             if (totalFacesFound === 0) {
                 statusDiv.innerText = "❌ Verification Failed: No human face detected in the photo.";
@@ -2522,6 +2522,11 @@ handleIDUpload: async (inputElement) => {
         console.error("Live Server Scanning Exception Details:", e);
         statusDiv.style.color = "red";
         statusDiv.innerText = "Error executing live biometric tracking layer.";
+    } finally {
+        // 6. MEMORY MANAGEMENT: Clear the tensor data layer so mobile browsers won't crash
+        if (tensorFrame) {
+            faceapi.tf.dispose(tensorFrame);
+        }
     }
 },
 
