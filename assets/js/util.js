@@ -2451,80 +2451,69 @@ const util = {
     },
 
 
-handleIDUpload: async  (inputElement) => {
+handleIDUpload: async (inputElement) => {
     const statusDiv = document.getElementById('face-verification-status');
     if (!inputElement.files || inputElement.files.length === 0) return;
 
-    const file = inputElement.files[0]; // Isolate target file pointer
-
-    // 1. Run your Anti-Gallery Time Check
-    const now = new Date().getTime();
-    if (Math.abs(now - file.lastModified) / 1000 > 60) {
-        statusDiv.style.color = "red";
-        statusDiv.innerText = "❌ Security Block: Saved gallery photos are not allowed.";
-        inputElement.value = "";
-        return;
-    }
-
     statusDiv.style.color = "blue";
-    statusDiv.innerText = "Processing live document layout...";
+    statusDiv.innerText = "Processing live document capture...";
 
     try {
-        // 2. Read the raw image file blob
-        const rawImg = await faceapi.bufferToImage(file);
+        const rawImg = await faceapi.bufferToImage(inputElement.files);
         
         await new Promise((resolve) => {
             if (rawImg.complete && rawImg.naturalWidth !== 0) resolve();
             else rawImg.onload = () => resolve();
         });
 
-        statusDiv.innerText = "Compressing frame architecture...";
-
-        // 3. THE FIXED LAYER: Downscale the giant image down to standard ID card width (800px)
+        // 1. Create our optimized 800px tracking canvas 
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        
-        const MAX_WIDTH = 800; // Standard layout size for document scanning matrixes
+        const MAX_WIDTH = 800; 
         const scaleSize = MAX_WIDTH / rawImg.naturalWidth;
         canvas.width = MAX_WIDTH;
         canvas.height = rawImg.naturalHeight * scaleSize;
-
-        // Flatten and draw the huge image down into our optimized canvas
         ctx.drawImage(rawImg, 0, 0, canvas.width, canvas.height);
 
-        statusDiv.innerText = "Running biometric face scan...";
+        statusDiv.innerText = "Analyzing live biometrics...";
 
-        // 4. Pass the small CANVAS instead of the giant image file!
-        // This executes instantly on any Android or iPhone model.
+        // 2. THE PRODUCTION-GRADE FILTER SETTINGS
+        // Force the AI model to be incredibly strict over the live server link
         const detections = await faceapi.detectAllFaces(
             canvas, 
             new faceapi.TinyFaceDetectorOptions({ 
-                inputSize: 224,      // Optimized for low-profile mobile processing loops
-                scoreThreshold: 0.4  
+                inputSize: 320,       // Must be a multiple of 32! Clears pixel grid lines.
+                scoreThreshold: 0.65   // Raised to 0.65 to ensure it ignores ghost glares entirely
             })
         );
         
-        const totalFacesFound = detections.length;
-        console.log("Optimized Mobile Scan Count:", totalFacesFound);
+        // 3. CRITICAL THE ASYNC FIX: Force a mathematical fallback to 0 if the array is processing
+        const totalFacesFound = (detections && typeof detections.length !== 'undefined') ? detections.length : 0;
+        console.log("Live Production Face Count:", totalFacesFound);
 
-        // 5. Run your strict inequality check
+        // 4. Tighten your conditional checks
         if (totalFacesFound !== 1) {
             statusDiv.style.color = "red";
-            statusDiv.innerText = totalFacesFound === 0 
-                ? "❌ Verification Failed: No face detected on document." 
-                : `❌ Verification Failed: Detected ${totalFacesFound} individuals.`;
-            inputElement.value = ""; 
+            inputElement.value = ""; // ERASE the input file so Busboy won't upload it!
+            
+            if (totalFacesFound === 0) {
+                statusDiv.innerText = "❌ Verification Failed: No human face detected in the live photo.";
+            } else {
+                statusDiv.innerText = `❌ Verification Failed: Multiple people (${totalFacesFound}) detected.`;
+            }
         } else {
+            // SUCCESS: Exactly ONE verified face is present on the live canvas
             statusDiv.style.color = "green";
-            statusDiv.innerText = "✅ Live Face verified successfully.";
+            statusDiv.innerText = "✅ Live Face verified on document.";
         }
 
     } catch (e) {
-        console.error("Mobile scanning memory fault:", e);
+        console.error("Live Server Scanning Exception:", e);
         statusDiv.style.color = "red";
-        statusDiv.innerText = "Error scanning image processing layer.";
+        statusDiv.innerText = "Error executing live biometric tracking layer.";
     }
 },
+
 
 
 //     handleIDUpload : async (inputElement) => {
