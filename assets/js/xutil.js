@@ -99,3 +99,110 @@ const xutil = {
         }
     }
 }
+
+
+//safe browser
+const xutil = {
+    modelsLoaded: false,
+
+    loadModels: async () => {
+        if (xutil.modelsLoaded) return;
+        const imageInput = document.getElementById('id_picture');
+        const statusMessage = document.getElementById('statusMessage');
+        //const MODEL_URL = 'https://jsdelivr.net';
+        // FIXED CDN: Direct NPM mirror pointing to the correct binary weight files
+        const MODEL_URL = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
+        
+        
+        try {
+            if (statusMessage) statusMessage.innerHTML = '<div class="spinner-border spinner-border-sm text-primary me-2"></div> Booting engine...';
+            
+            await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+            await faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL);
+            
+            xutil.modelsLoaded = true; 
+            if (statusMessage) statusMessage.textContent = "AI Engine Ready.";
+            if (imageInput) imageInput.disabled = false; 
+        } catch (err) {
+            console.error(err);
+        }
+    },
+
+    // NEW METHOD: Wipes TensorFlow completely out of mobile RAM
+        // NEW FIX: Safe and complete cleanup without invalid function calls
+    destroyAI: async () => {
+        console.log("Purging AI engine from memory...");
+        try {
+            if (faceapi && faceapi.tf) {
+                // 1. Dispose of all tensors and loaded weight matrices in RAM
+                faceapi.tf.disposeVariables(); 
+                
+                // 2. Clear out any remaining data stored inside the active execution engine
+                if (faceapi.tf.engine && typeof faceapi.tf.engine().dispose === 'function') {
+                    faceapi.tf.engine().dispose();
+                } else if (faceapi.tf.engine) {
+                    // Safe fallback: Tells the engine to cleanly unregister existing backend allocations
+                    faceapi.tf.engine().reset(); 
+                }
+            }
+            
+            // Reset the flag so models can load cleanly if needed in the future
+            util.modelsLoaded = false;
+            console.log("Memory successfully freed for other file inputs.");
+        } catch (e) {
+            console.warn("Clean up warning:", e);
+        }
+    },
+
+    faceRecognition: async (event) => {
+        const currentEvent = event || window.event;
+        const inputElement = currentEvent ? currentEvent.target : document.getElementById('id_picture');
+    
+        if (!inputElement || !inputElement.files || inputElement.files.length === 0) return; 
+        
+        const file = inputElement.files[0];
+        const statusMessage = document.getElementById('statusMessage');
+
+        try {
+            if (statusMessage) {
+                statusMessage.innerHTML = '<div class="spinner-border spinner-border-sm text-primary me-2"></div> Analyzing image content...';
+            }
+            
+            await xutil.loadModels();
+            const img = await faceapi.bufferToImage(file);
+
+            const detection = await faceapi.detectSingleFace(
+                img, 
+                new faceapi.TinyFaceDetectorOptions({ inputSize: 224, scoreThreshold: 0.3 })
+            ).withAgeAndGender();
+
+            if (!detection) {
+                alert("Verification Failed: No human face detected.");
+                if (statusMessage) statusMessage.textContent = "Verification failed.";
+                if (inputElement) inputElement.value = ''; 
+                return;
+            }
+
+            const gender = detection.gender; 
+            const confidence = (detection.genderProbability * 100).toFixed(1);
+
+            if (gender === 'male' || gender === 'female') {
+                if (statusMessage) statusMessage.textContent = `Passed! Verified profile: ${gender} (${confidence}%).`;
+                alert("Verification Passed!");
+
+                // CLEANUP TRIGGER: Wipe the AI out of RAM right now since we are done with it
+                await xutil.destroyAI(); 
+                
+                // Clear the image DOM reference to unlock further browser garbage collection
+                img.src = ''; 
+            }
+
+        } catch (error) {
+            console.error("Error:", error);
+            if (statusMessage) statusMessage.textContent = "An error occurred during scanning.";
+            alert("An error occurred during screening.");
+            if (inputElement) inputElement.value = ''; 
+            await xutil.destroyAI(); // Cleanup on error too
+        }
+    }
+};
