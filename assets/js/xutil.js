@@ -130,29 +130,30 @@ const xutil = {
 
     // NEW METHOD: Wipes TensorFlow completely out of mobile RAM
         // NEW FIX: Safe and complete cleanup without invalid function calls
+    // SAFE FIX: Releases memory buffers without destroying the TensorFlow runtime engine framework
     destroyAI: async () => {
         console.log("Purging AI engine from memory...");
         try {
             if (faceapi && faceapi.tf) {
-                // 1. Dispose of all tensors and loaded weight matrices in RAM
+                // 1. Instantly free heavy neural net matrix memory cells
                 faceapi.tf.disposeVariables(); 
                 
-                // 2. Clear out any remaining data stored inside the active execution engine
-                if (faceapi.tf.engine && typeof faceapi.tf.engine().dispose === 'function') {
-                    faceapi.tf.engine().dispose();
-                } else if (faceapi.tf.engine) {
-                    // Safe fallback: Tells the engine to cleanly unregister existing backend allocations
-                    faceapi.tf.engine().reset(); 
+                // 2. Clear out underlying browser texture frames safely
+                if (faceapi.tf.engine && typeof faceapi.tf.engine().startScope === 'function') {
+                    // Safe alternative to reset(): Force clears temporary mathematical allocations
+                    faceapi.tf.engine().startScope();
+                    faceapi.tf.engine().endScope();
                 }
             }
             
-            // Reset the flag so models can load cleanly if needed in the future
-            util.modelsLoaded = false;
+            // Mark models as un-loaded so face-api knows it needs to fetch weights on the next image run
+            xutil.modelsLoaded = false;
             console.log("Memory successfully freed for other file inputs.");
         } catch (e) {
             console.warn("Clean up warning:", e);
         }
     },
+
 
     faceRecognition: async (event) => {
         const currentEvent = event || window.event;
