@@ -2456,7 +2456,8 @@ const util = {
         } //EIF 
     },
 
-handleIDUpload: async (inputElement) => {
+handleIDUpload: async  (inputElement) => {
+    
     const statusDiv = document.getElementById('face-verification-status');
     if (!inputElement.files || inputElement.files.length === 0) return;
 
@@ -2464,51 +2465,42 @@ handleIDUpload: async (inputElement) => {
     statusDiv.innerText = "Processing live capture...";
 
     try {
-        const blobUrl = URL.createObjectURL(inputElement.files[0]);
-        const cleanImg = new Image();
-        cleanImg.src = blobUrl;
+        // 1. Instantly parse the raw file into an HTML Image layout
+        const rawImg = await faceapi.bufferToImage(inputElement.files);
 
-        await new Promise((resolve) => {
-            cleanImg.onload = () => resolve();
-        });
+        statusDiv.innerText = "Optimizing image scales...";
 
-        statusDiv.innerText = "Optimizing document framework...";
-
-        // 🌟 THE SPEED FIX: Shrink the tracking footprint to 320px!
-        // This slashes the data size by 80%, forcing instant execution.
+        // 2. Shrink picture down to a lightweight 400px matrix framework 
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        const MAX_WIDTH = 320; 
-        const scaleSize = MAX_WIDTH / cleanImg.naturalWidth;
+        const MAX_WIDTH = 400; // Small size speeds up mobile GPU/CPU compilation
+        const scaleSize = MAX_WIDTH / rawImg.naturalWidth;
         canvas.width = MAX_WIDTH;
-        canvas.height = cleanImg.naturalHeight * scaleSize;
-        ctx.drawImage(cleanImg, 0, 0, canvas.width, canvas.height);
-
-        // Compress canvas into a lightweight image element
-        const finalImg = new Image();
-        finalImg.src = canvas.toDataURL('image/jpeg', 0.6); // 60% quality maximizes speed
-
-        await new Promise((resolve) => {
-            finalImg.onload = () => resolve();
-        });
+        canvas.height = rawImg.naturalHeight * scaleSize;
+        
+        // Flatten phone pixels down explicitly onto our clean canvas layer
+        ctx.drawImage(rawImg, 0, 0, canvas.width, canvas.height);
 
         statusDiv.innerText = "Analyzing live biometrics...";
 
-        // 🚀 Runs instantly under 300 milliseconds on the WebGL backend
+        // 3. THE LIVE SERVER PRODUCTION FIX: 
+        // We pass the CANVAS directly to the detector, removing all 'new Image().onload' loops!
         const detections = await faceapi.detectAllFaces(
-            finalImg, 
+            canvas, 
             new faceapi.TinyFaceDetectorOptions({ 
-                inputSize: 160,       // Dropped to 160 to match our small canvas width
-                scoreThreshold: 0.55   // Tight threshold to strictly filter blank screens
+                inputSize: 160,       // Matches our narrow canvas layout perfectly
+                scoreThreshold: 0.6   // Stricter barrier prevents ghost laptop screens
             })
         );
         
+        // Extract total detected entities safely or default to 0
         const totalFacesFound = (detections && typeof detections.length !== 'undefined') ? detections.length : 0;
-        console.log("Live High-Speed Face Count:", totalFacesFound);
+        console.log("Live Production Verified Count:", totalFacesFound);
 
+        // 4. Tighten your conditional checks matching the user boundaries
         if (totalFacesFound !== 1) {
             statusDiv.style.color = "red";
-            inputElement.value = ""; // Erase file input array data completely
+            inputElement.value = ""; // Empty out form array data so Busboy ignores it
             
             if (totalFacesFound === 0) {
                 statusDiv.innerText = "❌ Verification Failed: No human face detected in the photo.";
@@ -2516,19 +2508,17 @@ handleIDUpload: async (inputElement) => {
                 statusDiv.innerText = `❌ Verification Failed: Multiple people (${totalFacesFound}) detected.`;
             }
         } else {
+            // SUCCESS: Exactly ONE verified face is present on the live canvas
             statusDiv.style.color = "green";
             statusDiv.innerText = "✅ Live Face verified on document.";
         }
 
-        URL.revokeObjectURL(blobUrl); // Clear system memory pointer
-
     } catch (e) {
-        console.error("Live Server Production Crash Details:", e);
+        console.error("Live Production Server Critical Exception:", e);
         statusDiv.style.color = "red";
         statusDiv.innerText = "Error executing live biometric tracking layer.";
     }
 },
-
 
 
 
