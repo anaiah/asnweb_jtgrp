@@ -2466,7 +2466,7 @@ handleIDUpload: async (inputElement) => {
             else rawImg.onload = () => resolve();
         });
 
-        // 1. Create our optimized 800px tracking canvas 
+        // 1. Downscale the giant phone photo to an optimized width (800px)
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         const MAX_WIDTH = 800; 
@@ -2475,40 +2475,51 @@ handleIDUpload: async (inputElement) => {
         canvas.height = rawImg.naturalHeight * scaleSize;
         ctx.drawImage(rawImg, 0, 0, canvas.width, canvas.height);
 
+        statusDiv.innerText = "Optimizing image data layer...";
+
+        // 2. THE TYPE-SAFE FIX FOR VLADMANDIC: 
+        // Convert the canvas data into a lightweight compressed image element wrapper
+        const optimizedImg = new Image();
+        optimizedImg.src = canvas.toDataURL('image/jpeg', 0.8); // 80% compression maximizes speed
+
+        // Wait a split millisecond for the compressed data link to register in memory
+        await new Promise((resolve) => {
+            optimizedImg.onload = () => resolve();
+        });
+
         statusDiv.innerText = "Analyzing live biometrics...";
 
-        // 2. THE PRODUCTION-GRADE FILTER SETTINGS
-        // Force the AI model to be incredibly strict over the live server link
+        // 3. Pass the fully rendered, optimized HTMLImageElement to the detector
         const detections = await faceapi.detectAllFaces(
-            canvas, 
+            optimizedImg, 
             new faceapi.TinyFaceDetectorOptions({ 
-                inputSize: 320,       // Must be a multiple of 32! Clears pixel grid lines.
+                inputSize: 320,       // Clears device camera moiré/screen lines
                 scoreThreshold: 0.65   // Raised to 0.65 to ensure it ignores ghost glares entirely
             })
         );
         
-        // 3. CRITICAL THE ASYNC FIX: Force a mathematical fallback to 0 if the array is processing
+        // 4. Force a mathematical fallback to 0 if data array is fluctuating
         const totalFacesFound = (detections && typeof detections.length !== 'undefined') ? detections.length : 0;
         console.log("Live Production Face Count:", totalFacesFound);
 
-        // 4. Tighten your conditional checks
+        // 5. Run your strict inequality checks
         if (totalFacesFound !== 1) {
             statusDiv.style.color = "red";
-            inputElement.value = ""; // ERASE the input file so Busboy won't upload it!
+            inputElement.value = ""; // Clear file selector data array completely
             
             if (totalFacesFound === 0) {
-                statusDiv.innerText = "❌ Verification Failed: No human face detected in the live photo.";
+                statusDiv.innerText = "❌ Verification Failed: No human face detected in the photo.";
             } else {
                 statusDiv.innerText = `❌ Verification Failed: Multiple people (${totalFacesFound}) detected.`;
             }
         } else {
-            // SUCCESS: Exactly ONE verified face is present on the live canvas
+            // SUCCESS
             statusDiv.style.color = "green";
             statusDiv.innerText = "✅ Live Face verified on document.";
         }
 
     } catch (e) {
-        console.error("Live Server Scanning Exception:", e);
+        console.error("Live Server Scanning Exception Details:", e);
         statusDiv.style.color = "red";
         statusDiv.innerText = "Error executing live biometric tracking layer.";
     }
