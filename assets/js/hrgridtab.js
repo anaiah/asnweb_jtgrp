@@ -51,7 +51,8 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 switch(profile.grp_id){
                     case 1: //admin
                     case 88: //test hr
-                    case 30:
+                    case 30: //JENNELLE
+                    case 9://FINANCE
                     //case 30: //finance head miss jenelle
                          xdisabled = "disabled"; // enable if grp_id is 1 or 88
                     break;
