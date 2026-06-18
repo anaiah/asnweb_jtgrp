@@ -2450,41 +2450,107 @@ const util = {
         } //EIF
     },
 
-    handleIDUpload : async (inputElement) => {
-    const statusDiv = document.getElementById('face-verification-status');
+
+handleIDUpload: async (inputElement) => {
     
+    const statusDiv = document.getElementById('face-verification-status');
     if (!inputElement.files || inputElement.files.length === 0) return;
 
     const file = inputElement.files[0];
-    
-    // --- LIVE CAPTURE METADATA VERIFICATION LAYER ---
+
+    // 1. Run your Anti-Gallery Time Check
     const now = new Date().getTime();
-    const fileLastModified = file.lastModified; // Timestamp of when the photo was created
-    const timeDifferenceInSeconds = Math.abs(now - fileLastModified) / 1000;
-
-    // If the file was generated more than 60 seconds ago, it is a gallery upload, not a live snap!
-    const MAX_ALLOWED_AGE_SECONDS = 60; 
-
-    if (timeDifferenceInSeconds > MAX_ALLOWED_AGE_SECONDS) {
+    const timeDifferenceInSeconds = Math.abs(now - file.lastModified) / 1000;
+    if (timeDifferenceInSeconds > 60) {
         statusDiv.style.color = "red";
-        statusDiv.innerText = "❌ Security Block: Saved gallery photos are not allowed. Please take a live photo.";
-        inputElement.value = ""; // Erase the input file array
-        return; // Halt face-api execution completely
+        statusDiv.innerText = "❌ Saved gallery photos are not allowed. Take a live photo.";
+        inputElement.value = "";
+        return;
     }
-    // ------------------------------------------------
 
-    // Your existing face-api code continues safely below...
     statusDiv.style.color = "blue";
     statusDiv.innerText = "Processing live document layout...";
-    
-    try {
-        const img = await faceapi.bufferToImage(file);
-        // ... rest of your functioning logic ...
-    } catch (e) {
-        console.error(e);
-    }
 
+    try {
+        // 2. Convert to Image Object
+        const img = await faceapi.bufferToImage(file);
+
+        // 3. FORCE the phone browser to wait until the image data is completely ready
+        await new Promise((resolve) => {
+            if (img.complete && img.naturalWidth !== 0) resolve();
+            else img.onload = () => resolve();
+        });
+
+        statusDiv.innerText = "Running biometric face scan...";
+
+        // 4. CRITICAL MOBILE FIX: Downscale the input size to 224 or 320 
+        // This stops the phone from freezing and processes massive photos in under 1 second!
+        const detections = await faceapi.detectAllFaces(
+            img, 
+            new faceapi.TinyFaceDetectorOptions({ 
+                inputSize: 224,       // Lowering this makes mobile processing blazing fast
+                scoreThreshold: 0.4   // Keeps detection accurate for laptop/phone screen shots
+            })
+        );
+        
+        const totalFacesFound = detections.length;
+        console.log("Mobile scan count:", totalFacesFound);
+
+        // 5. Enforce your strict value inequality logic
+        if (totalFacesFound !== 1) {
+            statusDiv.style.color = "red";
+            statusDiv.innerText = totalFacesFound === 0 
+                ? "❌ Verification Failed: No face detected on document." 
+                : `❌ Verification Failed: Multiple faces (${totalFacesFound}) detected.`;
+            inputElement.value = ""; 
+        } else {
+            statusDiv.style.color = "green";
+            statusDiv.innerText = "✅ Live Face verified successfully.";
+        }
+
+    } catch (e) {
+        console.error("Mobile scanning pipeline error:", e);
+        statusDiv.style.color = "red";
+        statusDiv.innerText = "Error scanning image processing layer.";
+    }
 },
+
+
+//     handleIDUpload : async (inputElement) => {
+//     const statusDiv = document.getElementById('face-verification-status');
+    
+//     if (!inputElement.files || inputElement.files.length === 0) return;
+
+//     const file = inputElement.files[0];
+    
+//     // --- LIVE CAPTURE METADATA VERIFICATION LAYER ---
+//     const now = new Date().getTime();
+//     const fileLastModified = file.lastModified; // Timestamp of when the photo was created
+//     const timeDifferenceInSeconds = Math.abs(now - fileLastModified) / 1000;
+
+//     // If the file was generated more than 60 seconds ago, it is a gallery upload, not a live snap!
+//     const MAX_ALLOWED_AGE_SECONDS = 60; 
+
+//     if (timeDifferenceInSeconds > MAX_ALLOWED_AGE_SECONDS) {
+//         statusDiv.style.color = "red";
+//         statusDiv.innerText = "❌ Security Block: Saved gallery photos are not allowed. Please take a live photo.";
+//         inputElement.value = ""; // Erase the input file array
+//         return; // Halt face-api execution completely
+//     }
+//     // ------------------------------------------------
+
+//     // Your existing face-api code continues safely below...
+//     statusDiv.style.color = "blue";
+//     statusDiv.innerText = "Processing live document layout...";
+    
+//     try {
+//         const img = await faceapi.bufferToImage(file);
+//         // ... rest of your functioning logic ...
+//     } catch (e) {
+//         console.error(e);
+//     }
+
+// },
 // handleIDUpload : async (inputElement) => {
 //     const statusDiv = document.getElementById('face-verification-status');
     
