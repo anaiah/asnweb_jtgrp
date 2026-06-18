@@ -510,6 +510,15 @@
                     break;
                 case "min": 
                     regionFile = `${region}_emp`;
+                    break; 
+                case 'bacolod':
+                case 'panay':
+                case 'central':
+                    regionFile = `wvis_${region}_emp`;
+                    break;
+                case 'bicol':
+                case 'smarleyte':
+                    regionFile = `bsl_${region}_emp`;
                     break;    
 
 
@@ -519,6 +528,7 @@
             const infoDiv   = document.getElementById("viewReqInfo");
             const imagesDiv = document.getElementById("viewReqImages");
 
+            console.log('==pics== ', baseUrl)
             infoDiv.textContent = `Employee: ${rowData.full_name} (${empId})`;
             imagesDiv.innerHTML = "";
 
@@ -580,6 +590,8 @@
 
                 
                 imgEl.src = url;
+
+                console.log('image file is ====', url)
                 };
 
                 // start with .jpg, then .png, then .gif
@@ -1061,6 +1073,8 @@
         fullname:null,
         dateHired:null,
 
+        
+
         //==================INIT 
         init : () =>{
         
@@ -1090,8 +1104,10 @@
                         return "Are you sure you want to leave the HR Dashboard?";
                     };
                     console.log('===HRIS OPERATIONS DOMCONTENTLOADED ==')
+                    
+                    //===== LOAD FACE MODELS
 
-
+                    //== TIMEKEEP
                     const profile = JSON.parse(localStorage.getItem('profile'))  //get profileowner =  JSON.parse(db.getItem('profile'))  //get profile
                     const optTk = document.getElementById('optTimekeeping')
                     const optMf = document.getElementById('optMasterfile')
@@ -1447,6 +1463,7 @@
     window.hris = hris
     
     hris.init()
+    util.loadFaceModels()
 
     //============== DONT PUT DOMCONTENTLOADED EVENT HERE, ITS ALREDDY IN HR.HTML
     

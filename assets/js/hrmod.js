@@ -135,10 +135,9 @@ myModal.addEventListener('show.bs.modal', function () {
         document.getElementById('h4Text').innerHTML = '<i class="ti ti-pencil-square" style="font-size:17px"></i> Create Account';
 
         const profile = JSON.parse(localStorage.getItem('profile'));
+
         if(profile && (profile.grp_id === "08" || profile.grp_id === "07")){ // HR or COORD
             document.getElementById('region').value = profile.region.toUpperCase();        
-
-            
 
             const selectedValue =document.getElementById('region').value;
 

@@ -2415,7 +2415,174 @@ const util = {
             }
             btn.disabled = false;
         }
+    },
+
+    //for camera
+    //for the camera
+        //LOAD FACE MODELS
+
+        //LOAD FACE MODELS
+    loadFaceModels: function() { // No 'async' keyword needed here!
+        const statusDiv = document.getElementById('face-verification-status');
+        
+        if (statusDiv) {
+            statusDiv.innerText = "Loading AI models...";
+        
+            try {
+                const cdnModelsUrl = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
+                
+                // We use .then() instead of await!
+                faceapi.nets.tinyFaceDetector.loadFromUri(cdnModelsUrl)
+                    .then(() => {
+                        statusDiv.innerText = "Ready for ID upload.";
+                        statusDiv.style.color = "green";
+                        console.log("🟢 Models loaded perfectly!");
+                    })
+                    .catch((err) => {
+                        console.error("Failed to load models inner:", err);
+                        statusDiv.innerText = "Verification engine offline.";
+                        statusDiv.style.color = "red";
+                    });
+
+            } catch (err) {
+                console.error("Failed to execute loader block:", err);
+            }
+        } //EIF
+    },
+
+    handleIDUpload : async (inputElement) => {
+    const statusDiv = document.getElementById('face-verification-status');
+    
+    if (!inputElement.files || inputElement.files.length === 0) return;
+
+    const file = inputElement.files[0];
+    
+    // --- LIVE CAPTURE METADATA VERIFICATION LAYER ---
+    const now = new Date().getTime();
+    const fileLastModified = file.lastModified; // Timestamp of when the photo was created
+    const timeDifferenceInSeconds = Math.abs(now - fileLastModified) / 1000;
+
+    // If the file was generated more than 60 seconds ago, it is a gallery upload, not a live snap!
+    const MAX_ALLOWED_AGE_SECONDS = 60; 
+
+    if (timeDifferenceInSeconds > MAX_ALLOWED_AGE_SECONDS) {
+        statusDiv.style.color = "red";
+        statusDiv.innerText = "❌ Security Block: Saved gallery photos are not allowed. Please take a live photo.";
+        inputElement.value = ""; // Erase the input file array
+        return; // Halt face-api execution completely
     }
+    // ------------------------------------------------
+
+    // Your existing face-api code continues safely below...
+    statusDiv.style.color = "blue";
+    statusDiv.innerText = "Processing live document layout...";
+    
+    try {
+        const img = await faceapi.bufferToImage(file);
+        // ... rest of your functioning logic ...
+    } catch (e) {
+        console.error(e);
+    }
+
+},
+// handleIDUpload : async (inputElement) => {
+//     const statusDiv = document.getElementById('face-verification-status');
+    
+//     if (!inputElement.files || inputElement.files.length === 0) return;
+
+//     statusDiv.style.color = "blue";
+//     statusDiv.innerText = "Processing document layout...";
+
+//     try {
+//         // 1. Convert the file blob into an HTML Image element object
+//         const img = await faceapi.bufferToImage(inputElement.files[0]);
+
+//         // 2. CRITICAL FIX: Create a promise that waits until the image is 100% loaded in the browser
+//         const ensureImageLoaded = () => {
+//             return new Promise((resolve) => {
+//                 if (img.complete && img.naturalWidth !== 0) {
+//                     resolve();
+//                 } else {
+//                     img.onload = () => resolve();
+//                 }
+//             });
+//         };
+
+//         // Pause code execution until the image is fully painted in memory
+//         await ensureImageLoaded();
+
+//         // 3. Run the face detection with an optimized input size
+//         const detections = await faceapi.detectAllFaces(
+//             img, 
+//             new faceapi.TinyFaceDetectorOptions({ inputSize: 320, scoreThreshold: 0.3 })
+//         );
+        
+//         const totalFacesFound = detections.length;
+//         console.log("Total faces detected by AI:", totalFacesFound);
+
+//         // 4. Run your strict inequality check
+//         if (totalFacesFound !== 1) {
+//             statusDiv.style.color = "red";
+//             statusDiv.innerText = totalFacesFound === 0 
+//                 ? "❌ Verification Failed: No face detected on document." 
+//                 : `❌ Verification Failed: Detected ${totalFacesFound} faces.`;
+            
+//             inputElement.value = ""; // Clear file selector data array
+//         } else {
+//             statusDiv.style.color = "green";
+//             statusDiv.innerText = "✅ Face verified on ID document.";
+//         }
+
+//     } catch (e) {
+//         console.error("Scanning pipeline failure:", e);
+//         statusDiv.style.color = "red";
+//         statusDiv.innerText = "Error scanning image processing layer.";
+//     }
+// },
+
+    // handleIDUpload: async (inputElement)=> {
+    //     const statusDiv = document.getElementById('face-verification-status');
+    //     const errorDiv = document.getElementById('id_picture-error');
+        
+    //     if (!inputElement.files || inputElement.files.length === 0) return;
+
+    //     statusDiv.style.color = "blue";
+    //     statusDiv.innerText = "Scanning document layout...";
+    //     errorDiv.style.display = "none";
+
+    //     try {
+    //         // Convert uploaded file blob to element object
+    //         const img =  await faceapi.bufferToImage(inputElement.files[0]);
+            
+    //         // Execute face detection pass 
+    //         const detections = await faceapi.detectAllFaces(
+    //             img, 
+    //             new faceapi.TinyFaceDetectorOptions({
+    //                 input:320,
+    //                 scoreThreshold:0.3
+    //             })
+    //         );
+
+    //         const totalFacesFound = detections.length;
+
+    //         // Enforce your strict value inequality logic
+    //         if (totalFacesFound !== 1) {
+    //             statusDiv.style.color = "red";
+    //             statusDiv.innerText = totalFacesFound === 0 
+    //                 ? "❌ Verification Failed: No face detected on document." 
+    //                 : `❌ Verification Failed: Detected ${totalFacesFound} faces. ID must only contain 1 individual.`;
+                
+    //             inputElement.value = ""; // Block upload path by clearing input array
+    //         } else {
+    //             statusDiv.style.color = "green";
+    //             statusDiv.innerText = "✅ Face verified on ID document.";
+    //         }
+    //     } catch (e) {
+    //         console.error(e);
+    //         statusDiv.style.color = "red";
+    //         statusDiv.innerText = "Error scanning image file processing layer.";
+    //     }
+    // },
 
     
 }//****** end obj */

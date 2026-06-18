@@ -666,6 +666,7 @@ I
                                     type="number" 
                                     id="daily_rate" 
                                     name="daily_rate" 
+                                    class="form-control 201"
                                     min="0" 
                                     step="0.01" 
                                     placeholder="0.00" 
@@ -675,7 +676,7 @@ I
                                 
                                 <div class="mb-3">
                                     <label for="education_level">Education Level</label>
-                                    <select id="education_level" name="education_level" required>
+                                    <select id="education_level" class="form-control 201" name="education_level" required>
                                     <option value="" disabled selected>Choose an option</option>
                                     <option value="elementary">Elementary</option>
                                     <option value="high-school">High School</option>
@@ -708,11 +709,24 @@ I
                                     <div id="jms_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
                                 </div>
 
-                                <div class="mb-3">
+                                <!-- <div class="mb-3">
                                     <label for="id_picture" class="form-label">Contractor ID Picture</label>
                                     <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="id_picture" id="id_picture" accept='image/*'  capture="environment" required />
                                     <div id="id_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
+                                </div> -->
+
+                                  <!-- Your original Input component -->
+                                <div class="mb-3">
+                                    <label for="id_picture" class="form-label">Contractor ID Picture</label>
+                                    <input onchange="util.handleIDUpload(this)" type="file" class="form-control" name="id_picture" id="id_picture" accept='image/jpeg, image/png, image/jpg' capture="environment" required />
+                                    
+                                    <!-- Dynamic feedback display tracking face-api state -->
+                                    <div id="face-verification-status" class="mt-1" style="font-size: 0.875em; font-weight: bold;"></div>
+                                    
+                                    <div id="id_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
                                 </div>
+
+
                                 <div class="mb-3">
                                     <label for="id_specimen_picture" class="form-label">Contractor ID Picture w/ 3 Specimen Signature</label>
                                     <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="id_specimen_picture" id="id_specimen_picture" accept='image/*'  capture="environment" required />
@@ -994,8 +1008,12 @@ I
 
 <!-- Signature Pad Library (cdnjs.com) -->
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.0/dist/signature_pad.umd.min.js?v=8"></script>
+
+<!-- face recog -->
+<script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+
 <!-- my utility -->
-<script src="/html/assets/js/util.js?v=8"></script>
+<script src="/html/assets/js/util.js?v=9"></script>
 <!-- main js -->
 
 <script  type="module" src="/html/assets/js/hrmod.js?v=8"></script>
@@ -1004,6 +1022,7 @@ I
 
 <!-- takeout muna gridtab palit extjs -->
 <script src="/html/assets/js/hrgridtab.js?v=8"></script>
+
 
 <script> 
     
