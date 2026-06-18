@@ -513,20 +513,9 @@
                                     <div id="jms_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
                                 </div>
 
-                                <!-- <div class="mb-3">
-                                    <label for="id_picture" class="form-label">Contractor ID Picture</label>
-                                    <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="id_picture" id="id_picture" accept='image/*'  capture="environment" required />
-                                    <div id="id_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
-                                </div> -->
-
-                                  <!-- Your original Input component -->
                                 <div class="mb-3">
                                     <label for="id_picture" class="form-label">Contractor ID Picture</label>
-                                    <input onchange="util.handleIDUpload(this)" type="file" class="form-control" name="id_picture" id="id_picture" accept='image/jpeg, image/png, image/jpg' capture="environment" required />
-                                    
-                                    <!-- Dynamic feedback display tracking face-api state -->
-                                    <div id="face-verification-status" class="mt-1" style="font-size: 0.875em; font-weight: bold;"></div>
-                                    
+                                    <input onchange="util.checkFileSize(this,500)" type="file" class="form-control" name="id_picture" id="id_picture" accept='image/*'  capture="environment" required />
                                     <div id="id_picture-error" class="text-danger mt-1" style="display: none; font-size: 0.875em;">Please select an ID Picture.</div>
                                 </div>
 

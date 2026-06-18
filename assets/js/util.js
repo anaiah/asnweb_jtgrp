@@ -2417,244 +2417,128 @@ const util = {
         }
     },
 
-    //for camera
-    //for the camera
-        //LOAD FACE MODELS
+    //const cdnModelsUrl = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
 
-        //LOAD FACE MODELS
-    loadFaceModels: function() { // No 'async' keyword needed here!
+    //for camera
+    
+    // Flag to ensure the model isn't queried prematurely
+    isModelLoaded: false,
+
+    loadFaceModels: function() { 
         const statusDiv = document.getElementById('face-verification-status');
         
         if (statusDiv) {
-            statusDiv.innerText = "Loading AI models...";
+            statusDiv.innerText = "Initializing graphics engine...";
+            statusDiv.style.color = "orange";
         
             try {
-                const cdnModelsUrl = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
-
-                  // 🌟 THE PRODUCTION FIX: Force the AI engine onto the CPU backend.
-                // This stops mobile browsers from crashing during live camera captures!
-                if (faceapi && faceapi.tf) {
-                    faceapi.tf.setBackend('webgl'); 
-                }
-                
-                // We use .then() instead of await!
-                faceapi.nets.tinyFaceDetector.loadFromUri(cdnModelsUrl)
-                    .then(() => {
-                        statusDiv.innerText = "Ready for ID upload.";
-                        statusDiv.style.color = "green";
-                        console.log("🟢 Models loaded perfectly!");
-                    })
-                    .catch((err) => {
-                        console.error("Failed to load models inner:", err);
-                        statusDiv.innerText = "Verification engine offline.";
-                        statusDiv.style.color = "red";
+                // Initialize high-speed WebGL backend configuration contexts
+                if (typeof faceapi !== 'undefined' && faceapi.tf) {
+                    faceapi.tf.setBackend('webgl').then(() => {
+                        console.log("WebGL active. Syncing face-biometric engines...");
+                        util.initModelDownload(statusDiv);
+                    }).catch(err => {
+                        console.warn("WebGL blocked, utilizing standard CPU matrix structures.", err);
+                        util.initModelDownload(statusDiv);
                     });
+                } else {
+                    util.initModelDownload(statusDiv);
+                }
 
             } catch (err) {
-                console.error("Failed to execute loader block:", err);
+                console.error("Failed to execute initialization framework:", err);
             }
-        } //EIF 
+        } 
     },
 
-handleIDUpload: async  (inputElement) => {
-    
-    const statusDiv = document.getElementById('face-verification-status');
-    if (!inputElement.files || inputElement.files.length === 0) return;
+    initModelDownload: function(statusDiv) {
+        // Official, fully accessible jsDelivr NPM architecture endpoint 
+        //const cdnModelsUrl = 'https://jsdelivr.net';
+        const cdnModelsUrl = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
 
-    statusDiv.style.color = "blue";
-    statusDiv.innerText = "Processing live capture...";
-
-    try {
-        // 1. Instantly parse the raw file into an HTML Image layout
-        const rawImg = await faceapi.bufferToImage(inputElement.files);
-
-        statusDiv.innerText = "Optimizing image scales...";
-
-        // 2. Shrink picture down to a lightweight 400px matrix framework 
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const MAX_WIDTH = 400; // Small size speeds up mobile GPU/CPU compilation
-        const scaleSize = MAX_WIDTH / rawImg.naturalWidth;
-        canvas.width = MAX_WIDTH;
-        canvas.height = rawImg.naturalHeight * scaleSize;
-        
-        // Flatten phone pixels down explicitly onto our clean canvas layer
-        ctx.drawImage(rawImg, 0, 0, canvas.width, canvas.height);
-
-        statusDiv.innerText = "Analyzing live biometrics...";
-
-        // 3. THE LIVE SERVER PRODUCTION FIX: 
-        // We pass the CANVAS directly to the detector, removing all 'new Image().onload' loops!
-        const detections = await faceapi.detectAllFaces(
-            canvas, 
-            new faceapi.TinyFaceDetectorOptions({ 
-                inputSize: 160,       // Matches our narrow canvas layout perfectly
-                scoreThreshold: 0.6   // Stricter barrier prevents ghost laptop screens
+        // SWITCHED TO SSD MOBILENET V1: Most accurate, stable model bundle over live networks
+        faceapi.nets.ssdMobilenetv1.loadFromUri(cdnModelsUrl)
+            .then(() => {
+                util.isModelLoaded = true; // 🔓 THE GATEKEEPER UNLOCKS!
+                statusDiv.innerText = "Ready for ID upload.";
+                statusDiv.style.color = "green";
+                console.log("🟢 Production AI brain assets synchronized perfectly!");
             })
-        );
-        
-        // Extract total detected entities safely or default to 0
-        const totalFacesFound = (detections && typeof detections.length !== 'undefined') ? detections.length : 0;
-        console.log("Live Production Verified Count:", totalFacesFound);
+            .catch((err) => {
+                console.error("Failed to down-stream weights via CDN:", err);
+                statusDiv.innerText = "Verification engine offline. Network error.";
+                statusDiv.style.color = "red";
+            });
+    },
 
-        // 4. Tighten your conditional checks matching the user boundaries
-        if (totalFacesFound !== 1) {
+    handleIDUpload: async (inputElement) => {
+        const statusDiv = document.getElementById('face-verification-status');
+        
+        if (!inputElement.files || inputElement.files.length === 0) return;
+
+        // Verify the background network handshake completes before reading inputs
+        if (!util.isModelLoaded) {
             statusDiv.style.color = "red";
-            inputElement.value = ""; // Empty out form array data so Busboy ignores it
-            
-            if (totalFacesFound === 0) {
-                statusDiv.innerText = "❌ Verification Failed: No human face detected in the photo.";
-            } else {
-                statusDiv.innerText = `❌ Verification Failed: Multiple people (${totalFacesFound}) detected.`;
-            }
-        } else {
-            // SUCCESS: Exactly ONE verified face is present on the live canvas
-            statusDiv.style.color = "green";
-            statusDiv.innerText = "✅ Live Face verified on document.";
+            statusDiv.innerText = "❌ System Warning: Please wait for the AI models to finish loading.";
+            inputElement.value = "";
+            return;
         }
 
-    } catch (e) {
-        console.error("Live Production Server Critical Exception:", e);
-        statusDiv.style.color = "red";
-        statusDiv.innerText = "Error executing live biometric tracking layer.";
-    }
-},
+        statusDiv.style.color = "blue";
+        statusDiv.innerText = "Processing canvas matrix...";
 
+        try {
+            // Target the clean single file array element pointer matching modern specifications
+            const targetFile = inputElement.files[0];
+            const rawImg = await faceapi.bufferToImage(targetFile);
 
+            statusDiv.innerText = "Optimizing image scales...";
 
-//     handleIDUpload : async (inputElement) => {
-//     const statusDiv = document.getElementById('face-verification-status');
-    
-//     if (!inputElement.files || inputElement.files.length === 0) return;
-
-//     const file = inputElement.files[0];
-    
-//     // --- LIVE CAPTURE METADATA VERIFICATION LAYER ---
-//     const now = new Date().getTime();
-//     const fileLastModified = file.lastModified; // Timestamp of when the photo was created
-//     const timeDifferenceInSeconds = Math.abs(now - fileLastModified) / 1000;
-
-//     // If the file was generated more than 60 seconds ago, it is a gallery upload, not a live snap!
-//     const MAX_ALLOWED_AGE_SECONDS = 60; 
-
-//     if (timeDifferenceInSeconds > MAX_ALLOWED_AGE_SECONDS) {
-//         statusDiv.style.color = "red";
-//         statusDiv.innerText = "❌ Security Block: Saved gallery photos are not allowed. Please take a live photo.";
-//         inputElement.value = ""; // Erase the input file array
-//         return; // Halt face-api execution completely
-//     }
-//     // ------------------------------------------------
-
-//     // Your existing face-api code continues safely below...
-//     statusDiv.style.color = "blue";
-//     statusDiv.innerText = "Processing live document layout...";
-    
-//     try {
-//         const img = await faceapi.bufferToImage(file);
-//         // ... rest of your functioning logic ...
-//     } catch (e) {
-//         console.error(e);
-//     }
-
-// },
-// handleIDUpload : async (inputElement) => {
-//     const statusDiv = document.getElementById('face-verification-status');
-    
-//     if (!inputElement.files || inputElement.files.length === 0) return;
-
-//     statusDiv.style.color = "blue";
-//     statusDiv.innerText = "Processing document layout...";
-
-//     try {
-//         // 1. Convert the file blob into an HTML Image element object
-//         const img = await faceapi.bufferToImage(inputElement.files[0]);
-
-//         // 2. CRITICAL FIX: Create a promise that waits until the image is 100% loaded in the browser
-//         const ensureImageLoaded = () => {
-//             return new Promise((resolve) => {
-//                 if (img.complete && img.naturalWidth !== 0) {
-//                     resolve();
-//                 } else {
-//                     img.onload = () => resolve();
-//                 }
-//             });
-//         };
-
-//         // Pause code execution until the image is fully painted in memory
-//         await ensureImageLoaded();
-
-//         // 3. Run the face detection with an optimized input size
-//         const detections = await faceapi.detectAllFaces(
-//             img, 
-//             new faceapi.TinyFaceDetectorOptions({ inputSize: 320, scoreThreshold: 0.3 })
-//         );
-        
-//         const totalFacesFound = detections.length;
-//         console.log("Total faces detected by AI:", totalFacesFound);
-
-//         // 4. Run your strict inequality check
-//         if (totalFacesFound !== 1) {
-//             statusDiv.style.color = "red";
-//             statusDiv.innerText = totalFacesFound === 0 
-//                 ? "❌ Verification Failed: No face detected on document." 
-//                 : `❌ Verification Failed: Detected ${totalFacesFound} faces.`;
+            // Flatten and downscale giant photos to an optimized 400px monitor tracking canvas
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const MAX_WIDTH = 400; 
+            const scaleSize = MAX_WIDTH / rawImg.naturalWidth;
+            canvas.width = MAX_WIDTH;
+            canvas.height = rawImg.naturalHeight * scaleSize;
             
-//             inputElement.value = ""; // Clear file selector data array
-//         } else {
-//             statusDiv.style.color = "green";
-//             statusDiv.innerText = "✅ Face verified on ID document.";
-//         }
+            ctx.drawImage(rawImg, 0, 0, canvas.width, canvas.height);
 
-//     } catch (e) {
-//         console.error("Scanning pipeline failure:", e);
-//         statusDiv.style.color = "red";
-//         statusDiv.innerText = "Error scanning image processing layer.";
-//     }
-// },
+            statusDiv.innerText = "Analyzing live biometrics...";
 
-    // handleIDUpload: async (inputElement)=> {
-    //     const statusDiv = document.getElementById('face-verification-status');
-    //     const errorDiv = document.getElementById('id_picture-error');
-        
-    //     if (!inputElement.files || inputElement.files.length === 0) return;
-
-    //     statusDiv.style.color = "blue";
-    //     statusDiv.innerText = "Scanning document layout...";
-    //     errorDiv.style.display = "none";
-
-    //     try {
-    //         // Convert uploaded file blob to element object
-    //         const img =  await faceapi.bufferToImage(inputElement.files[0]);
+            // 🚀 EXECUTING HIGH-ACCURACY FACE DETECTION PASS
+            // ssdMobilenetv1 provides extreme protection against false laptop screen errors out-of-the-box!
+            const detections = await faceapi.detectAllFaces(
+                canvas, 
+                new faceapi.SsdMobilenetv1Options({ minConfidence: 0.60 }) // 60% confidence baseline
+            );
             
-    //         // Execute face detection pass 
-    //         const detections = await faceapi.detectAllFaces(
-    //             img, 
-    //             new faceapi.TinyFaceDetectorOptions({
-    //                 input:320,
-    //                 scoreThreshold:0.3
-    //             })
-    //         );
+            const totalFacesFound = (detections && typeof detections.length !== 'undefined') ? detections.length : 0;
+            console.log("Live Production Verification Count:", totalFacesFound);
 
-    //         const totalFacesFound = detections.length;
-
-    //         // Enforce your strict value inequality logic
-    //         if (totalFacesFound !== 1) {
-    //             statusDiv.style.color = "red";
-    //             statusDiv.innerText = totalFacesFound === 0 
-    //                 ? "❌ Verification Failed: No face detected on document." 
-    //                 : `❌ Verification Failed: Detected ${totalFacesFound} faces. ID must only contain 1 individual.`;
+            // Conditional execution routes evaluating output constraints
+            if (totalFacesFound !== 1) {
+                statusDiv.style.color = "red";
+                inputElement.value = ""; // Empty out form selector array data array so Busboy ignores it
                 
-    //             inputElement.value = ""; // Block upload path by clearing input array
-    //         } else {
-    //             statusDiv.style.color = "green";
-    //             statusDiv.innerText = "✅ Face verified on ID document.";
-    //         }
-    //     } catch (e) {
-    //         console.error(e);
-    //         statusDiv.style.color = "red";
-    //         statusDiv.innerText = "Error scanning image file processing layer.";
-    //     }
-    // },
+                if (totalFacesFound === 0) {
+                    statusDiv.innerText = "❌ Verification Failed: No human face detected in the photo.";
+                } else {
+                    statusDiv.innerText = `❌ Verification Failed: Multiple people (${totalFacesFound}) detected.`;
+                }
+            } else {
+                // SUCCESS
+                statusDiv.style.color = "green";
+                statusDiv.innerText = "✅ Live Face verified on document.";
+            }
+
+        } catch (e) {
+            console.error("Live Production Server Critical Exception:", e);
+            statusDiv.style.color = "red";
+            statusDiv.innerText = "Error executing live biometric tracking layer.";
+        }
+    }
+
 
     
 }//****** end obj */
