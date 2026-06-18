@@ -2430,6 +2430,12 @@ const util = {
         
             try {
                 const cdnModelsUrl = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
+
+                  // 🌟 THE PRODUCTION FIX: Force the AI engine onto the CPU backend.
+                // This stops mobile browsers from crashing during live camera captures!
+                if (faceapi && faceapi.tf) {
+                    faceapi.tf.setBackend('cpu'); 
+                }
                 
                 // We use .then() instead of await!
                 faceapi.nets.tinyFaceDetector.loadFromUri(cdnModelsUrl)
@@ -2450,62 +2456,60 @@ const util = {
         } //EIF
     },
 
-
 handleIDUpload: async (inputElement) => {
     const statusDiv = document.getElementById('face-verification-status');
     if (!inputElement.files || inputElement.files.length === 0) return;
 
     statusDiv.style.color = "blue";
-    statusDiv.innerText = "Processing live document capture...";
-
-    // Declare a placeholder to clean up memory later
-    let tensorFrame = null;
+    statusDiv.innerText = "Processing live capture...";
 
     try {
-        // 1. Load the file stream safely into an image element object
-        const rawImg = await faceapi.bufferToImage(inputElement.files);
-        
+        // 1. Load the raw mobile capture file into a clean URL source object
+        const blobUrl = URL.createObjectURL(inputElement.files[0]);
+        const cleanImg = new Image();
+        cleanImg.src = blobUrl;
+
         await new Promise((resolve) => {
-            if (rawImg.complete && rawImg.naturalWidth !== 0) resolve();
-            else rawImg.onload = () => resolve();
+            cleanImg.onload = () => resolve();
         });
 
-        statusDiv.innerText = "Downsampling image frame...";
+        statusDiv.innerText = "Optimizing document framework...";
 
-        // 2. Render downscaled image to canvas (Width: 800px)
+        // 2. Downscale canvas to 600px width for fast mobile CPU parsing
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        const MAX_WIDTH = 800; 
-        const scaleSize = MAX_WIDTH / rawImg.naturalWidth;
+        const MAX_WIDTH = 600; 
+        const scaleSize = MAX_WIDTH / cleanImg.naturalWidth;
         canvas.width = MAX_WIDTH;
-        canvas.height = rawImg.naturalHeight * scaleSize;
-        
-        // Paint the image pixels down explicitly onto our canvas surface
-        ctx.drawImage(rawImg, 0, 0, canvas.width, canvas.height);
+        canvas.height = cleanImg.naturalHeight * scaleSize;
+        ctx.drawImage(cleanImg, 0, 0, canvas.width, canvas.height);
+
+        // 3. Render canvas into a final lightweight standalone image tag 
+        const finalImg = new Image();
+        finalImg.src = canvas.toDataURL('image/jpeg', 0.7);
+
+        await new Promise((resolve) => {
+            finalImg.onload = () => resolve();
+        });
 
         statusDiv.innerText = "Analyzing live biometrics...";
 
-        // 3. THE LIVE SERVER PRODUCTION FIX:
-        // Convert canvas pixels directly to a secure TensorFlow GPU Tensor array
-        tensorFrame = faceapi.tf.browser.fromPixels(canvas);
-
-        // 4. Run the detector directly using our compiled Tensor frame
+        // 4. Run detection using standard parameters against the clean image element
         const detections = await faceapi.detectAllFaces(
-            tensorFrame, 
+            finalImg, 
             new faceapi.TinyFaceDetectorOptions({ 
-                inputSize: 320,       // Clears device camera screen moiré lines
-                scoreThreshold: 0.65   // Ignores background glare anomalies entirely
+                inputSize: 224,       // Reset to 224 for optimized CPU speeds
+                scoreThreshold: 0.6   // Stricter threshold to completely block false laptop screens
             })
         );
         
-        // Determine total face count or fallback to 0
         const totalFacesFound = (detections && typeof detections.length !== 'undefined') ? detections.length : 0;
-        console.log("Live Server Face Count:", totalFacesFound);
+        console.log("Live Production CPU Face Count:", totalFacesFound);
 
-        // 5. Execute your strict conditional validation matching
+        // 5. Strict equality checks
         if (totalFacesFound !== 1) {
             statusDiv.style.color = "red";
-            inputElement.value = ""; // Empty out form array data so Busboy ignores it
+            inputElement.value = ""; // Clear file selector data array completely
             
             if (totalFacesFound === 0) {
                 statusDiv.innerText = "❌ Verification Failed: No human face detected in the photo.";
@@ -2513,22 +2517,20 @@ handleIDUpload: async (inputElement) => {
                 statusDiv.innerText = `❌ Verification Failed: Multiple people (${totalFacesFound}) detected.`;
             }
         } else {
-            // SUCCESS
             statusDiv.style.color = "green";
             statusDiv.innerText = "✅ Live Face verified on document.";
         }
 
+        // Clean up mobile memory blobs
+        URL.revokeObjectURL(blobUrl);
+
     } catch (e) {
-        console.error("Live Server Scanning Exception Details:", e);
+        console.error("Live Server Production Crash Details:", e);
         statusDiv.style.color = "red";
         statusDiv.innerText = "Error executing live biometric tracking layer.";
-    } finally {
-        // 6. MEMORY MANAGEMENT: Clear the tensor data layer so mobile browsers won't crash
-        if (tensorFrame) {
-            faceapi.tf.dispose(tensorFrame);
-        }
     }
 },
+
 
 
 
