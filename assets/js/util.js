@@ -2434,7 +2434,7 @@ const util = {
                   // 🌟 THE PRODUCTION FIX: Force the AI engine onto the CPU backend.
                 // This stops mobile browsers from crashing during live camera captures!
                 if (faceapi && faceapi.tf) {
-                    faceapi.tf.setBackend('cpu'); 
+                    faceapi.tf.setBackend('webgl'); 
                 }
                 
                 // We use .then() instead of await!
