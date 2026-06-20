@@ -36,6 +36,7 @@ export function initHrisGrid() {
         //     }
         // },
 
+       //============THESE ARE BEING USEDBY THE COORDINATORS ========//
         columns: [ // Define Table Columns
             {
                 title:'ID',
@@ -53,11 +54,11 @@ export function initHrisGrid() {
                     const profile = JSON.parse(localStorage.getItem('profile'))  //get profileowner =  JSON.parse(db.getItem('profile'))  //get profile
                     const data = cell.getData();
                     
-                    let xlabel = "";
-                    let action = "";
+                    let xlabel = ""; let action = ""; let xdisabled = false;
 
                     let mname = ( data.middle_name ? data.middle_name.toUpperCase() : "N/A")
                     //let hub = ( data.hub ? data.hub.toUpperCase()  : '( NO HUB )' )
+                    
 
                     switch (data.active) {
                     case 1:
@@ -71,6 +72,17 @@ export function initHrisGrid() {
                         break;
                     }
 
+                    switch(profile.grp_id){
+                    case 1: //admin
+                    case 88: //test hr
+                    case 30: //JENNELLE
+                    case 9://FINANCE
+                    case 8://coordinators hands  off
+                    //case 30: //finance head miss jenelle
+                         xdisabled = true; // enable if grp_id is 1 or 88
+                    break;
+
+                    }    
                     return `
                     <b>${data.full_name}</b><br>
                     ( ${mname} )<br>
@@ -79,15 +91,18 @@ export function initHrisGrid() {
                     ${data.emp_id}<br>
                     JMS # ${data.jms_id || "(No JMS)"}<br>
                     <button type="button"
+                    
                             class="btn my-btn  btn-sm btn-status-change"
+                             (${xdisabled} ? disabled : null )
                             data-action="edit">
-                        Edit
+                        Edits
                     </button>
                     <button type="button"
                             class="btn btn-warning btn-sm btn-status-change"
                             data-action="${action}">
                         ${xlabel}
                     </button>
+                
                     <button type="button"
                             class="btn btn-info btn-sm btn-status-change"
                             (${profile.grp_id}=='08'? disabled : null )

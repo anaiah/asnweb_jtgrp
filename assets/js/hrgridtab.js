@@ -53,13 +53,15 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                     case 88: //test hr
                     case 30: //JENNELLE
                     case 9://FINANCE
+                    case 8://coordinators hands  off
+
                     //case 30: //finance head miss jenelle
                          xdisabled = "disabled"; // enable if grp_id is 1 or 88
                     break;
 
-                    case 8://corp hr
-                         xdisabled = "";
-                         break;
+                    // case 8://corp hr
+                    //      xdisabled = "disabled";
+                    //      break;
 
                 }    
                 // if (profile.grp_id === 8) {  //8 hold hr
@@ -121,7 +123,7 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                     Print Contract
                 </button>
                 
-                `;
+                `;//========these are for hr people
             },
 
             cellClick: (e, cell) => {
