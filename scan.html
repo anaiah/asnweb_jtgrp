@@ -82,10 +82,10 @@
 
                 document.getElementById('result').innerText = `Scanned Code: ${ decodedText }`;
                 
-                let url = `${myIp}/barcode/${decodedText}` 
+                let url = `https://asn-jtgrp-api.onrender.com/barcode/${decodedText}` 
                 
                 alert(url)
-                
+
                 addy.link = decodedText
 
                 fetch(url,{
