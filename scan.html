@@ -82,7 +82,7 @@
 
                 document.getElementById('result').innerText = `Scanned Code: ${ decodedText }`;
                 
-                let url = `https://asn-jtgrp-api.onrender.com/addlink` 
+                let url = `${myIp}/barcode/${decodeText}` 
                 
                 addy.link = decodedText
 
@@ -92,17 +92,17 @@
 
                     headers: {
                         'Content-Type': 'application/json',
-                    },
-                    
-                    body: JSON.stringify(addy)
+                    }
                 })
                 .then( (data)=>{
-                  if (data.status) { 
+
+
+                  if (data) { 
                     Toastify({
-                        text: data.message ,
-                        duration:3000,
+                        text: data.brand +'<BR>'+ data.title ,
+                        //duration:3000,
                         escapeMarkup:false, //to create html
-                        close:false,
+                        close:true,
                         position:'center',
                         offset:{
                             x: 0,
