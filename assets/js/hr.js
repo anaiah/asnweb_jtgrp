@@ -508,6 +508,9 @@
                 case "nwlu":
                     regionFile = `luz_${region}_emp`;
                     break;
+                case "slu":
+                    regionFile = `${region}_emp`;
+                    break;    
                 case "min": 
                     regionFile = `${region}_emp`;
                     break; 
