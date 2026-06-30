@@ -137,10 +137,10 @@ let loginDetails = null;
         }
 
     }
-
-    const findRegion = ( xregion ) =>{
-        const aRegion = ['NCR-CMNL','NCR-CMNVA','NCR-SMNL','LUZ-NEL','LUZ-NWL','MIN'];
-        const aValue  = ['cmnl','cmnva','smnl','nelu','nwlu'];
+    
+        const findRegion = ( xregion ) =>{
+        const aRegion = ['NCR-CMNL','NCR-CMNVA','NCR-SMNL','LUZ-NEL','LUZ-NWL','MIN','BSL-BICOL','BSL-SAMAR LEYTE','WVIS-BACOLOD','WVIS-PANAY','WVIS-CENTRAL','HAULPRO','YUNYI NCR','YUNYI SLU','YUNYI NELU'];
+        const aValue  = ['cmnl','cmnva','smnl','nelu','nwlu','min','bicol','smarleyte','bacolod','panay','central','hpro','yncr','yslu','ynelu'];
 
         const region = xregion
         const select = document.getElementById('xfilter_region');
@@ -247,7 +247,13 @@ let loginDetails = null;
                     case "nwlu":
                         regionFile = `LUZ-${region}`;
                         break;
-                    case "min": 
+
+                    case "min":
+                    case "slu":
+                    case "hpro":
+                    case "yncr":
+                    case "yslu":
+                    case "ynelu":    
                         regionFile = `${region}`;
                         break;
                     case "bicol":

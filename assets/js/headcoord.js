@@ -1060,12 +1060,13 @@ const asn = {
                 regionFolder = `luz_${xregion}_emp`;
                 break;
             case "slu":
+            case "hpro":
+            case "yncr":
+            case "yslu":
+            case "ynelu":    
+            case "min":    
                 regionFolder = `${xregion}_emp`;
                 break;    
-                
-            case "min": 
-                regionFolder = `min_emp`;
-                break; 
             case "bicol": 
             case "smarleyte":
                 regionFolder = `bsl_${xregion}_emp`;    
