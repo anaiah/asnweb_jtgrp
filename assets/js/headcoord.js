@@ -1057,8 +1057,12 @@ const asn = {
                 break;
             case "nelu": 
             case "nwlu":
-                regionFolder = `luz_${region}_emp`;
+                regionFolder = `luz_${xregion}_emp`;
                 break;
+            case "slu":
+                regionFolder = `${xregion}_emp`;
+                break;    
+                
             case "min": 
                 regionFolder = `min_emp`;
                 break; 
