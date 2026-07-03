@@ -95,7 +95,7 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                         class="btn my-btn-purple btn-sm btn-status-change"
                         ${ xdisabled }
                         data-action="edit">
-                    Edit
+                    Editsx
                 </button>
                 <button type="button"
                         class="btn my-btn2 btn-sm btn-status-change"
@@ -138,7 +138,8 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 switch( action ){
                     case "edit":
                         console.log('opening hris.openEditForm with rowData:', rowData);
-
+                        
+                        
                         hris.openEditForm(rowData);
                         return;
                     break;  

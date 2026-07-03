@@ -804,6 +804,8 @@
 
         //===========edit employee records===================
         openEditForm : (rowData) => {
+
+            console.log('===FIRING hris.openEditForm()===')
         
             hris.editMode = true; // Set edit mode to true when opening the form
            
@@ -856,6 +858,9 @@
             form.querySelector('#lastName').value = rowData.last_name || "";
             
             form.querySelector('#jobTitle').value = rowData.position || "";
+
+            const pos = document.getElementById('jobTitle');
+            pos.classList.remove('d-none');
 
             const jobTitleEl = form.querySelector('#jobTitle');
             jobTitleEl.dispatchEvent(new Event('change',{ bubbles: true } )); ///fire event listener

@@ -125,6 +125,8 @@ myModal.addEventListener('show.bs.modal', function () {
         console.log('+++++++++++ newempmodal edit mode is opened')
         const fileInputs = myModal.querySelectorAll('input[type="file"]');
         
+        document.getElementById('posContainer').classList.remove('d-none');//markus
+
         fileInputs.forEach(input => {
             input.required = false;
         });

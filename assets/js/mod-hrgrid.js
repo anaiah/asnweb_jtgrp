@@ -129,7 +129,7 @@ export function initHrisGrid() {
 
                     switch( action ){
                         case "edit":
-                            asn.openEditForm( rowData ) //coord.js
+                            //asn.openEditForm( rowData ) //coord.js //markus
                             return;
                         break;
 
