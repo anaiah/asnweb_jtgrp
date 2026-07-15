@@ -527,10 +527,10 @@
                 case 'smarleyte':
                     regionFile = `bsl_${region}_emp`;
                     break;    
+
+
             }
-            /* ==========================================================================
-            PART A: MODIFIED DYNAMIC IMAGE INJECTION LOGIC (Inside your existing function)
-            ========================================================================== */
+
             const baseUrl   = `https://asianowapp.com/html/${regionFile}/`;
             const infoDiv   = document.getElementById("viewReqInfo");
             const imagesDiv = document.getElementById("viewReqImages");
@@ -558,9 +558,8 @@
 
                 col.innerHTML = `
                 <div class="card h-100">
-                    <!-- MODIFIED: Added .modal-downloadable-img class for targeting -->
-                    <img id="${imgId}" class="card-img-top modal-downloadable-img" alt="${file.label}"
-                        style="object-fit: contain; max-height: 220px; display: none;">
+                    <img id="${imgId}" class="card-img-top" alt="${file.label}"
+                        style="object-fit: contain; max-height: 220px;">
                     <div class="card-body p-2 no-img-msg" style="display:none;">
                     <div class="small text-muted">No image found for<br>${file.label}</div>
                     </div>
@@ -580,9 +579,8 @@
 
                 const tryNextExt = () => {
                     if (idx >= exts.length) {
+                        // All tried, show “no image”
                         imgEl.style.display = "none";
-                        // MODIFIED: Explicitly strip indicator class if the image completely fails to resolve
-                        imgEl.classList.remove('img-loaded-success'); 
                         noImgDiv.style.display = "block";
                         return;
                     }
@@ -592,21 +590,23 @@
 
                     imgEl.onerror = tryNextExt;
                     imgEl.onload = () => {
+                        // Found one, make sure image is visible and message hidden
                         imgEl.style.display = "block";
-                        // MODIFIED: Flags that this element is fully loaded and ready for Lightbox/ZIP systems
-                        imgEl.classList.add('img-loaded-success'); 
                         noImgDiv.style.display = "none";
                     };
+
+                    
                     imgEl.src = url;
-                    console.log('image file is xx====', url)
+
+                    console.log('image file is ====', url)
                 };
-                
+
+                // start with .jpg, then .png, then .gif
                 tryNextExt();
             });
 
             const modal = new bootstrap.Modal(document.getElementById("viewReqModal"));
             modal.show();
-
         },
 
         // convert utc to localtime eg Mar 23 2026
@@ -1412,45 +1412,7 @@
 
                     //========load regional summary report
                     hris.loadSummaryReport()
-
-                    //====== FOR LIGHTBOX MODAL DIALOG EVENT LISTENER
-
-                    /* ==========================================================================
-                    PART B: GLOBAL LIGHTBOX, ARROW NAV & ZIP DOWNLOAD UTILITIES
-                    (Add this down below, register only ONCE on document initialization)
-                    ========================================================================== */
-                    const primaryModalEl = document.getElementById('viewReqModal');
-                    const lightboxModalEl = document.getElementById('lightboxModal');
-                    const lightboxImage = document.getElementById('lightboxImage');
-                    const lightboxCaption = document.getElementById('lightboxCaption');
-
-                    // Safe initialization now that HTML is completely evaluated
-                    const lightboxModal = new bootstrap.Modal(lightboxModalEl);
-
-                    // Listens for thumbnail clicks inside your main gallery modal container
-                    primaryModalEl.addEventListener('click', function (event) {
-                        if (event.target.classList.contains('img-loaded-success')) {
-                            // Transfer image source directly
-                            lightboxImage.src = event.target.src;
-                            
-                            // Set caption text using the dynamically generated alt tag matching file labels
-                            lightboxCaption.textContent = event.target.alt || "Requirement Document";
-                            
-                            // Instantly display the full blown view
-                            lightboxModal.show();
-                        }
-                    });
-
-                    // Double-Nested Modal Layout Engine Fix: Restores scrolling back to gallery view on exit
-                    lightboxModalEl.addEventListener('hidden.bs.modal', function () {
-                        if (primaryModalEl.classList.contains('show')) {
-                            document.body.classList.add('modal-open');
-                            document.body.style.overflow = 'hidden';
-                            document.body.style.paddingRight = ''; 
-                            primaryModalEl.focus();
-                        }
-                    });
-
+                
                 })//======================end dom onload
 
                 document.addEventListener('contextmenu', function(e) {

@@ -164,22 +164,6 @@ span.xgrpheader{
     #printTimekeepingBtn {
         margin-bottom: 15px;
     }
-    /* Interactive Hover CSS for Active Dynamic Thumbnails */
-    .modal-downloadable-img {
-        cursor: pointer;
-        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease-in-out;
-    }
-
-    .modal-downloadable-img:hover {
-        transform: scale(1.03);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    #prevImgBtn:hover, #nextImgBtn:hover {
-        background-color: rgba(13, 110, 253, 0.6) !important;
-        transition: background-color 0.2s;
-    }
-
   </style>
 
 </head>
@@ -935,46 +919,31 @@ I
     </div>
 
     <!-- View passed Images of Requirements Modal -->
-    <!-- View passed Images of Requirements Modal -->
-<div class="modal fade" id="viewReqModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header custom-header">
-        <h5 class="modal-title">View Requirements</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="viewReqInfo" class="mb-2 small text-muted"></div>
-        <div id="viewReqError" class="text-danger small d-none"></div>
-
-        <!-- images container -->
-        <div id="viewReqImages" class="row g-3">
-          <!-- thumbnails will be injected here -->
+    <div class="modal fade" id="viewReqModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header custom-header">
+            <h5 class="modal-title">View Requirements</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="modal-body">
+            <div id="viewReqInfo" class="mb-2 small text-muted"></div>
+            <div id="viewReqError" class="text-danger small d-none"></div>
 
-<!-- Simplified Lightbox Modal (Appears over the main gallery for the full blown effect) -->
-<div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true" style="background: rgba(0, 0, 0, 0.85); z-index: 1065;">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content bg-transparent border-0">
-      <div class="modal-header border-0 p-0">
-        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="z-index: 1070;"></button>
-      </div>
-      <div class="modal-body text-center p-0">
-        <!-- Render Target for Full Blown Copy -->
-        <img id="lightboxImage" src="" class="img-fluid rounded shadow-lg mx-auto" style="max-height: 85vh; object-fit: contain;">
-        <!-- Dynamic Document Title Box -->
-        <div id="lightboxCaption" class="text-white mt-3 fs-5 fw-semibold p-2 mx-auto rounded-pill" style="background: rgba(0,0,0,0.6); max-width: fit-content;"></div>
-      </div>
+            <!-- images container -->
+            <div id="viewReqImages" class="row g-3">
+            <!-- thumbnails will be injected here -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm"
+                    data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
     </div>
-  </div>
-</div>
+    </div>
+
     <!-- Timekeeping Details Modal -->
     <div class="modal fade" id="timekeepModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
