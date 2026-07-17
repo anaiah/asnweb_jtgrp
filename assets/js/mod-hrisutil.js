@@ -97,16 +97,7 @@ const handlePositionChange=(elem)=>{
     //check position if it requires location and hub/store selection
     switch(elem.value){
         
-        // case '07': //lead coordinator
-            
-        //     //turn on area
-            
-        //     //util.displayAreaLocationHub(true, areaContainer, areaSelect) //show area selection
-        //     locSelect.value = '' //reset location and hub/store selection
-        //     hubSelect.value = '' //reset location and hub/store selection
-        //     util.displayAreaLocationHub(false, locContainer, locSelect) //hide location and hub/store selection
-        //     util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
-        // break;
+      
 
         case '07': //lead coordinator
         case '08': //coordinator
@@ -332,16 +323,27 @@ const checkform = (whatForm) => {
 //=======download masterfile========//
 const printMasterfile = async() =>{
 
-    console.log( '====Firing hrisutil.printMasterfile()====')
+    console.log( '====*** FOR HR **** Firing hrisutil.printMasterfile() mod-hrisutil.js ====')
 
     const form = document.getElementById("searchForm");
     const fd = new FormData(form);
 
+    const user  = JSON.parse(localStorage.getItem('profile'));
+
+    fd.append('grp_id', user.grp_id);
+    fd.append('email', user.email);
+    
     // simple validation: need region at least
     if (!fd.get("filter_region")) {
         alert("Please select a Region first.");
         return;
     }
+
+    // // simple validation: need region at least
+    // if (!fd.get("filter_location")) {
+    //     alert("Please select a Location first.");
+    //     return;
+    // }
 
     if (!fd.get("filter_position")) {
         alert("Please select a Position.");

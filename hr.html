@@ -345,6 +345,16 @@ I
                                 <!-- Add more options here as needed -->
                             </select>
                         </div>
+
+                        <!-- Filter by Position (dropdown) -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label for="filter_location" class="form-label visually-hidden">* Location</label>
+                            <select class="form-select" id="filter_location" name="filter_location" >
+                                <option value="" selected>ALL Location</option>
+                            </select>
+                            
+                        </div>    
+
                         <!-- Filter by Position (dropdown) -->
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                             <label for="filter_position" class="form-label visually-hidden">* Position</label>
@@ -598,7 +608,7 @@ I
                                
                                   <!-- location (initially hidden) -->
                                 <div class="mb-3 d-none" id="locContainer">
-                                    <label for=" tore" class="form-label">Location</label>
+                                    <label for="locStore" class="form-label">Location</label>
                                     <select class="form-select" id="locStore" name="loc_store" required>
                                         
                                         <option value="" disabled selected>Select Location</option>

@@ -437,9 +437,16 @@ let loginDetails = null;
 
     //============checkform searchForm first
     const checkform = ( whatForm ) =>{
-        console.log('SEEARCHFORM FIRED!')
+        console.log('SEARCHFORM FIRED!')
         let formIsValid = true;
         
+        const user  = JSON.parse(localStorage.getItem('profile'));
+
+        if(user.grp_id === '08'){ // coords
+            const myInput = document.getElementById('xfilter_location');
+            myInput.required = true;
+        }//eif
+
         // Get all elements within the form that have the 'required' attribute
         const requiredElements = whatForm.querySelectorAll('[required]');
 
@@ -463,20 +470,6 @@ let loginDetails = null;
             const formData = new FormData(whatForm);
             
             timekeep.searchEmp()
-
-            // const selectedService = formData.get('service'); // Uses the 'name' attribute
-            // const selectedSegment = formData.get('segment'); // Uses the 'name' attribute
-            // const countValue = formData.get('count');       // Uses the 'name' attribute
-
-            // console.log('Data Submitted via check(whatForm):');
-            // console.log('Service:', selectedService);
-            // console.log('Segment:', selectedSegment);
-            // console.log('Count:', countValue);
-
-            //alert(`Data for Service: "${selectedService}", Segment: "${selectedSegment}" with Count: "${countValue}" submitted successfully!`);
-            
-            //dataInputModal.hide(); // Close modal after submission
-            //whatForm.reset();     // Clear form
 
             return true; // Indicate success
         } else {
@@ -768,7 +761,7 @@ let loginDetails = null;
         util.toggleButtonLoading('footer-msg','Loading Location...',true)
         const selectedRegion = regionSelectElement;
         
-        const locSelect = document.getElementById('xfilter_location');
+        const locSelect = document.getElementById('xfilter_location')||document.getElementById('filter_location');
         
         try {
 
@@ -794,20 +787,36 @@ let loginDetails = null;
                 }
             });
 
+             // 2. PLACE THE CODE HERE (After the loop finishes populating)
+            let currentIndex = locSelect.selectedIndex;
+            for (let i = currentIndex + 1; i < locSelect.options.length; i++) {
+                const nextOption = locSelect.options[i];
+                if (nextOption.value && nextOption.value.trim() !== "") {
+                    locSelect.selectedIndex = i;
+                    
+                    const changeEvent = new Event('change', {
+                        bubbles: true,      // Allows it to reach document.addEventListener
+                        cancelable: true    // Standard practice
+                    });
+
+                    locSelect.dispatchEvent(new Event('change', changeEvent)); ///fire event listener
+                    break; 
+                }
+            }
             // Call the utility function to fetch and populate
             util.toggleButtonLoading('footer-msg',null,false)
 
-            //=========fire change event for hub loading
-            if (locSelect) {
-                const changeEvent = new Event('change', {
-                    bubbles: true,      // Allows it to reach document.addEventListener
-                    cancelable: true    // Standard practice
-                });
+            // //=========fire change event for hub loading
+            // if (locSelect) {
+            //     const changeEvent = new Event('change', {
+            //         bubbles: true,      // Allows it to reach document.addEventListener
+            //         cancelable: true    // Standard practice
+            //     });
                 
-                //locSelect.dispatchEvent(changeEvent);
-                locSelect.dispatchEvent(new Event('change',{ bubbles: true } )); ///fire event listener
+            //     //locSelect.dispatchEvent(changeEvent);
+            //     locSelect.dispatchEvent(new Event('change',{ bubbles: true } )); ///fire event listener
 
-            }
+            // }
 
             return true;
 
@@ -919,16 +928,27 @@ let loginDetails = null;
     //=======download masterfile========//
     const printMasterfile = async() =>{
 
-        console.log( '====Firing hrisutil.printMasterfile()====')
+        console.log( '====***for coords/headcoords *** Firing hrisutil.printMasterfile() mod-timekeepjs====')
 
         const form = document.getElementById("filter-searchForm");
         const fd = new FormData(form);
+
+        const user  = JSON.parse(localStorage.getItem('profile'));
+
+        fd.append('grp_id', user.grp_id);
+        fd.append('email', user.email);
 
         console.log(fd.get('xfilter_region'))
         
         // simple validation: need region at least
         if (!fd.get("xfilter_region")) {
             alert("Please select a Region first.");
+            return;
+        }
+
+        // simple validation: need region at least
+        if (!fd.get("xfilter_location")) {
+            alert("Please select a Location first.");
             return;
         }
 
@@ -1018,9 +1038,16 @@ let loginDetails = null;
     });
 
     document.addEventListener('change', (e) => {
+    console.log('===mod-timekeep.js change event fired for ', e.target.id)
 
     //const idx = e.target.getAttribute('data-idx'); -- attribute data-dix get the index of the current row being edited
     switch (e.target.id) {
+        case 'filter_region':
+            console.log('hr filterregion fired... ')
+            timekeep.getFilterLocation( document.getElementById('filter_region').value.toLowerCase() );
+                
+            break;
+
         case 'xfilter_region':
             console.log('yo filterregion fired... ')
             timekeep.getFilterLocation( document.getElementById('xfilter_region').value.toLowerCase() );
