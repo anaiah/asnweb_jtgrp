@@ -357,7 +357,7 @@ const printendofcontract = async() =>{
             throw new Error(text || "Failed to generate end of contract file");
         }
 
-        let filename = `END-CONTRACT_${document.getElementById('filter_region').value.toUpperCase()}_${document.getElementById('filter_position').value}_${new Date().toISOString().slice(0,10)}.xlsx`;
+        let filename = `END-CONTRACT_${document.getElementById('filter_region').value.toUpperCase()}_${new Date().toISOString().slice(0,10)}.xlsx`;
         
         const contentDisposition = res.headers.get('Content-Disposition');
         
