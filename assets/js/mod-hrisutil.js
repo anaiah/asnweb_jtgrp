@@ -320,6 +320,74 @@ const checkform = (whatForm) => {
 
 }
 
+//====== DOWNLOAD ENDOFCONTRACT XLS ======//
+const printendofcontract = async() =>{
+    console.log( '====*** FOR HR **** Firing hrisutil.printendofcontract() mod-hrisutil.js ====')   
+
+    const form = document.getElementById("searchForm");
+    const fd = new FormData(form);
+
+    const user  = JSON.parse(localStorage.getItem('profile'));
+
+    fd.append('grp_id', user.grp_id);
+    fd.append('email', user.email);
+    
+    // simple validation: need region at least
+    if (!fd.get("filter_region")) {
+        alert("Please select a Region first.");
+        return;
+    }
+
+    // if (!fd.get("filter_position")) {
+    //     alert("Please select a Position.");
+    //     return;
+    // }
+
+    try {
+
+        util.toggleButtonLoading("print-masterfile-btn", "Downloading...", true);
+
+        const res = await fetch(`${myIp}/printendcontract`, {
+            method: "POST",
+            body: fd, // FormData -> multipart/form-data
+        });
+
+        if (!res.ok) {
+            const text = await res.text();
+            throw new Error(text || "Failed to generate end of contract file");
+        }
+
+        let filename = `END-CONTRACT_${document.getElementById('filter_region').value.toUpperCase()}_${document.getElementById('filter_position').value}_${new Date().toISOString().slice(0,10)}.xlsx`;
+        
+        const contentDisposition = res.headers.get('Content-Disposition');
+        
+        if (contentDisposition) {
+            const filenameMatch = contentDisposition.match(/filename\*?=['"]?([^"']+)['"]?$/i);
+            if (filenameMatch && filenameMatch[1]) {
+                filename = decodeURIComponent(filenameMatch[1].replace(/utf-8''/i, ''));
+            }
+        }
+
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+        //msg user
+        util.speak('End of Contract File downloaded successfully!!!')
+
+        // Turn OFF loading: restore original icon + text
+        util.toggleButtonLoading("print-masterfile-btn", null, false);
+
+    } catch (err) {
+        alert(err.message || "Error downloading End of contract file");
+    }//end try
+}
+
 //=======download masterfile========//
 const printMasterfile = async() =>{
 
@@ -626,6 +694,7 @@ export const hrisutil = {
     fetchAndPopulateHubs,
     getLocation,
     checkform,
+    printendofcontract,
     printMasterfile,
     printTimeKeep,
     searchEmp,

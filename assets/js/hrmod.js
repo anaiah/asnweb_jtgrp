@@ -104,6 +104,10 @@ document.addEventListener('change', (e) => {
                 hrisutil.printTimeKeep && hrisutil.printTimeKeep();
             } else if (action === "masterfile") {
                 hrisutil.printMasterfile && hrisutil.printMasterfile(form);
+            } else if (action === "endcontract") {
+                hrisutil.printendofcontract && hrisutil.printendofcontract();
+                console.log('endcontract action selected ID=actionSelect');
+                //hrisutil.printEndContract && hrisutil.printEndContract(form);    
             }///eif
 
             // reset back to placeholder after firing

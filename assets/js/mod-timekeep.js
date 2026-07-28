@@ -1071,6 +1071,10 @@ let loginDetails = null;
                 timekeep.printTimeKeep && timekeep.printTimeKeep();
             } else if (action === "masterfile") {
                 timekeep.printMasterfile && timekeep.printMasterfile();
+                
+            } else if (action === "endcontract") {
+                console.log('endcontract action selected');
+                //timekeep.printEndContract && timekeep.printEndContract(form);
             }///eif
 
             // reset back to placeholder after firing
