@@ -15,7 +15,7 @@ const login = {
 		console.log('loadformValidation() loaded==')
 	}//END MAIN
 	
-} //======================= end ajax obj==========//
+} //======================= end ajax obj==========// 
 //ajax.Bubbl
 window.scrollTo(0,0);
 login.init()
