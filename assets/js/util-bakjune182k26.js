@@ -1920,7 +1920,8 @@ const util = {
                     case 30:// finance head miss jenelle 
                     case 88://test hr
                     case 9://finance michelle maralit team
-                        location.href ='../jtx/hris '    
+                        //location.href ='../jtx/hris '
+                        location.href = '../besi/hris';   
                     break
 
                     /*

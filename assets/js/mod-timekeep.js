@@ -483,9 +483,9 @@ let loginDetails = null;
     //========================SEARCH EMPLOYEE BASED ON FILTERS AND SET TO GRID========================//
     const searchEmp = async() => {
 
-        console.log('===FIRED  hris.searchEmp()====')
+        console.log('===FIRED  mod-timekeep.js  timekeep.searchEmp()====')
         
-        const searchForm = document.getElementById('filter-searchForm');
+        const searchForm = document.getElementById('filter-searchForm')||document.getElementById('xfilter-searchForm');
         const formData = new FormData(searchForm);
 
         // --- HOW TO INSPECT FormData CONTENTS ---
@@ -763,6 +763,15 @@ let loginDetails = null;
         
         const locSelect = document.getElementById('xfilter_location')||document.getElementById('filter_location');
         
+        ///try to remove all LOCATIONs first as u select a region
+        locSelect.length=1;
+
+        //remove all from 2nd to last options
+        while (locSelect.options.length > 1) {
+            locSelect.remove(1);
+        }
+
+        //==== then fetchnew location based on region
         try {
 
             console.log('fetching location for region ', selectedRegion)
@@ -1132,11 +1141,11 @@ let loginDetails = null;
             });
         }
 
+        //===========MOSTLY MOD-TIMEKEEP.JS IS FOR COORDINATORS ETC NOT HR===========
         const myModal = document.getElementById('newempModal')
         if (myModal) {
 
             myModal.addEventListener('hide.bs.modal', function (event) {
-
 
                 console.log('==hiding newEmpModal .on(hide) from mod-timekeep.js ====')
   
@@ -1144,11 +1153,11 @@ let loginDetails = null;
                 const mode = btn.dataset.mode;
                 if(mode==='edit'){
                     const ctx = myModal.dataset.context;
-                    if (ctx === 'coords') {
-                        timekeep.searchEmp();
-                    }else{
-                        hrisutil.searchEmp();
-                    }
+
+
+                    //if (ctx === 'coords') {
+                        timekeep.searchEmp();  //===LET EVERYONE COORS/HEAD COORS CAN RESET
+                    //1}
                     // clear context if you like
                     delete myModal.dataset.context;
                 }

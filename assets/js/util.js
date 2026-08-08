@@ -1,1 +1,2531 @@
-const _0x59531d=_0xfe7e;function _0xfe7e(_0xc75963,_0x5c3a67){_0xc75963=_0xc75963-0x12f;const _0x595d9c=_0x1589();let _0x54e865=_0x595d9c[_0xc75963];return _0x54e865;}(function(_0x33ef54,_0x4bf167){const _0x7f04d0=_0xfe7e,_0x4903be=_0x33ef54();while(!![]){try{const _0x2b0c47=-parseInt(_0x7f04d0(0x293))/0x1*(parseInt(_0x7f04d0(0x186))/0x2)+parseInt(_0x7f04d0(0x287))/0x3+parseInt(_0x7f04d0(0x250))/0x4+-parseInt(_0x7f04d0(0x203))/0x5+parseInt(_0x7f04d0(0x21f))/0x6+parseInt(_0x7f04d0(0x2ca))/0x7*(parseInt(_0x7f04d0(0x201))/0x8)+-parseInt(_0x7f04d0(0x25d))/0x9*(-parseInt(_0x7f04d0(0x2aa))/0xa);if(_0x2b0c47===_0x4bf167)break;else _0x4903be['push'](_0x4903be['shift']());}catch(_0x5a0c52){_0x4903be['push'](_0x4903be['shift']());}}}(_0x1589,0xa7b09));const _0x21eceb=(function(){let _0x1eac6a=!![];return function(_0x5c1655,_0x4432c7){const _0xa2fb30=_0x1eac6a?function(){const _0xe2d843=_0xfe7e;if(_0x4432c7){const _0x4c67ea=_0x4432c7[_0xe2d843(0x1e6)](_0x5c1655,arguments);return _0x4432c7=null,_0x4c67ea;}}:function(){};return _0x1eac6a=![],_0xa2fb30;};}()),_0x54e865=_0x21eceb(this,function(){const _0x25b4f9=_0xfe7e;if(_0x54e865[_0x25b4f9(0x1a0)]()[_0x25b4f9(0x16c)]()['indexOf']('\x0a')!==-0x1)return;return _0x54e865['toString']()[_0x25b4f9(0x133)](_0x25b4f9(0x205))[_0x25b4f9(0x16c)]()[_0x25b4f9(0x2dd)](_0x54e865)[_0x25b4f9(0x133)](_0x25b4f9(0x205));});function _0x1589(){const _0x3df866=['863340jMqFvC','was-validated','(((.+)+)+)+$','href','input[type=text]','/besi/main','saveTransaction','ff_amount','message','hub','loginPost','application/json','Toasted','ERROR\x20--\x20PLEASE\x20TRY\x20AGAIN!\x20YOUR\x20DISTANCE\x20FROM\x20THE\x20HUB\x20\x20IS\x20','group','util\x20focus','tebinglane-user','Modal','originalHtml','edit-emp-id','payframe','besi_id','destroyAI','<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','signupMailer','coords','createObjectURL','jobTitle','720216Yjijuu','voice','Downloaded!','hubStore','f_pic','<option\x20value=\x22\x22>Select\x20Location</option>','Clean\x20up\x20warning:','imagePost()\x20myinput','notfound','p2\x20blur','target','commentsModal','Driver\x27s\x20License\x20is\x20required.','height','login_date','Are\x20you\x20sure\x20you\x20want\x20to\x20leave?\x20Any\x20unsaved\x20changes\x20will\x20be\x20lost.','isConnected','append','indexOf','fa-refresh','dataEmployeeId','mode','startScope','fa-floppy-o','from','ff_parcel','display','Verification\x20Passed!','engine','jms_id','f_dbId','phone-error','status','socket','8.\x20Error\x20in\x20PDF\x20download\x20process:','\x20METER(S)\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<br>\x20PLEASE\x20GO\x20NEARER\x20INSIDE\x20THE\x20WAREHOUSE!','name','dataDateHired','toFixed','remove','sin','image/png','offsetHeight','ASN-','f_voice','position_code','sqrt','blur','checklogin','2891116ohWTtU','.leng','(no\x20name)','===POSTING\x20ISSUES===','Attempting\x20to\x20save\x20signature...','firing\x20showpos()','SIGN_','tinyFaceDetector','scale','signatureCanvas-error','UPLOADING\x20TO\x20DATABASE,\x20PLEASE\x20DO\x20NOT\x20CLOSE\x20THIS\x20WINDOW!','SPEAK()','disabled','5976vIjYTU','bingo!-->','dataRegion','then','appendChild','passwordCheck','getFullYear','address','show','aria-disabled','file','isEmpty','ocw_id','SUCCESS','toggleButton','HTTP\x20error!\x20Status:\x20','English','selectionStart','length','speaking','emit','cos','getDistance','data','querySelector','Error\x20in\x20newempPost:','add','util.modalShow()\x20Loading...\x20','remittanceUploadForm','<div><i\x20class=\x27fa\x20fa-spinner\x20fa-pulse\x27\x20></i>\x20\x20Searching\x20Database\x20please\x20wait...</div>','Error\x20in\x20saveSignature:','getSeconds','<div\x20class=\x22spinner-border\x20spinner-border-sm\x20text-primary\x20me-2\x22></div>\x20Booting\x20engine...','blob','statusMessage','dataPosition','locStore','claimsPlaceHolder','random','test','https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/','Failed\x20to\x20load\x20hub/store\x20options.\x20Please\x20try\x20again.','1811319GfIZPK','profile','hireDate','toggleDriversLicenseValidation','.png','Error:','ff_empid','An\x20error\x20occurred\x20during\x20scanning.','bufferToImage','drivers_license','**showing\x20data\x20entry\x20caloy\x20***','dataAddress','3PsUzCc','Error!!!\x20Remitted\x20Amount\x20\x20is\x20greater\x20than\x20Amount\x20of\x20Scanned\x20Parcels!!!','alertMsg','onend','displayAreaLocationHub','password-alert','positionId','ff_transnumber','/getlocation/','SIGNATURE\x20PAD\x20LAUNCHED!!!!','preventDefault','alert-warning','i-signature-save','saveToLogin','male','f_id','Employee\x20ID\x20missing\x20for\x20signature\x20save.\x20currentEmployeeId\x20is\x20null.','SORRY...\x20YOU\x20DO\x20NOT\x20HAVE\x20ACCESS\x20FOR\x20THIS\x20MENU!','dateHired','-error','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','localStorage','4.\x20Object\x20URL\x20created:','1590UMrSOP','keyup','showToast','lang','dataEntryModal','posContainer','/gethub/','File\x20too\x20Big,\x20please\x20select\x20a\x20file\x20less\x20than\x20800kb','footer-msg','createTextNode','Error\x20fetching\x20hubs:','hideModal','static','myCart','d-block','show.bs.modal','modalShow','/besi/coord','Missing\x20elements\x20for\x20driver\x27s\x20license\x20validation.','loadModels','genderProbability','error','transnumber','unique_id','Saving...','rgb(0,\x200,\x200)','atdstatusModal','split','round','warningPlaceHolder','querySelectorAll','i-tag-save','700kFCEBo','remittance-btn','Loading\x20Hubs...','toUpperCase','xutil','event','/uploadsignature/','mall_type','toDataURL','6.\x20Download\x20link\x20clicked.','/signupmailer/','is-valid','Save\x20cancelled.','entries','</div>','HTTP\x20error!\x20status:\x20','getElementsByName','getHours','input','constructor','signaturePad','endScope','POST','EOEXPERIMENT.pdf','#newemp-next-btn','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22spinner-border\x20spinner-border-sm\x20me-1\x22\x20role=\x22status\x22\x20aria-hidden=\x22true\x22></span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','regionId','/newemppost/','f_amount','getContext','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','getCode','ageGenderNet','shown.bs.modal','signature_image','danger','getMonth','long','fa-spin','poooknnatt','ERROR\x20IN\x20UPLOADING\x20DATA!','<div><i\x20class=\x27fa\x20fa-spinner\x20fa-pulse\x27\x20></i>\x20\x20Uploading\x20CSV\x20to\x20Database,\x20Please\x20Do\x20Not\x20Close!!!</div>','cookie','type','../jtx/operations','resetFormClass','(no\x20id)','location','elements','phone','<div\x20class=\x22spinner-border\x20spinner-border-sm\x20text-primary\x20me-2\x22></div>\x20Analyzing\x20image\x20content...','download','(no\x20willValidate)','/savetologin/','x_parcel','validateMe()===','locContainer','json','search','reload','UCase','getCookie','#dataEntryForm','Loading...','innerHTML','.requirements','keys','charAt','groupEnd','log','toLocaleString','<option\x20value=\x22\x22\x20disabled>Select\x20Hub\x20/\x20DC</option>','smooth','nearest','finally','toggleButtonLoading','equipmentTagModal','Error,\x20Please\x20CHECK\x20Your\x20Entry,\x20ERROR\x20FIELDS\x20MARKED\x20IN\x20RED!','===claims\x20SUBMITTTTT===','Please\x20make\x20an\x20Initial\x20Entry\x20by\x20Opening\x20Start\x20Entry\x20on\x20the\x20Menu!!!','remittanceModal','Please\x20Sign\x20up\x20then\x20Login\x20before\x20you\x20purchase\x20a\x20domain.','url','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','substring','Error!!!\x20Remitted\x20Amount\x20greater\x20than\x20Amount\x20of\x20Scanned\x20Parcels!!!','stopPropagation','is-invalid','dataPrivacySignatureModal','\x20alert-dismissible\x22\x20role=\x22alert\x22>','0123456789','Form\x20validation\x20failed\x20—\x20invalid\x20controls:','claimsModal','speak','substr','===util.loadFormValidation()==','signatureCanvas','myHub','nets','fa-check','../jtx/dashboard','paymentmodal','d-none','dataset',';\x20SameSite=Lax;\x20expires=','string','toISOString','match','CLAIMS\x20DONE!','An\x20error\x20occurred\x20during\x20screening.','addEventListener','hris','<div\x20class=\x22alert\x20alert-','f_email','submit','toString','get','loginmodal','signupPlaceHolder','Error\x20during\x20PDF\x20download:\x20','timekeepModal','submit-signature-btn','getDate','claimsuploadForm','/loginpost/','filterBy','Purging\x20AI\x20engine\x20from\x20memory...','fullname','fname','lat','getElementById','longitude','selected','createElement','push','speechSynthesis','detectSingleFace','disposeVariables','replace','setItem','pow','890626eqHHYh','src','classList','!@#$%^&*()-_=+[{]}\x5c|\x20:\x27\x22,<.>/?`~','.p2','old_transnumber','loginModal','clearSignature','width','join','stringify','parse','../jtx/hris\x20','pwdChecker','trim','click','areaContainer','#commentsForm','gonow','block','willValidate','f_transnumber','Network\x20Error:\x20','../jtx/headcoord','validationMessage','warning','bind','hide.bs.modal','getLocation','newempPost','grp_id','toLowerCase','hasAttribute','setDate','every','min','Driver\x27s\x20License\x20is\x20not\x20required\x20for\x20this\x20position.','SUCCESS!\x20YOUR\x20DISTANCE\x20FROM\x20THE\x20<BR>HUB\x20IS\x20','======Modal\x20Shown.\x20Fixing\x20Canvas...','devicePixelRatio','good','region','1.\x20speak:\x20Printing...','setCookie','hide','equipmentTagPlaceHolder','latitude','uyyy\x20showing\x20','modallisteners()===\x20neweempModal','email','\x20METER(S)\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20PLEASE\x20GO\x20NEARER\x20INSIDE\x20THE\x20WAREHOUSE!','main','Digital\x20signature\x20and\x20privacy\x20consent\x20saved\x20successfully!','old_parcel','f_parcel','loginPlaceHolder','origin','function','**************Button\x20mode:','setAttribute','tag-save-btn','floor','success','size','none','hey\x20adding\x20to\x20cart','Printing...','max','value','focus','info','reset','result','removeOptions','Saving','pitch','wrong','textContent','getItem','\x20\x20\x20<div>','required','forEach','clear','start',';\x20path=/','gender','signupModal','employeeId','files','Error:\x20Employee\x20ID\x20not\x20found.\x20Cannot\x20save\x20signature.','getMinutes','asn','transaction','withAgeAndGender','found','not\x20found','apply','%).','warn','newemp-next-btn','<iframe\x20width=\x22100%\x22\x20height=\x22100%\x22\x20border=0\x20class=\x22embed-responsive-item\x22\x20src=\x22checkout2.html\x22></iframe>','/printpdf/','newempModal','checkValidity','catch','option','passwordFinal','==posting\x20newempForm\x20data\x20with\x20files\x20==','dataEmployeeName','abs','style','../jtx/coord','drivers_license-error','=======speaking\x20now====','revokeObjectURL','alert-success','getInstance','nugetDate','padStart','fetchAndPopulateHubs','contains','Error\x20occurred...','validatePhone','51464sQsUjL','loadFromUri'];_0x1589=function(){return _0x3df866;};return _0x1589();}_0x54e865();const requirements=document[_0x59531d(0x2c8)](_0x59531d(0x13a)),specialChars=_0x59531d(0x189),numbers=_0x59531d(0x153);let db=window[_0x59531d(0x2a8)],oldpwd=document['querySelector']('.p1'),nupwd=document[_0x59531d(0x275)](_0x59531d(0x18a)),lengBoolean,bigLetterBoolean,numBoolean,specialCharBoolean,leng=document[_0x59531d(0x275)](_0x59531d(0x251)),bigLetter=document[_0x59531d(0x275)]('.big-letter'),num=document[_0x59531d(0x275)]('.num'),specialChar=document[_0x59531d(0x275)]('.special-char');const synth=window[_0x59531d(0x180)];let xloginmodal,xnewsitemodal,xequipmenttagmodal,voices=[];const util={'scrollsTo':_0x42a310=>{const _0xe167c4=_0x59531d,_0x30b102=document[_0xe167c4(0x17b)](_0x42a310);_0x30b102['scrollIntoView'](!![],{'behavior':_0xe167c4(0x141),'block':_0xe167c4(0x1d9),'inline':_0xe167c4(0x142)});},'getVoice':async()=>{const _0x37d46d=_0x59531d;voices=synth['getVoices'](),console[_0x37d46d(0x13e)]('GETVOICE()'),voices[_0x37d46d(0x1a8)](_0x256768=>{const _0x49dcd2=_0x37d46d;_0x256768[_0x49dcd2(0x243)]['indexOf'](_0x49dcd2(0x26d))>-0x1&&console[_0x49dcd2(0x13e)](_0x49dcd2(0x25e),_0x256768['name'],_0x256768[_0x49dcd2(0x2ad)]);});},'speak':_0x3fa17d=>{const _0x33b3c8=_0x59531d;console[_0x33b3c8(0x13e)](_0x33b3c8(0x25b));if(synth[_0x33b3c8(0x270)])return;const _0x4c0030=new SpeechSynthesisUtterance(_0x3fa17d);_0x4c0030[_0x33b3c8(0x296)]=_0x45d22f=>{},_0x4c0030[_0x33b3c8(0x2bf)]=_0xe07d38=>{const _0x4a8ad6=_0x33b3c8;console[_0x4a8ad6(0x2bf)](_0x4a8ad6(0x1ff));},voices[_0x33b3c8(0x1d7)](_0x4193b7=>{const _0x470ba7=_0x33b3c8;_0x4193b7['name'][_0x470ba7(0x231)](_0x470ba7(0x26d))>-0x1&&(_0x4c0030[_0x470ba7(0x220)]=_0x4193b7);}),_0x4c0030['rate']=0x1,_0x4c0030[_0x33b3c8(0x1d1)]=0x1,synth[_0x33b3c8(0x156)](_0x4c0030);},'alertMsg':(_0x14a26c,_0x3f5efb,_0x56072d)=>{const _0xd98d45=_0x59531d,_0x532e6e=document[_0xd98d45(0x17b)](_0x56072d),_0x36e76a=document[_0xd98d45(0x17e)]('div');_0x36e76a['innerHTML']=[_0xd98d45(0x169)+_0x3f5efb+_0xd98d45(0x152),_0xd98d45(0x1d5)+_0x14a26c+_0xd98d45(0x2d8),_0xd98d45(0x2d8)][_0xd98d45(0x18f)](''),_0x532e6e[_0xd98d45(0x139)]='',_0x532e6e['append'](_0x36e76a);},'clearBox':function(){const _0xba0d48=_0x59531d;let _0x45a3eb=document['querySelectorAll'](_0xba0d48(0x207));for(var _0x24740d=0x0;_0x24740d<_0x45a3eb[_0xba0d48(0x26f)];_0x24740d++){_0x45a3eb[_0x24740d]['value']='';}},'resetFormClass':_0x5cc5b4=>{const _0x247ccf=_0x59531d,_0x33615c=document[_0x247ccf(0x2c8)](_0x5cc5b4),_0xd84753=_0x33615c[0x0];Array[_0x247ccf(0x237)](_0xd84753['elements'])[_0x247ccf(0x1d7)](_0xf1c2a8=>{const _0x49b003=_0x247ccf;_0xf1c2a8['classList'][_0x49b003(0x246)](_0x49b003(0x204)),_0xf1c2a8['classList'][_0x49b003(0x246)](_0x49b003(0x2d5)),_0xf1c2a8[_0x49b003(0x188)][_0x49b003(0x246)](_0x49b003(0x150));});},'imagePost':async _0x32afac=>{const _0x11f891=_0x59531d;console['log']('***\x20FIRING\x20IMAGEPOST()\x20****');const _0x1c5b35=document[_0x11f891(0x2da)]('uploaded_file')[0x0],_0x1efb19=new FormData();_0x1efb19[_0x11f891(0x230)](_0x11f891(0x267),_0x1c5b35[_0x11f891(0x1de)][0x0]),_0x1c5b35['files'][0x0]['name']=_0x11f891(0x2e1),console[_0x11f891(0x13e)](_0x11f891(0x226),_0x1c5b35[_0x11f891(0x1de)][0x0]),await fetch(_0x32afac,{'method':'POST','body':_0x1efb19})[_0x11f891(0x260)](_0x18f12e=>{return _0x18f12e['json']();})['then'](_0x4a528b=>{const _0x515b7f=_0x11f891;console[_0x515b7f(0x13e)](_0x515b7f(0x26a));})[_0x11f891(0x1ee)](_0xce0423=>{console['log'](_0xce0423);});},'equipmentTagPost':async(_0x2f603c,_0x3c188a,_0x1f0fc9='',_0xe131c4={})=>{const _0xcf5ee7=_0x59531d;console[_0xcf5ee7(0x13e)](_0xe131c4),fetch(_0x1f0fc9,{'method':'PUT','headers':{'Content-Type':_0xcf5ee7(0x20e)},'body':JSON[_0xcf5ee7(0x190)](_0xe131c4)})[_0xcf5ee7(0x260)](_0x37341d=>{return _0x37341d['json']();})[_0xcf5ee7(0x260)](_0x531d31=>{const _0x22faca=_0xcf5ee7;console['log'](_0x22faca(0x1f7),_0x531d31),util[_0x22faca(0x156)](_0x531d31[_0x22faca(0x220)]),util[_0x22faca(0x2b5)](_0x22faca(0x145),0x7d0);const _0x1de88e={'msg':_0x531d31['approve_voice'],'type':_0x531d31[_0x22faca(0x1e2)]};osndp[_0x22faca(0x240)][_0x22faca(0x271)]('admin',JSON[_0x22faca(0x190)](_0x1de88e)),osndp[_0x22faca(0x176)]();})[_0xcf5ee7(0x1ee)](_0x2c63c4=>{});},'signupPost':async function(_0x592782,_0x366ef2,_0x26e2d2='',_0x682c4a={}){const _0x3a67c2=_0x59531d;let _0x547ac1=!![];fetch(_0x26e2d2,{'method':_0x3a67c2(0x2e0),'headers':{'Content-Type':'application/json'},'body':JSON['stringify'](_0x682c4a)})['then'](_0x2aec0a=>{const _0x4fc223=_0x3a67c2;return _0x2aec0a[_0x4fc223(0x132)]();})[_0x3a67c2(0x260)](_0x41f241=>{const _0x58190a=_0x3a67c2;if(_0x41f241[_0x58190a(0x23f)])_0x547ac1=!![],util['alertMsg'](_0x41f241[_0x58190a(0x20b)],_0x58190a(0x1c4),_0x58190a(0x16f)),util[_0x58190a(0x295)]('Mailing\x20'+util[_0x58190a(0x135)](_0x682c4a['full_name']),_0x58190a(0x1cc),_0x58190a(0x16f));else return _0x547ac1=![],util[_0x58190a(0x295)](_0x41f241[_0x58190a(0x20b)],_0x58190a(0x19f),_0x58190a(0x16f)),![];})['finally'](()=>{const _0x16f99f=_0x3a67c2;_0x547ac1&&util[_0x16f99f(0x21b)](_0x16f99f(0x2d4)+util[_0x16f99f(0x135)](_0x682c4a['full_name'])+'/'+_0x682c4a[_0x16f99f(0x1b7)]+'/'+encodeURIComponent(window[_0x16f99f(0x2f9)][_0x16f99f(0x1be)]));})[_0x3a67c2(0x1ee)](_0x21b286=>{const _0x4dcf4c=_0x3a67c2;console[_0x4dcf4c(0x2bf)](_0x4dcf4c(0x28c),_0x21b286);});},'passwordCheck':(_0x68a92a,_0x40c774)=>{const _0x50a3bd=_0x59531d;requirements[_0x50a3bd(0x1d7)](_0x41c144=>_0x41c144['classList'][_0x50a3bd(0x277)](_0x50a3bd(0x1d2))),_0x68a92a[_0x50a3bd(0x167)]('focus',_0x7a2724=>{const _0x3bfd4b=_0x50a3bd;_0x40c774[_0x3bfd4b(0x188)][_0x3bfd4b(0x246)](_0x3bfd4b(0x15f)),!_0x68a92a['classList'][_0x3bfd4b(0x1fe)](_0x3bfd4b(0x2d5))&&_0x68a92a['classList']['add']('is-invalid'),console[_0x3bfd4b(0x13e)](_0x3bfd4b(0x212));},![]),_0x68a92a[_0x50a3bd(0x167)](_0x50a3bd(0x24e),()=>{const _0x506039=_0x50a3bd;_0x40c774['classList'][_0x506039(0x277)](_0x506039(0x15f));},![]),_0x68a92a[_0x50a3bd(0x167)](_0x50a3bd(0x2dc),_0x5d73a4=>{const _0x47d579=_0x50a3bd;nupwd[_0x47d579(0x1ca)]!==''&&(nupwd[_0x47d579(0x1ca)]!==_0x68a92a[_0x47d579(0x1ca)]&&(nupwd['classList'][_0x47d579(0x246)](_0x47d579(0x2d5)),nupwd[_0x47d579(0x188)][_0x47d579(0x277)]('is-invalid'))),util[_0x47d579(0x193)](_0x68a92a,_0x40c774);},![]);},'pwdChecker':(_0x196026,_0x3f93a8)=>{const _0x1140a8=_0x59531d;let _0x5739fb=_0x196026[_0x1140a8(0x1ca)];if(_0x5739fb['length']<0x6)lenBool=![];else _0x5739fb['length']>0x5&&(lenBool=!![]);_0x5739fb['toLowerCase']()==_0x5739fb?bigLetterBoolean=![]:bigLetterBoolean=!![];numBoolean=![];for(let _0x801f7e=0x0;_0x801f7e<_0x5739fb['length'];_0x801f7e++){for(let _0x55a647=0x0;_0x55a647<numbers[_0x1140a8(0x26f)];_0x55a647++){_0x5739fb[_0x801f7e]==numbers[_0x55a647]&&(numBoolean=!![]);}}specialCharBoolean=![];for(let _0x3fca4b=0x0;_0x3fca4b<_0x5739fb['length'];_0x3fca4b++){for(let _0x425311=0x0;_0x425311<specialChars[_0x1140a8(0x26f)];_0x425311++){_0x5739fb[_0x3fca4b]==specialChars[_0x425311]&&(specialCharBoolean=!![]);}}lenBool==!![]&&bigLetterBoolean==!![]&&numBoolean==!![]&&specialCharBoolean==!![]?(_0x196026[_0x1140a8(0x188)][_0x1140a8(0x246)](_0x1140a8(0x150)),_0x196026[_0x1140a8(0x188)][_0x1140a8(0x277)](_0x1140a8(0x2d5)),requirements[_0x1140a8(0x1d7)](_0x365696=>{const _0x3f75e6=_0x1140a8;_0x365696[_0x3f75e6(0x188)][_0x3f75e6(0x246)](_0x3f75e6(0x1d2)),_0x365696[_0x3f75e6(0x188)][_0x3f75e6(0x277)]('good');}),_0x3f93a8[_0x1140a8(0x188)]['remove']('alert-warning'),_0x3f93a8[_0x1140a8(0x188)]['add'](_0x1140a8(0x1f9))):(_0x196026[_0x1140a8(0x188)]['remove'](_0x1140a8(0x2d5)),_0x196026[_0x1140a8(0x188)][_0x1140a8(0x277)]('is-invalid'),_0x3f93a8['classList'][_0x1140a8(0x277)](_0x1140a8(0x29e)),_0x3f93a8[_0x1140a8(0x188)][_0x1140a8(0x246)](_0x1140a8(0x1f9)),lenBool==![]?(leng[_0x1140a8(0x188)][_0x1140a8(0x277)](_0x1140a8(0x1d2)),leng[_0x1140a8(0x188)][_0x1140a8(0x246)](_0x1140a8(0x1ae))):(leng[_0x1140a8(0x188)][_0x1140a8(0x277)]('good'),leng[_0x1140a8(0x188)]['remove'](_0x1140a8(0x1d2))),bigLetterBoolean==![]?(bigLetter['classList'][_0x1140a8(0x277)](_0x1140a8(0x1d2)),bigLetter[_0x1140a8(0x188)][_0x1140a8(0x246)](_0x1140a8(0x1ae))):(bigLetter[_0x1140a8(0x188)][_0x1140a8(0x277)](_0x1140a8(0x1ae)),bigLetter[_0x1140a8(0x188)][_0x1140a8(0x246)]('wrong')),numBoolean==![]?(num[_0x1140a8(0x188)][_0x1140a8(0x277)]('wrong'),num['classList'][_0x1140a8(0x246)](_0x1140a8(0x1ae))):(num[_0x1140a8(0x188)][_0x1140a8(0x277)](_0x1140a8(0x1ae)),num[_0x1140a8(0x188)]['remove'](_0x1140a8(0x1d2))),specialCharBoolean==![]?(specialChar[_0x1140a8(0x188)]['add'](_0x1140a8(0x1d2)),specialChar[_0x1140a8(0x188)][_0x1140a8(0x246)](_0x1140a8(0x1ae))):(specialChar[_0x1140a8(0x188)][_0x1140a8(0x277)]('good'),specialChar[_0x1140a8(0x188)][_0x1140a8(0x246)](_0x1140a8(0x1d2))));},'passwordFinal':_0x4b95f1=>{const _0x30d951=_0x59531d;_0x4b95f1[_0x30d951(0x167)]('focus',_0x141d0e=>{const _0x37b6b8=_0x30d951;!_0x4b95f1['classList'][_0x37b6b8(0x1fe)](_0x37b6b8(0x2d5))&&_0x4b95f1[_0x37b6b8(0x188)][_0x37b6b8(0x277)](_0x37b6b8(0x150));},![]),_0x4b95f1[_0x30d951(0x167)](_0x30d951(0x24e),()=>{const _0x40d571=_0x30d951;console[_0x40d571(0x13e)](_0x40d571(0x228));},![]),_0x4b95f1[_0x30d951(0x167)](_0x30d951(0x2dc),()=>{const _0x8dcd28=_0x30d951;_0x4b95f1['value']==oldpwd[_0x8dcd28(0x1ca)]?(_0x4b95f1[_0x8dcd28(0x188)][_0x8dcd28(0x246)](_0x8dcd28(0x150)),_0x4b95f1[_0x8dcd28(0x188)][_0x8dcd28(0x277)](_0x8dcd28(0x2d5))):_0x4b95f1[_0x8dcd28(0x188)][_0x8dcd28(0x1fe)](_0x8dcd28(0x2d5))&&(_0x4b95f1[_0x8dcd28(0x188)][_0x8dcd28(0x246)](_0x8dcd28(0x2d5)),_0x4b95f1[_0x8dcd28(0x188)][_0x8dcd28(0x277)](_0x8dcd28(0x150)));},![]);},'UCase':function(_0x5c762c){const _0x1e6e2e=_0x59531d;return _0x5c762c[_0x1e6e2e(0x2cd)]();},'xaddtocart':()=>{const _0x2082fb=_0x59531d;let _0x21c825=util[_0x2082fb(0x24f)]();if(_0x21c825==''||_0x21c825==null)util[_0x2082fb(0x295)](_0x2082fb(0x14a),_0x2082fb(0x19f),_0x2082fb(0x2c7));else{if(dns_existing===![]){let _0x5962ba={'domain':searched_dns,'amount':0xa,'email':_0x21c825[_0x2082fb(0x1b7)]},_0x4066ec=db[_0x2082fb(0x184)]('tebinglane-order',JSON['stringify'](_0x5962ba));util[_0x2082fb(0x2ba)](_0x2082fb(0x15e));}}console[_0x2082fb(0x13e)](_0x2082fb(0x1c7));},'checklogin':()=>{const _0x332f90=_0x59531d;let _0x33feae=db[_0x332f90(0x1d4)](_0x332f90(0x213));return JSON[_0x332f90(0x191)](_0x33feae);},'setCookie':(_0x3297a1,_0x4c8a70,_0x13bb93)=>{const _0x1b1e53=_0x59531d;var _0x18836a=new Date();_0x18836a[_0x1b1e53(0x1a7)](_0x18836a['getDate']());var _0x403c62=_0x4c8a70+_0x1b1e53(0x161)+_0x18836a[_0x1b1e53(0x163)]()+_0x1b1e53(0x1da);console[_0x1b1e53(0x13e)](_0x3297a1+'='+_0x403c62),document[_0x1b1e53(0x2f4)]=_0x3297a1+'='+_0x403c62;},'getCookie':_0x312abc=>{const _0x319299=_0x59531d;var _0x18658e,_0x4dbedc,_0x374375,_0x4efc17=document[_0x319299(0x2f4)][_0x319299(0x2c5)](';');for(_0x18658e=0x0;_0x18658e<_0x4efc17[_0x319299(0x26f)];_0x18658e++){_0x4dbedc=_0x4efc17[_0x18658e][_0x319299(0x157)](0x0,_0x4efc17[_0x18658e]['indexOf']('=')),_0x374375=_0x4efc17[_0x18658e][_0x319299(0x157)](_0x4efc17[_0x18658e][_0x319299(0x231)]('=')+0x1),_0x4dbedc=_0x4dbedc[_0x319299(0x183)](/^\s+|\s+$/g,'');if(_0x4dbedc==_0x312abc)return unescape(_0x374375);}},'getDate':()=>{const _0x1ae0b4=_0x59531d;var _0x400202=new Date(),_0x5e41ab=String(_0x400202[_0x1ae0b4(0x173)]())['padStart'](0x2,'0'),_0x27fe26=String(_0x400202[_0x1ae0b4(0x2ee)]()+0x1)[_0x1ae0b4(0x1fc)](0x2,'0'),_0x2a2fb0=_0x400202[_0x1ae0b4(0x263)]();return _0x400202=_0x27fe26+'-'+_0x5e41ab+'-'+_0x2a2fb0,_0x400202;},'nugetDate':()=>{const _0x6eda1a=_0x59531d;var _0x8c26ab=new Date(),_0x45ad48=String(_0x8c26ab['getDate']())['padStart'](0x2,'0'),_0x31c24d=String(_0x8c26ab['getMonth']()+0x1)[_0x6eda1a(0x1fc)](0x2,'0'),_0x520ba8=_0x8c26ab[_0x6eda1a(0x263)]();return _0x8c26ab=_0x520ba8+'-'+_0x31c24d+'-'+_0x45ad48,_0x8c26ab;},'strDate':()=>{const _0x4e04b9=_0x59531d;var _0x4f27a0=new Date(),_0x211a1c=String(_0x4f27a0[_0x4e04b9(0x173)]())[_0x4e04b9(0x1fc)](0x2,'0'),_0xd509bf=String(_0x4f27a0[_0x4e04b9(0x2ee)]()+0x1)['padStart'](0x2,'0'),_0x47ce4f=_0x4f27a0[_0x4e04b9(0x263)](),_0x4af537=new Date(_0x4f27a0[_0x4e04b9(0x2ee)]()+0x1+'/'+_0x211a1c+'/'+_0x47ce4f)[_0x4e04b9(0x13f)]('en-PH',{'month':_0x4e04b9(0x2ef)});return _0x4f27a0=_0x4af537+'\x20'+_0x211a1c+',\x20'+_0x47ce4f,_0x4f27a0;},'formatDate2':_0x516b1d=>{const _0x8068a7=_0x59531d;today=new Date(_0x516b1d);var _0x48e5de=String(today['getDate']())[_0x8068a7(0x1fc)](0x2,'0'),_0x443bfb=String(today[_0x8068a7(0x2ee)]()+0x1)['padStart'](0x2,'0'),_0x41196d=today[_0x8068a7(0x263)]();return today=_0x443bfb+'/'+_0x48e5de+'/'+_0x41196d,today;},'formatDate':()=>{const _0x11b8d9=_0x59531d;var _0x2e2988=new Date(),_0x2b406d=String(_0x2e2988[_0x11b8d9(0x173)]())[_0x11b8d9(0x1fc)](0x2,'0'),_0x560fae=String(_0x2e2988['getMonth']()+0x1)[_0x11b8d9(0x1fc)](0x2,'0'),_0x16c092=_0x2e2988['getFullYear']();return _0x2e2988=_0x16c092+'-'+_0x560fae+'-'+_0x2b406d,_0x2e2988;},'formatNumber':_0x5b468f=>{const _0x2d829c=_0x59531d,_0x426989=Math[_0x2d829c(0x1f3)](_0x5b468f);if(_0x426989>=0xf4240)return(_0x5b468f/0xf4240)[_0x2d829c(0x245)](0x1)+'M';else return _0x426989>=0x3e8?(_0x5b468f/0x3e8)[_0x2d829c(0x245)](0x1)+'K':_0x5b468f[_0x2d829c(0x245)](0x0);},'addCommas':_0x8fbebd=>{const _0x540b7f=_0x59531d;_0x8fbebd+='',x=_0x8fbebd[_0x540b7f(0x2c5)]('.'),x1=x[0x0],x2=x['length']>0x1?'.'+x[0x1]:'';var _0x41b25a=/(\d+)(\d{3})/;while(_0x41b25a[_0x540b7f(0x284)](x1)){x1=x1[_0x540b7f(0x183)](_0x41b25a,'$1'+','+'$2');}return x1+x2;},'Codes':()=>{const _0x9ac95a=_0x59531d;var _0x300b8f=new Date(),_0x356f0e=String(_0x300b8f[_0x9ac95a(0x173)]())[_0x9ac95a(0x1fc)](0x2,'0'),_0x402f92=String(_0x300b8f['getMonth']()+0x1)['padStart'](0x2,'0'),_0x2ecffc=_0x300b8f['getFullYear'](),_0x2e63c8=String(_0x300b8f['getHours']())[_0x9ac95a(0x1fc)](0x2,'0'),_0x5ced06=String(_0x300b8f[_0x9ac95a(0x1e0)]())[_0x9ac95a(0x1fc)](0x2,'0'),_0x3b8677=String(_0x300b8f[_0x9ac95a(0x27c)]())[_0x9ac95a(0x1fc)](0x2,'0');return _0x300b8f='EO'+_0x2ecffc+_0x402f92+_0x356f0e+_0x2e63c8+_0x5ced06+_0x3b8677,_0x300b8f;},'getAllMall':_0x311384=>{const _0xaadc9a=_0x59531d;fetch(_0x311384)[_0xaadc9a(0x260)](_0x465619=>{return _0x465619['json']();})[_0xaadc9a(0x260)](_0x334094=>{const _0x572e1c=_0xaadc9a;console[_0x572e1c(0x13e)]('All\x20Main\x20Malls\x20',_0x334094),cSelect=document['getElementById'](_0x572e1c(0x2d1)),osndp[_0x572e1c(0x1cf)](cSelect),console[_0x572e1c(0x13e)]('line\x20590\x20util.js\x20osndp.removeOptions()');let _0x880747=document[_0x572e1c(0x17e)](_0x572e1c(0x1ef));_0x880747[_0x572e1c(0x1c1)](_0x572e1c(0x1ca),''),_0x880747['setAttribute'](_0x572e1c(0x17d),_0x572e1c(0x17d));let _0x2c8914=document[_0x572e1c(0x2b3)]('--\x20Pls\x20Select\x20--');_0x880747[_0x572e1c(0x261)](_0x2c8914),cSelect[_0x572e1c(0x261)](_0x880747);for(let _0x166cb7 in _0x334094['result']){let _0x4c1d50=document['createElement'](_0x572e1c(0x1ef));_0x4c1d50[_0x572e1c(0x1c1)](_0x572e1c(0x1ca),_0x334094[_0x572e1c(0x1ce)][_0x166cb7][_0x572e1c(0x2c1)]);let _0x2182bf=document['createTextNode'](_0x334094['result'][_0x166cb7]['mall_name']);_0x4c1d50[_0x572e1c(0x261)](_0x2182bf),cSelect[_0x572e1c(0x261)](_0x4c1d50);}cSelect[_0x572e1c(0x1cb)]();})[_0xaadc9a(0x1ee)](_0x399ad9=>{const _0x5e6e76=_0xaadc9a;console[_0x5e6e76(0x2bf)](_0x5e6e76(0x28c),_0x399ad9);});},'loadModals':(_0x263def,_0x919cfe,_0x2f8085,_0x4d4860)=>{const _0x553559=_0x59531d;console['log']('****\x20loadModals()***',_0x263def);const _0x19c56e={'keyboard':![],'backdrop':'static'};if(_0x263def==_0x553559(0x18c)){xloginmodal=new bootstrap[(_0x553559(0x214))](document[_0x553559(0x17b)](_0x263def),_0x19c56e);let _0x54fa0f=document[_0x553559(0x17b)](_0x263def);_0x54fa0f[_0x553559(0x167)](_0x553559(0x1a1),function(_0x2f86cb){const _0x5d87a9=_0x553559;let _0x4f964a=document['getElementById'](_0x919cfe);_0x4f964a[_0x5d87a9(0x1cd)](),util[_0x5d87a9(0x2f7)](_0x2f8085);let _0x2a4c3b=document[_0x5d87a9(0x17b)](_0x4d4860);_0x2a4c3b['innerHTML']='';},![]);}_0x263def=='newsiteModal'&&(xnewsitemodal=new bootstrap[(_0x553559(0x214))](document[_0x553559(0x17b)](_0x263def),_0x19c56e));if(_0x263def==_0x553559(0x145)){xequipmenttagmodal=new bootstrap[(_0x553559(0x214))](document['getElementById'](_0x263def),_0x19c56e);let _0x85b88a=document['getElementById'](_0x263def);_0x85b88a[_0x553559(0x167)](_0x553559(0x2b9),function(_0x7b50f5){const _0x4d328b=_0x553559;console[_0x4d328b(0x13e)](_0x4d328b(0x1b5));},![]),_0x85b88a[_0x553559(0x167)](_0x553559(0x1a1),function(_0x3ba5e6){const _0x5ed2f9=_0x553559;let _0x3c92a9=document[_0x5ed2f9(0x17b)](_0x919cfe);_0x3c92a9[_0x5ed2f9(0x1cd)](),util[_0x5ed2f9(0x2f7)](_0x2f8085);const _0x4fcdd3=document[_0x5ed2f9(0x17b)](_0x5ed2f9(0x1b3));_0x4fcdd3[_0x5ed2f9(0x139)]='';const _0x98ffc9=document['getElementById'](_0x5ed2f9(0x2c9)),_0x517e03=document[_0x5ed2f9(0x17b)](_0x5ed2f9(0x1c2));_0x517e03['disabled']=![],_0x98ffc9['classList'][_0x5ed2f9(0x246)](_0x5ed2f9(0x2f0)),_0x98ffc9[_0x5ed2f9(0x188)]['remove'](_0x5ed2f9(0x232)),_0x98ffc9['classList'][_0x5ed2f9(0x277)](_0x5ed2f9(0x236));},![]);}let _0x4be15e=[_0x2f8085],_0x103ad8;if(_0x263def==_0x553559(0x1dc)){let _0x63c434=document[_0x553559(0x17b)](_0x553559(0x298));}_0x4be15e['forEach'](_0x3f6b17=>{const _0x1c4bba=_0x553559;_0x103ad8=document[_0x1c4bba(0x2c8)](_0x3f6b17);if(_0x103ad8){let _0x5309be=_0x103ad8[0x0];Array[_0x1c4bba(0x237)](_0x5309be[_0x1c4bba(0x2fa)])[_0x1c4bba(0x1d7)](_0x231a4b=>{const _0x645f9a=_0x1c4bba;!_0x231a4b[_0x645f9a(0x188)]['contains']('p1')&&!_0x231a4b[_0x645f9a(0x188)][_0x645f9a(0x1fe)]('p2')?(_0x231a4b[_0x645f9a(0x167)]('keyup',_0x62b864=>{const _0x36c909=_0x645f9a;_0x231a4b[_0x36c909(0x1ed)]()===![]?(_0x231a4b[_0x36c909(0x188)][_0x36c909(0x246)](_0x36c909(0x2d5)),_0x231a4b['classList'][_0x36c909(0x277)](_0x36c909(0x150)),_0x62b864[_0x36c909(0x29d)](),_0x62b864[_0x36c909(0x14f)]()):(_0x231a4b[_0x36c909(0x188)]['remove'](_0x36c909(0x150)),_0x231a4b[_0x36c909(0x188)][_0x36c909(0x277)](_0x36c909(0x2d5)));},![]),_0x231a4b[_0x645f9a(0x167)](_0x645f9a(0x24e),_0x5e6529=>{const _0x19cfb5=_0x645f9a;_0x231a4b['checkValidity']()===![]?(_0x231a4b[_0x19cfb5(0x188)][_0x19cfb5(0x246)](_0x19cfb5(0x2d5)),_0x231a4b[_0x19cfb5(0x188)][_0x19cfb5(0x277)](_0x19cfb5(0x150)),_0x5e6529[_0x19cfb5(0x29d)](),_0x5e6529[_0x19cfb5(0x14f)]()):(_0x231a4b['classList']['remove'](_0x19cfb5(0x150)),_0x231a4b['classList'][_0x19cfb5(0x277)](_0x19cfb5(0x2d5)));},![])):_0x231a4b[_0x645f9a(0x188)]['contains']('p1')?_0x263def==_0x645f9a(0x1dc)&&util[_0x645f9a(0x262)](_0x231a4b,passwordAlert):util[_0x645f9a(0x1f0)](_0x231a4b);});}});},'hideModal':(_0xaa6c85,_0x270985)=>{setTimeout(function(){const _0xee826d=_0xfe7e,_0x3ccf05=document[_0xee826d(0x17b)](_0xaa6c85);let _0x3fe9a3=bootstrap['Modal'][_0xee826d(0x1fa)](_0x3ccf05);_0x3fe9a3[_0xee826d(0x1b2)]();},_0x270985);},'modalShow':_0x331673=>{const _0x4cb70d=_0x59531d;console[_0x4cb70d(0x13e)](_0x4cb70d(0x278),_0x331673);const _0x4b43c9={'keyboard':![],'backdrop':_0x4cb70d(0x2b6)};switch(_0x331673){case _0x4cb70d(0x171):const _0x1f71b0=new bootstrap['Modal'](document['getElementById'](_0x331673),_0x4b43c9);_0x1f71b0[_0x4cb70d(0x265)]();break;case'dataEntryModal':const _0x4a62a5=new bootstrap[(_0x4cb70d(0x214))](document[_0x4cb70d(0x17b)](_0x4cb70d(0x2ae)),_0x4b43c9);_0x4a62a5[_0x4cb70d(0x265)](),console['log'](_0x4cb70d(0x291)),document[_0x4cb70d(0x17b)](_0x4cb70d(0x19b))['value']=util[_0x4cb70d(0x2e9)]();break;case _0x4cb70d(0x149):if(!asn['db'][_0x4cb70d(0x1d4)](_0x4cb70d(0x2b7)))return util[_0x4cb70d(0x20f)](_0x4cb70d(0x148),0xbb8,![]),util[_0x4cb70d(0x156)]('Please\x20make\x20an\x20Initial\x20Entry\x20by\x20Opening\x20Start\x20Entry\x20on\x20the\x20Menu!!!'),![];else{const _0x4ed5b1=new bootstrap[(_0x4cb70d(0x214))](document[_0x4cb70d(0x17b)](_0x4cb70d(0x149)),_0x4b43c9);_0x4ed5b1[_0x4cb70d(0x265)]();const _0x225e44=JSON['parse'](asn['db'][_0x4cb70d(0x1d4)](_0x4cb70d(0x2b7))),_0x4b42e1=JSON[_0x4cb70d(0x191)](asn['db']['getItem']('profile'));document[_0x4cb70d(0x17b)]('trans_tbody')[_0x4cb70d(0x139)]=_0x4cb70d(0x21a)+_0x225e44['f_transnumber']+_0x4cb70d(0x2e8)+_0x225e44[_0x4cb70d(0x1bc)]+_0x4cb70d(0x2e8)+_0x225e44[_0x4cb70d(0x22d)]+_0x4cb70d(0x2a7),document[_0x4cb70d(0x17b)](_0x4cb70d(0x29a))['value']=_0x225e44[_0x4cb70d(0x19b)],document['getElementById'](_0x4cb70d(0x12f))[_0x4cb70d(0x1ca)]=_0x225e44[_0x4cb70d(0x1bc)],document['getElementById'](_0x4cb70d(0x238))[_0x4cb70d(0x1ca)]=_0x225e44[_0x4cb70d(0x1bc)],document[_0x4cb70d(0x17b)](_0x4cb70d(0x20a))['value']=_0x225e44[_0x4cb70d(0x2e6)],document[_0x4cb70d(0x17b)](_0x4cb70d(0x28d))[_0x4cb70d(0x1ca)]=_0x4b42e1['id'];}break;case _0x4cb70d(0x2c4):if(util['getCookie'](_0x4cb70d(0x1a4))!=='2'){const _0x420a40=new bootstrap[(_0x4cb70d(0x214))](document['getElementById'](_0x4cb70d(0x2c4)),_0x4b43c9);_0x420a40[_0x4cb70d(0x265)]();}else util[_0x4cb70d(0x156)](_0x4cb70d(0x2a4));break;case _0x4cb70d(0x16e):xloginmodal[_0x4cb70d(0x265)]();break;case _0x4cb70d(0x1ec):case _0x4cb70d(0x151):if(util[_0x4cb70d(0x136)](_0x4cb70d(0x1a4))==='8'||util[_0x4cb70d(0x136)](_0x4cb70d(0x1a4))==='08'||util[_0x4cb70d(0x136)]('grp_id')==='88'||util['getCookie'](_0x4cb70d(0x1a4))==='07'){const _0x11eadb=new bootstrap[(_0x4cb70d(0x214))](document['getElementById'](_0x331673),_0x4b43c9);_0x11eadb[_0x4cb70d(0x265)]();}else util[_0x4cb70d(0x156)](_0x4cb70d(0x2a4));break;}},'modalListeners':_0x39bb71=>{const _0x3995b1=_0x59531d;switch(_0x39bb71){case _0x3995b1(0x155):const _0x593263=document[_0x3995b1(0x17b)](_0x3995b1(0x174));_0x593263[_0x3995b1(0x167)](_0x3995b1(0x16b),_0x2d23cf=>{const _0x44d7f7=_0x3995b1,_0x3bace2=_0x2d23cf[_0x44d7f7(0x229)];xmsg=_0x44d7f7(0x2f3),util['alertMsg'](xmsg,_0x44d7f7(0x2ed),'claimsPlaceHolder'),util[_0x44d7f7(0x156)](_0x44d7f7(0x25a)),fetch(myIp+'/xlsclaims',{'method':_0x44d7f7(0x2e0),'body':new FormData(_0x3bace2)})['then'](_0x219b8c=>{const _0x1d1bf2=_0x44d7f7;return _0x219b8c[_0x1d1bf2(0x132)]();})[_0x44d7f7(0x260)](_0x302b6e=>{const _0x1966ce=_0x44d7f7;return _0x302b6e['status']&&(console[_0x1966ce(0x13e)](_0x1966ce(0x165),_0x302b6e),util[_0x1966ce(0x156)](_0x302b6e[_0x1966ce(0x20b)]),document['getElementById'](_0x1966ce(0x282))['innerHTML']='',util[_0x1966ce(0x2b5)](_0x1966ce(0x155),0x7d0)),!![];})[_0x44d7f7(0x1ee)](_0x2d298d=>{const _0x16543f=_0x44d7f7;return util[_0x16543f(0x156)](_0x16543f(0x2f2)),console[_0x16543f(0x13e)](_0x2d298d),![];}),console['log'](_0x44d7f7(0x147)),_0x2d23cf[_0x44d7f7(0x29d)]();});break;case _0x3995b1(0x151):util[_0x3995b1(0x2de)]=null,console[_0x3995b1(0x13e)](_0x3995b1(0x29c));const _0x3829fa=document['getElementById'](_0x3995b1(0x159)),_0x57539f=document['getElementById'](_0x3995b1(0x151));_0x3829fa&&(util[_0x3995b1(0x2de)]=new SignaturePad(_0x3829fa,{'penColor':_0x3995b1(0x2c3),'throttle':0x0,'minWidth':0x2,'maxWidth':0x2}));_0x57539f&&_0x3829fa&&_0x57539f[_0x3995b1(0x167)](_0x3995b1(0x2eb),function(){const _0x5dac47=_0x3995b1;console[_0x5dac47(0x13e)](_0x5dac47(0x1ac));const _0x22c1ef=_0x3829fa['offsetWidth'],_0x229580=_0x3829fa[_0x5dac47(0x249)];_0x3829fa[_0x5dac47(0x18e)]=_0x22c1ef,_0x3829fa[_0x5dac47(0x22c)]=_0x229580,util['signaturePad']['clear'](),util['signaturePad']['on']();});util[_0x3995b1(0x28a)]&&util['toggleDriversLicenseValidation']();break;case _0x3995b1(0x1ec):console[_0x3995b1(0x13e)](_0x3995b1(0x1b6),_0x39bb71);const _0x5c9b39=document[_0x3995b1(0x17b)](_0x39bb71);_0x5c9b39&&_0x5c9b39['addEventListener'](_0x3995b1(0x2b9),function(_0x5bd1ac){const _0x41ab50=_0x3995b1;console[_0x41ab50(0x13e)]('newempModal()\x20listeners\x20loaded');function _0xc6a562(){const _0x3f858f=_0x41ab50,_0x5b5d39=new Date(),_0x2edd6b=_0x5b5d39[_0x3f858f(0x263)](),_0x5b0c7f=String(_0x5b5d39[_0x3f858f(0x2ee)]()+0x1)['padStart'](0x2,'0'),_0x347fd9=String(_0x5b5d39['getDate']())[_0x3f858f(0x1fc)](0x2,'0');return _0x2edd6b+'-'+_0x5b0c7f+'-'+_0x347fd9;}const _0x528781=_0xc6a562();document['getElementById'](_0x41ab50(0x289))[_0x41ab50(0x1ca)]=_0x528781;},![]);break;case _0x3995b1(0x22a):const _0x41111b=document[_0x3995b1(0x17b)](_0x3995b1(0x22a));_0x41111b['addEventListener'](_0x3995b1(0x1a1),function(_0x3c797f){const _0x7d2071=_0x3995b1;let _0x403118=document[_0x7d2071(0x17b)]('commentsForm');_0x403118[_0x7d2071(0x1cd)](),util[_0x7d2071(0x2f7)](_0x7d2071(0x197));});break;case _0x3995b1(0x2ae):const _0x46eb21=document[_0x3995b1(0x17b)]('dataEntryModal');break;}},'getCode':()=>{const _0x13bd46=_0x59531d;var _0x434c0d=new Date(),_0x209aed=String(_0x434c0d[_0x13bd46(0x173)]())['padStart'](0x2,'0'),_0x364db1=String(_0x434c0d[_0x13bd46(0x2ee)]()+0x1)[_0x13bd46(0x1fc)](0x2,'0'),_0x1a3b83=_0x434c0d[_0x13bd46(0x263)](),_0xfae346=String(_0x434c0d[_0x13bd46(0x2db)]())['padStart'](0x2,'0'),_0x1f4f6b=String(_0x434c0d[_0x13bd46(0x1e0)]())['padStart'](0x2,'0'),_0xad4f8f=String(_0x434c0d[_0x13bd46(0x27c)]())[_0x13bd46(0x1fc)](0x2,'0');return _0x434c0d=_0x13bd46(0x24a)+_0x1a3b83+_0x364db1+_0x209aed+_0xfae346+_0x1f4f6b+_0xad4f8f,_0x434c0d;},'paymentInsert':()=>{const _0x1285ff=_0x59531d,_0xba9a01=document[_0x1285ff(0x17b)](_0x1285ff(0x217)),_0x3959cb=document[_0x1285ff(0x17e)]('div');_0x3959cb[_0x1285ff(0x139)]=[_0x1285ff(0x1ea)][_0x1285ff(0x18f)](''),_0xba9a01[_0x1285ff(0x230)](_0x3959cb);},'generateRandomDigits':_0x3406f8=>{const _0x5528f0=_0x59531d;return Math[_0x5528f0(0x1c3)](Math[_0x5528f0(0x283)]()*(0x9*Math[_0x5528f0(0x185)](0xa,_0x3406f8)))+Math[_0x5528f0(0x185)](0xa,_0x3406f8);},'signupMailer':async(_0x58e939='')=>{const _0x381bee=_0x59531d;fetch(_0x58e939)[_0x381bee(0x260)](_0x1b999c=>{return _0x1b999c['json']();})[_0x381bee(0x260)](_0x3a22ef=>{const _0x1a166b=_0x381bee;util[_0x1a166b(0x295)](_0x3a22ef[_0x1a166b(0x20b)],_0x1a166b(0x19f),_0x1a166b(0x16f)),util['hideModal'](_0x1a166b(0x1dc),0x7d0);})[_0x381bee(0x1ee)](_0x33b538=>{const _0x33dc7d=_0x381bee;console[_0x33dc7d(0x2bf)](_0x33dc7d(0x28c),_0x33b538);});},'loadFormValidation':_0xc7dede=>{const _0xbeae7e=_0x59531d;console[_0xbeae7e(0x13e)](_0xbeae7e(0x158),_0xc7dede);let _0x763aac=[_0xc7dede],_0x80df3c;_0x763aac[_0xbeae7e(0x1d7)](_0x35d869=>{const _0x9253b2=_0xbeae7e;_0x80df3c=document[_0x9253b2(0x2c8)](_0x35d869);if(_0x80df3c){let _0x52c775=_0x80df3c[0x0];Array[_0x9253b2(0x237)](_0x52c775[_0x9253b2(0x2fa)])[_0x9253b2(0x1d7)](_0x536263=>{const _0x2af45a=_0x9253b2;!_0x536263[_0x2af45a(0x188)][_0x2af45a(0x1fe)]('p1')&&!_0x536263[_0x2af45a(0x188)][_0x2af45a(0x1fe)]('p2')?(_0x536263[_0x2af45a(0x167)](_0x2af45a(0x2ab),_0x1486b0=>{const _0x5dcb23=_0x2af45a;_0x536263[_0x5dcb23(0x1ed)]()===![]?(_0x536263[_0x5dcb23(0x188)][_0x5dcb23(0x246)](_0x5dcb23(0x2d5)),_0x536263[_0x5dcb23(0x188)][_0x5dcb23(0x277)]('is-invalid'),_0x1486b0[_0x5dcb23(0x29d)](),_0x1486b0[_0x5dcb23(0x14f)]()):(_0x536263[_0x5dcb23(0x188)]['remove']('is-invalid'),_0x536263['classList'][_0x5dcb23(0x277)](_0x5dcb23(0x2d5)));},![]),_0x536263[_0x2af45a(0x167)](_0x2af45a(0x24e),_0x1db1d6=>{const _0x2dc574=_0x2af45a;_0x536263[_0x2dc574(0x1ed)]()===![]?(_0x536263['classList'][_0x2dc574(0x246)](_0x2dc574(0x2d5)),_0x536263[_0x2dc574(0x188)][_0x2dc574(0x277)](_0x2dc574(0x150)),_0x1db1d6[_0x2dc574(0x29d)](),_0x1db1d6[_0x2dc574(0x14f)]()):(_0x536263['classList']['remove'](_0x2dc574(0x150)),_0x536263[_0x2dc574(0x188)][_0x2dc574(0x277)]('is-valid'));},![])):_0x536263['classList'][_0x2af45a(0x1fe)]('p1')?eModal==_0x2af45a(0x1dc)&&util[_0x2af45a(0x262)](_0x536263,passwordAlert):util['passwordFinal'](_0x536263);});}});},'url':null,'checkPosition':()=>{const _0x4d778c=_0x59531d;util['getLocation'](document[_0x4d778c(0x17b)]('region')[_0x4d778c(0x1ca)]);},'showPos':()=>{const _0x127175=_0x59531d;console[_0x127175(0x13e)](_0x127175(0x255));let _0x5b6ced=document['getElementById'](_0x127175(0x2af)),_0x49bd24=document[_0x127175(0x17b)](_0x127175(0x21e));util[_0x127175(0x297)](!![],_0x5b6ced,_0x49bd24);},'handlePosChange':_0x315cd5=>{const _0x310e12=_0x59531d;util[_0x310e12(0x28a)](),console[_0x310e12(0x13e)]('position\x20select\x20',_0x315cd5[_0x310e12(0x1ca)]);let _0x26ab7a=document[_0x310e12(0x17b)](_0x310e12(0x196)),_0x2ff4d6=document['getElementById']('loc_area'),_0x27d2aa=document[_0x310e12(0x17b)](_0x310e12(0x131)),_0x363868=document['getElementById'](_0x310e12(0x281)),_0x4b9419=document['getElementById']('hubStoreContainer'),_0x2c2a56=document[_0x310e12(0x17b)](_0x310e12(0x222));util[_0x310e12(0x1a2)](document[_0x310e12(0x17b)]('region')[_0x310e12(0x1ca)]);switch(_0x315cd5['value']){case'07':case'08':util[_0x310e12(0x297)](!![],_0x27d2aa,_0x363868),util[_0x310e12(0x297)](![],_0x4b9419,_0x2c2a56);break;default:util[_0x310e12(0x297)](!![],_0x27d2aa,_0x363868),util['displayAreaLocationHub'](!![],_0x4b9419,_0x2c2a56);}},'displayAreaLocationHub':(_0x38ea83,_0x2358fd,_0x7d129d)=>{const _0x52a29d=_0x59531d;if(!_0x2358fd||!_0x7d129d)return;_0x38ea83?(_0x2358fd[_0x52a29d(0x188)][_0x52a29d(0x246)](_0x52a29d(0x15f)),_0x2358fd['classList']['add'](_0x52a29d(0x2b8)),_0x7d129d[_0x52a29d(0x1c1)](_0x52a29d(0x1d6),'required'),_0x7d129d[_0x52a29d(0x188)][_0x52a29d(0x246)](_0x52a29d(0x150))):(_0x2358fd[_0x52a29d(0x188)]['remove'](_0x52a29d(0x2b8)),_0x2358fd[_0x52a29d(0x188)][_0x52a29d(0x277)](_0x52a29d(0x15f)),_0x7d129d[_0x52a29d(0x139)]='<option\x20value=\x22\x22\x20disabled\x20selected>Select\x20Hub\x20/\x20DC</option>',_0x7d129d[_0x52a29d(0x1ca)]='',_0x7d129d['removeAttribute'](_0x52a29d(0x1d6)),_0x7d129d['classList'][_0x52a29d(0x246)]('is-invalid'));},'getLocation':async _0x14e97d=>{const _0x4228ff=_0x59531d;console[_0x4228ff(0x13e)]('***getLocation()\x20fired***'),util[_0x4228ff(0x144)](_0x4228ff(0x2b2),'Loading\x20Location...',!![]);const _0x438372=_0x14e97d[_0x4228ff(0x1ca)],_0x4db4ec=document[_0x4228ff(0x17b)](_0x4228ff(0x131)),_0x1c9781=document['getElementById'](_0x4228ff(0x281));try{const _0x7199ef=await fetch(myIp+_0x4228ff(0x29b)+document[_0x4228ff(0x17b)](_0x4228ff(0x1af))[_0x4228ff(0x1ca)]);if(!_0x7199ef['ok'])throw new Error(_0x4228ff(0x2d9)+_0x7199ef['status']);const _0x281175=await _0x7199ef['json'](),_0x3079ed=_0x281175[_0x4228ff(0x274)];_0x1c9781[_0x4228ff(0x139)]=_0x4228ff(0x224),_0x3079ed[_0x4228ff(0x1d7)](_0x3a29ce=>{const _0x27fa97=_0x4228ff;console['log'](_0x3a29ce);const _0x450e3f=document[_0x27fa97(0x17e)](_0x27fa97(0x1ef));_0x450e3f[_0x27fa97(0x1ca)]=_0x3a29ce[_0x27fa97(0x2f9)],_0x450e3f[_0x27fa97(0x1d3)]=_0x3a29ce[_0x27fa97(0x2f9)],_0x1c9781['appendChild'](_0x450e3f);});}catch(_0x172e7a){console['error']('Error\x20fetching\x20hubs:',_0x172e7a),alert(_0x4228ff(0x286));}util[_0x4228ff(0x144)]('footer-msg',null,![]);},'gethub':_0x3b51b2=>{const _0x4fef72=_0x59531d;util[_0x4fef72(0x1fd)]();},'fetchAndPopulateHubs':async()=>{const _0xc51971=_0x59531d;util[_0xc51971(0x144)](_0xc51971(0x2b2),_0xc51971(0x2cc),!![]);let _0x4b38ad=document['getElementById']('locStore')[_0xc51971(0x1ca)];const _0xde43af=document['getElementById'](_0xc51971(0x222)),_0x318477=myIp+_0xc51971(0x2b0)+document[_0xc51971(0x17b)](_0xc51971(0x1af))[_0xc51971(0x1ca)]+'/'+_0x4b38ad;console[_0xc51971(0x13e)](_0x318477);try{const _0x1bba4e=await fetch(_0x318477);if(!_0x1bba4e['ok'])throw new Error(_0xc51971(0x2d9)+_0x1bba4e[_0xc51971(0x23f)]);const _0x2d73b9=await _0x1bba4e[_0xc51971(0x132)](),_0x51f78c=_0x2d73b9[_0xc51971(0x274)];console['log'](_0x2d73b9),_0xde43af[_0xc51971(0x139)]=_0xc51971(0x140),_0x51f78c['forEach'](_0x20530f=>{const _0x11b6fa=_0xc51971,_0x598f96=document['createElement']('option');_0x598f96[_0x11b6fa(0x1ca)]=_0x20530f[_0x11b6fa(0x20c)],_0x598f96['textContent']=_0x20530f[_0x11b6fa(0x20c)],_0xde43af[_0x11b6fa(0x261)](_0x598f96);});}catch(_0x56bdf4){console[_0xc51971(0x2bf)](_0xc51971(0x2b4),_0x56bdf4),alert(_0xc51971(0x286));}util[_0xc51971(0x144)](_0xc51971(0x2b2),null,![]);},'toggleDriversLicenseValidation':()=>{const _0x5b74da=_0x59531d,_0x1d64c7=document[_0x5b74da(0x17b)](_0x5b74da(0x21e)),_0x17ecdb=document[_0x5b74da(0x17b)](_0x5b74da(0x290)),_0x29c5aa=document[_0x5b74da(0x17b)]('drivers_license_help'),_0x2dd58e=document[_0x5b74da(0x17b)](_0x5b74da(0x1f6));if(!_0x1d64c7||!_0x17ecdb||!_0x29c5aa||!_0x2dd58e){console['warn'](_0x5b74da(0x2bc));return;}const _0xacbec4=_0x1d64c7[_0x5b74da(0x1ca)],_0x53ecb7=_0xacbec4==='01'||_0xacbec4==='02';_0x17ecdb[_0x5b74da(0x25c)]=!_0x53ecb7,_0x17ecdb['required']=_0x53ecb7,_0x53ecb7?(_0x29c5aa[_0x5b74da(0x1d3)]=_0x5b74da(0x22b),_0x17ecdb['classList']['remove'](_0x5b74da(0x2d5))):(_0x29c5aa['textContent']=_0x5b74da(0x1aa),_0x17ecdb['value']='',_0x17ecdb[_0x5b74da(0x188)][_0x5b74da(0x246)]('is-invalid',_0x5b74da(0x2d5)),_0x2dd58e[_0x5b74da(0x1f4)][_0x5b74da(0x239)]='none');},'autoFormatPhone':_0x545e53=>{const _0x1425c3=_0x59531d;let _0x460fd4=_0x545e53[_0x1425c3(0x1ca)];const _0x5453eb=_0x545e53[_0x1425c3(0x26e)];let _0x21b774=_0x460fd4[_0x1425c3(0x183)](/\D/g,'');_0x21b774=_0x21b774[_0x1425c3(0x14d)](0x0,0xb);let _0x3ed4c9='';_0x21b774[_0x1425c3(0x26f)]>0x0&&(_0x3ed4c9=_0x21b774[_0x1425c3(0x14d)](0x0,0x4));_0x21b774['length']>0x4&&(_0x3ed4c9+='\x20'+_0x21b774[_0x1425c3(0x14d)](0x4,0x7));_0x21b774[_0x1425c3(0x26f)]>0x7&&(_0x3ed4c9+='\x20'+_0x21b774[_0x1425c3(0x14d)](0x7,0xb));_0x545e53[_0x1425c3(0x1ca)]=_0x3ed4c9;let _0x52c0bf=_0x5453eb;const _0x12c6da=(_0x3ed4c9[_0x1425c3(0x164)](/ /g)||[])[_0x1425c3(0x26f)]-(_0x460fd4['match'](/ /g)||[])[_0x1425c3(0x26f)];if(_0x12c6da>0x0&&_0x3ed4c9[_0x1425c3(0x26f)]>_0x460fd4[_0x1425c3(0x26f)]&&_0x5453eb===_0x460fd4[_0x1425c3(0x26f)])_0x52c0bf=_0x3ed4c9[_0x1425c3(0x26f)];else{if(_0x12c6da>0x0&&_0x5453eb===0x4)_0x52c0bf=_0x5453eb+0x1;else{if(_0x12c6da>0x0&&_0x5453eb===0x8)_0x52c0bf=_0x5453eb+0x1;else{if(_0x12c6da<0x0&&_0x5453eb===0x5&&_0x460fd4['charAt'](0x4)==='\x20'&&_0x3ed4c9[_0x1425c3(0x13c)](0x4)!=='\x20')_0x52c0bf=_0x5453eb-0x1;else _0x12c6da<0x0&&_0x5453eb===0x9&&_0x460fd4[_0x1425c3(0x13c)](0x8)==='\x20'&&_0x3ed4c9[_0x1425c3(0x13c)](0x8)!=='\x20'&&(_0x52c0bf=_0x5453eb-0x1);}}}_0x545e53['setSelectionRange'](Math[_0x1425c3(0x1a9)](_0x52c0bf,_0x3ed4c9[_0x1425c3(0x26f)]),Math[_0x1425c3(0x1a9)](_0x52c0bf,_0x3ed4c9[_0x1425c3(0x26f)]));},'validatePhone':_0x1ecc2b=>{const _0x24748b=_0x59531d,_0xd6cd27=/^\d{4} \d{3} \d{4}$/,_0x958857=document[_0x24748b(0x17b)](_0x24748b(0x23e));if(!_0xd6cd27[_0x24748b(0x284)](_0x1ecc2b[_0x24748b(0x1ca)])){_0x1ecc2b[_0x24748b(0x188)][_0x24748b(0x277)](_0x24748b(0x150)),_0x1ecc2b['classList'][_0x24748b(0x246)](_0x24748b(0x2d5));if(_0x958857)_0x958857[_0x24748b(0x1f4)]['display']=_0x24748b(0x199);return![];}else{_0x1ecc2b[_0x24748b(0x188)][_0x24748b(0x246)](_0x24748b(0x150)),_0x1ecc2b[_0x24748b(0x188)][_0x24748b(0x277)](_0x24748b(0x2d5));if(_0x958857)_0x958857['style'][_0x24748b(0x239)]='none';return!![];}},'enableExitWarning':()=>{window['onbeforeunload']=function(){const _0x3b5f3d=_0xfe7e;return _0x3b5f3d(0x22e);};},'disableExitWarning':()=>{window['onbeforeunload']=null;},'validateMe':async(_0x177afa,_0x2c7db7,_0x15650d)=>{const _0xb95d90=_0x59531d;console[_0xb95d90(0x13e)](_0xb95d90(0x130),_0x177afa,_0x2c7db7);const _0x121875=document['querySelector'](_0x2c7db7);let _0x358ed7=!![];Array['from'](_0x121875['elements'])['forEach'](_0x53bf47=>{const _0x8fb299=_0xb95d90;_0x53bf47[_0x8fb299(0x188)][_0x8fb299(0x246)](_0x8fb299(0x150),_0x8fb299(0x2d5));_0x53bf47['id']===_0x8fb299(0x2fb)&&document[_0x8fb299(0x17b)](_0x8fb299(0x23e))&&(document[_0x8fb299(0x17b)](_0x8fb299(0x23e))[_0x8fb299(0x1f4)][_0x8fb299(0x239)]=_0x8fb299(0x1c6));if(_0x53bf47[_0x8fb299(0x2f5)]===_0x8fb299(0x267)&&_0x53bf47['hasAttribute'](_0x8fb299(0x1d6))){const _0x584fe9=document['getElementById'](_0x53bf47['id']+_0x8fb299(0x2a6));_0x584fe9&&(_0x584fe9[_0x8fb299(0x1f4)][_0x8fb299(0x239)]=_0x8fb299(0x1c6));}});const _0x17dc52=[];Array[_0xb95d90(0x237)](_0x121875[_0xb95d90(0x2fa)])[_0xb95d90(0x1d7)](_0x7370cb=>{const _0x1009c0=_0xb95d90,_0x25a6d4=_0x7370cb[_0x1009c0(0x188)][_0x1009c0(0x1fe)](_0x15650d)||_0x7370cb[_0x1009c0(0x1a6)](_0x1009c0(0x1d6));if(!_0x25a6d4)return;let _0x24f6fa=!![];if(_0x7370cb[_0x1009c0(0x2f5)]===_0x1009c0(0x267)){if(_0x7370cb[_0x1009c0(0x1a6)](_0x1009c0(0x1d6))&&_0x7370cb['files']['length']===0x0){_0x24f6fa=![];const _0x180ca5=document[_0x1009c0(0x17b)](_0x7370cb['id']+'-error');if(_0x180ca5)_0x180ca5['style']['display']='block';}}else _0x7370cb['id']==='phone'?_0x24f6fa=util[_0x1009c0(0x200)](_0x7370cb):_0x24f6fa=_0x7370cb[_0x1009c0(0x1ed)]();!_0x24f6fa?(_0x358ed7=![],_0x7370cb[_0x1009c0(0x188)][_0x1009c0(0x277)](_0x1009c0(0x150)),_0x17dc52[_0x1009c0(0x17f)](_0x7370cb)):_0x7370cb[_0x1009c0(0x188)][_0x1009c0(0x277)](_0x1009c0(0x2d5));});if(!_0x358ed7){console[_0xb95d90(0x211)](_0xb95d90(0x154)),_0x17dc52[_0xb95d90(0x1d7)]((_0x3709a9,_0x203907)=>{const _0x200a4d=_0xb95d90;console['log']('#'+(_0x203907+0x1),{'id':_0x3709a9['id']||_0x200a4d(0x2f8),'name':_0x3709a9[_0x200a4d(0x243)]||_0x200a4d(0x252),'type':_0x3709a9[_0x200a4d(0x2f5)],'value':_0x3709a9[_0x200a4d(0x1ca)],'files':_0x3709a9[_0x200a4d(0x1de)]?.['length']??undefined,'isConnected':_0x3709a9[_0x200a4d(0x22f)],'validationMessage':_0x3709a9[_0x200a4d(0x19a)]?_0x3709a9[_0x200a4d(0x19e)]:_0x200a4d(0x2fe)});}),console[_0xb95d90(0x13d)]();const _0x22b31c=_0x17dc52[0x0];if(_0x22b31c){_0x22b31c['focus']();if(typeof _0x22b31c['reportValidity']==='function')_0x22b31c['reportValidity']();}util[_0xb95d90(0x20f)](_0xb95d90(0x146),0xbb8,![]);if(window[_0xb95d90(0x1b9)])main[_0xb95d90(0x198)]=![];if(window[_0xb95d90(0x1e1)])asn[_0xb95d90(0x198)]=![];if(window[_0xb95d90(0x168)])hris[_0xb95d90(0x198)]=![];return![];}else{let _0x12980e;switch(_0x2c7db7){case'#loginForm':const _0x2419b2=new FormData(_0x121875);let _0x52317c={};for(var _0x1554ea of _0x2419b2[_0xb95d90(0x13b)]()){_0x52317c[_0x1554ea]=_0x2419b2[_0xb95d90(0x16d)](_0x1554ea);}_0x12980e=_0xb95d90(0x27a),util[_0xb95d90(0x295)](_0x12980e,_0xb95d90(0x2ed),'loginPlaceHolder'),util[_0xb95d90(0x14b)]=myIp+_0xb95d90(0x175)+_0x52317c['uid']+'/'+_0x52317c['pwd']+'/'+(document[_0xb95d90(0x17b)](_0xb95d90(0x1af))?document['getElementById']('region')[_0xb95d90(0x1ca)]:null),util[_0xb95d90(0x20d)](_0x2c7db7,_0x177afa,''+util[_0xb95d90(0x14b)]);break;case'#newempForm':const _0x160e47=confirm('You\x20are\x20about\x20to\x20SAVE\x20this\x20User\x20data.\x20All\x20Correct\x20and\x20Continue?');if(_0x160e47){console[_0xb95d90(0x13e)](_0xb95d90(0x2c2)),util['disableExitWarning']();const _0xf95102=new FormData(_0x121875);_0xf95102[_0xb95d90(0x230)]('date_reg',util[_0xb95d90(0x173)]()),util[_0xb95d90(0x144)](_0xb95d90(0x1e9),_0xb95d90(0x1d0),!![]);const _0x1cd299=document[_0xb95d90(0x17b)](_0xb95d90(0x1e9));_0x1cd299[_0xb95d90(0x25c)]=!![];const _0x37f32a=document['querySelector'](_0xb95d90(0x2e2)),_0x13b777=_0x37f32a[_0xb95d90(0x160)][_0xb95d90(0x234)];console[_0xb95d90(0x13e)](_0xb95d90(0x1c0),_0x13b777);if(_0x13b777==='edit'){const _0x557c4d=_0xf95102[_0xb95d90(0x16d)](_0xb95d90(0x216));util[_0xb95d90(0x1a3)](_0x2c7db7,_0x177afa,myIp+_0xb95d90(0x2e5)+document[_0xb95d90(0x17b)](_0xb95d90(0x1af))[_0xb95d90(0x1ca)]+'/'+document[_0xb95d90(0x17b)](_0xb95d90(0x289))['value']+'/'+document[_0xb95d90(0x17b)](_0xb95d90(0x21e))[_0xb95d90(0x1ca)]+'/'+_0x13b777+'/'+_0x557c4d,_0xf95102);}else{const _0x44ce97=null;util[_0xb95d90(0x1a3)](_0x2c7db7,_0x177afa,myIp+_0xb95d90(0x2e5)+document[_0xb95d90(0x17b)]('region')[_0xb95d90(0x1ca)]+'/'+document[_0xb95d90(0x17b)](_0xb95d90(0x289))[_0xb95d90(0x1ca)]+'/'+document[_0xb95d90(0x17b)]('jobTitle')['value']+'/'+_0x13b777+'/'+_0x44ce97,_0xf95102);}console[_0xb95d90(0x13e)](_0xb95d90(0x1f1));break;}else console[_0xb95d90(0x13e)](_0xb95d90(0x2d6));case _0xb95d90(0x197):console['log'](_0xb95d90(0x253));break;case _0xb95d90(0x137):const _0x31bdae=new FormData(_0x121875);let _0x438fce={};for(var _0x1554ea of _0x31bdae[_0xb95d90(0x13b)]()){_0x438fce[_0x1554ea]=_0x31bdae[_0xb95d90(0x16d)](_0x1554ea);}_0x438fce['login_date']=util[_0xb95d90(0x1fb)](),_0x438fce[_0xb95d90(0x2c0)]=document[_0xb95d90(0x17b)](_0xb95d90(0x19b))[_0xb95d90(0x1ca)],asn['saveobjfrm']=_0x438fce,asn[_0xb95d90(0x2a0)](myIp+_0xb95d90(0x2ff)+util[_0xb95d90(0x136)](_0xb95d90(0x2a2)));break;case'#remittanceForm':const _0x1e674d=document['getElementById'](_0xb95d90(0x279));let _0x571149=new FormData(_0x1e674d);const _0x4cd409=new FormData(_0x121875);let _0x4f0032={};for(var _0x1554ea of _0x4cd409[_0xb95d90(0x13b)]()){_0x4f0032[_0x1554ea]=_0x4cd409['get'](_0x1554ea);}const _0x3d84d7=JSON['parse'](db[_0xb95d90(0x1d4)](_0xb95d90(0x2b7)));_0x4f0032[_0xb95d90(0x18b)]=_0x3d84d7['f_transnumber'],_0x4f0032[_0xb95d90(0x1bb)]=_0x3d84d7[_0xb95d90(0x1bc)];const _0x54e4af=parseInt(document[_0xb95d90(0x17b)](_0xb95d90(0x2e6))[_0xb95d90(0x1ca)]),_0x53accc=parseInt(document[_0xb95d90(0x17b)](_0xb95d90(0x20a))[_0xb95d90(0x1ca)]);if(_0x53accc>_0x54e4af){util[_0xb95d90(0x20f)](_0xb95d90(0x14e),0xbb8,![]),window[_0xb95d90(0x1e1)]['speaks'](_0xb95d90(0x294)),document[_0xb95d90(0x17b)]('f_amount')['focus']();break;}let _0x234cdd=![];for(let [_0x2933d4,_0x193105]of _0x571149[_0xb95d90(0x2d7)]()){if(_0x193105 instanceof File&&_0x193105[_0xb95d90(0x243)]!==''){_0x234cdd=!![];break;}}if(!_0x234cdd){util[_0xb95d90(0x20f)]('Please\x20select\x20a\x20Picture\x20of\x20Receipt\x20to\x20Upload!!!',0xfa0,![]);break;}else util[_0xb95d90(0x26b)](_0xb95d90(0x2cb),!![]),window[_0xb95d90(0x1e1)][_0xb95d90(0x209)](myIp+'/savetransaction/'+util[_0xb95d90(0x136)](_0xb95d90(0x2a2)),_0x4f0032);break;}return;}},'toggleButton':(_0x316da0,_0x26736f)=>{const _0x3c3fbc=_0x59531d;let _0xc7e6bb=document[_0x3c3fbc(0x17b)](_0x316da0);_0xc7e6bb[_0x3c3fbc(0x25c)]=_0x26736f,_0xc7e6bb[_0x3c3fbc(0x1c1)](_0x3c3fbc(0x266),''+_0x26736f);},'getDistance':(_0x5d6987,_0x1c71d5,_0x11ce2d,_0x59660e)=>{const _0x6c4e04=_0x59531d,_0x175384=0x18e3,_0x554866=_0x425e32=>_0x425e32*(Math['PI']/0xb4),_0x1d7186=_0x554866(_0x11ce2d-_0x5d6987),_0x2a97ca=_0x554866(_0x59660e-_0x1c71d5),_0xfdeba2=Math[_0x6c4e04(0x247)](_0x1d7186/0x2)*Math[_0x6c4e04(0x247)](_0x1d7186/0x2)+Math[_0x6c4e04(0x272)](_0x554866(_0x5d6987))*Math[_0x6c4e04(0x272)](_0x554866(_0x11ce2d))*Math['sin'](_0x2a97ca/0x2)*Math['sin'](_0x2a97ca/0x2),_0x80c081=0x2*Math['atan2'](Math[_0x6c4e04(0x24d)](_0xfdeba2),Math[_0x6c4e04(0x24d)](0x1-_0xfdeba2));return _0x175384*_0x80c081;},'logOut':()=>{const _0x532c91=_0x59531d;location[_0x532c91(0x206)]='./';},'showPosition':async _0x3d395e=>{const _0x29ab00=_0x59531d;let _0x2ee720=JSON[_0x29ab00(0x191)](db[_0x29ab00(0x1d4)](_0x29ab00(0x15a))),_0xd925b4=util[_0x29ab00(0x273)](_0x2ee720[_0x29ab00(0x17a)],_0x2ee720['lon'],_0x3d395e[_0x29ab00(0x21c)][_0x29ab00(0x1b4)],_0x3d395e[_0x29ab00(0x21c)][_0x29ab00(0x17c)]),_0x3e650f=_0xd925b4[_0x29ab00(0x245)](0x3)*0x3e8;console[_0x29ab00(0x13e)]('====\x20asn.showPosition()\x20\x20the\x20distance\x20is\x20',_0xd925b4,_0x3e650f),_0x3e650f=0.9;if(parseFloat(_0x3e650f)<=0xa)util['Toasted'](_0x29ab00(0x1ab)+_0x3e650f+'\x20METER(S),\x20PLS.\x20WAIT!',0x1770,![]),location[_0x29ab00(0x206)]=_0x29ab00(0x15d);else{const _0x384006=_0x29ab00(0x210)+_0x3e650f+_0x29ab00(0x1b8);util[_0x29ab00(0x20f)]('ERROR\x20--\x20PLEASE\x20TRY\x20AGAIN!\x20<BR>YOUR\x20DISTANCE\x20FROM\x20THE\x20HUB\x20\x20IS\x20'+_0x3e650f+_0x29ab00(0x242),0x1f40,![]),util[_0x29ab00(0x156)](_0x384006),document[_0x29ab00(0x17b)](_0x29ab00(0x1bd))[_0x29ab00(0x139)]='';return;}},'loginPost':(_0x221f36,_0x114a07,_0x3500b1='')=>{const _0x5b1b8a=_0x59531d;fetch(util['url'],{'cache':_0x5b1b8a(0x134)})[_0x5b1b8a(0x260)](_0x3c2314=>{const _0x1f9af7=_0x5b1b8a;return _0x3c2314[_0x1f9af7(0x132)]();})['then'](_0xa0195e=>{const _0x2bfe3b=_0x5b1b8a;if(_0xa0195e[0x0][_0x2bfe3b(0x1e4)]){util[_0x2bfe3b(0x295)](_0xa0195e[0x0][_0x2bfe3b(0x20b)],_0x2bfe3b(0x1c4),'loginPlaceHolder'),util['setGroupCookie'](_0xa0195e[0x0]['id'],_0xa0195e[0x0]['region'],_0xa0195e[0x0][_0x2bfe3b(0x179)],_0xa0195e[0x0][_0x2bfe3b(0x1a4)],_0xa0195e[0x0]['email'],_0xa0195e[0x0][_0x2bfe3b(0x220)],_0xa0195e[0x0]['pic']);let _0x4e5b56={};_0x4e5b56['id']=_0xa0195e[0x0]['id'],_0x4e5b56[_0x2bfe3b(0x218)]=_0xa0195e[0x0][_0x2bfe3b(0x218)],_0x4e5b56[_0x2bfe3b(0x269)]=_0xa0195e[0x0]['ocw_id'],_0x4e5b56[_0x2bfe3b(0x23c)]=_0xa0195e[0x0]['jms_id'],_0x4e5b56[_0x2bfe3b(0x1af)]=_0xa0195e[0x0][_0x2bfe3b(0x1af)],_0x4e5b56[_0x2bfe3b(0x178)]=_0xa0195e[0x0][_0x2bfe3b(0x179)],_0x4e5b56['grp_id']=_0xa0195e[0x0][_0x2bfe3b(0x1a4)],_0x4e5b56[_0x2bfe3b(0x24c)]=_0xa0195e[0x0][_0x2bfe3b(0x24c)],_0x4e5b56['email']=_0xa0195e[0x0]['email'],_0x4e5b56['pic']=_0xa0195e[0x0]['pic'],db[_0x2bfe3b(0x184)](_0x2bfe3b(0x288),JSON[_0x2bfe3b(0x190)](_0xa0195e[0x0]));switch(_0x4e5b56[_0x2bfe3b(0x1a4)]){case 0x1:location[_0x2bfe3b(0x206)]=_0x2bfe3b(0x15d);break;case 0x4:location[_0x2bfe3b(0x206)]=_0x2bfe3b(0x1f5);break;case'01':case'02':case'03':case'04':case'06':case'10':location['href']=_0x2bfe3b(0x208);break;case'08':location[_0x2bfe3b(0x206)]=_0x2bfe3b(0x2bb);break;case'07':location[_0x2bfe3b(0x206)]='/besi/headcoord';break;case 0x3:location['href']=_0x2bfe3b(0x19d);break;case 0x5:console[_0x2bfe3b(0x13e)](_0x2bfe3b(0x2f1)),location[_0x2bfe3b(0x206)]=_0x2bfe3b(0x2f6);break;case 0x8:case 0x1e:case 0x58:case 0x9:location[_0x2bfe3b(0x206)]=_0x2bfe3b(0x192);break;}}else return util['alertMsg'](_0xa0195e[0x0][_0x2bfe3b(0x20b)],_0x2bfe3b(0x19f),_0x2bfe3b(0x1bd)),console['log'](_0x2bfe3b(0x227),_0xa0195e[0x0]['message']),![];})['catch'](_0x4e9420=>{const _0x1e03f1=_0x5b1b8a;return util[_0x1e03f1(0x156)](data[0x0]['voice']),util[_0x1e03f1(0x295)](data[0x0][_0x1e03f1(0x20b)],_0x1e03f1(0x19f),_0x1e03f1(0x1bd)),console['log'](_0x1e03f1(0x1e5),data[0x0]['message']),![];});},'setGroupCookie':(_0x3b38c6,_0x286fc3,_0x211ca5,_0x47867a,_0x364737,_0x2458aa,_0x531919)=>{const _0x2415ae=_0x59531d;util[_0x2415ae(0x1b1)](_0x2415ae(0x23d),_0x3b38c6,0x0),util['setCookie'](_0x2415ae(0x2a2),_0x3b38c6,0x0),util[_0x2415ae(0x1b1)]('f_region',_0x286fc3,0x0),util[_0x2415ae(0x1b1)](_0x2415ae(0x179),_0x211ca5,0x0),util[_0x2415ae(0x1b1)](_0x2415ae(0x1a4),_0x47867a,0x0),util[_0x2415ae(0x1b1)](_0x2415ae(0x16a),_0x364737,0x0),util[_0x2415ae(0x1b1)](_0x2415ae(0x24b),_0x2458aa,0x0),util[_0x2415ae(0x1b1)](_0x2415ae(0x223),_0x531919,0x0);},'audio':null,'isPlaying':![],'newempPost':async function(_0x286a03,_0x71a4e6,_0x5e7190='',_0x456cf8){const _0x371d8d=_0x59531d;fetch(_0x5e7190,{'method':'POST','body':_0x456cf8})[_0x371d8d(0x260)](_0x1f0347=>{const _0x507137=_0x371d8d;return _0x1f0347[_0x507137(0x132)]();})[_0x371d8d(0x260)](_0x2fba17=>{const _0x3c5e86=_0x371d8d;if(_0x2fba17[_0x3c5e86(0x23f)]){util[_0x3c5e86(0x295)](_0x2fba17['message'],_0x3c5e86(0x1c4),_0x3c5e86(0x2b2)),util[_0x3c5e86(0x156)](_0x2fba17[_0x3c5e86(0x220)]);const _0x2fef68=document[_0x3c5e86(0x17b)](_0x3c5e86(0x1e9)),_0x5cedef=_0x2fef68['dataset'][_0x3c5e86(0x234)];util[_0x3c5e86(0x2b5)](_0x3c5e86(0x1ec),0x0),util['dataEmployeeId']=_0x2fba17[_0x3c5e86(0x1dd)],util['dataRegion']=_0x2fba17[_0x3c5e86(0x2e4)],util[_0x3c5e86(0x1f2)]=_0x2fba17['employeeName'],util['dataPosition']=_0x2fba17[_0x3c5e86(0x299)],util[_0x3c5e86(0x292)]=_0x2fba17[_0x3c5e86(0x264)],util['dataDateHired']=_0x2fba17[_0x3c5e86(0x2a5)];const _0x5d41e6=JSON[_0x3c5e86(0x191)](db[_0x3c5e86(0x1d4)](_0x3c5e86(0x288)));if(_0x5cedef===_0x3c5e86(0x277)){const _0x5d42d7=document[_0x3c5e86(0x17b)](_0x3c5e86(0x151)),_0xd72694=new bootstrap[(_0x3c5e86(0x214))](_0x5d42d7);_0xd72694[_0x3c5e86(0x265)]();}else{}}else return util['speak'](_0x2fba17[_0x3c5e86(0x220)]),![];})[_0x371d8d(0x1ee)](_0xa58d47=>{const _0x26133d=_0x371d8d;console[_0x26133d(0x2bf)](_0x26133d(0x276),_0xa58d47),util['Toasted'](_0x26133d(0x19c)+_0xa58d47['message'],0xbb8,![]);})[_0x371d8d(0x143)](()=>{const _0xe604f7=_0x371d8d;util['toggleButtonLoading'](_0xe604f7(0x1e9),null,![]);const _0x329beb=document['getElementById']('newemp-next-btn');_0x329beb['disabled']=![];});},'dataEmployeeId':null,'dataRegion':null,'dataEmployeeName':null,'dataAddress':null,'dataPosition':null,'saveSignature':async()=>{const _0x420a78=_0x59531d;console[_0x420a78(0x13e)](_0x420a78(0x254));const _0x41be14=document[_0x420a78(0x17b)](_0x420a78(0x259)),_0x37d2c8=document[_0x420a78(0x17b)](_0x420a78(0x172)),_0xf23e4f=document[_0x420a78(0x17b)](_0x420a78(0x29f));if(_0x41be14)_0x41be14[_0x420a78(0x1f4)][_0x420a78(0x239)]='none';if(util['signaturePad']&&util['signaturePad'][_0x420a78(0x268)]()){if(_0x41be14)_0x41be14[_0x420a78(0x1f4)][_0x420a78(0x239)]='block';util[_0x420a78(0x20f)]('Please\x20provide\x20your\x20digital\x20signature.',0xbb8,![]);return;}const _0x2a34b0=util[_0x420a78(0x233)];if(!_0x2a34b0){util['Toasted'](_0x420a78(0x1df),0xfa0,![]),console['error'](_0x420a78(0x2a3));return;}_0xf23e4f&&_0x37d2c8&&(_0xf23e4f['classList'][_0x420a78(0x246)](_0x420a78(0x15c)),_0xf23e4f[_0x420a78(0x188)][_0x420a78(0x277)](_0x420a78(0x232),_0x420a78(0x2f0)),_0x37d2c8[_0x420a78(0x25c)]=!![]);try{const _0x33ea43=util['signaturePad'][_0x420a78(0x2d2)](_0x420a78(0x248)),_0x2d99ea=await(await fetch(_0x33ea43))[_0x420a78(0x27e)](),_0x471952=_0x2a34b0,_0x1266b=_0x420a78(0x256)+_0x471952+_0x420a78(0x28b),_0x3d6242=new FormData();_0x3d6242[_0x420a78(0x230)](_0x420a78(0x1dd),_0x2a34b0),_0x3d6242[_0x420a78(0x230)](_0x420a78(0x2ec),_0x2d99ea,_0x1266b);const _0x469553=await fetch(myIp+_0x420a78(0x2d0)+util[_0x420a78(0x233)]+'/'+util[_0x420a78(0x25f)],{'method':_0x420a78(0x2e0),'body':_0x3d6242}),_0x1d9cc1=await _0x469553[_0x420a78(0x132)]();_0x1d9cc1[_0x420a78(0x23f)]?(util['speak'](_0x1d9cc1[_0x420a78(0x220)]),util['Toasted'](_0x420a78(0x1ba),0xbb8,!![]),util['hideModal'](_0x420a78(0x151),0x3e8),util[_0x420a78(0x18d)](),console['log'](_0x420a78(0x1b0)),util[_0x420a78(0x156)](_0x420a78(0x1c8)),util['printPdf'](util['dataEmployeeId'],util[_0x420a78(0x1f2)],util['dataRegion'],util[_0x420a78(0x280)],util[_0x420a78(0x292)],util[_0x420a78(0x244)])):(util['speak'](_0x1d9cc1[_0x420a78(0x220)]),util['Toasted']('Error:\x20'+(_0x1d9cc1['message']||'Failed\x20to\x20save\x20signature.'),0xfa0,![]));}catch(_0x1a0433){console[_0x420a78(0x2bf)](_0x420a78(0x27b),_0x1a0433),util[_0x420a78(0x20f)](_0x420a78(0x19c)+_0x1a0433[_0x420a78(0x20b)],0xfa0,![]);}finally{_0xf23e4f&&_0x37d2c8&&(_0xf23e4f['classList'][_0x420a78(0x246)](_0x420a78(0x232),'fa-spin'),_0xf23e4f[_0x420a78(0x188)]['add']('fa-check'),_0x37d2c8['disabled']=![]);}},'printPdf':async(_0x55a135,_0x1cd6f3,_0x4c869,_0x54e0db,_0x168f37,_0x6ae5e2)=>{const _0x52ea26=_0x59531d;console[_0x52ea26(0x13e)]('-----\x20FIRING\x20printPdf()\x20with\x20params:',{'empid':_0x55a135,'empname':_0x1cd6f3,'empregion':_0x4c869,'empposition':_0x54e0db,'empaddress':_0x168f37,'empdateHired':_0x6ae5e2});let _0x19f183=_0x55a135+'.pdf';const _0x3110b3=encodeURIComponent(_0x55a135),_0x33b3b1=encodeURIComponent(_0x1cd6f3),_0x55eb72=encodeURIComponent(_0x4c869),_0x5e3bd3=encodeURIComponent(_0x54e0db),_0xc3367e=encodeURIComponent(_0x168f37),_0x1f2687=encodeURIComponent(_0x6ae5e2),_0x48f9c3=myIp+_0x52ea26(0x1eb)+_0x3110b3+'/'+_0x33b3b1+'/'+_0x55eb72+'/'+_0x5e3bd3+'/'+_0xc3367e+'/'+_0x1f2687;fetch(_0x48f9c3,{'method':'POST','headers':{'Content-Type':_0x52ea26(0x20e)}})['then'](_0xa56b4e=>{const _0x3a5a6e=_0x52ea26;console[_0x3a5a6e(0x13e)]('2.\x20Fetch\x20response\x20received.\x20Status:',_0xa56b4e[_0x3a5a6e(0x23f)]);if(!_0xa56b4e['ok'])throw new Error(_0x3a5a6e(0x26c)+_0xa56b4e[_0x3a5a6e(0x23f)]+'\x20'+_0xa56b4e['statusText']);return _0xa56b4e[_0x3a5a6e(0x27e)]();})[_0x52ea26(0x260)](_0x19a16a=>{const _0xbdf008=_0x52ea26;return console[_0xbdf008(0x13e)]('3.\x20Blob\x20received.\x20Blob\x20size:',_0x19a16a[_0xbdf008(0x1c5)]),URL[_0xbdf008(0x21d)](_0x19a16a);})[_0x52ea26(0x260)](_0x455c44=>{const _0x116e2e=_0x52ea26;console[_0x116e2e(0x13e)](_0x116e2e(0x2a9),_0x455c44);const _0x466b2a=document['createElement']('a');_0x466b2a[_0x116e2e(0x206)]=_0x455c44,_0x466b2a[_0x116e2e(0x2fd)]=_0x19f183,document['body']['appendChild'](_0x466b2a),console[_0x116e2e(0x13e)]('5.\x20Attempting\x20to\x20click\x20download\x20link.'),_0x466b2a[_0x116e2e(0x195)](),console[_0x116e2e(0x13e)](_0x116e2e(0x2d3)),setTimeout(()=>{const _0x53ebf1=_0x116e2e;_0x466b2a[_0x53ebf1(0x246)](),window['URL'][_0x53ebf1(0x1f8)](_0x455c44),console[_0x53ebf1(0x13e)]('7.\x20speak:\x20Downloaded!\x20(after\x20timeout)'),util['speak'](_0x53ebf1(0x221));},0x64);})[_0x52ea26(0x1ee)](_0x226b40=>{const _0x3787a4=_0x52ea26;console[_0x3787a4(0x2bf)](_0x3787a4(0x241),_0x226b40),alert(_0x3787a4(0x170)+(_0x226b40[_0x3787a4(0x20b)]||_0x226b40));});},'resizeSignatureCanvas':()=>{const _0x175029=_0x59531d,_0x704e1a=document['getElementById'](_0x175029(0x159));if(_0x704e1a&&util[_0x175029(0x2de)]){const _0x72150f=Math[_0x175029(0x1c9)](window[_0x175029(0x1ad)]||0x1,0x1);_0x704e1a['width']=_0x704e1a['offsetWidth']*_0x72150f,_0x704e1a[_0x175029(0x22c)]=_0x704e1a[_0x175029(0x249)]*_0x72150f,_0x704e1a[_0x175029(0x2e7)]('2d')[_0x175029(0x258)](_0x72150f,_0x72150f),util[_0x175029(0x2de)]['clear']();}},'clearSignature':()=>{const _0x31de7c=_0x59531d;util[_0x31de7c(0x2de)]&&(util['signaturePad'][_0x31de7c(0x1d8)](),document[_0x31de7c(0x17b)](_0x31de7c(0x259))[_0x31de7c(0x1f4)][_0x31de7c(0x239)]=_0x31de7c(0x1c6));},'Toasted':async(_0x644b1d,_0x255ca1,_0x589fff)=>{const _0x416f7c=_0x59531d;Toastify({'text':_0x644b1d,'duration':_0x255ca1,'escapeMarkup':![],'close':_0x589fff,'position':'center','offset':{'x':0x0,'y':0x64},'style':{'background':'linear-gradient(to\x20right,\x20#00b09b,\x20#96c93d)'}})[_0x416f7c(0x2ac)]();},'toCamelCase':_0x2dfd84=>{const _0x5650e1=_0x59531d;if(typeof _0x2dfd84!==_0x5650e1(0x162)||_0x2dfd84===null||_0x2dfd84===undefined)return'';return _0x2dfd84[_0x5650e1(0x1a5)]()[_0x5650e1(0x183)](/(?:[_-]|\s)+(.)/g,(_0x23c921,_0x190b4a)=>{const _0x49b815=_0x5650e1;return _0x190b4a[_0x49b815(0x2cd)]();});},'checkFileSize':(_0x3305cc,_0x1a5719)=>{const _0xe40aaa=_0x59531d,_0x289fd6=_0x3305cc;if(!_0x289fd6||!_0x289fd6[_0xe40aaa(0x1de)]||_0x289fd6[_0xe40aaa(0x1de)][_0xe40aaa(0x26f)]===0x0)return!![];const _0x389a9e=_0x1a5719;let _0x4119e5,_0x2a702e;for(let _0x4fc953=0x0;_0x4fc953<_0x289fd6['files']['length'];_0x4fc953++){const _0x4124dd=Math[_0xe40aaa(0x2c6)](_0x289fd6[_0xe40aaa(0x1de)][_0x4fc953]['size']/0x400);if(_0x4124dd>=_0x389a9e)return util[_0xe40aaa(0x295)](_0xe40aaa(0x2b1),_0xe40aaa(0x2ed),_0xe40aaa(0x1c5)),_0x289fd6[_0xe40aaa(0x1ca)]='',![];}return!![];},'toggleButtonLoading':(_0x467537,_0x2188ab,_0x3bdf39)=>{const _0x117540=_0x59531d,_0x1afc07=document['getElementById'](_0x467537);if(!_0x1afc07)return;if(_0x3bdf39){!_0x1afc07[_0x117540(0x160)][_0x117540(0x215)]&&(_0x1afc07[_0x117540(0x160)][_0x117540(0x215)]=_0x1afc07['innerHTML']);_0x1afc07[_0x117540(0x25c)]=!![];const _0x44e613=_0x2188ab||_0x1afc07['textContent'][_0x117540(0x194)]()||_0x117540(0x138);_0x1afc07['innerHTML']=_0x117540(0x2e3)+_0x44e613+_0x117540(0x14c);}else _0x1afc07['dataset'][_0x117540(0x215)]&&(_0x1afc07[_0x117540(0x139)]=_0x1afc07[_0x117540(0x160)]['originalHtml']),_0x1afc07[_0x117540(0x25c)]=![];}},xutil={'modelsLoaded':![],'loadModels':async()=>{const _0x551760=_0x59531d;if(xutil['modelsLoaded'])return;const _0x3e159f=document[_0x551760(0x17b)]('id_picture'),_0xb69f31=document[_0x551760(0x17b)](_0x551760(0x27f)),_0x1b9331=_0x551760(0x285);try{if(_0xb69f31)_0xb69f31['innerHTML']=_0x551760(0x27d);await faceapi[_0x551760(0x15b)][_0x551760(0x257)][_0x551760(0x202)](_0x1b9331),await faceapi[_0x551760(0x15b)][_0x551760(0x2ea)][_0x551760(0x202)](_0x1b9331),xutil['modelsLoaded']=!![];if(_0xb69f31)_0xb69f31[_0x551760(0x1d3)]='AI\x20Engine\x20Ready.';if(_0x3e159f)_0x3e159f[_0x551760(0x25c)]=![];}catch(_0x2e7862){console[_0x551760(0x2bf)](_0x2e7862);}},'destroyAI':async()=>{const _0x5c27a9=_0x59531d;console['log'](_0x5c27a9(0x177));try{faceapi&&faceapi['tf']&&(faceapi['tf'][_0x5c27a9(0x182)](),faceapi['tf'][_0x5c27a9(0x23b)]&&typeof faceapi['tf'][_0x5c27a9(0x23b)]()[_0x5c27a9(0x235)]===_0x5c27a9(0x1bf)&&(faceapi['tf'][_0x5c27a9(0x23b)]()[_0x5c27a9(0x235)](),faceapi['tf'][_0x5c27a9(0x23b)]()[_0x5c27a9(0x2df)]())),xutil['modelsLoaded']=![],console[_0x5c27a9(0x13e)]('Memory\x20successfully\x20freed\x20for\x20other\x20file\x20inputs.');}catch(_0x198569){console[_0x5c27a9(0x1e8)](_0x5c27a9(0x225),_0x198569);}},'faceRecognition':async _0x51eae9=>{const _0x55f251=_0x59531d,_0x299255=_0x51eae9||window[_0x55f251(0x2cf)],_0x217061=_0x299255?_0x299255[_0x55f251(0x229)]:document[_0x55f251(0x17b)]('id_picture');if(!_0x217061||!_0x217061[_0x55f251(0x1de)]||_0x217061[_0x55f251(0x1de)][_0x55f251(0x26f)]===0x0)return;const _0x17ee90=_0x217061[_0x55f251(0x1de)][0x0],_0x275052=document['getElementById'](_0x55f251(0x27f));try{_0x275052&&(_0x275052[_0x55f251(0x139)]=_0x55f251(0x2fc));await xutil[_0x55f251(0x2bd)]();const _0xa34772=await faceapi[_0x55f251(0x28f)](_0x17ee90),_0x5c0ffd=await faceapi[_0x55f251(0x181)](_0xa34772,new faceapi['TinyFaceDetectorOptions']({'inputSize':0xe0,'scoreThreshold':0.3}))[_0x55f251(0x1e3)]();if(!_0x5c0ffd){alert('Verification\x20Failed:\x20No\x20human\x20face\x20detected.');if(_0x275052)_0x275052[_0x55f251(0x1d3)]='Verification\x20failed.';if(_0x217061)_0x217061[_0x55f251(0x1ca)]='';return;}const _0x2ceee7=_0x5c0ffd[_0x55f251(0x1db)],_0x4bb93e=(_0x5c0ffd[_0x55f251(0x2be)]*0x64)[_0x55f251(0x245)](0x1);if(_0x2ceee7===_0x55f251(0x2a1)||_0x2ceee7==='female'){if(_0x275052)_0x275052[_0x55f251(0x1d3)]='Passed!\x20Verified\x20profile:\x20'+_0x2ceee7+'\x20('+_0x4bb93e+_0x55f251(0x1e7);alert(_0x55f251(0x23a)),await xutil[_0x55f251(0x219)](),_0xa34772[_0x55f251(0x187)]='';}}catch(_0x3d3ae6){console[_0x55f251(0x2bf)](_0x55f251(0x28c),_0x3d3ae6);if(_0x275052)_0x275052['textContent']=_0x55f251(0x28e);alert(_0x55f251(0x166));if(_0x217061)_0x217061[_0x55f251(0x1ca)]='';await xutil[_0x55f251(0x219)]();}}};window['util']=util,window[_0x59531d(0x2ce)]=xutil;
+/*
+Author: Carlo Dominguez
+1/31/2023
+
+this is for utilities
+modals,forms,utilities
+
+*/ 
+//const myIp = "https://asn-jtgrp-api.onrender.com" 
+//const myIp = "http://192.168.62.221:10000"
+
+const requirements = document.querySelectorAll(".requirements")
+const specialChars = "!@#$%^&*()-_=+[{]}\\| :'\",<.>/?`~"
+const numbers = "0123456789"
+
+let db = window.localStorage
+
+let oldpwd = document.querySelector(".p1")
+let nupwd = document.querySelector(".p2")
+
+let lengBoolean, bigLetterBoolean, numBoolean, specialCharBoolean 
+let leng = document.querySelector(".leng") 
+let bigLetter = document.querySelector(".big-letter") 
+let num = document.querySelector(".num") 
+let specialChar = document.querySelector(".special-char") 
+
+//speech synthesis
+const synth = window.speechSynthesis
+
+let xloginmodal,
+	xnewsitemodal,
+    xequipmenttagmodal
+
+let voices = []
+
+//first init delete all localstorage
+//db.clear()
+	
+const util = {
+	
+	scrollsTo:(cTarget)=>{
+        //asn.collapz()
+		const elem = document.getElementById(cTarget)
+		elem.scrollIntoView(true,{ behavior: 'smooth', block:'start', inline:'nearest' });
+
+	},
+
+    //=========================START VOICE SYNTHESIS ===============
+    getVoice: async () => {
+            
+        voices = synth.getVoices()
+        console.log( 'GETVOICE()')
+                
+        voices.every(value => {
+            if(value.name.indexOf("English")>-1){
+                console.log( "bingo!-->",value.name, value.lang )
+                
+            }
+        })
+        
+        
+    },//end func getvoice
+
+    //speak method
+    speak:(theMsg)=> {
+                        
+        console.log("SPEAK()")
+        
+        // If the speech mode is on we dont want to load
+        // another speech
+        if(synth.speaking) {
+            //alert('Already speaking....');
+            return;
+        }	
+
+        const speakText = new SpeechSynthesisUtterance(theMsg);
+
+        // When the speaking is ended this method is fired
+        speakText.onend = e => {
+            //console.log('Speaking is done!');
+        };
+        
+        // When any error occurs this method is fired
+        speakText.error = e=> {
+            console.error('Error occurred...');
+        };
+
+        // Checking which voices has been chosen from the selection
+        // and setting the voice to the chosen voice
+        
+        
+        voices.forEach(voice => {
+            if(voice.name.indexOf("English")>-1){	
+                ///// take out bring back later, 
+                //console.log("speaking voice is ",voice.name)
+                speakText.voice = voice
+                
+            }
+            
+        });
+
+        // Setting the rate and pitch of the voice
+        speakText.rate = 1
+        speakText.pitch = 1
+
+        // Finally calling the speech function that enables speech
+        synth.speak(speakText)
+
+
+    },//end func speak	
+    
+    //=======================END VOICE SYNTHESIS==========
+
+    //===================== MESSENGER=================
+    alertMsg:(msg,type,xmodal)=>{
+
+        //where? login or signup modal?
+        const alertPlaceholder = document.getElementById(xmodal)
+
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+          `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+          `   <div>${msg}</div>`,
+          '</div>'
+        ].join('')
+      
+        //new osndp
+        alertPlaceholder.innerHTML=""
+        alertPlaceholder.append(wrapper)
+    },//=======alert msg
+	/*
+    Toast: (msg,nTimeOut)=> {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+        x.innerHTML=msg
+
+        // Add the "show" class to DIV
+        x.className = "show";
+    
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function(){ 
+            x.className = x.className.replace("show", "hid"); 
+        }, nTimeOut);
+    },
+    //===============END MESSENGER ===================
+    */
+    
+    //==============FORM FUNCS ===========
+    clearBox:function(){
+        let reset_input_values = document.querySelectorAll("input[type=text]") 
+        for (var i = 0; i < reset_input_values.length; i++) { //minus 1 dont include submit bttn
+            reset_input_values[i].value = ''
+        }
+    },
+
+    //remove all form class
+    resetFormClass:(frm)=>{
+        const forms = document.querySelectorAll(frm)
+        const form = forms[0]
+    
+        Array.from(form.elements).forEach((input) => {
+            input.classList.remove('was-validated')
+            input.classList.remove('is-valid')
+            input.classList.remove('is-invalid')
+        })
+    },
+
+    
+    //======post check / dep slip      
+    imagePost: async(url)=>{
+
+            console.log('*** FIRING IMAGEPOST() ****')
+            //upload pic of tagged euqipment
+            const myInput = document.getElementsByName('uploaded_file')[0]
+
+            //console.log('myinput', myInput.files[0])
+           
+            const formData = new FormData();
+
+            formData.append('file', myInput.files[0]);     
+            myInput.files[0].name ='EOEXPERIMENT.pdf'
+
+
+            console.log('imagePost() myinput', myInput.files[0])
+
+            ////console.log(formData)
+            // Later, perhaps in a form 'submit' handler or the input's 'change' handler:
+            await fetch(url, {
+            method: 'POST',
+            body: formData,
+            })
+            .then( (response) => {
+                return response.json() // if the response is a JSON object
+            })
+            .then( (data) =>{
+                console.log('SUCCESS')
+            })
+             // Handle the success response object
+            .catch( (error) => {
+                console.log(error) // Handle the error response object
+            });
+
+
+    },
+    //===tagging equipment for rent/sale
+    equipmentTagPost: async (frm,modal,url="",xdata={}) =>{
+
+        console.log(xdata)
+        fetch(url,{
+            method:'PUT',
+            //cache:'no-cache',
+
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            
+            body: JSON.stringify(xdata)
+        })
+        .then((response) => {  //promise... then 
+            return response.json();
+        })
+        .then((data) => {
+            
+            console.log('=======speaking now====', data)
+            util.speak(data.voice)        
+
+            util.hideModal('equipmentTagModal',2000)    
+            
+            //send message to super users
+            const sendmsg = {
+                msg: data.approve_voice,
+                type: data.transaction     
+            }
+
+            //remind super users
+            osndp.socket.emit('admin', JSON.stringify(sendmsg))
+
+            osndp.filterBy() //reload admin.getall()
+            //location.href='/admin'
+        
+        })
+        .catch((error) => {
+           // util.Toast(`Error:, ${error}`,1000)
+            //console.error('Error:', error)
+        })
+    },
+
+    //===== for signup posting
+    signupPost:async function(frm,modal,url="",xdata={}){
+        
+        let continue_email = true
+
+        fetch(url,{
+            method:'POST',
+            //cache:'no-cache',
+
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            
+            body: JSON.stringify(xdata)
+        })
+        .then((response) => {  //promise... then 
+            return response.json();
+        })
+        .then((data) => {
+            //
+            if(data.status){
+                continue_email=true
+				
+				//util.speak( data.message )
+				
+                util.alertMsg(data.message,'success','signupPlaceHolder')
+                util.alertMsg("Mailing "+util.UCase(xdata.full_name),'info','signupPlaceHolder')
+                
+            }else{
+				
+				//util.speak(data.message)
+                continue_email=false
+                util.alertMsg(data.message,'warning','signupPlaceHolder')
+                return false
+            }//eif
+
+        })
+        .finally(() => {
+            if(continue_email){
+				//util.speak('Emailed Successfully!')
+				
+                util.signupMailer(`/signupmailer/${util.UCase(xdata.full_name)}/${xdata.email}/${encodeURIComponent(window.location.origin)}`)
+            }//eif
+        })
+        .catch((error) => {
+           // util.Toast(`Error:, ${error.message}`,1000)
+           console.error('Error:', error)
+        })
+            
+    },
+
+    //===passwordcheck
+    passwordCheck:(pwd,pAlert)=>{
+        
+        requirements.forEach((element) => element.classList.add("wrong")) 
+        
+        //on focus show alter
+        pwd.addEventListener('focus',(e)=>{
+            pAlert.classList.remove("d-none") 
+            if (!pwd.classList.contains("is-valid")) {
+                pwd.classList.add("is-invalid") 
+            }
+            console.log('util focus')
+        },false)
+
+        //if blur, hide alert
+        pwd.addEventListener("blur", () => {
+            pAlert.classList.add("d-none") 
+        },false) 
+
+        //as the user types.. pls check 
+        pwd.addEventListener('input',(e)=>{
+            if(nupwd.value!==""){
+                if(nupwd.value!==pwd.value){
+                    nupwd.classList.remove("is-valid")
+                    nupwd.classList.add("is-invalid")
+                }
+            }
+            util.pwdChecker(pwd,pAlert)
+            
+        },false)
+    
+    }, //end func
+
+    pwdChecker:(password,passwordAlert)=>{
+        //check length first
+        let value = password.value 
+        if (value.length < 6) {
+            lenBool = false 
+        } else if (value.length > 5) {
+            lenBool = true 
+        }
+        
+        if (value.toLowerCase() == value) {
+            bigLetterBoolean = false 
+        } else {
+            bigLetterBoolean = true 
+        }
+
+        numBoolean = false 
+        for (let i = 0;  i < value.length ; i++) {
+            for (let j = 0;  j < numbers.length ; j++) {
+                if (value[i] == numbers[j]) {
+                    numBoolean = true 
+                }
+            }
+        }
+
+        specialCharBoolean = false 
+        for (let i = 0 ; i < value.length;  i++) {
+            for (let j = 0 ; j < specialChars.length ; j++) {
+                if (value[i] == specialChars[j]) {
+                    specialCharBoolean = true 
+                }
+            }
+        }
+        //conditions
+        if (lenBool == true &&
+            bigLetterBoolean == true && 
+            numBoolean == true && 
+            specialCharBoolean == true) {
+
+            password.classList.remove("is-invalid") 
+            password.classList.add("is-valid") 
+
+            requirements.forEach((element) => {
+                element.classList.remove("wrong") 
+                element.classList.add("good") 
+            }) 
+            passwordAlert.classList.remove("alert-warning") 
+            passwordAlert.classList.add("alert-success") 
+    
+        } else {
+            password.classList.remove("is-valid") 
+            password.classList.add("is-invalid") 
+
+            passwordAlert.classList.add("alert-warning") 
+            passwordAlert.classList.remove("alert-success") 
+
+            if (lenBool == false) {
+                leng.classList.add("wrong") 
+                leng.classList.remove("good") 
+            } else {
+                leng.classList.add("good") 
+                leng.classList.remove("wrong") 
+            }
+
+            if (bigLetterBoolean == false) {
+                bigLetter.classList.add("wrong") 
+                bigLetter.classList.remove("good") 
+            } else {
+                bigLetter.classList.add("good") 
+                bigLetter.classList.remove("wrong") 
+            }
+
+            if (numBoolean == false) {
+                num.classList.add("wrong") 
+                num.classList.remove("good") 
+            } else {
+                num.classList.add("good") 
+                num.classList.remove("wrong") 
+            }
+
+            if (specialCharBoolean == false) {
+                specialChar.classList.add("wrong") 
+                specialChar.classList.remove("good") 
+            } else {
+                specialChar.classList.add("good") 
+                specialChar.classList.remove("wrong") 
+            }                        
+        }//eif lengbool
+    },///======end func checker
+
+    //==========field 2 password validator
+    passwordFinal:(pwd)=>{
+        //on focus show alter
+        pwd.addEventListener('focus',(e)=>{
+            if (!pwd.classList.contains("is-valid")) {
+                pwd.classList.add("is-invalid") 
+            }
+
+        },false)
+
+        //if blur, hide alert
+        pwd.addEventListener("blur", () => {
+            console.log('p2 blur')
+        },false) 
+
+        pwd.addEventListener("input", () => {
+            if(pwd.value == oldpwd.value){
+                pwd.classList.remove("is-invalid") 
+                pwd.classList.add("is-valid") 
+            }else{
+                if(pwd.classList.contains("is-valid")){
+                    pwd.classList.remove("is-valid") 
+                    pwd.classList.add("is-invalid") 
+                }
+            }
+        },false) 
+
+    },///// ========end password field 2 checker
+
+    //===============END FORMS ==========//
+
+    //====================UTILITIES ==============
+    UCase:function(element){
+        return element.toUpperCase()
+    },
+    
+    //===== addto cart
+	xaddtocart:()=>{
+				
+		//db.clear()//clear shopcart
+		let cart = util.checklogin()
+		
+		//console.log(cart)
+		
+		if(cart==""||cart==null){
+			util.alertMsg('Please Sign up then Login before you purchase a domain.','warning','warningPlaceHolder')    
+		}else{
+			
+			//if all is good add to cart
+			//console.log('==UY LOGGED==== ', dns_existing, searched_dns)
+			
+			if(dns_existing===false){
+				let orders = {
+					domain: searched_dns,
+					amount: 10,
+					email : cart.email
+				}
+				//===add to cart domain
+				let tebingOrder = db.setItem("tebinglane-order",JSON.stringify(orders))
+				//show for pay
+				util.modalShow('paymentmodal')
+			}//Eif
+			
+			//
+		}
+		
+		console.log('hey adding to cart')
+	},
+
+	//check first if logged
+	checklogin:()=>{
+		let tebingUser = db.getItem("tebinglane-user")
+		return JSON.parse(tebingUser)
+		
+	},
+    
+	
+	setCookie : (c_name,value,exdays) => {
+		//console.log('bagong setcookie');
+		var exdate=new Date();
+		exdate.setDate(exdate.getDate());
+		var c_value = value +  "; SameSite=Lax; expires="+exdate.toISOString()+ "; path=/";
+		console.log( c_name + "=" + c_value	)
+		document.cookie=c_name + "=" + c_value;	
+	},//eo setcookie
+
+
+	getCookie : (c_name) => {
+		var i,x,y,ARRcookies=document.cookie.split(";");
+		for (i=0;i<ARRcookies.length;i++)
+		  {
+		  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+		  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+		  x=x.replace(/^\s+|\s+$/g,"");
+		  if (x==c_name)
+			{
+			return unescape(y);
+			}
+		  }
+	},
+	//==========================END UTILITIES =======================
+	
+    //====================== CREATE DATE/SERIAL CODE==========================
+    getDate:()=>{
+        var today = new Date() 
+        var dd = String(today.getDate()).padStart(2, '0')
+        var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+        var yyyy = today.getFullYear()
+
+        today = mm + '-' + dd + '-' + yyyy
+        return today
+    },
+    nugetDate:()=>{
+        var today = new Date() 
+        var dd = String(today.getDate()).padStart(2, '0')
+        var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+        var yyyy = today.getFullYear()
+
+        today = yyyy +  '-' + mm + '-' + dd
+        return today
+    },
+
+    strDate:()=>{
+        var today = new Date() 
+        var dd = String(today.getDate()).padStart(2, '0')
+        var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+        var yyyy = today.getFullYear()
+        var mos = new Date(`${today.getMonth()+1}/${dd}/${yyyy}`).toLocaleString('en-PH',  {month:'long'})
+        today = `${mos} ${dd}, ${yyyy}`
+        return today
+    },
+
+    formatDate2:(xdate)=>{
+        today = new Date(xdate)
+        var dd = String(today.getDate()).padStart(2, '0')
+        var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+        var yyyy = today.getFullYear()
+
+        today = mm+'/'+dd+'/'+yyyy
+        return today
+
+    },
+
+    formatDate:()=>{
+        var today = new Date() 
+        var dd = String(today.getDate()).padStart(2, '0')
+        var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+        var yyyy = today.getFullYear()
+
+        today = yyyy+ '-' + mm + '-' + dd
+        return today
+
+    },
+    
+    formatNumber: (num)=> {
+        const absNum = Math.abs(num);
+
+        if (absNum >= 1000000) {
+            return (num / 1000000).toFixed(1) + 'M';
+        } else if (absNum >= 1000) {
+            return (num / 1000).toFixed(1) + 'K';
+        } else {
+            return num.toFixed(0); // Or format as needed for smaller numbers
+        }
+    },
+    
+    addCommas: (nStr)=> {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        }
+        return x1 + x2;
+    },
+
+    Codes:()=>{
+		var today = new Date() 
+        var dd = String(today.getDate()).padStart(2, '0')
+        var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+        var yyyy = today.getFullYear()
+		var hh = String( today.getHours()).padStart(2,'0')
+		var mmm = String( today.getMinutes()).padStart(2,'0')
+		var ss = String( today.getSeconds()).padStart(2,'0')
+
+        today = "EO"+yyyy+mm+dd+hh+mmm+ss
+        return today
+	},
+
+    //esp getting values for SELECT DROPDOWNS
+    //====THIS WILL FIRE WHEN CREATING NEWSITE====//
+    getAllMall:(url)=>{
+
+        fetch(url)
+        .then((response) => {  //promise... then 
+            return response.json();
+        })
+        .then((data) => {
+            console.log( 'All Main Malls ',data )
+            cSelect = document.getElementById('mall_type')
+
+            osndp.removeOptions( cSelect)
+            console.log('line 590 util.js osndp.removeOptions()')
+
+            let option = document.createElement("option")
+            option.setAttribute('value', "")
+            option.setAttribute('selected','selected')
+              
+            let optionText = document.createTextNode( "-- Pls Select --" )
+            option.appendChild(optionText)
+          
+            cSelect.appendChild(option)
+
+            for (let key in data.result) {
+                let option = document.createElement("option")
+                option.setAttribute('value', data.result[key].unique_id)
+              
+                let optionText = document.createTextNode( data.result[key].mall_name )
+                option.appendChild(optionText)
+              
+                cSelect.appendChild(option)
+            }
+
+            cSelect.focus()
+            
+        })
+        .catch((error) => {
+            //util.Toast(`Error:, ${error}`,1000)
+            console.error('Error:', error)
+        })
+    },
+	//====================== END CREATE DATE/SERIAL CODE==========================
+    
+
+    //=======================MODALS ====================
+    
+    loadModals:(eModal, eModalFrm, eHashModalFrm, eModalPlaceHolder)=>{
+		console.log('**** loadModals()***', eModal)
+        
+        //off keyboard cofig
+        const configObj = { keyboard: false, backdrop:'static' }
+		
+        // get event
+        //login event
+        if(eModal == "loginModal"){
+            xloginmodal =  new bootstrap.Modal(document.getElementById(eModal),configObj);
+            
+            let loginModalEl = document.getElementById(eModal)
+
+            loginModalEl.addEventListener('hide.bs.modal', function (event) {
+                //clear form
+                let xform = document.getElementById(eModalFrm)
+    
+                xform.reset()
+                util.resetFormClass(eHashModalFrm)
+    
+                //take away alert
+                let cDiv = document.getElementById(eModalPlaceHolder)
+                cDiv.innerHTML=""
+    
+                // do something...
+                //console.log('LOGIN FORM EVENT -> ha?')
+            },false)
+            
+        } //eif loginmodal
+
+        //========for adding new site modal 
+        if(eModal == "newsiteModal"){
+        
+            xnewsitemodal =  new bootstrap.Modal(document.getElementById(eModal),configObj);
+           
+                   
+        
+        }//eif equipmentmodal
+
+        //equipment tag modal
+        if(eModal == "equipmentTagModal"){
+            //console.log('loadModals(equpmentTagModal)')
+            xequipmenttagmodal =  new bootstrap.Modal(document.getElementById(eModal),configObj);
+           
+            //equipment 
+            let equipmentTagModalEl = document.getElementById(eModal)
+            
+            equipmentTagModalEl.addEventListener('show.bs.modal', function (event) {
+               console.log('uyyy showing ')
+            },false)
+            
+            equipmentTagModalEl.addEventListener('hide.bs.modal', function (event) {
+                 //clear form
+                 let xform = document.getElementById(eModalFrm)
+    
+                 xform.reset()
+                 util.resetFormClass(eHashModalFrm)
+     
+                //take away alert
+                const cDiv = document.getElementById('equipmentTagPlaceHolder')
+                cDiv.innerHTML=""
+                
+                //after posting bring back btn
+                const itagsave = document.getElementById('i-tag-save')
+                const btntagsave = document.getElementById('tag-save-btn')
+                    
+                btntagsave.disabled = false
+                itagsave.classList.remove('fa-spin')
+                itagsave.classList.remove('fa-refresh')
+                itagsave.classList.add('fa-floppy-o')
+
+               //// takeout muna  admin.fetchBadgeData()
+                
+            },false)       
+        
+        }//eif equipmentTagModal
+        
+        //================login,equipment andsignup  listener
+        let aForms = [eHashModalFrm] 
+        let aFormx
+
+        // console.log(input.classList)
+        if(eModal=="signupModal"){
+            let passwordAlert = document.getElementById("password-alert");
+        }
+            
+        //loop all forms
+        aForms.forEach( (element) => {
+            aFormx = document.querySelectorAll(element)
+            //console.log(aFormx[0])
+            if(aFormx){
+                let aFormz = aFormx[0]
+                //console.log(aFormz.innerHTML)
+                Array.from(aFormz.elements).forEach((input) => {
+              
+                    if(!input.classList.contains('p1') &&
+                        !input.classList.contains('p2')){//process only non-password field
+                            input.addEventListener('keyup',(e)=>{
+                                if(input.checkValidity()===false){
+                                    input.classList.remove('is-valid')
+                                    input.classList.add('is-invalid')
+                                    e.preventDefault()
+                                    e.stopPropagation()
+
+                                } else {
+                                    input.classList.remove('is-invalid')
+                                    input.classList.add('is-valid')
+                                } //eif
+                            },false)
+
+                            input.addEventListener('blur',(e)=>{
+
+                                if(input.checkValidity()===false){
+                                    input.classList.remove('is-valid')
+                                    input.classList.add('is-invalid')
+                                    e.preventDefault()
+                                    e.stopPropagation()
+
+                                } else {
+                                    input.classList.remove('is-invalid')
+                                    input.classList.add('is-valid')
+                                } //eif
+                            },false)
+                    }else{ //=== if input contains pssword field
+                        if(input.classList.contains('p1')){
+                            if(eModal=="signupModal"){
+                                util.passwordCheck(input,passwordAlert)        
+                            }
+                            
+                        }else{
+                            util.passwordFinal(input)
+                        }
+                        
+                    }//else password field
+
+                }) //end all get input
+            }
+        })///=====end loop form to get elements
+    },
+    
+    //hide modal box
+    hideModal:(cModal,nTimeOut)=>{
+        setTimeout(function(){ 
+            const myModalEl = document.getElementById(cModal)
+            let xmodal = bootstrap.Modal.getInstance(myModalEl)
+            xmodal.hide()
+           
+        }, nTimeOut)
+    },
+    //show modal box
+
+    modalShow:(modalToShow)=>{
+       
+        console.log('util.modalShow() Loading... ', modalToShow)
+        //off keyboard cofig
+        const configObj = { keyboard: false, backdrop:'static' }
+        
+        switch( modalToShow ){
+
+            case 'timekeepModal':
+                const xmymodal =  new bootstrap.Modal(document.getElementById(modalToShow),configObj);
+                xmymodal.show()  
+            break;
+
+            case "dataEntryModal":
+                const dataentrymodal =  new bootstrap.Modal(document.getElementById('dataEntryModal'),configObj);
+
+                 dataentrymodal.show()  
+
+                 console.log('**showing data entry caloy ***')
+                
+                document.getElementById('f_transnumber').value = util.getCode()
+
+                //asn.collapz();
+            break
+
+            case "remittanceModal":
+                
+                if(!asn.db.getItem('myCart')){
+                    util.Toasted('Please make an Initial Entry by Opening Start Entry on the Menu!!!',3000,false)
+                    util.speak('Please make an Initial Entry by Opening Start Entry on the Menu!!!')
+                    return false
+                }else{
+
+                    const remitmodal =  new bootstrap.Modal(document.getElementById('remittanceModal'),configObj);
+                    remitmodal.show() 
+
+                    const dbval = JSON.parse( asn.db.getItem('myCart'))
+                    const xdb = JSON.parse( asn.db.getItem('profile'))
+
+                    //====from myCartlocal Storage
+                    document.getElementById('trans_tbody').innerHTML=`<tr>
+                        <td>${dbval.f_transnumber}</td>
+                        <td>${dbval.f_parcel}</td>
+                        <td>${dbval.login_date}</td>
+                        
+                        </tr>`
+
+                    //update also form as to guide for present data
+                    document.getElementById('ff_transnumber').value= dbval.f_transnumber
+                    document.getElementById('x_parcel').value= dbval.f_parcel
+                    document.getElementById('ff_parcel').value= dbval.f_parcel
+                    document.getElementById('ff_amount').value= dbval.f_amount
+                    document.getElementById('ff_empid').value= xdb.id //get emp id frm localDb
+ 
+                }//eif
+
+                //asn.collapz();
+            break
+
+            case "atdstatusModal":
+                if(util.getCookie('grp_id')!=="2"){
+                    const atdstatusmodal =  new bootstrap.Modal(document.getElementById('atdstatusModal'),configObj);
+                    atdstatusmodal.show()  
+   
+                }else{
+                    util.speak('SORRY... YOU DO NOT HAVE ACCESS FOR THIS MENU!')
+                }
+                
+            break
+
+            case "loginmodal":
+                xloginmodal.show()    
+            break
+			
+            case "newempModal":
+            case "dataPrivacySignatureModal" :
+
+                if(util.getCookie('grp_id')==="8" || util.getCookie('grp_id')==="08" || 
+                    util.getCookie('grp_id')==="88" || util.getCookie('grp_id')==="07"){ // HR PEOPLE or coordinator FOR NOW
+                    //show the dialog modal
+                    //console.log('uyyy mdalshow Nu emp')
+                    
+                    const xmymodal =  new bootstrap.Modal(document.getElementById(modalToShow),configObj);
+                    xmymodal.show()  
+
+                }else{
+                    util.speak('SORRY... YOU DO NOT HAVE ACCESS FOR THIS MENU!')
+                }
+            break;
+        }/////===end switch
+    },
+    //========MODAL LISTENERS========//
+    modalListeners:(eModal)=>{
+        switch (eModal){
+
+            case "claimsModal":
+                //util.speak('CLAIMS MODAL SHOW!')
+                //for upload pdf
+                const frmclaimsupload = document.getElementById('claimsuploadForm')
+
+                frmclaimsupload.addEventListener("submit", e => {
+                    const formx = e.target;
+
+                    xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Uploading CSV to Database, Please Do Not Close!!!</div>"
+                    util.alertMsg( xmsg,'danger','claimsPlaceHolder')
+                    util.speak('UPLOADING TO DATABASE, PLEASE DO NOT CLOSE THIS WINDOW!')
+                    
+                    fetch(`${myIp}/xlsclaims`, {
+                        method: 'POST',
+                        body: new FormData(formx),
+                        })
+                        .then( (response) => {
+                            return response.json() // if the response is a JSON object
+                        })
+                        .then( (data) =>{
+                            if(data.status){
+                                console.log ('CLAIMS DONE!', data )
+                                util.speak(data.message)
+                                document.getElementById('claimsPlaceHolder').innerHTML=""
+                                util.hideModal('claimsModal',2000)//then close form    
+                            }
+
+                            return true
+                        })
+                        // Handle the success response object
+                        .catch( (error) => {
+                            util.speak('ERROR IN UPLOADING DATA!')
+                            console.log(error) // Handle the error response object
+                            return false;
+                        });
+
+                    //e.preventDefault()
+                    console.log('===claims SUBMITTTTT===')
+                        //// keep this reference for event listener and getting value
+                        /////const eqptdesc = document.getElementById('eqpt_description')
+                        ////eqptdesc.value =  e.target.value
+                    
+                    // Prevent the default form submit
+                    e.preventDefault();    
+                })
+                //=================END FORM SUBMIT==========================//
+                
+            break
+
+            case "dataPrivacySignatureModal":
+
+                util.signaturePad = null;
+
+                console.log('SIGNATURE PAD LAUNCHED!!!!')
+                    const canvas = document.getElementById('signatureCanvas');
+                    const privacyModalEl = document.getElementById('dataPrivacySignatureModal');
+
+                    // 2. Initialize SignaturePad GLOBALLY
+                    // We attach it to window.util so we can access it later
+                    if (canvas) {
+                        util.signaturePad = new SignaturePad(canvas, {
+                            //backgroundColor: 'rgb(255, 255, 255)',
+                            penColor: 'rgb(0, 0, 0)',
+                            throttle: 0, // Draw immediately, no lag
+                            minWidth: 2,
+                            maxWidth: 2
+                        });
+                    }
+
+                // 3. FORCE Resize on Modal Show
+                if (privacyModalEl && canvas) {
+                    privacyModalEl.addEventListener('shown.bs.modal', function () {
+                        console.log("======Modal Shown. Fixing Canvas...");
+                        
+                        // Get the actual visual size of the canvas element
+                        const width = canvas.offsetWidth;
+                        const height = canvas.offsetHeight;
+
+                        // Apply it to the internal resolution
+                        canvas.width = width;
+                        canvas.height = height;
+
+                        // CRITICAL: Clear the pad to reset the coordinate system
+                        util.signaturePad.clear();
+                        
+                        // Re-enable the pad just in case
+                        util.signaturePad.on();
+                    });
+                }
+
+                // Call your other init functions
+                if(util.toggleDriversLicenseValidation) {
+                    util.toggleDriversLicenseValidation();
+                }
+            break;
+
+            case "newempModal":
+                
+                console.log('modallisteners()=== neweempModal', eModal)
+                
+                const ModalEl = document.getElementById(eModal)
+
+                if(ModalEl){
+
+                    //============== when new site modal loads, get project serial number
+                    ModalEl.addEventListener('show.bs.modal', function (event) {
+                        
+                        //===turn off upload-btn
+                        //const btnsave = document.getElementById('mall-save-btn')
+                        //btnsave.disabled = true
+
+                        console.log('newempModal() listeners loaded')
+
+                        function todayAsInputDate() {
+                            const d = new Date();
+                            const yyyy = d.getFullYear();
+                            const mm = String(d.getMonth() + 1).padStart(2, '0');
+                            const dd = String(d.getDate()).padStart(2, '0');
+                            return `${yyyy}-${mm}-${dd}`;
+                        }
+
+                        const today = todayAsInputDate();
+                        document.getElementById('hireDate').value = today;
+
+                        
+                    },false)
+
+                    
+                }//endif
+
+            break
+
+            case "commentsModal":
+                const commentsModalEl = document.getElementById('commentsModal')
+
+                commentsModalEl.addEventListener('hide.bs.modal', function (event) {
+                    //clear form
+                    let xform = document.getElementById('commentsForm')
+                    xform.reset()
+                    util.resetFormClass('#commentsForm')
+                })
+
+            break
+
+            case "dataEntryModal":
+                const dataEntryModalEl = document.getElementById('dataEntryModal')
+
+                // dataEntryModalEl.addEventListener('show.bs.modal', function (event) {
+                //     alert(util.getCode() )
+                //     document.getElementById('f_transnumber').value =  util.getCode()
+                // })
+            
+            break
+
+        }//end sw
+ 
+    }, //end modallisteners func =========
+    //======================END MODALS====================
+    //  clear form
+    //  let xform = document.getElementById('commentsForm')
+    //  xform.reset()
+    //  util.resetFormClass('#commentsForm')
+    
+    getCode:() =>{
+
+        var today = new Date()
+        var dd = String(today.getDate()).padStart(2, '0')
+        var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+        var yyyy = today.getFullYear()
+        var hh = String( today.getHours()).padStart(2,'0')
+        var mmm = String( today.getMinutes()).padStart(2,'0')
+        var ss = String( today.getSeconds()).padStart(2,'0')
+
+        today = `ASN-${yyyy}${mm}${dd}${hh}${mmm}${ss}`
+        return today
+    },
+
+    //===========STRIPE PAY ===========
+    paymentInsert:()=>{
+		const iframer = document.getElementById( "payframe" )
+		const wrapper = document.createElement('div')
+		
+		wrapper.innerHTML = [
+			'<iframe width="100%" height="100%" border=0 class="embed-responsive-item" src="checkout2.html"></iframe>'
+		].join('')
+		
+		iframer.append(wrapper)
+		
+	},
+
+    //==============randomizer ========//
+    generateRandomDigits: (n) => {
+        return Math.floor(Math.random() * (9 * (Math.pow(10, n)))) + (Math.pow(10, n));
+    },
+      
+    //===================MAILER==================
+    signupMailer:async (url="")=>{
+        fetch(url)
+        .then((response) => {  //promise... then 
+            return response.json()
+        })
+        .then((data) => {
+            util.alertMsg(data.message,'warning','signupPlaceHolder')
+            util.hideModal('signupModal',2000)
+        })
+        .catch((error) => {
+            //util.Toast(`Error:, ${error.message}`,3000)
+            console.error('Error:', error)
+        })    
+    },
+
+    //==========FOR ALL THE DATA ENTRY FORM LOAD THIS FIRST TO BE ABLE TO BE VALIDATED ===//
+	loadFormValidation:(eHashFrm)=>{
+
+        console.log('===util.loadFormValidation()==', eHashFrm)
+		let aForms = [eHashFrm] 
+        let aFormx
+
+		//loop all forms
+		aForms.forEach( (element) => {
+			aFormx = document.querySelectorAll(element)
+			//console.log(aFormx[0])
+			if(aFormx){
+				let aFormz = aFormx[0]
+				//console.log(aFormz.innerHTML)
+				Array.from(aFormz.elements).forEach((input) => {
+			
+					if(!input.classList.contains('p1') &&
+						!input.classList.contains('p2')){//process only non-password field
+							input.addEventListener('keyup',(e)=>{
+								if(input.checkValidity()===false){
+									input.classList.remove('is-valid')
+									input.classList.add('is-invalid')
+									e.preventDefault()
+									e.stopPropagation()
+
+								} else {
+									input.classList.remove('is-invalid')
+									input.classList.add('is-valid')
+								} //eif
+							},false)
+
+							input.addEventListener('blur',(e)=>{
+
+								if(input.checkValidity()===false){
+									input.classList.remove('is-valid')
+									input.classList.add('is-invalid')
+									e.preventDefault()
+									e.stopPropagation()
+
+								} else {
+									input.classList.remove('is-invalid')
+									input.classList.add('is-valid')
+								} //eif
+							},false)
+					}else{ //=== if input contains pssword field
+						if(input.classList.contains('p1')){
+							if(eModal=="signupModal"){
+								util.passwordCheck(input,passwordAlert)        
+							}
+						}else{
+							util.passwordFinal(input)
+						}
+						
+					}//else password field
+
+				}) //end all get input
+			}
+		})///=====end loop form to get elements	
+	},
+    
+    url:null,
+
+    
+    //=================HANDLE POSITION  CHANGE========
+    checkPosition:()=>{
+        util.getLocation( document.getElementById('region').value)
+    },
+
+    showPos:()=>{
+        console.log('firing showpos()')
+
+        let posContainer = document.getElementById('posContainer');
+        let posSelect = document.getElementById('jobTitle');
+
+        util.displayAreaLocationHub(true, posContainer, posSelect) //show area selection
+
+    },
+
+    //============== important function that will handle the change of position and will show/hide the appropriate select 
+    // options for area, location and hub/store
+    handlePosChange:(elem)=>{
+        
+        util.toggleDriversLicenseValidation()
+
+        console.log('position select ', elem.value)
+        //hris.position = elem.value
+
+        let areaContainer = document.getElementById('areaContainer');
+        let areaSelect = document.getElementById('loc_area');
+
+        //turn  off location and hub/store selection
+        let locContainer = document.getElementById('locContainer');
+        let locSelect = document.getElementById('locStore');
+
+        let hubStoreContainer = document.getElementById('hubStoreContainer');
+        let hubSelect = document.getElementById('hubStore');
+
+        //fill select options for location
+        util.getLocation( document.getElementById('region').value)
+          
+
+        //check position if it requires location and hub/store selection
+        switch(elem.value){
+           
+            // case '07': //lead coordinator
+                
+            //     //turn on area
+                
+            //     //util.displayAreaLocationHub(true, areaContainer, areaSelect) //show area selection
+            //     util.displayAreaLocationHub(false, locContainer, locSelect) //hide location and hub/store selection
+            //     util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
+                
+
+            // break;
+            case '07': //lead coordinator
+            case '08': //coordinator
+                //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
+                util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
+                util.displayAreaLocationHub(false, hubStoreContainer, hubSelect) //hide location and hub/store selection
+                
+            break;
+            
+            default:
+            // case '01': //rider
+            // case '02': //transporter
+            // case '04': //sorter
+            // case '10': //team leader
+            //need location and hub/store selection
+                //util.displayAreaLocationHub(false, areaContainer, areaSelect) //show area selection
+                util.displayAreaLocationHub(true, locContainer, locSelect) //hide location and hub/store selection
+                util.displayAreaLocationHub(true, hubStoreContainer, hubSelect) //hide location and hub/store selection
+               
+            //break;
+
+        }
+
+    },
+
+    displayAreaLocationHub: (ldisplay, container, select) => {
+        //console.log('displayAreaLocationHub()', ldisplay, container, select);
+
+        if (!container || !select) return;
+
+        if (ldisplay) {
+            container.classList.remove('d-none');
+            container.classList.add('d-block');
+            select.setAttribute('required', 'required');
+            select.classList.remove('is-invalid');
+
+        } else {
+            container.classList.remove('d-block');
+            container.classList.add('d-none');
+            select.innerHTML = '<option value="" disabled selected>Select Hub / DC</option>';
+            select.value = '';
+            select.removeAttribute('required');
+            select.classList.remove('is-invalid');
+            
+        }
+    },
+
+    //==HRIS
+    getLocation : async (regionSelectElement) => {
+        
+        console.log('***getLocation() fired***')
+
+        util.toggleButtonLoading('footer-msg','Loading Location...',true)
+        const selectedRegion = regionSelectElement.value;
+        
+        const locContainer = document.getElementById('locContainer'); 
+        const locSelect = document.getElementById('locStore');
+
+        
+        try {
+            const response = await fetch(`${myIp}/getlocation/${document.getElementById('region').value}`); // Adjust this URL as needed
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        
+            const locs = await response.json();
+            const locsArray = locs.data
+
+            //console.log('***HUBS FOR***', selectedRegion, hubs)
+
+            locSelect.innerHTML = '<option value="">Select Location</option>';
+
+            locsArray.forEach( loc => {
+                console.log(loc)
+                const option = document.createElement('option');
+                
+                option.value = loc.location; //<-- value
+                option.textContent = loc.location; //<-- content display 
+                
+                locSelect.appendChild(option);
+            });
+
+              
+
+        } catch (error) {
+            console.error('Error fetching hubs:', error);
+            alert('Failed to load hub/store options. Please try again.');
+        }
+
+        //   // Call the utility function to fetch and populate
+        util.toggleButtonLoading('footer-msg',null,false)
+    },
+
+    // getarea:async() =>{
+    //     const selectedRegion = document.getElementById('region').value;
+        
+    //     const areaContainer = document.getElementById('areaContainer');
+    //     const areaSelect = document.getElementById('loc_area');
+
+    //     try {
+    //         const response = await fetch(`${myIp}/getarea/${document.getElementById('region').value}`); // Adjust this URL as needed
+            
+    //         if (!response.ok) {
+    //             throw new Error(`HTTP error! status: ${response.status}`);
+    //         }
+    //         const locs = await response.json();
+    //         const locsArray = locs.data
+
+    //         //console.log('***HUBS FOR***', selectedRegion, hubs)
+
+    //         areaSelect.innerHTML = '<option value="">Select Area</option>';
+
+    //         locsArray.forEach( loc => {
+    //             console.log(loc)
+    //             const option = document.createElement('option');
+                
+    //             option.value = loc.location; //<-- value
+    //             option.textContent = loc.location; //<-- content display 
+                
+    //             areaSelect.appendChild(option);
+    //         });
+
+    //     } catch (error) {
+    //         console.error('Error fetching hubs:', error);
+    //         alert('Failed to load hub/store options. Please try again.');
+    //     }
+
+    //     //   // Call the utility function to fetch and populate
+        
+    // },
+
+    //***AFTER LOCATION A HUB SELECTION IS SHOWN ... called from  hris 
+    
+    gethub : (locationSelectElement) => {
+        util.fetchAndPopulateHubs();
+
+    },
+
+    fetchAndPopulateHubs : async () => {
+        util.toggleButtonLoading('footer-msg','Loading Hubs...',true)
+        
+        let location = document.getElementById('locStore').value
+
+        const hubStoreSelect = document.getElementById('hubStore'); // Get it inside the function
+        const myUrl = `${myIp}/gethub/${document.getElementById('region').value}/${location}`
+        console.log(myUrl)
+        
+        try {
+            const response = await fetch(myUrl); // Adjust this URL as needed
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const hubs = await response.json();
+            const hubsArray = hubs.data
+
+            console.log(hubs)
+
+            hubStoreSelect.innerHTML = '<option value="" disabled>Select Hub / DC</option>';
+
+            hubsArray.forEach(hub => {
+                const option = document.createElement('option');
+                
+                option.value = hub.hub; //<-- value
+                option.textContent = hub.hub; //<-- content display 
+                
+                hubStoreSelect.appendChild(option);
+            });
+
+        } catch (error) {
+            console.error('Error fetching hubs:', error);
+            alert('Failed to load hub/store options. Please try again.');
+        }
+
+        util.toggleButtonLoading('footer-msg',null,false)
+
+    },
+    //============toggle driver's license =====//
+    toggleDriversLicenseValidation : () => {
+
+        const jobTitleSelect = document.getElementById('jobTitle');
+        const driversLicenseInput = document.getElementById('drivers_license');
+        const driversLicenseHelpText = document.getElementById('drivers_license_help');
+        const driversLicenseErrorDiv = document.getElementById('drivers_license-error');
+
+        if (!jobTitleSelect || !driversLicenseInput || !driversLicenseHelpText || !driversLicenseErrorDiv) {
+            console.warn("Missing elements for driver's license validation.");
+            return;
+        }
+
+        const selectedJobTitle = jobTitleSelect.value;
+
+        // Check if the job title is 'Rider' (01) or 'Transporter' (02)
+        const isDriversLicenseRequired = (selectedJobTitle === '01' || selectedJobTitle === '02');
+
+        driversLicenseInput.disabled = !isDriversLicenseRequired; // Enable if required, disable otherwise
+        driversLicenseInput.required = isDriversLicenseRequired; // Set required attribute
+
+        if (isDriversLicenseRequired) {
+            driversLicenseHelpText.textContent = "Driver's License is required.";
+            driversLicenseInput.classList.remove('is-valid'); // Clear previous state
+            // If it becomes required and is empty, it will be marked invalid by validateMe
+        } else {
+            driversLicenseHelpText.textContent = "Driver's License is not required for this position.";
+            driversLicenseInput.value = ''; // Clear selected file if it becomes optional
+            driversLicenseInput.classList.remove('is-invalid', 'is-valid'); // Clear validation state
+            driversLicenseErrorDiv.style.display = 'none'; // Hide error message
+        }
+    },
+
+    //====== AUTO VALIDATE FONE NUMBER ===//
+    
+    autoFormatPhone:(input) => {
+        let value = input.value;
+        const oldSelectionStart = input.selectionStart; // Store cursor position
+
+        // 1. Remove all non-digit characters
+        let cleanedValue = value.replace(/\D/g, '');
+
+        // 2. Limit to 11 digits (4 + 3 + 4)
+        cleanedValue = cleanedValue.substring(0, 11);
+
+        // 3. Apply the formatting (add spaces)
+        let formattedValue = '';
+        if (cleanedValue.length > 0) {
+            formattedValue = cleanedValue.substring(0, 4); // First 4 digits
+        }
+        if (cleanedValue.length > 4) {
+            formattedValue += ' ' + cleanedValue.substring(4, 7); // Space then next 3 digits
+        }
+        if (cleanedValue.length > 7) {
+            formattedValue += ' ' + cleanedValue.substring(7, 11); // Space then last 4 digits
+        }
+
+        // Update the input field
+        input.value = formattedValue;
+
+        // 4. Adjust cursor position
+        // This part is a bit tricky but essential for a good user experience
+        let newSelectionStart = oldSelectionStart;
+        const addedSpaces = (formattedValue.match(/ /g) || []).length - (value.match(/ /g) || []).length;
+        if (addedSpaces > 0 && formattedValue.length > value.length && oldSelectionStart === value.length) {
+            // If spaces were added at the end, move cursor with them
+            newSelectionStart = formattedValue.length;
+        } else if (addedSpaces > 0 && oldSelectionStart === 4) {
+            // If space was added at 4th digit mark
+            newSelectionStart = oldSelectionStart + 1;
+        } else if (addedSpaces > 0 && oldSelectionStart === 8) {
+            // If space was added at 8th digit mark
+            newSelectionStart = oldSelectionStart + 1;
+        } else if (addedSpaces < 0 && oldSelectionStart === 5 && value.charAt(4) === ' ' && formattedValue.charAt(4) !== ' ') {
+            // If a space was deleted
+            newSelectionStart = oldSelectionStart - 1;
+        } else if (addedSpaces < 0 && oldSelectionStart === 9 && value.charAt(8) === ' ' && formattedValue.charAt(8) !== ' ') {
+            // If a space was deleted
+            newSelectionStart = oldSelectionStart - 1;
+        }
+        
+        // Fallback: Ensure cursor is not out of bounds
+        input.setSelectionRange(Math.min(newSelectionStart, formattedValue.length), Math.min(newSelectionStart, formattedValue.length));
+    },
+
+    // Your existing util.validatePhone (make sure it's available)
+    validatePhone : (input)=> {
+        const phonePattern = /^\d{4} \d{3} \d{4}$/; // Regex for 0917 123 4567 format
+        const errorDiv = document.getElementById('phone-error');
+
+        if (!phonePattern.test(input.value)) {
+            input.classList.add('is-invalid');
+            input.classList.remove('is-valid');
+            if (errorDiv) errorDiv.style.display = 'block';
+            return false;
+        } else {
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+            if (errorDiv) errorDiv.style.display = 'none';
+            return true;
+        }
+    },
+
+    //disble back in mobile and desktop
+        // Function to enable the warning
+        enableExitWarning : () => {
+            window.onbeforeunload = function() {
+                return "Are you sure you want to leave? Any unsaved changes will be lost.";
+            };
+        },
+
+        // Function to disable the warning (Call this when the program closes the dialog)
+        disableExitWarning : () => {
+            window.onbeforeunload = null;
+        },
+ 
+    //==========WHEN SUBMIT BUTTON CLICKED ==================
+    validateMe: async (frmModal, frm, classX)=>{
+        console.log('validateMe()===', frmModal, frm)
+        
+        const formElement = document.querySelector(frm) // Use querySelector for the form element
+        let allFormValid = true; // Renamed to avoid confusion with aValid array
+
+        // --- 1. Clear previous validation states and custom error messages ---
+        Array.from(formElement.elements).forEach((input) => {
+            input.classList.remove('is-invalid', 'is-valid');
+            
+            // Hide phone error
+            if (input.id === 'phone' && document.getElementById('phone-error')) {
+                document.getElementById('phone-error').style.display = 'none';
+            }
+            // Hide file input errors (only for required files)
+            if (input.type === 'file' && input.hasAttribute('required')) {
+                const fileErrorDiv = document.getElementById(`${input.id}-error`);
+                if (fileErrorDiv) {
+                    fileErrorDiv.style.display = 'none';
+                }
+            }
+        });
+
+        // --- 2. Perform Validation for all relevant fields ---
+        const invalidControls = [];
+
+            Array.from(formElement.elements).forEach((input) => {
+            const shouldValidate = input.classList.contains(classX) || input.hasAttribute('required');
+            if (!shouldValidate) return;
+
+            let inputIsValid = true;
+
+            if (input.type === 'file') {
+                if (input.hasAttribute('required') && input.files.length === 0) {
+                inputIsValid = false;
+                const fileErrorDiv = document.getElementById(`${input.id}-error`);
+                if (fileErrorDiv) fileErrorDiv.style.display = 'block';
+                }
+            } else if (input.id === 'phone') {
+                inputIsValid = util.validatePhone(input);
+            } else {
+                inputIsValid = input.checkValidity();
+            }
+
+            if (!inputIsValid) {
+                allFormValid = false;
+                input.classList.add('is-invalid');
+                invalidControls.push(input);
+            } else {
+                input.classList.add('is-valid');
+            }
+            });
+
+                    // --- 3. Check if overall form is valid ---
+            if (!allFormValid) {
+            // Detailed log for debugging
+            console.group('Form validation failed — invalid controls:');
+            invalidControls.forEach((el, idx) => {
+                console.log(`#${idx+1}`, {
+                id: el.id || '(no id)',
+                name: el.name || '(no name)',
+                type: el.type,
+                value: el.value,
+                files: el.files?.length ?? undefined,
+                isConnected: el.isConnected,
+                validationMessage: (el.willValidate ? el.validationMessage : '(no willValidate)'),
+                });
+            });
+            console.groupEnd();
+
+            // Focus first invalid control and show native message if applicable
+            const first = invalidControls[0];
+            if (first) {
+                first.focus();
+                if (typeof first.reportValidity === 'function') first.reportValidity(); // shows browser bubble
+            }
+
+            util.Toasted('Error, Please CHECK Your Entry, ERROR FIELDS MARKED IN RED!', 3000, false);
+            if (window.main) main.gonow = false;
+            if (window.asn) asn.gonow = false;
+            if (window.hris) hris.gonow = false;
+            
+            return false;
+
+        } else {
+            // --- 4. Form is valid, prepare data for posting ---
+            // For #newempForm, we use FormData directly (includes files)
+            // For other forms, your existing objfrm approach remains.
+
+            let xmsg; // Declared here for switch scope
+
+            switch(frm){ 
+                case '#loginForm':
+                    // Your existing login form logic
+                    const loginFormData = new FormData(formElement);
+                    let loginObjfrm = {};
+                    for (var key of loginFormData.keys()) {
+                    loginObjfrm[key] = loginFormData.get(key);
+                    }
+                    xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Searching Database please wait...</div>";
+                    util.alertMsg( xmsg,'danger','loginPlaceHolder');
+
+                    util.url = `${myIp}/loginpost/${loginObjfrm.uid}/${loginObjfrm.pwd}/${(document.getElementById('region') ? document.getElementById('region').value  : null )}`;
+                    util.loginPost(frm ,frmModal,`${util.url}`);
+                    break;
+                
+                case "#newempForm":
+
+                    //ask first for consent before saving and signing data privacy agreement
+                    const userConsent = confirm("You are about to SAVE this User data. All Correct and Continue?");
+    
+                    if (userConsent) {
+                        // Run your save logic here
+                        console.log("Saving...");
+                        // After success, remember to unlock the exit warning!
+                        util.disableExitWarning(); 
+                        
+                        // --- THIS IS THE CRITICAL CHANGE FOR NEWEMPFORM ---
+                        const formData = new FormData(formElement); // Automatically collects all text fields and files
+                        formData.append('date_reg', util.getDate()); // Add date_reg to FormData
+                        
+                        util.toggleButtonLoading('newemp-next-btn','Saving',true)
+                        const btnsave = document.getElementById('newemp-next-btn');
+                        btnsave.disabled = true;
+                        
+                        //get hire date
+                        // hris.dateHired = document.getElementById('hireDate').value
+
+                        // Call newempPost with the FormData object
+                        //check the mode  of the button save
+                        const btn = document.querySelector('#newemp-next-btn');
+
+                        // Using dataset (Recommended)
+                        const mode = btn.dataset.mode; 
+                        
+                        // formData.append('mode', mode); // Add mode to FormData
+                        console.log('**************Button mode:', mode, ); // Debugging log
+                        //return false;  
+                        if(mode === 'edit'){
+                            const empid = formData.get('edit-emp-id'); // Assuming you have an input field with name="edit-emp-id" in your form
+                            util.newempPost(frm, frmModal, `${myIp}/newemppost/${document.getElementById('region').value}/${document.getElementById('hireDate').value}/${document.getElementById('jobTitle').value}/${mode}/${empid}`, formData);
+                        }else{
+                            const empid = null; // No empid for new entries
+                            util.newempPost(frm, frmModal, `${myIp}/newemppost/${document.getElementById('region').value}/${document.getElementById('hireDate').value}/${document.getElementById('jobTitle').value}/${mode}/${empid}`, formData);
+                        }
+                        console.log('==posting newempForm data with files ==');
+                        break;
+
+                    } else {
+                        // User clicked 'Cancel'
+                        console.log("Save cancelled.");
+                    }
+           
+                case "#commentsForm":
+                    console.log('===POSTING ISSUES===');
+                    // Your existing comments form logic
+                    break;
+
+                case "#dataEntryForm":
+                    // Your existing data entry form logic
+                    const dataEntryFormData = new FormData(formElement);
+                    let dataEntryObjfrm = {};
+                    
+                    for (var key of dataEntryFormData.keys()) {
+                        dataEntryObjfrm[key] = dataEntryFormData.get(key);
+                    }
+
+                    dataEntryObjfrm.login_date = util.nugetDate(); 
+                    dataEntryObjfrm.transnumber = document.getElementById('f_transnumber').value;
+                    
+                    asn.saveobjfrm = dataEntryObjfrm
+
+                    asn.saveToLogin(`${myIp}/savetologin/${util.getCookie('f_id')}`)
+                    break;
+
+                case "#remittanceForm":
+                    // Your existing remittance form logic
+                    const remittanceFormElement = document.getElementById('remittanceUploadForm'); // Assuming this is still a separate form
+                    let remittanceFormData = new FormData(remittanceFormElement); // Get files from here
+                    
+                    const remittanceTextFormData = new FormData(formElement); // Get text fields from the main form
+                    let remittanceObjfrm = {};
+                    for (var key of remittanceTextFormData.keys()) {
+                    remittanceObjfrm[key] = remittanceTextFormData.get(key);
+                    }
+
+                    const dbval = JSON.parse( db.getItem('myCart'));
+                    remittanceObjfrm.old_transnumber = dbval.f_transnumber;
+                    remittanceObjfrm.old_parcel = dbval.f_parcel;
+                    
+                    const hubamt = parseInt( document.getElementById('f_amount').value); 
+                    const remitamt =parseInt( document.getElementById('ff_amount').value);
+                    
+                    if( remitamt > hubamt){
+                        util.Toasted('Error!!! Remitted Amount greater than Amount of Scanned Parcels!!!',3000,false);
+                        window.asn.speaks('Error!!! Remitted Amount  is greater than Amount of Scanned Parcels!!!');
+                        document.getElementById('f_amount').focus();
+                        break;
+                    }
+
+                    // Check for file presence for remittanceUploadForm
+                    let filePresent = false;
+                    for (let [key, value] of remittanceFormData.entries()) {
+                        if (value instanceof File && value.name !== "") {
+                            filePresent = true;
+                            break;
+                        }
+                    }
+
+                    if (!filePresent) {
+                        util.Toasted('Please select a Picture of Receipt to Upload!!!',4000,false);
+                        break;
+                    } else {
+                        util.toggleButton('remittance-btn',true);
+                        // You'll need to combine remittanceObjfrm and remittanceFormData if they go to the same endpoint
+                        // or handle them in sequence. This case is still sending objfrm to savetransaction.
+                        // For files in remittanceFormData, you'd need a separate endpoint for those.
+                        // THIS PART IS STILL SENDING JUST OBJFRM - NEEDS CLARIFICATION FOR FILE UPLOAD HERE
+                        window.asn.saveTransaction(`${myIp}/savetransaction/${util.getCookie('f_id')}`, remittanceObjfrm);
+                    }
+                    break;
+            }
+            return; // Important: ensure no implicit return true/false in this block
+        }
+    },
+
+    toggleButton:(element,lshow)=>{
+        let button = document.getElementById(element) //turn off remittance save btn
+        button.disabled = lshow;
+        button.setAttribute('aria-disabled', `${lshow}`  ); //Optional, but helps screen readers
+    },
+
+    //===calculate the distance haverstine ====//    
+    getDistance:  (lat1 , lon1, lat2, lon2 ) =>{
+        const R = 6371; // Earth's radius in kilometers
+        const toRadians = (angle) => angle * (Math.PI / 180);
+
+        const dLat = toRadians(lat2 - lat1);
+        const dLon = toRadians(lon2 - lon1);
+
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return R * c; // Distance in kilometers
+    },
+
+
+    //logout
+    logOut:()=>{
+        //clear items
+        //db.removeItem('logged')
+        // if(db.getItem('logged')){
+        //     db.setItem('logged', false)
+        // }
+        
+        location.href = './'
+    },
+
+    //=====THIS IS FOR RIDERS========//
+    showPosition: async (position)=>{
+        //let micasalat = '14.58063721485018'
+        //let micasalon = '121.01563811625266'
+       // util.speak('Checking your Position... please Wait!')
+                
+        let mypos = JSON.parse(db.getItem('myHub'))
+                
+        let distance = util.getDistance(mypos.lat, mypos.lon, position.coords.latitude, position.coords.longitude)
+        let d_meters = ( distance.toFixed(3) * 1000 )
+        
+        console.log('==== asn.showPosition()  the distance is ',distance, d_meters)
+
+        //override muna the meeters
+        d_meters = 0.9 //DELETE LATER IF LIVE
+
+        if( parseFloat(d_meters) <=  10){ // IF DISTANCE IS LESS OR EQ. 10METERS
+
+            util.Toasted(`SUCCESS! YOUR DISTANCE FROM THE <BR>HUB IS ${d_meters} METER(S), PLS. WAIT!`,6000,false)
+            
+            //util.translate({xmsg: util.getCookie('f_voice'), cRedirect:"../jtx/dashboard"})
+            location.href = '../jtx/dashboard'    
+            
+        }else{
+            
+            const errmsg =`ERROR -- PLEASE TRY AGAIN! YOUR DISTANCE FROM THE HUB  IS ${d_meters} METER(S) 
+                        PLEASE GO NEARER INSIDE THE WAREHOUSE!`
+
+            util.Toasted(`ERROR -- PLEASE TRY AGAIN! <BR>YOUR DISTANCE FROM THE HUB  IS ${d_meters} METER(S) 
+                <br> PLEASE GO NEARER INSIDE THE WAREHOUSE!`,8000,false)
+            
+            util.speak(errmsg)
+                
+            document.getElementById('loginPlaceHolder').innerHTML = "" //reset alertmsg
+
+            return 
+
+        }
+    },
+
+    //==== for login posting
+    loginPost: (frm,modal,url="") => {
+
+        fetch(util.url, {
+            cache:'reload'
+        
+        })
+        .then((response) => {  //promise... then 
+            
+            return response.json();
+        })
+
+        .then((data) => {
+            //console.log(`login here data ${JSON.stringify(data)}`)
+            
+            //close ModalBox
+            if(data[0].found){
+                
+                //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data[0].voice)
+                util.alertMsg(data[0].message,'success','loginPlaceHolder')
+                //document.getElementById('loginBtn').classList.add('hide-me')
+                
+                //addtocookie
+                util.setGroupCookie(data[0].id,data[0].region, data[0].fname, data[0].grp_id, data[0].email, data[0].voice, data[0].pic)/*=== SET GROUP COOKIE */
+            
+                //add also to localdb
+                let obj ={}
+
+                obj.id = data[0].id
+                obj.besi_id = data[0].besi_id
+                obj.ocw_id = data[0].ocw_id
+                obj.jms_id = data[0].jms_id
+
+                obj.region = data[0].region
+                obj.fullname = data[0].fname
+                
+                obj.grp_id = data[0].grp_id
+                obj.position_code = data[0].position_code
+
+                obj.email = data[0].email
+
+                obj.pic = data[0].pic
+
+                db.setItem('profile',JSON.stringify( data[0] ))//save to localdb
+                                    
+                switch ( obj.grp_id ) {
+                    case 1:
+                        //check distance before proceeding to login
+                        //take out chcking of distance bring back  later
+                    /*  
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition( util.showPosition,{
+                                enableHighAccuracy:true
+                            });
+                        }
+                    */
+                        location.href = '../jtx/dashboard' 
+                    break
+                
+                    case 4: //old  coordinator
+                        location.href = '../jtx/coord'
+                    break
+
+                    //sorter/rider/transporter/team leader
+                    case '01':
+                    case '02':
+                    case '03':
+                    case '04':
+                    case '06':
+                    case '10':
+                        location.href = '/besi/main' 
+                        //to emp.html
+                    break;
+
+                    //coordinator/ 
+                    case '08':
+                        location.href = '/besi/coord'    
+                    break
+
+                    ///head coordinator
+                    case '07':
+                        location.href = '/besi/headcoord'    
+                    break
+
+                    case 3:  //head coord
+                        location.href = '../jtx/headcoord'    
+                    break
+                
+                    case 5: // operations mgr
+                    //case 8: //hr
+                        console.log('poooknnatt')
+                        location.href ='../jtx/operations'    
+                    break
+
+                    case 8://hrmgr
+                    case 30:// finance head miss jenelle 
+                    case 88://test hr
+                    case 9://finance michelle maralit team
+                        //location.href ='../jtx/hris '
+                        location.href = '../besi/hris';   
+                    break
+
+                    /*
+                    iparehas ang finance s hris
+                    case 9://finance
+                        location.href ='../jtx/fin '    
+                    break
+                    */
+
+                }//===== endswitch
+                        
+            }else{
+                //util.speak(data[0].voice)
+                util.alertMsg(data[0].message,'warning','loginPlaceHolder')
+                console.log('notfound',data[0].message)
+                return false
+            }
+            
+        })
+        .catch((error) => {
+            util.speak(data[0].voice)
+            util.alertMsg(data[0].message,'warning','loginPlaceHolder')
+            console.log('not found',data[0].message)
+            return false
+        })
+
+    },
+
+    setGroupCookie:(xid, xregion, xname,xgrp,xemail,xvoice,xpic)=>{
+        util.setCookie("f_dbId",xid,0)
+        util.setCookie("f_id",xid,0)
+        util.setCookie("f_region",xregion,0)
+        util.setCookie("fname",xname,0)
+        util.setCookie("grp_id",xgrp,0)
+        util.setCookie("f_email",xemail,0)
+        util.setCookie("f_voice",xvoice,0)
+        util.setCookie("f_pic",xpic,0)
+    },
+
+    audio:null,
+
+    // Usage:
+    // func('my message'); // Calls with only 1 param, other_func defaults to empty function
+    // Function('hey', () => { console.log('Running!'); });
+    // func('my message', asn.other_func); // Calls with second param as a function
+    isPlaying:false,
+    
+    ///=========================PLAY GREETINGS===============
+    // translate:async ({ xmsg, runwhat = () => {}, cRedirect } = {}) => {
+
+    //     if (util.isPlaying) return; // prevent re-entry
+  
+    //     util.isPlaying = true;
+
+    //     const aActs = [
+    //         " Ingat po sa Byahe!", 
+    //         " Galingan naten today ha?",
+    //         " Kayang-kaya mo yan!!!!",
+    //         " Wag pabayaan ang sarili!!!",
+    //         " Magdasal lagi sa Panginoon!",
+    //         " Gawin mong  sandigan ng lakas ang iyong Pamilya!"]
+        
+    //     const now = new Date();
+    //     const hours = now.getHours(); // returns 0-23
+    //     const wHrs = hours % 24;
+    //     let xvoice
+
+    //     if (wHrs >= 0 && wHrs < 12) { // Check for 12 AM (0)
+    //         xvoice = `MAGANDANG UMAGA!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`  
+    //     } else if (wHrs >= 12 && wHrs <= 17) { //AM period
+    //         xvoice =`MAGANDANG HAPON!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`
+    //     } else if (wHrs > 17 && wHrs <= 23) { //AM period
+    //         xvoice = `MAGANDANG GABI!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`
+         
+    //     }
+
+    //     const apiKey = 'sk_71ec2e7034a4e78f766acbbfd418beb2d6e7c8febfc94507'; // your API key
+    //     const voiceId = 'NEqPvTuKWuvwUMAEPBPR'; // your voice ID
+
+    //     try {
+    //         const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+    //             method: 'POST',
+    //             headers: {
+    //             'Content-Type': 'application/json',
+    //             'xi-api-key': apiKey,
+    //             },
+    //             body: JSON.stringify({
+    //             text: xvoice ,
+    //             model_id: 'eleven_multilingual_v2',
+    //             output_format: 'mp3',
+    //             }),
+    //         });
+
+    //         if (!response.ok) {
+    //             throw new Error('Network response was not ok ' + response.statusText);
+    //         }
+
+    //         const audioBlob = await response.blob();
+    //         const url = URL.createObjectURL(audioBlob);
+    //         const audio = new Audio(url);
+
+    //         //carlo
+    //         audio.onended = null; // Remove previous handle
+
+    //         // use onended instead of addEventListener
+    //         audio.onended = () => {
+    //             util.isPlaying = false; // reset flag
+            
+    //             if (cRedirect !== undefined && cRedirect !== null) {
+    //                 window.location.href = cRedirect;
+    //             }
+    //             if (typeof runwhat === 'function') {
+    //                 runwhat();
+                   
+    //             }
+    //         }//ended onended
+            
+    //         audio.play();
+    //     } catch (error) {
+    //     console.error('Error:', error);
+    //         util.isPlaying = false; // Reset flag on error
+    //     }
+
+    // },    
+
+    //================ new employee posting =========// 
+    newempPost:async function(frm,modal,url="",formData){
+        fetch(url,{
+            method:'POST',
+            //cache:'no-cache',
+            // headers: {
+            //     "Content-Type": "application/json",
+            // },
+            
+            body: formData
+        })
+        .then((response) => {  //promise... then 
+            return response.json();
+        })
+        .then((data) => {
+            if(data.status){
+                util.alertMsg( data.message,'success','footer-msg'); // Changed to 'info' as it's a progress message
+                       
+                //util.Toasted(data.message,3000,false)
+                
+                util.speak(data.voice);
+               
+                //before hiding the modalbox save the important data to global vars for use in signature upload and pdf generation
+                const btn = document.getElementById('newemp-next-btn');
+                const mode = btn.dataset.mode;
+                
+                //hide modalbox
+                util.hideModal('newempModal',0) //hide dataentry
+                //document.getElementById('footer-msg').innerHTML=''//reset
+
+                //=========SHOW DATA PRIVACY===========//
+                //== SAVE IMORTANT DATA TO GLOBAL VARS FOR LATER USE IN SIGNATURE UPLOAD AND PDF GENERATION ==
+
+                util.dataEmployeeId = data.employeeId
+                util.dataRegion = data.regionId
+                util.dataEmployeeName = data.employeeName
+                util.dataPosition = data.positionId
+                util.dataAddress = data.address;
+                util.dataDateHired = data.dateHired;
+
+                /************* show privaacy  only on Add Mode not onn Edit Mode  */
+                const dbval = JSON.parse( db.getItem('profile'));
+                    
+                if(mode === 'add'){
+                    // --- NEW: Show the Data Privacy & Signature Modal ---
+                    const dataPrivacyModalElement = document.getElementById('dataPrivacySignatureModal');
+                    const dataPrivacyModal = new bootstrap.Modal(dataPrivacyModalElement);
+                    dataPrivacyModal.show();
+                }else{
+                    // if(hris){
+                    //     hris.searchEmp()
+                    // }else{
+                    //     timekeep.searchEmp()
+                    // }
+                    
+
+                }
+                
+            }else{
+                util.speak(data.voice)
+                //util.alertMsg(data.message,'warning','equipmentPlaceHolder')
+                return false
+            }//eif
+            
+        })
+        
+        .catch( (error) => {
+            console.error('Error in newempPost:', error);
+            util.Toasted(`Network Error: ${error.message}`, 3000, false);
+        })
+        .finally ( ()=>{
+            
+            util.toggleButtonLoading('newemp-next-btn',null,false)
+
+            const nextBtn = document.getElementById('newemp-next-btn');
+            nextBtn.disabled = false;
+            
+        })
+    },
+
+    //for use in image/signature upload
+    dataEmployeeId: null,
+    dataRegion:null,
+    dataEmployeeName:null,
+    dataAddress:null,
+    dataPosition:null,
+    
+    //=================SAVE SIGNATTURE ==========//
+    saveSignature : async () =>  {
+
+        console.log('Attempting to save signature...');
+        const signatureCanvasErrorDiv = document.getElementById('signatureCanvas-error');
+        const submitBtn = document.getElementById('submit-signature-btn');
+        const iSave = document.getElementById('i-signature-save');
+
+        // Clear previous error message
+        if (signatureCanvasErrorDiv) signatureCanvasErrorDiv.style.display = 'none';
+
+        // 1. Validate signature pad: Ensure something was drawn
+        if (util.signaturePad && util.signaturePad.isEmpty()) {
+            if (signatureCanvasErrorDiv) signatureCanvasErrorDiv.style.display = 'block';
+            util.Toasted('Please provide your digital signature.', 3000, false);
+            return;
+        }
+
+        // 2. Get Employee ID: This should have been set when the first modal submitted
+        const employeeId = util.dataEmployeeId // Use the global variable
+
+        if (!employeeId) {
+            util.Toasted('Error: Employee ID not found. Cannot save signature.', 4000, false);
+            console.error('Employee ID missing for signature save. currentEmployeeId is null.');
+            return;
+        }
+
+        // Show loading indicator
+        if(iSave && submitBtn){
+            iSave.classList.remove('fa-check');
+            iSave.classList.add('fa-refresh', 'fa-spin');
+            submitBtn.disabled = true;
+        }
+
+        //util.alertMsg("<div><i class='fa fa-spinner fa-pulse'></i> Uploading Signature, please wait...</div>", 'info', 'dataPrivacyPlaceHolder');
+
+        try {
+            // 3. Convert Signature from Canvas to Blob (PNG format)
+            const signatureDataURL = util.signaturePad.toDataURL('image/png');
+
+            const blob = await (await fetch(signatureDataURL)).blob();
+            
+            // 4. Create the desired filename: SIGN_EMP_ID.png
+            // Ensure employeeId is safe for filenames
+            const cleanEmployeeId = employeeId //String(employeeId).replace(/[^a-zA-Z0-9_]/g, ''); 
+            const signatureFilename = `SIGN_${cleanEmployeeId}.png`;
+            
+            // 5. Create FormData for the signature submission
+            const formData = new FormData();
+            formData.append('employeeId', employeeId); // Pass employeeId to server for linking
+            // Append the blob with the specific filename
+            formData.append('signature_image', blob, signatureFilename); 
+
+            // 6. ===================== Send to the new endpoint for signature upload
+            const response = await fetch(`${myIp}/uploadsignature/${util.dataEmployeeId}/${util.dataRegion}`, { 
+                method: 'POST',
+                body: formData 
+            });
+
+            const data = await response.json(); 
+
+            // 7. Handle the server's response
+            if (data.status) {
+                util.speak(data.voice);
+                util.Toasted('Digital signature and privacy consent saved successfully!', 3000, true);
+                util.hideModal('dataPrivacySignatureModal', 1000); 
+                util.clearSignature(); 
+
+                //====CCALL PRINT PDF
+                
+                console.log('1. speak: Printing...');
+                util.speak('Printing...');
+
+                //  util.dataEmployeeId = data.employeeId
+                // util.dataRegion = data.regionId
+                // util.dataEmployeeName = data.employeeName
+                // util.dataPosition = data.positionId
+                // util.dataAddress = data.address;
+                // util.dataDateHired = data.dateHired;
+
+                //=========PRINT PDF AND DOWNLOAD========//
+                util.printPdf(  util.dataEmployeeId, util.dataEmployeeName , util.dataRegion, util.dataPosition, util.dataAddress, util.dataDateHired);
+                //========= PRINT PDF AND DOWNLOAD========//
+
+            } else {
+                util.speak(data.voice);
+                util.Toasted(`Error: ${data.message || 'Failed to save signature.'}`, 4000, false);
+            }
+        } catch (error) {
+            console.error('Error in saveSignature:', error);
+            util.Toasted(`Network Error: ${error.message}`, 4000, false);
+        } finally {
+            if(iSave && submitBtn){
+                iSave.classList.remove('fa-refresh', 'fa-spin');
+                iSave.classList.add('fa-check');
+                submitBtn.disabled = false;
+            }
+        }
+    },
+
+    //==============CALL PRINT TO PDF, after util.saveSignature() =============//
+    printPdf: async ( empid, empname, empregion, empposition, empaddress, empdateHired )=> {
+
+        console.log('----- FIRING printPdf() with params:', { empid, empname, empregion, empposition, empaddress, empdateHired });
+        
+
+        let xfile = `${empid}.pdf`;
+
+        // Ensure all URL parameters are encoded
+        const empidParam = encodeURIComponent(empid);
+        const fullnameParam = encodeURIComponent( empname);
+        const empregionParam = encodeURIComponent(empregion);
+        const positionParam = encodeURIComponent( empposition);
+        const addressParam = encodeURIComponent(empaddress);
+        const dateHiredParam = encodeURIComponent(empdateHired);
+
+        // // Ensure all URL parameters are encoded
+        // const empidParam = encodeURIComponent(empid);
+        // const fullnameParam = encodeURIComponent(hris.fullname);
+        // const empregionParam = encodeURIComponent(empregion);
+        // const positionParam = encodeURIComponent(hris.position);
+        // const addressParam = encodeURIComponent(hris.address);
+        // const dateHiredParam = encodeURIComponent(hris.dateHired);
+
+        const fullDownloadUrl = `${myIp}/printpdf/${empidParam}/${fullnameParam}/${empregionParam}/${positionParam}/${addressParam}/${dateHiredParam}`;
+            
+        fetch(fullDownloadUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => {
+            console.log('2. Fetch response received. Status:', response.status);
+            if (!response.ok) { // Crucial check for HTTP errors
+                throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            console.log('3. Blob received. Blob size:', blob.size);
+            return URL.createObjectURL(blob);
+        })
+        .then(url => {
+            console.log('4. Object URL created:', url);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = xfile;
+            document.body.appendChild(a);
+            console.log('5. Attempting to click download link.');
+            a.click(); // This is where the browser likely interrupts
+            console.log('6. Download link clicked.'); // This might not appear in console before the next log
+
+            // --- CRITICAL CHANGE: Defer cleanup and speech ---
+            setTimeout(() => {
+                a.remove(); // Clean up the temporary anchor element
+                window.URL.revokeObjectURL(url); // Release the object URL
+                console.log('7. speak: Downloaded! (after timeout)'); // This should now execute
+                util.speak('Downloaded!'); 
+            }, 100); // 100ms (0.1 second) is usually enough; you can adjust if needed
+        })
+        .catch((error) => {
+            console.error('8. Error in PDF download process:', error);
+            alert(`Error during PDF download: ${error.message || error}`);
+            // If speak should also happen on error, put it here:
+            // util.speak('Download failed!');
+        });
+    },
+
+    resizeSignatureCanvas : () => {
+        const canvas = document.getElementById('signatureCanvas');
+        if (canvas && util.signaturePad) {
+            const ratio = Math.max(window.devicePixelRatio || 1, 1);
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+            canvas.getContext("2d").scale(ratio, ratio);
+            util.signaturePad.clear(); // Clear previous drawing after resize
+        }
+    },
+
+    clearSignature : () => {
+        if (util.signaturePad) {
+            util.signaturePad.clear();
+            document.getElementById('signatureCanvas-error').style.display = 'none'; 
+        }
+    },
+
+
+    //utility toastify
+    Toasted:async(msg,nDuration,lClose)=>{
+        Toastify({
+            text: msg ,
+            duration: nDuration,
+            escapeMarkup: false, //to create html
+            close: lClose,
+            position:'center',
+            offset:{
+                x: 0,
+                y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+            },
+            style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
+        
+    }, //===end toasted!
+
+    toCamelCase: (str) => {
+        // Handle null, undefined, or non-string inputs
+        if (typeof str !== 'string' || str === null || str === undefined) {
+            return '';
+        }
+
+        // Convert to lowercase first to ensure consistent capitalization
+        // Then use replace with a regex to find separators and capitalize the letter after them
+        return str.toLowerCase().replace(/(?:[_-]|\s)+(.)/g, (match, char) => {
+            return char.toUpperCase();
+        });
+    
+    },
+
+    checkFileSize: (elem, fsize) => {
+        const input = elem;
+        if (!input || !input.files || input.files.length === 0) return true;
+
+        const MAX_KB = fsize; // 1000 KB ~= 1 MB
+        //const btnUpload = document.getElementById('mall-save-btn');
+
+        let recosize, sizesuffix
+
+        for (let i = 0; i < input.files.length; i++) {
+            const kb = Math.round(input.files[i].size / 1024);
+            if (kb >= MAX_KB) {
+                //if (btnUpload) btnUpload.disabled = true;
+                    util.alertMsg("File too Big, please select a file less than 800kb", "danger", "size");
+                    input.value = ''; // reset selection
+                    //util.scrollsTo('blindspot');
+                    return false;
+            }
+        }
+
+        //if (btnUpload) btnUpload.disabled = false;
+        return true;
+    },
+    /**
+     * Toggle loading state on a button.
+     * @param {string} buttonId  - The element ID of the button.
+     * @param {string} [label]   - Optional new label while loading (e.g., "Saving...").
+     * @param {boolean} toggle   - true = show spinner, false = restore original.
+     * usage
+     * // Turn ON loading: spinner + label "Saving..."
+        toggleButtonLoading("btnConfirmDeactivate", "Saving...", true);
+
+        // Turn OFF loading: restore original icon + text
+        toggleButtonLoading("btnConfirmDeactivate", null, false);
+            * 
+     */
+    
+    toggleButtonLoading: (buttonId, label, toggle) => {
+        const btn = document.getElementById(buttonId);
+        if (!btn) return;
+
+        if (toggle) {
+            // Save original content only once
+            if (!btn.dataset.originalHtml) {
+            btn.dataset.originalHtml = btn.innerHTML;
+            }
+            btn.disabled = true;
+
+            const loadingLabel = label || btn.textContent.trim() || "Loading...";
+
+            // Bootstrap spinner example; change classes as needed
+            btn.innerHTML = `
+            <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+            ${loadingLabel}
+            `;
+        } else {
+            // Restore original content
+            if (btn.dataset.originalHtml) {
+            btn.innerHTML = btn.dataset.originalHtml;
+            }
+            btn.disabled = false;
+        }
+    },
+
+    //const cdnModelsUrl = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
+
+}//****** end obj */
+
+const xutil = {
+    modelsLoaded: false,
+
+    loadModels: async () => {
+        if (xutil.modelsLoaded) return;
+        const imageInput = document.getElementById('id_picture');
+        const statusMessage = document.getElementById('statusMessage');
+        //const MODEL_URL = 'https://jsdelivr.net';
+        // FIXED CDN: Direct NPM mirror pointing to the correct binary weight files
+        const MODEL_URL = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
+        
+        try {
+            if (statusMessage) statusMessage.innerHTML = '<div class="spinner-border spinner-border-sm text-primary me-2"></div> Booting engine...';
+            
+            await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+            await faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL);
+            
+            xutil.modelsLoaded = true; 
+            if (statusMessage) statusMessage.textContent = "AI Engine Ready.";
+            if (imageInput) imageInput.disabled = false; 
+        } catch (err) {
+            console.error(err);
+        }
+    },
+
+        // NEW FIX: Safe and complete cleanup without invalid function calls
+    // SAFE FIX: Releases memory buffers without destroying the TensorFlow runtime engine framework
+    destroyAI: async () => {
+        console.log("Purging AI engine from memory...");
+        try {
+            if (faceapi && faceapi.tf) {
+                // 1. Instantly free heavy neural net matrix memory cells
+                faceapi.tf.disposeVariables(); 
+                
+                // 2. Clear out underlying browser texture frames safely
+                if (faceapi.tf.engine && typeof faceapi.tf.engine().startScope === 'function') {
+                    // Safe alternative to reset(): Force clears temporary mathematical allocations
+                    faceapi.tf.engine().startScope();
+                    faceapi.tf.engine().endScope();
+                }
+            }
+            
+            // Mark models as un-loaded so face-api knows it needs to fetch weights on the next image run
+            xutil.modelsLoaded = false;
+            console.log("Memory successfully freed for other file inputs.");
+        } catch (e) {
+            console.warn("Clean up warning:", e);
+        }
+    },
+
+    faceRecognition: async (event) => {
+        const currentEvent = event || window.event;
+        const inputElement = currentEvent ? currentEvent.target : document.getElementById('id_picture');
+    
+        if (!inputElement || !inputElement.files || inputElement.files.length === 0) return; 
+        
+        const file = inputElement.files[0];
+        const statusMessage = document.getElementById('statusMessage');
+
+        try {
+            if (statusMessage) {
+                statusMessage.innerHTML = '<div class="spinner-border spinner-border-sm text-primary me-2"></div> Analyzing image content...';
+            }
+            
+            await xutil.loadModels();
+            const img = await faceapi.bufferToImage(file);
+
+            const detection = await faceapi.detectSingleFace(
+                img, 
+                new faceapi.TinyFaceDetectorOptions({ inputSize: 224, scoreThreshold: 0.3 })
+            ).withAgeAndGender();
+
+            if (!detection) {
+                alert("Verification Failed: No human face detected.");
+                if (statusMessage) statusMessage.textContent = "Verification failed.";
+                if (inputElement) inputElement.value = ''; 
+                return;
+            }
+
+            const gender = detection.gender; 
+            const confidence = (detection.genderProbability * 100).toFixed(1);
+
+            if (gender === 'male' || gender === 'female') {
+                if (statusMessage) statusMessage.textContent = `Passed! Verified profile: ${gender} (${confidence}%).`;
+                alert("Verification Passed!");
+
+                // CLEANUP TRIGGER: Wipe the AI out of RAM right now since we are done with it
+                await xutil.destroyAI(); 
+                
+                // Clear the image DOM reference to unlock further browser garbage collection
+                img.src = ''; 
+            }
+
+        } catch (error) {
+            console.error("Error:", error);
+            if (statusMessage) statusMessage.textContent = "An error occurred during scanning.";
+            alert("An error occurred during screening.");
+            if (inputElement) inputElement.value = ''; 
+            await xutil.destroyAI(); // Cleanup on error too
+        }
+    }
+};
+
+
+window.util = util; // Make util globally accessible
+window.xutil = xutil 

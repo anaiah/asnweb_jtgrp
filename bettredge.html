@@ -45,7 +45,7 @@
                   <img src="/html/assets/images/logos/besi_main_logo.jpg"  width="180" alt="" />
                 </a>
 
-                <p class="text-center">Beta v.1.5 (04162k26)</p>
+                <p class="text-center">Beta v.1.5 (08092k26)</p>
                 <!--//end company logo -->
                 <form id="loginForm" name="loginForm" class="needs-validation">
                   
@@ -57,7 +57,7 @@
                     <i class="ti ti-map" style="color:blue"></i>
                     <label for="region" class="form-label">Region</label>
                     <select class="form-select login" id="region" name="region" required>
-                          <option value="">Filter by Region</option>
+                          <option value="head" selected>HEAD OFFICE</option>
                           <option value="cmnl">NCR-CMNLA</option>
                           <option value="cmnva">NCR-CMNVA</option>
                           <option value="smnl">NCR-SMNL</option>
@@ -278,15 +278,13 @@
   <!-- toastify -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   
-  <script src="/html/assets/js/ipconfig.js?v=9"></script>
-  <script src="/html/assets/js/util.js?v=8"></script>
+  <script src="/html/assets/js/ipconfig.js?v=1.1"></script>
+  <script src="/html/assets/js/util.min.js?v=1.2"></script>
   <!-- <script src="/html/assets/js/login.js?v=8"></script> -->
 
   <script>
-    gonow:true,
     
-    db = window.localStorage
-
+    
     document.addEventListener('DOMContentLoaded', function() {
       
       console.log('=======DOM CONTENT LOADED=====')

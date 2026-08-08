@@ -3,7 +3,10 @@ import { timekeep } from './mod-timekeep.js'
 //hrisutil.tester()
 
 
-//************************* LISTENERS **************************** */
+//************************* LISTENERS **************************** 
+// hrmod.js is used by hr,finance
+// 
+// */
 //listenr for change in select element with id "employeeSelect"
 
 // document.addEventListener('change', (e) => {
@@ -143,6 +146,7 @@ myModal.addEventListener('show.bs.modal', function () {
         const profile = JSON.parse(localStorage.getItem('profile'));
 
         if(profile && (profile.grp_id === "08" || profile.grp_id === "07")){ // HR or COORD
+            console.log('====region auto select depends on the profile.region, this is from hrmod.js=====   ')
             document.getElementById('region').value = profile.region.toUpperCase();        
 
             const selectedValue =document.getElementById('region').value;
@@ -217,7 +221,7 @@ myModal.addEventListener('hide.bs.modal', function (event) {
           const ctx = myModal.dataset.context;
             if (ctx === 'hr') {
                 hrisutil.searchEmp();
-            }else if (ctx === 'coords') {
+            }else {
                 timekeep.searchEmp();
             }
 

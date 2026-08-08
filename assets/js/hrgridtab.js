@@ -89,7 +89,8 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 ( ${mname} )<br>
                 ${data.phone}<br>
                 ${data.email}<br>
-                ${data.emp_id}<br>
+                ${data.emp_id} (OLD ID)<br>
+                <b>${data.new_id} (NEW ID)</b><br>
                 JMS # ${data.jms_id || "(No JMS)"}<br>
                 <button type="button"
                         class="btn my-btn-purple btn-sm btn-status-change"
