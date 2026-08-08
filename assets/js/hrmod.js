@@ -166,7 +166,7 @@ myModal.addEventListener('show.bs.modal', function () {
 //===== modal close reset  everything  to readonly and add mode
 myModal.addEventListener('hide.bs.modal', function (event) {
     
-    console.log('==hiding newEmpModal .on(hide) from util.js ====')
+    console.log('==hiding newEmpModal .on(hide) from HRMOD.JS ====')
     document.getElementById('newempPlaceHolder').innerHTML=""
 
     util.toggleButtonLoading('footer-msg',null,false)
@@ -216,10 +216,12 @@ myModal.addEventListener('hide.bs.modal', function (event) {
 
           const ctx = myModal.dataset.context;
             if (ctx === 'hr') {
-                hris.searchEmp();
+                hrisutil.searchEmp();
             }else if (ctx === 'coords') {
                 timekeep.searchEmp();
             }
+
+            //alert(ctx)
             // clear context if you like
             delete myModal.dataset.context;
 

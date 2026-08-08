@@ -805,7 +805,7 @@
         //===========edit employee records===================
         openEditForm : (rowData) => {
 
-            console.log('===FIRING hris.openEditForm()===')
+            console.log('===FIRING hris.openEditForm() with rowdata===', rowData)
         
             hris.editMode = true; // Set edit mode to true when opening the form
            
@@ -814,6 +814,8 @@
             // Using dataset (Recommended)
             btn.dataset.mode = 'edit';
             btn.innerHTML = '💾 Save Edit'; // If you want the text to change too
+
+            //get form
             const form = document.getElementById('newempForm');
             const empId = rowData.emp_id;
             const region = ( document.getElementById('filter_region').value || "");
@@ -885,8 +887,9 @@
             form.querySelector('#nameSuffix').value = rowData.suffix || "";
             form.querySelector('#middleName').value = rowData.middle_name || "";
 
-            // 4. INJECT THUMBNAILS below File Inputs
-            // Note: 'name' must match your <input name="..."> exactly
+            form.querySelector('#daily_rate').value = parseFloat(rowData.daily_rate) || 0;
+            form.querySelector('#education_level').value = rowData.education_level || "";
+            
              // 4. INJECT THUMBNAILS below File Inputs
             // Note: 'name' must match your <input name="..."> exactly
             const fileConfigs = [

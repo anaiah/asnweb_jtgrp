@@ -2095,14 +2095,15 @@ const util = {
                     const dataPrivacyModal = new bootstrap.Modal(dataPrivacyModalElement);
                     dataPrivacyModal.show();
                 }else{
-                    //if edit mode, refresh grid
-                    // if(dbval.grp_id=='08'){
-                    //     timekeep.searchEmp()
-                    // }else{
+                    // if(hris){
                     //     hris.searchEmp()
-
+                    // }else{
+                    //     timekeep.searchEmp()
                     // }
-                                    }   
+                    
+
+                }
+                
             }else{
                 util.speak(data.voice)
                 //util.alertMsg(data.message,'warning','equipmentPlaceHolder')

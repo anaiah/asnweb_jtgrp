@@ -1136,12 +1136,18 @@ let loginDetails = null;
         if (myModal) {
 
             myModal.addEventListener('hide.bs.modal', function (event) {
+
+
+                console.log('==hiding newEmpModal .on(hide) from mod-timekeep.js ====')
+  
                 const btn = document.getElementById('newemp-next-btn');
                 const mode = btn.dataset.mode;
                 if(mode==='edit'){
                     const ctx = myModal.dataset.context;
                     if (ctx === 'coords') {
                         timekeep.searchEmp();
+                    }else{
+                        hrisutil.searchEmp();
                     }
                     // clear context if you like
                     delete myModal.dataset.context;
