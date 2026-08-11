@@ -1690,6 +1690,12 @@ const util = {
 
                     dataEntryObjfrm.login_date = util.nugetDate(); 
                     dataEntryObjfrm.transnumber = document.getElementById('f_transnumber').value;
+                                        
+                    const dbx = JSON.parse( db.getItem('profile'));
+                    
+                    dataEntryObjfrm.region = dbx.region;
+                    dataEntryObjfrm.besi_id = dbx.besi_id;
+                    
                     
                     asn.saveobjfrm = dataEntryObjfrm
 
@@ -1739,6 +1745,10 @@ const util = {
                         // or handle them in sequence. This case is still sending objfrm to savetransaction.
                         // For files in remittanceFormData, you'd need a separate endpoint for those.
                         // THIS PART IS STILL SENDING JUST OBJFRM - NEEDS CLARIFICATION FOR FILE UPLOAD HERE
+                         const dbx = JSON.parse( db.getItem('profile'));
+                    
+                        remittanceObjfrm.besi_id = dbx.besi_id;
+                        
                         window.asn.saveTransaction(`${myIp}/savetransaction/${util.getCookie('f_id')}`, remittanceObjfrm);
                     }
                     break;
@@ -1869,6 +1879,7 @@ const util = {
                                     
                 switch ( obj.grp_id ) {
                     case 1:
+                    case '01':
                         //check distance before proceeding to login
                         //take out chcking of distance bring back  later
                     /*  
@@ -1878,7 +1889,8 @@ const util = {
                             });
                         }
                     */
-                        location.href = '../jtx/dashboard' 
+                        //location.href = '../jtx/dashboard'
+                        location.href = '/besi/dashboard' 
                     break
                 
                     case 4: //old  coordinator
@@ -1886,7 +1898,7 @@ const util = {
                     break
 
                     //sorter/rider/transporter/team leader
-                    case '01':
+                   // case '01':
                     case '02':
                     case '03':
                     case '04':

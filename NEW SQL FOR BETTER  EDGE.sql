@@ -211,3 +211,16 @@ END$$
 
 DELIMITER ;
 
+//=================== trigger for besi_transaction turn it up if needed =========================
+DELIMITER //
+
+CREATE TRIGGER after_besi_transaction_insert
+AFTER INSERT ON besi_transaction
+FOR EACH ROW
+BEGIN
+    UPDATE LOGIN_AUDIT
+    SET total_count = 0
+    WHERE id = 1;  
+END //
+
+DELIMITER ;

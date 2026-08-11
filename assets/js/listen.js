@@ -4,8 +4,11 @@ remitupload.addEventListener("submit", e => {
     const formx = e.target;
 
     util.speak('Uploading Image, please wait!!!')
+    const dbx = JSON.parse( db.getItem('profile'));
+                    
+    const region  = dbx.region;
 
-    fetch(`${myIp}/postimage/${document.getElementById('ff_transnumber').value}/${util.getCookie("f_region")}`, {
+    fetch(`${myIp}/postimage/${document.getElementById('ff_transnumber').value}/${region}`, {
         method: 'POST',
         body: new FormData(formx),
         })

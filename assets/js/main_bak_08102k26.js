@@ -427,7 +427,8 @@ const asn = {
         console.log('firing asn.saveToLogin() main.js  called from util.js validateMe(#dataentryform) =====', asn.saveobjfrm)
     
         util.toggleButtonLoading("start-btn", "Saving...", true);
-               
+          
+        
         if (asn.currentAudio) {
             asn.currentAudio.pause();
             asn.currentAudio.currentTime = 0; // Reset to the beginning
@@ -548,18 +549,12 @@ const asn = {
             const xdata = data.data
             console.log('***%%%%%%%%%% FROM NODEJS SAVETRANSACTION() TRIGGER SOCKET EMIT *****', xdata)
             
-            
             if(data.success=="ok")
                 {
                 console.log( '+++++ saveTransaction()++++')
 
-                dbx = JSON.parse( db.getItem('profile'));
-                    
-                const xregion = dbx.region;
-                const xbesi_id = dbx.besi_id;
-
                 //change form action for posting the Image receipt
-                document.getElementById('remittanceUploadForm').action=`${myIp}/postimage/${document.getElementById('ff_transnumber').value}/${xregion}`
+                document.getElementById('remittanceUploadForm').action=`${myIp}/postimage/${document.getElementById('ff_transnumber').value}`
 
                 xmsg = "<i class='fa fa-spinner fa-pulse' ></i>  Uploading Receipt, please wait!!!"
                 util.Toasted( xmsg, 3000, false)
