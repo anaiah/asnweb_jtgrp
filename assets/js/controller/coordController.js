@@ -1,3 +1,6 @@
+let xdb = localStorage  //get localstoreage
+let xowner =  JSON.parse(xdb.getItem('profile'))  //get profile
+    
 Ext.define('MyApp.controller.coordController', {
     extend: 'Ext.app.Controller',
  
@@ -10,6 +13,8 @@ Ext.define('MyApp.controller.coordController', {
 	statics:{
 		ex: this
 	},
+
+    
     scrollsTo:(grid)=>{
         console.log('scrolling')
         var gridView = grid.getView();  // grid is a reference to your Ext.grid.Panel
@@ -155,10 +160,18 @@ Ext.define('MyApp.controller.coordController', {
     },
     //coord,
     listenviewReady:()=>{
+        
+       
         console.log('firing listenviewReady() coordcontroller.js')
     
         var arealocgrid = Ext.ComponentQuery.query('locationgrid')[0] //load alias
         var arealocstore = arealocgrid.getStore()
+
+        // const db = localStorage  //get localstoreage
+        // const owner =  JSON.parse(db.getItem('profile'))  //get profile
+        
+        const region = xowner.region
+        const email = xowner.email
         
         //asn.ctrlExt.callme()
         
@@ -169,7 +182,7 @@ Ext.define('MyApp.controller.coordController', {
                 console.warn("The View lOCATION Is already rendered!");
                 
                 Ext.Ajax.request({
-                    url: `${myIp}/coor/summary/${util.getCookie('f_email')}`,
+                    url: `${myIp}/coor/summary/${email}/${region}`,
 
                     success: function(response) {
                         var json = Ext.decode(response.responseText);
@@ -202,6 +215,8 @@ Ext.define('MyApp.controller.coordController', {
 
     //coord,
     listencoordLocation:()=>{
+
+        
         console.log('listenCoordLocation() coordController.js fird===')
        
         const locgrid = Ext.ComponentQuery.query('locationgrid')[0] //load alias
@@ -225,11 +240,13 @@ Ext.define('MyApp.controller.coordController', {
                 // Get the store
                 const riderstore = ridergrid.getStore();
                 riderstore.removeAll();
+
+                console.log('===firing listenCoordLocation() coordController.js===', xowner.email)
             
                 // Make an AJAX request to get the data from the server
                 Ext.Ajax.request({
                     
-                    url: `${myIp}/coor/ridersummary/${locValue}`,
+                    url: `${myIp}/coor/ridersummary/${locValue}/${xowner.region}`,
                     
                     success: function(response) {
                         var json = Ext.decode(response.responseText);

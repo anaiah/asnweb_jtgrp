@@ -395,7 +395,11 @@ const asn = {
     loadbarMTDChart: async()=>{
         console.log('loading... loadbarMTDchart()')
 
-        await fetch(`${myIp}/coor/mtdlocation/${util.getCookie('f_email')}`,{
+        const db = localStorage  //get localstoreage
+        const owner =  JSON.parse(db.getItem('profile'))  //get profile
+    
+
+        await fetch(`${myIp}/coor/mtdlocation/${owner.email}/${owner.region}`,{
             cache: 'reload'
         })
         .then((res) => {  //promise... then 
@@ -519,9 +523,12 @@ const asn = {
 
     //===for top 5 chart
     loadbarChart: async( ctrans )=>{
-        console.log('loading loadbarchart()')
+        console.log('loading loadbarchart()',ctrans)
 
-        await fetch(`${myIp}/coor/topfivehub/${util.getCookie('f_email')}/${ctrans}`,{
+        const db = localStorage  //get localstoreage
+        const owner =  JSON.parse(db.getItem('profile'))  //get profile
+    
+        await fetch(`${myIp}/coor/topfivehub/${owner.email}/${owner.region}/${ctrans}`,{
             cache: 'reload'
         })
         .then((res) => {  //promise... then 
@@ -530,6 +537,7 @@ const asn = {
         .then((data) => {
 
             const xdata = data
+            console.log( 'top 5 data==',  xdata)
 
             //console.log(`TOP   ${JSON.stringify(xdata)})`)
 
@@ -614,8 +622,8 @@ const asn = {
 
             xdata.forEach( item  => {
                 if(ctrans=="rider"){
-                    if(item.xname){
-                        category_data.push(item.xname )
+                    if(item.full_name){
+                        category_data.push(item.full_name )
                         series_data.push( (! item.parcel_delivered ? 0 : parseInt(item.parcel_delivered)) )
                     }
                 

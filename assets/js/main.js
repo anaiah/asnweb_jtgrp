@@ -326,6 +326,13 @@ const asn = {
 
     //==========get monthly  transaction for riders/transporters ====//
     getMonthlyTransaction:async( emp_id ) =>{
+
+        const db = localStorage  //get localstoreage
+        owner =  JSON.parse(db.getItem('profile'))  //get profile
+        
+        emp_id = owner.besi_id
+
+        console.log('====getting getMonthlytransaction()=====', emp_id)
         
         if(emp_id===null || emp_id ===""){
             asn.speaks('The system detects that you have an Empty ID, Please Login again')
@@ -599,13 +606,19 @@ const asn = {
     //===== get data for pie chart====//
     getPieChart: async(empid) =>{
 
+        const db = localStorage  //get localstoreage
+        const owner =  JSON.parse(db.getItem('profile'))  //get profile
+        empid = owner.besi_id
+
         console.log('===firing getPieChart()===')
+        
         await fetch(`${myIp}/getpiedata/${empid}`,{
             cache:'reload'
         })
         .then( (res) => res.json() )
         .then( (data) => {
 
+            console.log('===getPieChart()===', data)
             //console.log(data.data[0].delivered_pct, data.data[0].undelivered_pct )
             if(!data.data[0]){
                 console.log('==NO DATA FOR PIECHART==')

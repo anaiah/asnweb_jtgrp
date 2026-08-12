@@ -35,9 +35,11 @@ Ext.define('MyApp.view.riderGrid' ,{
         },
         selectionchange: function(model, records ) {
 
-            console.log('ditooo  ba?')
+            console.log('ditooo  ba?',records[0])
             var gridInstance = this; // 'this' is the grid
             var store = gridInstance.getStore();
+
+            console.log(store)
 
              setTimeout(() => {
                 store.sort('qty', 'DESC'); 

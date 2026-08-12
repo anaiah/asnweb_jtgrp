@@ -4,7 +4,7 @@ Ext.define('MyApp.model.riderModel', {
         //{name: 'projectId', type: 'int'},
         {name: 'id', type: 'int'},
         {name: 'full_name', type: 'string'},
-        {name: 'emp_id', type: 'int'},
+        {name: 'emp_id', type: 'string'},
         {name: 'hub', type: 'string'},
         {name: 'qty', type: 'int'},
         {name: 'actual_qty', type: 'int'},
