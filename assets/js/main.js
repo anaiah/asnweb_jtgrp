@@ -901,8 +901,10 @@ const asn = {
 
         //
         if(typeof util.getCookie('f_id') === 'undefined' || util.getCookie('f_id')===null || util.getCookie('f_id') === ""){
-            alert('ERROR, PLEASE ADVISE COORDINATOR TO CONTACT ASIANOW TECHNICAL SUPPORT TEAM!')
-            return false
+            alert(`ERROR, PLEASE GO BACK TO LOGIN PAGE AND LOGIN, YOU CAN NOT BOOKMARK THIS PAGE,
+                ADVISE COORDINATOR TO CONTACT ASIANOW TECHNICAL SUPPORT TEAM!`)
+                location.href = './';
+                //return false;
         }else{
             asn.getMonthlyTransaction(util.getCookie('f_id'))
         }
