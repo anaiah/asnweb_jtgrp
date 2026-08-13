@@ -78,6 +78,7 @@ export function initHrisGrid() {
                     case 30: //JENNELLE
                     case 9://FINANCE
                     case 8://coordinators hands  off
+                    case "08": //new coord
                     //case 30: //finance head miss jenelle
                          xdisabled = true; // enable if grp_id is 1 or 88
                     break;
@@ -88,7 +89,8 @@ export function initHrisGrid() {
                     ( ${mname} )<br>
                     ${data.phone}<br>
                     ${data.email}<br>
-                    ${data.emp_id}<br>
+                    <B>${data.new_id} (NEW ID)</B><br>
+                    ${data.emp_id} (OLD ID)<br>
                     JMS # ${data.jms_id || "(No JMS)"}<br>
                     <button type="button"
                     
@@ -99,6 +101,7 @@ export function initHrisGrid() {
                     </button>
                     <button type="button"
                             class="btn btn-warning btn-sm btn-status-change"
+                             (${xdisabled} ? disabled : null )
                             data-action="${action}">
                         ${xlabel}
                     </button>
