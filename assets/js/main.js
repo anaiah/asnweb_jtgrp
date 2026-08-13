@@ -560,7 +560,7 @@ const asn = {
                 {
                 console.log( '+++++ saveTransaction()++++')
 
-                dbx = JSON.parse( db.getItem('profile'));
+                dbx = JSON.parse( asn.db.getItem('profile'));
                     
                 const xregion = dbx.region;
                 const xbesi_id = dbx.besi_id;
@@ -906,11 +906,11 @@ const asn = {
        // util.loadFormValidation('#remitttanceUploadForm')
         
         //load listeners
-        util.modalListeners('claimsModal')
+       // THIS IS FOR ASN util.modalListeners('claimsModal')
         //util.modalListeners('newempModal')
         util.modalListeners('dataEntryModal')
         util.modalListeners('remittanceModal')
-        util.modalListeners('atdstatusModal')
+        // THIS IS FOR ASN  util.modalListeners('atdstatusModal')
 
         //
         if(typeof util.getCookie('f_id') === 'undefined' || util.getCookie('f_id')===null || util.getCookie('f_id') === ""){
