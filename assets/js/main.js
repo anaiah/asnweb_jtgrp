@@ -170,25 +170,6 @@ const asn = {
         }
     },
 
-    //======main func get all Claims per person =====
-    getClaims: async (emp_id, emp_name)=>{
-        console.log('==running getClaims()')
-        
-        await fetch(`${myIp}/getclaims/${emp_id}/${emp_name}/3/${nPage}`,{
-            cache:'reload'
-        })
-        .then(res => res.text() )
-
-        .then(text => {	
-        
-            util.scrollsTo('current_projects')
-        })	
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
-    },
-
     notif:(msg,xclear)=>{
         if(!xclear){
             document.getElementById('p-notif').innerHTML = `<i id='i-notif' class='fa fa-spinner fa-pulse' ></i>
@@ -254,7 +235,6 @@ const asn = {
         });
     },
 
-
     allData:[],
     pageSize:15,
     currentPage:1,
@@ -263,7 +243,7 @@ const asn = {
     getMonthlyTransaction:async( emp_id ) =>{
 
         const db = localStorage  //get localstoreage
-        owner =  JSON.parse(db.getItem('profile'))  //get profile
+        const owner =  JSON.parse(db.getItem('profile'))  //get profile
         
         emp_id = owner.besi_id
 

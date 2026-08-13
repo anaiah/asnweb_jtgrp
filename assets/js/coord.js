@@ -23,7 +23,7 @@ const asn = {
         let pdfprev = document.getElementById('pdf_iframe')
 
         console.log('=====osndp.fileExists()===',url)
-        await fetch( `https://localhost:10000/fileexist/${url}`)
+        await fetch( `${myIp}/fileexist/${url}`)
         .then(response => { 
             return response.json()
         })
