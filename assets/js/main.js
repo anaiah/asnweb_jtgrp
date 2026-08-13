@@ -834,7 +834,7 @@ const asn = {
             util.modalShow('dataEntryModal') // show initial data entry modal
         }else{  // else, if  there's a present cart and notdeleted, rider shud  close
             //alert('YOU HAVEA PENDING REMITTANCE, OPEN  REMITTANCE ENTRY!')
-            util.Toasted('YOU HAVEA PENDING REMITTANCE!!!',3000,false)//alert
+            util.Toasted('YOU HAVE A PENDING REMITTANCE!!!',3000,false)//alert
             util.modalShow('remittanceModal')
 
             // util.translate({

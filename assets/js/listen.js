@@ -7,6 +7,8 @@ remitupload.addEventListener("submit", e => {
     const dbx = JSON.parse( db.getItem('profile'));
                     
     const region  = dbx.region;
+    //util.toggleButtonLoading
+    util.toggleButtonLoading('remittance-btn','Saving..',true)
 
     fetch(`${myIp}/postimage/${document.getElementById('ff_transnumber').value}/${region}`, {
         method: 'POST',
@@ -18,7 +20,7 @@ remitupload.addEventListener("submit", e => {
         .then( (data) =>{
             if(data.status){
                 util.Toasted(`Receipt Image successfully uploaded!!!`,3000,false)
-                asn.speak('Receipt Image successfully uploaded!!!')
+                util.speak('Receipt Image successfully uploaded!!!')
                 
                 //reset form
                 let xform = document.getElementById('remittanceUploadForm')
@@ -29,6 +31,8 @@ remitupload.addEventListener("submit", e => {
                 //hide modal
                 util.hideModal('remittanceModal',2000)//then close form
 
+                util.toggleButtonLoading('remittance-btn',null,false)
+                
                 setTimeout(() => {
                     asn.logout()
                 }, 3000);
