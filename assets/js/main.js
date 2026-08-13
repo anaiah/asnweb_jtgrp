@@ -18,72 +18,7 @@ const asn = {
 
     socket:null,
 
-    //=========================START VOICE SYNTHESIS ===============
-    getVoice: async () => {
-                
-        voices = synth.getVoices()
-        console.log( 'GETVOICE()')
-                
-        voices.every(value => {
-            if(value.name.indexOf("English")>-1){
-                console.log( "main.js bingo!-->",value.name, value.lang )
-                
-            }
-        })
-        
-    },//end func getvoice
-
-    //speak method
-    speak:(theMsg)=> {
-                        
-        console.log("SPEAK()")
-        
-        // If the speech mode is on we dont want to load
-        // another speech
-        if(synth.speaking) {
-            //alert('Already speaking....');
-            return;
-        }	
-
-        const speakText = new SpeechSynthesisUtterance(theMsg);
-
-        // When the speaking is ended this method is fired
-        speakText.onend = e => {
-            //synth.resume();
-            console.log('Speaking is done!');
-        };
-        
-        // When any error occurs this method is fired
-        speakText.error = e=> {
-            console.error('Error occurred...');
-        };
-
-        // Checking which voices has been chosen from the selection
-        // and setting the voice to the chosen voice
-        
-        
-        voices.forEach(voice => {
-            if(voice.name.indexOf("English")>-1){	
-                ///// take out bring back later, 
-                //console.log("speaking voice is ",voice.name)
-                speakText.voice = voice
-                
-            }
-            
-        });
-
-        // Setting the rate and pitch of the voice
-        speakText.rate = 1
-        speakText.pitch = 1
-
-        // Finally calling the speech function that enables speech
-        synth.speak(speakText)
-
-        synth.cancel()
-
-    },//end func speak	
-    //=======================END VOICE SYNTHESIS==========
-
+    
     getimagename:()=>{
         document.getElementById('serial_image').value = document.getElementById('client_po').value
     },
@@ -335,7 +270,7 @@ const asn = {
         console.log('====getting getMonthlytransaction()=====', emp_id)
         
         if(emp_id===null || emp_id ===""){
-            asn.speaks('The system detects that you have an Empty ID, Please Login again')
+            util.speak('The system detects that you have an Empty ID, Please Login again')
             location.href = './'
         }//endif
 
@@ -463,7 +398,7 @@ const asn = {
                 
                 if(data.success !== "ok"){
         
-                    asn.speaks(data.msg)
+                    util.speak(data.msg)
                     
                     asn.db.removeItem('myCart')
 
@@ -485,7 +420,7 @@ const asn = {
 
                 asn.socket.emit('sendtoOpMgr', mydata)
 
-                asn.speaks('Local Storage Saved!!!') //speak
+                util.speak('Local Storage Saved!!!') //speak
                 util.Toasted('Local Storage Saved!!!',3000,false)//alert
                 
                 util.toggleButtonLoading("start-btn", null, false);
@@ -500,7 +435,7 @@ const asn = {
             })    
             .catch((error) => {
                 alert(`Error:, ${error}`)
-                //asn.speaks()
+                //util.speak()
                 console.error('Error:', error)
                 util.toggleButtonLoading("start-btn", null, false);
 
@@ -536,7 +471,7 @@ const asn = {
     //====rider  save transaction / save remittance
     saveTransaction:async function(url="",xdata={}){
 
-        asn.speaks('Saving Transaction to Database, Please Wait!!!')
+        util.speak('Saving Transaction to Database, Please Wait!!!')
                                     
         await fetch(url,{
             method:'POST',
@@ -571,7 +506,7 @@ const asn = {
                 xmsg = "<i class='fa fa-spinner fa-pulse' ></i>  Uploading Receipt, please wait!!!"
                 util.Toasted( xmsg, 3000, false)
                 
-                //asn.speaks("Transaction Saved");
+                //util.speak("Transaction Saved");
 
                 //everytime save notify opmgr
                 asn.socket.emit('sendtoOpMgr', xdata)
@@ -588,7 +523,7 @@ const asn = {
                 remuploadbtn.click()
 
             }else{
-                asn.speaks('DATABASE ERROR! PLEASE CHECK!')
+                util.speak('DATABASE ERROR! PLEASE CHECK!')
             }
 
             //util.toggleButton('remittance-btn',false)
@@ -627,7 +562,7 @@ const asn = {
                 asn.piedata.push( parseInt( data.data[0].delivered_pct) )
                 asn.piedata.push( parseInt( data.data[0].undelivered_pct) )
                 asn.pieChart() //render piechart
-                //asn.speaks("Loading Chart...")
+                //util.speak("Loading Chart...")
                 
             }
 
@@ -834,7 +769,7 @@ const asn = {
 
         console.log('===asn.init()=== loaded!')
 
-        asn.speaks = (txt) =>{
+        util.speak = (txt) =>{
             let speechsynth = new SpeechSynthesisUtterance();
             speechsynth.text = txt
             speechsynth.lang = "en-US"
@@ -878,7 +813,7 @@ const asn = {
             console.warn('====== MESSAGE FROM  MARS RECEIVED ======', xmsg)
 
 
-            asn.speaks('TOTAL LOGGED IN IS...  ' + xmsg[0].total, ' RIDER IS...' + xmsg[0].rider )
+            util.speak('TOTAL LOGGED IN IS...  ' + xmsg[0].total, ' RIDER IS...' + xmsg[0].rider )
             console.log('====== MESSAGE FROM  MARS RECEIVED ======', xmsg, xmsg[0].total, ' RIDER ', xmsg[0].rider)
             ///// temporarily out   osndp.fetchBadgeData()// update badges
         
