@@ -769,13 +769,6 @@ const asn = {
 
         console.log('===asn.init()=== loaded!')
 
-        util.speak = (txt) =>{
-            let speechsynth = new SpeechSynthesisUtterance();
-            speechsynth.text = txt
-            speechsynth.lang = "en-US"
-            speechSynthesis.speak( speechsynth )
-        };    
-
         console.log('main.js SPEAK()')
 
         if(util.getCookie('f_pic')!==""){
