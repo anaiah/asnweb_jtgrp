@@ -15,71 +15,6 @@ const asn = {
     shopCart: [],
     
     socket:null,
-
-    //=========================START VOICE SYNTHESIS ===============
-    getVoice: async () => {
-                
-        voices = synth.getVoices()
-        console.log( 'GETVOICE()')
-                
-        voices.every(value => {
-            if(value.name.indexOf("English")>-1){
-                console.log( "main.js bingo!-->",value.name, value.lang )
-                
-            }
-        })
-        
-    },//end func getvoice
-
-    //speak method
-    speak:(theMsg)=> {
-                        
-        console.log("SPEAK()")
-        
-        // If the speech mode is on we dont want to load
-        // another speech
-        if(synth.speaking) {
-            //alert('Already speaking....');
-            return;
-        }	
-
-        const speakText = new SpeechSynthesisUtterance(theMsg);
-
-        // When the speaking is ended this method is fired
-        speakText.onend = e => {
-            //synth.resume();
-            console.log('Speaking is done!');
-        };
-        
-        // When any error occurs this method is fired
-        speakText.error = e=> {
-            console.error('Error occurred...');
-        };
-
-        // Checking which voices has been chosen from the selection
-        // and setting the voice to the chosen voice
-        voices.forEach(voice => {
-            if(voice.name.indexOf("English")>-1){	
-                ///// take out bring back later, 
-                //console.log("speaking voice is ",voice.name)
-                speakText.voice = voice
-                
-            }
-            
-        });
-
-        // Setting the rate and pitch of the voice
-        speakText.rate = 1
-        speakText.pitch = 1
-
-        // Finally calling the speech function that enables speech
-        synth.speak(speakText)
-
-        synth.cancel()
-
-    },//end func speak	
-    //=======================END VOICE SYNTHESIS==========
-
     //===check file exist in server
     fileExists:async (url, )=> {
         const configObj = { keyboard: false, backdrop:'static' }
@@ -312,7 +247,7 @@ const asn = {
                 asn.piedata.push( parseInt( data.data[0].delivered_pct) )
                 asn.piedata.push( parseInt( data.data[0].undelivered_pct) )
                 asn.pieChart() //render piechart
-                asn.speaks("Loading Chart...")
+                util.speak("Loading Chart...")
             }
 
             return
@@ -1183,43 +1118,8 @@ const asn = {
         
         asn.dbprofile = JSON.parse(localStorage.getItem('profile'));
 
-        /* voice first*/
-
-        // define variable to store voices globally
-        let availableVoices = [];
-
-        let loadVoices = () => {
-            availableVoices = speechSynthesis.getVoices();
-            // console.log('Voices loaded:', availableVoices);
-        }
-
-        speechSynthesis.addEventListener('voiceschanged', loadVoices);
-
-        loadVoices()
-
-        asn.speaks= (txt) => {
-            console.log('Attempting to speak:', txt);
-            
-            // Cancel any ongoing speech
-            speechSynthesis.cancel();
-
-            let utter = new SpeechSynthesisUtterance(txt);
-            utter.lang = 'en-GB';
-
-            // Choose voice or default
-            const voice = availableVoices.find(v => v.lang === 'en-GB' && v.name.toLowerCase().includes('english male'));
-            
-             if (voice) {
-                console.log('voice is ',voice)
-                utter.voice = voice;
-            } else {
-                console.log('Preferred voice not found');
-            }
-            
-            speechSynthesis.speak(utter);
-        }
-
-        asn.speaks('Welcome to Better Edge Apps')
+       
+        util.speak('Welcome to Better Edge Apps')
 
         console.log('===asn.init()=== loaded!')
         
