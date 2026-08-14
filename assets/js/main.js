@@ -612,7 +612,7 @@ const asn = {
               fillSeriesColor: false
             },
           })).render();
-    },
+    }, 
 
     db: window.localStorage, //instantiate localstorage
 

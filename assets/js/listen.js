@@ -28,13 +28,13 @@ remitupload.addEventListener("submit", e => {
                 
                 util.resetFormClass('#remittanceUploadForm')
 
-                //hide modal
+                //hide modal 
                 util.hideModal('remittanceModal',2000)//then close form
 
                 util.toggleButtonLoading('remittance-btn',null,false)
                 
                 setTimeout(() => {
-                    asn.logout()
+                    asn.logout() 
                 }, 3000);
 
             } //eif
