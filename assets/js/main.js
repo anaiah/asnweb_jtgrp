@@ -348,8 +348,12 @@ const asn = {
 
         console.log('firing asn.saveToLogin() main.js  called from util.js validateMe(#dataentryform) =====', asn.saveobjfrm)
     
-        util.toggleButtonLoading("start-btn", "Saving...", true);
-               
+        //util.toggleButtonLoading("start-btn", "Saving...", true);
+          
+        const overlay = document.getElementById('loadingOverlay');
+        // 1. Show the gray blocking overlay module layout
+        overlay.style.display = 'flex';
+        
         if (asn.currentAudio) {
             asn.currentAudio.pause();
             asn.currentAudio.currentTime = 0; // Reset to the beginning
@@ -382,9 +386,8 @@ const asn = {
                     
                     asn.db.removeItem('myCart')
 
-                    util.hideModal('dataEntryModal',2000)    
-                    util.toggleButtonLoading("start-btn", null, false);
-
+                    util.hideModal('dataEntryModal',2000)
+                    
                     return
                 }
                 
@@ -402,11 +405,7 @@ const asn = {
 
                 util.speak('Local Storage Saved!!!') //speak
                 util.Toasted('Local Storage Saved!!!',3000,false)//alert
-                
-                util.toggleButtonLoading("start-btn", null, false);
-
-
-
+               
                 util.hideModal('dataEntryModal',2000)    
                 
                 setTimeout(() => {
@@ -417,14 +416,10 @@ const asn = {
                 alert(`Error:, ${error}`)
                 //util.speak()
                 console.error('Error:', error)
-                util.toggleButtonLoading("start-btn", null, false);
+                //util.hideLoadingAndUnlock() //hide overlay and unlock keyboard
 
             }) .finally(()=>{
-
-                if(asn.db.getItem('myCart')){
-                
-                }
-
+                util.hideLoadingAndUnlock() //hide overlay and unlock keyboard
             })  
         
         //2ND DATA ENTRY
@@ -437,20 +432,19 @@ const asn = {
 
             asn.db.setItem('myCart', JSON.stringify(finaldb))
 
-            //util.toggleButton('start-btn',false)
-            util.toggleButtonLoading("start-btn", null, false);
-        }
-         
-        // const badge = document.getElementById('bell-badge')
-        // badge.innerHTML = 'With Entry'
+            util.hideLoadingAndUnlock() //hide overlay and unlock keyboard
 
-        
+        }
             
     },
 
     //====rider  save transaction / save remittance
     saveTransaction:async function(url="",xdata={}){
 
+        let overlay = document.getElementById('loadingOverlay');
+        // 1. Show the gray blocking overlay module layout
+        overlay.style.display = 'flex';
+        
         util.speak('Saving Transaction to Database, Please Wait!!!')
                                     
         await fetch(url,{
@@ -505,15 +499,18 @@ const asn = {
             }else{
                 util.speak('DATABASE ERROR! PLEASE CHECK!')
             }
-
-            //util.toggleButton('remittance-btn',false)
-            util.toggleButtonLoading('remittance-btn',null,false)
-           
+            
+            //util.hideLoadingAndUnlock() //hide overlay and unlock keyboard
+        
         })  
         .catch((error) => {
             util.Toasted(`Error:, ${error}`,2000,false)
             console.error('Error:', error)
-        })    
+            //util.hideLoadingAndUnlock() //hide overlay and unlock keyboard
+        }).finally(()=>{
+            util.hideLoadingAndUnlock() //hide overlay and unlock keyboard
+        })  
+            
     },
     
     piedata:[],// array to hold data

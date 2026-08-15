@@ -1680,6 +1680,8 @@ const util = {
                     break;
 
                 case "#dataEntryForm":
+                    //==== for entering primary Parcel Qty gets
+
                     // Your existing data entry form logic
                     const dataEntryFormData = new FormData(formElement);
                     let dataEntryObjfrm = {};
@@ -1722,7 +1724,7 @@ const util = {
                     
                     if( remitamt > hubamt){
                         util.Toasted('Error!!! Remitted Amount greater than Amount of Scanned Parcels!!!',3000,false);
-                        window.asn.speaks('Error!!! Remitted Amount  is greater than Amount of Scanned Parcels!!!');
+                        util.speak('Error!!! Remitted Amount  is greater than Amount of Scanned Parcels!!!');
                         document.getElementById('f_amount').focus();
                         break;
                     }
@@ -1890,7 +1892,7 @@ const util = {
                         }
                     */
                         //location.href = '../jtx/dashboard'
-                        location.href = '/besi/dashboard' 
+                        location.href = `/besi/dashboard?v=20260815` 
                     break
                 
                     case 4: //old  coordinator
@@ -1981,84 +1983,6 @@ const util = {
     // func('my message', asn.other_func); // Calls with second param as a function
     isPlaying:false,
     
-    ///=========================PLAY GREETINGS===============
-    // translate:async ({ xmsg, runwhat = () => {}, cRedirect } = {}) => {
-
-    //     if (util.isPlaying) return; // prevent re-entry
-  
-    //     util.isPlaying = true;
-
-    //     const aActs = [
-    //         " Ingat po sa Byahe!", 
-    //         " Galingan naten today ha?",
-    //         " Kayang-kaya mo yan!!!!",
-    //         " Wag pabayaan ang sarili!!!",
-    //         " Magdasal lagi sa Panginoon!",
-    //         " Gawin mong  sandigan ng lakas ang iyong Pamilya!"]
-        
-    //     const now = new Date();
-    //     const hours = now.getHours(); // returns 0-23
-    //     const wHrs = hours % 24;
-    //     let xvoice
-
-    //     if (wHrs >= 0 && wHrs < 12) { // Check for 12 AM (0)
-    //         xvoice = `MAGANDANG UMAGA!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`  
-    //     } else if (wHrs >= 12 && wHrs <= 17) { //AM period
-    //         xvoice =`MAGANDANG HAPON!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`
-    //     } else if (wHrs > 17 && wHrs <= 23) { //AM period
-    //         xvoice = `MAGANDANG GABI!!! ${xmsg} ${aActs[Math.floor(Math.random() * (5 - 0 + 1)) + 0]}`
-         
-    //     }
-
-    //     const apiKey = 'sk_71ec2e7034a4e78f766acbbfd418beb2d6e7c8febfc94507'; // your API key
-    //     const voiceId = 'NEqPvTuKWuvwUMAEPBPR'; // your voice ID
-
-    //     try {
-    //         const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
-    //             method: 'POST',
-    //             headers: {
-    //             'Content-Type': 'application/json',
-    //             'xi-api-key': apiKey,
-    //             },
-    //             body: JSON.stringify({
-    //             text: xvoice ,
-    //             model_id: 'eleven_multilingual_v2',
-    //             output_format: 'mp3',
-    //             }),
-    //         });
-
-    //         if (!response.ok) {
-    //             throw new Error('Network response was not ok ' + response.statusText);
-    //         }
-
-    //         const audioBlob = await response.blob();
-    //         const url = URL.createObjectURL(audioBlob);
-    //         const audio = new Audio(url);
-
-    //         //carlo
-    //         audio.onended = null; // Remove previous handle
-
-    //         // use onended instead of addEventListener
-    //         audio.onended = () => {
-    //             util.isPlaying = false; // reset flag
-            
-    //             if (cRedirect !== undefined && cRedirect !== null) {
-    //                 window.location.href = cRedirect;
-    //             }
-    //             if (typeof runwhat === 'function') {
-    //                 runwhat();
-                   
-    //             }
-    //         }//ended onended
-            
-    //         audio.play();
-    //     } catch (error) {
-    //     console.error('Error:', error);
-    //         util.isPlaying = false; // Reset flag on error
-    //     }
-
-    // },    
-
     //================ new employee posting =========// 
     newempPost:async function(frm,modal,url="",formData){
         fetch(url,{
@@ -2430,6 +2354,22 @@ const util = {
             btn.disabled = false;
         }
     },
+
+    blockKeyboard: (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    },
+    // CALL THIS FUNCTION inside your Fetch resolve code block once Express says "Success"!
+    hideLoadingAndUnlock : () =>{
+
+        const overlay = document.getElementById('loadingOverlay');
+        overlay.style.display = 'none';
+        
+        // Unlock keyboard hooks cleanly
+        window.removeEventListener('keydown', util.blockKeyboard, true);
+        window.removeEventListener('keypress', util.blockKeyboard, true);
+    }
 
     //const cdnModelsUrl = 'https://cdn.jsdelivr.net/gh/vladmandic/face-api/model/';
 

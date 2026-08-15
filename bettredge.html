@@ -10,6 +10,24 @@
 
 
   <title>BESI</title>
+
+        <!-- 1. PUT THE MESSENGER KICKER SCRIPT FIRST -->
+    <script>
+        (function () {
+            console.log('checking if the user is in Facebook Messenger...');
+            
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            // Check for FB app and Messenger signatures
+            var isMessenger = (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+            
+            if (isMessenger) {
+                var currentUrl = window.location.href;
+                // Force open the link directly inside Google Chrome app on Android
+                window.location.href = 'intent://' + currentUrl.replace(/^https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+            }
+        })();
+    </script>
+
   <!-- <link rel="shortcut icon" type="image/png" href="/html/assets/images/logos/favicon.png" /> -->
   <link rel="shortcut icon" href="/html/assets/images/logos/besi_logo.png" type="image/x-icon" sizes="32x32">  
 
