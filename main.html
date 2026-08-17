@@ -94,38 +94,46 @@
     height: 350px;
   } 
 
-  /* for the loader */
-  /* The background blocking shield */
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.6); /* Translucent dark gray */
-    z-index: 99999; /* Keeps it on top of everything */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    /* for the loader */
+    /* The background blocking shield */
+  .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6); /* Translucent dark gray */
+      z-index: 99999; /* Keeps it on top of everything */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
 
-/* Center box containing Bootstrap spinner */
-.loader-content {
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-}
+  /* Center box containing Bootstrap spinner */
+  .loader-content {
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  }
 
-.loader-text {
-    font-family: Arial, sans-serif;
-    font-size: 18px;
-    font-weight: bold;
-    color: #333333;
-    margin: 0;
+  .loader-text {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333333;
+      margin: 0;
+  }
+  /* Rotates a horizontal photo safely inside a 35x35 circle without clipping or moving out of alignment */
+ #img-profile {
+    object-fit: cover;
+    object-position: center;
+    
+    /* This forces the browser to read the camera's internal tilt tag 
+       and straighten the photo right-side up automatically! */
+    image-orientation: from-image !important; 
 }
-
   </style>
 </head>
 
@@ -182,13 +190,18 @@
               
               <!-- <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a>
                -->
-              <li class="nav-item dropdown">
+              <!-- <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
 
-                  <!--//=== AVATAR ==== //-->
-                  <img id='img-profile' src="" alt="" width="35" height="35" class="rounded-circle">
+                  <img id='img-profile' src="" alt="" width="35" height="35" class="rounded-circle"> 
+                </a>-->
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- Added 'object-fit-cover' to keep the circle shape pristine -->
+                    <img id="img-profile" src="" alt="" width="35" height="35" class="rounded-circle object-fit-cover">
                 </a>
+
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
                     <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">

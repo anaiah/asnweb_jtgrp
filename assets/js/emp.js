@@ -371,16 +371,89 @@ const emp = {
 
     dbprofile: null,
 
+    fotorotate : (empid, region) => {
+        let subFolderName = '';
+        
+        switch (region.toUpperCase()) {
+            case 'SMNL': subFolderName = 'ncr_smnl_emp'; break;
+            case 'CMNL': subFolderName = 'ncr_cmnl_emp'; break;
+            case 'CMNVA': subFolderName = 'ncr_cmnva_emp'; break;
+            case 'NELU': subFolderName = 'luz_nelu_emp'; break;
+            case 'NWLU': subFolderName = 'luz_nwlu_emp'; break;
+            case 'MIN' : subFolderName = 'min_emp'; break;
+            case 'SLU' : subFolderName = 'slu_emp'; break;
+
+            case 'HPRO' : subFolderName = 'hpro_emp'; break;
+            case 'YNCR' : subFolderName = 'yncr_emp'; break;
+            case 'YSLU' : subFolderName = 'yslu_emp'; break;
+            case 'YNELU' : subFolderName = 'ynelu_emp'; break;
+
+            case 'BICOL': subFolderName = 'bsl_bicol_emp'; break;
+            case 'SMARLEYTE': subFolderName = 'bsl_smarleyte_emp'; break;
+            case 'CENTRAL': subFolderName = 'wvis_central_emp'; break;
+            case 'BACOLOD': subFolderName = 'wvis_bacolod_emp'; break;
+            case 'PANAY': subFolderName = 'wvis_panay_emp'; break;
+        }
+
+        // Fixed path pointer reference targeting your active folder deployment architecture
+        const baseUrl = `https://asianowapp.com/html/${subFolderName}/`;
+        
+        // Target the navbar image profile circle element from your Bootstrap layout snippet
+        const profileImgTag = document.getElementById('img-profile');
+        if (!profileImgTag) return; // Guard clause to prevent errors if element doesn't exist yet
+
+        const baseName = `USER_${empid}`;
+        const exts = [".jpg", ".png", ".gif", ".jfif", ".webp", ".bmp", ".jpeg"];
+        let idx = 0;
+
+        const tryNextExt = () => {
+            // Fallback boundary: If all extensions fail to resolve on disk, display default avatar path
+            if (idx >= exts.length) {
+                profileImgTag.classList.remove('avatar-rotated');
+                profileImgTag.src = `https://asianowapp.com`; 
+                return;
+            }
+
+            const url = baseUrl + encodeURIComponent(baseName + exts[idx]);
+            idx++;
+
+            // 1. Create a quiet off-screen background image variable to run layout checks 
+            const tempLoader = new Image();
+            
+            // If this extension file doesn't exist on the server, jump to the next extension
+            tempLoader.onerror = tryNextExt;
+
+            tempLoader.onload = function() {
+                // 2. Clear any orientation classes left over from previous rider loads
+                profileImgTag.classList.remove('avatar-rotated');
+
+                // 3. AUTO FLIPPER LOGIC: Check if the photo is wider than it is tall (Horizontal/Landscape)
+                if (this.naturalWidth > this.naturalHeight) {
+                    console.log(`Sideways photo detected for rider ${empid}! Auto-aligning...`);
+                    profileImgTag.classList.add('avatar-rotated');
+                }
+
+                // 4. Safely stream the fully verified and processed source URL into your active navbar element
+                profileImgTag.src = url;
+                console.log('Successfully assigned profile pic layout target:', url);
+            };
+
+            // Fire off the background file resolution request
+            tempLoader.src = url;
+        };
+        
+        // Initialize checking process
+        tryNextExt();
+    },
+
 	//==,= main run
 	init :  () => {
         
-        emp.dbprofile = JSON.parse(localStorage.getItem('profile'));
+        //emp.dbprofile = JSON.parse(localStorage.getItem('profile'));
         
-        if(util.getCookie('f_pic')!==""||util.getCookie('f_pic')== null){
-            document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
-        }else{
-            document.getElementById('img-profile').src=`/html/assets/images/profile/engr.jpg`
-        }
+        //set avatar
+        /// later not good1 emp.fotorotate( emp.userProfile.besi_id, emp.userProfile.region)
+
 
         let authz = []
         authz.push(util.getCookie('grp_id') )

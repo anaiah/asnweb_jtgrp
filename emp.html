@@ -43,44 +43,53 @@
     }
     
     span.xgrpheader{
-  /* background-color:#cfcfce; */
-  /* font-weight: bold; */
-  /* padding: 0px 0px 0px 15px; adjust the last number to move the header  name */
-  
-  color:#08304d;
-  /* padding-right:23px !important; */
-  /* box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important; */
-  
+      /* background-color:#cfcfce; */
+      /* font-weight: bold; */
+      /* padding: 0px 0px 0px 15px; adjust the last number to move the header  name */
+      
+      color:#08304d;
+      /* padding-right:23px !important; */
+      /* box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important; */
+      
+    }
+    /* row backgnd color of group summary */
+    .x-grid-row-summary {
+        color:#cc1524!important;
+        background-color: #edfbfb !important;
+        /* background-color: #E2EFF9 !important; */
+        /* background-color: #f0f0f0; Change background color */
+        font-weight: bold;         /* Make text bold */
+        /* color: #333;               Change text color */
+        /* color :rgb(192, 5, 5) !important; */
+      }
+
+      /* row background color of grouping summary header */
+    .x-grid-group-hd { 
+      /* background-color: #6de73c !important; */
+      background-color: #edfbfb !important;
+      color: rgb(5, 33, 170) !important;
+
+      padding: 7px 0px 7px 10px; /*adjust the last number to move the header  name*/
+        /* font-weight: bold; */
+      box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important;
+
+    }
+
+    /* for getrowclass to work */
+    .x-grid-row.with-work td.x-grid-cell { /* Using the grid's ID */
+      background-color: #C5DFF2 !important;
+
+    }
+
+  /* Rotates a horizontal photo safely inside a 35x35 circle without clipping or moving out of alignment */
+ #img-profile {
+    object-fit: cover;
+    object-position: center;
+    
+    /* This forces the browser to read the camera's internal tilt tag 
+       and straighten the photo right-side up automatically! */
+    image-orientation: from-image !important; 
 }
-/* row backgnd color of group summary */
-.x-grid-row-summary {
-    color:#cc1524!important;
-    background-color: #edfbfb !important;
-    /* background-color: #E2EFF9 !important; */
-    /* background-color: #f0f0f0; Change background color */
-    font-weight: bold;         /* Make text bold */
-    /* color: #333;               Change text color */
-    /* color :rgb(192, 5, 5) !important; */
-  }
-
-  /* row background color of grouping summary header */
-.x-grid-group-hd { 
-  /* background-color: #6de73c !important; */
-  background-color: #edfbfb !important;
-  color: rgb(5, 33, 170) !important;
-
-  padding: 7px 0px 7px 10px; /*adjust the last number to move the header  name*/
-    /* font-weight: bold; */
-   box-shadow: 0 .15rem 2rem 0 rgba(58,59,69,.15) !important;
-
-}
-
-/* for getrowclass to work */
-.x-grid-row.with-work td.x-grid-cell { /* Using the grid's ID */
-  background-color: #C5DFF2 !important;
-
-}
-
   /* .apexcharts-tooltip {
   display: none !important;
 } */
@@ -144,12 +153,11 @@
               <!-- <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a>
                -->
               <li class="nav-item dropdown">
-                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-
-                  <!--//=== AVATAR ==== //-->
-                  <img id='img-profile' src="" alt="" width="35" height="35" class="rounded-circle">
+                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- Added 'object-fit-cover' to keep the circle shape pristine -->
+                    <img id="img-profile" src="" alt="" width="35" height="35" class="rounded-circle object-fit-cover">
                 </a>
+
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
                     <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
@@ -211,12 +219,18 @@
                     <select id="shiftDropdown" class="form-select form-select-sm">
                         <option value="">-- Choose Shift --</option>
                         <!-- Day Shifts -->
+                        <option value="05:00:00">5 AM - 2 PM</option>
+                        <option value="06:00:00">6 AM - 3 PM</option>
+                         
                         <option value="07:00:00">7 AM - 4 PM</option>
                         <option value="08:00:00">8 AM - 5 PM</option>
                         <option value="09:00:00">9 AM - 6 PM</option>
                         <option value="10:00:00">10 AM - 7 PM</option>
                         <option value="11:00:00">11 AM - 8 PM</option>
                         <option value="12:00:00">12 PM - 9 PM</option>
+                        <option value="13:00:00">1 PM - 10 PM</option>
+                        <option value="14:00:00">2 PM - 11 PM</option>
+                        
                         <!-- Afternoon/Night Shifts -->
                         <option value="15:00:00">3 PM - 12 AM</option>
                         <option value="16:00:00">4 PM - 1 AM</option>
@@ -343,12 +357,12 @@
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
-  <script src="/html/assets/js/ipconfig.js?v=8"></script>
+  <script src="/html/assets/js/ipconfig.js?v=20260815"></script>
   
   <!-- <script src="/html/assets/coordapp.js?v=8"></script> -->
-  <script src="/html/assets/js/util.js?v=8"></script>
+  <script src="/html/assets/js/util.min.js?v=20260815"></script>
 
-  <script type='module' src="/html/assets/js/emp.js?v=8"></script>
+  <script type='module' src="/html/assets/js/emp.js?v=20260815"></script>
 
   <!-- takeout muna gridtab palit extjs -->
   <!-- <script src="/html/assets/js/coordgriddettab.js?v=8"></script> -->
