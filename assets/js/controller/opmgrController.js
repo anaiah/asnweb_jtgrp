@@ -416,7 +416,8 @@ Ext.define('MyApp.controller.opmgrController', {
         
                         console.log('Selected Area:', areaValue);
 
-                        xregion = areaValue;
+                        xregion = record.get('region') //set global region for rider summary
+                        console.log('Selected Region:', xregion);
         
                         //SET TITLE
                         Ext.getCmp('opmgrLocationGrid').setTitle("Location Performance for " + areaValue) 
@@ -494,7 +495,7 @@ Ext.define('MyApp.controller.opmgrController', {
             
                 // Make an AJAX request to get the data from the server
                 Ext.Ajax.request({
-                    url: `${myIp}/coor/ridersummary/${locValue}/${xregion}`,
+                    url: `${myIp}/opmgr/ridersummary/${locValue}/${xregion}`,
                     success: function(response) {
                         var json = Ext.decode(response.responseText);
                         var data = json.data || json; // if data is wrapped or not
