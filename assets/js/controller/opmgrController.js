@@ -1,3 +1,5 @@
+let xregion
+
 Ext.define('MyApp.controller.opmgrController', {
     extend: 'Ext.app.Controller',
 
@@ -59,9 +61,9 @@ Ext.define('MyApp.controller.opmgrController', {
         .then(response => response.json())
         .then(data => {
             const xdata = data.data
-            console.log('***%%%%%%%%%% INITIAL CHART FROM NODEJS and INITIAL  CHART LOAD*****', xdata)
+            console.log('***%%%%%%%%%% opmgrcontroller.js.loadinitialchart() INITIAL CHART FROM NODEJS and INITIAL  CHART LOAD*****', xdata)
             
-            asn.speaks('INCOMING INITIAL DATA!!!')
+            util.speak('INCOMING INITIAL DATA!!!')
 
             const attendance_keysToExtract = ['reg', 'logged']; // add coluumns here 'parcel__delivered', Array of keys to extract
             const parcel_keysToExtract = ['parcel', 'parcel_delivered']
@@ -272,7 +274,8 @@ Ext.define('MyApp.controller.opmgrController', {
           colors: ['transparent']
         },
         xaxis: {
-                categories: ['BCOL','SMR-LYTE','CVIS','CMNL','CMNVA','SMNL','BACLD','PANAY','***TOTAL***'],
+                categories: ['BACOLOD','BICOL','CENTRAL','CMNL','CMNVA','HPRO','MIN','NELU','NWLU',
+                                'PANAY','SLU','SMRLEYTE','SMNL','YNCR','YNELU','YSLU','***TOTAL***'],
 
                 title: {
                     text: 'REGION',
@@ -412,6 +415,8 @@ Ext.define('MyApp.controller.opmgrController', {
                         var areaValue = record.get('area');
         
                         console.log('Selected Area:', areaValue);
+
+                        xregion = areaValue;
         
                         //SET TITLE
                         Ext.getCmp('opmgrLocationGrid').setTitle("Location Performance for " + areaValue) 
@@ -489,7 +494,7 @@ Ext.define('MyApp.controller.opmgrController', {
             
                 // Make an AJAX request to get the data from the server
                 Ext.Ajax.request({
-                    url: `${myIp}/coor/ridersummary/${locValue}`,
+                    url: `${myIp}/coor/ridersummary/${locValue}/${xregion}`,
                     success: function(response) {
                         var json = Ext.decode(response.responseText);
                         var data = json.data || json; // if data is wrapped or not

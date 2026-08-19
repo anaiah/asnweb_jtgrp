@@ -1881,7 +1881,10 @@ const util = {
                                     
                 switch ( obj.grp_id ) {
                     case 1:
-                    case '01':
+                    case '01': //rider
+                    case '17'://car rental
+                    case "017"://4weheel
+
                         //check distance before proceeding to login
                         //take out chcking of distance bring back  later
                     /*  
@@ -1906,18 +1909,18 @@ const util = {
                     case '04':
                     case '06':
                     case '10':
-                        location.href = '/besi/main' 
+                        location.href = '/besi/main?v=20260815' 
                         //to emp.html
                     break;
 
                     //coordinator/ 
                     case '08':
-                        location.href = '/besi/coord'    
+                        location.href = '/besi/coord?v=20260815'    
                     break
 
                     ///head coordinator
                     case '07':
-                        location.href = '/besi/headcoord'    
+                        location.href = '/besi/headcoord?v=20260815'    
                     break
 
                     case 3:  //head coord
@@ -1927,7 +1930,7 @@ const util = {
                     case 5: // operations mgr
                     //case 8: //hr
                         console.log('poooknnatt')
-                        location.href ='../jtx/operations'    
+                        location.href ='../besi/operations?v=20260815'    
                     break
 
                     case 8://hrmgr
@@ -1935,7 +1938,7 @@ const util = {
                     case 88://test hr
                     case 9://finance michelle maralit team
                         //location.href ='../jtx/hris '
-                        location.href = '../besi/hris';   
+                        location.href = '../besi/hris?v=20260815';   
                     break
 
                     /*

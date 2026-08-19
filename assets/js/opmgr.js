@@ -17,74 +17,7 @@ const asn = {
     //socket:io.connect("https://osndp.onrender.com"),
 
     socket:null,
-
-    //=========================START VOICE SYNTHESIS ===============
-    getVoice: async () => {
-                
-        voices = synth.getVoices()
-        console.log( 'GETVOICE()')
-                
-        voices.every(value => {
-            if(value.name.indexOf("English")>-1){
-                console.log( "main.js bingo!-->",value.name, value.lang )
-                
-            }
-        })
-        
-    },//end func getvoice
-
-    //speak method
-    speak:(theMsg)=> {
-        
-                        
-        console.log("SPEAK()-->",voices)
-        
-        // If the speech mode is on we dont want to load
-        // another speech
-        if(synth.speaking) {
-            //alert('Already speaking....');
-            return;
-        }	
-
-        const speakText = new SpeechSynthesisUtterance(theMsg);
-
-        // When the speaking is ended this method is fired
-        speakText.onend = e => {
-            //synth.resume();
-            console.log('Speaking is done!');
-        };
-        
-        // When any error occurs this method is fired
-        speakText.error = e=> {
-            console.error('Error occurred...');
-        };
-
-        // Checking which voices has been chosen from the selection
-        // and setting the voice to the chosen voice
-        
-        
-        voices.forEach(voice => {
-            if(voice.name.indexOf("English")>-1){	
-                ///// take out bring back later, 
-                //console.log("speaking voice is ",voice.name)
-                speakText.voice = voice
-                
-            }
-            
-        });
-
-        // Setting the rate and pitch of the voice
-        speakText.rate = 1
-        speakText.pitch = 1
-
-        // Finally calling the speech function that enables speech
-        synth.speak(speakText)
-
-        synth.cancel()
-
-    },//end func speak	
-    //=======================END VOICE SYNTHESIS==========
-
+    
     //===check file exist in server
     fileExists:async (url, )=> {
         const configObj = { keyboard: false, backdrop:'static' }
@@ -316,7 +249,7 @@ const asn = {
                 asn.piedata.push( parseInt( data.data[0].delivered_pct) )
                 asn.piedata.push( parseInt( data.data[0].undelivered_pct) )
                 asn.pieChart() //render piechart
-                asn.speaks("Loading Chart...")
+                util.speaks("Loading Chart...")
                 
             }
 
@@ -796,83 +729,16 @@ const asn = {
 
     waitingIndicator : document.getElementById('waiting-indicator'),
 
-    listeners:()=>{
-
-         //for upload pdf
-        const frmupload = document.getElementById('hrisuploadForm')
-        frmupload.addEventListener("submit", e => {
-           
-            const formx = e.target;
-
-            asn.waitingIndicator.style.display = 'block'
-
-            fetch(`${myIp}/xlshris`, {
-                //method:'GET',
-                method: 'POST',
-                body: new FormData(formx),
-            })
-            .then( (response) => {
-                return response.json() // if the response is a JSON object
-            })
-            .then( (data) =>{
-                if(data.status){
-                    console.log ('CLAIMS DONE!', data )
-                    util.speak(data.message)
-
-                    // Select the form element
-                    const form = document.querySelector('#hrisuploadForm'); // or use class selector
-
-                    // Reset the form
-                    form.reset();
-
-                    util.hideModal('hrisloadModal',2000)//then close form    
-
-                    asn.waitingIndicator.style.display = 'none'
-                }
-            })
-            // Handle the success response object
-            .catch( (error) => {
-                console.log(error) // Handle the error response object
-            });
-
-
-            //e.preventDefault()
-            console.log('===HRIS SUBMITTTTT===')
-                //// keep this reference for event listener and getting value
-                /////const eqptdesc = document.getElementById('eqpt_description')
-                ////eqptdesc.value =  e.target.value
-            
-            // Prevent the default form submit
-            e.preventDefault();    
-        })
-        //=================END FORM SUBMIT==========================//
-               
-    },
-
-	//=================================== main run
+   	//=================================== main run
 	init :  () => {
         asn.getmenu(util.getCookie('grp_id')) 
         console.log('===asn.init()=== loaded!')
 
-        asn.listeners()
-        
-        
-        asn.speaks = (txt) =>{
-            let speechsynth = new SpeechSynthesisUtterance();
-            speechsynth.text = txt
-            speechsynth.lang = "en-US"
-            speechSynthesis.speak( speechsynth )
-            
-            console.log('===main.js SPEAK()');
-        
-        };
-       
-
-        if(util.getCookie('f_pic')!==""){
-            document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
-        }else{
-            document.getElementById('img-profile').src=`/html/assets/images/profile/engr.jpg`
-        }
+        // if(util.getCookie('f_pic')!==""){
+        //     document.getElementById('img-profile').src=`/html/assets/images/profile/${util.getCookie('f_pic')}`
+        // }else{
+        //     document.getElementById('img-profile').src=`/html/assets/images/profile/engr.jpg`
+        // }
 
         let authz = []
         authz.push(util.getCookie('grp_id') )
