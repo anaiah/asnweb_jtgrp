@@ -1884,7 +1884,8 @@ const util = {
                     case '01': //rider
                     case '17'://car rental
                     case "017"://4weheel
-
+                    case 23: //foot delivery
+                    case '03': //Fdoot delivery   
                         //check distance before proceeding to login
                         //take out chcking of distance bring back  later
                     /*  
@@ -1905,7 +1906,7 @@ const util = {
                     //sorter/rider/transporter/team leader
                    // case '01':
                     case '02':
-                    case '03':
+                    //case '03':
                     case '04':
                     case '06':
                     case '10':
