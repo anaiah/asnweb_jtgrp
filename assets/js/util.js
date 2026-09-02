@@ -883,8 +883,8 @@ const util = {
 			
             case "newempModal":
             case "dataPrivacySignatureModal" :
-
-                if(util.getCookie('grp_id')==="8" || util.getCookie('grp_id')==="08" || 
+                //09 IS RECRUITER, 8 IS HR, 08 COORDINATOR
+                if(util.getCookie('grp_id')==="8" || util.getCookie('grp_id')==="08" || util.getCookie('grp_id')==="09" || 
                     util.getCookie('grp_id')==="88" || util.getCookie('grp_id')==="07"){ // HR PEOPLE or coordinator FOR NOW
                     //show the dialog modal
                     //console.log('uyyy mdalshow Nu emp')
@@ -1910,6 +1910,7 @@ const util = {
                     case '04':
                     case '06':
                     case '10':
+                    case '09': //recruiter    
                         location.href = '/besi/main?v=20260815' 
                         //to emp.html
                     break;

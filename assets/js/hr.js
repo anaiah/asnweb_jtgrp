@@ -1522,7 +1522,7 @@
     window.hris = hris
     
     hris.init()
-    xutil.loadModels()
+    //xutil.loadModels()
 
     //============== DONT PUT DOMCONTENTLOADED EVENT HERE, ITS ALREDDY IN HR.HTML
     

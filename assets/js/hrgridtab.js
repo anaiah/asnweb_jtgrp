@@ -49,25 +49,17 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 let xdisabled = "", findisabled = ""; // default to disabled   
 
                 switch(profile.grp_id){
+
+                    // all these grp-id shud not have access to action buttons
                     case 1: //admin
                     case 88: //test hr
-                    case 30: //JENNELLE
+                    case 30: //finance head JENNELLE
                     case 9://FINANCE
                     
-                    //case 30: //finance head miss jenelle
                          xdisabled = "disabled"; // enable if grp_id is 1 or 88
                     break;
 
-                    // case 8://corp hr
-                    //      xdisabled = "disabled";
-                    //      break;
-
                 }    
-                // if (profile.grp_id === 8) {  //8 hold hr
-                //     xdisabled = ""; // enable if grp_id is 8
-                // } else {
-                //     xdisabled = "disabled"; // disable for other grp_id values
-                // }//eif
                 
                 let xlabel = "";
                 let action = "";
@@ -135,11 +127,9 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                 const email = rowData.email;
                 const region = document.getElementById('filter_region').value
                 
-
                 switch( action ){
                     case "edit":
                         console.log('opening hris.openEditForm with rowData:', rowData);
-                        
                         
                         hris.openEditForm(rowData);
                         return;
@@ -261,7 +251,7 @@ var hrisGrid = new Tabulator("#hrisgrid", {
                         break
                     case 2:
                     case 0:
-                        return 'Deactivated'
+                        return '🚫Deactivated'
                         break
                     
                 }//
